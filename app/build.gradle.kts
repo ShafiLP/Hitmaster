@@ -17,15 +17,9 @@ repositories {
     mavenCentral()
 }
 
-/*dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation(libs.junit.jupiter)
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    // This dependency is used by the application.
-    implementation(libs.guava)
-}*/
+dependencies {
+    implementation ("org.xerial:sqlite-jdbc:3.46.1.0")
+}
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {

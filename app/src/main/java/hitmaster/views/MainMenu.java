@@ -2,6 +2,7 @@ package hitmaster.views;
 
 import hitmaster.design.UI;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -25,6 +26,13 @@ public class MainMenu {
         Button settingsBtn = UI.settingsButton();
 
         Button singleplayerBtn = UI.navButton("Einzelspieler");
+        singleplayerBtn.setOnAction(e -> {
+            GameView gameView = new GameView();
+
+            Scene scene = new Scene(gameView, 800, 600);
+            stage.setScene(scene);
+            stage.show();
+        });
         Button multiplayerBtn = UI.navButton("Mehrspieler");
         Button quitButton = UI.quitButton();
 

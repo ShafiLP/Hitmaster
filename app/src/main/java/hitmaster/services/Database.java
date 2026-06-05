@@ -1,9 +1,8 @@
 package hitmaster.services;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -37,19 +36,23 @@ public class Database {
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
 
-            boolean success = stmt.execute("""
+            stmt.execute("""
                 CREATE TABLE IF NOT EXISTS sets (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
                     img TEXT
                 );
+            """);
 
+            stmt.execute("""
                 CREATE TABLE IF NOT EXISTS artists (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
                     alias TEXT
                 );
+            """);
 
+            stmt.execute("""
                 CREATE TABLE IF NOT EXISTS songs (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     title TEXT NOT NULL,
@@ -58,18 +61,11 @@ public class Database {
                     spotify TEXT,
                     set_id INTEGER,
                     FOREIGN KEY (artist_id) REFERENCES artists(id),
-                    FORGEIN KEY (set_id) REFERENCES sets(id)
+                    FOREIGN KEY (set_id) REFERENCES sets(id)
                 );
             """);
 
-            if (success) {
-                Log.Success("Initialised new database.");
-            }
-            else {
-                Log.Error("Error while initialising database.");
-            }
-
-            return success;
+            return true;
         }
         catch (SQLException e) {
             Log.Error("Error while initialising database: " + e.getMessage());
@@ -81,23 +77,15 @@ public class Database {
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
 
-            boolean success = stmt.execute("""
-                DELETE * FROM sets;
-                DELETE * FROM artists;
-                DELETE * FROM songs;
-                DROP TABLE IF EXISTS sets;
-                DROP TABLE IF EXISTS artists;
-                DROP TABLE IF EXISTS songs;
-            """);
-            
-            if (success) {
-                Log.Success("Deleted all data from database.");
-            }
-            else {
-                Log.Error("Error while deleting data from database.");
-            }
+            stmt.execute("DELETE FROM sets");
+            stmt.execute("DELETE FROM artists");
+            stmt.execute("DELETE FROM songs");
+            stmt.execute("DROP TABLE IF EXISTS sets");
+            stmt.execute("DROP TABLE IF EXISTS artists");
+            stmt.execute("DROP TABLE IF EXISTS songs");
 
-            return success;
+            Log.Success("Deleted all data from tables.");
+            return true;
         }
         catch (SQLException e) {
             Log.Error("Error while deleting data from database: " + e.getMessage());
@@ -105,14 +93,17 @@ public class Database {
         }
     }
 
-    public static boolean insertCsvIntoDatabase(String tableName, String csvPath) {
+    public static boolean insertCsvIntoDatabase(String tableName, String fileName) {
         try {
             // 1) Get CSV from path
-            Path csv = Paths.get(csvPath);
-            List<String> lines = Files.readAllLines(csv);
+            InputStream is = Database.class.getResourceAsStream("/csv/" + fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            List<String> lines = reader.lines()
+                .filter(line -> line != null && !line.trim().isEmpty())
+                .toList();
 
             // 2) Build prompt from CSV
-            String[] columns = lines.get(0).split(",");
+            String[] columns = lines.get(0).split(";");
             String placeholders = String.join(",", Collections.nCopies(columns.length, "?"));
             String sqlExecute = String.format(
                 "INSERT INTO %s (%s) VALUES (%s)",
@@ -126,7 +117,7 @@ public class Database {
 
             // Assuming heading row
             for (int i = 1; i < lines.size(); i++) {
-                String[] values = lines.get(i).split(",");
+                String[] values = lines.get(i).split(";");
 
                 for (int j = 0; j < columns.length; j++) {
                     ps.setString(j + 1, j < values.length ? values[j] : null);
@@ -137,11 +128,11 @@ public class Database {
 
             ps.executeBatch();
 
-            Log.Success("Inserted data from \"" + csvPath + "\" into " + tableName + ".");
+            Log.Success("Inserted data from \"" + fileName + "\" into " + tableName + ".");
             return true;
         }
-        catch (IOException | SQLException e) {
-            Log.Error("Error while inserting data from \"" + csvPath + "\" into table \"" + tableName + "\".");
+        catch (SQLException e) {
+            Log.Error("Error while inserting data from \"" + fileName + "\" into table \"" + tableName + "\": " + e.getMessage());
             return false;
         }
     }
@@ -210,7 +201,7 @@ public class Database {
             String sqlExecute = """
                 SELECT *
                 FROM artists
-                WHERE artist_id = ?
+                WHERE id = ?
             """;
             PreparedStatement ps = conn.prepareStatement(sqlExecute);
             ps.setInt(1, artistId);
@@ -248,7 +239,7 @@ public class Database {
         song.artist_id = rs.getInt("artist_id");
         song.year = rs.getInt("year");
         song.spotify = rs.getString("spotify");
-        song.set_id = rs.getInt("setId");
+        song.set_id = rs.getInt("set_id");
 
         return song;
     }
