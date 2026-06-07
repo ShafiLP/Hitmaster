@@ -19,6 +19,9 @@ repositories {
 
 dependencies {
     implementation ("org.xerial:sqlite-jdbc:3.46.1.0")
+    implementation ("se.michaelthelin.spotify:spotify-web-api-java:9.3.0")
+    implementation ("com.google.code.gson:gson:2.11.0")
+    implementation ("io.github.cdimascio:dotenv-java:3.0.0")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -35,7 +38,7 @@ application {
 
 javafx {
     version = "21"
-    modules = listOf("javafx.controls", "javafx.fxml")
+    modules = listOf("javafx.controls", "javafx.fxml", "javafx.media")
 }
 
 tasks.named<Test>("test") {

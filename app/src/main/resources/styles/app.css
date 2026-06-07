@@ -1,0 +1,16 @@
+.app-background {
+    -fx-background-color: #eef2ff;
+}
+
+.nav-button {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,137 @@
+package hitmaster.views;
+
+import hitmaster.services.Spotify;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class ProviderSettingsView {
+
+    private final Stage STAGE;
+
+    public ProviderSettingsView() {
+        STAGE = new Stage();
+        STAGE.setTitle("Provider Settings");
+
+        // =========================
+        // ROOT LAYOUT
+        // =========================
+        VBox root = new VBox(15);
+        root.setPadding(new Insets(15));
+        root.setFillWidth(true);
+        root.getStyleClass().add("app-background");
+
+        // =========================
+        // HEADER
+        // =========================
+        Label title = new Label("Provider Settings");
+        title.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+
+        Label description = new Label("Manage your music provider connections.");
+
+        VBox header = new VBox(5, title, description);
+        header.setAlignment(Pos.CENTER);
+        header.setMaxWidth(Double.MAX_VALUE);
+
+        // =========================
+        // GRID (2x2)
+        // =========================
+        GridPane grid = new GridPane();
+        grid.setHgap(20);
+        grid.setVgap(15);
+
+        ColumnConstraints col1 = new ColumnConstraints();
+        col1.setHgrow(Priority.ALWAYS);
+
+        ColumnConstraints col2 = new ColumnConstraints();
+        col2.setHgrow(Priority.ALWAYS);
+
+        grid.getColumnConstraints().addAll(col1, col2);
+
+        // TODO: Replace placeholders
+        Button[] connections = new Button[4];
+        for (int i = 0; i < connections.length; i++) {
+            connections[i] = new Button("Add connection");
+            connections[i].getStyleClass().add("nav-button");
+        }
+        connections[0].setOnAction(e -> {
+            Spotify.createSpotifyConnection();
+        });
+
+        grid.add(createCell("spotify.png", "Spotify", connections[0]), 0, 0);
+        grid.add(createCell("apple_music.png", "Apple Music", connections[1]), 1, 0);
+        grid.add(createCell("amazon_music.png", "Amazon Music", connections[2]), 0, 1);
+        grid.add(createCell("deezer.png", "Deezer", connections[3]), 1, 1);
+
+        // =========================
+        // FOOTER
+        // =========================
+        Button close = new Button("Close");
+        close.setOnAction(e -> STAGE.close());
+
+        HBox footer = new HBox(close);
+        footer.setAlignment(Pos.CENTER_RIGHT);
+        footer.setMaxWidth(Double.MAX_VALUE);
+
+        // =========================
+        // ROOT ASSEMBLY
+        // =========================
+        root.getChildren().addAll(header, grid, footer);
+
+        Scene scene = new Scene(root, 650, 350);
+        scene.getStylesheets().add(
+            getClass().getResource("/styles/app.css").toExternalForm()
+        );
+        STAGE.setScene(scene);
+    }
+
+    private HBox createCell(String imagePath, String text, Button button) {
+        // Image
+        ImageView image = new ImageView(
+            new Image(getClass().getResourceAsStream("/icons/" + imagePath))
+        );
+        image.setFitWidth(40);
+        image.setFitHeight(40);
+        image.setPreserveRatio(true);
+
+        // Text
+        Label label = new Label(text);
+        label.setStyle("""
+            -fx-font-size: 14px;
+            -fx-font-weight: bold;
+        """);
+
+        // Button
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        HBox cell = new HBox(10, image, label, spacer, button);
+        cell.setAlignment(Pos.CENTER_LEFT);
+        cell.setPadding(new Insets(10));
+
+        return cell;
+    }
+
+    public void show() {
+        STAGE.show();
+    }
+
+    public void focus() {
+        if (STAGE.isShowing()) {
+            STAGE.toFront();
+        } else {
+            STAGE.show();
+        }
+    }
+}

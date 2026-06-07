@@ -15,6 +15,7 @@ import java.util.List;
 
 import hitmaster.models.Artist;
 import hitmaster.models.Song;
+import hitmaster.models.User;
 
 /**
  * TODO:
@@ -35,6 +36,16 @@ public class Database {
         // 2) Initialize new database
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
+
+            stmt.execute("""
+                CREATE TABLE IF NOT EXISTS user (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    username TEXT NOT NULL
+                );
+            """);
+
+            //! DEBUG
+            stmt.execute("INSERT INTO user (username) VALUES('Testuser');");
 
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS sets (
@@ -77,9 +88,11 @@ public class Database {
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
 
-            stmt.execute("DELETE FROM sets");
-            stmt.execute("DELETE FROM artists");
-            stmt.execute("DELETE FROM songs");
+            //stmt.execute("DELETE FROM user");
+            //stmt.execute("DELETE FROM sets");
+            //stmt.execute("DELETE FROM artists");
+            //stmt.execute("DELETE FROM songs");
+            stmt.execute("DROP TABLE IF EXISTS user");
             stmt.execute("DROP TABLE IF EXISTS sets");
             stmt.execute("DROP TABLE IF EXISTS artists");
             stmt.execute("DROP TABLE IF EXISTS songs");
@@ -140,6 +153,27 @@ public class Database {
     // ==============================
     // GET OPERATIONS
     // ==============================
+
+    public static User getCurrentUser() {
+        try (Connection conn = Database.connect()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("""
+                SELECT *
+                FROM user
+                WHERE id = 1
+            """);
+
+            if (rs.next()) {
+                return mapUser(rs);
+            }
+
+            throw new Error("No user found.");
+        }
+        catch (SQLException e) {
+            Log.Error("Error while fetching user from database: " + e.getMessage());
+            return new User();
+        }
+    }
 
     public static List<Song> getAllSongs() {
         try (Connection conn = Database.connect()) {
@@ -230,6 +264,15 @@ public class Database {
     // ==============================
     // MAPPERS
     // ==============================
+
+    private static User mapUser(ResultSet rs) throws SQLException {
+        User user = new User();
+
+        user.id = rs.getInt("id");
+        user.username = rs.getString("username");
+
+        return user;
+    }
 
     private static Song mapSong(ResultSet rs) throws SQLException {
         Song song = new Song();
