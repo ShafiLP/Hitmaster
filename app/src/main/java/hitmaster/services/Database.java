@@ -40,7 +40,9 @@ public class Database {
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS user (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    username TEXT NOT NULL
+                    username TEXT NOT NULL,
+                    picture TEXT,
+                    provider TEXT
                 );
             """);
 
@@ -262,6 +264,35 @@ public class Database {
     }
 
     // ==============================
+    // SET OPERATIONS
+    // ==============================
+
+    public static boolean updateUser(User user) {
+        try (Connection conn = Database.connect()) {
+
+            PreparedStatement stmt = conn.prepareStatement("""
+                UPDATE user
+                SET username = ?, picture = ?, provider = ?
+                WHERE id = ?
+            """);
+
+            stmt.setString(1, user.username);
+            stmt.setString(2, user.picture);
+            stmt.setString(3, user.provider);
+            stmt.setInt(4, user.id);
+
+            stmt.executeUpdate();
+
+            Log.Success("User updated successfully.");
+            return true;
+        }
+        catch (Exception e) {
+            Log.Error("Error while updating user: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // ==============================
     // MAPPERS
     // ==============================
 
@@ -270,6 +301,8 @@ public class Database {
 
         user.id = rs.getInt("id");
         user.username = rs.getString("username");
+        user.picture = rs.getString("picture");
+        user.provider = rs.getString("provider");
 
         return user;
     }

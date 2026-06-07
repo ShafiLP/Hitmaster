@@ -2,6 +2,77 @@
     -fx-background-color: #eef2ff;
 }
 
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.menu-button {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-font-size: 22px;
+    -fx-text-fill: black;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+}
+
+.exit-button {
+    -fx-background-color: #e74c3c;
+    -fx-font-size: 22px;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.exit-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+.prov-button-none {
+    -fx-background-color: rgba(255, 0, 0, 0.2);
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.prov-button-bone:hover {
+    -fx-background-color: rgba(255, 0, 0, 0.3);
+}
+
+.prov-button-warning {
+    -fx-background-color: rgba(255, 255, 0, 0.2);
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.prov-button-warning:hover {
+    -fx-background-color: rgba(255, 255, 0, 0.3);
+}
+
+.prov-button-success {
+    -fx-background-color: rgba(0, 255, 0, 0.2);
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.prov-button-success:hover {
+    -fx-background-color: rgba(0, 255, 0, 0.3);
+}
+
 .nav-button {
     -fx-background-color: rgba(0, 0, 0, 0.2);
     -fx-font-size: 14px;
@@ -13,4 +84,22 @@
 
 .nav-button:hover {
     -fx-background-color: rgba(0, 0, 0, 0.3);
+}
+
+.primary-button {
+    -fx-background-color: #1d7eec;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.secondary-button {
+    -fx-background-color: #50b4e3;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
 }

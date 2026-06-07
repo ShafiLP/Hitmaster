@@ -1,12 +1,17 @@
 package hitmaster.views;
 
-import hitmaster.design.UI;
+import hitmaster.models.User;
 import hitmaster.services.Database;
+import hitmaster.services.Log;
+import hitmaster.services.Spotify;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -16,54 +21,79 @@ import javafx.stage.Stage;
 
 public class MainMenu {
 
-    private final BorderPane root = new BorderPane();
-    private final Stage stage;
+    private final BorderPane ROOT = new BorderPane();
+    private final Stage STAGE;
+
+    private User user;
+    private final Button PROVIDER;
 
     public MainMenu(Stage stage) {
-        this.stage = stage;
+        user = Database.getCurrentUser();
+        PROVIDER = new Button();
+
+        this.STAGE = stage;
         this.buildUI();
     }
 
     public final void buildUI() {
-        Label title = new Label("HITMASTER");
+        // ==============================
+        // CENTER (Gamemodes, Quit)
+        // ==============================
 
-        Button singleplayerBtn = UI.navButton("Einzelspieler");
+        ROOT.getStyleClass().add("app-background");
+
+        Label title = new Label("HITMASTER");
+        title.getStyleClass().add("title");
+
+        Button singleplayerBtn = new Button("Singleplayer");
+        singleplayerBtn.getStyleClass().add("menu-button");
         singleplayerBtn.setOnAction(e -> {
             GameView gameView = new GameView();
 
             Scene scene = new Scene(gameView, 800, 600);
-            stage.setScene(scene);
-            stage.show();
+            STAGE.setScene(scene);
+            STAGE.show();
         });
-        Button multiplayerBtn = UI.navButton("Mehrspieler");
-        Button quitButton = UI.quitButton();
 
-        VBox centerBox = new VBox(15, title, singleplayerBtn, multiplayerBtn, quitButton);
+        Button multiplayerBtn = new Button("Multiplayer");
+        multiplayerBtn.getStyleClass().add("menu-button");
+        multiplayerBtn.setOnAction(e -> {
+            // TODO
+            GameView gameView = new GameView();
+
+            Scene scene = new Scene(gameView, 800, 600);
+            STAGE.setScene(scene);
+            STAGE.show();
+        });
+
+        Button exitBtn = new Button("Exit");
+        exitBtn.getStyleClass().add("exit-button");
+        exitBtn.setOnAction(e -> {
+            Log.Info("Closing application");
+            System.exit(0);
+        });
+
+        VBox centerBox = new VBox(15, title, singleplayerBtn, multiplayerBtn, exitBtn);
         centerBox.setAlignment(Pos.CENTER);
 
-        root.setCenter(centerBox);
+        ROOT.setCenter(centerBox);
 
         // ==============================
         // TOP (Profile, Provider, Settings)
         // ==============================
 
         // Top Left
-        Button profile = new Button("👤 " + Database.getCurrentUser().username);
+        Button profile = new Button("👤 " + user.username);
         profile.getStyleClass().add("nav-button");
 
-        Button provider = new Button("🎵 | ✔️"); // TODO: Get from database and show "{icon}: {status}"
-        provider.getStyleClass().add("nav-button");
-        provider.setOnAction(e -> {
-            ProviderSettingsView providerSettingsView = new ProviderSettingsView();
-            providerSettingsView.show();
-        });
+        initialiseProviderButton();
 
-        VBox topLeft = new VBox(profile, provider);
+        VBox topLeft = new VBox(profile, PROVIDER);
         topLeft.setAlignment(Pos.TOP_LEFT);
         topLeft.setSpacing(8);
         topLeft.setStyle("-fx-padding: 10;");
 
-        root.setTop(topLeft);
+        ROOT.setTop(topLeft);
 
 
         // Top right
@@ -85,19 +115,48 @@ public class MainMenu {
         top.getChildren().addAll(topLeft, spacer, topRight);
         top.setPadding(new Insets(10));
 
-        root.setTop(top);
-
-
-
-        root.setStyle("-fx-background-color: #0f172a;");
-
-        title.setStyle("""
-            -fx-text-fill: white;
-            -fx-font-size: 20;
-        """);
+        ROOT.setTop(top);
     }
 
     public BorderPane getView() {
-        return root;
+        return ROOT;
+    }
+
+    public void initialiseProviderButton() {
+        // Re-load user
+        user = Database.getCurrentUser();
+
+        Log.Info("Update Provider Button style.");
+        PROVIDER.setText("No provider");
+        PROVIDER.getStyleClass().add("prov-button-none");
+        PROVIDER.setOnAction(e -> {
+            ProviderSettingsView providerSettingsView = new ProviderSettingsView(this);
+            providerSettingsView.show();
+        });
+
+        // SPOTIFY
+        if (user.provider != null && user.provider.equals("spotify")) {
+            ImageView icon = new ImageView(new Image(
+                getClass().getResourceAsStream("/icons/spotify.png")
+            ));
+
+            icon.setFitWidth(15);
+            icon.setFitHeight(15);
+
+            PROVIDER.setGraphic(icon);
+            PROVIDER.setContentDisplay(ContentDisplay.LEFT);
+
+            // Check connection
+            if (Spotify.requestSpotifyConnection() != null) {
+                PROVIDER.setText(" ✓");
+                PROVIDER.getStyleClass().add("prov-button-success");
+                Log.Info("Updated to Green.");
+            }
+            else {
+                PROVIDER.setText(" ⚠");
+                PROVIDER.getStyleClass().add("prov-button-warning");
+                Log.Info("Updated to Red.");
+            }
+        }
     }
 }

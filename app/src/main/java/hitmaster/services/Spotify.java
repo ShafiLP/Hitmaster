@@ -18,6 +18,7 @@ import org.apache.hc.core5.http.ParseException;
 import com.google.gson.JsonArray;
 import com.sun.net.httpserver.HttpServer;
 
+import hitmaster.models.User;
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.scene.media.Track;
 import se.michaelthelin.spotify.SpotifyApi;
@@ -122,6 +123,10 @@ public class Spotify {
             try (FileOutputStream out = new FileOutputStream("spotify.properties")) {
                 props.store(out, "Spotify Tokens");
             }
+
+            User user = Database.getCurrentUser();
+            user.provider = "spotify";
+            Database.updateUser(user);
             
             Log.Success("Connection to Spotify was successful.\nTokens saved in \"spotify.properties\".");
             return true;

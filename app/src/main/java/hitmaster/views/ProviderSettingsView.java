@@ -1,5 +1,8 @@
 package hitmaster.views;
 
+import hitmaster.models.User;
+import hitmaster.services.Database;
+import hitmaster.services.Log;
 import hitmaster.services.Spotify;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,8 +22,11 @@ import javafx.stage.Stage;
 public class ProviderSettingsView {
 
     private final Stage STAGE;
+    private final MainMenu PARENT;
 
-    public ProviderSettingsView() {
+    public ProviderSettingsView(MainMenu parent) {
+        this.PARENT = parent;
+
         STAGE = new Stage();
         STAGE.setTitle("Provider Settings");
 
@@ -66,8 +72,25 @@ public class ProviderSettingsView {
             connections[i].getStyleClass().add("nav-button");
         }
         connections[0].setOnAction(e -> {
-            Spotify.createSpotifyConnection();
+            if (Spotify.createSpotifyConnection()) {
+                PARENT.initialiseProviderButton();
+                connections[0].setText("Connected");
+                connections[0].setStyle("""
+                    -fx-background-color: rgba(0, 255, 0, 0.2);
+                """);
+            }
         });
+        User user = Database.getCurrentUser();
+        if (user.provider != null && user.provider.equals("spotify")  && Spotify.requestSpotifyConnection() != null) {
+            connections[0].setText("Connected");
+            connections[0].setStyle("""
+                -fx-background-color: rgba(0, 255, 0, 0.2);
+            """);
+            Log.Info("True");
+        }
+        else {
+            Log.Info("Something was false");
+        }
 
         grid.add(createCell("spotify.png", "Spotify", connections[0]), 0, 0);
         grid.add(createCell("apple_music.png", "Apple Music", connections[1]), 1, 0);
@@ -75,13 +98,14 @@ public class ProviderSettingsView {
         grid.add(createCell("deezer.png", "Deezer", connections[3]), 1, 1);
 
         // =========================
-        // FOOTER
+        // FOOTER (Close button)
         // =========================
         Button close = new Button("Close");
+        close.getStyleClass().add("primary-button");
         close.setOnAction(e -> STAGE.close());
 
         HBox footer = new HBox(close);
-        footer.setAlignment(Pos.CENTER_RIGHT);
+        footer.setAlignment(Pos.BOTTOM_CENTER);
         footer.setMaxWidth(Double.MAX_VALUE);
 
         // =========================
@@ -89,7 +113,7 @@ public class ProviderSettingsView {
         // =========================
         root.getChildren().addAll(header, grid, footer);
 
-        Scene scene = new Scene(root, 650, 350);
+        Scene scene = new Scene(root, 650, 270);
         scene.getStylesheets().add(
             getClass().getResource("/styles/app.css").toExternalForm()
         );
