@@ -6,13 +6,26 @@ import se.michaelthelin.spotify.SpotifyApi;
 public class MusicPlayer {
 
     private final SpotifyApi spotifyConnection;
+    private boolean isPlaying = false;
 
     public MusicPlayer() {
         spotifyConnection = Spotify.requestSpotifyConnection();
     }
 
+    public void playPause(Song song) {
+        isPlaying = Spotify.isSongPlaying(spotifyConnection);
+
+        if (isPlaying) {
+            pause();
+        }
+        else {
+            play(song);
+        }
+    }
+
     public void play(Song song) {
         Spotify.playSpotifyLink(spotifyConnection, song.spotify);
+        isPlaying = true;
     }
 
     public void pause() {
@@ -29,5 +42,25 @@ public class MusicPlayer {
 
     public void seekForward5sec() {
         Spotify.forwardCurrentSong5sec(spotifyConnection);
+    }
+
+    public String[] getAvailableDevices() {
+        return Spotify.getAllDevices(spotifyConnection);
+    }
+
+    public String getCurrentDevice() {
+        return Spotify.getCurrentDevice(spotifyConnection);
+    }
+
+    public void setCurrentDevice(String device) {
+        Spotify.setCurrentDevice(spotifyConnection, device);
+    }
+
+    public int getVolume() {
+        return Spotify.getVolume(spotifyConnection);
+    }
+
+    public void setVolume(int volume) {
+        Spotify.setVolume(spotifyConnection, volume);
     }
 }

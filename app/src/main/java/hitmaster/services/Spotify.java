@@ -211,7 +211,8 @@ public class Spotify {
     public static boolean restartSong(SpotifyApi connection, String Link) {
         try {
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return false;
         }
     }
@@ -219,7 +220,8 @@ public class Spotify {
     public static boolean pauseCurrentSong(SpotifyApi connection) {
         try {
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return false;
         }
     }
@@ -227,7 +229,8 @@ public class Spotify {
     public static boolean rewindCurrentSong5sec(SpotifyApi connection) {
         try {
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return false;
         }
     }
@@ -235,7 +238,170 @@ public class Spotify {
     public static boolean forwardCurrentSong5sec(SpotifyApi connection) {
         try {
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Fetches the current available devices from Spotify.
+     * @param connection SpotifyApi connection.
+     * @return Name of all availably devices.
+     */
+    public static String[] getAllDevices(SpotifyApi connection) {
+        try {
+            Device[] devices = connection
+                .getUsersAvailableDevices()
+                .build()
+                .execute();
+
+            if (devices != null) {
+                String[] deviceNames = new String[devices.length];
+                for (int i = 0; i < devices.length; i++) {
+                    deviceNames[i] = devices[i].getName();
+                }
+                return deviceNames;
+            }
+
+            throw new Error("No devices found.");
+        }
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Error("Error occured while fetching devices: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Fetches the current playing device from Spotify.
+     * @param connection SpotifyApi connection.
+     * @return Name of the current playing device.
+     */
+    public static String getCurrentDevice(SpotifyApi connection) {
+        try {
+            CurrentlyPlayingContext context = connection
+                .getInformationAboutUsersCurrentPlayback()
+                .build()
+                .execute();
+
+            Device currentDevice = context != null ? context.getDevice() : null;
+
+            if (currentDevice != null)
+                return currentDevice.getName();
+            
+            throw new Error("No device found (currentDevice is null).");
+        }
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Error("Error occured while fetching devices: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Search for a device by name and continues playback on that device.
+     * @param connection SpotifyApi connection.
+     * @param deviceName Name of the device to continue playback on.
+     * @return Success result.
+     */
+    public static boolean setCurrentDevice(SpotifyApi connection, String deviceName) {
+        try {
+            Device[] devices = connection
+                .getUsersAvailableDevices()
+                .build()
+                .execute();
+
+            String deviceId = null;
+
+            for (Device d: devices) {
+                if (d.getName().equalsIgnoreCase(deviceName)) {
+                    deviceId = d.getId();
+                    break;
+                }
+            }
+
+            if (deviceId != null) {
+                connection.startResumeUsersPlayback()
+                    .device_id(deviceId)
+                    .build()
+                    .execute();
+
+                return true;
+            }
+
+            throw new Error("No matching devide found for deviceName \"" + deviceName + "\".");
+        }
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Error("Error occured while setting current player device: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Gets the current volume for the opened Spotify player.
+     * @param connection SpotifyApi connection.
+     * @return Current volume in percent.
+     */
+    public static int getVolume(SpotifyApi connection) {
+        try {
+            CurrentlyPlayingContext context = connection
+            .getInformationAboutUsersCurrentPlayback()
+            .build()
+            .execute();
+
+            if (context != null) {
+                Device device = context.getDevice();
+
+                if (device != null)
+                    return device.getVolume_percent();
+            }
+
+            throw new Error("Context or Device is null.");
+        }
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Error("Error occured while changing volume of current user playback: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    /**
+     * Sets the current volume for the opened Spotify player.
+     * @param connection SpotifyApi connection.
+     * @param volume New volume in percent.
+     * @return Success result.
+     */
+    public static boolean setVolume(SpotifyApi connection, int volume) {
+        try {
+            connection.setVolumeForUsersPlayback(volume)
+                .build()
+                .execute();
+
+            return true;
+        }
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Error("Error occured while changing volume of current user playback: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Cheks if user's connected Spotify account is currently playing a song.
+     * @param connection SpotifyApi connection.
+     * @return Playback state (playing = true).
+     */
+    public static boolean isSongPlaying(SpotifyApi connection) {
+        try {
+            CurrentlyPlayingContext context = connection
+                .getInformationAboutUsersCurrentPlayback()
+                .build()
+                .execute();
+
+            if (context != null && context.getIs_playing() != null)
+                return context.getIs_playing();
+
+            throw new Error("context or context.getIs_playing() is null.");
+        }
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Error("Error occured while checking current playback state: " + e.getMessage());
             return false;
         }
     }

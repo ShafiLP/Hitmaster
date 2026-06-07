@@ -2,7 +2,6 @@ package hitmaster.views;
 
 import hitmaster.models.User;
 import hitmaster.services.Database;
-import hitmaster.services.Log;
 import hitmaster.services.Spotify;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -87,10 +86,6 @@ public class ProviderSettingsView {
             connections[0].setStyle("""
                 -fx-background-color: rgba(0, 255, 0, 0.2);
             """);
-            Log.Info("True");
-        }
-        else {
-            Log.Info("Something was false");
         }
 
         grid.add(createCell("spotify.png", "Spotify", connections[0]), 0, 0);

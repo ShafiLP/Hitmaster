@@ -86,6 +86,15 @@
     -fx-background-color: rgba(0, 0, 0, 0.3);
 }
 
+.modern-button {
+    -fx-background-color: #cccccc;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
 .primary-button {
     -fx-background-color: #1d7eec;
     -fx-font-size: 14px;
@@ -117,4 +126,31 @@
     -fx-background-radius: 10;
     -fx-padding: 10;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 1);
+}
+
+.modern-textbox {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-background-radius: 10;
+    -fx-padding: 5;
+    -fx-border-color: rgba(0, 0, 0, 0.2);
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+}
+
+.modern-dropdown {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-background-radius: 10;
+    -fx-padding: 5;
+    -fx-border-color: rgba(0, 0, 0, 0.2);
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+}
+
+.modern-slider {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-background-radius: 10;
+    -fx-padding: 5;
+    -fx-border-color: rgba(0, 0, 0, 0.2);
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
 }

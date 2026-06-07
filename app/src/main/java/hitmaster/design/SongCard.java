@@ -23,7 +23,7 @@ public class SongCard extends StackPane {
     private double mouseX;
     private double mouseY;
 
-    private final MusicPlayer player;
+    public final MusicPlayer player;
 
     private Runnable dragStarted;
     private DragListener dragListener;
