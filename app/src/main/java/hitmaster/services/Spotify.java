@@ -175,29 +175,24 @@ public class Spotify {
      * @param Link Link to spotify song (unformatted URI).
      * @return Success result.
      */
-    public static boolean playSpotifyLink(String Link) {
+    public static boolean playSpotifyLink(SpotifyApi connection, String Link) {
         try {
-            // 1) Request Spotify connection
-            SpotifyApi spotify = requestSpotifyConnection();
-            if (spotify == null)
-                return false;
-
-            // 2) Find user devices
+            // 1) Find user devices
             // TODO: User sets speaker device themself
-            GetUsersAvailableDevicesRequest request = spotify.getUsersAvailableDevices().build();
+            GetUsersAvailableDevicesRequest request = connection.getUsersAvailableDevices().build();
             Device[] devices = request.execute();
 
-            // 3) Play song
+            // 2) Play song
             JsonArray uris = new JsonArray();
             uris.add(toSpotifyUri(Link));
 
-            spotify.startResumeUsersPlayback()
+            connection.startResumeUsersPlayback()
                 .uris(uris)
                 .device_id(devices[0].getId())
                 .build()
                 .execute();
 
-            CurrentlyPlayingContext playback = spotify
+            CurrentlyPlayingContext playback = connection
                 .getInformationAboutUsersCurrentPlayback()
                 .build()
                 .execute();
@@ -209,6 +204,38 @@ public class Spotify {
         }
         catch (IOException | ParseException | SpotifyWebApiException e) {
             Log.Error("Playing Spotify link failed: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean restartSong(SpotifyApi connection, String Link) {
+        try {
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean pauseCurrentSong(SpotifyApi connection) {
+        try {
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean rewindCurrentSong5sec(SpotifyApi connection) {
+        try {
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean forwardCurrentSong5sec(SpotifyApi connection) {
+        try {
+            return true;
+        } catch (Exception e) {
             return false;
         }
     }

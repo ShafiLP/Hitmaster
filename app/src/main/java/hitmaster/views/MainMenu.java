@@ -126,7 +126,6 @@ public class MainMenu {
         // Re-load user
         user = Database.getCurrentUser();
 
-        Log.Info("Update Provider Button style.");
         PROVIDER.setText("No provider");
         PROVIDER.getStyleClass().add("prov-button-none");
         PROVIDER.setOnAction(e -> {
@@ -150,12 +149,10 @@ public class MainMenu {
             if (Spotify.requestSpotifyConnection() != null) {
                 PROVIDER.setText(" ✓");
                 PROVIDER.getStyleClass().add("prov-button-success");
-                Log.Info("Updated to Green.");
             }
             else {
                 PROVIDER.setText(" ⚠");
                 PROVIDER.getStyleClass().add("prov-button-warning");
-                Log.Info("Updated to Red.");
             }
         }
     }

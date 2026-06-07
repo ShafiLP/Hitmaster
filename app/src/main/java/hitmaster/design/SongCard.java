@@ -1,6 +1,8 @@
 package hitmaster.design;
 
 import hitmaster.models.Song;
+import hitmaster.services.MusicPlayer;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -12,15 +14,32 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class SongCard extends StackPane {
+
     public Song song;
     public Color color;
+    public boolean isPlaying = false;
     public boolean isFlipped = false;
 
     private double mouseX;
     private double mouseY;
 
+    private final MusicPlayer player;
+
+    private Runnable dragStarted;
+    private DragListener dragListener;
+    private Runnable dragFinished;
+
+    public interface DragListener {
+        void onDrag(double sceneX, double sceneY);
+    }
+
     public SongCard(Song song) {
         this.song = song;
+        player = new MusicPlayer();
+
+        this.getStylesheets().add(
+            getClass().getResource("/styles/app.css").toExternalForm()
+        );
 
         color = PastelColor.random();
 
@@ -39,7 +58,7 @@ public class SongCard extends StackPane {
             "-fx-border-color: black;"
         );
 
-        this.showFront();
+        this.showBack();
         this.enableDragging();
     }
 
@@ -63,37 +82,27 @@ public class SongCard extends StackPane {
         Button playPause = new Button("►");
         Button restart = new Button("↺");
 
-        String buttonStyle = """
-            -fx-background-color: transparent;
-            -fx-text-fill: white;
-            -fx-font-size: 11px;
-        """;
-
-        rewind5.setStyle(buttonStyle);
-        playPause.setStyle(buttonStyle);
-        forward5.setStyle(buttonStyle);
-        restart.setStyle(buttonStyle);
+        rewind5.getStyleClass().add("control-button");
+        playPause.getStyleClass().add("control-button");
+        forward5.getStyleClass().add("control-button");
+        restart.getStyleClass().add("control-button");
 
         // --- Play/Pause Toggle Logic ---
-        final boolean[] isPlaying = {false};
-
         playPause.setOnAction(e -> {
-            isPlaying[0] = !isPlaying[0];
+            isPlaying = !isPlaying;
 
-            if (isPlaying[0]) {
-                playPause.setText("⏸"); // pause symbol
-                //songPlayer.play();
+            if (isPlaying) {
+                playPause.setText("⏸");
+                player.play(song);
             } else {
-                playPause.setText("►"); // play symbol
-                //songPlayer.pause();
+                playPause.setText("►");
+                player.pause();
             }
         });
-
-        // TODO: actions
-        //rewind5.setOnAction(e -> songPlayer.seekBackward(5));
-        //forward5.setOnAction(e -> songPlayer.seekForward(5));
-        //playPause.setOnAction(e -> songPlayer.togglePlayPause());
-        //restart.setOnAction(e -> songPlayer.restart());
+ 
+        rewind5.setOnAction(e -> player.seekBackward5sec());
+        forward5.setOnAction(e -> player.seekForward5sec());
+        restart.setOnAction(e -> player.restart(song));
 
         // --- Layout ---
         VBox bottomControls = new VBox(8);
@@ -101,7 +110,7 @@ public class SongCard extends StackPane {
 
         bottomControls.getChildren().addAll(playPause, restart);
 
-        HBox topControlls = new HBox(15);
+        HBox topControlls = new HBox(10);
         topControlls.setStyle("-fx-alignment: center;");
         topControlls.getChildren().addAll(rewind5, playPause, forward5);
 
@@ -118,7 +127,9 @@ public class SongCard extends StackPane {
      * Displays front side of the song card.
      * Front side contains artist, year and title.
      */
-    private void showFront() {
+    public void showFront() {
+        this.isFlipped = true;
+
         BorderPane layout = new BorderPane();
         layout.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
         layout.setStyle(String.format(
@@ -131,6 +142,7 @@ public class SongCard extends StackPane {
             (int)(color.getBlue() * 255)
         ));
 
+        // TODO: Set Icon 
         Label artist = new Label(song.getArtist().name);
         Label year = new Label(String.valueOf(song.year));
         Label title = new Label(song.title);
@@ -153,26 +165,53 @@ public class SongCard extends StackPane {
      * Enables drag and drop for this object.
      */
     private void enableDragging() {
-        setOnMousePressed((MouseEvent e) -> {
-            mouseX = e.getSceneX() - getLayoutX();
-            mouseY = e.getSceneY() - getLayoutY();
+        this.setOnMousePressed((MouseEvent e) -> {
+            if (isFlipped)
+                return;
+
+            mouseX = e.getX();
+            mouseY = e.getY();
+
+            this.toFront();
+
+            if (dragStarted != null)
+                dragStarted.run();
         });
 
-        setOnMouseDragged((MouseEvent e) -> {
-            setLayoutX(e.getSceneX() - mouseX);
-            setLayoutY(e.getSceneY() - mouseY);
+        this.setOnMouseDragged((MouseEvent e) -> {
+            if (isFlipped)
+                return;
+
+            if (getParent() != null) {
+                Point2D localParam = getParent().sceneToLocal(e.getSceneX(), e.getSceneY());
+                setLayoutX(localParam.getX() - mouseX);
+                setLayoutY(localParam.getY() - mouseY);
+            }
+
+            if (dragListener != null) {
+                dragListener.onDrag(e.getSceneX(), e.getSceneY());
+            }
         });
 
-        //! DEBUG:
-        setOnMouseClicked((MouseEvent e) -> {
-            if (isFlipped) {
-                showBack();
-                isFlipped = !isFlipped;
-            }
-            else {
-                showFront();
-                isFlipped = !isFlipped;
-            }
+        this.setOnMouseReleased(e -> {
+            if (isFlipped)
+                return;
+
+            if (dragFinished != null)
+                dragFinished.run();
         });
     }
+
+    public void setOnDragStarted(Runnable dragStarted) {
+        this.dragStarted = dragStarted;
+    }
+
+    public void setOnDragged(DragListener dragListener) {
+        this.dragListener = dragListener;
+    }
+
+    public void setOnDragFinished(Runnable dragFinished) {
+        this.dragFinished = dragFinished;
+    }
 }
+

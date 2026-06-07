@@ -103,3 +103,18 @@
     -fx-padding: 4 7;
     -fx-cursor: hand;
 }
+
+.control-button {
+    -fx-font-family: Segoe UI Symbol;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.card-strip {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 1);
+}
