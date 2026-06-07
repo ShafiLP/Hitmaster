@@ -1,12 +1,10 @@
 package hitmaster.views;
 
-import java.util.List;
-import java.util.Random;
-
+import hitmaster.GameLogic;
 import hitmaster.design.CardStripPane;
 import hitmaster.design.SongCard;
 import hitmaster.models.Song;
-import hitmaster.services.Database;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -17,12 +15,24 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 public class GameView extends Pane {
 
+    private final GameLogic GAME;
+
     private SongCard currentCard;
 
-    public GameView() {
+    // UI elements
+    private final CardStripPane STRIP;
+    private TextField artist;
+    private TextField title;
+
+
+    public GameView(GameLogic GAME, Song firstSong) {
+        this.GAME = GAME;
+        currentCard = new SongCard(firstSong);
+
         // 1) Stylesheets laden
         this.getStylesheets().add(
             getClass().getResource("/styles/app.css").toExternalForm()
@@ -33,31 +43,20 @@ public class GameView extends Pane {
         final double CONTROLS_WIDTH = 320;
         final double GAP = 20;
 
-        CardStripPane strip = new CardStripPane();
-        strip.setPrefHeight(200);
+        STRIP = new CardStripPane();
+        STRIP.setPrefHeight(200);
 
-        strip.prefWidthProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + (GAP * 3)));
-        strip.layoutYProperty().bind(this.heightProperty().subtract(strip.prefHeightProperty()).subtract(GAP));
-        strip.setLayoutX(GAP);
-        this.getChildren().add(strip);
+        STRIP.prefWidthProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + (GAP * 3)));
+        STRIP.layoutYProperty().bind(this.heightProperty().subtract(STRIP.prefHeightProperty()).subtract(GAP));
+        STRIP.setLayoutX(GAP);
+        this.getChildren().add(STRIP);
 
-        // 3) Load songs from DB
-        List<Song> songs = Database.getAllSongs();
-        Random random = new Random();
-        Song randomSong = songs.get(random.nextInt(songs.size()));
-
-        currentCard = new SongCard(randomSong);
-        currentCard.setLayoutX(500); 
-        currentCard.setLayoutY(50);
-
-        strip.registerExternalCard(currentCard);
-
-        // 4) Text fields and button
-        TextField artist = new TextField();
+        // 3) Text fields and button
+        artist = new TextField();
         artist.getStyleClass().add("modern-textbox");
         artist.setPromptText("Artist...");
 
-        TextField title = new TextField();
+        title = new TextField();
         title.getStyleClass().add("modern-textbox");
         title.setPromptText("Song title...");
 
@@ -65,13 +64,12 @@ public class GameView extends Pane {
         flip.getStyleClass().add("primary-button");
         flip.setMaxWidth(Double.MAX_VALUE);
         flip.setOnAction(e -> {
-            if (currentCard != null)
-                currentCard.showFront();
+            confirmInput();
         });
 
         VBox inputs = new VBox(8, artist, title, flip);
 
-        // 5) Spotify media control
+        // 4) Spotify media control
         Button back = new Button("⏮");
         Button playPause = new Button("⏸");
         Button forward = new Button("⏭");
@@ -118,7 +116,7 @@ public class GameView extends Pane {
         HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
         audioRow.setAlignment(Pos.CENTER_LEFT);
 
-        // 6) Build full panel
+        // 5) Build full panel
         VBox controlPanel = new VBox(15, inputs, mediaRow, audioRow);
         // controlPanel.getStyleClass().add();
         controlPanel.setPrefWidth(CONTROLS_WIDTH);
@@ -127,15 +125,69 @@ public class GameView extends Pane {
         controlPanel.layoutYProperty().bind(this.heightProperty().subtract(controlPanel.heightProperty().add(GAP)));
         
         this.getChildren().add(controlPanel);
+        Platform.runLater(this::requestFocus);
+    }
 
-        //! 7) DEBUG: Add three cards to strip
-        for (int i = 0; i < 3; i++) {
-            SongCard tempCard = new SongCard(songs.get(i));
-            tempCard.showFront();
-            strip.addCard(tempCard);
+    private void confirmInput() {
+        // 1) Flip card
+        if (currentCard != null)
+            currentCard.showFront();
+
+        // 2) Check artist and title guess
+        if (GAME.checkSongInformation(artist.getText(), title.getText())) {
+            artist.setStyle("-fx-border-color:rgb(0, 255, 0);");
+            title.setStyle("-fx-border-color:rgb(0, 255, 0);");
+        }
+        else {
+            artist.setStyle("-fx-border-color:rgb(255, 0, 0);");
+            title.setStyle("-fx-border-color:rgb(255, 0, 0);");
         }
 
-        this.getChildren().addAll(currentCard);
-        Platform.runLater(this::requestFocus);
+        // 3) Check position of card
+        boolean guess = GAME.checkSongOrder(STRIP.getCards());
+        if (guess) {
+            currentCard.setBorderColor("rgb(0, 255, 0)");
+        }
+        else {
+            currentCard.setBorderColor("rgb(255, 0, 0)");
+        }
+
+        // TODO: Replace with timer label
+        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+
+        pause.setOnFinished(event -> {
+
+            artist.setStyle("");
+            title.setStyle("");
+            artist.getStyleClass().add("modern-textbox");
+            title.getStyleClass().add("modern-textbox");
+            artist.clear();
+            title.clear();
+            currentCard.resetBorderColor();
+
+            if (!guess)
+                currentCard.setVisible(false);
+
+            GAME.addFirstToCardStack();
+        });
+
+        pause.play();
+    }
+
+    public void addToCardStrip(Song song) {
+        SongCard card = new SongCard(song);
+        card.showFront();
+        STRIP.addCard(card);
+    }
+
+    public void addToCardStack(Song song) {
+        SongCard card = new SongCard(song);
+        card.setLayoutX(500); 
+        card.setLayoutY(50);
+
+        STRIP.registerExternalCard(card);
+
+        currentCard = card;
+        this.getChildren().add(currentCard);
     }
 }

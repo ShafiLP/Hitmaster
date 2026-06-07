@@ -1,5 +1,6 @@
 package hitmaster.views;
 
+import hitmaster.GameLogic;
 import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
@@ -48,9 +49,9 @@ public class MainMenu {
         Button singleplayerBtn = new Button("Singleplayer");
         singleplayerBtn.getStyleClass().add("menu-button");
         singleplayerBtn.setOnAction(e -> {
-            GameView gameView = new GameView();
+            GameLogic game = new GameLogic();
 
-            Scene scene = new Scene(gameView, 800, 600);
+            Scene scene = new Scene(game.getView(), 800, 600);
             STAGE.setScene(scene);
             STAGE.show();
         });
@@ -59,9 +60,9 @@ public class MainMenu {
         multiplayerBtn.getStyleClass().add("menu-button");
         multiplayerBtn.setOnAction(e -> {
             // TODO
-            GameView gameView = new GameView();
+            GameLogic game = new GameLogic();
 
-            Scene scene = new Scene(gameView, 800, 600);
+            Scene scene = new Scene(game.getView(), 800, 600);
             STAGE.setScene(scene);
             STAGE.show();
         });

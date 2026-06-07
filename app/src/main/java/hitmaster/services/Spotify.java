@@ -26,7 +26,6 @@ import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.credentials.AuthorizationCodeCredentials;
 import se.michaelthelin.spotify.model_objects.miscellaneous.CurrentlyPlayingContext;
 import se.michaelthelin.spotify.model_objects.miscellaneous.Device;
-import se.michaelthelin.spotify.requests.data.player.GetUsersAvailableDevicesRequest;
 
 public class Spotify {
 
@@ -177,18 +176,11 @@ public class Spotify {
      */
     public static boolean playSpotifyLink(SpotifyApi connection, String Link) {
         try {
-            // 1) Find user devices
-            // TODO: User sets speaker device themself
-            GetUsersAvailableDevicesRequest request = connection.getUsersAvailableDevices().build();
-            Device[] devices = request.execute();
-
-            // 2) Play song
             JsonArray uris = new JsonArray();
             uris.add(toSpotifyUri(Link));
 
             connection.startResumeUsersPlayback()
                 .uris(uris)
-                .device_id(devices[0].getId())
                 .build()
                 .execute();
 
@@ -217,11 +209,24 @@ public class Spotify {
         }
     }
 
+    /**
+     * Pause the song that is currently playing on the user's spotify account.
+     * @param connection SpotifyApi connection.
+     * @return Success result.
+     */
     public static boolean pauseCurrentSong(SpotifyApi connection) {
         try {
-            return true;
+            connection.pauseUsersPlayback()
+                .build()
+                .execute();
+
+            if (!isSongPlaying(connection))
+                return true;
+
+            throw new Error("Song is still playing");
         }
-        catch (Exception e) {
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Error("Couldn't pause song: " + e.getMessage());
             return false;
         }
     }

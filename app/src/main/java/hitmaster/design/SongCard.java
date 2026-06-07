@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -76,18 +75,13 @@ public class SongCard extends StackPane {
             "-fx-border-radius: 12;"
         );
 
-        // --- Buttons (nur Icons) ---
-        Button rewind5 = new Button("<<");
-        Button forward5 = new Button(">>");
-        Button playPause = new Button("►");
-        Button restart = new Button("↺");
-
-        rewind5.getStyleClass().add("control-button");
-        playPause.getStyleClass().add("control-button");
-        forward5.getStyleClass().add("control-button");
-        restart.getStyleClass().add("control-button");
-
         // --- Play/Pause Toggle Logic ---
+        Button playPause = new Button("►");
+        playPause.getStyleClass().add("control-button");
+        playPause.setStyle("""
+            -fx-font-size: 28px;
+        """);
+
         playPause.setOnAction(e -> {
             isPlaying = !isPlaying;
 
@@ -99,22 +93,10 @@ public class SongCard extends StackPane {
                 player.pause();
             }
         });
- 
-        rewind5.setOnAction(e -> player.seekBackward5sec());
-        forward5.setOnAction(e -> player.seekForward5sec());
-        restart.setOnAction(e -> player.restart(song));
 
-        // --- Layout ---
-        VBox bottomControls = new VBox(8);
-        bottomControls.setStyle("-fx-alignment: center;");
+        // TODO: Add background
 
-        bottomControls.getChildren().addAll(playPause, restart);
-
-        HBox topControlls = new HBox(10);
-        topControlls.setStyle("-fx-alignment: center;");
-        topControlls.getChildren().addAll(rewind5, playPause, forward5);
-
-        VBox controls = new VBox(5, topControlls, bottomControls);
+        VBox controls = new VBox(5, playPause);
         controls.setStyle("-fx-alignment: center;");
 
         layout.setCenter(controls);
@@ -212,6 +194,14 @@ public class SongCard extends StackPane {
 
     public void setOnDragFinished(Runnable dragFinished) {
         this.dragFinished = dragFinished;
+    }
+
+    public void setBorderColor(String color) {
+        this.setStyle("-fx-border-radius: 12; -fx-border-color:" + color + ";");
+    }
+
+    public void resetBorderColor() {
+        this.setStyle("-fx-border-radius: 12; -fx-border-color:black;");
     }
 }
 

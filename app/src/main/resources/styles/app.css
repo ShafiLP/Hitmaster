@@ -87,9 +87,9 @@
 }
 
 .modern-button {
-    -fx-background-color: #cccccc;
+    -fx-background-color: #e7e7e7;
     -fx-font-size: 14px;
-    -fx-text-fill: white;
+    -fx-text-fill: rgb(0, 0, 0);
     -fx-background-radius: 10;
     -fx-padding: 4 7;
     -fx-cursor: hand;
@@ -122,7 +122,7 @@
 }
 
 .card-strip {
-    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-background-color: rgba(0, 0, 0, 0.2);
     -fx-background-radius: 10;
     -fx-padding: 10;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 1);

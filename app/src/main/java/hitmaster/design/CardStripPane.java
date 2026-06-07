@@ -147,4 +147,8 @@ public class CardStripPane extends Pane {
             card.relocate(x, stripY);
         }
     }
+
+    public List<SongCard> getCards() {
+        return cards;
+    }
 }
