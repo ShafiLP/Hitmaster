@@ -28,7 +28,7 @@ public class SettingsView {
         // =========================
         // ROOT LAYOUT
         // =========================
-        VBox root = new VBox(25); // Etwas mehr Platz zwischen den Hauptblöcken
+        VBox root = new VBox(25);
         root.setPadding(new Insets(20));
         root.setFillWidth(true);
 

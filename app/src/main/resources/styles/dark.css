@@ -162,6 +162,23 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 1);
 }
 
+.chip-placeholder {
+    -fx-border-color: #dddddd;
+    -fx-border-style: dashed;
+    -fx-border-width: 2;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+}
+
+.chip {
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+    -fx-text-fill: white;
+    -fx-background-color: #2196F3;
+    -fx-background-radius: 50;
+}
+
 .control-button {
     -fx-font-family: Segoe UI Symbol;
     -fx-font-size: 14px;

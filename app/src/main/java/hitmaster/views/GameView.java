@@ -2,6 +2,7 @@ package hitmaster.views;
 
 import hitmaster.GameLogic;
 import hitmaster.design.CardStripPane;
+import hitmaster.design.ChipPane;
 import hitmaster.design.SongCard;
 import hitmaster.models.Song;
 import hitmaster.services.Log;
@@ -26,9 +27,10 @@ public class GameView extends Pane {
 
     // UI elements
     private final CardStripPane STRIP;
-    private TextField artist;
-    private TextField title;
+    private final ChipPane CHIP_PANE;
     private final Label TIMER;
+    private final TextField ARTIST;
+    private final TextField TITLE;
 
 
     public GameView(GameLogic GAME, Song firstSong) {
@@ -48,13 +50,13 @@ public class GameView extends Pane {
         this.getChildren().add(STRIP);
 
         // 3) Text fields and button
-        artist = new TextField();
-        artist.getStyleClass().add("modern-textbox");
-        artist.setPromptText("Artist...");
+        ARTIST = new TextField();
+        ARTIST.getStyleClass().add("modern-textbox");
+        ARTIST.setPromptText("Artist...");
 
-        title = new TextField();
-        title.getStyleClass().add("modern-textbox");
-        title.setPromptText("Song title...");
+        TITLE = new TextField();
+        TITLE.getStyleClass().add("modern-textbox");
+        TITLE.setPromptText("Song title...");
 
         Button flip = new Button("Flip");
         flip.getStyleClass().add("primary-button");
@@ -63,18 +65,22 @@ public class GameView extends Pane {
             confirmInput();
         });
 
-        VBox inputs = new VBox(8, artist, title, flip);
+        VBox inputs = new VBox(8, ARTIST, TITLE, flip);
 
         // 4) Spotify media control
         Button back = new Button("⏮");
         Button playPause = new Button("⏸");
         Button forward = new Button("⏭");
         Button restart = new Button("↺");
+        Button skip = new Button("Skip");
+        Button insert = new Button("Insert");
 
         back.getStyleClass().add("modern-button");
         playPause.getStyleClass().add("modern-button");
         forward.getStyleClass().add("modern-button");
         restart.getStyleClass().add("modern-button");
+        skip.getStyleClass().add("modern-button");
+        insert.getStyleClass().add("modern-button");
 
         back.setOnAction(e -> {
             currentCard.player.seekBackward5sec();
@@ -88,8 +94,16 @@ public class GameView extends Pane {
         restart.setOnAction(e -> {
             currentCard.player.restart(currentCard.song);
         });
+        skip.setOnAction(e -> {
+            if (GAME.getChipCountOfCurrentPlayer() >= 1)
+                GAME.skipCurrentSong();
+        });
+        insert.setOnAction(e -> {
+            if (GAME.getChipCountOfCurrentPlayer() >= 3)
+                GAME.markCurrentSongAsCorrect();
+        });
 
-        HBox mediaRow = new HBox(15, back, playPause, forward, restart);
+        HBox mediaRow = new HBox(15, back, playPause, forward, restart, skip, insert);
         mediaRow.setAlignment(Pos.CENTER);
 
         ComboBox<String> deviceDropdown = new ComboBox<>();
@@ -127,8 +141,11 @@ public class GameView extends Pane {
         TIMER.setLayoutY(10);
         this.getChildren().add(TIMER);
 
-        // 6) Build full panel
-        VBox controlPanel = new VBox(15, inputs, mediaRow, audioRow);
+        // 6 ) Chip panel
+        CHIP_PANE = new ChipPane();
+
+        // 7) Build full panel
+        VBox controlPanel = new VBox(15, CHIP_PANE, inputs, mediaRow, audioRow);
         controlPanel.setPrefWidth(CONTROLS_WIDTH);
         
         controlPanel.layoutXProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + GAP));
@@ -144,13 +161,13 @@ public class GameView extends Pane {
             currentCard.showFront();
 
         // 2) Check artist and title guess
-        if (GAME.checkSongInformation(artist.getText(), title.getText())) {
-            artist.setStyle("-fx-border-color:rgb(0, 255, 0);");
-            title.setStyle("-fx-border-color:rgb(0, 255, 0);");
+        if (GAME.checkSongInformation(ARTIST.getText(), TITLE.getText())) {
+            ARTIST.setStyle("-fx-border-color:rgb(0, 255, 0);");
+            TITLE.setStyle("-fx-border-color:rgb(0, 255, 0);");
         }
         else {
-            artist.setStyle("-fx-border-color:rgb(255, 0, 0);");
-            title.setStyle("-fx-border-color:rgb(255, 0, 0);");
+            ARTIST.setStyle("-fx-border-color:rgb(255, 0, 0);");
+            TITLE.setStyle("-fx-border-color:rgb(255, 0, 0);");
         }
 
         // 3) Check position of card
@@ -175,13 +192,13 @@ public class GameView extends Pane {
         // 1) Reset styles
         hideTimer();
 
-        artist.setStyle("");
-        artist.getStyleClass().add("modern-textbox");
-        artist.clear();
+        ARTIST.setStyle("");
+        ARTIST.getStyleClass().add("modern-textbox");
+        ARTIST.clear();
 
-        title.setStyle("");
-        title.getStyleClass().add("modern-textbox");
-        title.clear();
+        TITLE.setStyle("");
+        TITLE.getStyleClass().add("modern-textbox");
+        TITLE.clear();
 
         currentCard.resetBorderColor();
 
@@ -234,5 +251,40 @@ public class GameView extends Pane {
 
         this.getChildren().add(currentCard);
         currentCard.toFront();
+    }
+
+    public void insertCardIntoStrip() {
+        STRIP.addCardSorted(currentCard);
+    }
+
+    public void addHitmasterChip() {
+        CHIP_PANE.addChip();
+    }
+
+    public void removeHitmasterChip() {
+        CHIP_PANE.removeChip();
+    }
+
+    public void removeAllHitmasterChips() {
+        while (CHIP_PANE.getActiveChipsCount() > 0) {
+            CHIP_PANE.removeChip();
+        }
+    }
+
+    public void removeCurrentCard() {
+        currentCard.showFront();
+        currentCard.setBorderColor("rgb(255, 0, 0)");
+
+        Timer timer = new Timer(3);
+        timer.start(
+            () -> Platform.runLater(() -> 
+                setTimer(timer.getRemainingSeconds())
+            ),
+            () -> Platform.runLater(() -> {
+                STRIP.removeCard(currentCard);
+                this.getChildren().remove(currentCard);
+                GAME.addFirstToCardStack();
+            })
+        );
     }
 }

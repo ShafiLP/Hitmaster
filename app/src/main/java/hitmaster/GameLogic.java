@@ -1,25 +1,34 @@
 package hitmaster;
 
+import java.text.Normalizer;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import hitmaster.design.SongCard;
+import hitmaster.models.Artist;
+import hitmaster.models.Player;
 import hitmaster.models.Song;
-import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.views.GameView;
 
 public class GameLogic {
 
     private final GameView VIEW;
-    private final User[] PLAYERS;
+    private final Player[] PLAYERS;
+    private int currentPlayerIdx = 0;
 
     private List<Song> songs;
     private Song currentSong;
 
+    // Regex Patterns
+    private static final Pattern DIACRITICS = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+    private static final Pattern SPECIAL_CHARS = Pattern.compile("[^a-z0-9 ]");
+    private static final Pattern MULTIPLE_SPACES = Pattern.compile("\\s+");
+
     public GameLogic() {
-        PLAYERS = new User[1];
-        PLAYERS[0] = Database.getCurrentUser(); // TODO: Custom user count
+        PLAYERS = new Player[1];
+        PLAYERS[0] = new Player();
 
         // 1) Read songs from DB and shuffle them
         songs = loadSongsFromDB();
@@ -48,9 +57,18 @@ public class GameLogic {
         songs.removeFirst();
     }
 
-    public boolean checkSongInformation(String artist, String title) {
-        // TODO: Alias + add points
-        return (currentSong.getArtist().name.equals(artist) && currentSong.title.equals(title));
+    public void skipCurrentSong() {
+        PLAYERS[currentPlayerIdx].hitmasterPoints--;
+
+        VIEW.removeHitmasterChip();
+        VIEW.removeCurrentCard();
+    }
+
+    public void markCurrentSongAsCorrect() {
+        PLAYERS[currentPlayerIdx].hitmasterPoints = 0;
+
+        VIEW.removeAllHitmasterChips();
+        VIEW.insertCardIntoStrip();
     }
 
     public boolean checkSongOrder(List<SongCard> songCards) {
@@ -75,8 +93,138 @@ public class GameLogic {
         return (songCards.get(idx - 1).song.year <= songCards.get(idx).song.year && songCards.get(idx + 1).song.year >= songCards.get(idx).song.year);
     }
 
+    /**
+     * Checks if player reached 10 correct cards.
+     * @param songCards List of SongCard UI elements.
+     * @return Win result.
+     */
     public boolean checkForWin(List<SongCard> songCards) {
         return (songCards.size() >= 10);
+    }
+
+    /**
+     * Changes currentPlayerIdx to next player in array.
+     * If index reached end of array, it gets set to first.
+     */
+    public void switchToNextPlayer() {
+        if (currentPlayerIdx == PLAYERS.length - 1) {
+            currentPlayerIdx = 0;
+        }
+        else {
+            currentPlayerIdx++;
+        }
+    }
+
+    public int getChipCountOfCurrentPlayer() {
+        return PLAYERS[currentPlayerIdx].hitmasterPoints;
+    }
+
+    /**
+     * Checks if user input of artist and song title are correct.
+     * If input is correct, user receives one HM point.
+     * @param artist User input of artist.
+     * @param title User input of song title.
+     * @return Comparison result.
+     */
+    public boolean checkSongInformation(String artist, String title) {
+        if (compareArtist(artist, currentSong.getArtist()) && compareTitle(title, currentSong)) {
+            PLAYERS[currentPlayerIdx].increaseHitmasterPoints();
+            VIEW.addHitmasterChip();
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Compares if a String matches the artist name or an alias of artist.
+     * Ignores uppercase/lowercase, special characters and additional spacings.
+     * @param input String to compare to artist name and alias.
+     * @param artist Artist object with name and alias information.
+     * @return Comparison result.
+     */
+    private boolean compareArtist(String input, Artist artist) {
+        if (input == null || artist == null)
+            return false;
+
+        String normalizedInput = normalizeText(input);
+
+        // 1) Check primary name
+        if (normalizedInput.equals(normalizeText(artist.name))) {
+            return true;
+        }
+
+        // 2) Check alias (Split with "|" symbol)
+        if (artist.alias != null && !artist.alias.isEmpty()) {
+            // \\s*\\|\\s* split at '|' and removes spaces around it
+            String[] aliases = artist.alias.split("\\s*\\|\\s*");
+            for (String alias : aliases) {
+                if (normalizedInput.equals(normalizeText(alias))) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Compares if a String matches the song title or an alias of title.
+     * Ignores uppercase/lowercase, special characters and additional spacings.
+     * @param input String to compare to song title and alias.
+     * @param song Song object with title and alias information.
+     * @return Comparison result.
+     */
+    private boolean compareTitle(String input, Song song) {
+        if (input == null || song == null) {
+            return false;
+        }
+
+        String normalizedInput = normalizeText(input);
+
+        // 1) Check primary title
+        if (normalizedInput.equals(normalizeText(song.title))) {
+            return true;
+        }
+
+        // 2) Check alias (Split with "|" symbol)
+        if (song.alias != null && !song.alias.isEmpty()) {
+            // \\s*\\|\\s* split at '|' and removes spaces around it
+            String[] aliases = song.alias.split("\\s*\\|\\s*");
+            for (String alias : aliases) {
+                if (normalizedInput.equals(normalizeText(alias))) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Removes special characters (ä, é, î) and unnecessary spaces from String.
+     * @param text Input String to normalize.
+     * @return Normalized String.
+     */
+    public static String normalizeText(String text) {
+        if (text == null) {
+            return "";
+        }
+
+        // 1) To lowercase
+        String lowercase = text.toLowerCase();
+
+        // 2) Remove accents
+        String normalized = Normalizer.normalize(lowercase, Normalizer.Form.NFD);
+
+        // 3) Delete diacritics
+        String noAccents = DIACRITICS.matcher(normalized).replaceAll("");
+
+        // 4) Remove everything that's not a letter, a number or a space
+        String cleanChars = SPECIAL_CHARS.matcher(noAccents).replaceAll("");
+
+        // 5) Delete additional spacings
+        return MULTIPLE_SPACES.matcher(cleanChars).replaceAll(" ").trim();
     }
 
     public GameView getView() {

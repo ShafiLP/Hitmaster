@@ -3,10 +3,12 @@ package hitmaster.design;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.animation.TranslateTransition;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.util.Duration;
 
 public class CardStripPane extends Pane {
 
@@ -29,7 +31,6 @@ public class CardStripPane extends Pane {
         marker.setVisible(false);
         this.getChildren().add(marker);
 
-        //this.getStylesheets().add(getClass().getResource("/styles/app.css").toExternalForm());
         this.getStyleClass().add("card-strip");
     }
 
@@ -131,6 +132,61 @@ public class CardStripPane extends Pane {
         return totalCards;
     }
 
+    /**
+     * Adds a card automatically at the index where it fits according to song.year
+     * and animates it moving to that indexed position.
+     */
+    public void addCardSorted(SongCard card) {
+        if (card == null) return;
+        
+        // 1) Calculate index
+        int targetIndex = 0;
+        int newCardYear = card.song.year;
+
+        for (int i = 0; i < cards.size(); i++) {
+            if (newCardYear >= cards.get(i).song.year) {
+                targetIndex = i + 1;
+            } else {
+                break;
+            }
+        }
+
+        // 2) Calculate coordinates
+        double initialSceneX = card.localToScene(0, 0).getX();
+        double initialSceneY = card.localToScene(0, 0).getY();
+
+        if (card.getParent() != null && card.getParent() != this) {
+            ((Pane) card.getParent()).getChildren().remove(card);
+        }
+
+        if (!cards.contains(card)) {
+            cards.add(targetIndex, card);
+        }
+        
+        layoutCards();
+
+        // 3) Animate movement to CardStripPane
+        animateCardToPosition(card, initialSceneX, initialSceneY);
+    }
+
+    /**
+     * Moves a card into CardStripPane smoothly.
+     */
+    private void animateCardToPosition(SongCard card, double fromSceneX, double fromSceneY) {
+        double targetX = card.getLayoutX();
+        double targetY = card.getLayoutY();
+
+        Point2D localStart = sceneToLocal(fromSceneX, fromSceneY);
+
+        card.setTranslateX(localStart.getX() - targetX);
+        card.setTranslateY(localStart.getY() - targetY);
+
+        TranslateTransition transition = new TranslateTransition(Duration.millis(500), card);
+        transition.setToX(0);
+        transition.setToY(0);
+        transition.play();
+    }
+
     private void updateMarkerPosition(int index) {
         int totalCards = cards.size();
         double totalWidth = totalCards * CARDWIDTH + (totalCards - 1) * HGAP;
@@ -155,8 +211,6 @@ public class CardStripPane extends Pane {
     }
 
     private void layoutCards() {
-        getChildren().removeIf(node -> node instanceof SongCard);
-
         int totalCards = cards.size();
         double totalWidth = totalCards * CARDWIDTH + (totalCards - 1) * HGAP;
         double startX = (getWidth() - totalWidth) / 2.0;
@@ -168,7 +222,9 @@ public class CardStripPane extends Pane {
             double x = startX + i * (CARDWIDTH + HGAP);
             card.relocate(x, stripY);
 
-            getChildren().add(card);
+            if (!this.getChildren().contains(card)) {
+                this.getChildren().add(card);
+            }
         }
 
         marker.toFront();

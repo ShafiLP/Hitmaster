@@ -69,6 +69,7 @@ public class Database {
                 CREATE TABLE IF NOT EXISTS songs (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     title TEXT NOT NULL,
+                    alias TEXT,
                     artist_id INTEGER,
                     year INTEGER,
                     spotify TEXT,
@@ -215,6 +216,7 @@ public class Database {
 
                 song.id = rs.getInt("id");
                 song.title = rs.getString("title");
+                song.alias = rs.getString("alias");
                 song.artist_id = rs.getInt("artist_id");
                 song.year = rs.getInt("year");
                 song.spotify = rs.getString("spotify");
@@ -312,6 +314,7 @@ public class Database {
 
         song.id = rs.getInt("id");
         song.title = rs.getString("title");
+        song.alias = rs.getString("alias");
         song.artist_id = rs.getInt("artist_id");
         song.year = rs.getInt("year");
         song.spotify = rs.getString("spotify");
