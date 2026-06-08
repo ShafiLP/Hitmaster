@@ -98,8 +98,12 @@ public class MainMenu {
 
 
         // Top right
-        Button settings = new Button("⚙️");
+        Button settings = new Button("⚙");
         settings.getStyleClass().add("nav-button");
+        settings.setOnAction(e -> {
+            SettingsView settingsView = new SettingsView(this);
+            settingsView.show();
+        });
 
         VBox topRight = new VBox(settings);
         topRight.setAlignment(Pos.TOP_RIGHT);
