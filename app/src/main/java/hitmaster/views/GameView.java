@@ -4,18 +4,19 @@ import hitmaster.GameLogic;
 import hitmaster.design.CardStripPane;
 import hitmaster.design.SongCard;
 import hitmaster.models.Song;
-import javafx.animation.PauseTransition;
+import hitmaster.services.Log;
+import hitmaster.services.Timer;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 public class GameView extends Pane {
 
@@ -27,6 +28,7 @@ public class GameView extends Pane {
     private final CardStripPane STRIP;
     private TextField artist;
     private TextField title;
+    private final Label TIMER;
 
 
     public GameView(GameLogic GAME, Song firstSong) {
@@ -116,9 +118,23 @@ public class GameView extends Pane {
         HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
         audioRow.setAlignment(Pos.CENTER_LEFT);
 
-        // 5) Build full panel
+        // 5) Timer Label
+        TIMER = new Label("Test");
+        TIMER.getStyleClass().add("modern-label");
+        TIMER.setVisible(false);
+        TIMER.layoutBoundsProperty().addListener((obs, oldBounds, newBounds) -> {
+            TIMER.setLayoutX((this.getWidth() - newBounds.getWidth()) / 2);
+        });
+
+        this.widthProperty().addListener((obs, oldWidth, newWidth) -> {
+            TIMER.setLayoutX((newWidth.doubleValue() - TIMER.getWidth()) / 2);
+        });
+
+        TIMER.setLayoutY(10);
+        this.getChildren().add(TIMER);
+
+        // 6) Build full panel
         VBox controlPanel = new VBox(15, inputs, mediaRow, audioRow);
-        // controlPanel.getStyleClass().add();
         controlPanel.setPrefWidth(CONTROLS_WIDTH);
         
         controlPanel.layoutXProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + GAP));
@@ -152,26 +168,59 @@ public class GameView extends Pane {
             currentCard.setBorderColor("rgb(255, 0, 0)");
         }
 
-        // TODO: Replace with timer label
-        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        Timer timer = new Timer(3);
+        timer.start(
+            () -> Platform.runLater(() -> 
+                setTimer(timer.getRemainingSeconds())
+            ),
+            () -> checkForWin(guess)
+        );
+    }
 
-        pause.setOnFinished(event -> {
+    private void checkForWin(boolean guess) {
+        // 1) Reset styles
+        hideTimer();
 
-            artist.setStyle("");
-            title.setStyle("");
-            artist.getStyleClass().add("modern-textbox");
-            title.getStyleClass().add("modern-textbox");
-            artist.clear();
-            title.clear();
-            currentCard.resetBorderColor();
+        artist.setStyle("");
+        artist.getStyleClass().add("modern-textbox");
+        artist.clear();
 
-            if (!guess)
-                currentCard.setVisible(false);
+        title.setStyle("");
+        title.getStyleClass().add("modern-textbox");
+        title.clear();
 
-            GAME.addFirstToCardStack();
-        });
+        currentCard.resetBorderColor();
 
-        pause.play();
+        // 2) Move card to failure stack if false
+        if (!guess) {
+            Platform.runLater(() -> {
+                STRIP.removeCard(currentCard);
+                this.getChildren().remove(currentCard);
+                GAME.addFirstToCardStack();
+            });
+        }
+
+        // 3) Check for win if true
+        else {
+            if (GAME.checkForWin(STRIP.getCards())) {
+                Log.Info("WON.");
+            }
+            else {
+                Platform.runLater(() -> {
+                    GAME.addFirstToCardStack();
+                });
+            }
+        }
+    }
+
+    private void setTimer(int seconds) {
+        // TODO: Minutes if 60+ seconds
+        TIMER.setVisible(true);
+        TIMER.setText("⏱ " + (seconds + 1) + "s");
+    }
+
+    private void hideTimer() {
+        TIMER.setVisible(false);
     }
 
     public void addToCardStrip(Song song) {
@@ -188,6 +237,8 @@ public class GameView extends Pane {
         STRIP.registerExternalCard(card);
 
         currentCard = card;
+
         this.getChildren().add(currentCard);
+        currentCard.toFront();
     }
 }

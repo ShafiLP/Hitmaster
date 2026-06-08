@@ -75,6 +75,10 @@ public class GameLogic {
         return (songCards.get(idx - 1).song.year <= songCards.get(idx).song.year && songCards.get(idx + 1).song.year >= songCards.get(idx).song.year);
     }
 
+    public boolean checkForWin(List<SongCard> songCards) {
+        return (songCards.size() >= 10);
+    }
+
     public GameView getView() {
         return VIEW;
     }

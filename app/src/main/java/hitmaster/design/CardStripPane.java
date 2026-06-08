@@ -34,9 +34,9 @@ public class CardStripPane extends Pane {
     }
 
     public void addCard(SongCard card) {
-        if (!cards.contains(card)) cards.add(card);
-        if (!getChildren().contains(card)) getChildren().add(card);
-        registerExternalCard(card);
+        if (!cards.contains(card)) {
+            cards.add(card);
+        }
         layoutCards();
     }
 
@@ -94,6 +94,25 @@ public class CardStripPane extends Pane {
         });
     }
 
+    public void removeCard(SongCard card) {
+        if (card == null) return;
+
+        cards.remove(card);
+
+        this.getChildren().remove(card);
+        
+        if (getParent() != null && getParent() instanceof Pane) {
+            ((Pane) getParent()).getChildren().remove(card);
+        }
+
+        originalIndex = -1;
+        insertIndex = -1;
+        marker.setVisible(false);
+
+        requestLayout(); 
+        layoutCards();
+    }
+
     private boolean isWithinStripBounds(double localX, double localY) {
         return localX >= 0 && localX <= getWidth() && localY >= 0 && localY <= getHeight();
     }
@@ -136,6 +155,8 @@ public class CardStripPane extends Pane {
     }
 
     private void layoutCards() {
+        getChildren().removeIf(node -> node instanceof SongCard);
+
         int totalCards = cards.size();
         double totalWidth = totalCards * CARDWIDTH + (totalCards - 1) * HGAP;
         double startX = (getWidth() - totalWidth) / 2.0;
@@ -143,9 +164,14 @@ public class CardStripPane extends Pane {
 
         for (int i = 0; i < totalCards; i++) {
             SongCard card = cards.get(i);
+
             double x = startX + i * (CARDWIDTH + HGAP);
             card.relocate(x, stripY);
+
+            getChildren().add(card);
         }
+
+        marker.toFront();
     }
 
     public List<SongCard> getCards() {
