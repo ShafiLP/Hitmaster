@@ -5,6 +5,7 @@ import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.Spotify;
+import hitmaster.services.ThemeManager;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -41,8 +42,6 @@ public class MainMenu {
         // CENTER (Gamemodes, Quit)
         // ==============================
 
-        ROOT.getStyleClass().add("app-background");
-
         Label title = new Label("HITMASTER");
         title.getStyleClass().add("title");
 
@@ -52,6 +51,7 @@ public class MainMenu {
             GameLogic game = new GameLogic();
 
             Scene scene = new Scene(game.getView(), 800, 600);
+            ThemeManager.getInstance().registerScene(scene);
             STAGE.setScene(scene);
             STAGE.show();
         });
@@ -85,7 +85,7 @@ public class MainMenu {
 
         // Top Left
         Button profile = new Button("👤 " + user.username);
-        profile.getStyleClass().add("nav-button");
+        profile.getStyleClass().add("modern-button");
 
         initialiseProviderButton();
 
@@ -99,7 +99,7 @@ public class MainMenu {
 
         // Top right
         Button settings = new Button("⚙");
-        settings.getStyleClass().add("nav-button");
+        settings.getStyleClass().add("modern-button");
         settings.setOnAction(e -> {
             SettingsView settingsView = new SettingsView(this);
             settingsView.show();

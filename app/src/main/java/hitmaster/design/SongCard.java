@@ -36,10 +36,6 @@ public class SongCard extends StackPane {
         this.song = song;
         player = new MusicPlayer();
 
-        this.getStylesheets().add(
-            getClass().getResource("/styles/app.css").toExternalForm()
-        );
-
         color = PastelColor.random();
 
         this.setPrefSize(150, 150);
@@ -50,12 +46,7 @@ public class SongCard extends StackPane {
 
         this.setClip(clip);
 
-        this.setStyle(
-            "-fx-background-color: black;" +
-            "-fx-background-radius: 12;" +
-            "-fx-border-radius: 12;" +
-            "-fx-border-color: black;"
-        );
+        this.getStyleClass().add("song-card");
 
         this.showBack();
         this.enableDragging();

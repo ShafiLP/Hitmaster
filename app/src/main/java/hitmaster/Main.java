@@ -1,12 +1,14 @@
 package hitmaster;
 
 import hitmaster.services.Database;
+import hitmaster.services.ThemeManager;
 import hitmaster.views.MainMenu;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    
     @Override
     public void start(Stage stage) {
         //! DEBUG
@@ -18,9 +20,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(menu.getView(), 600, 400);
 
-        scene.getStylesheets().add(
-            getClass().getResource("/styles/app.css").toExternalForm()
-        );
+        ThemeManager.getInstance().registerScene(scene);
 
         stage.setTitle("Hitmaster");
         stage.setScene(scene);

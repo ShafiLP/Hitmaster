@@ -29,7 +29,7 @@ public class CardStripPane extends Pane {
         marker.setVisible(false);
         this.getChildren().add(marker);
 
-        this.getStylesheets().add(getClass().getResource("/styles/app.css").toExternalForm());
+        //this.getStylesheets().add(getClass().getResource("/styles/app.css").toExternalForm());
         this.getStyleClass().add("card-strip");
     }
 

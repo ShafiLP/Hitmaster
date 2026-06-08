@@ -1,5 +1,6 @@
 package hitmaster.views;
 
+import hitmaster.services.ThemeManager;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,7 +31,6 @@ public class SettingsView {
         VBox root = new VBox(25); // Etwas mehr Platz zwischen den Hauptblöcken
         root.setPadding(new Insets(20));
         root.setFillWidth(true);
-        root.getStyleClass().add("app-background");
 
         // =========================
         // HEADER
@@ -42,7 +42,7 @@ public class SettingsView {
         description.setStyle("-fx-text-fill: gray; -fx-font-size: 12px;");
 
         VBox header = new VBox(5, title, description);
-        header.setAlignment(Pos.TOP_LEFT); // Linksbündig wirkt bei Einstellungsseiten meist cleaner
+        header.setAlignment(Pos.TOP_LEFT);
 
         // =========================
         // SETTINGS CONTENT (Formular)
@@ -65,22 +65,23 @@ public class SettingsView {
         HBox languageRow = createSettingRow("Application Theme", "Set local language for Hitmaster.", languageDropdown);
 
         // 2) Theme Selection Row
-        ComboBox<String> themeDropdown = new ComboBox<>();
+        ComboBox<ThemeManager.Theme> themeDropdown = new ComboBox<>();
         themeDropdown.getStyleClass().add("modern-dropdown");
-        themeDropdown.getItems().addAll("Hitmaster Light", "Hitmaster Dark");
-        themeDropdown.getSelectionModel().selectFirst(); // Standardmäßig das erste wählen
+        themeDropdown.getItems().addAll(ThemeManager.Theme.values());
+        themeDropdown.getSelectionModel().select(ThemeManager.getInstance().getCurrentTheme());
         themeDropdown.setPrefWidth(180);
         
         themeDropdown.setOnAction(e -> {
-            String selectedTheme = themeDropdown.getValue();
-            // TODO: Logic for theme change
+            ThemeManager.Theme selectedTheme = themeDropdown.getValue();
+            if (selectedTheme != null)
+                ThemeManager.getInstance().setTheme(selectedTheme);
         });
         
         HBox themeRow = createSettingRow("Application Theme", "Change the visual appearance of Hitmaster.", themeDropdown);
 
         // 3) Music Provider Row
         Button manageMusicBtn = new Button("Configure");
-        manageMusicBtn.getStyleClass().add("modern-button"); // Oder "nav-button", je nach deiner CSS
+        manageMusicBtn.getStyleClass().add("modern-button");
         manageMusicBtn.setPrefWidth(180);
         manageMusicBtn.setOnAction(e -> {
             ProviderSettingsView providerSettings = new ProviderSettingsView(PARENT);
@@ -129,11 +130,8 @@ public class SettingsView {
         // =========================
         root.getChildren().addAll(header, content, footer);
 
-        // 500er Breite reicht völlig aus und wirkt kompakt
         Scene scene = new Scene(root, 520, 480);
-        scene.getStylesheets().add(
-            getClass().getResource("/styles/app.css").toExternalForm()
-        );
+        ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
     }
 
@@ -158,7 +156,6 @@ public class SettingsView {
         row.setAlignment(Pos.CENTER_LEFT);
         row.setPadding(new Insets(5, 0, 5, 0));
         
-        // Optional: Eine feine Trennlinie per CSS-Style, damit es wie iOS/Android-Settings aussieht
         row.setStyle("-fx-border-color: rgba(255,255,255,0.05); -fx-border-width: 0 0 1 0;");
 
         return row;

@@ -35,12 +35,6 @@ public class GameView extends Pane {
         this.GAME = GAME;
         currentCard = new SongCard(firstSong);
 
-        // 1) Stylesheets laden
-        this.getStylesheets().add(
-            getClass().getResource("/styles/app.css").toExternalForm()
-        );
-        this.getStyleClass().add("app-background");
-
         // 2) Initialize CardStripPane
         final double CONTROLS_WIDTH = 320;
         final double GAP = 20;
@@ -119,7 +113,7 @@ public class GameView extends Pane {
         audioRow.setAlignment(Pos.CENTER_LEFT);
 
         // 5) Timer Label
-        TIMER = new Label("Test");
+        TIMER = new Label();
         TIMER.getStyleClass().add("modern-label");
         TIMER.setVisible(false);
         TIMER.layoutBoundsProperty().addListener((obs, oldBounds, newBounds) -> {

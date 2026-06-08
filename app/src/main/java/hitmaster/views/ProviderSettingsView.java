@@ -3,6 +3,7 @@ package hitmaster.views;
 import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Spotify;
+import hitmaster.services.ThemeManager;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -69,7 +70,7 @@ public class ProviderSettingsView {
         Button[] connections = new Button[4];
         for (int i = 0; i < connections.length; i++) {
             connections[i] = new Button("Add connection");
-            connections[i].getStyleClass().add("nav-button");
+            connections[i].getStyleClass().add("modern-button");
         }
         connections[0].setOnAction(e -> {
             if (Spotify.createSpotifyConnection()) {
@@ -110,9 +111,7 @@ public class ProviderSettingsView {
         root.getChildren().addAll(header, grid, footer);
 
         Scene scene = new Scene(root, 650, 270);
-        scene.getStylesheets().add(
-            getClass().getResource("/styles/app.css").toExternalForm()
-        );
+        ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
     }
 

@@ -1,24 +1,24 @@
-.app-background {
-    -fx-background-color: #eef2ff;
+.root {
+    -fx-background-color: #000f3f;
 }
 
 .title {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
 .menu-button {
-    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-font-size: 22px;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-background-radius: 10;
     -fx-padding: 4 7;
     -fx-cursor: hand;
 }
 
 .menu-button:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-background-color: rgba(255, 255, 255, 0.3);
 }
 
 .exit-button {
@@ -35,55 +35,42 @@
 }
 
 .prov-button-none {
-    -fx-background-color: rgba(255, 0, 0, 0.2);
+    -fx-background-color: rgba(255, 122, 122, 0.2);
     -fx-font-size: 14px;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-background-radius: 10;
     -fx-padding: 4 7;
     -fx-cursor: hand;
 }
 
 .prov-button-bone:hover {
-    -fx-background-color: rgba(255, 0, 0, 0.3);
+    -fx-background-color: rgba(255, 122, 122, 0.3);
 }
 
 .prov-button-warning {
-    -fx-background-color: rgba(255, 255, 0, 0.2);
+    -fx-background-color: rgba(255, 255, 122, 0.2);
     -fx-font-size: 14px;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-background-radius: 10;
     -fx-padding: 4 7;
     -fx-cursor: hand;
 }
 
 .prov-button-warning:hover {
-    -fx-background-color: rgba(255, 255, 0, 0.3);
+    -fx-background-color: rgba(255, 255, 122, 0.3);
 }
 
 .prov-button-success {
-    -fx-background-color: rgba(0, 255, 0, 0.2);
+    -fx-background-color: rgba(122, 255, 122, 0.2);
     -fx-font-size: 14px;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-background-radius: 10;
     -fx-padding: 4 7;
     -fx-cursor: hand;
 }
 
 .prov-button-success:hover {
-    -fx-background-color: rgba(0, 255, 0, 0.3);
-}
-
-.nav-button {
-    -fx-background-color: rgba(0, 0, 0, 0.2);
-    -fx-font-size: 14px;
-    -fx-text-fill: black;
-    -fx-background-radius: 10;
-    -fx-padding: 4 7;
-    -fx-cursor: hand;
-}
-
-.nav-button:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-background-color: rgba(122, 255, 122, 0.3);
 }
 
 .primary-button {
@@ -95,6 +82,10 @@
     -fx-cursor: hand;
 }
 
+.primary-button:hover {
+    -fx-background-color: #1a6ed8;
+}
+
 .secondary-button {
     -fx-background-color: #50b4e3;
     -fx-font-size: 14px;
@@ -104,38 +95,27 @@
     -fx-cursor: hand;
 }
 
-.control-button {
-    -fx-font-family: Segoe UI Symbol;
-    -fx-font-size: 14px;
-    -fx-text-fill: white;
-    -fx-background-color: transparent;
-    -fx-cursor: hand;
-}
-
-.card-strip {
-    -fx-background-color: rgba(0, 0, 0, 0.2);
-    -fx-background-radius: 10;
-    -fx-padding: 10;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 1);
+.secondary-button:hover {
+    -fx-background-color: #3fa0c1;
 }
 
 .modern-button {
-    -fx-background-color: #e7e7e7;
+    -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-font-size: 14px;
-    -fx-text-fill: rgb(0, 0, 0);
+    -fx-text-fill: white;
     -fx-background-radius: 10;
     -fx-padding: 4 7;
     -fx-cursor: hand;
 }
 
 .modern-button:hover {
-    -fx-background-color: #d4d4d4;
+    -fx-background-color: rgba(255, 255, 255, 0.3);
 }
 
 .modern-label {
     -fx-font-size: 14px;
-    -fx-text-fill: rgb(0, 0, 0);
-    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-text-fill: white;
+    -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-background-radius: 10;
     -fx-padding: 5;
 }
@@ -165,4 +145,27 @@
     -fx-border-color: rgba(0, 0, 0, 0.2);
     -fx-border-radius: 10;
     -fx-border-width: 1;
+}
+
+.song-card {
+    -fx-text-fill: black;
+    -fx-background-color: black;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: black;
+}
+
+.card-strip {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 1);
+}
+
+.control-button {
+    -fx-font-family: Segoe UI Symbol;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
 }
