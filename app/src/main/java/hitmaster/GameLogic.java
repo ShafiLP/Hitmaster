@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import hitmaster.design.SongCard;
-import hitmaster.models.Artist;
 import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.Database;
@@ -127,7 +126,7 @@ public class GameLogic {
      * @return Comparison result.
      */
     public boolean checkSongInformation(String artist, String title) {
-        if (compareArtist(artist, currentSong.getArtist()) && compareTitle(title, currentSong)) {
+        if (compareArtist(artist, currentSong.artist) && compareTitle(title, currentSong)) {
             PLAYERS[currentPlayerIdx].increaseHitmasterPoints();
             VIEW.addHitmasterChip();
             return true;
@@ -137,42 +136,30 @@ public class GameLogic {
     }
 
     /**
-     * Compares if a String matches the artist name or an alias of artist.
+     * Compares if a String matches the artist name.
      * Ignores uppercase/lowercase, special characters and additional spacings.
      * @param input String to compare to artist name and alias.
-     * @param artist Artist object with name and alias information.
+     * @param artist String with artist input.
      * @return Comparison result.
      */
-    private boolean compareArtist(String input, Artist artist) {
+    private boolean compareArtist(String input, String artist) {
         if (input == null || artist == null)
             return false;
 
         String normalizedInput = normalizeText(input);
 
-        // 1) Check primary name
-        if (normalizedInput.equals(normalizeText(artist.name))) {
+        if (normalizedInput.equals(normalizeText(artist))) {
             return true;
-        }
-
-        // 2) Check alias (Split with "|" symbol)
-        if (artist.alias != null && !artist.alias.isEmpty()) {
-            // \\s*\\|\\s* split at '|' and removes spaces around it
-            String[] aliases = artist.alias.split("\\s*\\|\\s*");
-            for (String alias : aliases) {
-                if (normalizedInput.equals(normalizeText(alias))) {
-                    return true;
-                }
-            }
         }
 
         return false;
     }
 
     /**
-     * Compares if a String matches the song title or an alias of title.
+     * Compares if a String matches the song title.
      * Ignores uppercase/lowercase, special characters and additional spacings.
      * @param input String to compare to song title and alias.
-     * @param song Song object with title and alias information.
+     * @param song String with Song information.
      * @return Comparison result.
      */
     private boolean compareTitle(String input, Song song) {
@@ -182,20 +169,8 @@ public class GameLogic {
 
         String normalizedInput = normalizeText(input);
 
-        // 1) Check primary title
         if (normalizedInput.equals(normalizeText(song.title))) {
             return true;
-        }
-
-        // 2) Check alias (Split with "|" symbol)
-        if (song.alias != null && !song.alias.isEmpty()) {
-            // \\s*\\|\\s* split at '|' and removes spaces around it
-            String[] aliases = song.alias.split("\\s*\\|\\s*");
-            for (String alias : aliases) {
-                if (normalizedInput.equals(normalizeText(alias))) {
-                    return true;
-                }
-            }
         }
 
         return false;

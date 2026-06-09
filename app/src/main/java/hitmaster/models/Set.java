@@ -31,8 +31,4 @@ public class Set {
     public List<Song> getSongs() {
         return Database.getSongsBySetId(id);
     }
-
-    public void insertIntoDatabase() {
-        Database.insertCsvIntoDatabase("songs", csv);
-    }
 }

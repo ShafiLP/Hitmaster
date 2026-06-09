@@ -112,7 +112,7 @@ public class SongCard extends StackPane {
         ));
 
         // TODO: Set Icon 
-        Label artist = new Label(song.getArtist().name);
+        Label artist = new Label(song.artist);
         Label year = new Label(String.valueOf(song.year));
         Label title = new Label(song.title);
 

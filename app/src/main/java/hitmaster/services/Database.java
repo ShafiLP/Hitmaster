@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import hitmaster.models.Artist;
 import hitmaster.models.Set;
 import hitmaster.models.Song;
 import hitmaster.models.User;
@@ -62,26 +61,17 @@ public class Database {
 
             //! DEBUG
             Database.addSetToDatabase(new Set("Debug", "debug.jpg", "debug.csv", true));
-            Database.addSetToDatabase(new Set("Testset", "deactivate.jpeg", "debug2.csv", false));
-
-            stmt.execute("""
-                CREATE TABLE IF NOT EXISTS artists (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    name TEXT NOT NULL,
-                    alias TEXT
-                );
-            """);
+            Database.addSetToDatabase(new Set("Hitster - UK", "hitster-uk.jpg", "hitster-uk.csv", true));
+            Database.addSetToDatabase(new Set("Hitster - DE", "hitster-de.jpg", "hitster-de.csv", true));
 
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS songs (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     title TEXT NOT NULL,
-                    alias TEXT,
-                    artist_id INTEGER,
+                    artist TEXT NOT NULL,
                     year INTEGER,
                     spotify TEXT,
                     set_id INTEGER,
-                    FOREIGN KEY (artist_id) REFERENCES artists(id),
                     FOREIGN KEY (set_id) REFERENCES sets(id)
                 );
             """);
@@ -98,10 +88,6 @@ public class Database {
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
 
-            //stmt.execute("DELETE FROM user");
-            //stmt.execute("DELETE FROM sets");
-            //stmt.execute("DELETE FROM artists");
-            //stmt.execute("DELETE FROM songs");
             stmt.execute("DROP TABLE IF EXISTS user");
             stmt.execute("DROP TABLE IF EXISTS sets");
             stmt.execute("DROP TABLE IF EXISTS artists");
@@ -112,50 +98,6 @@ public class Database {
         }
         catch (SQLException e) {
             Log.Error("Error while deleting data from database: " + e.getMessage());
-            return false;
-        }
-    }
-
-    public static boolean insertCsvIntoDatabase(String tableName, String fileName) {
-        try {
-            // 1) Get CSV from path
-            InputStream is = Database.class.getResourceAsStream("/csv/" + fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            List<String> lines = reader.lines()
-                .filter(line -> line != null && !line.trim().isEmpty())
-                .toList();
-
-            // 2) Build prompt from CSV
-            String[] columns = lines.get(0).split(";");
-            String placeholders = String.join(",", Collections.nCopies(columns.length, "?"));
-            String sqlExecute = String.format(
-                "INSERT INTO %s (%s) VALUES (%s)",
-                tableName,
-                String.join(",", columns),
-                placeholders);
-
-            // 3) Execute command
-            Connection conn = Database.connect();
-            PreparedStatement ps = conn.prepareStatement(sqlExecute);
-
-            // Assuming heading row
-            for (int i = 1; i < lines.size(); i++) {
-                String[] values = lines.get(i).split(";");
-
-                for (int j = 0; j < columns.length; j++) {
-                    ps.setString(j + 1, j < values.length ? values[j] : null);
-                }
-
-                ps.addBatch();
-            }
-
-            ps.executeBatch();
-
-            Log.Success("Inserted data from \"" + fileName + "\" into " + tableName + ".");
-            return true;
-        }
-        catch (SQLException e) {
-            Log.Error("Error while inserting data from \"" + fileName + "\" into table \"" + tableName + "\": " + e.getMessage());
             return false;
         }
     }
@@ -182,7 +124,7 @@ public class Database {
             // 2) Execute command
             try (Connection conn = Database.connect();
                 PreparedStatement ps = conn.prepareStatement("""
-                    INSERT INTO songs (title, artist_id, year, spotify, set_id)
+                    INSERT INTO songs (title, artist, year, spotify, set_id)
                     VALUES (?, ?, ?, ?, ?)
                 """)) {
 
@@ -190,7 +132,7 @@ public class Database {
                     String[] values = lines.get(i).split(",");
 
                     ps.setString(1, values.length > 0 ? values[0].trim() : null); // title
-                    ps.setString(2, values.length > 1 ? values[1].trim() : null); // artist_id
+                    ps.setString(2, values.length > 1 ? values[1].trim() : null); // artist
                     ps.setString(3, values.length > 2 ? values[2].trim() : null); // year
                     ps.setString(4, values.length > 3 ? values[3].trim() : null); // spotify
                     ps.setInt(5, setId); // set
@@ -350,37 +292,6 @@ public class Database {
         }
     }
 
-    public static Artist getArtistById(int artistId) {
-        try (Connection conn = Database.connect()) {
-            String sqlExecute = """
-                SELECT *
-                FROM artists
-                WHERE id = ?
-            """;
-            PreparedStatement ps = conn.prepareStatement(sqlExecute);
-            ps.setInt(1, artistId);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                Artist artist = new Artist();
-
-                artist.id = rs.getInt("id");
-                artist.name = rs.getString("name");
-                artist.alias = rs.getString("alias");
-
-                return artist;
-            }
-
-            Log.Error("Error while fetching artists from database: Couldn't find match.");
-            return new Artist();
-        }
-        catch (SQLException e) {
-            Log.Error("Error while fetching artists from database: " + e.getMessage());
-            return new Artist();
-        }
-    }
-
     // ==============================
     // SET OPERATIONS
     // ==============================
@@ -489,8 +400,7 @@ public class Database {
 
         song.id = rs.getInt("id");
         song.title = rs.getString("title");
-        song.alias = rs.getString("alias");
-        song.artist_id = rs.getInt("artist_id");
+        song.artist = rs.getString("artist");
         song.year = rs.getInt("year");
         song.spotify = rs.getString("spotify");
         song.set_id = rs.getInt("set_id");

@@ -170,13 +170,13 @@ public class Spotify {
 
     /**
      * Connects to linked Spotify account from "spotify.properties" and plays a song on user's spotify device.
-     * @param Link Link to spotify song (unformatted URI).
+     * @param TrackId Spotify song ID.
      * @return Success result.
      */
-    public static boolean playSpotifyLink(SpotifyApi connection, String Link) {
+    public static boolean playSpotifyLink(SpotifyApi connection, String TrackId) {
         try {
             JsonArray uris = new JsonArray();
-            uris.add(toSpotifyUri(Link));
+            uris.add("spotify:track:" + TrackId);
 
             connection.startResumeUsersPlayback()
                 .uris(uris)
@@ -447,22 +447,6 @@ public class Spotify {
             Log.Error("Error occured while checking current playback state: " + e.getMessage());
             return false;
         }
-    }
-
-    /**
-     * Formats a spotify link to a spotify URI.
-     * @param url Unformatted spotify link.
-     * @return Formatted spotify URI "spotify:track:{trackId}".
-     */
-    private static String toSpotifyUri(String url) {
-        // 1) Remove parameters
-        String clean = url.split("\\?")[0];
-
-        // 2) Extract track ID 
-        String trackId = clean.substring(clean.lastIndexOf("/") + 1);
-
-        // 3) Build URI
-        return "spotify:track:" + trackId;
     }
 
     /**

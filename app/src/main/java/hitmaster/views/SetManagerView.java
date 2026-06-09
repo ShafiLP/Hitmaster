@@ -3,7 +3,6 @@ package hitmaster.views;
 import java.util.ArrayList;
 import java.util.List;
 
-import hitmaster.models.Artist;
 import hitmaster.models.Set;
 import hitmaster.models.Song;
 import hitmaster.services.Database;
@@ -273,12 +272,10 @@ public class SetManagerView {
                 try {
                     int year = Integer.parseInt(yearStr);
                     
-                    Artist artist = new Artist(); 
-                    artist.name = artistName;
                     // TODO: Insert artist with id into database
                     Song newSong = new Song(); 
                     newSong.title = songTitle;
-                    newSong.artist_id = artist.id;
+                    newSong.artist = artistName;
                     newSong.year = year;
                     newSong.spotify = spotLink;
                     
