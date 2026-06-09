@@ -62,7 +62,6 @@ public class Spotify {
 
             server.createContext("/callback", exchange -> {
                 try {
-                    System.out.println("REQUEST: " + exchange.getRequestURI());
                     String query = exchange.getRequestURI().getQuery();
 
                     if (query != null) {
@@ -202,9 +201,15 @@ public class Spotify {
 
     public static boolean restartSong(SpotifyApi connection, String Link) {
         try {
+            connection.seekToPositionInCurrentlyPlayingTrack(0)
+                .build()
+                .execute();
+
+            Log.Info("Restarted current song.");
             return true;
         }
-        catch (Exception e) {
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Error("Restarting current Spotify song failed: " + e.getMessage());
             return false;
         }
     }
@@ -223,9 +228,9 @@ public class Spotify {
             if (!isSongPlaying(connection))
                 return true;
 
-            throw new Error("Song is still playing");
+            throw new Exception("Song is still playing");
         }
-        catch (IOException | ParseException | SpotifyWebApiException e) {
+        catch (Exception e) {
             Log.Error("Couldn't pause song: " + e.getMessage());
             return false;
         }
@@ -233,18 +238,51 @@ public class Spotify {
 
     public static boolean rewindCurrentSong5sec(SpotifyApi connection) {
         try {
+            CurrentlyPlayingContext context = connection
+                .getInformationAboutUsersCurrentPlayback()
+                .build()
+                .execute();
+
+            if (context == null || context.getProgress_ms() == null)
+                throw new Exception("No song is currently playing.");
+
+            int newPosition = Math.max(0, context.getProgress_ms() - 5000);
+
+            connection.seekToPositionInCurrentlyPlayingTrack(newPosition)
+                .build()
+                .execute();
+
+            Log.Info("Rewinded 5sec of currently playing song.");
             return true;
         }
         catch (Exception e) {
+            Log.Error("Couldn't rewind song: " + e.getMessage());
             return false;
         }
     }
 
     public static boolean forwardCurrentSong5sec(SpotifyApi connection) {
         try {
+            CurrentlyPlayingContext context = connection
+                .getInformationAboutUsersCurrentPlayback()
+                .build()
+                .execute();
+
+            if (context == null || context.getProgress_ms() == null)
+                throw new Exception("No song is currently playing.");
+
+            
+            int newPosition = context.getProgress_ms() + 5000;
+
+            connection.seekToPositionInCurrentlyPlayingTrack(newPosition)
+                .build()
+                .execute();
+
+            Log.Info("Forwarded 5sec of currently playing song.");
             return true;
         }
         catch (Exception e) {
+            Log.Error("Couldn't forward song: " + e.getMessage());
             return false;
         }
     }
