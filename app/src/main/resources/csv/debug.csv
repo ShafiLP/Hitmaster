@@ -1,17 +1,17 @@
-id;title;artist_id;year;spotify;set_id
+title,artist_id,year,spotify
 
-1;Schrei nach Liebe;1;1993;https://open.spotify.com/intl-de/track/4P4PHxZQ1FcwQKKnfEPsAZ?si=de0a38d343774566;1
-2;I'm Not Okay (I Promise);2;2004;https://open.spotify.com/intl-de/track/7lRlq939cDG4SzWOF4VAnd?si=c349dcc660b84ff5;1
-3;Savior;3;2008;https://open.spotify.com/intl-de/track/1vcxF91pWs9uNwDROuiCPB?si=fdb97351871a4789;1
-4;Basket Case;4;1994;https://open.spotify.com/intl-de/track/6L89mwZXSOwYl76YXfX13s?si=599dae9dfe5f4bb2;1
-5;Ich Verspreche Mir Selbst;5;2022;https://open.spotify.com/intl-de/track/3EtLAsraGcVyUyZD0VkJrQ?si=2232d735becd4121;1
-6;We Got The Moves;6;2022;https://open.spotify.com/intl-de/track/0W4N0KzHKWQp2Wn1Mf6uMa?si=5da5d89c24fb4515;1
-7;Die Show Muss Weitergehen;7;2026;https://open.spotify.com/intl-de/track/6UdlMTkV4RfU69MV03szso?si=7bd3799976f34200;1
-8;Just Pretend;8;2022;https://open.spotify.com/intl-de/track/31rneVrsMC6jefCoDyQKam?si=a99ddfb665cb4f8c;1
-9;Junge;1;2007;https://open.spotify.com/intl-de/track/10waMsh44ojvTwXAIy213n?si=e7c997187d314f71;1
-10;American Idiot;4;2004;https://open.spotify.com/intl-de/track/45zvStEMsXp8z45OQRhWFJ?si=6e7cf36640704b68;1
-11;Thnks fr th Mmrs;9;2007;https://open.spotify.com/intl-de/track/3Zwu2K0Qa5sT6teCCHPShP?si=cb00029bbe254833;1
-12;The Drug In Me Is You;10;2011;https://open.spotify.com/intl-de/track/1mB7dCUM7sPyNab6R43nlj?si=5296148403ec419f;1
-13;In The End;11;2000;https://open.spotify.com/intl-de/track/60a0Rd6pjrkxjPbaKzXjfq?si=2c32ef53d71c4272;1
-14;Ritual;12;2025;https://open.spotify.com/intl-de/track/0F9OoR7mjpuU08J39gNRlP?si=3ac78eada9e14bcd;1
-15;LosT;13;2024;https://open.spotify.com/intl-de/track/0Brlm0oPqzabpgIG1D1eU5?si=95518b8fb47948e2;1
+Schrei nach Liebe,1,1993,https://open.spotify.com/intl-de/track/4P4PHxZQ1FcwQKKnfEPsAZ?si=de0a38d343774566
+I'm Not Okay (I Promise),2,2004,https://open.spotify.com/intl-de/track/7lRlq939cDG4SzWOF4VAnd?si=c349dcc660b84ff5
+Savior,3,2008,https://open.spotify.com/intl-de/track/1vcxF91pWs9uNwDROuiCPB?si=fdb97351871a4789
+Basket Case,4,1994,https://open.spotify.com/intl-de/track/6L89mwZXSOwYl76YXfX13s?si=599dae9dfe5f4bb2
+Ich Verspreche Mir Selbst,5,2022,https://open.spotify.com/intl-de/track/3EtLAsraGcVyUyZD0VkJrQ?si=2232d735becd4121
+We Got The Moves,6,2022,https://open.spotify.com/intl-de/track/0W4N0KzHKWQp2Wn1Mf6uMa?si=5da5d89c24fb4515
+Die Show Muss Weitergehen,7,2026,https://open.spotify.com/intl-de/track/6UdlMTkV4RfU69MV03szso?si=7bd3799976f34200
+Just Pretend,8,2022,https://open.spotify.com/intl-de/track/31rneVrsMC6jefCoDyQKam?si=a99ddfb665cb4f8c
+Junge,1,2007,https://open.spotify.com/intl-de/track/10waMsh44ojvTwXAIy213n?si=e7c997187d314f71
+American Idiot,4,2004,https://open.spotify.com/intl-de/track/45zvStEMsXp8z45OQRhWFJ?si=6e7cf36640704b68
+Thnks fr th Mmrs,9,2007,https://open.spotify.com/intl-de/track/3Zwu2K0Qa5sT6teCCHPShP?si=cb00029bbe254833
+The Drug In Me Is You,10,2011,https://open.spotify.com/intl-de/track/1mB7dCUM7sPyNab6R43nlj?si=5296148403ec419f
+In The End,11,2000,https://open.spotify.com/intl-de/track/60a0Rd6pjrkxjPbaKzXjfq?si=2c32ef53d71c4272
+Ritual,12,2025,https://open.spotify.com/intl-de/track/0F9OoR7mjpuU08J39gNRlP?si=3ac78eada9e14bcd
+LosT,13,2024,https://open.spotify.com/intl-de/track/0Brlm0oPqzabpgIG1D1eU5?si=95518b8fb47948e2

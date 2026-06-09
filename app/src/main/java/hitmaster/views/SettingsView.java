@@ -95,7 +95,8 @@ public class SettingsView {
         manageSetsBtn.getStyleClass().add("modern-button");
         manageSetsBtn.setPrefWidth(180);
         manageSetsBtn.setOnAction(e -> {
-            // TODO: New Sets frame
+            SetManagerView setManagerView = new SetManagerView();
+            setManagerView.show();
         });
         
         HBox setsRow = createSettingRow("Song Sets", "Import, export or edit your custom song packages.", manageSetsBtn);

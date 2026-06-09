@@ -43,7 +43,7 @@ public class GameLogic {
     }
 
     public List<Song> loadSongsFromDB() {
-        return Database.getAllSongs();
+        return Database.getSongFromActiveSets();
     }
 
     private void addFirstToCardStrip() {

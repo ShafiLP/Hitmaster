@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 import hitmaster.models.Artist;
+import hitmaster.models.Set;
 import hitmaster.models.Song;
 import hitmaster.models.User;
 
@@ -53,9 +54,15 @@ public class Database {
                 CREATE TABLE IF NOT EXISTS sets (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
-                    img TEXT
+                    img TEXT,
+                    csv TEXT,
+                    is_active INTEGER DEFAULT 1
                 );
             """);
+
+            //! DEBUG
+            Database.addSetToDatabase(new Set("Debug", "debug.jpg", "debug.csv", true));
+            Database.addSetToDatabase(new Set("Testset", "deactivate.jpeg", "debug2.csv", false));
 
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS artists (
@@ -153,6 +160,55 @@ public class Database {
         }
     }
 
+    public static boolean insertCsvIntoSongs(String csvFileName, int setId) {
+        try {
+            // 1) Get CSV from path
+            InputStream is = Database.class.getResourceAsStream("/csv/" + csvFileName);
+            if (is == null) {
+                Log.Error("CSV file not found: /csv/" + csvFileName);
+                return false;
+            }
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            List<String> lines = reader.lines()
+                .filter(line -> line != null && !line.trim().isEmpty())
+                .toList();
+
+            if (lines.isEmpty()) {
+                Log.Error("CSV file is empty: " + csvFileName);
+                return false;
+            }
+
+            // 2) Execute command
+            try (Connection conn = Database.connect();
+                PreparedStatement ps = conn.prepareStatement("""
+                    INSERT INTO songs (title, artist_id, year, spotify, set_id)
+                    VALUES (?, ?, ?, ?, ?)
+                """)) {
+
+                for (int i = 1; i < lines.size(); i++) {
+                    String[] values = lines.get(i).split(",");
+
+                    ps.setString(1, values.length > 0 ? values[0].trim() : null); // title
+                    ps.setString(2, values.length > 1 ? values[1].trim() : null); // artist_id
+                    ps.setString(3, values.length > 2 ? values[2].trim() : null); // year
+                    ps.setString(4, values.length > 3 ? values[3].trim() : null); // spotify
+                    ps.setInt(5, setId); // set
+
+                    ps.addBatch();
+                }
+
+                ps.executeBatch();
+                Log.Success("Successfully inserted " + (lines.size() - 1) + " songs from \"" + csvFileName + "\" into 'songs'.");
+                return true;
+            }
+        }
+        catch (SQLException e) {
+            Log.Error("Error while inserting data from \"" + csvFileName + "\" into table \"songs\": " + e.getMessage());
+            return false;
+        }
+    }
+
     // ==============================
     // GET OPERATIONS
     // ==============================
@@ -178,6 +234,27 @@ public class Database {
         }
     }
 
+    public static List<Set> getAllSets() {
+        try (Connection conn = Database.connect()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("""
+                SELECT *
+                FROM sets
+            """);
+
+            List<Set> sets = new ArrayList<>();
+            while (rs.next()) {
+                sets.add(mapSet(rs));
+            }
+
+            return sets;
+        }
+        catch (SQLException e) {
+            Log.Error("Error while fetching sets from database: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
     public static List<Song> getAllSongs() {
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
@@ -187,7 +264,31 @@ public class Database {
             """);
 
             List<Song> songs = new ArrayList<>();
-            while(rs.next()) {
+            while (rs.next()) {
+                songs.add(mapSong(rs));
+            }
+
+            return songs;
+        }
+        catch (SQLException e) {
+            Log.Error("Error while fetching songs from database: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+    public static List<Song> getSongFromActiveSets() {
+        try (Connection conn = Database.connect()) {
+            Statement stmt = conn.createStatement();
+
+            String sql = """
+                SELECT songs.* FROM songs
+                INNER JOIN sets ON songs.set_id = sets.id
+                WHERE sets.is_active = 1
+            """;
+            ResultSet rs = stmt.executeQuery(sql);
+
+            List<Song> songs = new ArrayList<>();
+            while (rs.next()) {
                 songs.add(mapSong(rs));
             }
 
@@ -212,17 +313,7 @@ public class Database {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                Song song = new Song();
-
-                song.id = rs.getInt("id");
-                song.title = rs.getString("title");
-                song.alias = rs.getString("alias");
-                song.artist_id = rs.getInt("artist_id");
-                song.year = rs.getInt("year");
-                song.spotify = rs.getString("spotify");
-                song.set_id = rs.getInt("set_id");
-
-                return song;
+                return mapSong(rs);
             }
 
             Log.Error("Error while fetching songs from database: Couldn't find match.");
@@ -231,6 +322,31 @@ public class Database {
         catch (SQLException e) {
             Log.Error("Error while fetching songs from database: " + e.getMessage());
             return new Song();
+        }
+    }
+
+    public static List<Song> getSongsBySetId(int setId) {
+        try (Connection conn = Database.connect()) {
+            String sqlExecute = """
+                SELECT *
+                FROM songs
+                WHERE set_id = ?
+            """;
+            PreparedStatement ps = conn.prepareStatement(sqlExecute);
+            ps.setInt(1, setId);
+
+            ResultSet rs = ps.executeQuery();
+
+            List<Song> songs = new ArrayList<>();
+            while(rs.next()) {
+                songs.add(mapSong(rs));
+            }
+
+            return songs;
+        }
+        catch (SQLException e) {
+            Log.Error("Error while fetching songs from database: " + e.getMessage());
+            return Collections.emptyList();
         }
     }
 
@@ -294,6 +410,53 @@ public class Database {
         }
     }
 
+    public static boolean addSetToDatabase(Set set) {
+        try (Connection conn = Database.connect()) {
+
+            PreparedStatement stmt = conn.prepareStatement("""
+                INSERT INTO sets (name, img, csv, is_active)
+                VALUES (?, ?, ?, ?)
+            """);
+
+            stmt.setString(1, set.name);
+            stmt.setString(2, set.image);
+            stmt.setString(3, set.csv);
+            stmt.setInt(4, set.isActive ? 1 : 0);
+
+            stmt.executeUpdate();
+
+            Log.Success("Set insertion of \"" + set.name + "\" successful.");
+            return true;
+        }
+        catch (Exception e) {
+            Log.Error("Error while inserting set \"" + set.name + "\": " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean updateSetStatus(int setId, boolean isActive) {
+        try (Connection conn = Database.connect()) {
+
+            PreparedStatement stmt = conn.prepareStatement("""
+                UPDATE sets
+                SET is_active = ?
+                WHERE id = ?
+            """);
+
+            stmt.setInt(1, isActive ? 1 : 0);
+            stmt.setInt(2, setId);
+
+            stmt.executeUpdate();
+
+            Log.Success("Set updated successfully.");
+            return true;
+        }
+        catch (Exception e) {
+            Log.Error("Error while updating set: " + e.getMessage());
+            return false;
+        }
+    }
+
     // ==============================
     // MAPPERS
     // ==============================
@@ -307,6 +470,18 @@ public class Database {
         user.provider = rs.getString("provider");
 
         return user;
+    }
+
+    private static Set mapSet(ResultSet rs) throws SQLException {
+        Set set = new Set();
+
+        set.id = rs.getInt("id");
+        set.name= rs.getString("name");
+        set.image = rs.getString("img");
+        set.csv = rs.getString("csv"); 
+        set.isActive = rs.getInt("is_active") == 1;
+
+        return set;
     }
 
     private static Song mapSong(ResultSet rs) throws SQLException {

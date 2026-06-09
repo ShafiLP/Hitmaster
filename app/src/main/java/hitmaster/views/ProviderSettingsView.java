@@ -37,7 +37,6 @@ public class ProviderSettingsView {
         VBox root = new VBox(15);
         root.setPadding(new Insets(15));
         root.setFillWidth(true);
-        root.getStyleClass().add("app-background");
 
         // =========================
         // HEADER
