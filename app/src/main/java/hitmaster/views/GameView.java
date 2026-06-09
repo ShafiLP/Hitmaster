@@ -31,11 +31,12 @@ public class GameView extends Pane {
     private final Label TIMER;
     private final TextField ARTIST;
     private final TextField TITLE;
+    private final Button PLAYPAUSE;
 
 
     public GameView(GameLogic GAME, Song firstSong) {
         this.GAME = GAME;
-        currentCard = new SongCard(firstSong);
+        currentCard = new SongCard(this, firstSong);
 
         // 2) Initialize CardStripPane
         final double CONTROLS_WIDTH = 320;
@@ -69,30 +70,30 @@ public class GameView extends Pane {
 
         // 4) Spotify media control
         Button back = new Button("⏮");
-        Button playPause = new Button("⏸");
+        PLAYPAUSE = new Button("►");
         Button forward = new Button("⏭");
         Button restart = new Button("↺");
         Button skip = new Button("Skip");
         Button insert = new Button("Insert");
 
         back.getStyleClass().add("modern-button");
-        playPause.getStyleClass().add("modern-button");
+        PLAYPAUSE.getStyleClass().add("modern-button");
         forward.getStyleClass().add("modern-button");
         restart.getStyleClass().add("modern-button");
         skip.getStyleClass().add("modern-button");
         insert.getStyleClass().add("modern-button");
 
         back.setOnAction(e -> {
-            currentCard.player.seekBackward5sec();
+            currentCard.PLAYER.seekBackward5sec();
         });
-        playPause.setOnAction(e -> {
-            currentCard.player.playPause(currentCard.song);
+        PLAYPAUSE.setOnAction(e -> {
+            playPause();
         });
         forward.setOnAction(e -> {
-            currentCard.player.seekForward5sec();
+            currentCard.PLAYER.seekForward5sec();
         });
         restart.setOnAction(e -> {
-            currentCard.player.restart(currentCard.song);
+            currentCard.PLAYER.restart(currentCard.song);
         });
         skip.setOnAction(e -> {
             if (GAME.getChipCountOfCurrentPlayer() >= 1)
@@ -103,23 +104,23 @@ public class GameView extends Pane {
                 GAME.markCurrentSongAsCorrect();
         });
 
-        HBox mediaRow = new HBox(15, back, playPause, forward, restart, skip, insert);
+        HBox mediaRow = new HBox(15, back, PLAYPAUSE, forward, restart, skip, insert);
         mediaRow.setAlignment(Pos.CENTER);
 
         ComboBox<String> deviceDropdown = new ComboBox<>();
         deviceDropdown.getStyleClass().add("modern-dropdown");
         deviceDropdown.setPromptText("Device...");
         deviceDropdown.setPrefWidth(130);
-        deviceDropdown.getItems().addAll(currentCard.player.getAvailableDevices());
-        deviceDropdown.getSelectionModel().select(currentCard.player.getCurrentDevice());
+        deviceDropdown.getItems().addAll(currentCard.PLAYER.getAvailableDevices());
+        deviceDropdown.getSelectionModel().select(currentCard.PLAYER.getCurrentDevice());
         deviceDropdown.setOnAction(e -> {
-            currentCard.player.setCurrentDevice(deviceDropdown.getValue());
+            currentCard.PLAYER.setCurrentDevice(deviceDropdown.getValue());
         });
 
-        Slider volumeSlider = new Slider(0, 100, currentCard.player.getVolume());
+        Slider volumeSlider = new Slider(0, 100, currentCard.PLAYER.getVolume());
         volumeSlider.getStyleClass().add("modern-slider");
         volumeSlider.setOnMouseReleased(e -> {
-            currentCard.player.setVolume((int) volumeSlider.getValue());
+            currentCard.PLAYER.setVolume((int) volumeSlider.getValue());
         });
         HBox.setHgrow(volumeSlider, Priority.ALWAYS);
 
@@ -153,6 +154,18 @@ public class GameView extends Pane {
         
         this.getChildren().add(controlPanel);
         Platform.runLater(this::requestFocus);
+    }
+
+    public void playPause() {
+        currentCard.isPlaying = !currentCard.isPlaying;
+
+        if (currentCard.isPlaying) {
+            PLAYPAUSE.setText("⏸");
+            currentCard.togglePlayPause();
+        } else {
+            PLAYPAUSE.setText("►");
+            currentCard.togglePlayPause();
+        }
     }
 
     private void confirmInput() {
@@ -235,13 +248,13 @@ public class GameView extends Pane {
     }
 
     public void addToCardStrip(Song song) {
-        SongCard card = new SongCard(song);
+        SongCard card = new SongCard(this, song);
         card.showFront();
         STRIP.addCard(card);
     }
 
     public void addToCardStack(Song song) {
-        SongCard card = new SongCard(song);
+        SongCard card = new SongCard(this, song);
         card.setLayoutX(500); 
         card.setLayoutY(50);
 

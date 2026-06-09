@@ -2,6 +2,7 @@ package hitmaster.design;
 
 import hitmaster.models.Song;
 import hitmaster.services.MusicPlayer;
+import hitmaster.views.GameView;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,19 +23,23 @@ public class SongCard extends StackPane {
     private double mouseX;
     private double mouseY;
 
-    public final MusicPlayer player;
+    private final GameView VIEW;
+    public final MusicPlayer PLAYER;
 
     private Runnable dragStarted;
     private DragListener dragListener;
     private Runnable dragFinished;
 
+    private Button playPause;
+
     public interface DragListener {
         void onDrag(double sceneX, double sceneY);
     }
 
-    public SongCard(Song song) {
+    public SongCard(GameView view, Song song) {
+        this.VIEW = view;
         this.song = song;
-        player = new MusicPlayer();
+        PLAYER = new MusicPlayer();
 
         color = PastelColor.random();
 
@@ -66,23 +71,14 @@ public class SongCard extends StackPane {
             "-fx-border-radius: 12;"
         );
 
-        // --- Play/Pause Toggle Logic ---
-        Button playPause = new Button("►");
+        playPause = new Button("►");
         playPause.getStyleClass().add("control-button");
         playPause.setStyle("""
             -fx-font-size: 28px;
         """);
 
         playPause.setOnAction(e -> {
-            isPlaying = !isPlaying;
-
-            if (isPlaying) {
-                playPause.setText("⏸");
-                player.play(song);
-            } else {
-                playPause.setText("►");
-                player.pause();
-            }
+            VIEW.playPause();
         });
 
         // TODO: Add background
@@ -193,6 +189,16 @@ public class SongCard extends StackPane {
 
     public void resetBorderColor() {
         this.setStyle("-fx-border-radius: 12; -fx-border-color:black;");
+    }
+
+    public void togglePlayPause() {
+        if (playPause.getText().equals("⏸")) {
+            playPause.setText("►");
+            PLAYER.pause();
+        } else {
+            playPause.setText("⏸");
+            PLAYER.play(song);
+        }
     }
 }
 
