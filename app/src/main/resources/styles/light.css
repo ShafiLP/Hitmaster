@@ -99,6 +99,32 @@
     -fx-background-color: #3fa0c1;
 }
 
+.warning-button {
+    -fx-background-color: #f39c12;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.warning-button:hover {
+    -fx-background-color: #d68910;
+}
+
+.error-button {
+    -fx-background-color: #e74c3c;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+-error-button:hover {
+    -fx-background-color: #c0392b;
+}
+
 .modern-button {
     -fx-background-color: rgba(0, 0, 0, 0.2);
     -fx-font-size: 14px;

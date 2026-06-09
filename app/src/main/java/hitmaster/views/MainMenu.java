@@ -1,6 +1,7 @@
 package hitmaster.views;
 
 import hitmaster.GameLogic;
+import hitmaster.design.StyleDialog;
 import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
@@ -27,6 +28,8 @@ public class MainMenu {
     private final Stage STAGE;
 
     private User user;
+    private boolean providerStatus = false;
+
     private final Button PROVIDER;
 
     public MainMenu(Stage stage) {
@@ -48,12 +51,17 @@ public class MainMenu {
         Button singleplayerBtn = new Button("Singleplayer");
         singleplayerBtn.getStyleClass().add("menu-button");
         singleplayerBtn.setOnAction(e -> {
-            GameLogic game = new GameLogic();
+            if (providerStatus) {
+                GameLogic game = new GameLogic();
 
-            Scene scene = new Scene(game.getView(), 800, 600);
-            ThemeManager.getInstance().registerScene(scene);
-            STAGE.setScene(scene);
-            STAGE.show();
+                Scene scene = new Scene(game.getView(), 800, 600);
+                ThemeManager.getInstance().registerScene(scene);
+                STAGE.setScene(scene);
+                STAGE.show();
+            }
+            else {
+                StyleDialog.warningDialog("Warning", "Please connect to a music service before starting the game.");
+            }
         });
 
         Button multiplayerBtn = new Button("Multiplayer");
@@ -137,6 +145,7 @@ public class MainMenu {
             ProviderSettingsView providerSettingsView = new ProviderSettingsView(this);
             providerSettingsView.show();
         });
+        providerStatus = false;
 
         // SPOTIFY
         if (user.provider != null && user.provider.equals("spotify")) {
@@ -154,10 +163,12 @@ public class MainMenu {
             if (Spotify.requestSpotifyConnection() != null) {
                 PROVIDER.setText(" ✓");
                 PROVIDER.getStyleClass().add("prov-button-success");
+                providerStatus = true;
             }
             else {
                 PROVIDER.setText(" ⚠");
                 PROVIDER.getStyleClass().add("prov-button-warning");
+                providerStatus = false;
             }
         }
     }

@@ -281,6 +281,7 @@ public class GameView extends Pane {
                 setTimer(timer.getRemainingSeconds())
             ),
             () -> Platform.runLater(() -> {
+                hideTimer();
                 STRIP.removeCard(currentCard);
                 this.getChildren().remove(currentCard);
                 GAME.addFirstToCardStack();
