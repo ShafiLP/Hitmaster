@@ -99,14 +99,14 @@ public class CardStripPane extends Pane {
         });
     }
 
-    public void removeCard(SongCard card) {
+    public void removeCard(SongCard card, boolean removeFromParent) {
         if (card == null) return;
 
         cards.remove(card);
 
         this.getChildren().remove(card);
         
-        if (getParent() != null && getParent() instanceof Pane) {
+        if (removeFromParent && getParent() != null && getParent() instanceof Pane) {
             ((Pane) getParent()).getChildren().remove(card);
         }
 

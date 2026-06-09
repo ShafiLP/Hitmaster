@@ -3,6 +3,7 @@ package hitmaster.views;
 import hitmaster.GameLogic;
 import hitmaster.design.CardStripPane;
 import hitmaster.design.ChipPane;
+import hitmaster.design.DiscardPile;
 import hitmaster.design.SongCard;
 import hitmaster.models.Song;
 import hitmaster.services.Log;
@@ -27,6 +28,7 @@ public class GameView extends Pane {
 
     // UI elements
     private final CardStripPane STRIP;
+    private final DiscardPile DISCARD_PILE;
     private final ChipPane CHIP_PANE;
     private final Label TIMER;
     private final TextField ARTIST;
@@ -50,7 +52,17 @@ public class GameView extends Pane {
         STRIP.setLayoutX(GAP);
         this.getChildren().add(STRIP);
 
-        // 3) Text fields and button
+        // 3) Initilize discard pile
+        DISCARD_PILE = new DiscardPile();
+        DISCARD_PILE.setLayoutX(GAP);
+        DISCARD_PILE.layoutYProperty().bind(
+            this.heightProperty()
+                 .subtract(DISCARD_PILE.prefHeightProperty())
+                 .divide(2)
+        );
+        this.getChildren().add(DISCARD_PILE);
+
+        // 4) Text fields and button
         ARTIST = new TextField();
         ARTIST.getStyleClass().add("modern-textbox");
         ARTIST.setPromptText("Artist...");
@@ -68,7 +80,7 @@ public class GameView extends Pane {
 
         VBox inputs = new VBox(8, ARTIST, TITLE, flip);
 
-        // 4) Spotify media control
+        // 5) Spotify media control
         Button back = new Button("⏮");
         PLAYPAUSE = new Button("►");
         Button forward = new Button("⏭");
@@ -127,7 +139,7 @@ public class GameView extends Pane {
         HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
         audioRow.setAlignment(Pos.CENTER_LEFT);
 
-        // 5) Timer Label
+        // 6) Timer Label
         TIMER = new Label();
         TIMER.getStyleClass().add("modern-label");
         TIMER.setVisible(false);
@@ -142,10 +154,10 @@ public class GameView extends Pane {
         TIMER.setLayoutY(10);
         this.getChildren().add(TIMER);
 
-        // 6 ) Chip panel
+        // 7) Chip panel
         CHIP_PANE = new ChipPane();
 
-        // 7) Build full panel
+        // 8) Build full panel
         VBox controlPanel = new VBox(15, CHIP_PANE, inputs, mediaRow, audioRow);
         controlPanel.setPrefWidth(CONTROLS_WIDTH);
         
@@ -218,8 +230,31 @@ public class GameView extends Pane {
         // 2) Move card to failure stack if false
         if (!guess) {
             Platform.runLater(() -> {
-                STRIP.removeCard(currentCard);
-                this.getChildren().remove(currentCard);
+                final SongCard wrongCard = this.currentCard; 
+            
+                if (wrongCard == null) return;
+
+                double sceneX = wrongCard.localToScene(0, 0).getX();
+                double sceneY = wrongCard.localToScene(0, 0).getY();
+                
+                javafx.geometry.Point2D localPos = this.sceneToLocal(sceneX, sceneY);
+
+                STRIP.removeCard(wrongCard, false); 
+
+                if (wrongCard.getParent() != this) {
+                    this.getChildren().add(wrongCard);
+                }
+
+                wrongCard.setLayoutX(localPos.getX());
+                wrongCard.setLayoutY(localPos.getY());
+                wrongCard.setTranslateX(0);
+                wrongCard.setTranslateY(0);
+                wrongCard.toFront();
+
+                Platform.runLater(() -> {
+                    DISCARD_PILE.discardCard(wrongCard);
+                });
+                
                 GAME.addFirstToCardStack();
             });
         }
@@ -295,8 +330,28 @@ public class GameView extends Pane {
             ),
             () -> Platform.runLater(() -> {
                 hideTimer();
-                STRIP.removeCard(currentCard);
-                this.getChildren().remove(currentCard);
+                
+                final SongCard wrongCard = this.currentCard;
+                if (wrongCard != null) {
+                    double sceneX = wrongCard.localToScene(0, 0).getX();
+                    double sceneY = wrongCard.localToScene(0, 0).getY();
+                    javafx.geometry.Point2D localPos = this.sceneToLocal(sceneX, sceneY);
+
+                    STRIP.removeCard(wrongCard, false);
+                    if (wrongCard.getParent() != this) {
+                        this.getChildren().add(wrongCard);
+                    }
+                    wrongCard.setLayoutX(localPos.getX());
+                    wrongCard.setLayoutY(localPos.getY());
+                    wrongCard.setTranslateX(0);
+                    wrongCard.setTranslateY(0);
+                    wrongCard.toFront();
+
+                    Platform.runLater(() -> {
+                        DISCARD_PILE.discardCard(wrongCard);
+                    });
+                }
+                
                 GAME.addFirstToCardStack();
             })
         );
