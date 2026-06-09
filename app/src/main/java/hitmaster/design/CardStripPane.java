@@ -16,9 +16,13 @@ public class CardStripPane extends Pane {
     private int originalIndex = -1;
     private int insertIndex = -1;
 
-    private final double CARDWIDTH = 150; 
+    private final double BASE_CARDWIDTH = 150;
     private final double CARDHEIGHT = 150;
-    private final double HGAP = 20;
+    private final double BASE_HGAP = 20;
+    
+    private double currentCardWidth = BASE_CARDWIDTH;
+    private double currentHGap = BASE_HGAP;
+
     private final Line marker = new Line();
 
     public CardStripPane() {
@@ -122,11 +126,11 @@ public class CardStripPane extends Pane {
         int totalCards = cards.size();
         if (totalCards == 0) return 0;
 
-        double totalWidth = totalCards * CARDWIDTH + (totalCards - 1) * HGAP;
+        double totalWidth = totalCards * currentCardWidth + (totalCards - 1) * currentHGap;
         double startX = (getWidth() - totalWidth) / 2.0;
 
         for (int i = 0; i < totalCards; i++) {
-            double cardCenterX = startX + i * (CARDWIDTH + HGAP) + (CARDWIDTH / 2.0);
+            double cardCenterX = startX + i * (currentCardWidth + currentHGap) + (currentCardWidth / 2.0);
             if (localX < cardCenterX) return i;
         }
         return totalCards;
@@ -189,7 +193,7 @@ public class CardStripPane extends Pane {
 
     private void updateMarkerPosition(int index) {
         int totalCards = cards.size();
-        double totalWidth = totalCards * CARDWIDTH + (totalCards - 1) * HGAP;
+        double totalWidth = totalCards * currentCardWidth + (totalCards - 1) * currentHGap;
         double startX = (getWidth() - totalWidth) / 2.0;
         double stripY = (getHeight() - CARDHEIGHT) / 2.0;
 
@@ -197,9 +201,9 @@ public class CardStripPane extends Pane {
         if (totalCards == 0) {
             markerX = getWidth() / 2.0;
         } else if (index < totalCards) {
-            markerX = startX + index * (CARDWIDTH + HGAP) - (HGAP / 2.0);
+            markerX = startX + index * (currentCardWidth + currentHGap) - (currentHGap / 2.0);
         } else {
-            markerX = startX + totalCards * (CARDWIDTH + HGAP) - (HGAP / 2.0) + (HGAP / 2.0);
+            markerX = startX + totalCards * (currentCardWidth + currentHGap) - (currentHGap / 2.0) + (currentHGap / 2.0);
         }
 
         marker.setStartX(markerX);
@@ -212,14 +216,34 @@ public class CardStripPane extends Pane {
 
     private void layoutCards() {
         int totalCards = cards.size();
-        double totalWidth = totalCards * CARDWIDTH + (totalCards - 1) * HGAP;
-        double startX = (getWidth() - totalWidth) / 2.0;
+        if (totalCards == 0) return;
+
+        double availableWidth = getWidth();
+        double neededWidthIfNormal = totalCards * BASE_CARDWIDTH + (totalCards - 1) * BASE_HGAP;
+
+        if (neededWidthIfNormal > availableWidth && availableWidth > 0) {
+            double scaleFactor = availableWidth / (neededWidthIfNormal + 20);
+            currentCardWidth = BASE_CARDWIDTH * scaleFactor;
+            currentHGap = BASE_HGAP * scaleFactor;
+        } else {
+            currentCardWidth = BASE_CARDWIDTH;
+            currentHGap = BASE_HGAP;
+        }
+
+        double totalWidth = totalCards * currentCardWidth + (totalCards - 1) * currentHGap;
+        double startX = (availableWidth - totalWidth) / 2.0;
         double stripY = (getHeight() - CARDHEIGHT) / 2.0;
 
         for (int i = 0; i < totalCards; i++) {
             SongCard card = cards.get(i);
 
-            double x = startX + i * (CARDWIDTH + HGAP);
+            card.setPrefSize(currentCardWidth, CARDHEIGHT);
+            
+            if (card.getClip() instanceof javafx.scene.shape.Rectangle rectangle) {
+                rectangle.setWidth(currentCardWidth);
+            }
+
+            double x = startX + i * (currentCardWidth + currentHGap);
             card.relocate(x, stripY);
 
             if (!this.getChildren().contains(card)) {
