@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import hitmaster.design.SongCard;
+import hitmaster.models.GameOptions;
 import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.Database;
@@ -13,8 +14,10 @@ import hitmaster.views.GameView;
 
 public class GameLogic {
 
+    private final GameOptions OPTIONS;
     private final GameView VIEW;
     private final Player[] PLAYERS;
+    private final boolean MULTIPLAYER;
     private int currentPlayerIdx = 0;
 
     private List<Song> songs;
@@ -25,14 +28,24 @@ public class GameLogic {
     private static final Pattern SPECIAL_CHARS = Pattern.compile("[^a-z0-9 ]");
     private static final Pattern MULTIPLE_SPACES = Pattern.compile("\\s+");
 
-    public GameLogic() {
-        PLAYERS = new Player[1];
-        PLAYERS[0] = new Player();
+    public GameLogic(GameOptions OPTIONS) {
+        this.OPTIONS = OPTIONS;
+        PLAYERS = OPTIONS.players;
+        MULTIPLAYER = (PLAYERS.length > 1);
 
         // 1) Read songs from DB and shuffle them
         songs = loadSongsFromDB();
         Collections.shuffle(songs);
         this.VIEW = new GameView(this, songs.getFirst());
+        PLAYERS[0].songs.add(songs.getFirst());
+        songs.removeFirst();
+
+        if (MULTIPLAYER) {
+            VIEW.initializeOpponentPane(PLAYERS[1]);
+            VIEW.addOpponentCard(songs.getFirst());
+            PLAYERS[1].songs.add(songs.getFirst());
+            songs.removeFirst();
+        }
 
         // 2) Add one song to user's card strip for starting setup
         addFirstToCardStrip();
@@ -54,6 +67,10 @@ public class GameLogic {
         VIEW.addToCardStack(songs.getFirst());
         currentSong = songs.getFirst();
         songs.removeFirst();
+    }
+
+    public void addCardToCorrectSongs() {
+        PLAYERS[currentPlayerIdx].songs.add(currentSong);
     }
 
     public void skipCurrentSong() {
@@ -101,17 +118,36 @@ public class GameLogic {
         return (songCards.size() >= 10);
     }
 
+    public void addCurrentSongToCurrentPlayer() {
+        PLAYERS[currentPlayerIdx].songs.add(currentSong);
+    }
+
     /**
      * Changes currentPlayerIdx to next player in array.
      * If index reached end of array, it gets set to first.
      */
     public void switchToNextPlayer() {
+        // 1) Change currentPlayerIdx
         if (currentPlayerIdx == PLAYERS.length - 1) {
             currentPlayerIdx = 0;
         }
         else {
             currentPlayerIdx++;
         }
+
+        //2) Update UI
+        VIEW.switchSideWithOpponent();
+    }
+
+    public Player getCurrentPlayer() {
+        return PLAYERS[currentPlayerIdx];
+    }
+
+    public Player getPreviousPlayer() {
+        if (currentPlayerIdx > 0)
+            return PLAYERS[currentPlayerIdx - 1];
+
+        return PLAYERS[PLAYERS.length - 1];
     }
 
     public int getChipCountOfCurrentPlayer() {

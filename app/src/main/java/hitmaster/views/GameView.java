@@ -1,10 +1,14 @@
 package hitmaster.views;
 
+import java.util.List;
+
 import hitmaster.GameLogic;
 import hitmaster.design.CardStripPane;
 import hitmaster.design.ChipPane;
 import hitmaster.design.DiscardPile;
+import hitmaster.design.OpponentPane;
 import hitmaster.design.SongCard;
+import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.Log;
 import hitmaster.services.Timer;
@@ -35,12 +39,14 @@ public class GameView extends Pane {
     private final TextField TITLE;
     private final Button PLAYPAUSE;
 
+    private OpponentPane OPPONENT_PANE;
+
 
     public GameView(GameLogic GAME, Song firstSong) {
         this.GAME = GAME;
         currentCard = new SongCard(this, firstSong);
 
-        // 2) Initialize CardStripPane
+        // 1) Initialize CardStripPane
         final double CONTROLS_WIDTH = 320;
         final double GAP = 20;
 
@@ -52,7 +58,7 @@ public class GameView extends Pane {
         STRIP.setLayoutX(GAP);
         this.getChildren().add(STRIP);
 
-        // 3) Initilize discard pile
+        // 2) Initilize discard pile
         DISCARD_PILE = new DiscardPile();
         DISCARD_PILE.setLayoutX(GAP);
         DISCARD_PILE.layoutYProperty().bind(
@@ -62,7 +68,7 @@ public class GameView extends Pane {
         );
         this.getChildren().add(DISCARD_PILE);
 
-        // 4) Text fields and button
+        // 3) Text fields and button
         ARTIST = new TextField();
         ARTIST.getStyleClass().add("modern-textbox");
         ARTIST.setPromptText("Artist...");
@@ -80,7 +86,7 @@ public class GameView extends Pane {
 
         VBox inputs = new VBox(8, ARTIST, TITLE, flip);
 
-        // 5) Spotify media control
+        // 4) Spotify media control
         Button back = new Button("⏮");
         PLAYPAUSE = new Button("►");
         Button forward = new Button("⏭");
@@ -139,7 +145,7 @@ public class GameView extends Pane {
         HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
         audioRow.setAlignment(Pos.CENTER_LEFT);
 
-        // 6) Timer Label
+        // 5) Timer Label
         TIMER = new Label();
         TIMER.getStyleClass().add("modern-label");
         TIMER.setVisible(false);
@@ -154,10 +160,10 @@ public class GameView extends Pane {
         TIMER.setLayoutY(10);
         this.getChildren().add(TIMER);
 
-        // 7) Chip panel
+        // 6) Chip panel
         CHIP_PANE = new ChipPane();
 
-        // 8) Build full panel
+        // 7) Build full panel
         VBox controlPanel = new VBox(15, CHIP_PANE, inputs, mediaRow, audioRow);
         controlPanel.setPrefWidth(CONTROLS_WIDTH);
         
@@ -261,6 +267,7 @@ public class GameView extends Pane {
 
         // 3) Check for win if true
         else {
+            GAME.addCurrentSongToCurrentPlayer();
             if (GAME.checkForWin(STRIP.getCards())) {
                 Log.Info("WON.");
             }
@@ -270,6 +277,9 @@ public class GameView extends Pane {
                 });
             }
         }
+
+        // 4) Swap active player
+        GAME.switchToNextPlayer();
     }
 
     private void setTimer(int seconds) {
@@ -355,5 +365,59 @@ public class GameView extends Pane {
                 GAME.addFirstToCardStack();
             })
         );
+    }
+
+    // ==============================
+    // Multiplayer methods
+    // ==============================
+
+    public void initializeOpponentPane(Player opponent) {
+        OPPONENT_PANE = new OpponentPane(opponent.username, opponent.img);
+        OPPONENT_PANE.setLayoutX(0);
+        OPPONENT_PANE.setLayoutY(0);
+        OPPONENT_PANE.prefWidthProperty().bind(this.widthProperty());
+        
+        this.getChildren().add(OPPONENT_PANE);
+    }
+
+    public void switchSideWithOpponent() {
+        Platform.runLater(() -> {
+            // 1) Clear area of current player
+            STRIP.clear();
+            removeAllHitmasterChips();
+
+            // 2) Set new player progress for current player
+            for (Song song : GAME.getCurrentPlayer().songs) {
+                SongCard card = new SongCard(this, song);
+                card.showFront();
+                STRIP.addCard(card);
+            }
+
+            for (int i = 0; i < GAME.getCurrentPlayer().hitmasterPoints; i++) {
+                addHitmasterChip();
+            }
+
+            // 3) Set new opponent progress
+            OPPONENT_PANE.setName(GAME.getPreviousPlayer().username);
+            OPPONENT_PANE.setAvatar(GAME.getPreviousPlayer().img);
+            OPPONENT_PANE.setSongs(GAME.getPreviousPlayer().songs);
+            OPPONENT_PANE.setChipsCount(GAME.getPreviousPlayer().hitmasterPoints);
+        });
+    }
+
+    public void updateOpponentCards(List<Song> songs) {
+        Platform.runLater(() -> OPPONENT_PANE.setSongs(songs));
+    }
+
+    public void addOpponentCard(Song song) {
+        Platform.runLater(() -> OPPONENT_PANE.addSong(song));
+    }
+
+    public void addOpponentChip(Song song) {
+        Platform.runLater(() -> OPPONENT_PANE.addChip());
+    }
+
+    public void removeOpponentChip(Song song) {
+        Platform.runLater(() -> OPPONENT_PANE.removeChip());
     }
 }

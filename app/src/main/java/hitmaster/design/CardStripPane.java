@@ -254,6 +254,22 @@ public class CardStripPane extends Pane {
         marker.toFront();
     }
 
+    public void clear() {
+        this.getChildren().removeAll(cards);
+        
+        cards.clear();
+        
+        originalIndex = -1;
+        insertIndex = -1;
+        
+        marker.setVisible(false);
+        
+        currentCardWidth = BASE_CARDWIDTH;
+        currentHGap = BASE_HGAP;
+
+        this.requestLayout();
+    }
+
     public List<SongCard> getCards() {
         return cards;
     }

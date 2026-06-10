@@ -2,6 +2,8 @@ package hitmaster.views;
 
 import hitmaster.GameLogic;
 import hitmaster.design.StyleDialog;
+import hitmaster.models.GameOptions;
+import hitmaster.models.Player;
 import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
@@ -52,8 +54,11 @@ public class MainMenu {
         singleplayerBtn.getStyleClass().add("menu-button");
         singleplayerBtn.setOnAction(e -> {
             if (providerStatus) {
-                GameLogic game = new GameLogic();
+                GameOptions options = new GameOptions();
+                options.players = new Player[1];
+                options.players[0] = new Player(Database.getCurrentUser().username, "/setImages/debug.jpeg");
 
+                GameLogic game = new GameLogic(options);
                 Scene scene = new Scene(game.getView(), 800, 600);
                 ThemeManager.getInstance().registerScene(scene);
                 STAGE.setScene(scene);
@@ -67,12 +72,13 @@ public class MainMenu {
         Button multiplayerBtn = new Button("Multiplayer");
         multiplayerBtn.getStyleClass().add("menu-button");
         multiplayerBtn.setOnAction(e -> {
-            // TODO
-            GameLogic game = new GameLogic();
-
-            Scene scene = new Scene(game.getView(), 800, 600);
-            STAGE.setScene(scene);
-            STAGE.show();
+            if (providerStatus) {
+                MultiplayerMenuView multiplayerView = new MultiplayerMenuView(this);
+                multiplayerView.show();
+            }
+            else {
+                StyleDialog.warningDialog("Warning", "Please connect to a music service before starting the game.");
+            }
         });
 
         Button exitBtn = new Button("Exit");
