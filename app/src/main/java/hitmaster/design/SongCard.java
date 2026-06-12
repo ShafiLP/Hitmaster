@@ -1,11 +1,13 @@
 package hitmaster.design;
 
+import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.MusicPlayer;
 import hitmaster.views.GameView;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -31,6 +33,7 @@ public class SongCard extends StackPane {
     private Runnable dragFinished;
 
     private Button playPause;
+    private Button stealButton;
 
     public interface DragListener {
         void onDrag(double sceneX, double sceneY);
@@ -62,6 +65,8 @@ public class SongCard extends StackPane {
      * Back side contains UI to control the playing song.
      */
     private void showBack() {
+        // TODO: Add background
+        
         BorderPane layout = new BorderPane();
         layout.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
         layout.setStyle(
@@ -81,9 +86,17 @@ public class SongCard extends StackPane {
             VIEW.playPause();
         });
 
-        // TODO: Add background
+        stealButton = new Button("Steal?");
+        stealButton.getStyleClass().add("secondary-button");
+        stealButton.setPrefWidth(this.getWidth() / 3);
+        stealButton.setPrefHeight(30);
+        stealButton.setVisible(false);
 
-        VBox controls = new VBox(5, playPause);
+        stealButton.setOnAction(e -> {
+            VIEW.startStealAction();
+        });
+
+        VBox controls = new VBox(5, playPause, stealButton);
         controls.setStyle("-fx-alignment: center;");
 
         layout.setCenter(controls);
@@ -128,6 +141,47 @@ public class SongCard extends StackPane {
 
         this.getChildren().clear();
         this.getChildren().add(layout);
+    }
+
+    /**
+     * Turns the SongCard into a steal card.
+     * Displays a players profile picture and username.
+     * Used for opponent to steal a card.
+     * @param player Player object containing profile picture and username.
+     */
+    public void showStealInfo(Player player) {
+        BorderPane layout = new BorderPane();
+        layout.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
+        layout.setStyle(
+            "-fx-background-color: black;" + 
+            "-fx-padding: 10px;" +
+            "-fx-background-radius: 12;" +
+            "-fx-border-radius: 12;"
+        );
+
+        ImageView profileImage = new ImageView(player.img);
+        profileImage.setFitWidth(50);
+        profileImage.setFitHeight(50);
+        profileImage.setPreserveRatio(true);
+
+        Label displayText = new Label(player.username + " IS STEALING!");
+        displayText.setStyle("""
+            -fx-font-size: 16px;
+            -fx-font-fill: white;
+            -fx-font-weight: bold;
+        """);
+
+        VBox centerContent = new VBox(15, profileImage, displayText);
+        centerContent.setStyle("-fx-alignment: center;");
+
+        layout.setCenter(displayText);
+
+        this.getChildren().clear();
+        this.getChildren().add(layout);
+    }
+
+    public void setStealState(boolean state) {
+        stealButton.setVisible(state);
     }
     
     /**

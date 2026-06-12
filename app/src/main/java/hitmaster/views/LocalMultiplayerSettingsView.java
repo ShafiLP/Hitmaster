@@ -119,6 +119,8 @@ public class LocalMultiplayerSettingsView {
             options.players = new Player[2];
             options.players[0] = new Player(p1Name.getText(), "/setImages/debug.jpg");
             options.players[1] = new Player(p2Name.getText(), "/setImages/debug.jpg");
+            options.moveTime = Integer.parseInt(turnTimeInput.getText());
+            options.stealTime = Integer.parseInt(stealTimeInput.getText());
             STAGE.close();
 
             GameLogic game = new GameLogic(options);
@@ -137,7 +139,7 @@ public class LocalMultiplayerSettingsView {
         // =========================
         root.getChildren().addAll(header, content, footer);
 
-        Scene scene = new Scene(root, 520, 420);
+        Scene scene = new Scene(root, 520, 450);
         ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
     }

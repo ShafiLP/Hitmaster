@@ -88,7 +88,7 @@ public class Database {
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
 
-            stmt.execute("DROP TABLE IF EXISTS user");
+            //stmt.execute("DROP TABLE IF EXISTS user");
             stmt.execute("DROP TABLE IF EXISTS sets");
             stmt.execute("DROP TABLE IF EXISTS artists");
             stmt.execute("DROP TABLE IF EXISTS songs");

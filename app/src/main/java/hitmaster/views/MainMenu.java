@@ -56,7 +56,7 @@ public class MainMenu {
             if (providerStatus) {
                 GameOptions options = new GameOptions();
                 options.players = new Player[1];
-                options.players[0] = new Player(Database.getCurrentUser().username, "/setImages/debug.jpeg");
+                options.players[0] = new Player(Database.getCurrentUser().username, "/setImages/debug.jpg");
 
                 GameLogic game = new GameLogic(options);
                 Scene scene = new Scene(game.getView(), 800, 600);

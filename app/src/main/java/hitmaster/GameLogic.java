@@ -10,6 +10,7 @@ import hitmaster.models.GameOptions;
 import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.Database;
+import hitmaster.services.Log;
 import hitmaster.views.GameView;
 
 public class GameLogic {
@@ -87,6 +88,42 @@ public class GameLogic {
         VIEW.insertCardIntoStrip();
     }
 
+    /**
+     * Inserts the current song into list of songs of a given player.
+     * Insertion index gets automatically calculated.
+     * Prints warning in console if insertion index couldn't get calculated.
+     * @param player Player to insert current song in list.
+     */
+    public void addCardToPlayerSorted(Player player) {
+        // 1) Check if first index fits
+        if (currentSong.year <= player.songs.getFirst().year) {
+            player.songs.addFirst(currentSong);
+            return;
+        }
+
+        // 2) Check if last index fits
+        if (currentSong.year >= player.songs.getLast().year) {
+            player.songs.addLast(currentSong);
+            return;
+        }
+
+        // 3) Search for index
+        int insertionIdx = -1;
+        for (int i = 1; i < player.songs.size() - 1; i++) {
+            if (player.songs.get(i - 1).year < currentSong.year && player.songs.get(i).year > currentSong.year) {
+                insertionIdx = i;
+                break;
+            }
+        }
+
+        if (insertionIdx >= 0) {
+            player.songs.add(insertionIdx, currentSong);
+        }
+        else {
+            Log.Warning("Song \"" + currentSong.title + "\" couldn't get inserted into songs of \"" + player.username + "\": No insertion index found.");
+        }
+    }
+
     public boolean checkSongOrder(List<SongCard> songCards) {
         // 1) Search for currentSong
         int idx = -1;
@@ -109,6 +146,32 @@ public class GameLogic {
         return (songCards.get(idx - 1).song.year <= songCards.get(idx).song.year && songCards.get(idx + 1).song.year >= songCards.get(idx).song.year);
     }
 
+    public boolean checkStealOrder(List<SongCard> songCards, SongCard stealCard) {
+        // 1) Search for steal card
+        int idx = -1;
+        for (int i = 0; i < songCards.size(); i++) {
+            if (songCards.get(i) == stealCard) {
+                idx = i;
+                break;
+            }
+        }
+        if (idx == -1)
+            return false;
+
+        // 2) Check if stealCard position is true
+        songCards.get(idx).song = new Song();
+        songCards.get(idx).song = songs.getFirst(); // TODO: Replace with debug song (For steal card functionality only)
+        songCards.get(idx).song.year = currentSong.year;
+        
+        if (songCards.get(idx).equals(songCards.getFirst()))
+            return (songCards.get(idx + 1).song.year >= songCards.get(idx).song.year);
+
+        if (songCards.get(idx).equals(songCards.getLast()))
+            return (songCards.get(idx - 1).song.year <= songCards.get(idx).song.year);
+
+        return (songCards.get(idx - 1).song.year <= songCards.get(idx).song.year && songCards.get(idx + 1).song.year >= songCards.get(idx).song.year);
+    }
+
     /**
      * Checks if player reached 10 correct cards.
      * @param songCards List of SongCard UI elements.
@@ -116,10 +179,6 @@ public class GameLogic {
      */
     public boolean checkForWin(List<SongCard> songCards) {
         return (songCards.size() >= 10);
-    }
-
-    public void addCurrentSongToCurrentPlayer() {
-        PLAYERS[currentPlayerIdx].songs.add(currentSong);
     }
 
     /**
@@ -135,7 +194,7 @@ public class GameLogic {
             currentPlayerIdx++;
         }
 
-        //2) Update UI
+        // 2) Update UI
         VIEW.switchSideWithOpponent();
     }
 
@@ -152,6 +211,14 @@ public class GameLogic {
 
     public int getChipCountOfCurrentPlayer() {
         return PLAYERS[currentPlayerIdx].hitmasterPoints;
+    }
+
+    public GameOptions getGameOptions() {
+        return OPTIONS;
+    }
+
+    public boolean isMultiplayer() {
+        return MULTIPLAYER;
     }
 
     /**
