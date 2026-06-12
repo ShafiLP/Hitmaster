@@ -10,9 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class SongCard extends StackPane {
@@ -63,10 +65,12 @@ public class SongCard extends StackPane {
     /**
      * Displays back side of the song card.
      * Back side contains UI to control the playing song.
+     * Steal Button is shown here when playing multiplayer.
      */
     private void showBack() {
         // TODO: Add background
         
+        // 1) Prepare Layout
         BorderPane layout = new BorderPane();
         layout.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
         layout.setStyle(
@@ -76,6 +80,7 @@ public class SongCard extends StackPane {
             "-fx-border-radius: 12;"
         );
 
+        // 2) Play/Pause Button
         playPause = new Button("►");
         playPause.getStyleClass().add("control-button");
         playPause.setStyle("""
@@ -86,9 +91,11 @@ public class SongCard extends StackPane {
             VIEW.playPause();
         });
 
+        // 3) Steal Button
         stealButton = new Button("Steal?");
         stealButton.getStyleClass().add("secondary-button");
-        stealButton.setPrefWidth(this.getWidth() / 3);
+        stealButton.setPrefWidth(this.getPrefWidth() / 2);
+        stealButton.setMinWidth(Region.USE_PREF_SIZE);
         stealButton.setPrefHeight(30);
         stealButton.setVisible(false);
 
@@ -96,6 +103,7 @@ public class SongCard extends StackPane {
             VIEW.startStealAction();
         });
 
+        // Set Layout
         VBox controls = new VBox(5, playPause, stealButton);
         controls.setStyle("-fx-alignment: center;");
 
@@ -110,8 +118,11 @@ public class SongCard extends StackPane {
      * Front side contains artist, year and title.
      */
     public void showFront() {
+        // TODO: Set Icon 
+
         this.isFlipped = true;
 
+        // 1) Prepare Layout
         BorderPane layout = new BorderPane();
         layout.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
         layout.setStyle(String.format(
@@ -124,7 +135,7 @@ public class SongCard extends StackPane {
             (int)(color.getBlue() * 255)
         ));
 
-        // TODO: Set Icon 
+        // 2) Set Labels
         Label artist = new Label(song.artist);
         Label year = new Label(String.valueOf(song.year));
         Label title = new Label(song.title);
@@ -135,6 +146,7 @@ public class SongCard extends StackPane {
         StackPane top = new StackPane(artist);
         StackPane bottom = new StackPane(title);
 
+        // 3) Set Layout
         layout.setTop(top);
         layout.setCenter(year);
         layout.setBottom(bottom);
@@ -150,6 +162,7 @@ public class SongCard extends StackPane {
      * @param player Player object containing profile picture and username.
      */
     public void showStealInfo(Player player) {
+        // 1) Prepare Layout
         BorderPane layout = new BorderPane();
         layout.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
         layout.setStyle(
@@ -159,22 +172,28 @@ public class SongCard extends StackPane {
             "-fx-border-radius: 12;"
         );
 
+        // 2) Initialize Profile Picture
         ImageView profileImage = new ImageView(player.img);
-        profileImage.setFitWidth(50);
-        profileImage.setFitHeight(50);
+        double imgSize = 75; // Image size
+        profileImage.setFitWidth(imgSize);
+        profileImage.setFitHeight(imgSize);
         profileImage.setPreserveRatio(true);
+        Circle clip = new Circle(imgSize / 2, imgSize / 2, imgSize / 2);
+        profileImage.setClip(clip);
 
+        // 3) "IS STEALING" Text
         Label displayText = new Label(player.username + " IS STEALING!");
         displayText.setStyle("""
             -fx-font-size: 16px;
-            -fx-font-fill: white;
+            -fx-text-fill: white;
             -fx-font-weight: bold;
         """);
 
+        // 4) Set Layout
         VBox centerContent = new VBox(15, profileImage, displayText);
         centerContent.setStyle("-fx-alignment: center;");
 
-        layout.setCenter(displayText);
+        layout.setCenter(centerContent);
 
         this.getChildren().clear();
         this.getChildren().add(layout);

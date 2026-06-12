@@ -367,6 +367,7 @@ public class GameView extends Pane {
 
     private void checkStealGuess() {
         Log.Info("Steal flipped.");
+        isStealing = false;
 
         // 1) Check valid input position
         // TODO: Check valid input position
