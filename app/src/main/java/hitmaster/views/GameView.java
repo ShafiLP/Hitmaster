@@ -332,60 +332,6 @@ public class GameView extends Pane {
         GAME.switchToNextPlayer();
     }
 
-    /**
-     * Starts a new stealing action by the opponent player.
-     * Opponent gets to pick a different position than current player.
-     * If opponent's guess was right, they get the SongCard instead of current player.
-     * Called when button "STEAL" gets pressed.
-     */
-    public void startStealAction() {
-        Log.Info("Started stealing");
-
-        if (GAME.getPreviousPlayer().hitmasterPoints < 1 || !GAME.isMultiplayer())
-            return;
-
-        // TODO: Add timer
-
-        // 1) Set steal state
-        isStealing = true;
-        timerUnit.stop();
-        this.hideTimer();
-        GAME.getPreviousPlayer().hitmasterPoints--;
-        OPPONENT_PANE.removeChip();
-        currentCard.setStealState(false);
-
-        // 2) Add new SongCard to steal
-        stealCard = new SongCard(this, null);
-        stealCard.setVisible(true);
-        stealCard.showStealInfo(GAME.getPreviousPlayer());
-        stealCard.setLayoutX(500); 
-        stealCard.setLayoutY(50);
-        stealCard.toFront();
-        STRIP.registerExternalCard(stealCard);
-        this.getChildren().add(stealCard);
-    }
-
-    private void checkStealGuess() {
-        Log.Info("Steal flipped.");
-        isStealing = false;
-
-        // 1) Check valid input position
-        // TODO: Check valid input position
-
-        // 2) Check position of steal card
-        boolean guess = GAME.checkStealOrder(STRIP.getCards(), stealCard);
-        if (guess) {
-            stealCard.setBorderColor("rgb(0, 255, 0)");
-            GAME.addCardToPlayerSorted(GAME.getPreviousPlayer());
-        }
-        else {
-            stealCard.setBorderColor("rgb(255, 0, 0)");
-        }
-
-        // 3) Confirm reveal
-        this.confirmInput(); 
-    }
-
     private void setTimer(int seconds) {
         // TODO: Minutes if 60+ seconds
         TIMER.setVisible(true);
@@ -531,5 +477,118 @@ public class GameView extends Pane {
 
     public void removeOpponentChip(Song song) {
         Platform.runLater(() -> OPPONENT_PANE.removeChip());
+    }
+
+    /**
+     * Starts a new stealing action by the opponent player.
+     * Opponent gets to pick a different position than current player.
+     * If opponent's guess was right, they get the SongCard instead of current player.
+     * Called when button "Steal?" gets pressed.
+     */
+    public void startStealAction() {
+        Log.Info("Started stealing");
+
+        if (GAME.getPreviousPlayer().hitmasterPoints < 1 || !GAME.isMultiplayer())
+            return;
+
+        // 1) Set steal state
+        isStealing = true;
+
+        timerUnit.stop();
+        currentCard.setStealState(false);
+
+        this.hideTimer();
+
+        GAME.getPreviousPlayer().hitmasterPoints--;
+        OPPONENT_PANE.removeChip();
+
+        // 2) Set timer (Load steal duration from Game Options)
+        timerUnit = new Timer(GAME.getGameOptions().stealTime);
+        timerUnit.start(
+            () -> Platform.runLater(() -> {
+                this.setTimer(timerUnit.getRemainingSeconds());
+            }),
+            () -> Platform.runLater(() -> {
+                if (stealCard != null) {
+                    stealCard.setVisible(true);
+                    this.getChildren().remove(stealCard);
+
+                    isStealing = false;
+                    currentCard.setStealState(false);
+                    this.confirmInput();
+                }
+
+                this.hideTimer();
+            })
+        );
+        
+        // 3) Add new SongCard to steal
+        stealCard = new SongCard(this, null);
+        stealCard.setVisible(true);
+        stealCard.showStealInfo(GAME.getPreviousPlayer());
+        stealCard.setLayoutX(500); 
+        stealCard.setLayoutY(50);
+        stealCard.toFront();
+        STRIP.registerExternalCard(stealCard);
+        this.getChildren().add(stealCard);
+    }
+
+    private void checkStealGuess() {
+        Log.Info("Steal flipped.");
+        
+        // 1) Check valid input position
+        if (!this.checkValidStealPosition())
+            return;
+
+        isStealing = false;
+
+        // 2) Check position of steal card
+        boolean guess = GAME.checkStealOrder(STRIP.getCards(), stealCard);
+        if (guess) {
+            stealCard.setBorderColor("rgb(0, 255, 0)");
+            GAME.addCardToPlayerSorted(GAME.getPreviousPlayer());
+        }
+        else {
+            stealCard.setBorderColor("rgb(255, 0, 0)");
+        }
+
+        // 3) Confirm reveal
+        this.confirmInput(); 
+    }
+
+    /**
+     * Checks if stealCard has a valid position.
+     * stealCard is not allowed to be directly next to currentCard.
+     * @return Validation result.
+     */
+    private boolean checkValidStealPosition() {
+        // TODO: When multiple cards have the same year, validation could return true when it should be false
+
+        // 1) Get list of song cards
+        List<SongCard> songCards = STRIP.getCards();
+
+        // 2) Look for currentCard index
+        int currentCardIdx = -1;
+        for (int i = 0; i < songCards.size(); i++) {
+            if (songCards.get(i).equals(currentCard)) {
+                currentCardIdx = i;
+                break;
+            }
+        }
+
+        // 3) Loook for stealCard index
+        int stealCardIdx = -1;
+        for (int i = 0; i < songCards.size(); i++) {
+            if (songCards.get(i).equals(stealCard)) {
+                stealCardIdx = i;
+                break;
+            }
+        }
+
+        // 4) Return if position is valid
+        if (currentCardIdx == -1 || stealCardIdx == -1)
+            return false;
+
+        return (!(stealCardIdx - 1 == currentCardIdx) && !(stealCardIdx + 1 == currentCardIdx));
     }
 }
