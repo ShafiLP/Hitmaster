@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -59,10 +60,7 @@ public class MainMenu {
                 options.players[0] = new Player(Database.getCurrentUser().username, "/setImages/debug.jpg");
 
                 GameLogic game = new GameLogic(options);
-                Scene scene = new Scene(game.getView(), 800, 600);
-                ThemeManager.getInstance().registerScene(scene);
-                STAGE.setScene(scene);
-                STAGE.show();
+                this.setStage(game.getView(), true);
             }
             else {
                 StyleDialog.warningDialog("Warning", "Please connect to a music service before starting the game.");
@@ -73,8 +71,8 @@ public class MainMenu {
         multiplayerBtn.getStyleClass().add("menu-button");
         multiplayerBtn.setOnAction(e -> {
             if (providerStatus) {
-                MultiplayerMenuView multiplayerView = new MultiplayerMenuView(this);
-                multiplayerView.show();
+                MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView(this);
+                multiplayerMenuView.show();
             }
             else {
                 StyleDialog.warningDialog("Warning", "Please connect to a music service before starting the game.");
@@ -135,6 +133,14 @@ public class MainMenu {
         top.setPadding(new Insets(10));
 
         ROOT.setTop(top);
+    }
+
+    public void setStage(Pane pane, boolean maximized) {
+        Scene scene = new Scene(pane, 800, 600);
+        ThemeManager.getInstance().registerScene(scene);
+        STAGE.setScene(scene);
+        STAGE.setMaximized(maximized);
+        STAGE.show();
     }
 
     public BorderPane getView() {

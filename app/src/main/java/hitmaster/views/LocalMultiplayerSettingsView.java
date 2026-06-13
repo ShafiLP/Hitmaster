@@ -81,7 +81,6 @@ public class LocalMultiplayerSettingsView {
         HBox namesRow = createSettingRow("Player Names", "Enter player usernames.", playerNames);
 
         // 3) Turn time
-        // TODO: Implement in code
         TextField turnTimeInput = new TextField();
         turnTimeInput.setPromptText("Turn Time...");
         turnTimeInput.getStyleClass().add("modern-textbox");
@@ -121,13 +120,11 @@ public class LocalMultiplayerSettingsView {
             options.players[1] = new Player(p2Name.getText(), "/setImages/debug.jpg");
             options.moveTime = Integer.parseInt(turnTimeInput.getText());
             options.stealTime = Integer.parseInt(stealTimeInput.getText());
+
             STAGE.close();
 
             GameLogic game = new GameLogic(options);
-            Scene scene = new Scene(game.getView(), 800, 600);
-            ThemeManager.getInstance().registerScene(scene);
-            STAGE.setScene(scene);
-            STAGE.show();
+            PARENT.setStage(game.getView(), true);
         });
 
         HBox footer = new HBox(10, cancel, startGame);

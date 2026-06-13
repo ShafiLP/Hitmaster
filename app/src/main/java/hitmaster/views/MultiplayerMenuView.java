@@ -56,6 +56,8 @@ public class MultiplayerMenuView {
         localBtn.setOnAction(e -> {
             LocalMultiplayerSettingsView settings = new LocalMultiplayerSettingsView(PARENT);
             settings.show();
+
+            STAGE.close();
         });
 
         HBox localRow = createSettingRow("Local Multiplayer", "Play with a friend on the same device.", localBtn);
