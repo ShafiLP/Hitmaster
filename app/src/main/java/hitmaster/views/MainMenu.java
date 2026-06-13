@@ -140,6 +140,7 @@ public class MainMenu {
         ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
         STAGE.setMaximized(maximized);
+        STAGE.getIcons().add(new Image(getClass().getResourceAsStream("/cardDesign.png")));
         STAGE.show();
     }
 

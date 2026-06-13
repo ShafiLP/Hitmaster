@@ -5,14 +5,15 @@ import hitmaster.models.Song;
 import hitmaster.services.MusicPlayer;
 import hitmaster.views.GameView;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -68,8 +69,6 @@ public class SongCard extends StackPane {
      * Steal Button is shown here when playing multiplayer.
      */
     private void showBack() {
-        // TODO: Add background
-        
         // 1) Prepare Layout
         BorderPane layout = new BorderPane();
         layout.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
@@ -80,7 +79,16 @@ public class SongCard extends StackPane {
             "-fx-border-radius: 12;"
         );
 
-        // 2) Play/Pause Button
+        // 2) Set background image
+        ImageView backgroundImage = new ImageView(new Image(getClass().getResourceAsStream("/cardDesignBlank.png")));
+        backgroundImage.setPreserveRatio(false);
+
+        backgroundImage.fitWidthProperty().bind(layout.prefWidthProperty());
+        backgroundImage.fitHeightProperty().bind(layout.prefHeightProperty());
+
+        layout.getChildren().add(backgroundImage);
+
+        // 3) Play/Pause Button
         playPause = new Button("►");
         playPause.getStyleClass().add("control-button");
         playPause.setStyle("""
@@ -91,7 +99,7 @@ public class SongCard extends StackPane {
             VIEW.playPause();
         });
 
-        // 3) Steal Button
+        // 4) Steal Button
         stealButton = new Button("Steal?");
         stealButton.getStyleClass().add("secondary-button");
         stealButton.setPrefWidth(this.getPrefWidth() / 2);
@@ -103,9 +111,13 @@ public class SongCard extends StackPane {
             VIEW.startStealAction();
         });
 
-        // Set Layout
-        VBox controls = new VBox(5, playPause, stealButton);
-        controls.setStyle("-fx-alignment: center;");
+        // 5) Set Layout
+        StackPane controls = new StackPane();
+        StackPane.setAlignment(playPause, Pos.CENTER);
+        StackPane.setAlignment(stealButton, Pos.CENTER);
+        
+        stealButton.setTranslateY(45);
+        controls.getChildren().addAll(playPause, stealButton);
 
         layout.setCenter(controls);
 
@@ -162,17 +174,20 @@ public class SongCard extends StackPane {
      * @param player Player object containing profile picture and username.
      */
     public void showStealInfo(Player player) {
-        // 1) Prepare Layout
-        BorderPane layout = new BorderPane();
+        // 1) Base Container
+        StackPane layout = new StackPane();
         layout.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
-        layout.setStyle(
-            "-fx-background-color: black;" + 
-            "-fx-padding: 10px;" +
-            "-fx-background-radius: 12;" +
-            "-fx-border-radius: 12;"
-        );
 
-        // 2) Initialize Profile Picture
+        // 2) Set background image
+        ImageView backgroundImage = new ImageView(new Image(getClass().getResourceAsStream("/cardDesignBlank.png")));
+        backgroundImage.setPreserveRatio(false);
+
+        backgroundImage.fitWidthProperty().bind(layout.prefWidthProperty());
+        backgroundImage.fitHeightProperty().bind(layout.prefHeightProperty());
+
+        layout.getChildren().add(backgroundImage);
+
+        // 3) Initialize Profile Picture
         ImageView profileImage = new ImageView(player.img);
         double imgSize = 75; // Image size
         profileImage.setFitWidth(imgSize);
@@ -180,6 +195,8 @@ public class SongCard extends StackPane {
         profileImage.setPreserveRatio(true);
         Circle clip = new Circle(imgSize / 2, imgSize / 2, imgSize / 2);
         profileImage.setClip(clip);
+        StackPane.setAlignment(profileImage, Pos.CENTER);
+        layout.getChildren().add(profileImage);
 
         // 3) "IS STEALING" Text
         Label displayText = new Label(player.username + " IS STEALING!");
@@ -190,10 +207,9 @@ public class SongCard extends StackPane {
         """);
 
         // 4) Set Layout
-        VBox centerContent = new VBox(15, profileImage, displayText);
-        centerContent.setStyle("-fx-alignment: center;");
-
-        layout.setCenter(centerContent);
+        StackPane.setAlignment(displayText, Pos.CENTER);
+        displayText.setTranslateY((imgSize / 2) + 25); 
+        layout.getChildren().add(displayText);
 
         this.getChildren().clear();
         this.getChildren().add(layout);

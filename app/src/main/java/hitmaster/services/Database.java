@@ -17,11 +17,6 @@ import hitmaster.models.Set;
 import hitmaster.models.Song;
 import hitmaster.models.User;
 
-/**
- * TODO:
- * - Song can have multiple artists (song_artist table?)
- */
-
 public class Database {
     public static final String URL = "jdbc:sqlite:hitmaster.db";
 
@@ -45,9 +40,6 @@ public class Database {
                     provider TEXT
                 );
             """);
-
-            //! DEBUG
-            stmt.execute("INSERT INTO user (username) VALUES('Testuser');");
 
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS sets (

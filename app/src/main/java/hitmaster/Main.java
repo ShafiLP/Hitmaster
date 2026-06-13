@@ -5,6 +5,7 @@ import hitmaster.services.ThemeManager;
 import hitmaster.views.MainMenu;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -23,6 +24,7 @@ public class Main extends Application {
         ThemeManager.getInstance().registerScene(scene);
 
         stage.setTitle("Hitmaster");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/cardDesign.png")));
         stage.setScene(scene);
         stage.show();
     }

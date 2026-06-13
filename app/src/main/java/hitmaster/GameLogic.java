@@ -216,6 +216,10 @@ public class GameLogic {
     public GameOptions getGameOptions() {
         return OPTIONS;
     }
+    
+    public int getRemainingCardCount() {
+        return songs.size();
+    }
 
     public boolean isMultiplayer() {
         return MULTIPLAYER;

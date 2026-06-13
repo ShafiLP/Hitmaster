@@ -13,16 +13,22 @@ import hitmaster.models.Song;
 import hitmaster.services.Log;
 import hitmaster.services.Timer;
 import javafx.application.Platform;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 
 public class GameView extends Pane {
 
@@ -43,6 +49,9 @@ public class GameView extends Pane {
     private final TextField TITLE;
     private final Button PLAYPAUSE;
 
+    private final ImageView PILE_IMAGE;
+    private final Label REMAINING_CARDS;
+
     private OpponentPane OPPONENT_PANE;
 
     public GameView(GameLogic GAME, Song firstSong) {
@@ -61,7 +70,47 @@ public class GameView extends Pane {
         STRIP.setLayoutX(GAP);
         this.getChildren().add(STRIP);
 
-        // 2) Initilize discard pile
+        // 2) Inizialize card pile
+        BorderPane cardPile = new BorderPane();
+        cardPile.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+
+        Image imageFile = new Image(getClass().getResourceAsStream("/cardDesign.png"));
+        PILE_IMAGE = new ImageView(imageFile);
+
+        double targetWidth = 150;
+        double targetHeight = targetWidth * (imageFile.getHeight() / imageFile.getWidth());
+
+        PILE_IMAGE.setFitWidth(targetWidth);
+        PILE_IMAGE.setFitHeight(targetHeight);
+        PILE_IMAGE.setPreserveRatio(true);
+        PILE_IMAGE.setPickOnBounds(true);
+
+        Rectangle clip = new Rectangle(targetWidth, targetHeight);
+        clip.setArcWidth(20); 
+        clip.setArcHeight(20);
+        PILE_IMAGE.setClip(clip);
+
+        REMAINING_CARDS = new Label(GAME.getRemainingCardCount() + " cards left");
+        REMAINING_CARDS.setStyle("-fx-text-fill: black; -fx-font-weight: bold;");
+
+        VBox cardPileLayout = new VBox(5, PILE_IMAGE, REMAINING_CARDS);
+        cardPileLayout.setStyle("-fx-alignment: center;");
+
+        cardPile.setCenter(cardPileLayout);
+
+        double totalPileHeight = targetHeight + 25;
+        cardPile.setPrefSize(targetHeight, totalPileHeight);
+
+        cardPile.layoutXProperty().bind(
+            this.widthProperty().subtract(cardPile.prefWidthProperty()).divide(2)
+        );
+        cardPile.layoutYProperty().bind(
+            this.heightProperty().subtract(cardPile.prefHeightProperty()).divide(2)
+        );
+
+        this.getChildren().add(cardPile);
+
+        // 3) Initilize discard pile
         DISCARD_PILE = new DiscardPile();
         DISCARD_PILE.setLayoutX(GAP);
         DISCARD_PILE.layoutYProperty().bind(
@@ -71,7 +120,7 @@ public class GameView extends Pane {
         );
         this.getChildren().add(DISCARD_PILE);
 
-        // 3) Text fields and button
+        // 4) Text fields and button
         ARTIST = new TextField();
         ARTIST.getStyleClass().add("modern-textbox");
         ARTIST.setPromptText("Artist...");
@@ -94,7 +143,7 @@ public class GameView extends Pane {
 
         VBox inputs = new VBox(8, ARTIST, TITLE, flip);
 
-        // 4) Spotify media control
+        // 5) Spotify media control
         Button back = new Button("⏮");
         PLAYPAUSE = new Button("►");
         Button forward = new Button("⏭");
@@ -153,7 +202,7 @@ public class GameView extends Pane {
         HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
         audioRow.setAlignment(Pos.CENTER_LEFT);
 
-        // 5) Timer Label
+        // 6) Timer Label
         TIMER = new Label();
         TIMER.getStyleClass().add("modern-label");
         TIMER.setVisible(false);
@@ -168,10 +217,10 @@ public class GameView extends Pane {
         TIMER.setLayoutY(10);
         this.getChildren().add(TIMER);
 
-        // 6) Chip panel
+        // 7) Chip panel
         CHIP_PANE = new ChipPane();
 
-        // 7) Build full panel
+        // 8) Build full panel
         VBox controlPanel = new VBox(15, CHIP_PANE, inputs, mediaRow, audioRow);
         controlPanel.setPrefWidth(CONTROLS_WIDTH);
         
@@ -350,15 +399,24 @@ public class GameView extends Pane {
 
     public void addToCardStack(Song song) {
         SongCard card = new SongCard(this, song);
-        card.setLayoutX(500); 
-        card.setLayoutY(50);
+
+        Platform.runLater(() -> {
+            Point2D sceneCoords = PILE_IMAGE.localToScene(0, 0);
+            Point2D localCoords = this.sceneToLocal(sceneCoords);
+
+            if (localCoords != null) {
+                card.setLayoutX(localCoords.getX());
+                card.setLayoutY(localCoords.getY());
+            }
+        });
 
         STRIP.registerExternalCard(card);
-
         currentCard = card;
 
         this.getChildren().add(currentCard);
         currentCard.toFront();
+
+        REMAINING_CARDS.setText(GAME.getRemainingCardCount() + " cards left");
 
         //! DEBUG
         Log.Info("Artist: " + song.artist);
@@ -541,6 +599,7 @@ public class GameView extends Pane {
             return;
 
         isStealing = false;
+        timerUnit.stop();
 
         // 2) Check position of steal card
         boolean guess = GAME.checkStealOrder(STRIP.getCards(), stealCard);
