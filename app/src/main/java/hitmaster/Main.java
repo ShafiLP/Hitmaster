@@ -19,7 +19,8 @@ public class Main extends Application {
 
         MainMenu menu = new MainMenu(stage);
 
-        Scene scene = new Scene(menu.getView(), 600, 400);
+        Scene scene = new Scene(menu.getView(), 600, 450);
+        menu.getView().prefWidthProperty().bind(scene.widthProperty());
 
         ThemeManager.getInstance().registerScene(scene);
 

@@ -3,7 +3,8 @@
 }
 
 .title {
-    -fx-font-size: 24px;
+    -fx-font-size: 70px;
+    -fx-font-family: "Folio Extra";
     -fx-font-weight: bold;
     -fx-text-fill: black;
 }

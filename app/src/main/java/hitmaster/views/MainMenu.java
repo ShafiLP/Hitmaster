@@ -1,5 +1,10 @@
 package hitmaster.views;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import hitmaster.GameLogic;
 import hitmaster.design.StyleDialog;
 import hitmaster.models.GameOptions;
@@ -15,6 +20,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -23,17 +30,23 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class MainMenu {
 
-    private final BorderPane ROOT = new BorderPane();
-    private final Stage STAGE;
+public class MainMenu {
 
     private User user;
     private boolean providerStatus = false;
 
+    // UI Elements
+    private final BorderPane ROOT = new BorderPane();
+    private final Stage STAGE;
     private final Button PROVIDER;
+
+    // App Info
+    private final String VERSION = "0.0.1";
+    private final String AUTHOR = "Shafi";
 
     public MainMenu(Stage stage) {
         user = Database.getCurrentUser();
@@ -44,15 +57,31 @@ public class MainMenu {
     }
 
     public final void buildUI() {
+
         // ==============================
         // CENTER (Gamemodes, Quit)
         // ==============================
 
+        // Hitmaster Title
+        VBox titleContainer = new VBox(-5);
+        titleContainer.setAlignment(Pos.CENTER);
+
         Label title = new Label("HITMASTER");
         title.getStyleClass().add("title");
 
+        DropShadow ds = new DropShadow();
+        ds.setOffsetY(5.0);
+        ds.setColor(Color.color(0, 0, 0, 0.5));
+        title.setEffect(ds);
+        
+        titleContainer.getChildren().add(title);
+        VBox.setMargin(titleContainer, new Insets(0, 0, 30, 0));
+
+        // Singleplayer Button
         Button singleplayerBtn = new Button("Singleplayer");
         singleplayerBtn.getStyleClass().add("menu-button");
+        singleplayerBtn.setMaxWidth(250);
+        singleplayerBtn.setPrefWidth(250);
         singleplayerBtn.setOnAction(e -> {
             if (providerStatus) {
                 GameOptions options = new GameOptions();
@@ -67,8 +96,11 @@ public class MainMenu {
             }
         });
 
+        // Multiplayer Button
         Button multiplayerBtn = new Button("Multiplayer");
         multiplayerBtn.getStyleClass().add("menu-button");
+        multiplayerBtn.setMaxWidth(250);
+        multiplayerBtn.setPrefWidth(250);
         multiplayerBtn.setOnAction(e -> {
             if (providerStatus) {
                 MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView(this);
@@ -79,14 +111,17 @@ public class MainMenu {
             }
         });
 
-        Button exitBtn = new Button("Exit");
-        exitBtn.getStyleClass().add("exit-button");
-        exitBtn.setOnAction(e -> {
+        // Quit Button
+        Button quitBtn = new Button("Quit");
+        quitBtn.getStyleClass().add("exit-button");
+        quitBtn.setMaxWidth(250);
+        quitBtn.setPrefWidth(250);
+        quitBtn.setOnAction(e -> {
             Log.Info("Closing application");
             System.exit(0);
         });
 
-        VBox centerBox = new VBox(15, title, singleplayerBtn, multiplayerBtn, exitBtn);
+        VBox centerBox = new VBox(20, title, singleplayerBtn, multiplayerBtn, quitBtn);
         centerBox.setAlignment(Pos.CENTER);
 
         ROOT.setCenter(centerBox);
@@ -98,43 +133,115 @@ public class MainMenu {
         // Top Left
         Button profile = new Button("👤 " + user.username);
         profile.getStyleClass().add("modern-button");
+        profile.setPrefWidth(100);
 
-        initialiseProviderButton();
+        this.initialiseProviderButton();
+        PROVIDER.setPrefWidth(80);
 
-        VBox topLeft = new VBox(profile, PROVIDER);
-        topLeft.setAlignment(Pos.TOP_LEFT);
-        topLeft.setSpacing(8);
-        topLeft.setStyle("-fx-padding: 10;");
-
-        ROOT.setTop(topLeft);
-
-
-        // Top right
-        Button settings = new Button("⚙");
-        settings.getStyleClass().add("modern-button");
-        settings.setOnAction(e -> {
+        // Top Right
+        Button settingsBtn = new Button("⚙");
+        settingsBtn.getStyleClass().add("modern-button");
+        settingsBtn.setPrefWidth(30);
+        settingsBtn.setPrefHeight(30);
+        settingsBtn.setOnAction(e -> {
             SettingsView settingsView = new SettingsView(this);
             settingsView.show();
         });
 
-        VBox topRight = new VBox(settings);
-        topRight.setAlignment(Pos.TOP_RIGHT);
-        topRight.setStyle("-fx-padding: 10;");
-
-
-        // Add all to top
+        // Add all to Top
         HBox top = new HBox();
         top.setAlignment(Pos.CENTER_LEFT);
+        top.setSpacing(8);
+        top.setPadding(new Insets(25));
+        top.setMaxWidth(Double.MAX_VALUE);
 
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
+        Region topSpacer = new Region();
+        HBox.setHgrow(topSpacer, Priority.ALWAYS);
 
-        top.getChildren().addAll(topLeft, spacer, topRight);
-        top.setPadding(new Insets(10));
+        top.getChildren().addAll(profile, PROVIDER, topSpacer, settingsBtn);
 
         ROOT.setTop(top);
+
+        // ==============================
+        // BOTTOM (Version, Author, Bug Report)
+        // ==============================
+
+        // Version & Author
+        Label infoLabel = new Label("v" + VERSION + " | Created by " + AUTHOR);
+        //infoLabel.getStyleClass().add("");
+
+        // Links (GitHub & Bug Report)
+        HBox bottomRight = new HBox(15);
+        bottomRight.setAlignment(Pos.CENTER_RIGHT);
+
+        Button githubBtn = new Button();
+        githubBtn.setTooltip(new Tooltip("To GitHub repository"));
+        githubBtn.getStyleClass().add("modern-button");
+        githubBtn.setMaxHeight(20);
+        githubBtn.setPrefHeight(20);
+
+        ImageView icon = new ImageView(new Image(
+            getClass().getResourceAsStream("/icons/github.png")
+        ));
+        icon.setFitWidth(15);
+        icon.setFitHeight(15);
+
+        githubBtn.setGraphic(icon);
+        githubBtn.setContentDisplay(ContentDisplay.CENTER);
+
+        githubBtn.setOnAction(e -> {
+            try {
+                Desktop.getDesktop().browse(new URI("https://github.com/ShafiLP/Hitmaster"));
+            }
+            catch (IOException | URISyntaxException ex) {
+                Log.Warning("Failed to open link in browser: " + ex.getMessage());
+            }
+        });
+
+        Button reportBugBtn = new Button();
+        reportBugBtn.setTooltip(new Tooltip("Report Bug"));
+        reportBugBtn.getStyleClass().add("modern-button");
+        reportBugBtn.setMaxHeight(20);
+        reportBugBtn.setPrefHeight(20);
+
+        icon = new ImageView(new Image(
+            getClass().getResourceAsStream("/icons/bug.png")
+        ));
+        icon.setFitWidth(15);
+        icon.setFitHeight(15);
+
+        reportBugBtn.setGraphic(icon);
+        reportBugBtn.setContentDisplay(ContentDisplay.CENTER);
+
+        reportBugBtn.setOnAction(e -> {
+            try {
+                Desktop.getDesktop().browse(new URI("https://github.com/ShafiLP/Hitmaster/issues"));
+            }
+            catch (IOException | URISyntaxException ex) {
+                Log.Warning("Failed to open link in browser: " + ex.getMessage());
+            }
+        });
+
+        // Add all to Bottom
+        bottomRight.getChildren().addAll(githubBtn, reportBugBtn);
+
+        Region bottomSpacer = new Region();
+        HBox.setHgrow(bottomSpacer, Priority.ALWAYS);
+
+        HBox bottom = new HBox(infoLabel, bottomSpacer, bottomRight);
+        bottom.setPadding(new Insets(15, 25, 15, 25));
+        bottom.setAlignment(Pos.CENTER);
+        bottom.setStyle("-fx-background-color: rgba(0, 0, 0, 0.05);");
+
+        ROOT.setBottom(bottom);
     }
 
+    /**
+     * Replaces current Stage with a new Scene.
+     * All Menus get closed when this method gets called.
+     * @param pane New Scene of the Stage.
+     * @param maximized Boolean if Stage should get maximized to full screen or not.
+     */
     public void setStage(Pane pane, boolean maximized) {
         Scene scene = new Scene(pane, 800, 600);
         ThemeManager.getInstance().registerScene(scene);
@@ -144,10 +251,20 @@ public class MainMenu {
         STAGE.show();
     }
 
+    /**
+     * Gets the BorderPane ROOT and returns it.
+     * @return BorderPane ROOT.
+     */
     public BorderPane getView() {
         return ROOT;
     }
 
+    /**
+     * Initializes the provider button "PROVIDER".
+     * Checks if connection to music provider is successful and displays success status.
+     * Shows "No Provider" if no music provider is set.
+     * Called when starting the application or after connecting a music provider.
+     */
     public void initialiseProviderButton() {
         // Re-load user
         user = Database.getCurrentUser();
@@ -175,11 +292,13 @@ public class MainMenu {
             // Check connection
             if (Spotify.requestSpotifyConnection() != null) {
                 PROVIDER.setText(" ✓");
+                PROVIDER.getStyleClass().removeAll("prov-button-none", "prov-button-warning");
                 PROVIDER.getStyleClass().add("prov-button-success");
                 providerStatus = true;
             }
             else {
                 PROVIDER.setText(" ⚠");
+                PROVIDER.getStyleClass().removeAll("prov-button-none", "prov-button-success");
                 PROVIDER.getStyleClass().add("prov-button-warning");
                 providerStatus = false;
             }
