@@ -3,6 +3,7 @@ package hitmaster.views;
 import hitmaster.GameLogic;
 import hitmaster.models.GameOptions;
 import hitmaster.models.Player;
+import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -65,12 +66,12 @@ public class LocalMultiplayerSettingsView {
         HBox setsRow = createSettingRow("Song Sets", "Import, export or edit your custom song packages.", manageSetsBtn);
 
         // 2) Player names
-        // TODO: Now only enter names, later get users from database
         VBox playerNames = new VBox();
         TextField p1Name = new TextField();
         p1Name.getStyleClass().add("modern-textbox");
         p1Name.setPrefWidth(180);
         p1Name.setPromptText("Player 1...");
+        p1Name.setText(Database.getCurrentUser().username);
         playerNames.getChildren().add(p1Name);
         TextField p2Name = new TextField();
         p2Name.getStyleClass().add("modern-textbox");
@@ -113,11 +114,10 @@ public class LocalMultiplayerSettingsView {
         startGame.getStyleClass().add("primary-button");
         startGame.setPrefWidth(140);
         startGame.setOnAction(e -> {
-            // TODO: Replace with player pics
             GameOptions options = new GameOptions();
             options.players = new Player[2];
-            options.players[0] = new Player(p1Name.getText(), "/setImages/debug.jpg");
-            options.players[1] = new Player(p2Name.getText(), "/setImages/debug.jpg");
+            options.players[0] = new Player(p1Name.getText(), "/" + Database.getCurrentUser().picture);
+            options.players[1] = new Player(p2Name.getText(), "/" + Database.getCurrentUser().picture);
             options.moveTime = Integer.parseInt(turnTimeInput.getText());
             options.stealTime = Integer.parseInt(stealTimeInput.getText());
 

@@ -31,6 +31,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 
@@ -39,18 +40,20 @@ public class MainMenu {
     private User user;
     private boolean providerStatus = false;
 
-    // UI Elements
-    private final BorderPane ROOT = new BorderPane();
-    private final Stage STAGE;
-    private final Button PROVIDER;
-
     // App Info
     private final String VERSION = "0.0.1";
     private final String AUTHOR = "Shafi";
 
+    // UI Elements
+    private final BorderPane ROOT = new BorderPane();
+    private final Stage STAGE;
+    private final Button PROVIDER;
+    private final Button PROFILE;
+
     public MainMenu(Stage stage) {
         user = Database.getCurrentUser();
         PROVIDER = new Button();
+        PROFILE = new Button();
 
         this.STAGE = stage;
         this.buildUI();
@@ -131,9 +134,28 @@ public class MainMenu {
         // ==============================
 
         // Top Left
-        Button profile = new Button("👤 " + user.username);
-        profile.getStyleClass().add("modern-button");
-        profile.setPrefWidth(100);
+        PROFILE.setText(user.getImage() == null ? "👤 " + user.username : user.username);
+        PROFILE.getStyleClass().add("modern-button");
+        PROFILE.setPrefWidth(100);
+
+        if (user.getImage() != null) {
+            ImageView icon = new ImageView(user.getImage());
+            icon.setFitWidth(15);
+            icon.setFitHeight(15);
+
+            Circle clip = new javafx.scene.shape.Circle(7.5, 7.5, 7.5);
+            icon.setClip(clip);
+
+            PROFILE.setGraphic(icon);
+            PROFILE.setContentDisplay(ContentDisplay.LEFT);
+        } else {
+            PROFILE.setGraphic(null); 
+        }
+
+        PROFILE.setOnAction(e -> {
+            UserSettingsView userSettings = new UserSettingsView(this);
+            userSettings.show();
+        });
 
         this.initialiseProviderButton();
         PROVIDER.setPrefWidth(80);
@@ -158,7 +180,7 @@ public class MainMenu {
         Region topSpacer = new Region();
         HBox.setHgrow(topSpacer, Priority.ALWAYS);
 
-        top.getChildren().addAll(profile, PROVIDER, topSpacer, settingsBtn);
+        top.getChildren().addAll(PROFILE, PROVIDER, topSpacer, settingsBtn);
 
         ROOT.setTop(top);
 
@@ -302,6 +324,31 @@ public class MainMenu {
                 PROVIDER.getStyleClass().add("prov-button-warning");
                 providerStatus = false;
             }
+        }
+    }
+
+    /**
+     * Re-Loads username and user profile picture.
+     */
+    public void updateProfileButton() {
+        // 1) Re-Load user from Database
+        user = Database.getCurrentUser();
+
+        // 2) Set new username and profile picture
+        PROFILE.setText(user.getImage() == null ? "👤 " + user.username : user.username);
+        
+        if (user.getImage() != null) {
+            ImageView icon = new ImageView(user.getImage());
+            icon.setFitWidth(15);
+            icon.setFitHeight(15);
+
+            Circle clip = new Circle(7.5, 7.5, 7.5);
+            icon.setClip(clip);
+
+            PROFILE.setGraphic(icon);
+            PROFILE.setContentDisplay(ContentDisplay.LEFT);
+        } else {
+            PROFILE.setGraphic(null); 
         }
     }
 }
