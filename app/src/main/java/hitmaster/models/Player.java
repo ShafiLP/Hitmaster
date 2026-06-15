@@ -3,6 +3,7 @@ package hitmaster.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import hitmaster.services.Log;
 import javafx.scene.image.Image;
 
 public class Player {
@@ -22,7 +23,16 @@ public class Player {
 
     public Player(String username, String imgPath) {
         this.username = username;
-        this.img = new Image(getClass().getResourceAsStream(imgPath));
+
+        if (imgPath != null) {
+            try {
+                this.img = new Image(getClass().getResourceAsStream(imgPath));
+            } 
+            catch (Exception e) {
+                this.img = null;
+                Log.Warning("Failed loading profile picture of Player \"" + username + "\": ");
+            }
+        }
     }
 
     public void increaseHitmasterPoints() {

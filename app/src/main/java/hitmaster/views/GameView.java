@@ -254,6 +254,11 @@ public class GameView extends Pane {
      */
     private void startStealTime() {
         Log.Info("Started steal time");
+        
+        ARTIST.setEditable(false);
+        TITLE.setEditable(false);
+        currentCard.setDraggable(false);
+
         // 1) Get Time
         if (!GAME.isMultiplayer() || GAME.getPreviousPlayer().hitmasterPoints < 1) {
             this.confirmInput();
@@ -281,9 +286,13 @@ public class GameView extends Pane {
 
     private void confirmInput() {
         Log.Info("Confirm Input");
+
         // 1) Flip card
         if (currentCard != null)
             currentCard.showFront();
+
+        if (stealCard != null)
+            stealCard.setDraggable(false);
 
         // 2) Check artist and title guess
         if (GAME.checkSongInformation(ARTIST.getText(), TITLE.getText())) {
@@ -321,10 +330,12 @@ public class GameView extends Pane {
         ARTIST.setStyle("");
         ARTIST.getStyleClass().add("modern-textbox");
         ARTIST.clear();
+        ARTIST.setEditable(true);
 
         TITLE.setStyle("");
         TITLE.getStyleClass().add("modern-textbox");
         TITLE.clear();
+        TITLE.setEditable(true);
 
         currentCard.resetBorderColor();
         if (stealCard != null) {
@@ -514,8 +525,8 @@ public class GameView extends Pane {
             }
 
             // 3) Set new opponent progress
+            OPPONENT_PANE.updateAvatar(GAME.getPreviousPlayer().username, GAME.getPreviousPlayer().img);
             OPPONENT_PANE.setName(GAME.getPreviousPlayer().username);
-            OPPONENT_PANE.setAvatar(GAME.getPreviousPlayer().img);
             OPPONENT_PANE.setSongs(GAME.getPreviousPlayer().songs);
             OPPONENT_PANE.setChipsCount(GAME.getPreviousPlayer().hitmasterPoints);
         });

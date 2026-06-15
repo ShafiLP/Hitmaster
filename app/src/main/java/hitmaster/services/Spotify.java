@@ -169,6 +169,28 @@ public class Spotify {
     }
 
     /**
+     * Fetches the current playing device from Spotify.
+     * @param connection SpotifyApi connection.
+     * @return Name of the current playing device.
+     */
+    public static boolean checkConnectionStatus(SpotifyApi connection) {
+        try {
+            CurrentlyPlayingContext context = connection
+                .getInformationAboutUsersCurrentPlayback()
+                .build()
+                .execute();
+
+            Device currentDevice = context != null ? context.getDevice() : null;
+
+            return currentDevice != null;
+        }
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Error("Error occured while checking connection status: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
      * Connects to linked Spotify account from "spotify.properties" and plays a song on user's spotify device.
      * @param TrackId Spotify song ID.
      * @return Success result.

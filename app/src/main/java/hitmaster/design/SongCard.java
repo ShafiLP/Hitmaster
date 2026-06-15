@@ -23,7 +23,7 @@ public class SongCard extends StackPane {
     public Song song;
     public Color color;
     public boolean isPlaying = false;
-    public boolean isFlipped = false;
+    public boolean isDraggable = true;
 
     private double mouseX;
     private double mouseY;
@@ -132,7 +132,7 @@ public class SongCard extends StackPane {
     public void showFront() {
         // TODO: Set Icon 
 
-        this.isFlipped = true;
+        this.isDraggable = false;
 
         // 1) Prepare Layout
         BorderPane layout = new BorderPane();
@@ -224,7 +224,7 @@ public class SongCard extends StackPane {
      */
     private void enableDragging() {
         this.setOnMousePressed((MouseEvent e) -> {
-            if (isFlipped)
+            if (!isDraggable)
                 return;
 
             mouseX = e.getX();
@@ -237,7 +237,7 @@ public class SongCard extends StackPane {
         });
 
         this.setOnMouseDragged((MouseEvent e) -> {
-            if (isFlipped)
+            if (!isDraggable)
                 return;
 
             if (getParent() != null) {
@@ -252,7 +252,7 @@ public class SongCard extends StackPane {
         });
 
         this.setOnMouseReleased(e -> {
-            if (isFlipped)
+            if (!isDraggable)
                 return;
 
             if (dragFinished != null)
@@ -270,6 +270,10 @@ public class SongCard extends StackPane {
 
     public void setOnDragFinished(Runnable dragFinished) {
         this.dragFinished = dragFinished;
+    }
+
+    public void setDraggable(boolean draggable) {
+        this.isDraggable = draggable;
     }
 
     public void setBorderColor(String color) {

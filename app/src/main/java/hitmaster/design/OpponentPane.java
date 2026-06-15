@@ -15,11 +15,15 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class OpponentPane extends HBox {
 
+    private final StackPane avatarContainer;
     private final ImageView avatarView;
+    private final Label avatarLetterLabel;
+    private final Circle avatarCircle;
     private final Label nameLabel;
     private final ChipPane chipPane;
     private final Pane cardRowPane;
@@ -53,17 +57,24 @@ public class OpponentPane extends HBox {
         avatarClip.setArcWidth(60);
         avatarClip.setArcHeight(60);
         avatarView.setClip(avatarClip);
+
+        avatarCircle = new Circle(30);
+        avatarLetterLabel = new Label();
+        avatarLetterLabel.setStyle("""
+            "-fx-font-size: 24px;" +
+            "-fx-font-weight: bold;" +
+            "-fx-text-fill: white;"
+        """); 
         
-        try {
-            // Falls du Bilder als Resource oder URL lädst:
-            avatarView.setImage(avatarImage);
-        } catch (Exception e) {
-            // Fallback, falls kein Bild gefunden wird (grauer Kreis)
-            avatarView.setStyle("-fx-background-color: #444444;");
-        }
+        avatarContainer = new StackPane();
+        avatarContainer.setMinSize(60, 60);
+        avatarContainer.setPrefSize(60, 60);
+        avatarContainer.setMaxSize(60, 60);
+
+        this.updateAvatar(opponentName, avatarImage);
 
         nameLabel = new Label(opponentName);
-        nameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;");
+        nameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: black;");
 
         chipPane = new ChipPane();
         // Optionale optische Anpassung: Da der Gegner oben sitzt, Chips leicht verkleinern
@@ -73,7 +84,7 @@ public class OpponentPane extends HBox {
         VBox infoContainer = new VBox(4, nameLabel, chipPane);
         infoContainer.setAlignment(Pos.CENTER_LEFT);
 
-        HBox profileSection = new HBox(12, avatarView, infoContainer);
+        HBox profileSection = new HBox(12, avatarContainer, infoContainer);
         profileSection.setAlignment(Pos.CENTER_LEFT);
 
         // ==========================================
@@ -191,17 +202,28 @@ public class OpponentPane extends HBox {
         return cardRoot;
     }
 
-    public void setName(String newName) {
-        nameLabel.setText(newName);
+    public void updateAvatar(String username, Image image) {
+        avatarContainer.getChildren().clear();
+
+        if (image != null) {
+            avatarView.setImage(image);
+            avatarContainer.getChildren().add(avatarView);
+        }
+        else {
+            String initial = "?";
+
+            if (username != null && !username.isBlank())
+                initial = username.substring(0, 1).toUpperCase();
+
+            avatarLetterLabel.setText(initial);
+            avatarCircle.setFill(PastelColor.random());
+
+            avatarContainer.getChildren().addAll(avatarCircle, avatarLetterLabel);
+        }
     }
 
-    public void setAvatar(Image newAvatar) {
-        try {
-            avatarView.setImage(newAvatar);
-        }
-        catch (Exception e) {
-            avatarView.setStyle("-fx-background-color: #444444;");
-        }
+    public void setName(String newName) {
+        nameLabel.setText(newName);
     }
 
     public void setChipsCount(int count) {

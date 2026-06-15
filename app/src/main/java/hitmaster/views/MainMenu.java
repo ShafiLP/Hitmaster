@@ -87,12 +87,17 @@ public class MainMenu {
         singleplayerBtn.setPrefWidth(250);
         singleplayerBtn.setOnAction(e -> {
             if (providerStatus) {
-                GameOptions options = new GameOptions();
-                options.players = new Player[1];
-                options.players[0] = new Player(Database.getCurrentUser().username, "/setImages/debug.jpg");
+                try {
+                    GameOptions options = new GameOptions();
+                    options.players = new Player[1];
+                    options.players[0] = new Player(Database.getCurrentUser().username, "/setImages/debug.jpg");
 
-                GameLogic game = new GameLogic(options);
-                this.setStage(game.getView(), true);
+                    GameLogic game = new GameLogic(options);
+                    this.setStage(game.getView(), true);
+                }
+                catch (Exception ex) {
+                    StyleDialog.errorDialog("Error", "Error while starting game:\n" + ex.getMessage());
+                }
             }
             else {
                 StyleDialog.warningDialog("Warning", "Please connect to a music service before starting the game.");
@@ -106,8 +111,13 @@ public class MainMenu {
         multiplayerBtn.setPrefWidth(250);
         multiplayerBtn.setOnAction(e -> {
             if (providerStatus) {
-                MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView(this);
-                multiplayerMenuView.show();
+                try {
+                    MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView(this);
+                    multiplayerMenuView.show();
+                }
+                catch (Exception ex) {
+                    StyleDialog.errorDialog("Error", "Error while starting game:\n" + ex.getMessage());
+                }
             }
             else {
                 StyleDialog.warningDialog("Warning", "Please connect to a music service before starting the game.");
@@ -312,7 +322,7 @@ public class MainMenu {
             PROVIDER.setContentDisplay(ContentDisplay.LEFT);
 
             // Check connection
-            if (Spotify.requestSpotifyConnection() != null) {
+            if (Spotify.checkConnectionStatus(Spotify.requestSpotifyConnection())) {
                 PROVIDER.setText(" ✓");
                 PROVIDER.getStyleClass().removeAll("prov-button-none", "prov-button-warning");
                 PROVIDER.getStyleClass().add("prov-button-success");
