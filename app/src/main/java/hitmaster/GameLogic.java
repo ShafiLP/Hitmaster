@@ -120,7 +120,7 @@ public class GameLogic {
             player.songs.add(insertionIdx, currentSong);
         }
         else {
-            Log.Warning("Song \"" + currentSong.title + "\" couldn't get inserted into songs of \"" + player.username + "\": No insertion index found.");
+            Log.Warning("Song \"" + currentSong.titles.getFirst() + "\" couldn't get inserted into songs of \"" + player.username + "\": No insertion index found.");
         }
     }
 
@@ -233,7 +233,7 @@ public class GameLogic {
      * @return Comparison result.
      */
     public boolean checkSongInformation(String artist, String title) {
-        if (compareArtist(artist, currentSong.artist) && compareTitle(title, currentSong)) {
+        if (compareArtist(artist, currentSong.artists) && compareTitle(title, currentSong)) {
             PLAYERS[currentPlayerIdx].increaseHitmasterPoints();
             VIEW.addHitmasterChip();
             return true;
@@ -249,14 +249,15 @@ public class GameLogic {
      * @param artist String with artist input.
      * @return Comparison result.
      */
-    private boolean compareArtist(String input, String artist) {
-        if (input == null || artist == null)
+    private boolean compareArtist(String input, List<String> artists) {
+        if (input == null || artists == null || artists.isEmpty())
             return false;
 
         String normalizedInput = normalizeText(input);
 
-        if (normalizedInput.equals(normalizeText(artist))) {
-            return true;
+        for (String artist : artists) {
+            if (normalizedInput.equals(normalizeText(artist)))
+                return true;
         }
 
         return false;
@@ -270,14 +271,14 @@ public class GameLogic {
      * @return Comparison result.
      */
     private boolean compareTitle(String input, Song song) {
-        if (input == null || song == null) {
+        if (input == null || song == null || song.titles == null || song.titles.isEmpty())
             return false;
-        }
 
         String normalizedInput = normalizeText(input);
 
-        if (normalizedInput.equals(normalizeText(song.title))) {
-            return true;
+        for (String title :  song.titles) {
+            if (normalizedInput.equals(normalizeText(title))) 
+                return true;
         }
 
         return false;

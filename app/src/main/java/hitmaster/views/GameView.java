@@ -419,8 +419,8 @@ public class GameView extends Pane {
         REMAINING_CARDS.setText(GAME.getRemainingCardCount() + " cards left");
 
         //! DEBUG
-        Log.Info("Artist: " + song.artist);
-        Log.Info("Name: " + song.title);
+        Log.Info("Artist: " + song.artists.getFirst());
+        Log.Info("Name: " + song.titles.getFirst());
     }
 
     public void insertCardIntoStrip() {

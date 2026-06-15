@@ -15,7 +15,7 @@ public class Main extends Application {
         //! DEBUG
         Database.initializeDatabase();
         Database.insertCsvIntoSongs("debug.csv", 1);
-        Database.insertCsvIntoSongs("hitster-de.csv", 3);
+        Database.insertJsonIntoSongs("songs.json", 3);
 
         MainMenu menu = new MainMenu(stage);
 

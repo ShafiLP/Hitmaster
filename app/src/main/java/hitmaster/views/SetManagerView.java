@@ -272,7 +272,8 @@ public class SetManagerView {
                 try {
                     int year = Integer.parseInt(yearStr);
                     
-                    // TODO: Insert artist with id into database
+                    // TODO: Add Songs to Database
+                    /* 
                     Song newSong = new Song(); 
                     newSong.title = songTitle;
                     newSong.artist = artistName;
@@ -281,6 +282,7 @@ public class SetManagerView {
                     
                     addedSongsList.add(newSong);
                     songTable.getItems().add(newSong);
+                    */
 
                     // Clear inputs
                     artistField.clear();

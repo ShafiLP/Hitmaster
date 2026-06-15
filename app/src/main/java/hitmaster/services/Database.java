@@ -3,6 +3,7 @@ package hitmaster.services;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,12 +14,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
 import hitmaster.models.Set;
 import hitmaster.models.Song;
 import hitmaster.models.User;
 
 public class Database {
+
     public static final String URL = "jdbc:sqlite:hitmaster.db";
+
+    private static final Gson gson = new Gson();
+    private static final Type LIST_TYPE = new TypeToken<List<String>>(){}.getType();
 
     private static Connection connect() throws SQLException {
         return DriverManager.getConnection(URL);
@@ -59,8 +71,8 @@ public class Database {
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS songs (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    title TEXT NOT NULL,
-                    artist TEXT NOT NULL,
+                    titles TEXT NOT NULL,
+                    artists TEXT NOT NULL,
                     year INTEGER,
                     spotify TEXT,
                     set_id INTEGER,
@@ -142,6 +154,51 @@ public class Database {
             return false;
         }
     }
+
+    public static boolean insertJsonIntoSongs(String jsonFileName, int setId) {
+        try {
+            // 1) JSON aus dem Ressourcen-Pfad laden
+            InputStream is = Database.class.getResourceAsStream("/json/" + jsonFileName);
+            if (is == null) {
+                Log.Error("JSON file not found: /json/" + jsonFileName);
+                return false;
+            }
+
+            // 2) Gson liest direkt aus dem Reader in ein JsonArray
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            JsonArray songsArray = JsonParser.parseReader(reader).getAsJsonArray();
+
+            // 3) In die Datenbank schreiben
+            try (Connection conn = Database.connect();
+                PreparedStatement ps = conn.prepareStatement("""
+                    INSERT INTO songs (titles, artists, year, spotify, set_id)
+                    VALUES (?, ?, ?, ?, ?)
+                """)) {
+
+                for (JsonElement element : songsArray) {
+                    JsonObject songObj = element.getAsJsonObject();
+
+                    // Die inneren Arrays konvertieren wir wieder zu Strings für die DB-Spalten
+                    ps.setString(1, songObj.getAsJsonArray("titles").toString());
+                    ps.setString(2, songObj.getAsJsonArray("artists").toString());
+                    ps.setInt(3, songObj.get("year").getAsInt());
+                    ps.setString(4, songObj.get("spotify_id").getAsString());
+                    ps.setInt(5, setId);
+
+                    ps.addBatch();
+                }
+
+                ps.executeBatch();
+                Log.Success("Successfully inserted " + songsArray.size() + " songs from \"" + jsonFileName + "\" into 'songs'.");
+                return true;
+            }
+        }
+        catch (Exception e) {
+            Log.Error("Error while inserting data from \"" + jsonFileName + "\" into table \"songs\": " + e.getMessage());
+            return false;
+        }
+    }
+
 
     // ==============================
     // GET OPERATIONS
@@ -391,11 +448,13 @@ public class Database {
         Song song = new Song();
 
         song.id = rs.getInt("id");
-        song.title = rs.getString("title");
-        song.artist = rs.getString("artist");
         song.year = rs.getInt("year");
         song.spotify = rs.getString("spotify");
         song.set_id = rs.getInt("set_id");
+
+        // Gson wandelt den JSON-String direkt in eine List<String> um
+        song.titles = gson.fromJson(rs.getString("titles"), LIST_TYPE);
+        song.artists = gson.fromJson(rs.getString("artists"), LIST_TYPE);
 
         return song;
     }

@@ -148,9 +148,9 @@ public class SongCard extends StackPane {
         ));
 
         // 2) Set Labels
-        Label artist = new Label(song.artist);
+        Label artist = new Label(song.artists.getFirst());
         Label year = new Label(String.valueOf(song.year));
-        Label title = new Label(song.title);
+        Label title = new Label(song.titles.getFirst());
 
         artist.setStyle("-fx-font-weight: bold;");
         year.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;");

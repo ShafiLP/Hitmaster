@@ -181,7 +181,7 @@ public class OpponentPane extends HBox {
         // Schriftgröße dynamisch an die Kartengröße anpassen
         yearLabel.setStyle("-fx-font-size: " + (size * 0.25) + "px; -fx-font-weight: bold; -fx-text-fill: black;");
         
-        Label titleLabel = new Label(song.title);
+        Label titleLabel = new Label(song.titles.getFirst());
         titleLabel.setStyle("-fx-font-size: " + (size * 0.09) + "px; -fx-text-fill: black;");
         titleLabel.setWrapText(false);
 
