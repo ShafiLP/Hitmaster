@@ -35,10 +35,10 @@ public class MultiplayerMenuView {
         // HEADER
         // =========================
         Label title = new Label("Multiplayer Lobby");
-        title.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+        title.getStyleClass().add("header");
 
         Label description = new Label("Host a network session or join a friend via LAN connection.");
-        description.setStyle("-fx-text-fill: gray; -fx-font-size: 12px;");
+        description.getStyleClass().add("header-description");
 
         VBox header = new VBox(5, title, description);
         header.setAlignment(Pos.TOP_LEFT);
@@ -109,10 +109,10 @@ public class MultiplayerMenuView {
 
     private HBox createSettingRow(String titleText, String descText, javafx.scene.Node control) {
         Label rowTitle = new Label(titleText);
-        rowTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+        rowTitle.getStyleClass().add("subheader");
 
         Label rowDesc = new Label(descText);
-        rowDesc.setStyle("-fx-text-fill: #888888; -fx-font-size: 11px;");
+        rowDesc.getStyleClass().add("description");
 
         VBox textContainer = new VBox(2, rowTitle, rowDesc);
         textContainer.setAlignment(Pos.CENTER_LEFT);

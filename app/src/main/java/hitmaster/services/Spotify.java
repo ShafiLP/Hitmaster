@@ -169,11 +169,31 @@ public class Spotify {
     }
 
     /**
+     * Checks connection status to Spotify API.
+     * If connection fails the access token probably expired or internet connection failed.
+     * @param connection SpotifyApi connection.
+     * @return Connection Status (true/false).
+     */
+    public static boolean checkAccessToken(SpotifyApi connection) {
+        try {
+            connection.getCurrentUsersProfile()
+                .build()
+                .execute();
+
+            return true;
+        }
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Error("Connection to Spotify API failed: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
      * Fetches the current playing device from Spotify.
      * @param connection SpotifyApi connection.
-     * @return Name of the current playing device.
+     * @return Boolean if a valid playing device got found.
      */
-    public static boolean checkConnectionStatus(SpotifyApi connection) {
+    public static boolean checkValidDevice(SpotifyApi connection) {
         try {
             CurrentlyPlayingContext context = connection
                 .getInformationAboutUsersCurrentPlayback()

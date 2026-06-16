@@ -12,19 +12,27 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.ThemeManager;
 import javafx.event.ActionEvent;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -57,10 +65,10 @@ public class UserSettingsView {
         // HEADER
         // =========================
         Label title = new Label("Profile Settings");
-        title.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+        title.getStyleClass().add("header");
 
         Label description = new Label("Update your username and profile picture.");
-        description.setStyle("-fx-text-fill: gray; -fx-font-size: 12px;");
+        description.getStyleClass().add("header-description");
 
         VBox header = new VBox(5, title, description);
         header.setAlignment(Pos.TOP_LEFT);
@@ -188,7 +196,7 @@ public class UserSettingsView {
 
     /**
      * Loads current user avatar from Database.
-     * If no user avatar is found, load debug image.
+     * If no user avatar is found, creates a new default profile picture.
      */
     private void loadUserAvatar() {
         try {
@@ -200,19 +208,58 @@ public class UserSettingsView {
             }
             
             // Fallback
-            avatarPreview.setImage(new Image(getClass().getResourceAsStream("/setImages/debug.jpg")));
+            avatarPreview.setImage(createDefaultAvatar(user.username));
         }
         catch (Exception e) {
             avatarPreview.setImage(null); 
         }
     }
 
+    /**
+     * Creates a new default avatar, containing a grey background and the first letter of current user's username.
+     * @param username Username of user.
+     * @return New default avatar image.
+     */
+    private Image createDefaultAvatar(String username) {
+        int size = 128;
+
+        Canvas canvas = new Canvas(size, size);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        gc.setFill(Color.LIGHTGRAY);
+        gc.fillOval(0, 0, size, size);
+
+        String initial = "?";
+
+        if (username != null && !username.isBlank()) {
+            initial = username.substring(0, 1).toUpperCase();
+        }
+
+        gc.setFill(Color.BLACK);
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 64));
+
+        Text text = new Text(initial);
+        text.setFont(gc.getFont());
+
+        Bounds bounds = text.getLayoutBounds();
+
+        double x = (size - bounds.getWidth()) / 2;
+        double y = (size - bounds.getHeight()) / 2 - bounds.getMinY();
+
+        gc.fillText(initial, x, y);
+
+        WritableImage image = new WritableImage(size, size);
+        canvas.snapshot(null, image);
+
+        return image;
+}
+
     private HBox createSettingRow(String titleText, String descText, javafx.scene.Node control) {
         Label rowTitle = new Label(titleText);
-        rowTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+        rowTitle.getStyleClass().add("subheader");
 
         Label rowDesc = new Label(descText);
-        rowDesc.setStyle("-fx-text-fill: #888888; -fx-font-size: 11px;");
+        rowDesc.getStyleClass().add("description");
 
         VBox textContainer = new VBox(2, rowTitle, rowDesc);
         textContainer.setAlignment(Pos.CENTER_LEFT);

@@ -42,9 +42,10 @@ public class ProviderSettingsView {
         // HEADER
         // =========================
         Label title = new Label("Provider Settings");
-        title.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+        title.getStyleClass().add("header");
 
         Label description = new Label("Manage your music provider connections.");
+        description.getStyleClass().add("header-description");
 
         VBox header = new VBox(5, title, description);
         header.setAlignment(Pos.CENTER);
@@ -125,10 +126,7 @@ public class ProviderSettingsView {
 
         // Text
         Label label = new Label(text);
-        label.setStyle("""
-            -fx-font-size: 14px;
-            -fx-font-weight: bold;
-        """);
+        label.getStyleClass().add("subheader");
 
         // Button
         Region spacer = new Region();

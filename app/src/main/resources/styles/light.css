@@ -2,6 +2,26 @@
     -fx-background-color: #eef2ff;
 }
 
+.header {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.header-description {
+    -fx-text-fill: gray;
+    -fx-font-size: 12px;
+}
+
+.subheader {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.description {
+    -fx-text-fill: #888888;
+    -fx-font-size: 11px;
+}
+
 .title {
     -fx-font-size: 70px;
     -fx-font-family: "Folio Extra";

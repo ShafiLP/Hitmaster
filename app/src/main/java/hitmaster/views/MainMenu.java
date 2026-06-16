@@ -86,6 +86,9 @@ public class MainMenu {
         singleplayerBtn.setMaxWidth(250);
         singleplayerBtn.setPrefWidth(250);
         singleplayerBtn.setOnAction(e -> {
+            this.initialiseProviderButton();
+            this.checkConnectionStatusBeforeStart();
+
             if (providerStatus) {
                 try {
                     GameOptions options = new GameOptions();
@@ -99,9 +102,6 @@ public class MainMenu {
                     StyleDialog.errorDialog("Error", "Error while starting game:\n" + ex.getMessage());
                 }
             }
-            else {
-                StyleDialog.warningDialog("Warning", "Please connect to a music service before starting the game.");
-            }
         });
 
         // Multiplayer Button
@@ -110,6 +110,9 @@ public class MainMenu {
         multiplayerBtn.setMaxWidth(250);
         multiplayerBtn.setPrefWidth(250);
         multiplayerBtn.setOnAction(e -> {
+            this.initialiseProviderButton();
+            this.checkConnectionStatusBeforeStart();
+
             if (providerStatus) {
                 try {
                     MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView(this);
@@ -118,9 +121,6 @@ public class MainMenu {
                 catch (Exception ex) {
                     StyleDialog.errorDialog("Error", "Error while starting game:\n" + ex.getMessage());
                 }
-            }
-            else {
-                StyleDialog.warningDialog("Warning", "Please connect to a music service before starting the game.");
             }
         });
 
@@ -200,7 +200,7 @@ public class MainMenu {
 
         // Version & Author
         Label infoLabel = new Label("v" + VERSION + " | Created by " + AUTHOR);
-        //infoLabel.getStyleClass().add("");
+        infoLabel.getStyleClass().add("description");
 
         // Links (GitHub & Bug Report)
         HBox bottomRight = new HBox(15);
@@ -291,6 +291,21 @@ public class MainMenu {
         return ROOT;
     }
 
+    private boolean checkConnectionStatusBeforeStart() {
+        boolean success  = Spotify.checkAccessToken(Spotify.requestSpotifyConnection());
+        if (!success) {
+            StyleDialog.warningDialog("Connection Failed", "Connection to Spotify API failed.\nCheck internet connection and re-connect to Spotify API.");
+            return false;
+        }
+
+        success  = Spotify.checkValidDevice(Spotify.requestSpotifyConnection());
+        if (!success) {
+            StyleDialog.warningDialog("Connection Failed", "Connection to Spotify device failed.\nCheck if a playing device is available. One device of your account should be playing.");
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Initializes the provider button "PROVIDER".
      * Checks if connection to music provider is successful and displays success status.
@@ -322,7 +337,7 @@ public class MainMenu {
             PROVIDER.setContentDisplay(ContentDisplay.LEFT);
 
             // Check connection
-            if (Spotify.checkConnectionStatus(Spotify.requestSpotifyConnection())) {
+            if (Spotify.checkValidDevice(Spotify.requestSpotifyConnection())) {
                 PROVIDER.setText(" ✓");
                 PROVIDER.getStyleClass().removeAll("prov-button-none", "prov-button-warning");
                 PROVIDER.getStyleClass().add("prov-button-success");

@@ -2,6 +2,28 @@
     -fx-background-color: #000f3f;
 }
 
+.header {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.header-description {
+    -fx-text-fill: lightgray;
+    -fx-font-size: 12px;
+}
+
+.subheader {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.description {
+    -fx-text-fill: lightgray;
+    -fx-font-size: 11px;
+}
+
 .title {
     -fx-font-size: 70px;
     -fx-font-family: "Folio Extra";
@@ -154,6 +176,7 @@
     -fx-border-color: rgba(0, 0, 0, 0.2);
     -fx-border-radius: 10;
     -fx-border-width: 1;
+    -fx-text-fill: black;
 }
 
 .modern-dropdown {
