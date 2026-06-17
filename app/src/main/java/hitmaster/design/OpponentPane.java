@@ -2,6 +2,7 @@ package hitmaster.design;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import hitmaster.models.Song;
 import javafx.geometry.Insets;
@@ -9,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -18,7 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-public class OpponentPane extends HBox {
+public final class OpponentPane extends HBox {
 
     private final StackPane avatarContainer;
     private final ImageView avatarView;
@@ -30,29 +32,30 @@ public class OpponentPane extends HBox {
 
     private final List<Song> opponentSongs = new ArrayList<>();
     
-    // Einstellungen für die kleinere Kartenreihe des Gegners
     private final double CARD_SIZE = 100.0; 
     private final double CARD_GAP = 10.0;
 
+    private final Color COLOR;
+
     public OpponentPane(String opponentName, Image avatarImage) {
-        super(20); // Abstand zwischen Profil-Sektion und Kartenreihe
+        super(20);
         this.setAlignment(Pos.CENTER_LEFT);
         this.setPadding(new Insets(10, 20, 10, 20));
         
-        // Hintergrund-Styling passend zum Modern-Look
         this.setStyle("-fx-background-color: rgba(255, 255, 255, 0.03);" +
                       "-fx-border-color: rgba(255, 255, 255, 0.05);" +
-                      "-fx-border-width: 0 0 1 0;"); // Trennlinie nach unten
+                      "-fx-border-width: 0 0 1 0;");
+
+        COLOR = PastelColor.random();
 
         // ==========================================
-        // PROFIL- & SPIELERINFO-SEKTION (Links)
+        // PLAYER INFORMATION
         // ==========================================
         avatarView = new ImageView();
         avatarView.setFitWidth(60);
         avatarView.setFitHeight(60);
         avatarView.setPreserveRatio(true);
         
-        // Rundes Profilbild via Clip erzwingen
         Rectangle avatarClip = new Rectangle(60, 60);
         avatarClip.setArcWidth(60);
         avatarClip.setArcHeight(60);
@@ -74,35 +77,32 @@ public class OpponentPane extends HBox {
         this.updateAvatar(opponentName, avatarImage);
 
         nameLabel = new Label(opponentName);
-        nameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: black;");
+        nameLabel.getStyleClass().add("subheader");
 
         chipPane = new ChipPane();
-        // Optionale optische Anpassung: Da der Gegner oben sitzt, Chips leicht verkleinern
         chipPane.setScaleX(0.85);
         chipPane.setScaleY(0.85);
 
         VBox infoContainer = new VBox(4, nameLabel, chipPane);
-        infoContainer.setAlignment(Pos.CENTER_LEFT);
+        infoContainer.setAlignment(Pos.CENTER);
 
         HBox profileSection = new HBox(12, avatarContainer, infoContainer);
         profileSection.setAlignment(Pos.CENTER_LEFT);
 
         // ==========================================
-        // KARTENREIHE-SEKTION (Rechts, dynamisch)
+        // SONGCARDS
         // ==========================================
         cardRowPane = new Pane();
         cardRowPane.setPrefHeight(CARD_SIZE);
         HBox.setHgrow(cardRowPane, Priority.ALWAYS);
 
-        // Listener für dynamischen Zeilen-Layout bei Fenstergrößenänderung
         cardRowPane.widthProperty().addListener((obs, oldVal, newVal) -> refreshCardLayout());
 
-        // Alles zusammenfügen
         this.getChildren().addAll(profileSection, cardRowPane);
     }
 
     /**
-     * Setzt die komplette Kartenreihe neu und zeichnet sie.
+     * Replaces the whole list of SongCards and draws them.
      */
     public void setSongs(List<Song> songs) {
         this.opponentSongs.clear();
@@ -111,7 +111,7 @@ public class OpponentPane extends HBox {
     }
 
     /**
-     * Fügt eine einzelne Karte hinzu (wichtig für die "nacheinander dran" Funktionen)
+     * Adds a single card to list of SongCards.
      */
     public void addSong(Song song) {
         this.opponentSongs.add(song);
@@ -123,7 +123,7 @@ public class OpponentPane extends HBox {
     public int getChipsCount() { return chipPane.getActiveChipsCount(); }
 
     /**
-     * Berechnet die Positionen der kleineren Vorschaukarten (ohne Interaktivität)
+     * Calculates positions of smaller preview SongCards.
      */
     private void refreshCardLayout() {
         cardRowPane.getChildren().clear();
@@ -136,19 +136,17 @@ public class OpponentPane extends HBox {
         double currentSize = CARD_SIZE;
         double currentGap = CARD_GAP;
 
-        // Wenn der Platz eng wird, skalieren wir wie in deiner CardStripPane die Karten kleiner
         if (neededWidth > availableWidth && availableWidth > 0) {
             double scale = availableWidth / (neededWidth + 10);
             currentSize = CARD_SIZE * scale;
             currentGap = CARD_GAP * scale;
         }
 
-        double startX = 0; // Linksbündig in der Reihe neben dem Profil
+        double startX = 0; 
 
         for (int i = 0; i < totalCards; i++) {
             Song song = opponentSongs.get(i);
             
-            // Wir bauen eine vereinfachte, nicht-interaktive SongCard-Vorschau
             StackPane miniCard = createMiniCard(song, currentSize);
             miniCard.setLayoutX(startX + i * (currentSize + currentGap));
             miniCard.setLayoutY((cardRowPane.getHeight() - currentSize) / 2.0);
@@ -158,8 +156,8 @@ public class OpponentPane extends HBox {
     }
 
     /**
-     * Erzeugt eine visuelle, kleinere Repräsentation einer SongCard
-     * Komplett statisch, ohne Drag-and-Drop Event-Handler.
+     * Creates a smaller preview version of SongCard.
+     * Completely static without drag & drop handler.
      */
     private StackPane createMiniCard(Song song, double size) {
         StackPane cardRoot = new StackPane();
@@ -170,38 +168,48 @@ public class OpponentPane extends HBox {
         clip.setArcHeight(16);
         cardRoot.setClip(clip);
 
-        // Simuliert das Aussehen der Vorderseite (aufgedeckt)
-        VBox layout = new VBox();
-        layout.setAlignment(Pos.CENTER);
+        BorderPane layout = new BorderPane();
         layout.setPadding(new Insets(2));
         
-        // Nutzt zufällige Pastellfarbe wie die echte SongCard
-        Color cardColor = PastelColor.random(); 
         layout.setStyle(String.format(
             "-fx-background-color: rgb(%d,%d,%d);" +
             "-fx-background-radius: 8;" +
             "-fx-border-radius: 8;" +
             "-fx-border-color: black;" +
             "-fx-border-width: 1px;",
-            (int)(cardColor.getRed() * 255),
-            (int)(cardColor.getGreen() * 255),
-            (int)(cardColor.getBlue() * 255)
+            (int)(COLOR.getRed() * 255),
+            (int)(COLOR.getGreen() * 255),
+            (int)(COLOR.getBlue() * 255)
         ));
 
+        Label artistLabel = new Label(song.artists.getFirst());
+        artistLabel.setStyle("-fx-font-size: " + (size * 0.09) + "px; -fx-text-fill: black;");
+        artistLabel.setWrapText(false);
+        StackPane top = new StackPane(artistLabel);
+
         Label yearLabel = new Label(String.valueOf(song.year));
-        // Schriftgröße dynamisch an die Kartengröße anpassen
         yearLabel.setStyle("-fx-font-size: " + (size * 0.25) + "px; -fx-font-weight: bold; -fx-text-fill: black;");
         
         Label titleLabel = new Label(song.titles.getFirst());
         titleLabel.setStyle("-fx-font-size: " + (size * 0.09) + "px; -fx-text-fill: black;");
         titleLabel.setWrapText(false);
+        StackPane bottom = new StackPane(titleLabel);
 
-        layout.getChildren().addAll(yearLabel, titleLabel);
+        layout.setTop(top);
+        layout.setCenter(yearLabel);
+        layout.setBottom(bottom);
         cardRoot.getChildren().add(layout);
         
         return cardRoot;
     }
 
+    /**
+     * Updates avatar image.
+     * If image is null, use username to create a new default avatar image
+     * containing first letter of username and a coloured background.
+     * @param username Username to use if image is null.
+     * @param image Image to set avatar.
+     */
     public void updateAvatar(String username, Image image) {
         avatarContainer.getChildren().clear();
 
@@ -222,23 +230,31 @@ public class OpponentPane extends HBox {
         }
     }
 
+    /**
+     * Sets a new username for this OpponentPane.
+     * @param newName New username.
+     */
     public void setName(String newName) {
         nameLabel.setText(newName);
     }
 
+    /**
+     * Removes all chips from chip pane and sets a new count of chips.
+     * @param count New count of chips.
+     */
     public void setChipsCount(int count) {
         while (chipPane.getActiveChipsCount() > 0) {
             chipPane.removeChip();
         }
+
         for (int i = 0; i < count; i++) {
             chipPane.addChip();
         }
     }
     
-    // Lokale Hilfsklasse für Farben, falls PastelColor nicht statisch zugänglich ist
     private static class PastelColor {
         public static Color random() {
-            java.util.Random rand = new java.util.Random();
+            Random rand = new Random();
             double r = (rand.nextInt(50) + 150) / 255.0;
             double g = (rand.nextInt(50) + 150) / 255.0;
             double b = (rand.nextInt(50) + 150) / 255.0;
