@@ -8,6 +8,7 @@ import hitmaster.design.ChipPane;
 import hitmaster.design.DiscardPile;
 import hitmaster.design.OpponentPane;
 import hitmaster.design.SongCard;
+import hitmaster.design.StatusBar;
 import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.Log;
@@ -41,10 +42,10 @@ public class GameView extends Pane {
     private SongCard stealCard = new SongCard(this, null);
 
     // UI elements
+    private final StatusBar STATUS;
     private final CardStripPane STRIP;
     private final DiscardPile DISCARD_PILE;
     private final ChipPane CHIP_PANE;
-    private final Label TIMER;
     private final TextField ARTIST;
     private final TextField TITLE;
     private final Button PLAYPAUSE;
@@ -58,7 +59,18 @@ public class GameView extends Pane {
         this.GAME = GAME;
         currentCard = new SongCard(this, firstSong);
 
-        // 1) Initialize CardStripPane
+        // 1) Initialize StatusBar
+        STATUS = new StatusBar();
+        STATUS.setInfoText(GAME.getCurrentPlayer().username + " is making their guess.");
+
+        this.getChildren().add(STATUS);
+
+        STATUS.prefWidthProperty().bind(this.widthProperty());
+
+        STATUS.setLayoutX(0);
+        STATUS.setLayoutY(0);
+
+        // 2) Initialize CardStripPane
         final double CONTROLS_WIDTH = 320;
         final double GAP = 20;
 
@@ -70,7 +82,7 @@ public class GameView extends Pane {
         STRIP.setLayoutX(GAP);
         this.getChildren().add(STRIP);
 
-        // 2) Inizialize card pile
+        // 3) Inizialize card pile
         BorderPane cardPile = new BorderPane();
         cardPile.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 
@@ -110,7 +122,7 @@ public class GameView extends Pane {
 
         this.getChildren().add(cardPile);
 
-        // 3) Initilize discard pile
+        // 4) Initilize discard pile
         DISCARD_PILE = new DiscardPile();
         DISCARD_PILE.setLayoutX(GAP);
         DISCARD_PILE.layoutYProperty().bind(
@@ -120,7 +132,7 @@ public class GameView extends Pane {
         );
         this.getChildren().add(DISCARD_PILE);
 
-        // 4) Text fields and button
+        // 5) Text fields and button
         ARTIST = new TextField();
         ARTIST.getStyleClass().add("modern-textbox");
         ARTIST.setPromptText("Artist...");
@@ -143,7 +155,7 @@ public class GameView extends Pane {
 
         VBox inputs = new VBox(8, ARTIST, TITLE, flip);
 
-        // 5) Spotify media control
+        // 6) Spotify media control
         Button back = new Button("⏮");
         PLAYPAUSE = new Button("►");
         Button forward = new Button("⏭");
@@ -202,21 +214,6 @@ public class GameView extends Pane {
         HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
         audioRow.setAlignment(Pos.CENTER_LEFT);
 
-        // 6) Timer Label
-        TIMER = new Label();
-        TIMER.getStyleClass().add("modern-label");
-        TIMER.setVisible(false);
-        TIMER.layoutBoundsProperty().addListener((obs, oldBounds, newBounds) -> {
-            TIMER.setLayoutX((this.getWidth() - newBounds.getWidth()) / 2);
-        });
-
-        this.widthProperty().addListener((obs, oldWidth, newWidth) -> {
-            TIMER.setLayoutX((newWidth.doubleValue() - TIMER.getWidth()) / 2);
-        });
-
-        TIMER.setLayoutY(10);
-        this.getChildren().add(TIMER);
-
         // 7) Chip panel
         CHIP_PANE = new ChipPane();
 
@@ -229,6 +226,20 @@ public class GameView extends Pane {
         
         this.getChildren().add(controlPanel);
         Platform.runLater(this::requestFocus);
+
+        // 9) Start Timer
+        timerUnit = new Timer(GAME.getGameOptions().moveTime);
+        timerUnit.start(
+            () -> Platform.runLater(() -> {
+                STATUS.setRemainingTime(timerUnit.getRemainingSeconds());
+            }),
+            () -> Platform.runLater(() -> {
+                this.removeCurrentCard();
+                GAME.switchToNextPlayer();
+
+                this.initializeNewTimer();
+            })
+        );
     }
 
     /**
@@ -253,30 +264,32 @@ public class GameView extends Pane {
      * If no player interrupts game continues with reveal.
      */
     private void startStealTime() {
-        Log.Info("Started steal time");
-        
+        // 1) Lock current guess by disabling all inputs
         ARTIST.setEditable(false);
         TITLE.setEditable(false);
         currentCard.setDraggable(false);
 
-        // 1) Get Time
+        // 2) Skip if multiplayer is disabled or opponent doesn't have any chips
         if (!GAME.isMultiplayer() || GAME.getPreviousPlayer().hitmasterPoints < 1) {
             this.confirmInput();
             return;
         }
 
-        // 2) Show Steal Button
+        // 3) Set Status
+        STATUS.setInfoText(GAME.getCurrentPlayer().username + "placed their guess - other players can now attempt to steal.");
+
+        // 4) Show Steal Button
         currentCard.setStealState(true);
 
-        // 3) Start Time
+        // 5) Start Timer
+        timerUnit.stop();
         timerUnit = new Timer(3);
         timerUnit.start(
             () -> Platform.runLater(() -> {
-                this.setTimer(timerUnit.getRemainingSeconds());
+                STATUS.setRemainingTime(timerUnit.getRemainingSeconds());
             }),
             () -> Platform.runLater(() -> {
                 currentCard.setStealState(false);
-                this.hideTimer();
 
                 if (!isStealing)
                     this.confirmInput();
@@ -284,49 +297,50 @@ public class GameView extends Pane {
         );
     }
 
+    /**
+     * Starts confirmation of player input.
+     * Artist and Title Label get colored green if correct and red if incorrect.
+     * Sets border color of currentCard green if correct and red if incorrect.
+     * Moves to this.checkForWin() after timer finished.
+     */
     private void confirmInput() {
-        Log.Info("Confirm Input");
-
-        // 1) Flip card
+        // 1) Show front of currentCard and disable dragging stealCard
         if (currentCard != null)
             currentCard.showFront();
 
         if (stealCard != null)
             stealCard.setDraggable(false);
 
-        // 2) Check artist and title guess
-        if (GAME.checkSongInformation(ARTIST.getText(), TITLE.getText())) {
-            ARTIST.setStyle("-fx-border-color:rgb(0, 255, 0);");
-            TITLE.setStyle("-fx-border-color:rgb(0, 255, 0);");
-        }
-        else {
-            ARTIST.setStyle("-fx-border-color:rgb(255, 0, 0);");
-            TITLE.setStyle("-fx-border-color:rgb(255, 0, 0);");
-        }
+        // 2) Color border of artist and title input green if correct and red if incorrect
+        ARTIST.setStyle(GAME.checkArtistInformation(ARTIST.getText()) ? "-fx-border-color:rgb(0, 255, 0);" : "-fx-border-color:rgb(255, 0, 0);");
+        TITLE.setStyle(GAME.checkTitleInformation(TITLE.getText()) ? "-fx-border-color:rgb(0, 255, 0);" : "-fx-border-color:rgb(255, 0, 0);");
+        GAME.checkSongInformation(ARTIST.getText(), TITLE.getText());
 
         // 3) Check position of card
         boolean guess = GAME.checkSongOrder(STRIP.getCards());
-        if (guess) {
-            currentCard.setBorderColor("rgb(0, 255, 0)");
-        }
-        else {
-            currentCard.setBorderColor("rgb(255, 0, 0)");
-        }
+        currentCard.setBorderColor(guess ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)");
 
+        // 4) Set Status and start Timer
+        STATUS.setInfoText(guess ? GAME.getCurrentPlayer().username + " guessed right!" : GAME.getCurrentPlayer().username + " guessed wrong!");
+
+        timerUnit.stop();
         timerUnit = new Timer(3);
         timerUnit.start(
             () -> Platform.runLater(() -> 
-                this.setTimer(timerUnit.getRemainingSeconds())
+                STATUS.setRemainingTime(timerUnit.getRemainingSeconds())
             ),
             () -> this.checkForWin(guess)
         );
     }
 
+    /**
+     * If guess was correct, check for win.
+     * If guess was incorrect, move card to discard pile.
+     * After checking, continues game with next player.
+     * @param guess
+     */
     private void checkForWin(boolean guess) {
-        Log.Info("Check For Win");
         // 1) Reset styles
-        this.hideTimer();
-
         ARTIST.setStyle("");
         ARTIST.getStyleClass().add("modern-textbox");
         ARTIST.clear();
@@ -343,8 +357,21 @@ public class GameView extends Pane {
             stealCard.setVisible(false);
         }
 
-        // 2) Move card to failure stack if false
-        if (!guess) {
+        // 2) Check for win if guess was correct
+        if (guess) {
+            GAME.addCardToPlayerSorted(GAME.getCurrentPlayer());
+            if (GAME.checkForWin(STRIP.getCards())) {
+                Log.Info("WON.");
+            }
+            else {
+                Platform.runLater(() -> {
+                    GAME.addFirstToCardStack();
+                });
+            }
+        }
+
+        // 3) Move card to discard pile if guess was incorrect
+        else {
             Platform.runLater(() -> {
                 final SongCard wrongCard = this.currentCard; 
             
@@ -375,39 +402,30 @@ public class GameView extends Pane {
             });
         }
 
-        // 3) Check for win if true
-        else {
-            GAME.addCardToPlayerSorted(GAME.getCurrentPlayer());
-            if (GAME.checkForWin(STRIP.getCards())) {
-                Log.Info("WON.");
-            }
-            else {
-                Platform.runLater(() -> {
-                    GAME.addFirstToCardStack();
-                });
-            }
-        }
-
         // 4) Swap active player
         GAME.switchToNextPlayer();
+        Platform.runLater(() -> {
+            STATUS.setInfoText(GAME.getCurrentPlayer().username + " is making their guess.");
+        });
+        this.initializeNewTimer();
     }
 
-    private void setTimer(int seconds) {
-        // TODO: Minutes if 60+ seconds
-        TIMER.setVisible(true);
-        TIMER.setText("⏱ " + (seconds + 1) + "s");
-    }
-
-    private void hideTimer() {
-        TIMER.setVisible(false);
-    }
-
+    /**
+     * Adds a song as SongCard to Card Strip.
+     * Used at the beginning of the game to give players their first card.
+     * @param song Song to place in Card Strip as SongCard.
+     */
     public void addToCardStrip(Song song) {
         SongCard card = new SongCard(this, song);
         card.showFront();
         STRIP.addCard(card);
     }
 
+    /**
+     * Adds a new song as SongCard to stack.
+     * Current player can move the card freely and place it in their Card Strip.
+     * @param song
+     */
     public void addToCardStack(Song song) {
         SongCard card = new SongCard(this, song);
 
@@ -434,24 +452,57 @@ public class GameView extends Pane {
         Log.Info("Name: " + song.titles.getFirst());
     }
 
+    private void initializeNewTimer() {
+        timerUnit.stop();
+        timerUnit = new Timer(GAME.getGameOptions().moveTime);
+        timerUnit.start(
+            () -> Platform.runLater(() -> {
+                STATUS.setRemainingTime(timerUnit.getRemainingSeconds());
+            }),
+            () -> Platform.runLater(() -> {
+                this.removeCurrentCard();
+                GAME.switchToNextPlayer();
+
+                this.initializeNewTimer();
+            })
+        );
+    }
+
+    /**
+     * Inserts a card into current player's Card Strip.
+     * Automatically sorts the Card Strip by Release Year.
+     */
     public void insertCardIntoStrip() {
         STRIP.addCardSorted(currentCard);
     }
 
+    /**
+     * Adds a new Hitmaster Chip to chip pane of the current player.
+     */
     public void addHitmasterChip() {
         CHIP_PANE.addChip();
     }
 
+    /**
+     * Removes a Hitmaster Chip from chip pane of the current player.
+     */
     public void removeHitmasterChip() {
         CHIP_PANE.removeChip();
     }
 
+    /**
+     * Removes ALL Hitmaster chips from chip pane of the current player.
+     */
     public void removeAllHitmasterChips() {
         while (CHIP_PANE.getActiveChipsCount() > 0) {
             CHIP_PANE.removeChip();
         }
     }
 
+    /**
+     * Marks the current card as wrong and skips to the next card.
+     * Waits three seconds until game moves on.
+     */
     public void removeCurrentCard() {
         currentCard.showFront();
         currentCard.setBorderColor("rgb(255, 0, 0)");
@@ -459,16 +510,14 @@ public class GameView extends Pane {
         Timer timer = new Timer(3);
         timer.start(
             () -> Platform.runLater(() -> 
-                setTimer(timer.getRemainingSeconds())
+                STATUS.setRemainingTime(timer.getRemainingSeconds())
             ),
             () -> Platform.runLater(() -> {
-                hideTimer();
-                
                 final SongCard wrongCard = this.currentCard;
                 if (wrongCard != null) {
                     double sceneX = wrongCard.localToScene(0, 0).getX();
                     double sceneY = wrongCard.localToScene(0, 0).getY();
-                    javafx.geometry.Point2D localPos = this.sceneToLocal(sceneX, sceneY);
+                    Point2D localPos = this.sceneToLocal(sceneX, sceneY);
 
                     STRIP.removeCard(wrongCard, false);
                     if (wrongCard.getParent() != this) {
@@ -495,15 +544,22 @@ public class GameView extends Pane {
     // Multiplayer methods
     // ==============================
 
+    /**
+     * Initializes OpponentPane with oponnent Card Strip, Avatar and Username.
+     * @param opponent Player object of opponent.
+     */
     public void initializeOpponentPane(Player opponent) {
         OPPONENT_PANE = new OpponentPane(opponent.username, opponent.img);
         OPPONENT_PANE.setLayoutX(0);
-        OPPONENT_PANE.setLayoutY(0);
+        OPPONENT_PANE.layoutYProperty().bind(STATUS.heightProperty());
         OPPONENT_PANE.prefWidthProperty().bind(this.widthProperty());
         
         this.getChildren().add(OPPONENT_PANE);
     }
 
+    /**
+     * Swaps current player's Card Strip with opponent.
+     */
     public void switchSideWithOpponent() {
         if (!GAME.isMultiplayer())
             return;
@@ -555,27 +611,25 @@ public class GameView extends Pane {
      * Called when button "Steal?" gets pressed.
      */
     public void startStealAction() {
-        Log.Info("Started stealing");
-
+        // 1) Skip if opponent doesn't have enough chips or game isn't multiplayer
         if (GAME.getPreviousPlayer().hitmasterPoints < 1 || !GAME.isMultiplayer())
             return;
-
-        // 1) Set steal state
-        isStealing = true;
-
-        timerUnit.stop();
-        currentCard.setStealState(false);
-
-        this.hideTimer();
 
         GAME.getPreviousPlayer().hitmasterPoints--;
         OPPONENT_PANE.removeChip();
 
-        // 2) Set timer (Load steal duration from Game Options)
+        // 2) Set steal state
+        isStealing = true;
+        STATUS.setInfoText(GAME.getPreviousPlayer().username + " is attempting to steal!");
+
+        timerUnit.stop();
+        currentCard.setStealState(false);
+
+        // 3) Set timer (Load steal duration from Game Options)
         timerUnit = new Timer(GAME.getGameOptions().stealTime);
         timerUnit.start(
             () -> Platform.runLater(() -> {
-                this.setTimer(timerUnit.getRemainingSeconds());
+                STATUS.setRemainingTime(timerUnit.getRemainingSeconds());
             }),
             () -> Platform.runLater(() -> {
                 if (stealCard != null) {
@@ -586,8 +640,6 @@ public class GameView extends Pane {
                     currentCard.setStealState(false);
                     this.confirmInput();
                 }
-
-                this.hideTimer();
             })
         );
         
@@ -602,9 +654,11 @@ public class GameView extends Pane {
         this.getChildren().add(stealCard);
     }
 
+    /**
+     * Check if opponent's steal attempt was successful.
+     * Returns if opponent card doesn't have a valid steal position.
+     */
     private void checkStealGuess() {
-        Log.Info("Steal flipped.");
-        
         // 1) Check valid input position
         if (!this.checkValidStealPosition())
             return;
@@ -614,7 +668,7 @@ public class GameView extends Pane {
 
         // 2) Check position of steal card
         boolean guess = GAME.checkStealOrder(STRIP.getCards(), stealCard);
-        if (guess) {
+        if (guess && !GAME.checkSongOrder(STRIP.getCards())) {
             stealCard.setBorderColor("rgb(0, 255, 0)");
             GAME.addCardToPlayerSorted(GAME.getPreviousPlayer());
         }
@@ -622,7 +676,7 @@ public class GameView extends Pane {
             stealCard.setBorderColor("rgb(255, 0, 0)");
         }
 
-        // 3) Confirm reveal
+        // 3) Reveal guesses
         this.confirmInput(); 
     }
 
@@ -632,8 +686,6 @@ public class GameView extends Pane {
      * @return Validation result.
      */
     private boolean checkValidStealPosition() {
-        // TODO: When multiple cards have the same year, validation could return true when it should be false
-
         // 1) Get list of song cards
         List<SongCard> songCards = STRIP.getCards();
 

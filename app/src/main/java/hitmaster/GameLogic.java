@@ -13,7 +13,7 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.views.GameView;
 
-public class GameLogic {
+public final class GameLogic {
 
     private final GameOptions OPTIONS;
     private final GameView VIEW;
@@ -21,7 +21,7 @@ public class GameLogic {
     private final boolean MULTIPLAYER;
     private int currentPlayerIdx = 0;
 
-    private List<Song> songs;
+    private final  List<Song> SONGS;
     private Song currentSong;
 
     // Regex Patterns
@@ -35,17 +35,17 @@ public class GameLogic {
         MULTIPLAYER = (PLAYERS.length > 1);
 
         // 1) Read songs from DB and shuffle them
-        songs = loadSongsFromDB();
-        Collections.shuffle(songs);
-        this.VIEW = new GameView(this, songs.getFirst());
-        PLAYERS[0].songs.add(songs.getFirst());
-        songs.removeFirst();
+        SONGS = loadSongsFromDB();
+        Collections.shuffle(SONGS);
+        this.VIEW = new GameView(this, SONGS.getFirst());
+        PLAYERS[0].songs.add(SONGS.getFirst());
+        SONGS.removeFirst();
 
         if (MULTIPLAYER) {
             VIEW.initializeOpponentPane(PLAYERS[1]);
-            VIEW.addOpponentCard(songs.getFirst());
-            PLAYERS[1].songs.add(songs.getFirst());
-            songs.removeFirst();
+            VIEW.addOpponentCard(SONGS.getFirst());
+            PLAYERS[1].songs.add(SONGS.getFirst());
+            SONGS.removeFirst();
         }
 
         // 2) Add one song to user's card strip for starting setup
@@ -60,14 +60,14 @@ public class GameLogic {
     }
 
     private void addFirstToCardStrip() {
-        VIEW.addToCardStrip(songs.getFirst());
-        songs.removeFirst();
+        VIEW.addToCardStrip(SONGS.getFirst());
+        SONGS.removeFirst();
     }
 
     public void addFirstToCardStack() {
-        VIEW.addToCardStack(songs.getFirst());
-        currentSong = songs.getFirst();
-        songs.removeFirst();
+        VIEW.addToCardStack(SONGS.getFirst());
+        currentSong = SONGS.getFirst();
+        SONGS.removeFirst();
     }
 
     public void addCardToCorrectSongs() {
@@ -160,7 +160,7 @@ public class GameLogic {
 
         // 2) Check if stealCard position is true
         songCards.get(idx).song = new Song();
-        songCards.get(idx).song = songs.getFirst(); // TODO: Replace with debug song (For steal card functionality only)
+        songCards.get(idx).song = SONGS.getFirst(); // TODO: Replace with debug song (For steal card functionality only)
         songCards.get(idx).song.year = currentSong.year;
         
         if (songCards.get(idx).equals(songCards.getFirst()))
@@ -218,7 +218,7 @@ public class GameLogic {
     }
     
     public int getRemainingCardCount() {
-        return songs.size();
+        return SONGS.size();
     }
 
     public boolean isMultiplayer() {
@@ -233,13 +233,21 @@ public class GameLogic {
      * @return Comparison result.
      */
     public boolean checkSongInformation(String artist, String title) {
-        if (compareArtist(artist, currentSong.artists) && compareTitle(title, currentSong)) {
+        if (compareArtist(artist, currentSong.artists) && compareTitle(title, currentSong.titles)) {
             PLAYERS[currentPlayerIdx].increaseHitmasterPoints();
             VIEW.addHitmasterChip();
             return true;
         }
 
         return false;
+    }
+
+    public boolean checkArtistInformation(String artist) {
+        return compareArtist(artist, currentSong.artists);
+    }
+
+    public boolean checkTitleInformation(String title) {
+        return compareTitle(title, currentSong.titles);
     }
 
     /**
@@ -270,13 +278,13 @@ public class GameLogic {
      * @param song String with Song information.
      * @return Comparison result.
      */
-    private boolean compareTitle(String input, Song song) {
-        if (input == null || song == null || song.titles == null || song.titles.isEmpty())
+    private boolean compareTitle(String input, List<String> titles) {
+        if (input == null || titles == null || titles.isEmpty())
             return false;
 
         String normalizedInput = normalizeText(input);
 
-        for (String title :  song.titles) {
+        for (String title :  titles) {
             if (normalizedInput.equals(normalizeText(title))) 
                 return true;
         }

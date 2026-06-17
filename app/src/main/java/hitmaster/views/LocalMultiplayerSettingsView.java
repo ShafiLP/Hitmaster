@@ -1,5 +1,8 @@
 package hitmaster.views;
 
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
+
 import hitmaster.GameLogic;
 import hitmaster.models.GameOptions;
 import hitmaster.models.Player;
@@ -11,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -83,19 +87,23 @@ public class LocalMultiplayerSettingsView {
 
         // 3) Turn time
         TextField turnTimeInput = new TextField();
+        turnTimeInput.setTextFormatter(createNumberFormatter());
         turnTimeInput.setPromptText("Turn Time...");
         turnTimeInput.getStyleClass().add("modern-textbox");
         turnTimeInput.setPrefWidth(180);
+        HBox turnTimeControl = createSecondsInput(turnTimeInput, 300);
         
-        HBox turnTimeRow = createSettingRow("Turn Time", "Set time each player gets to log in their guess.", turnTimeInput);
+        HBox turnTimeRow = createSettingRow("Turn Time", "Set time each player gets to log in their guess.", turnTimeControl);
 
         // 4) Steal time input
         TextField stealTimeInput = new TextField();
+        stealTimeInput.setTextFormatter(createNumberFormatter());
         stealTimeInput.setPromptText("Steal Time...");
         stealTimeInput.getStyleClass().add("modern-textbox");
         stealTimeInput.setPrefWidth(180);
+        HBox stealTimeControl = createSecondsInput(stealTimeInput, 30);
         
-        HBox stealTimeRow = createSettingRow("Steal Time", "Time players get after guesses to steal a card.", stealTimeInput);
+        HBox stealTimeRow = createSettingRow("Steal Time", "Time players get after guesses to steal a card.", stealTimeControl);
 
         content.getChildren().addAll(setsRow, namesRow, turnTimeRow, stealTimeRow);
 
@@ -160,6 +168,36 @@ public class LocalMultiplayerSettingsView {
         row.setStyle("-fx-border-color: rgba(255,255,255,0.05); -fx-border-width: 0 0 1 0;");
 
         return row;
+    }
+
+    private HBox createSecondsInput(TextField field, int defaultValue) {
+        field.getStyleClass().add("modern-textbox");
+        field.setPrefWidth(80);
+        field.setText(String.valueOf(defaultValue));
+
+        Label unit = new Label("s");
+        unit.getStyleClass().add("description");
+
+        HBox box = new HBox(5, field, unit);
+        box.setAlignment(Pos.CENTER_LEFT);
+
+        return box;
+    }
+
+    private TextFormatter<String> createNumberFormatter() {
+
+        Pattern pattern = Pattern.compile("\\d{0,3}"); // max 3 digits
+
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String newText = change.getControlNewText();
+
+            if (pattern.matcher(newText).matches()) {
+                return change;
+            }
+            return null;
+        };
+
+        return new TextFormatter<>(filter);
     }
 
     public void show() {

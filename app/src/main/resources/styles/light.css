@@ -265,6 +265,11 @@
     -fx-font-style: italic;
 }
 
+.status-bar {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-text-fill: black;
+}
+
 .song-card {
     -fx-text-fill: black;
     -fx-background-color: black;
