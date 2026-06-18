@@ -94,6 +94,8 @@ public class MainMenu {
                     GameOptions options = new GameOptions();
                     options.players = new Player[1];
                     options.players[0] = new Player(Database.getCurrentUser().username, "/setImages/debug.jpg");
+                    options.moveTime = 300;
+                    options.stealTime = 30;
 
                     GameLogic game = new GameLogic(options);
                     this.setStage(game.getView(), true);

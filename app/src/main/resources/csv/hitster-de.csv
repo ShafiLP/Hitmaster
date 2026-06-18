@@ -1,52 +1,309 @@
-title,artist,year,spotify
-
-Wann Wird's Mal Wieder Richtig Sommer,Rudi Carrell,1975,59VR9MekNIMRLxQYfSn3Qr
-You Can Call Me AI,Paul Simon,1986,0qxYx4F3vm1AOnfux6dDxP
-Start Me Up,The Rolling Stones,1981,7HKez549fwJQDzx3zLjHKC
-The Twist,Chubby Checker,1960,6DSvUZQdqtNfkJI4cAiUsM
-Blurred Lines,Robin Thicke,2013,2pgbGOb00WrlXY3ZRFKn7v
-Hangover,Taio Cruz,2011,23TrBtndcavtlYBQg5GoR8
-One More Time,Daft Punk,2000,2Uy6EhQXAYkXA6MohPgjpV
-China In Your Hand,T'Pau,1987,3U9B0ZcnVPisVh9wGOg6qL
-The Best,Tina Turner,1989,6pPWRBubXOBAHnjl5ZIujB
-The Hustle,Van McCoy & the Soul City Symphony,1975,2yDXsPUm95218qlAQfnilm
-Piece Of My Heart,Erma Franklin,1967,2GbePPrWWSRxcmW6QRSPae
-Hunrgy Eyes,Eric Carmen,1987,7eafuv44YprITfOdzfVLoU
-Karma Chameleon,Culture Club,1983,3XDeeP9wBZzGhIPZmLfEEx
-99 Luftballons,Nena,1983,4ZhPLoMzZwewHLLjV1J15c
-Beinhart,Torfrock,1990,2zygsl5Awjq2CuJc1L55x0
-In Da Club,50 Cent,2003,7iL6o9tox1zgHpKUfh9vuC
-Don't Go,Yazoo,1982,5JOVSWohrjXW0BFTboh8XO
-I Wanna Dance With Somebody (Who Loves Me),Whitney Houston,1987,2tUBqZG2AbRi7Q0BIrVrEj
-7 Years,Lukas Graham,2015,5kqIPrATaCc2LqxVWzQGbk
-Sugar-Baby,Peter Kraus,1999,6OnOIWxhezuZjF4APOl7oF
-Lean On,Major Lazer,2015,2YWjW3wwQIBLNhxWKBQd16
-Einmal Um Die Welt,CRO,2011,2L6hCTpUlR2p7Su3hiSB0s
-Ich Will Keine Schokolade,Trude Herr,1959,2uwDgQNRc1zS5khCPVM0jl
-80 Millionen,Max Giesinger,2016,4EB11zPPq3jDbhnwWpzFL9
-Friday I'm In Love,The Cure,1992,4QlzkaRHtU8gAdwqjWmO8n
-What Is Love,Haddaway,1993,2IHaGyfxNoFPLJnaEg4GTs
-Auf Uns,Andreas Bourani,2014,6dXt4t5jgySnVTeTpT4C0l
-Don't Stop Believin',Journey,1981,4bHsxqR3GMrXTxEPLuK5ue
-Orinoco Flow,Enya,1988,0Fyj9w0HVfjoxm9S8nGClt
-Über Den Wolken,Reinhard Mey,1974,5JSzcnZbYk3qv3nEn5Bo41
-Rehab,Amy Winehouse,2006,3N4DI1vuTSX1tz7fa2NQZw
-Liebeskummer Lognt Sich Nicht,Siw Malmkvist,1964,3DMk51IjcSdYmUT51QWfm1
-You Make Me Feel (Mighty Real),Sylvester,1978,0RnCUYXa7jhgTXtiMXF2PQ
-Sweet Home Alabama,Lynyrd Skynyrd,1974,7e89621JPkKaeDSTQ3avtg
-He Ain't Heavy He's My Brother,The Hollies,1969,6f5sSC3ORfpUMYtE4J06VW
-Eine Neue Liebe Ist Wie Ein Neues Leben,Jürgen Marcus,1972,0oH9kW4faMsq9YgRYirgD0
-Manic Monday,The Bangles,1985,798fUF6UnRn27xiVuKyJCi
-Paradise By The Dashboard Light,Meat Loaf,1977,2g7gviEeJr6pyxO7G35EWQ
-Never Ending Story,Limahl,1984,1F43XlPBiwAUUIhrUGzylO
-Don't Call Me Up,Mabel,2019,5Xc9L411IGVexidbaF7CHG
-Under The Bridge,Red Hot Chili Peppers,1991,3d9DChrdc6BOeFsbrZ3Is0
-König Von Deutschland,Rio Reiser,1986,4Hg99jQ6zjks47xaH8eK40
-Upside Down,Diana Ross,1980,6NJNZEjyCD2YWFPsBzIHnM
-Don't Speak,No Doubt,1995,6JGQ98So2ik5GVI9ydQ2Yh
-(I Can't Get No) Satisfaction,The Rolling Stones,1965,1b6AW6uDrtrUN0Y6GJR45j
-Dilemma,Nelly,2002,14MgTooapmJdLlEMAr2zAM
-Lola,The Kinks,1970,0UAJH0k4k3slcE83a9UGCe
-Captain Jack,Captain Jack,1995,2L5FEDC0MU2a6OEkLjByEd
-True Colors,Cyndi Lauper,1986,2A6yzRGMgSQCUapR2ptm6A
-Hey Ya!,Outkast,2003,2PpruBYCo4H7WOBJ7Q2EwM
+id
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308

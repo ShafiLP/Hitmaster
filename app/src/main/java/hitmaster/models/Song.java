@@ -8,5 +8,4 @@ public class Song {
     public List<String> artists;
     public int year;
     public String spotify;
-    public int set_id;
 }

@@ -3,6 +3,7 @@ package hitmaster.services;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,8 +18,10 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import hitmaster.models.Set;
@@ -64,8 +67,6 @@ public class Database {
             """);
 
             //! DEBUG
-            Database.addSetToDatabase(new Set("Debug", "debug.jpg", "debug.csv", true));
-            Database.addSetToDatabase(new Set("Hitster - UK", "hitster-uk.jpg", "hitster-uk.csv", true));
             Database.addSetToDatabase(new Set("Hitster - DE", "hitster-de.jpg", "hitster-de.csv", true));
 
             stmt.execute("""
@@ -74,9 +75,17 @@ public class Database {
                     titles TEXT NOT NULL,
                     artists TEXT NOT NULL,
                     year INTEGER,
-                    spotify TEXT,
+                    spotify TEXT
+                );
+            """);
+        
+            stmt.execute("""
+                CREATE TABLE IF NOT EXISTS set_songs (
                     set_id INTEGER,
-                    FOREIGN KEY (set_id) REFERENCES sets(id)
+                    song_id INTEGER,
+                    PRIMARY KEY (set_id, song_id),
+                    FOREIGN KEY (set_id) REFERENCES sets(id) ON DELETE CASCADE,
+                    FOREIGN KEY (song_id) REFERENCES songs(id) ON DELETE CASCADE
                 );
             """);
 
@@ -102,6 +111,55 @@ public class Database {
         }
         catch (SQLException e) {
             Log.Error("Error while deleting data from database: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean addSongsToSetFromCsv(String csvFileName, int setId) {
+        try {
+            InputStream is = Database.class.getResourceAsStream("/csv/" + csvFileName);
+            if (is == null) {
+                Log.Error("CSV file not found: /csv/" + csvFileName);
+                return false;
+            }
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            List<String> lines = reader.lines()
+                .filter(line -> line != null && !line.trim().isEmpty())
+                .toList();
+
+            if (lines.isEmpty()) {
+                Log.Error("CSV file is empty: " + csvFileName);
+                return false;
+            }
+
+            try (Connection conn = Database.connect();
+                PreparedStatement ps = conn.prepareStatement("""
+                    INSERT OR IGNORE INTO set_songs (set_id, song_id)
+                    VALUES (?, ?)
+                """)) {
+
+                // i = 1 to skip head row
+                for (int i = 1; i < lines.size(); i++) {
+                    String line = lines.get(i).trim();
+                    try {
+                        int songId = Integer.parseInt(line);
+                        
+                        ps.setInt(1, setId);
+                        ps.setInt(2, songId);
+                        ps.addBatch();
+                    } catch (NumberFormatException e) {
+                        Log.Error("Skipped invalid ID in CSV: " + line);
+                    }
+                }
+
+                ps.executeBatch();
+                Log.Success("Succesfully added " + (lines.size() - 1) + " songs to set with ID " + setId + ".");
+                return true;
+            }
+        }
+        catch (SQLException e) {
+            Log.Error("Error while reading set CSV: " + e.getMessage());
             return false;
         }
     }
@@ -155,7 +213,7 @@ public class Database {
         }
     }
 
-    public static boolean insertJsonIntoSongs(String jsonFileName, int setId) {
+    public static boolean insertJsonIntoSongs(String jsonFileName) {
         try {
             // 1) JSON aus dem Ressourcen-Pfad laden
             InputStream is = Database.class.getResourceAsStream("/json/" + jsonFileName);
@@ -171,8 +229,8 @@ public class Database {
             // 3) In die Datenbank schreiben
             try (Connection conn = Database.connect();
                 PreparedStatement ps = conn.prepareStatement("""
-                    INSERT INTO songs (titles, artists, year, spotify, set_id)
-                    VALUES (?, ?, ?, ?, ?)
+                    INSERT INTO songs (titles, artists, year, spotify)
+                    VALUES (?, ?, ?, ?)
                 """)) {
 
                 for (JsonElement element : songsArray) {
@@ -183,7 +241,6 @@ public class Database {
                     ps.setString(2, songObj.getAsJsonArray("artists").toString());
                     ps.setInt(3, songObj.get("year").getAsInt());
                     ps.setString(4, songObj.get("spotify_id").getAsString());
-                    ps.setInt(5, setId);
 
                     ps.addBatch();
                 }
@@ -193,7 +250,7 @@ public class Database {
                 return true;
             }
         }
-        catch (Exception e) {
+        catch (JsonIOException | JsonSyntaxException | UnsupportedEncodingException | SQLException e) {
             Log.Error("Error while inserting data from \"" + jsonFileName + "\" into table \"songs\": " + e.getMessage());
             return false;
         }
@@ -272,9 +329,10 @@ public class Database {
             Statement stmt = conn.createStatement();
 
             String sql = """
-                SELECT songs.* FROM songs
-                INNER JOIN sets ON songs.set_id = sets.id
-                WHERE sets.is_active = 1
+                SELECT DISTINCT s.* FROM songs s
+                INNER JOIN set_songs ss ON s.id = ss.song_id
+                INNER JOIN sets o ON ss.set_id = o.id
+                WHERE o.is_active = 1
             """;
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -319,9 +377,9 @@ public class Database {
     public static List<Song> getSongsBySetId(int setId) {
         try (Connection conn = Database.connect()) {
             String sqlExecute = """
-                SELECT *
-                FROM songs
-                WHERE set_id = ?
+                SELECT s.* FROM songs s
+                INNER JOIN set_songs ss ON s.id = ss.song_id
+                WHERE ss.set_id = ?
             """;
             PreparedStatement ps = conn.prepareStatement(sqlExecute);
             ps.setInt(1, setId);
@@ -450,7 +508,6 @@ public class Database {
         song.id = rs.getInt("id");
         song.year = rs.getInt("year");
         song.spotify = rs.getString("spotify");
-        song.set_id = rs.getInt("set_id");
 
         // Gson wandelt den JSON-String direkt in eine List<String> um
         song.titles = gson.fromJson(rs.getString("titles"), LIST_TYPE);
