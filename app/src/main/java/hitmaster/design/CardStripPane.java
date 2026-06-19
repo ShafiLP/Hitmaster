@@ -3,6 +3,7 @@ package hitmaster.design;
 import java.util.ArrayList;
 import java.util.List;
 
+import hitmaster.views.GameView;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -11,7 +12,8 @@ import javafx.scene.shape.Line;
 import javafx.util.Duration;
 
 public class CardStripPane extends Pane {
-
+    
+    private final GameView PARENT;
     private final List<SongCard> cards = new ArrayList<>();
     private int originalIndex = -1;
     private int insertIndex = -1;
@@ -25,9 +27,11 @@ public class CardStripPane extends Pane {
 
     private final Line marker = new Line();
 
-    public CardStripPane() {
-        widthProperty().addListener((obs, oldVal, newVal) -> layoutCards());
-        heightProperty().addListener((obs, oldVal, newVal) -> layoutCards());
+    public CardStripPane(GameView PARENT) {
+        this.PARENT = PARENT;
+
+        this.widthProperty().addListener((obs, oldVal, newVal) -> layoutCards());
+        this.heightProperty().addListener((obs, oldVal, newVal) -> layoutCards());
 
         marker.setStroke(Color.WHITE);
         marker.setStrokeWidth(5);
@@ -52,7 +56,7 @@ public class CardStripPane extends Pane {
                 cards.remove(card);
             }
             marker.setVisible(false);
-            layoutCards();
+            this.layoutCards();
         });
 
         card.setOnDragged((sceneX, sceneY) -> {
@@ -83,7 +87,7 @@ public class CardStripPane extends Pane {
                     Point2D scenePoint = card.localToScene(0, 0);
                     Pane gameView = (Pane) getParent();
                     
-                    getChildren().remove(card);
+                    this.getChildren().remove(card);
                     
                     if (gameView != null && !gameView.getChildren().contains(card)) {
                         gameView.getChildren().add(card);
@@ -93,9 +97,12 @@ public class CardStripPane extends Pane {
                     }
                 }
             }
+
             insertIndex = -1;
             originalIndex = -1;
-            layoutCards();
+            this.layoutCards();
+
+            PARENT.getGameLogic().handleCardMove(cards);
         });
     }
 

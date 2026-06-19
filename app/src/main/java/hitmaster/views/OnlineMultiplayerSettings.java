@@ -113,6 +113,7 @@ public class OnlineMultiplayerSettings {
             User user = Database.getCurrentUser();
             options.players = new Player[2];
             options.players[0] = new Player(user.username, user.picture);
+            options.players[0].role = Player.Role.HOST;
 
             WaitingForPlayerView waiting = new WaitingForPlayerView(PARENT, options);
             waiting.show();

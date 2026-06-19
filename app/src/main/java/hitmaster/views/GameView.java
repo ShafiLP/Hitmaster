@@ -73,7 +73,7 @@ public class GameView extends Pane {
         final double CONTROLS_WIDTH = 320;
         final double GAP = 20;
 
-        STRIP = new CardStripPane();
+        STRIP = new CardStripPane(this);
         STRIP.setPrefHeight(200);
 
         STRIP.prefWidthProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + (GAP * 3)));
@@ -315,7 +315,11 @@ public class GameView extends Pane {
         boolean guess = GAME.checkSongOrder(STRIP.getCards());
         currentCard.setBorderColor(guess ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)");
 
-        // 4) Set Status and start Timer
+        // 4) Send result to connected player
+        GAME.handleCardMove(STRIP.getCards());
+        GAME.sendObject(guess ? "OPPONENT_RIGHT" : "OPPONENT_WRONG");
+
+        // 5) Set Status and start Timer
         STATUS.setInfoText(guess ? GAME.getCurrentPlayer().username + " guessed right!" : GAME.getCurrentPlayer().username + " guessed wrong!");
 
         timerUnit.stop();
@@ -360,11 +364,7 @@ public class GameView extends Pane {
                     STATUS.setInfoText(GAME.getCurrentPlayer().username + " won the game!");
                     timerUnit.stop();
                     WinnerPane.winnerDialog(this, GAME.getCurrentPlayer());
-                });
-            }
-            else {
-                Platform.runLater(() -> {
-                    GAME.addFirstToCardStack();
+                    GAME.sendObject("OPPONENT_WIN");
                 });
             }
         }
@@ -379,7 +379,7 @@ public class GameView extends Pane {
                 double sceneX = wrongCard.localToScene(0, 0).getX();
                 double sceneY = wrongCard.localToScene(0, 0).getY();
                 
-                javafx.geometry.Point2D localPos = this.sceneToLocal(sceneX, sceneY);
+                Point2D localPos = this.sceneToLocal(sceneX, sceneY);
 
                 STRIP.removeCard(wrongCard, false); 
 
@@ -396,13 +396,14 @@ public class GameView extends Pane {
                 Platform.runLater(() -> {
                     DISCARD_PILE.discardCard(wrongCard);
                 });
-                
-                GAME.addFirstToCardStack();
             });
+
+            GAME.handleCardMove(STRIP.getCards());
+            GAME.sendObject("OPPONENT_DISCARD");
         }
 
         // 4) Swap active player
-        GAME.switchToNextPlayer();
+        GAME.finishTurn();
         Platform.runLater(() -> {
             STATUS.setInfoText(GAME.getCurrentPlayer().username + " is making their guess.");
         });
@@ -538,6 +539,14 @@ public class GameView extends Pane {
         );
     }
 
+    public List<SongCard> getCardsFromStrip() {
+        return STRIP.getCards();
+    }
+
+    public GameLogic getGameLogic() {
+        return GAME;
+    }
+
 
     // ==============================
     // Multiplayer methods
@@ -595,11 +604,11 @@ public class GameView extends Pane {
         Platform.runLater(() -> OPPONENT_PANE.addSong(song));
     }
 
-    public void addOpponentChip(Song song) {
+    public void addOpponentChip() {
         Platform.runLater(() -> OPPONENT_PANE.addChip());
     }
 
-    public void removeOpponentChip(Song song) {
+    public void removeOpponentChip() {
         Platform.runLater(() -> OPPONENT_PANE.removeChip());
     }
 
@@ -711,5 +720,25 @@ public class GameView extends Pane {
             return false;
 
         return (!(stealCardIdx - 1 == currentCardIdx) && !(stealCardIdx + 1 == currentCardIdx));
+    }
+
+    public void addNewCardToDiscard(Song song) {
+        SongCard card = new SongCard(this, song);
+
+        /*Platform.runLater(() -> {
+            Point2D sceneCoords = PILE_IMAGE.localToScene(0, 0);
+            Point2D localCoords = this.sceneToLocal(sceneCoords);
+
+            if (localCoords != null) {
+                card.setLayoutX(localCoords.getX());
+                card.setLayoutY(localCoords.getY());
+            }
+        });*/
+
+        this.getChildren().add(card);
+        card.showFront();
+        card.toFront();
+
+        DISCARD_PILE.setDiscardedCard(card);
     }
 }

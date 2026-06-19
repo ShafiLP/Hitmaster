@@ -416,7 +416,7 @@
   {
     "id": 60,
     "titles": ["Tage Wie Diese"],
-    "artists": ["Die Toten Hosen", "Toten Hosen", "DTH"],
+    "artists": ["Die Toten Hosen", "Toten Hosen", "Tote Hosen", "DTH"],
     "year": 2012,
     "spotify_id": "2lYsCjTvXIHOqT8xSbK2jq"
   },
@@ -2802,5 +2802,446 @@
     "artists": ["Whitesnake"],
     "year": 1982,
     "spotify_id": "https://open.spotify.com/track/1tQ5TSr1tyeQUbHKBee0jv"
+  },
+  {
+    "id": 401,
+    "titles": ["You Ain't Seen Nothing Yet", "You Haven't Seen Nothing Yet", "You Have Not Seen Nothing Yet"],
+    "artists": ["Bachman-Turner Overdrive", "Bachman Turner Overdrive", "BTO"],
+    "year": 1974,
+    "spotify_id": "https://open.spotify.com/track/0HOrDVS349XFcpCYsO2hAP"
+  },
+  {
+    "id": 402,
+    "titles": ["For What It's Worth", "For What It Is Worth"],
+    "artists": ["Buffalo Springfield", "BS"],
+    "year": 1966,
+    "spotify_id": "https://open.spotify.com/track/1qRA5BS78u3gME0loMl9AA"
+  },
+  {
+    "id": 403,
+    "titles": ["My Own Worst Enemy"],
+    "artists": ["Lit"],
+    "year": 1999,
+    "spotify_id": "https://open.spotify.com/track/33iv3wnGMrrDugd7GBso1z"
+  },
+  {
+    "id": 404,
+    "titles": ["Wake Up Little Susie"],
+    "artists": ["The Everly Brothers", "Everly Brothers"],
+    "year": 1957,
+    "spotify_id": "https://open.spotify.com/track/11fNLqDB47gMKj7BHhR2Qr"
+  },
+  {
+    "id": 405,
+    "titles": ["Hurricane"],
+    "artists": ["I Prevail"],
+    "year": 2019,
+    "spotify_id": "https://open.spotify.com/track/2GFwwTIVLjnOrtP7m9luHC"
+  },
+  {
+    "id": 406,
+    "titles": ["Ace Of Spades"],
+    "artists": ["Motörhead", "Motorhead"],
+    "year": 1980,
+    "spotify_id": "https://open.spotify.com/track/3CIOopLwvyMvXk97ZEksKO"
+  },
+  {
+    "id": 407,
+    "titles": ["Face Down"],
+    "artists": ["The Red Jumpsuit Apparatus", "Red Jumpsuit Apparatus", "TRJA", "RJA"],
+    "year": 2006,
+    "spotify_id": "https://open.spotify.com/track/4wzjNqjKAKDU82e8uMhzmr"
+  },
+  {
+    "id": 408,
+    "titles": ["California Dreamin'", "California Dreaming"],
+    "artists": ["The Mamas & The Papas", "The Mamas and The Papas", " Mamas & Papas", " Mamas and Papas"],
+    "year": 1965,
+    "spotify_id": "https://open.spotify.com/track/1ZEOIhSn6BKErV59bIgn76"
+  },
+  {
+    "id": 409,
+    "titles": ["You're Going Down", "You Are Going Down"],
+    "artists": ["Sick Puppies", "The Sick Puppies"],
+    "year": 2011,
+    "spotify_id": "https://open.spotify.com/track/5FQXMRDSTkn9fowDJ3kZo8"
+  },
+  {
+    "id": 410,
+    "titles": ["Still Waiting"],
+    "artists": ["Sum 41", "Sum Fourty-One", "Sum Fourty One"],
+    "year": 2002,
+    "spotify_id": "https://open.spotify.com/track/0jqK7sGTLsHPkQrrcrGuKD"
+  },
+  {
+    "id": 411,
+    "titles": ["R U Mine?", "Are You Mine?"],
+    "artists": ["Arctic Monkeys", "The Arctic Monkeys", "AM"],
+    "year": 2012,
+    "spotify_id": "https://open.spotify.com/track/2AT8iROs4FQueDv2c8q2KE"
+  },
+  {
+    "id": 412,
+    "titles": ["Songs Für Liam"],
+    "artists": ["Kraftklub", "Kraftclub", "KK"],
+    "year": 2012,
+    "spotify_id": "https://open.spotify.com/track/2isyujVLDSr4lYhIo7qCRw"
+  },
+  {
+    "id": 413,
+    "titles": ["Bonnie & Clyde", "Bonnie und Clyde"],
+    "artists": ["Die Toten Hosen", "Toten Hosen", "Tote Hosen", "DTH"],
+    "year": 1996,
+    "spotify_id": "https://open.spotify.com/track/2hZAJcLnFGk6V50TiD7yzm"
+  },
+  {
+    "id": 414,
+    "titles": ["Plush"],
+    "artists": ["Stone Temple Pilots", "STP"],
+    "year": 1992,
+    "spotify_id": "https://open.spotify.com/track/3jJZVeExYzVYiV6Y9Fl3DX"
+  },
+  {
+    "id": 415,
+    "titles": ["Kickstart My Heart"],
+    "artists": ["Mötley Crüe", "Motley Crue"],
+    "year": 1989,
+    "spotify_id": "https://open.spotify.com/track/4Yqy0GpeDEXLibWJCZyQew"
+  },
+  {
+    "id": 416,
+    "titles": ["Born In The U.S.A.", "Born In The USA"],
+    "artists": ["Bruce Springsteen"],
+    "year": 1984,
+    "spotify_id": "https://open.spotify.com/track/0dOg1ySSI7NkpAe89Zo0b9"
+  },
+  {
+    "id": 417,
+    "titles": ["Heat Of The Moment"],
+    "artists": ["Asia"],
+    "year": 1982,
+    "spotify_id": "https://open.spotify.com/track/1nmZ8yqKkfooOuYvtFctDp"
+  },
+  {
+    "id": 418,
+    "titles": ["Roxanne"],
+    "artists": ["The Police", "Police"],
+    "year": 1978,
+    "spotify_id": "https://open.spotify.com/track/3EYOJ48Et32uATr9ZmLnAo"
+  },
+  {
+    "id": 419,
+    "titles": ["Hate To Say I Told You So"],
+    "artists": ["The Hives", "Hives"],
+    "year": 2000,
+    "spotify_id": "https://open.spotify.com/track/20j7B6mL9gnNvG3ic6Vwh5"
+  },
+  {
+    "id": 420,
+    "titles": ["Supermassive Black Hole", "Super Massive Black Hole"],
+    "artists": ["Muse"],
+    "year": 2006,
+    "spotify_id": "https://open.spotify.com/track/3lPr8ghNDBLc2uZovNyLs9"
+  },
+  {
+    "id": 421,
+    "titles": ["We Got The Moves"],
+    "artists": ["Electric Callboy", "Eskimo Callboy", "EC"],
+    "year": 2021,
+    "spotify_id": "https://open.spotify.com/track/4EFb9FhLyFiDbYKwBwDZre"
+  },
+  {
+    "id": 422,
+    "titles": ["La Grange"],
+    "artists": ["ZZ Top"],
+    "year": 1973,
+    "spotify_id": "https://open.spotify.com/track/2YgjwTiG85B2tvqmdRNpba"
+  },
+  {
+    "id": 423,
+    "titles": ["The Trooper"],
+    "artists": ["Iron Maiden", "IM"],
+    "year": 1983,
+    "spotify_id": "https://open.spotify.com/track/4OROzZUy6gOWN4UGQVaZMF"
+  },
+  {
+    "id": 424,
+    "titles": ["Rolling' (Air Raid Vehicle)", "Rollin' (Air Raid Vehicle)", "Rollin'", "Rolling"],
+    "artists": ["Limp Bizkit", "Limb Biscuit", "LB"],
+    "year": 2000,
+    "spotify_id": "https://open.spotify.com/track/3IV4swNduIRunHREK80owz"
+  },
+  {
+    "id": 425,
+    "titles": ["Fight For Your Right"],
+    "artists": ["Beastie Boys"],
+    "year": 1986,
+    "spotify_id": "https://open.spotify.com/track/5NLuC70kZQv8q34QyQa1DP"
+  },
+  {
+    "id": 426,
+    "titles": ["American Woman"],
+    "artists": ["The Guess Who", "Guess Who"],
+    "year": 1971,
+    "spotify_id": "https://open.spotify.com/track/3QKGkxQnLTo3FWUTNJZlYH"
+  },
+  {
+    "id": 427,
+    "titles": ["Tutti Frutti"],
+    "artists": ["Little Richard"],
+    "year": 1955,
+    "spotify_id": "https://open.spotify.com/track/2iXcvnD3d1gfLBum0cE5Eg"
+  },
+  {
+    "id": 428,
+    "titles": ["Hound Dog"],
+    "artists": ["Elvis Presley"],
+    "year": 1956,
+    "spotify_id": "https://open.spotify.com/track/64Ny7djQ6rNJspquof2KoX"
+  },
+  {
+    "id": 429,
+    "titles": ["The Passenger"],
+    "artists": ["Iggy Pop"],
+    "year": 1977,
+    "spotify_id": "https://open.spotify.com/track/15BQ7vEDv2LJuh8TxWIhtd"
+  },
+  {
+    "id": 430,
+    "titles": ["Cherry Bomb"],
+    "artists": ["The Runaways", "Runaways"],
+    "year": 1976,
+    "spotify_id": "https://open.spotify.com/track/7cdnq45E9aP2XDStHg5vd7"
+  },
+  {
+    "id": 431,
+    "titles": ["Masterpiece"],
+    "artists": ["Motionless In White", "MIW"],
+    "year": 2022,
+    "spotify_id": "https://open.spotify.com/track/3c9kVsKF68xMzlS0NikVn3"
+  },
+  {
+    "id": 432,
+    "titles": ["Alone In A Room"],
+    "artists": ["Asking Alexandria", "AA"],
+    "year": 2017,
+    "spotify_id": "https://open.spotify.com/track/5Gw8owErJLfkNxWCSwPQKJ"
+  },
+  {
+    "id": 433,
+    "titles": ["Celebrity Skin"],
+    "artists": ["Hole"],
+    "year": 1998,
+    "spotify_id": "https://open.spotify.com/track/2V4Bc2I962j7acQj1N0PiQ"
+  },
+  {
+    "id": 434,
+    "titles": ["Silent Lucidity"],
+    "artists": ["Queensrÿche", "Queensryche"],
+    "year": 1990,
+    "spotify_id": "https://open.spotify.com/track/6OSyCAmXT4Gkd3OQ2aPOaF"
+  },
+  {
+    "id": 435,
+    "titles": ["Holy Diver"],
+    "artists": ["Dio"],
+    "year": 1983,
+    "spotify_id": "https://open.spotify.com/track/54yLLvpezvPO1lA3GspiZj"
+  },
+  {
+    "id": 436,
+    "titles": ["Juke Box Hero"],
+    "artists": ["Foreigner"],
+    "year": 1981,
+    "spotify_id": "https://open.spotify.com/track/00qOE7OjRl0BpYiCiweZB2"
+  },
+  {
+    "id": 437,
+    "titles": ["Don't Bring Me Down", "Do Not Bring Me Down"],
+    "artists": ["Electric Light Orchestra", "ELO"],
+    "year": 1979,
+    "spotify_id": "https://open.spotify.com/track/72ahyckBJfTigJCFCviVN7"
+  },
+  {
+    "id": 438,
+    "titles": ["Rose Tattoo"],
+    "artists": ["Dropkick Murphys", "The Dropkick Murphys", "DM"],
+    "year": 2013,
+    "spotify_id": "https://open.spotify.com/track/3j5QcKYJ836ZBbcj1OoEod"
+  },
+  {
+    "id": 439,
+    "titles": ["Get It On"],
+    "artists": ["T. Rex", "T-Rex", "T Rex"],
+    "year": 1971,
+    "spotify_id": "https://open.spotify.com/track/0LoQuiekvzqx7n8flgEKzF"
+  },
+  {
+    "id": 440,
+    "titles": ["Bulls On Parade"],
+    "artists": ["Rage Against The Machine", "RATM"],
+    "year": 1996,
+    "spotify_id": "https://open.spotify.com/track/0tZ3mElWcr74OOhKEiNz1x"
+  },
+  {
+    "id": 441,
+    "titles": ["Hit The Road Jack"],
+    "artists": ["Ray Charles"],
+    "year": 1961,
+    "spotify_id": "https://open.spotify.com/track/49fzPkBb3aOUWYRKaTWVhm"
+  },
+  {
+    "id": 442,
+    "titles": ["Come As You Are"],
+    "artists": ["Nirvana"],
+    "year": 1991,
+    "spotify_id": "https://open.spotify.com/track/2RsAajgo0g7bMCHxwH3Sk0"
+  },
+  {
+    "id": 443,
+    "titles": ["Square Hammer"],
+    "artists": ["Ghost"],
+    "year": 2016,
+    "spotify_id": "https://open.spotify.com/track/5TNhjanmvwvmjCz2WYwSAv"
+  },
+  {
+    "id": 444,
+    "titles": ["Savior"],
+    "artists": ["Rise Against", "RA"],
+    "year": 2008,
+    "spotify_id": "https://open.spotify.com/track/1vcxF91pWs9uNwDROuiCPB"
+  },
+  {
+    "id": 445,
+    "titles": ["Cut The Cord"],
+    "artists": ["Shinedown"],
+    "year": 2015,
+    "spotify_id": "https://open.spotify.com/track/4LFBVDJV0xpayUvquQVzhS"
+  },
+  {
+    "id": 446,
+    "titles": ["Death By Rock And Roll", "Death by Rock'n'Roll"],
+    "artists": ["The Pretty Reckless", "Pretty Reckless"],
+    "year": 2020,
+    "spotify_id": "https://open.spotify.com/track/18DJQsejI5e1ZwO2wyuP2g"
+  },
+  {
+    "id": 447,
+    "titles": ["Misery Business"],
+    "artists": ["Paramore"],
+    "year": 2007,
+    "spotify_id": "https://open.spotify.com/track/3l9CW99AHtExIRV4hW2N5m"
+  },
+  {
+    "id": 448,
+    "titles": ["Fat Lip"],
+    "artists": ["Sum 41", "Sum Fourty-One", "Sum Fourty One"],
+    "year": 2001,
+    "spotify_id": "https://open.spotify.com/track/4KacUpvbA3Mfo05gttTjhN"
+  },
+  {
+    "id": 449,
+    "titles": ["November Rain"],
+    "artists": ["Guns N' Roses", "Guns And Roses"],
+    "year": 1991,
+    "spotify_id": "https://open.spotify.com/track/3YRCqOhFifThpSRFJ1VWFM"
+  },
+  {
+    "id": 450,
+    "titles": ["I Love Rock'n'Roll", "I Love Rock N' Roll", "I Love Rock And Roll"],
+    "artists": ["Joan Jett & The Blackhearts", "Joan Jett and The Blackhearts", "Joan Jett", "The Blackhearts", "Blackhearts"],
+    "year": 1981,
+    "spotify_id": "https://open.spotify.com/track/2Cdvbe2G4hZsnhNMKyGrie"
+  },
+  {
+    "id": 451,
+    "titles": ["Go Your Own Way"],
+    "artists": ["Fleetwood Mac"],
+    "year": 1976,
+    "spotify_id": "https://open.spotify.com/track/15rjQH7nTcTomKwfVMd4xl"
+  },
+  {
+    "id": 452,
+    "titles": ["Satellite"],
+    "artists": ["Rise Against", "RA"],
+    "year": 2011,
+    "spotify_id": "https://open.spotify.com/track/5sG3G54H21hNfd5etlheoe"
+  },
+  {
+    "id": 453,
+    "titles": ["Highway Tune"],
+    "artists": ["Greta Van Fleet", "GVF"],
+    "year": 2017,
+    "spotify_id": "https://open.spotify.com/track/7aOor99o8NNLZYElOXlBG1"
+  },
+  {
+    "id": 454,
+    "titles": ["Give It Away"],
+    "artists": ["Red Hot Chili Peppers", "RHCP"],
+    "year": 1991,
+    "spotify_id": "https://open.spotify.com/track/0uppYCG86ajpV2hSR3dJJ0"
+  },
+  {
+    "id": 455,
+    "titles": ["Just Like Heaven"],
+    "artists": ["The Cure", "Cure"],
+    "year": 1987,
+    "spotify_id": "https://open.spotify.com/track/4NnWuGQujzWUEg0uZokO5M"
+  },
+  {
+    "id": 456,
+    "titles": ["Fear Of The Dark"],
+    "artists": ["Iron Maiden", "IM"],
+    "year": 1992,
+    "spotify_id": "https://open.spotify.com/track/6p8eFfPw3nQkf37aT3AkmK"
+  },
+  {
+    "id": 457,
+    "titles": ["Call Me"],
+    "artists": ["Blondie"],
+    "year": 1980,
+    "spotify_id": "https://open.spotify.com/track/4qO03RMQm88DdpTJcxlglY"
+  },
+  {
+    "id": 458,
+    "titles": ["Hard To Handle"],
+    "artists": ["The Black Crowes", "Black Crowes", "TBC", "BC"],
+    "year": 1990,
+    "spotify_id": "https://open.spotify.com/track/05NYcsjJwOYq4jIiKPVj9p"
+  },
+  {
+    "id": 459,
+    "titles": ["Hells Bells"],
+    "artists": ["AC/DC", "ACDC", "AC DC"],
+    "year": 1980,
+    "spotify_id": "https://open.spotify.com/track/2P884dqfjksDMSzUZksfrS"
+  },
+  {
+    "id": 460,
+    "titles": ["Welcome To The Black Parade"],
+    "artists": ["My Chemical Romance", "MCR"],
+    "year": 2006,
+    "spotify_id": "https://open.spotify.com/track/5wQnmLuC1W7ATsArWACrgW"
+  },
+  {
+    "id": 461,
+    "titles": ["I Will Not Bow", "I Won't Bow"],
+    "artists": ["Breaking Benjamin"],
+    "year": 2009,
+    "spotify_id": "https://open.spotify.com/track/2yXyz4NLTZx9CLdXfLTp5E"
+  },
+  {
+    "id": 462,
+    "titles": ["Run For Cover"],
+    "artists": ["The Killers", "Killers"],
+    "year": 2017,
+    "spotify_id": "https://open.spotify.com/track/5NAiPIEzxAexFE3ucV18Q8"
+  },
+  {
+    "id": 463,
+    "titles": ["Dance, Dance"],
+    "artists": ["Fall Out Boy", "FOB"],
+    "year": 2005,
+    "spotify_id": "https://open.spotify.com/track/0a7BloCiNzLDD9qSQHh5m7"
   }
 ]

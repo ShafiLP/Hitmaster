@@ -7,3 +7,4 @@ build
 app/hitmaster.db
 app/spotify.properties
 *.db
+app/src/main/resources/userImage.png

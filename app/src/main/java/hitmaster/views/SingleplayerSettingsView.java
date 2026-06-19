@@ -99,6 +99,7 @@ public class SingleplayerSettingsView {
             GameOptions options = new GameOptions();
             options.players = new Player[1];
             options.players[0] = new Player(Database.getCurrentUser().username, Database.getCurrentUser().picture);
+            options.players[0].role = Player.Role.HOST;
             options.moveTime = Integer.parseInt(turnTimeInput.getText());
             options.stealTime = 60;
 

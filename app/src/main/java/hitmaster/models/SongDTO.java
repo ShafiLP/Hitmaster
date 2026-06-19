@@ -13,12 +13,35 @@ public class SongDTO implements Serializable {
     public List<String> titles;
     public String purpose; 
 
+    public List<SongDTO> songList;
+
     public SongDTO(Song song, String purpose) {
         this.id = song.id;
         this.year = song.year;
-        this.artists = new ArrayList<>(song.artists);
-        this.titles = new ArrayList<>(song.titles);
+
+        if (song.artists != null) {
+            this.artists = new ArrayList<>(song.artists);
+        }
+        else {
+            this.artists = new ArrayList<>();
+        }
+
+        if (song.titles != null) {
+            this.titles = new ArrayList<>(song.titles);
+        }
+        else {
+            this.titles = new ArrayList<>();
+        }
+
         this.purpose = purpose;
+    }
+
+    public SongDTO(List<Song> songs, String purpose) {
+        this.purpose = purpose;
+        this.songList = new ArrayList<>();
+        for (Song s : songs) {
+            this.songList.add(new SongDTO(s, purpose));
+        }
     }
 
     public Song toSong() {
