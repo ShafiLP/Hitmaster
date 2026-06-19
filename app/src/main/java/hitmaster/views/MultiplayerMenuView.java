@@ -67,7 +67,10 @@ public class MultiplayerMenuView {
         hostBtn.getStyleClass().add("modern-button");
         hostBtn.setPrefWidth(180);
         hostBtn.setOnAction(e -> {
-            // TODO: New Settings Menu
+            OnlineMultiplayerSettings settings = new OnlineMultiplayerSettings(PARENT);
+            settings.show();
+
+            STAGE.close();
         });
         
         HBox hostRow = createSettingRow("Host Game", "Create a new session as the server host.", hostBtn);
@@ -77,7 +80,10 @@ public class MultiplayerMenuView {
         joinBtn.getStyleClass().add("modern-button");
         joinBtn.setPrefWidth(180);
         joinBtn.setOnAction(e -> {
-            // TODO: New IP input view
+            ConnectToHostView connect = new ConnectToHostView(PARENT);
+            connect.show();
+
+            STAGE.close();
         });
 
         HBox joinRow = createSettingRow("Join Game", "Connect to an existing host session.", joinBtn);

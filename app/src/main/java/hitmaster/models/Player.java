@@ -1,12 +1,13 @@
 package hitmaster.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import hitmaster.services.Log;
 import javafx.scene.image.Image;
 
-public class Player {
+public class Player implements Serializable {
     public String username;
     public Image img;
     public List<Song> songs = new ArrayList<>();

@@ -104,7 +104,7 @@ public class SingleplayerSettingsView {
 
             STAGE.close();
 
-            GameLogic game = new GameLogic(options);
+            GameLogic game = new GameLogic(options, true, null);
             PARENT.setStage(game.getView(), true);
         });
 

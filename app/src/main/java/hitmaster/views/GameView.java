@@ -55,9 +55,8 @@ public class GameView extends Pane {
 
     private OpponentPane OPPONENT_PANE;
 
-    public GameView(GameLogic GAME, Song firstSong) {
+    public GameView(GameLogic GAME) {
         this.GAME = GAME;
-        currentCard = new SongCard(this, firstSong);
 
         // 1) Initialize StatusBar
         STATUS = new StatusBar();

@@ -1,6 +1,7 @@
 package hitmaster;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -9,10 +10,13 @@ import hitmaster.design.SongCard;
 import hitmaster.models.GameOptions;
 import hitmaster.models.Player;
 import hitmaster.models.Song;
+import hitmaster.models.SongDTO;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.MusicPlayer;
+import hitmaster.services.NetworkManager;
 import hitmaster.views.GameView;
+import javafx.application.Platform;
 
 public final class GameLogic {
 
@@ -26,36 +30,74 @@ public final class GameLogic {
     private final List<Song> SONGS;
     private Song currentSong;
 
+    // LAN connection
+    private NetworkManager networkManager;
+    private boolean isHost;
+    private String nextSongPurpose = "";
+
     // Regex Patterns
     private static final Pattern DIACRITICS = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
     private static final Pattern SPECIAL_CHARS = Pattern.compile("[^a-z0-9 ]");
     private static final Pattern MULTIPLE_SPACES = Pattern.compile("\\s+");
 
-    public GameLogic(GameOptions OPTIONS) {
+    public GameLogic(GameOptions OPTIONS, boolean isHost, NetworkManager netManager) {
         this.MUSICPLAYER = new MusicPlayer();
         this.OPTIONS = OPTIONS;
         this.PLAYERS = OPTIONS.players;
         this.MULTIPLAYER = (PLAYERS.length > 1);
 
-        // 1) Read songs from DB and shuffle them
-        SONGS = loadSongsFromDB();
-        Collections.shuffle(SONGS);
-        this.VIEW = new GameView(this, SONGS.getFirst());
-        PLAYERS[0].songs.add(SONGS.getFirst());
-        SONGS.removeFirst();
+        this.isHost = isHost;
+        this.networkManager = netManager;
 
-        if (MULTIPLAYER) {
-            VIEW.initializeOpponentPane(PLAYERS[1]);
-            VIEW.addOpponentCard(SONGS.getFirst());
-            PLAYERS[1].songs.add(SONGS.getFirst());
-            SONGS.removeFirst();
+        // 1) Read songs from DB and shuffle them
+        if (isHost) {
+            SONGS = this.loadSongsFromDB();
+            Collections.shuffle(SONGS);
+        }
+        else {
+            SONGS = new ArrayList<>();
         }
 
-        // 2) Add one song to user's card strip for starting setup
-        addFirstToCardStrip();
+        // 2) Setup Game
+        this.VIEW = new GameView(this);
+
+        if (MULTIPLAYER) {
+            if (isHost) {
+                // ----- HOST LOGIC -----
+                Song clientStartSong = SONGS.removeFirst();
+                PLAYERS[1].songs.add(clientStartSong);
+                VIEW.initializeOpponentPane(PLAYERS[1]);
+                VIEW.addOpponentCard(clientStartSong);
+
+                Song hostStartSong = SONGS.removeFirst();
+                PLAYERS[0].songs.add(hostStartSong);
+                VIEW.addToCardStrip(hostStartSong);
+
+                // Send information to client if LAN connection is active
+                if (networkManager != null) {
+                    Log.Info("Starting to send objects.");
+                    this.sendObject(new SongDTO(clientStartSong, "CLIENT_STRIP"));
+                    Log.Info("Sent ClientStartSong.");
+
+                    this.sendObject(new SongDTO(hostStartSong, "OPPONENT_PANE"));
+                    Log.Info("Sent HostStartSong.");
+                }
+            }
+            else {
+                // ----- CLIENT LOGIC -----
+                VIEW.initializeOpponentPane(PLAYERS[0]);
+                this.initializeClientNetworkListener();
+            }
+        }
+        else {
+            // ----- SINGLEPLAYER LOGIC -----
+            PLAYERS[0].songs.add(SONGS.getFirst());
+            this.addFirstToCardStrip();
+        }
 
         // 3) Add first card to stack
-        addFirstToCardStack();
+        if (isHost)
+            this.addFirstToCardStack();
     }
 
     public List<Song> loadSongsFromDB() {
@@ -198,7 +240,12 @@ public final class GameLogic {
         }
 
         // 2) Update UI
-        VIEW.switchSideWithOpponent();
+        if (MULTIPLAYER && networkManager == null)
+            VIEW.switchSideWithOpponent();
+
+        // 3) Send command if online multiplayer
+        if (isHost && networkManager != null)
+            this.sendObject("PLAYER_NEXT");
     }
 
     public Player getCurrentPlayer() {
@@ -367,5 +414,78 @@ public final class GameLogic {
 
     public void setVolume(int volume) {
         MUSICPLAYER.setVolume(volume);
+    }
+
+    // ==============================
+    // LAN connection methods
+    // ==============================
+
+    public synchronized void sendObject (Object object) {
+        if (networkManager != null) {
+            networkManager.sendObject(object);
+        }
+    }
+
+    public void handleNetworkCommand(String command) {
+        String[] parts = command.split(":");
+        String action = parts[0];
+
+        switch (action) {
+            case "PLAYER_NEXT":
+                this.switchToNextPlayer();
+                break;
+
+            case "UPDATE_CURRENT_SONG":
+                break;
+
+            case "ADD_CARD_TO_STACK":
+                VIEW.addToCardStack(currentSong);
+                break;
+
+            case "PLAY_SONG":
+                break;
+        }
+    }
+
+    private void initializeClientNetworkListener() {
+        if (networkManager != null) {
+            networkManager.setListener(receivedObj -> {
+                if (receivedObj instanceof String command) {
+                    Log.Info("Received command:" + command);
+                    switch (command) {
+                        case "INIT_CLIENT_STRIP":
+                            this.nextSongPurpose = "CLIENT_STRIP";
+                            break;
+                        case "INIT_OPPONENT_PANE":
+                            this.nextSongPurpose = "OPPONENT_PANE";
+                            break;
+                        default:
+                            Platform.runLater(() -> handleNetworkCommand(command));
+                            break;
+                    }
+                } 
+                else if (receivedObj instanceof SongDTO receivedDTO) {
+                    Song receivedSong = receivedDTO.toSong();
+                    
+                    Platform.runLater(() -> {
+                        switch (receivedDTO.purpose) {
+                            case "CLIENT_STRIP":
+                                PLAYERS[0].songs.add(receivedSong);
+                                VIEW.addToCardStrip(receivedSong);
+                                break;
+                                
+                            case "OPPONENT_PANE":
+                                PLAYERS[1].songs.add(receivedSong);
+                                VIEW.addOpponentCard(receivedSong);
+                                break;
+                                
+                            default:
+                                Log.Error("Received SongDTO with invalid purpose.");
+                                break;
+                        }
+                    });
+                }
+            });
+        }
     }
 }
