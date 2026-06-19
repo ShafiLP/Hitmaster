@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import hitmaster.GameLogic;
 import hitmaster.design.StyleDialog;
-import hitmaster.models.GameOptions;
-import hitmaster.models.Player;
 import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
@@ -93,14 +90,8 @@ public class MainMenu {
 
             if (providerStatus) {
                 try {
-                    GameOptions options = new GameOptions();
-                    options.players = new Player[1];
-                    options.players[0] = new Player(Database.getCurrentUser().username, "/setImages/debug.jpg");
-                    options.moveTime = 300;
-                    options.stealTime = 30;
-
-                    GameLogic game = new GameLogic(options);
-                    this.setStage(game.getView(), true);
+                    SingleplayerSettingsView singleplayerMenuView = new SingleplayerSettingsView(this);
+                    singleplayerMenuView.show();
                 }
                 catch (Exception ex) {
                     StyleDialog.errorDialog("Error", "Error while starting game:\n" + ex.getMessage());

@@ -22,16 +22,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class LocalMultiplayerSettingsView {
+public class SingleplayerSettingsView {
 
     private final MainMenu PARENT;
     private final Stage STAGE;
 
-    public LocalMultiplayerSettingsView(MainMenu parent) {
+    public SingleplayerSettingsView(MainMenu parent) {
         this.PARENT = parent;
 
         STAGE = new Stage();
-        STAGE.setTitle("Match Setup");
+        STAGE.setTitle("Game Setup");
 
         // =========================
         // ROOT LAYOUT
@@ -46,7 +46,7 @@ public class LocalMultiplayerSettingsView {
         Label title = new Label("Game Settings");
         title.getStyleClass().add("header");
 
-        Label description = new Label("Configure the rules before launching the multiplayer match.");
+        Label description = new Label("Configure the rules before launching the singleplayer game.");
         description.getStyleClass().add("header-description");
 
         VBox header = new VBox(5, title, description);
@@ -69,23 +69,7 @@ public class LocalMultiplayerSettingsView {
         
         HBox setsRow = createSettingRow("Song Sets", "Import, export or edit your custom song packages.", manageSetsBtn);
 
-        // 2) Player names
-        VBox playerNames = new VBox();
-        TextField p1Name = new TextField();
-        p1Name.getStyleClass().add("modern-textbox");
-        p1Name.setPrefWidth(180);
-        p1Name.setPromptText("Player 1...");
-        p1Name.setText(Database.getCurrentUser().username);
-        playerNames.getChildren().add(p1Name);
-        TextField p2Name = new TextField();
-        p2Name.getStyleClass().add("modern-textbox");
-        p2Name.setPrefWidth(180);
-        p2Name.setPromptText("Player 2...");
-        playerNames.getChildren().add(p2Name);
-
-        HBox namesRow = createSettingRow("Player Names", "Enter player usernames.", playerNames);
-
-        // 3) Turn time
+        // 2) Turn time
         TextField turnTimeInput = new TextField();
         turnTimeInput.setTextFormatter(createNumberFormatter());
         turnTimeInput.setPromptText("Turn Time...");
@@ -95,17 +79,7 @@ public class LocalMultiplayerSettingsView {
         
         HBox turnTimeRow = createSettingRow("Turn Time", "Set time each player gets to log in their guess.", turnTimeControl);
 
-        // 4) Steal time input
-        TextField stealTimeInput = new TextField();
-        stealTimeInput.setTextFormatter(createNumberFormatter());
-        stealTimeInput.setPromptText("Steal Time...");
-        stealTimeInput.getStyleClass().add("modern-textbox");
-        stealTimeInput.setPrefWidth(180);
-        HBox stealTimeControl = createSecondsInput(stealTimeInput, 30);
-        
-        HBox stealTimeRow = createSettingRow("Steal Time", "Time players get after guesses to steal a card.", stealTimeControl);
-
-        content.getChildren().addAll(setsRow, namesRow, turnTimeRow, stealTimeRow);
+        content.getChildren().addAll(setsRow, turnTimeRow);
 
         // =========================
         // FOOTER (Cancel & Start)
@@ -123,11 +97,10 @@ public class LocalMultiplayerSettingsView {
         startGame.setPrefWidth(140);
         startGame.setOnAction(e -> {
             GameOptions options = new GameOptions();
-            options.players = new Player[2];
-            options.players[0] = new Player(p1Name.getText(), "/" + Database.getCurrentUser().picture);
-            options.players[1] = new Player(p2Name.getText(), "/" + Database.getCurrentUser().picture);
+            options.players = new Player[1];
+            options.players[0] = new Player(Database.getCurrentUser().username, Database.getCurrentUser().picture);
             options.moveTime = Integer.parseInt(turnTimeInput.getText());
-            options.stealTime = Integer.parseInt(stealTimeInput.getText());
+            options.stealTime = 60;
 
             STAGE.close();
 
@@ -144,7 +117,7 @@ public class LocalMultiplayerSettingsView {
         // =========================
         root.getChildren().addAll(header, content, footer);
 
-        Scene scene = new Scene(root, 520, 450);
+        Scene scene = new Scene(root, 520, 300);
         ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
     }
