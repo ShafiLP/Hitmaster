@@ -35,12 +35,11 @@ import javafx.scene.shape.Rectangle;
 public class GameView extends Pane {
 
     private final GameLogic GAME;
+
     private Timer timerUnit;
-
     private SongCard currentCard;
-
-    private boolean isStealing = false;
     private SongCard stealCard = new SongCard(this, null);
+    private boolean isStealing = false;
 
     // UI elements
     private final StatusBar STATUS;
@@ -172,16 +171,16 @@ public class GameView extends Pane {
         insert.getStyleClass().add("modern-button");
 
         back.setOnAction(e -> {
-            currentCard.PLAYER.seekBackward5sec();
+            GAME.seek5secBackward();
         });
         PLAYPAUSE.setOnAction(e -> {
             playPause();
         });
         forward.setOnAction(e -> {
-            currentCard.PLAYER.seekForward5sec();
+            GAME.seek5secForward();
         });
         restart.setOnAction(e -> {
-            currentCard.PLAYER.restart(currentCard.song);
+            GAME.restartCurrentSong();
         });
         skip.setOnAction(e -> {
             if (GAME.getChipCountOfCurrentPlayer() >= 1)
@@ -199,16 +198,16 @@ public class GameView extends Pane {
         deviceDropdown.getStyleClass().add("modern-dropdown");
         deviceDropdown.setPromptText("Device...");
         deviceDropdown.setPrefWidth(130);
-        deviceDropdown.getItems().addAll(currentCard.PLAYER.getAvailableDevices());
-        deviceDropdown.getSelectionModel().select(currentCard.PLAYER.getCurrentDevice());
+        deviceDropdown.getItems().addAll(GAME.getAvailablePlayingDevices());
+        deviceDropdown.getSelectionModel().select(GAME.getCurrentPlayingDevice());
         deviceDropdown.setOnAction(e -> {
-            currentCard.PLAYER.setCurrentDevice(deviceDropdown.getValue());
+            GAME.setPlayerDevice(deviceDropdown.getValue());
         });
 
-        Slider volumeSlider = new Slider(0, 100, currentCard.PLAYER.getVolume());
+        Slider volumeSlider = new Slider(0, 100, GAME.getVolume());
         volumeSlider.getStyleClass().add("modern-slider");
         volumeSlider.setOnMouseReleased(e -> {
-            currentCard.PLAYER.setVolume((int) volumeSlider.getValue());
+            GAME.setVolume((int) volumeSlider.getValue());
         });
         HBox.setHgrow(volumeSlider, Priority.ALWAYS);
 
@@ -250,14 +249,10 @@ public class GameView extends Pane {
     public void playPause() {
         currentCard.isPlaying = !currentCard.isPlaying;
 
-        if (currentCard.isPlaying) {
-            PLAYPAUSE.setText("⏸");
-            currentCard.togglePlayPause();
-        }
-        else {
-            PLAYPAUSE.setText("►");
-            currentCard.togglePlayPause();
-        }
+        PLAYPAUSE.setText(currentCard.isPlaying ? "⏸" : "►");
+
+        currentCard.togglePlayPause();
+        GAME.togglePlayPause(currentCard.song, currentCard.isPlaying);
     }
 
     /**

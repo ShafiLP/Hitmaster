@@ -68,6 +68,7 @@ public class Database {
 
             //! DEBUG
             Database.addSetToDatabase(new Set("Hitster - DE", "hitster-de.jpg", "hitster-de.csv", true));
+            Database.addSetToDatabase(new Set("Rock & Metal - DE", "rock-de.jpg", "rock-de.csv", true));
 
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS songs (

@@ -11,17 +11,19 @@ import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
+import hitmaster.services.MusicPlayer;
 import hitmaster.views.GameView;
 
 public final class GameLogic {
 
-    private final GameOptions OPTIONS;
     private final GameView VIEW;
+    private final MusicPlayer MUSICPLAYER;
+    private final GameOptions OPTIONS;
     private final Player[] PLAYERS;
     private final boolean MULTIPLAYER;
     private int currentPlayerIdx = 0;
 
-    private final  List<Song> SONGS;
+    private final List<Song> SONGS;
     private Song currentSong;
 
     // Regex Patterns
@@ -30,9 +32,10 @@ public final class GameLogic {
     private static final Pattern MULTIPLE_SPACES = Pattern.compile("\\s+");
 
     public GameLogic(GameOptions OPTIONS) {
+        this.MUSICPLAYER = new MusicPlayer();
         this.OPTIONS = OPTIONS;
-        PLAYERS = OPTIONS.players;
-        MULTIPLAYER = (PLAYERS.length > 1);
+        this.PLAYERS = OPTIONS.players;
+        this.MULTIPLAYER = (PLAYERS.length > 1);
 
         // 1) Read songs from DB and shuffle them
         SONGS = loadSongsFromDB();
@@ -320,5 +323,49 @@ public final class GameLogic {
 
     public GameView getView() {
         return VIEW;
+    }
+
+    // ==============================
+    // Music Player Methods
+    // ==============================
+
+    public void togglePlayPause(Song song, boolean play) {
+        if (play) {
+            MUSICPLAYER.play(song);
+        } else {
+            MUSICPLAYER.play(song);
+        }
+    }
+
+    public void seek5secForward() {
+        MUSICPLAYER.seekForward5sec();
+    }
+
+    public void seek5secBackward() {
+        MUSICPLAYER.seekForward5sec();
+    }
+
+    public void restartCurrentSong() {
+        MUSICPLAYER.restart(currentSong);
+    }
+
+    public String[] getAvailablePlayingDevices() {
+        return MUSICPLAYER.getAvailableDevices();
+    }
+
+    public String getCurrentPlayingDevice() {
+        return MUSICPLAYER.getCurrentDevice();
+    }
+
+    public void setPlayerDevice(String device) {
+        MUSICPLAYER.setCurrentDevice(device);
+    }
+
+    public int getVolume() {
+        return MUSICPLAYER.getVolume();
+    }
+
+    public void setVolume(int volume) {
+        MUSICPLAYER.setVolume(volume);
     }
 }

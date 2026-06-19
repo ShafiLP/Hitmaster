@@ -16,6 +16,7 @@ public class Main extends Application {
         Database.insertJsonIntoSongs("songs.json");
 
         Database.addSongsToSetFromCsv("hitster-de.csv", 1);
+        Database.addSongsToSetFromCsv("rock-de.csv", 2);
 
         MainMenu menu = new MainMenu(stage);
 

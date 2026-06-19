@@ -2,7 +2,6 @@ package hitmaster.design;
 
 import hitmaster.models.Player;
 import hitmaster.models.Song;
-import hitmaster.services.MusicPlayer;
 import hitmaster.views.GameView;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -29,7 +28,6 @@ public class SongCard extends StackPane {
     private double mouseY;
 
     private final GameView VIEW;
-    public final MusicPlayer PLAYER;
 
     private Runnable dragStarted;
     private DragListener dragListener;
@@ -45,7 +43,6 @@ public class SongCard extends StackPane {
     public SongCard(GameView view, Song song) {
         this.VIEW = view;
         this.song = song;
-        PLAYER = new MusicPlayer();
 
         color = PastelColor.random();
 
@@ -285,13 +282,7 @@ public class SongCard extends StackPane {
     }
 
     public void togglePlayPause() {
-        if (playPause.getText().equals("⏸")) {
-            playPause.setText("►");
-            PLAYER.pause();
-        } else {
-            playPause.setText("⏸");
-            PLAYER.play(song);
-        }
+        playPause.setText(playPause.getText().equals("⏸") ? "►" : "⏸");
     }
 }
 
