@@ -9,6 +9,7 @@ import hitmaster.design.DiscardPile;
 import hitmaster.design.OpponentPane;
 import hitmaster.design.SongCard;
 import hitmaster.design.StatusBar;
+import hitmaster.design.WinnerPane;
 import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.Log;
@@ -361,7 +362,11 @@ public class GameView extends Pane {
         if (guess) {
             GAME.addCardToPlayerSorted(GAME.getCurrentPlayer());
             if (GAME.checkForWin(STRIP.getCards())) {
-                Log.Info("WON.");
+                Platform.runLater(() -> {
+                    STATUS.setInfoText(GAME.getCurrentPlayer().username + " won the game!");
+                    timerUnit.stop();
+                    WinnerPane.winnerDialog(this, GAME.getCurrentPlayer());
+                });
             }
             else {
                 Platform.runLater(() -> {

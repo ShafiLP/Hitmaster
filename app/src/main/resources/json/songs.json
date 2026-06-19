@@ -1,1147 +1,702 @@
 [
   {
     "id": 1,
-    "titles": [
-      "Wann Wird's Mal Wieder Richtig Sommer",
-      "Wann Wird Es Mal Wieder Richtig Sommer"
+    "titles": ["Wann Wird's Mal Wieder Richtig Sommer", "Wann Wird Es Mal Wieder Richtig Sommer"
     ],
-    "artists": [
-      "Rudi Carrell"
-    ],
+    "artists": ["Rudi Carrell"],
     "year": 1975,
     "spotify_id": "59VR9MekNIMRLxQYfSn3Qr"
   },
   {
     "id": 2,
-    "titles": [
-      "You Can Call Me AI"
-    ],
-    "artists": [
-      "Paul Simon"
-    ],
+    "titles": ["You Can Call Me AI"],
+    "artists": ["Paul Simon"],
     "year": 1986,
     "spotify_id": "0qxYx4F3vm1AOnfux6dDxP"
   },
   {
     "id": 3,
-    "titles": [
-      "Start Me Up"
-    ],
-    "artists": [
-      "The Rolling Stones",
-      "Rolling Stones"
-    ],
+    "titles": ["Start Me Up"],
+    "artists": ["The Rolling Stones", "Rolling Stones"],
     "year": 1981,
     "spotify_id": "7HKez549fwJQDzx3zLjHKC"
   },
   {
     "id": 4,
-    "titles": [
-      "The Twist"
-    ],
-    "artists": [
-      "Chubby Checker"
-    ],
+    "titles": ["The Twist"],
+    "artists": ["Chubby Checker"],
     "year": 1960,
     "spotify_id": "6DSvUZQdqtNfkJI4cAiUsM"
   },
   {
     "id": 5,
-    "titles": [
-      "Blurred Lines (feat. T.I. & Pharrell Williams)",
-      "Blurred Lines"
-    ],
-    "artists": [
-      "Robin Thicke"
-    ],
+    "titles": ["Blurred Lines (feat. T.I. & Pharrell Williams)", "Blurred Lines"],
+    "artists": ["Robin Thicke"],
     "year": 2013,
     "spotify_id": "2pgbGOb00WrlXY3ZRFKn7v"
   },
   {
     "id": 6,
-    "titles": [
-      "Hangover (feat. Flo Rida)",
-      "Hangover"
-    ],
-    "artists": [
-      "Taio Cruz"
-    ],
+    "titles": ["Hangover (feat. Flo Rida)", "Hangover"],
+    "artists": ["Taio Cruz"],
     "year": 2011,
     "spotify_id": "23TrBtndcavtlYBQg5GoR8"
   },
   {
     "id": 7,
-    "titles": [
-      "One More Time"
-    ],
-    "artists": [
-      "Daft Punk"
-    ],
+    "titles": ["One More Time"],
+    "artists": ["Daft Punk", "DP"],
     "year": 2000,
     "spotify_id": "2Uy6EhQXAYkXA6MohPgjpV"
   },
   {
     "id": 8,
-    "titles": [
-      "China In Your Hand"
-    ],
-    "artists": [
-      "T'Pau"
-    ],
+    "titles": ["China In Your Hand"],
+    "artists": ["T'Pau", "T Pau"],
     "year": 1987,
     "spotify_id": "3U9B0ZcnVPisVh9wGOg6qL"
   },
   {
     "id": 9,
-    "titles": [
-      "The Best"
-    ],
-    "artists": [
-      "Tina Turner"
-    ],
+    "titles": ["The Best"],
+    "artists": ["Tina Turner"],
     "year": 1989,
     "spotify_id": "6pPWRBubXOBAHnjl5ZIujB"
   },
   {
     "id": 10,
-    "titles": [
-      "The Hustle"
-    ],
-    "artists": [
-      "Van McCoy & the Soul City Symphony",
-      "Van McCoy and the Soul City Symphony",
-      "Van McCoy"
-    ],
+    "titles": ["The Hustle"],
+    "artists": ["Van McCoy & the Soul City Symphony", "Van McCoy and the Soul City Symphony", "Van McCoy"],
     "year": 1975,
     "spotify_id": "2yDXsPUm95218qlAQfnilm"
   },
   {
     "id": 11,
-    "titles": [
-      "Piece Of My Heart"
-    ],
-    "artists": [
-      "Erma Franklin"
-    ],
+    "titles": ["Piece Of My Heart"],
+    "artists": ["Erma Franklin"],
     "year": 1967,
     "spotify_id": "2GbePPrWWSRxcmW6QRSPae"
   },
   {
     "id": 12,
-    "titles": [
-      "Hunrgy Eyes"
-    ],
-    "artists": [
-      "Eric Carmen"
-    ],
+    "titles": ["Hunrgy Eyes"],
+    "artists": ["Eric Carmen"],
     "year": 1987,
     "spotify_id": "7eafuv44YprITfOdzfVLoU"
   },
   {
     "id": 13,
-    "titles": [
-      "Karma Chameleon"
-    ],
-    "artists": [
-      "Culture Club"
-    ],
+    "titles": ["Karma Chameleon"],
+    "artists": ["Culture Club", "CC"],
     "year": 1983,
     "spotify_id": "3XDeeP9wBZzGhIPZmLfEEx"
   },
   {
     "id": 14,
-    "titles": [
-      "99 Luftballons",
-      "Neunundneunzig Luftballons",
-      "99 Red Balloons",
-      "Ninety-nine Red Balloons"
-    ],
-    "artists": [
-      "Nena"
-    ],
+    "titles": ["99 Luftballons", "Neunundneunzig Luftballons", "99 Red Balloons", "Ninety-nine Red Balloons"],
+    "artists": ["Nena"],
     "year": 1983,
     "spotify_id": "4ZhPLoMzZwewHLLjV1J15c"
   },
   {
     "id": 15,
-    "titles": [
-      "Beinhart"
-    ],
-    "artists": [
-      "Torfrock"
-    ],
+    "titles": ["Beinhart"],
+    "artists": ["Torfrock"],
     "year": 1990,
     "spotify_id": "2zygsl5Awjq2CuJc1L55x0"
   },
   {
     "id": 16,
-    "titles": [
-      "In Da Club",
-      "In The Club"
-    ],
-    "artists": [
-      "50 Cent",
-      "Fifty Cent"
-    ],
+    "titles": ["In Da Club", "In The Club"],
+    "artists": ["50 Cent", "Fifty Cent"],
     "year": 2003,
     "spotify_id": "7iL6o9tox1zgHpKUfh9vuC"
   },
   {
     "id": 17,
-    "titles": [
-      "Don't Go"
-    ],
-    "artists": [
-      "Yazoo"
-    ],
+    "titles": ["Don't Go", "Do Not Go"],
+    "artists": ["Yazoo"],
     "year": 1982,
     "spotify_id": "5JOVSWohrjXW0BFTboh8XO"
   },
   {
     "id": 18,
-    "titles": [
-      "I Wanna Dance With Somebody (Who Loves Me)",
-      "I Wanna Dance With Somebody"
-    ],
-    "artists": [
-      "Whitney Houston"
-    ],
+    "titles": ["I Wanna Dance With Somebody (Who Loves Me)", "I Wanna Dance With Somebody", "I Want Ti Dance With Somebody (Who Loves Me)", "I Want To Dance With Somebody"],
+    "artists": ["Whitney Houston"],
     "year": 1987,
     "spotify_id": "2tUBqZG2AbRi7Q0BIrVrEj"
   },
   {
     "id": 19,
-    "titles": [
-      "7 Years",
-      "Seven Years"
-    ],
-    "artists": [
-      "Lukas Graham"
-    ],
+    "titles": ["7 Years", "Seven Years"],
+    "artists": ["Lukas Graham"],
     "year": 2015,
     "spotify_id": "5kqIPrATaCc2LqxVWzQGbk"
   },
   {
     "id": 20,
-    "titles": [
-      "Sugar-Baby"
-    ],
-    "artists": [
-      "Peter Kraus"
-    ],
+    "titles": ["Sugar-Baby"],
+    "artists": ["Peter Kraus"],
     "year": 1999,
     "spotify_id": "6OnOIWxhezuZjF4APOl7oF"
   },
   {
     "id": 21,
-    "titles": [
-      "Lean On (feat. DJ Snake & MØ)",
-      "Lean On"
-    ],
-    "artists": [
-      "Major Lazer"
-    ],
+    "titles": ["Lean On (feat. DJ Snake & MØ)", "Lean On"],
+    "artists": ["Major Lazer"],
     "year": 2015,
     "spotify_id": "2YWjW3wwQIBLNhxWKBQd16"
   },
   {
     "id": 22,
-    "titles": [
-      "Einmal Um Die Welt"
-    ],
-    "artists": [
-      "CRO"
-    ],
+    "titles": ["Einmal Um Die Welt"],
+    "artists": ["CRO"],
     "year": 2011,
     "spotify_id": "2L6hCTpUlR2p7Su3hiSB0s"
   },
   {
     "id": 23,
-    "titles": [
-      "Ich Will Keine Schokolade"
-    ],
-    "artists": [
-      "Trude Herr"
-    ],
+    "titles": ["Ich Will Keine Schokolade"],
+    "artists": ["Trude Herr"],
     "year": 1959,
     "spotify_id": "2uwDgQNRc1zS5khCPVM0jl"
   },
   {
     "id": 24,
-    "titles": [
-      "80 Millionen",
-      "Achtzig Millionen"
-    ],
-    "artists": [
-      "Max Giesinger"
-    ],
+    "titles": ["80 Millionen", "Achtzig Millionen"],
+    "artists": ["Max Giesinger"],
     "year": 2016,
     "spotify_id": "4EB11zPPq3jDbhnwWpzFL9"
   },
   {
     "id": 25,
-    "titles": [
-      "Friday I'm In Love"
-    ],
-    "artists": [
-      "The Cure",
-      "Cure"
-    ],
+    "titles": ["Friday I'm In Love", "Friday I Am In Love"],
+    "artists": ["The Cure", "Cure"],
     "year": 1992,
     "spotify_id": "4QlzkaRHtU8gAdwqjWmO8n"
   },
   {
     "id": 26,
-    "titles": [
-      "What Is Love"
-    ],
-    "artists": [
-      "Haddaway"
-    ],
+    "titles": ["What Is Love"],
+    "artists": ["Haddaway"],
     "year": 1993,
     "spotify_id": "2IHaGyfxNoFPLJnaEg4GTs"
   },
   {
     "id": 27,
-    "titles": [
-      "Auf Uns"
-    ],
-    "artists": [
-      "Andreas Bourani"
-    ],
+    "titles": ["Auf Uns"],
+    "artists": ["Andreas Bourani"],
     "year": 2014,
     "spotify_id": "6dXt4t5jgySnVTeTpT4C0l"
   },
   {
     "id": 28,
-    "titles": [
-      "Don't Stop Believin'",
-      "Don't Stop Believing"
-    ],
-    "artists": [
-      "Journey"
-    ],
+    "titles": ["Don't Stop Believin'", "Don't Stop Believing", "Do Not Stop Believin'", "Do Not Stop Believing"],
+    "artists": ["Journey"],
     "year": 1981,
     "spotify_id": "4bHsxqR3GMrXTxEPLuK5ue"
   },
   {
     "id": 29,
-    "titles": [
-      "Orinoco Flow"
-    ],
-    "artists": [
-      "Enya"
-    ],
+    "titles": ["Orinoco Flow"],
+    "artists": ["Enya"],
     "year": 1988,
     "spotify_id": "0Fyj9w0HVfjoxm9S8nGClt"
   },
   {
     "id": 30,
-    "titles": [
-      "Über Den Wolken"
-    ],
-    "artists": [
-      "Reinhard Mey"
-    ],
+    "titles": ["Über Den Wolken", "Ueber Den Wolken"],
+    "artists": ["Reinhard Mey"],
     "year": 1974,
     "spotify_id": "5JSzcnZbYk3qv3nEn5Bo41"
   },
   {
     "id": 31,
-    "titles": [
-      "Rehab"
-    ],
-    "artists": [
-      "Amy Winehouse"
-    ],
+    "titles": ["Rehab"],
+    "artists": ["Amy Winehouse"],
     "year": 2006,
     "spotify_id": "3N4DI1vuTSX1tz7fa2NQZw"
   },
   {
     "id": 32,
-    "titles": [
-      "Liebeskummer Lohnt Sich Nicht"
-    ],
-    "artists": [
-      "Siw Malmkvist"
-    ],
+    "titles": ["Liebeskummer Lohnt Sich Nicht"],
+    "artists": ["Siw Malmkvist"],
     "year": 1964,
     "spotify_id": "3DMk51IjcSdYmUT51QWfm1"
   },
   {
     "id": 33,
-    "titles": [
-      "You Make Me Feel (Mighty Real)",
-      "You Make Me Feel"
-    ],
-    "artists": [
-      "Sylvester"
-    ],
+    "titles": ["You Make Me Feel (Mighty Real)", "You Make Me Feel"],
+    "artists": ["Sylvester"],
     "year": 1978,
     "spotify_id": "0RnCUYXa7jhgTXtiMXF2PQ"
   },
   {
     "id": 34,
-    "titles": [
-      "Sweet Home Alabama"
-    ],
-    "artists": [
-      "Lynyrd Skynyrd"
-    ],
+    "titles": ["Sweet Home Alabama"],
+    "artists": ["Lynyrd Skynyrd"],
     "year": 1974,
     "spotify_id": "7e89621JPkKaeDSTQ3avtg"
   },
   {
     "id": 35,
-    "titles": [
-      "He Ain't Heavy He's My Brother"
-    ],
-    "artists": [
-      "The Hollies"
-    ],
+    "titles": ["He Ain't Heavy He's My Brother", "He Ain't Heavy He Is My Brother"],
+    "artists": ["The Hollies", "Hollies"],
     "year": 1969,
     "spotify_id": "6f5sSC3ORfpUMYtE4J06VW"
   },
   {
     "id": 36,
-    "titles": [
-      "Eine Neue Liebe Ist Wie Ein Neues Leben"
-    ],
-    "artists": [
-      "Jürgen Marcus"
-    ],
+    "titles": ["Eine Neue Liebe Ist Wie Ein Neues Leben"],
+    "artists": ["Jürgen Marcus", "Juergen Marcus"],
     "year": 1972,
     "spotify_id": "0oH9kW4faMsq9YgRYirgD0"
   },
   {
     "id": 37,
-    "titles": [
-      "Manic Monday"
-    ],
-    "artists": [
-      "The Bangles",
-      "Bangles"
-    ],
+    "titles": ["Manic Monday"],
+    "artists": ["The Bangles", "Bangles"],
     "year": 1985,
     "spotify_id": "798fUF6UnRn27xiVuKyJCi"
   },
   {
     "id": 38,
-    "titles": [
-      "Paradise By The Dashboard Light"
-    ],
-    "artists": [
-      "Meat Loaf"
-    ],
+    "titles": ["Paradise By The Dashboard Light"],
+    "artists": ["Meat Loaf"],
     "year": 1977,
     "spotify_id": "2g7gviEeJr6pyxO7G35EWQ"
   },
   {
     "id": 39,
-    "titles": [
-      "Never Ending Story"
-    ],
-    "artists": [
-      "Limahl"
-    ],
+    "titles": ["Never Ending Story"],
+    "artists": ["Limahl"],
     "year": 1984,
     "spotify_id": "1F43XlPBiwAUUIhrUGzylO"
   },
   {
     "id": 40,
-    "titles": [
-      "Don't Call Me Up"
-    ],
-    "artists": [
-      "Mabel"
-    ],
+    "titles": ["Don't Call Me Up"],
+    "artists": ["Mabel"],
     "year": 2019,
     "spotify_id": "5Xc9L411IGVexidbaF7CHG"
   },
   {
     "id": 41,
-    "titles": [
-      "Under The Bridge"
-    ],
-    "artists": [
-      "Red Hot Chili Peppers",
-      "RHCP"
-    ],
+    "titles": ["Under The Bridge"],
+    "artists": ["Red Hot Chili Peppers", "RHCP"],
     "year": 1991,
     "spotify_id": "3d9DChrdc6BOeFsbrZ3Is0"
   },
   {
     "id": 42,
-    "titles": [
-      "König Von Deutschland"
-    ],
-    "artists": [
-      "Rio Reiser"
-    ],
+    "titles": ["König Von Deutschland", "Koenig Von Deutschland"],
+    "artists": ["Rio Reiser"],
     "year": 1986,
     "spotify_id": "4Hg99jQ6zjks47xaH8eK40"
   },
   {
     "id": 43,
-    "titles": [
-      "Upside Down"
-    ],
-    "artists": [
-      "Diana Ross"
-    ],
+    "titles": ["Upside Down"],
+    "artists": ["Diana Ross"],
     "year": 1980,
     "spotify_id": "6NJNZEjyCD2YWFPsBzIHnM"
   },
   {
     "id": 44,
-    "titles": [
-      "Don't Speak"
-    ],
-    "artists": [
-      "No Doubt"
-    ],
+    "titles": ["Don't Speak", "Do Not Speak"],
+    "artists": ["No Doubt"],
     "year": 1995,
     "spotify_id": "6JGQ98So2ik5GVI9ydQ2Yh"
   },
   {
     "id": 45,
-    "titles": [
-      "(I Can't Get No) Satisfaction",
-      "Satisfaction"
-    ],
-    "artists": [
-      "The Rolling Stones",
-      "Rolling Stones"
-    ],
+    "titles": ["(I Can't Get No) Satisfaction", "Satisfaction", "(I Cannot Get No) Satisfaction", "(I Can Not Get No) Satisfaction"],
+    "artists": ["The Rolling Stones", "Rolling Stones"],
     "year": 1965,
     "spotify_id": "1b6AW6uDrtrUN0Y6GJR45j"
   },
   {
     "id": 46,
-    "titles": [
-      "Dilemma (feat. Kelly Rowland)",
-      "Dilemma"
-    ],
-    "artists": [
-      "Nelly"
-    ],
+    "titles": ["Dilemma (feat. Kelly Rowland)", "Dilemma"],
+    "artists": ["Nelly"],
     "year": 2002,
     "spotify_id": "14MgTooapmJdLlEMAr2zAM"
   },
   {
     "id": 47,
-    "titles": [
-      "Lola"
-    ],
-    "artists": [
-      "The Kinks",
-      "Kinks"
-    ],
+    "titles": ["Lola"],
+    "artists": ["The Kinks", "Kinks"],
     "year": 1970,
     "spotify_id": "0UAJH0k4k3slcE83a9UGCe"
   },
   {
     "id": 48,
-    "titles": [
-      "Captain Jack"
-    ],
-    "artists": [
-      "Captain Jack"
-    ],
+    "titles": ["Captain Jack"],
+    "artists": ["Captain Jack"],
     "year": 1995,
     "spotify_id": "2L5FEDC0MU2a6OEkLjByEd"
   },
   {
     "id": 49,
-    "titles": [
-      "True Colors"
-    ],
-    "artists": [
-      "Cyndi Lauper"
-    ],
+    "titles": ["True Colors" , "True Colours"],
+    "artists": ["Cyndi Lauper"],
     "year": 1986,
     "spotify_id": "2A6yzRGMgSQCUapR2ptm6A"
   },
   {
     "id": 50,
-    "titles": [
-      "Hey Ya!"
-    ],
-    "artists": [
-      "Outkast"
-    ],
+    "titles": ["Hey Ya!", "Hey You!"],
+    "artists": ["Outkast", "The Outkast"],
     "year": 2003,
     "spotify_id": "2PpruBYCo4H7WOBJ7Q2EwM"
   },
   {
     "id": 51,
-    "titles": [
-      "Guajira Guantanamera"
-    ],
-    "artists": [
-      "Joseito Fernandez"
-    ],
+    "titles": ["Guajira Guantanamera"],
+    "artists": ["Joseito Fernandez"],
     "year": 1929,
     "spotify_id": "0KMGf0ebdR8aazf1PoHEdb"
   },
   {
     "id": 52,
-    "titles": [
-      "La Cintura"
-    ],
-    "artists": [
-      "Alvaro Soler"
-    ],
+    "titles": ["La Cintura"],
+    "artists": ["Alvaro Soler"],
     "year": 2018,
     "spotify_id": "6jS8cXW9QsiQKiQ3LFiM4n"
   },
   {
     "id": 53,
-    "titles": [
-      "Sick And Tired"
-    ],
-    "artists": [
-      "Anastacia"
-    ],
+    "titles": ["Sick And Tired"],
+    "artists": ["Anastacia"],
     "year": 2004,
     "spotify_id": "6WMQVizkSPAufOGOk2x4dL"
   },
   {
     "id": 54,
-    "titles": [
-      "If You Leave Me Now"
-    ],
-    "artists": [
-      "Chicago"
-    ],
+    "titles": ["If You Leave Me Now"],
+    "artists": ["Chicago"],
     "year": 1976,
     "spotify_id": "0KMGxYKeUzK9wc5DZCt3HT"
   },
   {
     "id": 55,
-    "titles": [
-      "Siebzehn Jahr, Blondes Haar"
-    ],
-    "artists": [
-      "Udo Jürgens"
-    ],
+    "titles": ["Siebzehn Jahr, Blondes Haar"],
+    "artists": ["Udo Jürgens", "Udo Juergens"],
     "year": 1965,
     "spotify_id": "6RTEzkbTQCivNPX5ShoJVv"
   },
   {
     "id": 56,
-    "titles": [
-      "Murder On The Dancefloor"
-    ],
-    "artists": [
-      "Sophie Ellis-Bextor"
-    ],
+    "titles": ["Murder On The Dancefloor"],
+    "artists": ["Sophie Ellis-Bextor", "Sophie Ellis Bextor"],
     "year": 2001,
     "spotify_id": "5rtpGGu3bPKsJEFjDGs63M"
   },
   {
     "id": 57,
-    "titles": [
-      "Sing Hallelujah!"
-    ],
-    "artists": [
-      "Dr. Alban"
-    ],
+    "titles": ["Sing Hallelujah!"],
+    "artists": ["Dr. Alban", "Doctor Alban"],
     "year": 1992,
     "spotify_id": "01kVVoJQuWVqaOvRgRztJD"
   },
   {
     "id": 58,
-    "titles": [
-      "Set Fire To The Rain"
-    ],
-    "artists": [
-      "Adele"
-    ],
+    "titles": ["Set Fire To The Rain"],
+    "artists": ["Adele"],
     "year": 2011,
     "spotify_id": "3di5hcvxxciiqwMH1jarhY"
   },
   {
     "id": 59,
-    "titles": [
-      "Herz an Herz"
-    ],
-    "artists": [
-      "Blümchen"
-    ],
+    "titles": ["Herz an Herz"],
+    "artists": ["Blümchen", "Bluemchen"],
     "year": 1996,
     "spotify_id": "1X7654uBsdVKnZAqyIJT7y"
   },
   {
     "id": 60,
-    "titles": [
-      "Tage Wie Diese"
-    ],
-    "artists": [
-      "Die Toten Hosen",
-      "Toten Hosen",
-      "DTH"
-    ],
+    "titles": ["Tage Wie Diese"],
+    "artists": ["Die Toten Hosen", "Toten Hosen", "DTH"],
     "year": 2012,
     "spotify_id": "2lYsCjTvXIHOqT8xSbK2jq"
   },
   {
     "id": 61,
-    "titles": [
-      "Sweet Caroline"
-    ],
-    "artists": [
-      "Neil Diamond"
-    ],
+    "titles": ["Sweet Caroline"],
+    "artists": ["Neil Diamond"],
     "year": 1969,
     "spotify_id": "62AuGbAkt8Ox2IrFFb8GKV"
   },
   {
     "id": 62,
-    "titles": [
-      "Do Wah Diddy Diddy"
-    ],
-    "artists": [
-      "Manfred Mann"
-    ],
+    "titles": ["Do Wah Diddy Diddy", "Do The Diddy Diddy"],
+    "artists": ["Manfred Mann"],
     "year": 1964,
     "spotify_id": "7gEpTMp9MQc1uJwivtL37R"
   },
   {
     "id": 63,
-    "titles": [
-      "Über Sieben Brücken Musst Du Gehn",
-      "Über Sieben Brücken Musst Du Gehen"
-    ],
-    "artists": [
-      "Karat"
-    ],
+    "titles": ["Über Sieben Brücken Musst Du Gehn", "Über Sieben Brücken Musst Du Gehen", "Ueber Sieben Brücken Musst Du Gehn", "Ueber Sieben Brücken Musst Du Gehen"],
+    "artists": ["Karat"],
     "year": 1979,
     "spotify_id": "6lhzUwb3Ggfi1tPR3YoIh6"
   },
   {
     "id": 64,
-    "titles": [
-      "Don't Leave Me This Way"
-    ],
-    "artists": [
-      "Thelma Houston"
-    ],
+    "titles": ["Don't Leave Me This Way", "Do Not Leave Me This Way"],
+    "artists": ["Thelma Houston"],
     "year": 1975,
     "spotify_id": "51qi5dgc9CsotM87GmRkAX"
   },
   {
     "id": 65,
-    "titles": [
-      "Can't Hold Us (feat. Ray Dalton)",
-      "Can't Hold Us"
-    ],
-    "artists": [
-      "Macklemore"
-    ],
+    "titles": ["Can't Hold Us (feat. Ray Dalton)", "Can't Hold Us", "Cannot Hold Us (feat. Ray Dalton)", "Cannot Hold Us", "Can Not Hold Us (feat. Ray Dalton)", "Can Not Hold Us"],
+    "artists": ["Macklemore"],
     "year": 2011,
     "spotify_id": "3bidbhpOYeV4knp8AIu8Xn"
   },
   {
     "id": 66,
-    "titles": [
-      "Do You Know? (The Ping Pong Song)",
-      "Do You Know?",
-      "The Ping Pong Song"
-    ],
-    "artists": [
-      "Enrique Iglesias"
-    ],
+    "titles": ["Do You Know? (The Ping Pong Song)", "Do You Know?", "The Ping Pong Song"],
+    "artists": ["Enrique Iglesias"],
     "year": 2007,
     "spotify_id": "4MloswMM3eu7dHZ7MOzW3i"
   },
   {
     "id": 67,
-    "titles": [
-      "Warum?"
-    ],
-    "artists": [
-      "Tic Tac Toe"
-    ],
+    "titles": ["Warum?"],
+    "artists": ["Tic Tac Toe"],
     "year": 1997,
     "spotify_id": "4MloswMM3eu7dHZ7MOzW3i"
   },
   {
     "id": 68,
-    "titles": [
-      "Gimme Hope Jo'Anna"
-    ],
-    "artists": [
-      "Eddy Grant"
-    ],
+    "titles": ["Gimme Hope Jo'Anna", "Give Me Hope Jo'Anna"],
+    "artists": ["Eddy Grant"],
     "year": 1988,
     "spotify_id": "09lZ2Mx2NSpzy6KBpX2kDq"
   },
   {
     "id": 69,
-    "titles": [
-      "Wind Of Change"
-    ],
-    "artists": [
-      "Scorpions"
-    ],
+    "titles": ["Wind Of Change"],
+    "artists": ["Scorpions"],
     "year": 1990,
     "spotify_id": "5WSsTyBvMEFG3ac6JKb9gY"
   },
   {
     "id": 70,
-    "titles": [
-      "Le Freak"
-    ],
-    "artists": [
-      "CHIC"
-    ],
+    "titles": ["Le Freak"],
+    "artists": ["CHIC"],
     "year": 1978,
     "spotify_id": "7Kszjzps0xbQXyo1pO4KfE"
   },
   {
     "id": 71,
-    "titles": [
-      "Haus Am See"
-    ],
-    "artists": [
-      "Peter Fox"
-    ],
+    "titles": ["Haus Am See"],
+    "artists": ["Peter Fox"],
     "year": 2008,
     "spotify_id": "7A4KdLy1DXOOC5fhIdDuHz"
   },
   {
     "id": 72,
-    "titles": [
-      "Poker Face"
-    ],
-    "artists": [
-      "Lady Gaga"
-    ],
+    "titles": ["Poker Face"],
+    "artists": ["Lady Gaga"],
     "year": 2008,
     "spotify_id": "5R8dQOPq8haW94K7mgERlO"
   },
   {
     "id": 73,
-    "titles": [
-      "It's A Heartache"
-    ],
-    "artists": [
-      "Bonnie Tyler"
-    ],
+    "titles": ["It's A Heartache", "It Is A Heartache"],
+    "artists": ["Bonnie Tyler"],
     "year": 1977,
     "spotify_id": "2pag2vElkdroT8hIO4Gozi"
   },
   {
     "id": 74,
-    "titles": [
-      "Jonny B. Goode"
-    ],
-    "artists": [
-      "Chuck Berry"
-    ],
+    "titles": ["Jonny B. Goode"],
+    "artists": ["Chuck Berry"],
     "year": 1958,
     "spotify_id": "2QfiRTz5Yc8DdShCxG1tB2"
   },
   {
     "id": 75,
-    "titles": [
-      "White Wedding"
-    ],
-    "artists": [
-      "Billy Idol"
-    ],
+    "titles": ["White Wedding"],
+    "artists": ["Billy Idol"],
     "year": 1982,
     "spotify_id": "0bvpSvOYt4KTfZIZJmyFOs"
   },
   {
     "id": 76,
-    "titles": [
-      "Rigoletto: \"La Donna E' Mobile\"",
-      "Rigoletto",
-      "La Donne E' Mobile"
-    ],
-    "artists": [
-      "Enrico Caruso"
-    ],
+    "titles": ["Rigoletto: \"La Donna E' Mobile\"", "Rigoletto", "La Donne E' Mobile"],
+    "artists": ["Enrico Caruso"],
     "year": 1904,
     "spotify_id": "7idTMG6EKZy0531lIx8RJ5"
   },
   {
     "id": 77,
-    "titles": [
-      "Without You (feat. Sandro Cavazza)",
-      "Without You"
-    ],
-    "artists": [
-      "Avicii"
-    ],
+    "titles": ["Without You (feat. Sandro Cavazza)", "Without You"],
+    "artists": ["Avicii"],
     "year": 2017,
     "spotify_id": "6Pgkp4qUoTmJIPn7ReaGxL"
   },
   {
     "id": 78,
-    "titles": [
-      "Volare (Nel Blu di Pinto di Blu)",
-      "Volare",
-      "Nel Blu di Pinto di Blu"
-    ],
-    "artists": [
-      "Gipsy Kings"
-    ],
+    "titles": ["Volare (Nel Blu di Pinto di Blu)", "Volare", "Nel Blu di Pinto di Blu"],
+    "artists": ["Gipsy Kings"],
     "year": 1989,
     "spotify_id": "4OjJAGDDZTLlTNeOMBl7UM"
   },
   {
     "id": 79,
-    "titles": [
-      "Ca Plane Pour Moi"
-    ],
-    "artists": [
-      "Plastic Bertrand"
-    ],
+    "titles": ["Ca Plane Pour Moi"],
+    "artists": ["Plastic Bertrand"],
     "year": 1977,
     "spotify_id": "71yCMlsD6qbD7NmNUEoVNR"
   },
   {
     "id": 80,
-    "titles": [
-      "Born To Be Alive"
-    ],
-    "artists": [
-      "Patrick Hernandez"
-    ],
+    "titles": ["Born To Be Alive"],
+    "artists": ["Patrick Hernandez"],
     "year": 1978,
     "spotify_id": "3XIEWK1V9n25PS9Vb6axj5"
   },
   {
     "id": 81,
-    "titles": [
-      "Whola Lotta Love"
-    ],
-    "artists": [
-      "Led Zeppelin"
-    ],
+    "titles": ["Whola Lotta Love", "Whole Lot Of Love"],
+    "artists": ["Led Zeppelin"],
     "year": 1969,
     "spotify_id": "0hCB0YR03f6AmQaHbwWDe8"
   },
   {
     "id": 82,
-    "titles": [
-      "Ein Kompliment"
-    ],
-    "artists": [
-      "Sportfreunde Stiller"
-    ],
+    "titles": ["Ein Kompliment"],
+    "artists": ["Sportfreunde Stiller"],
     "year": 2002,
     "spotify_id": "5QRkWkMabF6HJmQQm2HBVX"
   },
   {
     "id": 83,
-    "titles": [
-      "In The Mood"
-    ],
-    "artists": [
-      "Glenn Miller"
-    ],
+    "titles": ["In The Mood"],
+    "artists": ["Glenn Miller"],
     "year": 1939,
     "spotify_id": "0wAyDBh0ujohCsYeXBtDLF"
   },
   {
     "id": 84,
-    "titles": [
-      "Wahnsinn"
-    ],
-    "artists": [
-      "Wolfgang Petry"
-    ],
+    "titles": ["Wahnsinn"],
+    "artists": ["Wolfgang Petry"],
     "year": 1983,
     "spotify_id": "2Nv773K16hckJrb3Ir7wOu"
   },
   {
     "id": 85,
-    "titles": [
-      "Counting Stars"
-    ],
-    "artists": [
-      "OneRepublic"
-    ],
+    "titles": ["Counting Stars"],
+    "artists": ["OneRepublic", "One Republic"],
     "year": 2013,
     "spotify_id": "2tpWsVSb9UEmDRxAl1zhX1"
   },
   {
     "id": 86,
-    "titles": [
-      "Dragostea Din Tei"
-    ],
-    "artists": [
-      "O-Zone"
-    ],
+    "titles": ["Dragostea Din Tei"],
+    "artists": ["O-Zone", "O Zone"],
     "year": 2003,
     "spotify_id": "52Zr0sinhWTCRrQhRRY4EP"
   },
   {
     "id": 87,
-    "titles": [
-      "Everybody Hurts"
-    ],
-    "artists": [
-      "R.E.M.",
-      "REM"
-    ],
+    "titles": ["Everybody Hurts"],
+    "artists": ["R.E.M.","REM"],
     "year": 1993,
     "spotify_id": "6PypGyiu0Y2lCDBN1XZEnP"
   },
   {
     "id": 88,
-    "titles": [
-      "Just Give Me A Reason (feat. Nate Ruess)",
-      "Just Give Me A Reason"
-    ],
-    "artists": [
-      "P!nk",
-      "Pink"
-    ],
+    "titles": ["Just Give Me A Reason (feat. Nate Ruess)", "Just Give Me A Reason"],
+    "artists": ["P!nk", "Pink"],
     "year": 2012,
     "spotify_id": "1mKXFLRA179hdOWQBwUk9e"
   },
   {
     "id": 89,
-    "titles": [
-      "Joyride"
-    ],
-    "artists": [
-      "Roxette"
-    ],
+    "titles": ["Joyride"],
+    "artists": ["Roxette"],
     "year": 1991,
     "spotify_id": "1ILbD4eWKWvg8ub5qJyBTP"
   },
   {
     "id": 90,
-    "titles": [
-      "(We're Gonna) Rock Around The Clock",
-      "Rock Around The Clock"
-    ],
-    "artists": [
-      "Bill Haley & His Comets",
-      "Bill Haley and His Comets",
-      "Bill Haley"
-    ],
+    "titles": ["(We're Gonna) Rock Around The Clock", "Rock Around The Clock", "(We Are Gonna) Rock Around The Clock", "(We're Going To) Rock Around The Clock", "(We Are Going To) Rock Around The Clock"],
+    "artists": ["Bill Haley & His Comets", "Bill Haley and His Comets", "Bill Haley"],
     "year": 1954,
     "spotify_id": "1uRKT2LRANv4baowBWHfDS"
   },
   {
     "id": 91,
-    "titles": [
-      "Bette Davis Eyes"
-    ],
-    "artists": [
-      "Kim Carnes"
-    ],
+    "titles": ["Bette Davis Eyes"],
+    "artists": ["Kim Carnes"],
     "year": 1981,
     "spotify_id": "0odIT9B9BvOCnXfS0e4lB5"
   },
   {
     "id": 92,
-    "titles": [
-      "Lambada"
-    ],
-    "artists": [
-      "Kaoma"
-    ],
+    "titles": ["Lambada"],
+    "artists": ["Kaoma"],
     "year": 1989,
     "spotify_id": "32gpJnMZkRafZdQvU7ZzR7"
   },
   {
     "id": 93,
-    "titles": [
-      "Ain't Nobody"
-    ],
-    "artists": [
-      "Rufus",
-      "Chaka Khan"
-    ],
+    "titles": ["Ain't Nobody", "I'm Not Nobody", "I Am Not Nobody"],
+    "artists": ["Rufus", "Chaka Khan"],
     "year": 1983,
     "spotify_id": "53Za5vyGc1x7GxgJVRjRKc"
   },
   {
     "id": 94,
-    "titles": [
-      "Have You Ever Seen The Rain"
-    ],
-    "artists": [
-      "Creedence Clearwater Revival",
-      "CCR"
-    ],
+    "titles": ["Have You Ever Seen The Rain"],
+    "artists": ["Creedence Clearwater Revival", "CCR"],
     "year": 1970,
     "spotify_id": "2LawezPeJhN4AWuSB0GtAU"
   },
   {
     "id": 95,
-    "titles": [
-      "(I've Had) The Time Of My Life",
-      "The Time Of My Life"
-    ],
-    "artists": [
-      "Bill Medley",
-      "Jennifer Warnes"
-    ],
+    "titles": ["(I've Had) The Time Of My Life", "The Time Of My Life", "(I Have Had) The Time Of My Life"],
+    "artists": ["Bill Medley", "Jennifer Warnes"],
     "year": 1987,
     "spotify_id": "2Ll0rYVkAHV0QT7P2vknQc"
   },
   {
     "id": 96,
-    "titles": [
-      "Più Bella Cosa"
-    ],
-    "artists": [
-      "Eros Ramazzotti"
-    ],
+    "titles": ["Più Bella Cosa"],
+    "artists": ["Eros Ramazzotti"],
     "year": 1996,
     "spotify_id": "0KligwQn4Iy344p2Q5m6k6"
   },
   {
     "id": 97,
-    "titles": [
-      "No Son Of Mine"
-    ],
-    "artists": [
-      "Genesis"
-    ],
+    "titles": ["No Son Of Mine"],
+    "artists": ["Genesis"],
     "year": 1991,
     "spotify_id": "2nHajACLqGsbctpe3Rafh3"
   },
   {
     "id": 98,
-    "titles": [
-      "Happy"
-    ],
-    "artists": [
-      "Pharrell Williams"
-    ],
+    "titles": ["Happy"],
+    "artists": ["Pharrell Williams"],
     "year": 2013,
     "spotify_id": "60nZcImufyMA1MKQY3dcCH"
   },
   {
     "id": 99,
-    "titles": [
-      "Wonderwall"
-    ],
-    "artists": [
-      "Oasis"
-    ],
+    "titles": ["Wonderwall"],
+    "artists": ["Oasis"],
     "year": 1995,
     "spotify_id": "1qPbGZqppFwLwcBC1JQ6Vr"
   },
   {
     "id": 100,
-    "titles": [
-      "You Can't Hurry Love"
-    ],
-    "artists": [
-      "The Supremes",
-      "Supremes"
-    ],
+    "titles": ["You Can't Hurry Love", "You Cannot Hurry Love", "You Can Not Hurry Love"],
+    "artists": ["The Supremes", "Supremes"],
     "year": 1966,
     "spotify_id": "4H1iMlEWKZmpKTHCZzDhju"
   },

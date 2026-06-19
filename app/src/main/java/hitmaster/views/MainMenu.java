@@ -56,6 +56,8 @@ public class MainMenu {
         PROFILE = new Button();
 
         this.STAGE = stage;
+        STAGE.getIcons().add(new Image(getClass().getResourceAsStream("/cardDesign.png")));
+
         this.buildUI();
     }
 

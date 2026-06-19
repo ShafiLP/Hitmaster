@@ -312,3 +312,29 @@
     -fx-background-color: transparent;
     -fx-cursor: hand;
 }
+
+.dialog-icon {
+    -fx-font-size: 40px;
+    -fx-min-width: 50px;
+    -fx-alignment: center;
+}
+
+.info-icon {
+    -fx-text-fill: #2196F3;
+    -fx-text: "🛈";
+}
+
+.question-icon {
+    -fx-text-fill: #2196F3;
+    -fx-text: "❓";
+}
+
+.warning-icon {
+    -fx-text-fill: #FF9800;
+    -fx-text: "⚠";
+}
+
+.error-icon {
+    -fx-text-fill: #F44336;
+    -fx-text: "❌";
+}

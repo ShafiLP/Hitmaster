@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,21 +29,14 @@ public class StyleDialog {
         stage.setTitle(title);
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        VBox root = new VBox(25);
-        root.setPadding(new Insets(20));
-        root.setFillWidth(true);
-        root.setAlignment(Pos.CENTER);
-
-        Label label = new Label(message);
-        label.setWrapText(true);
-
         Button closeButton = new Button("OK");
         closeButton.getStyleClass().add("primary-button");
         closeButton.setOnAction(e -> stage.close());
 
-        root.getChildren().addAll(label, closeButton);
+        HBox buttonBox = new HBox(closeButton);
+        VBox root = createDialogLayout(message, buttonBox, "info-icon");
 
-        Scene scene = new Scene(root, 400, 200);
+        Scene scene = new Scene(root, 450, 220);
         ThemeManager.getInstance().registerScene(scene);
         
         stage.setScene(scene);
@@ -59,21 +53,14 @@ public class StyleDialog {
         stage.setTitle(title);
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        VBox root = new VBox(25);
-        root.setPadding(new Insets(20));
-        root.setFillWidth(true);
-        root.setAlignment(Pos.CENTER);
-
-        Label label = new Label(message);
-        label.setWrapText(true);
-
         Button closeButton = new Button("OK");
         closeButton.getStyleClass().add("warning-button");
         closeButton.setOnAction(e -> stage.close());
 
-        root.getChildren().addAll(label, closeButton);
+        HBox buttonBox = new HBox(closeButton);
+        VBox root = createDialogLayout(message, buttonBox, "warning-icon");
 
-        Scene scene = new Scene(root, 400, 200);
+        Scene scene = new Scene(root, 450, 220);
         ThemeManager.getInstance().registerScene(scene);
         
         stage.setScene(scene);
@@ -90,21 +77,14 @@ public class StyleDialog {
         stage.setTitle(title);
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        VBox root = new VBox(25);
-        root.setPadding(new Insets(20));
-        root.setFillWidth(true);
-        root.setAlignment(Pos.CENTER);
-
-        Label label = new Label(message);
-        label.setWrapText(true);
-
         Button closeButton = new Button("OK");
         closeButton.getStyleClass().add("error-button");
         closeButton.setOnAction(e -> stage.close());
 
-        root.getChildren().addAll(label, closeButton);
+        HBox buttonBox = new HBox(closeButton);
+        VBox root = createDialogLayout(message, buttonBox, "error-icon");
 
-        Scene scene = new Scene(root, 400, 200);
+        Scene scene = new Scene(root, 450, 220);
         ThemeManager.getInstance().registerScene(scene);
         
         stage.setScene(scene);
@@ -123,16 +103,7 @@ public class StyleDialog {
         stage.setTitle(title);
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        VBox root = new VBox(25);
-        root.setPadding(new Insets(20));
-        root.setFillWidth(true);
-        root.setAlignment(Pos.CENTER);
-
-        Label label = new Label(message);
-        label.setWrapText(true);
-
         HBox buttonBox = new HBox(15);
-        buttonBox.setAlignment(Pos.CENTER);
 
         Button yesButton = new Button(buttonText);
         Button noButton = new Button("Back");
@@ -152,15 +123,47 @@ public class StyleDialog {
             stage.close();
         });
 
-        buttonBox.getChildren().addAll(yesButton, noButton);
-        root.getChildren().addAll(label, buttonBox);
+        buttonBox.getChildren().addAll(noButton, yesButton);
+        VBox root = createDialogLayout(message, buttonBox, "question-icon");
 
-        Scene scene = new Scene(root, 400, 200);
+        Scene scene = new Scene(root, 450, 220);
         ThemeManager.getInstance().registerScene(scene);
 
         stage.setScene(scene);
         stage.showAndWait();
 
         return result[0];
+    }
+
+    private static VBox createDialogLayout(String message, HBox buttonBox, String iconClass) {
+        VBox root = new VBox(20);
+        root.setPadding(new Insets(20));
+        root.setFillWidth(true);
+
+        HBox contentBox = new HBox(20);
+        contentBox.setAlignment(Pos.CENTER_LEFT);
+        VBox.setVgrow(contentBox, Priority.ALWAYS);
+
+        Label iconLabel = new Label();
+        iconLabel.getStyleClass().addAll("dialog-icon", iconClass);
+
+        switch (iconClass) {
+            case "info-icon" -> iconLabel.setText("🛈");
+            case "warning-icon" -> iconLabel.setText("⚠");
+            case "error-icon" -> iconLabel.setText("❌");
+            case "question-icon" -> iconLabel.setText("❓");
+        }
+
+        Label messageLabel = new Label(message);
+        messageLabel.getStyleClass().add("subheader");
+        messageLabel.setWrapText(true);
+        HBox.setHgrow(messageLabel, Priority.ALWAYS);
+
+        contentBox.getChildren().addAll(iconLabel, messageLabel);
+
+        buttonBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+        root.getChildren().addAll(contentBox, buttonBox);
+        return root;
     }
 }
