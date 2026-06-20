@@ -101,7 +101,7 @@ public class GameView extends Pane {
         clip.setArcHeight(20);
         PILE_IMAGE.setClip(clip);
 
-        REMAINING_CARDS = new Label(GAME.getRemainingCardCount() + " cards left");
+        REMAINING_CARDS = new Label("0 cards left"); // TODO: Updated by GameLogic
         REMAINING_CARDS.setStyle("-fx-text-fill: black; -fx-font-weight: bold;");
 
         VBox cardPileLayout = new VBox(5, PILE_IMAGE, REMAINING_CARDS);
@@ -234,7 +234,7 @@ public class GameView extends Pane {
             }),
             () -> Platform.runLater(() -> {
                 this.removeCurrentCard();
-                GAME.switchToNextPlayer();
+                GAME.finishTurn();
 
                 this.initializeNewTimer();
             })
@@ -437,15 +437,17 @@ public class GameView extends Pane {
                 card.setLayoutX(localCoords.getX());
                 card.setLayoutY(localCoords.getY());
             }
+
+            STRIP.registerExternalCard(card);
+            currentCard = card;
+
+            this.getChildren().add(currentCard);
+            currentCard.toFront();
+
+            REMAINING_CARDS.setText("0 cards left"); // TODO: Updated by GameLogic
+
+            this.initializeNewTimer();
         });
-
-        STRIP.registerExternalCard(card);
-        currentCard = card;
-
-        this.getChildren().add(currentCard);
-        currentCard.toFront();
-
-        REMAINING_CARDS.setText(GAME.getRemainingCardCount() + " cards left");
 
         //! DEBUG
         Log.Info("Artist: " + song.artists.getFirst());
@@ -461,9 +463,7 @@ public class GameView extends Pane {
             }),
             () -> Platform.runLater(() -> {
                 this.removeCurrentCard();
-                GAME.switchToNextPlayer();
-
-                this.initializeNewTimer();
+                GAME.finishTurn();
             })
         );
     }
@@ -535,6 +535,19 @@ public class GameView extends Pane {
                 }
                 
                 GAME.addFirstToCardStack();
+            })
+        );
+    }
+
+    public void setMoveTimerForOpponent(int moveTime) {
+        timerUnit.stop();
+        timerUnit = new Timer(moveTime);
+        timerUnit.start(
+            () -> Platform.runLater(() -> {
+                STATUS.setRemainingTime(timerUnit.getRemainingSeconds());
+            }),
+            () -> Platform.runLater(() -> {
+                //
             })
         );
     }
@@ -724,21 +737,10 @@ public class GameView extends Pane {
 
     public void addNewCardToDiscard(Song song) {
         SongCard card = new SongCard(this, song);
-
-        /*Platform.runLater(() -> {
-            Point2D sceneCoords = PILE_IMAGE.localToScene(0, 0);
-            Point2D localCoords = this.sceneToLocal(sceneCoords);
-
-            if (localCoords != null) {
-                card.setLayoutX(localCoords.getX());
-                card.setLayoutY(localCoords.getY());
-            }
-        });*/
-
-        this.getChildren().add(card);
         card.showFront();
-        card.toFront();
 
-        DISCARD_PILE.setDiscardedCard(card);
+        Platform.runLater(() -> {
+            DISCARD_PILE.setDiscardedCard(card);
+        });
     }
 }

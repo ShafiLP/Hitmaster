@@ -85,18 +85,17 @@ public class DiscardPile extends StackPane {
     public void setDiscardedCard(SongCard card) {
         if (card == null) return;
 
-        double cardWidth = card.getBoundsInLocal().getWidth() > 0 ? card.getBoundsInLocal().getWidth() : 140;
-        double cardHeight = card.getBoundsInLocal().getHeight() > 0 ? card.getBoundsInLocal().getHeight() : 200;
+        double cardWidth = card.getBoundsInLocal().getWidth();
+        double cardHeight = card.getBoundsInLocal().getHeight();
 
         card.setTranslateX(0);
         card.setTranslateY(0);
 
         card.setManaged(false);
-        card.resize(cardWidth, cardHeight);
 
         card.setLayoutX((this.getPrefWidth() - cardWidth) / 2);
         card.setLayoutY((this.getPrefHeight() - cardHeight) / 2);
-        
+
         cardContainer.getChildren().clear();
         cardContainer.getChildren().add(card);
     }

@@ -11,7 +11,6 @@ public class NetworkManager {
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
-    private boolean isHost;
     private NetworkListener listener;
 
     public interface NetworkListener {
@@ -19,7 +18,6 @@ public class NetworkManager {
     }
 
     public void startAsHost(int port, NetworkListener listener) {
-        this.isHost = true;
         this.listener = listener;
 
         new Thread(() -> {
@@ -44,7 +42,6 @@ public class NetworkManager {
     }
 
     public void startAsClient(String ip, int port, NetworkListener listener) throws IOException {
-        this.isHost = false;
         this.listener = listener;
 
         Log.Info("Connecting to host...");
