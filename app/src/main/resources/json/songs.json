@@ -262,7 +262,7 @@
   {
     "id": 38,
     "titles": ["Paradise By The Dashboard Light"],
-    "artists": ["Meat Loaf"],
+    "artists": ["Meat Loaf", "ML"],
     "year": 1977,
     "spotify_id": "2g7gviEeJr6pyxO7G35EWQ"
   },
@@ -2152,170 +2152,170 @@
   {
     "id": 308,
     "titles": ["Fireflies"],
-    "artists": ["Owl City"],
+    "artists": ["Owl City", "OC"],
     "year": 2009,
     "spotify_id": "3DamFFqW32WihKkTVlwTYQ"
   },
   {
     "id": 309,
     "titles": ["Pour Some Sugar On Me"],
-    "artists": ["Def Leppard"],
+    "artists": ["Def Leppard", "DL"],
     "year": 1987,
-    "spotify_id": "https://open.spotify.com/track/1aZLIbKEdsyqxyD6iNcrbA"
+    "spotify_id": "1aZLIbKEdsyqxyD6iNcrbA"
   },
   {
     "id": 310,
     "titles": ["Epic"],
     "artists": ["Faith No More", "FNM"],
     "year": 1989,
-    "spotify_id": "https://open.spotify.com/track/4ReyTz0y3TGkX48wO3Llot"
+    "spotify_id": "4ReyTz0y3TGkX48wO3Llot"
   },
   {
     "id": 311,
     "titles": ["The Middle"],
     "artists": ["Jimmy Eat World", "JEW"],
     "year": 2001,
-    "spotify_id": "https://open.spotify.com/track/6GG73Jik4jUlQCkKg9JuGO"
+    "spotify_id": "6GG73Jik4jUlQCkKg9JuGO"
   },
   {
     "id": 312,
     "titles": ["I Write Sins Not Tragedies"],
     "artists": ["Panic! At The Disco", "PATD"],
     "year": 2006,
-    "spotify_id": "https://open.spotify.com/track/4bPQs0PHn4xbipzdPfn6du"
+    "spotify_id": "4bPQs0PHn4xbipzdPfn6du"
   },
   {
     "id": 313,
     "titles": ["Circle With Me"],
     "artists": ["Spiritbox"],
     "year": 2021,
-    "spotify_id": "https://open.spotify.com/track/3FI0iAAAjmR31xpZEwbdys"
+    "spotify_id": "3FI0iAAAjmR31xpZEwbdys"
   },
   {
     "id": 314,
     "titles": ["Born To Run"],
     "artists": ["Bruce Springsteen"],
     "year": 1975,
-    "spotify_id": "https://open.spotify.com/track/6hTcuIQa0sxrrByu9wTD7s"
+    "spotify_id": "6hTcuIQa0sxrrByu9wTD7s"
   },
   {
     "id": 315,
     "titles": ["The Pretender"],
     "artists": ["Foo Fighters", "FF"],
     "year": 2007,
-    "spotify_id": "https://open.spotify.com/track/7x8dCjCr0x6x2lXKujYD34"
+    "spotify_id": "7x8dCjCr0x6x2lXKujYD34"
   },
   {
     "id": 316,
     "titles": ["Rockstar"],
     "artists": ["Nickelback"],
     "year": 2005,
-    "spotify_id": "https://open.spotify.com/track/3RlsVPIIs5KFhLFhxZ4iDF"
+    "spotify_id": "3RlsVPIIs5KFhLFhxZ4iDF"
   },
   {
     "id": 317,
     "titles": ["Stacy's Mom", "Stacy's Mother"],
     "artists": ["Fountains Of Wayne", "FOW"],
     "year": 2003,
-    "spotify_id": "https://open.spotify.com/track/27L8sESb3KR79asDUBu8nW"
+    "spotify_id": "27L8sESb3KR79asDUBu8nW"
   },
   {
     "id": 318,
     "titles": ["The Boys Are Back In Town"],
     "artists": ["Thin Lizzy"],
     "year": 1976,
-    "spotify_id": "https://open.spotify.com/track/43DeSV93pJPT4lCZaWZ6b1"
+    "spotify_id": "43DeSV93pJPT4lCZaWZ6b1"
   },
   {
     "id": 319,
     "titles": ["Hold The Line"],
     "artists": ["TOTO"],
     "year": 1978,
-    "spotify_id": "https://open.spotify.com/track/4aVuWgvD0X63hcOCnZtNFA"
+    "spotify_id": "4aVuWgvD0X63hcOCnZtNFA"
   },
   {
     "id": 320,
     "titles": ["All Right Now"],
     "artists": ["Free"],
     "year": 1970,
-    "spotify_id": "https://open.spotify.com/track/1gcESexgftSuLuML57Y69q"
+    "spotify_id": "1gcESexgftSuLuML57Y69q"
   },
   {
     "id": 321,
     "titles": ["The Vengeful One"],
     "artists": ["Disturbed"],
     "year": 2015,
-    "spotify_id": "https://open.spotify.com/track/3jjU4Pky1ja5J1onU6ei4T"
+    "spotify_id": "3jjU4Pky1ja5J1onU6ei4T"
   },
   {
     "id": 322,
     "titles": ["Just Pretend"],
     "artists": ["Bad Omens", "BO"],
     "year": 2022,
-    "spotify_id": "https://open.spotify.com/track/1H4Y9uW4N0LsxJUz0VnaPJ"
+    "spotify_id": "1H4Y9uW4N0LsxJUz0VnaPJ"
   },
   {
     "id": 323,
     "titles": ["Dirty Little Secret"],
     "artists": ["The All-American Rejects", "The All American Rejects", "TAAR", "AAR"],
     "year": 2005,
-    "spotify_id": "https://open.spotify.com/track/5ZdzNVOmCSp5HFLk0EgvJS"
+    "spotify_id": "5ZdzNVOmCSp5HFLk0EgvJS"
   },
   {
     "id": 324,
     "titles": ["Cold As Ice"],
     "artists": ["Foreigner"],
     "year": 1977,
-    "spotify_id": "https://open.spotify.com/track/7vidktgNZFQylTgH1GEnMs"
+    "spotify_id": "7vidktgNZFQylTgH1GEnMs"
   },
   {
     "id": 325,
     "titles": ["Rock You Like A Hurricane"],
     "artists": ["Scorpions"],
     "year": 1984,
-    "spotify_id": "https://open.spotify.com/track/26YRbGDk6FmMouQpW8uTE9"
+    "spotify_id": "26YRbGDk6FmMouQpW8uTE9"
   },
   {
     "id": 326,
     "titles": ["Na Na Na (Na Na Na Na Na Na Na Na Na)", "Na Na Na"],
     "artists": ["My Chemical Romance", "MCR"],
     "year": 2010,
-    "spotify_id": "https://open.spotify.com/track/5BB0Jzw60KyfSTyjJqtely"
+    "spotify_id": "5BB0Jzw60KyfSTyjJqtely"
   },
   {
     "id": 327,
     "titles": ["Baba O'Riley", "Baba O Riley", "Baba Of Riley"],
     "artists": ["The Who", "Who"],
     "year": 1971,
-    "spotify_id": "https://open.spotify.com/track/3qiyyUfYe7CRYLucrPmulD"
+    "spotify_id": "3qiyyUfYe7CRYLucrPmulD"
   },
   {
     "id": 328,
     "titles": ["Renegade"],
     "artists": ["Styx"],
     "year": 1978,
-    "spotify_id": "https://open.spotify.com/track/2AteFs3KWb0OiKxQRnbH9T"
+    "spotify_id": "2AteFs3KWb0OiKxQRnbH9T"
   },
   {
     "id": 329,
     "titles": ["Money"],
-    "artists": ["Pink Floyd"],
+    "artists": ["Pink Floyd", "PF"],
     "year": 1973,
-    "spotify_id": "https://open.spotify.com/track/1WBxSsaYTfTkx2SiqiSyHS"
+    "spotify_id": "1WBxSsaYTfTkx2SiqiSyHS"
   },
   {
     "id": 330,
     "titles": ["(Don't Fear) The Reaper", "(Do Not Fear) The Reaper", "The Reaper"],
     "artists": ["Blue Öyster Cult", "Blue Oyster Cult", "Blue Oeyster Cult", "BÖC", "BOC"],
     "year": 1976,
-    "spotify_id": "https://open.spotify.com/track/5QTxFnGygVM4jFQiBovmRo"
+    "spotify_id": "5QTxFnGygVM4jFQiBovmRo"
   },
   {
     "id": 331,
     "titles": ["Monster"],
     "artists": ["Skillet"],
     "year": 2009,
-    "spotify_id": "https://open.spotify.com/track/5XQNN3cHwYRzPv08CHuQNZ"
+    "spotify_id": "5XQNN3cHwYRzPv08CHuQNZ"
   },
   {
     "id": 332,
@@ -2324,168 +2324,168 @@
                "CMFT Must Be Stopped"],
     "artists": ["Corey Taylor", "Tech N9ne", "Tech Nine", "Kid Bookie"],
     "year": 2020,
-    "spotify_id": "https://open.spotify.com/track/3FD20yHJtt1QTrWs2rpw9C"
+    "spotify_id": "3FD20yHJtt1QTrWs2rpw9C"
   },
   {
     "id": 333,
     "titles": ["LosT"],
     "artists": ["Bring Me The Horizon", "BMTH"],
     "year": 2023,
-    "spotify_id": "https://open.spotify.com/track/5BgnL6gHauuvxe4Ok6W1aC"
+    "spotify_id": "5BgnL6gHauuvxe4Ok6W1aC"
   },
   {
     "id": 334,
     "titles": ["Everybody Talks"],
     "artists": ["Neon Trees", "NT"],
     "year": 2011,
-    "spotify_id": "https://open.spotify.com/track/2iUmqdfGZcHIhS3b9E9EWq"
+    "spotify_id": "2iUmqdfGZcHIhS3b9E9EWq"
   },
   {
     "id": 335,
     "titles": ["Bad Medicine"],
     "artists": ["Bon Jovi"],
     "year": 1988,
-    "spotify_id": "https://open.spotify.com/track/72hcFp4tYkd3dbNA9dZ3Pv"
+    "spotify_id": "72hcFp4tYkd3dbNA9dZ3Pv"
   },
   {
     "id": 336,
     "titles": ["Howlin' For You", "Howling For You"],
     "artists": ["The Black Keys", "Black Keys", "TBK", "BK"],
     "year": 2010,
-    "spotify_id": "https://open.spotify.com/track/4yffABDkB5A9flvr9vQFck"
+    "spotify_id": "4yffABDkB5A9flvr9vQFck"
   },
   {
     "id": 337,
     "titles": ["Dance Macabre"],
     "artists": ["Ghost"],
     "year": 2018,
-    "spotify_id": "https://open.spotify.com/track/4pIKFpwflOdhYNIRmPTj3E"
+    "spotify_id": "4pIKFpwflOdhYNIRmPTj3E"
   },
   {
     "id": 338,
     "titles": ["Kryptonite", "Cryptonite"],
     "artists": ["3 Doors Down", "Three Doors Down", "3DD", "TDD"],
     "year": 2000,
-    "spotify_id": "https://open.spotify.com/track/6ZOBP3NvffbU4SZcrnt1k6"
+    "spotify_id": "6ZOBP3NvffbU4SZcrnt1k6"
   },
   {
     "id": 339,
     "titles": ["I Hate Myself For Loving You"],
     "artists": ["Joan Jett & The Blackhearts", "Joan Jett and The Blackhearts", "Joan Jett", "The Blackhearts", "Blackhearts"],
     "year": 1988,
-    "spotify_id": "https://open.spotify.com/track/2HXixVqzzm9rEUIMAWzshl"
+    "spotify_id": "2HXixVqzzm9rEUIMAWzshl"
   },
   {
     "id": 340,
     "titles": ["Rock And Roll All Nite", "Rock And Roll All Night", "Rock'n'Roll All Nite", "Rock'n'Roll All Night"],
     "artists": ["KISS"],
     "year": 1975,
-    "spotify_id": "https://open.spotify.com/track/0fCWbJq1hagsRgShtn6gIU"
+    "spotify_id": "0fCWbJq1hagsRgShtn6gIU"
   },
   {
     "id": 341,
     "titles": ["Freak On A Leash"],
     "artists": ["Korn"],
     "year": 1998,
-    "spotify_id": "https://open.spotify.com/track/6W21LNLz9Sw7sUSNWMSHRu"
+    "spotify_id": "6W21LNLz9Sw7sUSNWMSHRu"
   },
   {
     "id": 342,
     "titles": ["Carry On Wayward Son"],
     "artists": ["Kansas"],
     "year": 1976,
-    "spotify_id": "https://open.spotify.com/track/4DMKwE2E2iYDKY01C335Uw"
+    "spotify_id": "4DMKwE2E2iYDKY01C335Uw"
   },
   {
     "id": 343,
     "titles": ["No One Like You"],
     "artists": ["Scorpions"],
     "year": 1982,
-    "spotify_id": "https://open.spotify.com/track/5hVepr5CHiTGtJY5bP4i5n"
+    "spotify_id": "5hVepr5CHiTGtJY5bP4i5n"
   },
   {
     "id": 344,
     "titles": ["Are You Gonna Be My Girl", "Are You Going To Be My Girl"],
     "artists": ["Jet"],
     "year": 2003,
-    "spotify_id": "https://open.spotify.com/track/72zZfHPYx43shcP3eKkYi5"
+    "spotify_id": "72zZfHPYx43shcP3eKkYi5"
   },
   {
     "id": 345,
     "titles": ["Need A Favor", "Need A Favour"],
     "artists": ["Jelly Roll"],
     "year": 2023,
-    "spotify_id": "https://open.spotify.com/track/07on0OB2cdPt79IFsgdRUy"
+    "spotify_id": "07on0OB2cdPt79IFsgdRUy"
   },
   {
     "id": 346,
     "titles": ["I Wanna Rock"],
     "artists": ["Twisted Sister", "TS"],
     "year": 1984,
-    "spotify_id": "https://open.spotify.com/track/70Z9t1qhytWtG4cCmmi7mU"
+    "spotify_id": "70Z9t1qhytWtG4cCmmi7mU"
   },
   {
     "id": 347,
     "titles": ["Mr. Jones", "Mister Jones"],
     "artists": ["Counting Crows", "CC"],
     "year": 1993,
-    "spotify_id": "https://open.spotify.com/track/5DiXcVovI0FcY2s0icWWUu"
+    "spotify_id": "5DiXcVovI0FcY2s0icWWUu"
   },
   {
     "id": 348,
     "titles": ["Iron Man"],
-    "artists": ["Black Sabbath"],
+    "artists": ["Black Sabbath", "BS"],
     "year": 1970,
-    "spotify_id": "https://open.spotify.com/track/74fURW8XNuLYHOvKmjA2XT"
+    "spotify_id": "74fURW8XNuLYHOvKmjA2XT"
   },
   {
     "id": 349,
     "titles": ["Maybellene"],
     "artists": ["Chuck Berry"],
     "year": 1955,
-    "spotify_id": "https://open.spotify.com/track/3SQhmctWreNM0X6Zkm2K5R"
+    "spotify_id": "3SQhmctWreNM0X6Zkm2K5R"
   },
   {
     "id": 350,
     "titles": ["Scar Tissue"],
     "artists": ["Red Hot Chili Peppers", "RHCP"],
     "year": 1999,
-    "spotify_id": "https://open.spotify.com/track/1G391cbiT3v3Cywg8T7DM1"
+    "spotify_id": "1G391cbiT3v3Cywg8T7DM1"
   },
   {
     "id": 351,
     "titles": ["The Kill (Bury Me)", "The Kill", "Bury Me"],
     "artists": ["Thirty Seconds To Mars", "30 Seconds To Mars", "TSTM", "30STM"],
     "year": 2005,
-    "spotify_id": "https://open.spotify.com/track/1p1nO35bbi4ZlQgjIA4oa4"
+    "spotify_id": "1p1nO35bbi4ZlQgjIA4oa4"
   },
   {
     "id": 352,
     "titles": ["Black Hole Sun"],
     "artists": ["Soundgarden"],
     "year": 1994,
-    "spotify_id": "https://open.spotify.com/track/2EoOZnxNgtmZaD8uUmz2nD"
+    "spotify_id": "2EoOZnxNgtmZaD8uUmz2nD"
   },
   {
     "id": 353,
     "titles": ["Heart-Shaped Box", "Heart Shaped Box"],
     "artists": ["Nirvana"],
     "year": 1993,
-    "spotify_id": "https://open.spotify.com/track/11LmqTE2naFULdEP94AUBa"
+    "spotify_id": "11LmqTE2naFULdEP94AUBa"
   },
   {
     "id": 354,
     "titles": ["Balls To The Wall"],
     "artists": ["Accept"],
     "year": 1983,
-    "spotify_id": "https://open.spotify.com/track/28sMmBCmfHoy6NjZnovEYG"
+    "spotify_id": "28sMmBCmfHoy6NjZnovEYG"
   },
   {
     "id": 355,
     "titles": ["Free Bird"],
     "artists": ["Lynyrd Skynyrd"],
     "year": 1973,
-    "spotify_id": "https://open.spotify.com/track/5EWPGh7jbTNO2wakv8LjUI"
+    "spotify_id": "5EWPGh7jbTNO2wakv8LjUI"
   },
   {
     "id": 356,
@@ -2493,755 +2493,1751 @@
     "artists": ["Booker T. & The M.G.'s", "Booker T. and The M.G.'s", "Booker T.", "The M.G.'s",
                 "Booker T & The MGs", "The MGs"],
     "year": 1962,
-    "spotify_id": "https://open.spotify.com/track/4fQMGlCawbTkH9yPPZ49kP"
+    "spotify_id": "4fQMGlCawbTkH9yPPZ49kP"
   },
   {
     "id": 357,
     "titles": ["Bodies"],
     "artists": ["Drowning Pool", "DP"],
     "year": 2001,
-    "spotify_id": "https://open.spotify.com/track/7CpbhqKUedOIrcvc94p60Y"
+    "spotify_id": "7CpbhqKUedOIrcvc94p60Y"
   },
   {
     "id": 358,
     "titles": ["American Idiot"],
     "artists": ["Green Day", "GD"],
     "year": 2004,
-    "spotify_id": "https://open.spotify.com/track/6nTiIhLmQ3FWhvrGafw2zj"
+    "spotify_id": "6nTiIhLmQ3FWhvrGafw2zj"
   },
   {
     "id": 359,
     "titles": ["The Emptiness Machine"],
     "artists": ["Linkin Park", "LP"],
     "year": 2024,
-    "spotify_id": "https://open.spotify.com/track/2PnlsTsOTLE5jnBnNe2K0A"
+    "spotify_id": "2PnlsTsOTLE5jnBnNe2K0A"
   },
   {
     "id": 360,
     "titles": ["Put Your Head On My Shoulder"],
     "artists": ["Paul Anka"],
     "year": 1959,
-    "spotify_id": "https://open.spotify.com/track/2DpJ9T2RVRanZcYFHKOAfA"
+    "spotify_id": "2DpJ9T2RVRanZcYFHKOAfA"
   },
   {
     "id": 361,
     "titles": ["Hit Me With Your Best Shot"],
     "artists": ["Pat Benatar"],
     "year": 1980,
-    "spotify_id": "https://open.spotify.com/track/0vOkmmJEtjuFZDzrQSFzEE"
+    "spotify_id": "0vOkmmJEtjuFZDzrQSFzEE"
   },
   {
     "id": 362,
     "titles": ["Stinkfist"],
     "artists": ["TOOL"],
     "year": 1996,
-    "spotify_id": "https://open.spotify.com/track/0pwObEOHolQZSldJ2q1wpy"
+    "spotify_id": "0pwObEOHolQZSldJ2q1wpy"
   },
   {
     "id": 363,
     "titles": ["Sublime"],
     "artists": ["What I Got"],
     "year": 1996,
-    "spotify_id": "https://open.spotify.com/track/3B4q6KbHbGV51HO3GznBFF"
+    "spotify_id": "3B4q6KbHbGV51HO3GznBFF"
   },
   {
     "id": 364,
     "titles": ["18 And Life", "Eighteen And Life"],
     "artists": ["Skid Row", "SR"],
     "year": 1989,
-    "spotify_id": "https://open.spotify.com/track/3620P9KJS2PDebJ9ABFitc"
+    "spotify_id": "3620P9KJS2PDebJ9ABFitc"
   },
   {
     "id": 365,
     "titles": ["Panic"],
     "artists": ["From Ashes To New", "FATN"],
     "year": 2020,
-    "spotify_id": "https://open.spotify.com/track/7mUaGkK1gMEuo3IUWCqF0P"
+    "spotify_id": "7mUaGkK1gMEuo3IUWCqF0P"
   },
   {
     "id": 366,
     "titles": ["(I Just) Died In Your Arms", "Died In Your Arms"],
     "artists": ["Cutting Crew", "CC"],
     "year": 1986,
-    "spotify_id": "https://open.spotify.com/track/4ByEFOBuLXpCqvO1kw8Wdm"
+    "spotify_id": "4ByEFOBuLXpCqvO1kw8Wdm"
   },
   {
     "id": 367,
     "titles": ["Teenage Dirtbag"],
     "artists": ["Wheatus"],
     "year": 2000,
-    "spotify_id": "https://open.spotify.com/track/3LI4MmibTkXH5cGpCGZgyw"
+    "spotify_id": "3LI4MmibTkXH5cGpCGZgyw"
   },
   {
     "id": 368,
     "titles": ["With Or Without You"],
     "artists": ["U2", "U Two"],
     "year": 1987,
-    "spotify_id": "https://open.spotify.com/track/4N0fzRX3T7QkOecp3pkWpp"
+    "spotify_id": "4N0fzRX3T7QkOecp3pkWpp"
   },
   {
     "id": 369,
     "titles": ["The Final Countdown"],
     "artists": ["Europe"],
     "year": 1986,
-    "spotify_id": "https://open.spotify.com/track/3MrRksHupTVEQ7YbA0FsZK"
+    "spotify_id": "3MrRksHupTVEQ7YbA0FsZK"
   },
   {
     "id": 370,
     "titles": ["Basket Case"],
     "artists": ["Green Day", "GD"],
     "year": 1994,
-    "spotify_id": "https://open.spotify.com/track/6L89mwZXSOwYl76YXfX13s"
+    "spotify_id": "6L89mwZXSOwYl76YXfX13s"
   },
   {
     "id": 371,
     "titles": ["Owner Of A Lonely Heart"],
     "artists": ["Yes"],
     "year": 1983,
-    "spotify_id": "https://open.spotify.com/track/0GTK6TesV108Jj5D3MHsYb"
+    "spotify_id": "0GTK6TesV108Jj5D3MHsYb"
   },
   {
     "id": 372,
     "titles": ["Drop Dead Cynical"],
     "artists": ["Amaranthe"],
     "year": 2014,
-    "spotify_id": "https://open.spotify.com/track/3X1usZ9bRwbyEjAnkLAJWO"
+    "spotify_id": "3X1usZ9bRwbyEjAnkLAJWO"
   },
   {
     "id": 373,
     "titles": ["Psychosocial"],
     "artists": ["Slipknot"],
     "year": 2008,
-    "spotify_id": "https://open.spotify.com/track/3RAFcUBrCNaboRXoP3S5t1"
+    "spotify_id": "3RAFcUBrCNaboRXoP3S5t1"
   },
   {
     "id": 374,
     "titles": ["My Curse"],
     "artists": ["Killswitch Engage", "Killswitch"],
     "year": 2006,
-    "spotify_id": "https://open.spotify.com/track/6zKF4293k44ItKWJJgrhXv"
+    "spotify_id": "6zKF4293k44ItKWJJgrhXv"
   },
   {
     "id": 375,
     "titles": ["Stairway To Heaven"],
     "artists": ["Led Zeppelin", "LZ"],
     "year": 1971,
-    "spotify_id": "https://open.spotify.com/track/5CQ30WqJwcep0pYcV4AMNc"
+    "spotify_id": "5CQ30WqJwcep0pYcV4AMNc"
   },
   {
     "id": 376,
     "titles": ["Machinehead"],
     "artists": ["Bush"],
     "year": 1994,
-    "spotify_id": "https://open.spotify.com/track/1wrhhPzd2ncJPNgUcGgBGg"
+    "spotify_id": "1wrhhPzd2ncJPNgUcGgBGg"
   },
   {
     "id": 377,
     "titles": ["Round And Round"],
     "artists": ["Ratt"],
     "year": 1984,
-    "spotify_id": "https://open.spotify.com/track/57P8gH8rjt4OqEoqzut1bL"
+    "spotify_id": "57P8gH8rjt4OqEoqzut1bL"
   },
   {
     "id": 378,
     "titles": ["Schrei Nach Liebe"],
     "artists": ["Die Ärzte", "Ärzte", "DÄ"],
     "year": 1993,
-    "spotify_id": "https://open.spotify.com/track/4P4PHxZQ1FcwQKKnfEPsAZ"
+    "spotify_id": "4P4PHxZQ1FcwQKKnfEPsAZ"
   },
   {
     "id": 379,
     "titles": ["Sleepwalking"],
     "artists": ["Bring Me The Horizon", "BMTH"],
     "year": 2013,
-    "spotify_id": "https://open.spotify.com/track/0gchQwxmBWj5no8NJ8b2yH"
+    "spotify_id": "0gchQwxmBWj5no8NJ8b2yH"
   },
   {
     "id": 380,
     "titles": ["Prey"],
     "artists": ["Parkway Drive"],
     "year": 2018,
-    "spotify_id": "https://open.spotify.com/track/7lMFAK8dv0QkWpIlZcWQlJ"
+    "spotify_id": "7lMFAK8dv0QkWpIlZcWQlJ"
   },
   {
     "id": 381,
     "titles": ["Animals"],
     "artists": ["Architects"],
     "year": 2020,
-    "spotify_id": "https://open.spotify.com/track/5ofoB8PFmocBXFBEWVb6Vz"
+    "spotify_id": "5ofoB8PFmocBXFBEWVb6Vz"
   },
   {
     "id": 382,
     "titles": ["My Generation"],
     "artists": ["The Who", "Who"],
     "year": 1965,
-    "spotify_id": "https://open.spotify.com/track/2EMmHEhCZSMMEM85HTFJvj"
+    "spotify_id": "2EMmHEhCZSMMEM85HTFJvj"
   },
   {
     "id": 383,
     "titles": ["B.Y.O.B.", "BYOB"],
     "artists": ["System Of A Down", "SOAD"],
     "year": 2005,
-    "spotify_id": "https://open.spotify.com/track/0EYOdF5FCkgOJJla8DI2Md"
+    "spotify_id": "0EYOdF5FCkgOJJla8DI2Md"
   },
   {
     "id": 384,
     "titles": ["Semi-Charmed Life", "Semi Charmed Life"],
     "artists": ["Third Eye Blind", "TEB"],
     "year": 1997,
-    "spotify_id": "https://open.spotify.com/track/42et6fnHCw1HIPSrdPprMl"
+    "spotify_id": "42et6fnHCw1HIPSrdPprMl"
   },
   {
     "id": 385,
     "titles": ["Champagne Supernova"],
     "artists": ["Oasis"],
     "year": 1995,
-    "spotify_id": "https://open.spotify.com/track/6EMynpZ10GVcwVqiLZj6Ye"
+    "spotify_id": "6EMynpZ10GVcwVqiLZj6Ye"
   },
   {
     "id": 386,
     "titles": ["Wild Thing"],
     "artists": ["The Troggs", "Troggs"],
     "year": 1966,
-    "spotify_id": "https://open.spotify.com/track/7jGzYUZ2Bgg8BDfYlQRfn8"
+    "spotify_id": "7jGzYUZ2Bgg8BDfYlQRfn8"
   },
   {
     "id": 387,
     "titles": ["Chop Suey!"],
     "artists": ["System Of A Down", "SOAD"],
     "year": 2001,
-    "spotify_id": "https://open.spotify.com/track/2DlHlPMa4M17kufBvI2lEN"
+    "spotify_id": "2DlHlPMa4M17kufBvI2lEN"
   },
   {
     "id": 388,
     "titles": ["Hail To The King"],
     "artists": ["Avenged Sevenfold", "A7X"],
     "year": 2013,
-    "spotify_id": "https://open.spotify.com/track/5anCkDvJ17aznvK5TED5uo"
+    "spotify_id": "5anCkDvJ17aznvK5TED5uo"
   },
   {
     "id": 389,
     "titles": ["Eye Of The Tiger"],
     "artists": ["Survivor"],
     "year": 1982,
-    "spotify_id": "https://open.spotify.com/track/2HHtWyy5CgaQbC7XSoOb0e"
+    "spotify_id": "2HHtWyy5CgaQbC7XSoOb0e"
   },
   {
     "id": 390,
     "titles": ["Sunshine Of Your Love"],
     "artists": ["Cream"],
     "year": 1967,
-    "spotify_id": "https://open.spotify.com/track/6FRwDxXsvSasw0y2eDArsz"
+    "spotify_id": "6FRwDxXsvSasw0y2eDArsz"
   },
   {
     "id": 391,
     "titles": ["Another Life"],
     "artists": ["Motionless In White", "MIW"],
     "year": 2019,
-    "spotify_id": "https://open.spotify.com/track/0YZEYxd1oiqZRFhnnmTKKi"
+    "spotify_id": "0YZEYxd1oiqZRFhnnmTKKi"
   },
   {
     "id": 392,
     "titles": ["Master Of Puppets"],
     "artists": ["Metallica"],
     "year": 1986,
-    "spotify_id": "https://open.spotify.com/track/2MuWTIM3b0YEAskbeeFE1i"
+    "spotify_id": "2MuWTIM3b0YEAskbeeFE1i"
   },
   {
     "id": 393,
     "titles": ["The Devil's Bleeding Crown", "The Devil His Bleeding Crown"],
     "artists": ["Volbeat"],
     "year": 2016,
-    "spotify_id": "https://open.spotify.com/track/3TjQAc2PzWzlSDrnq61J1y"
+    "spotify_id": "3TjQAc2PzWzlSDrnq61J1y"
   },
   {
     "id": 394,
     "titles": ["Interstate Love Song", "Interstate Lovesong"],
     "artists": ["Stone Temple Pilots", "STP"],
     "year": 1994,
-    "spotify_id": "https://open.spotify.com/track/600s08VdbjiyAjDGDjYSFI"
+    "spotify_id": "600s08VdbjiyAjDGDjYSFI"
   },
   {
     "id": 395,
     "titles": ["Feel Invincible"],
     "artists": ["Skillet"],
     "year": 2016,
-    "spotify_id": "https://open.spotify.com/track/0i8JFpqe9cKwnrcvoNgl1L"
+    "spotify_id": "0i8JFpqe9cKwnrcvoNgl1L"
   },
   {
     "id": 396,
     "titles": ["My Sharona"],
     "artists": ["The Knack", "Knack"],
     "year": 1979,
-    "spotify_id": "https://open.spotify.com/track/1HOMkjp0nHMaTnfAkslCQj"
+    "spotify_id": "1HOMkjp0nHMaTnfAkslCQj"
   },
   {
     "id": 397,
     "titles": ["Should I Stay Or Should I Go"],
     "artists": ["The Clash", "Clash"],
     "year": 1982,
-    "spotify_id": "https://open.spotify.com/track/39shmbIHICJ2Wxnk1fPSdz"
+    "spotify_id": "39shmbIHICJ2Wxnk1fPSdz"
   },
   {
     "id": 398,
     "titles": ["What's My Age Again?", "What Is My Age Again?"],
     "artists": ["blink-182", "blink 182", "blink"],
     "year": 1999,
-    "spotify_id": "https://open.spotify.com/track/4LJhJ6DQS7NwE7UKtvcM52"
+    "spotify_id": "4LJhJ6DQS7NwE7UKtvcM52"
   },
   {
     "id": 399,
     "titles": ["bloody valentine"],
     "artists": ["mgk", "machine gun kelly"],
     "year": 2020,
-    "spotify_id": "https://open.spotify.com/track/6mADjHs6FXdroPzEGW6KVJ"
+    "spotify_id": "6mADjHs6FXdroPzEGW6KVJ"
   },
   {
     "id": 400,
     "titles": ["Here I Go Again"],
     "artists": ["Whitesnake"],
     "year": 1982,
-    "spotify_id": "https://open.spotify.com/track/1tQ5TSr1tyeQUbHKBee0jv"
+    "spotify_id": "1tQ5TSr1tyeQUbHKBee0jv"
   },
   {
     "id": 401,
     "titles": ["You Ain't Seen Nothing Yet", "You Haven't Seen Nothing Yet", "You Have Not Seen Nothing Yet"],
     "artists": ["Bachman-Turner Overdrive", "Bachman Turner Overdrive", "BTO"],
     "year": 1974,
-    "spotify_id": "https://open.spotify.com/track/0HOrDVS349XFcpCYsO2hAP"
+    "spotify_id": "0HOrDVS349XFcpCYsO2hAP"
   },
   {
     "id": 402,
     "titles": ["For What It's Worth", "For What It Is Worth"],
     "artists": ["Buffalo Springfield", "BS"],
     "year": 1966,
-    "spotify_id": "https://open.spotify.com/track/1qRA5BS78u3gME0loMl9AA"
+    "spotify_id": "1qRA5BS78u3gME0loMl9AA"
   },
   {
     "id": 403,
     "titles": ["My Own Worst Enemy"],
     "artists": ["Lit"],
     "year": 1999,
-    "spotify_id": "https://open.spotify.com/track/33iv3wnGMrrDugd7GBso1z"
+    "spotify_id": "33iv3wnGMrrDugd7GBso1z"
   },
   {
     "id": 404,
     "titles": ["Wake Up Little Susie"],
     "artists": ["The Everly Brothers", "Everly Brothers"],
     "year": 1957,
-    "spotify_id": "https://open.spotify.com/track/11fNLqDB47gMKj7BHhR2Qr"
+    "spotify_id": "11fNLqDB47gMKj7BHhR2Qr"
   },
   {
     "id": 405,
     "titles": ["Hurricane"],
     "artists": ["I Prevail"],
     "year": 2019,
-    "spotify_id": "https://open.spotify.com/track/2GFwwTIVLjnOrtP7m9luHC"
+    "spotify_id": "2GFwwTIVLjnOrtP7m9luHC"
   },
   {
     "id": 406,
     "titles": ["Ace Of Spades"],
     "artists": ["Motörhead", "Motorhead"],
     "year": 1980,
-    "spotify_id": "https://open.spotify.com/track/3CIOopLwvyMvXk97ZEksKO"
+    "spotify_id": "3CIOopLwvyMvXk97ZEksKO"
   },
   {
     "id": 407,
     "titles": ["Face Down"],
     "artists": ["The Red Jumpsuit Apparatus", "Red Jumpsuit Apparatus", "TRJA", "RJA"],
     "year": 2006,
-    "spotify_id": "https://open.spotify.com/track/4wzjNqjKAKDU82e8uMhzmr"
+    "spotify_id": "4wzjNqjKAKDU82e8uMhzmr"
   },
   {
     "id": 408,
     "titles": ["California Dreamin'", "California Dreaming"],
     "artists": ["The Mamas & The Papas", "The Mamas and The Papas", " Mamas & Papas", " Mamas and Papas"],
     "year": 1965,
-    "spotify_id": "https://open.spotify.com/track/1ZEOIhSn6BKErV59bIgn76"
+    "spotify_id": "1ZEOIhSn6BKErV59bIgn76"
   },
   {
     "id": 409,
     "titles": ["You're Going Down", "You Are Going Down"],
     "artists": ["Sick Puppies", "The Sick Puppies"],
     "year": 2011,
-    "spotify_id": "https://open.spotify.com/track/5FQXMRDSTkn9fowDJ3kZo8"
+    "spotify_id": "5FQXMRDSTkn9fowDJ3kZo8"
   },
   {
     "id": 410,
     "titles": ["Still Waiting"],
     "artists": ["Sum 41", "Sum Fourty-One", "Sum Fourty One"],
     "year": 2002,
-    "spotify_id": "https://open.spotify.com/track/0jqK7sGTLsHPkQrrcrGuKD"
+    "spotify_id": "0jqK7sGTLsHPkQrrcrGuKD"
   },
   {
     "id": 411,
     "titles": ["R U Mine?", "Are You Mine?"],
     "artists": ["Arctic Monkeys", "The Arctic Monkeys", "AM"],
     "year": 2012,
-    "spotify_id": "https://open.spotify.com/track/2AT8iROs4FQueDv2c8q2KE"
+    "spotify_id": "2AT8iROs4FQueDv2c8q2KE"
   },
   {
     "id": 412,
     "titles": ["Songs Für Liam"],
     "artists": ["Kraftklub", "Kraftclub", "KK"],
     "year": 2012,
-    "spotify_id": "https://open.spotify.com/track/2isyujVLDSr4lYhIo7qCRw"
+    "spotify_id": "2isyujVLDSr4lYhIo7qCRw"
   },
   {
     "id": 413,
     "titles": ["Bonnie & Clyde", "Bonnie und Clyde"],
     "artists": ["Die Toten Hosen", "Toten Hosen", "Tote Hosen", "DTH"],
     "year": 1996,
-    "spotify_id": "https://open.spotify.com/track/2hZAJcLnFGk6V50TiD7yzm"
+    "spotify_id": "2hZAJcLnFGk6V50TiD7yzm"
   },
   {
     "id": 414,
     "titles": ["Plush"],
     "artists": ["Stone Temple Pilots", "STP"],
     "year": 1992,
-    "spotify_id": "https://open.spotify.com/track/3jJZVeExYzVYiV6Y9Fl3DX"
+    "spotify_id": "3jJZVeExYzVYiV6Y9Fl3DX"
   },
   {
     "id": 415,
     "titles": ["Kickstart My Heart"],
     "artists": ["Mötley Crüe", "Motley Crue"],
     "year": 1989,
-    "spotify_id": "https://open.spotify.com/track/4Yqy0GpeDEXLibWJCZyQew"
+    "spotify_id": "4Yqy0GpeDEXLibWJCZyQew"
   },
   {
     "id": 416,
     "titles": ["Born In The U.S.A.", "Born In The USA"],
     "artists": ["Bruce Springsteen"],
     "year": 1984,
-    "spotify_id": "https://open.spotify.com/track/0dOg1ySSI7NkpAe89Zo0b9"
+    "spotify_id": "0dOg1ySSI7NkpAe89Zo0b9"
   },
   {
     "id": 417,
     "titles": ["Heat Of The Moment"],
     "artists": ["Asia"],
     "year": 1982,
-    "spotify_id": "https://open.spotify.com/track/1nmZ8yqKkfooOuYvtFctDp"
+    "spotify_id": "1nmZ8yqKkfooOuYvtFctDp"
   },
   {
     "id": 418,
     "titles": ["Roxanne"],
     "artists": ["The Police", "Police"],
     "year": 1978,
-    "spotify_id": "https://open.spotify.com/track/3EYOJ48Et32uATr9ZmLnAo"
+    "spotify_id": "3EYOJ48Et32uATr9ZmLnAo"
   },
   {
     "id": 419,
     "titles": ["Hate To Say I Told You So"],
     "artists": ["The Hives", "Hives"],
     "year": 2000,
-    "spotify_id": "https://open.spotify.com/track/20j7B6mL9gnNvG3ic6Vwh5"
+    "spotify_id": "20j7B6mL9gnNvG3ic6Vwh5"
   },
   {
     "id": 420,
     "titles": ["Supermassive Black Hole", "Super Massive Black Hole"],
     "artists": ["Muse"],
     "year": 2006,
-    "spotify_id": "https://open.spotify.com/track/3lPr8ghNDBLc2uZovNyLs9"
+    "spotify_id": "3lPr8ghNDBLc2uZovNyLs9"
   },
   {
     "id": 421,
     "titles": ["We Got The Moves"],
     "artists": ["Electric Callboy", "Eskimo Callboy", "EC"],
     "year": 2021,
-    "spotify_id": "https://open.spotify.com/track/4EFb9FhLyFiDbYKwBwDZre"
+    "spotify_id": "4EFb9FhLyFiDbYKwBwDZre"
   },
   {
     "id": 422,
     "titles": ["La Grange"],
     "artists": ["ZZ Top"],
     "year": 1973,
-    "spotify_id": "https://open.spotify.com/track/2YgjwTiG85B2tvqmdRNpba"
+    "spotify_id": "2YgjwTiG85B2tvqmdRNpba"
   },
   {
     "id": 423,
     "titles": ["The Trooper"],
     "artists": ["Iron Maiden", "IM"],
     "year": 1983,
-    "spotify_id": "https://open.spotify.com/track/4OROzZUy6gOWN4UGQVaZMF"
+    "spotify_id": "4OROzZUy6gOWN4UGQVaZMF"
   },
   {
     "id": 424,
     "titles": ["Rolling' (Air Raid Vehicle)", "Rollin' (Air Raid Vehicle)", "Rollin'", "Rolling"],
     "artists": ["Limp Bizkit", "Limb Biscuit", "LB"],
     "year": 2000,
-    "spotify_id": "https://open.spotify.com/track/3IV4swNduIRunHREK80owz"
+    "spotify_id": "3IV4swNduIRunHREK80owz"
   },
   {
     "id": 425,
     "titles": ["Fight For Your Right"],
     "artists": ["Beastie Boys"],
     "year": 1986,
-    "spotify_id": "https://open.spotify.com/track/5NLuC70kZQv8q34QyQa1DP"
+    "spotify_id": "5NLuC70kZQv8q34QyQa1DP"
   },
   {
     "id": 426,
     "titles": ["American Woman"],
     "artists": ["The Guess Who", "Guess Who"],
     "year": 1971,
-    "spotify_id": "https://open.spotify.com/track/3QKGkxQnLTo3FWUTNJZlYH"
+    "spotify_id": "3QKGkxQnLTo3FWUTNJZlYH"
   },
   {
     "id": 427,
     "titles": ["Tutti Frutti"],
     "artists": ["Little Richard"],
     "year": 1955,
-    "spotify_id": "https://open.spotify.com/track/2iXcvnD3d1gfLBum0cE5Eg"
+    "spotify_id": "2iXcvnD3d1gfLBum0cE5Eg"
   },
   {
     "id": 428,
     "titles": ["Hound Dog"],
     "artists": ["Elvis Presley"],
     "year": 1956,
-    "spotify_id": "https://open.spotify.com/track/64Ny7djQ6rNJspquof2KoX"
+    "spotify_id": "64Ny7djQ6rNJspquof2KoX"
   },
   {
     "id": 429,
     "titles": ["The Passenger"],
     "artists": ["Iggy Pop"],
     "year": 1977,
-    "spotify_id": "https://open.spotify.com/track/15BQ7vEDv2LJuh8TxWIhtd"
+    "spotify_id": "15BQ7vEDv2LJuh8TxWIhtd"
   },
   {
     "id": 430,
     "titles": ["Cherry Bomb"],
     "artists": ["The Runaways", "Runaways"],
     "year": 1976,
-    "spotify_id": "https://open.spotify.com/track/7cdnq45E9aP2XDStHg5vd7"
+    "spotify_id": "7cdnq45E9aP2XDStHg5vd7"
   },
   {
     "id": 431,
     "titles": ["Masterpiece"],
     "artists": ["Motionless In White", "MIW"],
     "year": 2022,
-    "spotify_id": "https://open.spotify.com/track/3c9kVsKF68xMzlS0NikVn3"
+    "spotify_id": "3c9kVsKF68xMzlS0NikVn3"
   },
   {
     "id": 432,
     "titles": ["Alone In A Room"],
     "artists": ["Asking Alexandria", "AA"],
     "year": 2017,
-    "spotify_id": "https://open.spotify.com/track/5Gw8owErJLfkNxWCSwPQKJ"
+    "spotify_id": "5Gw8owErJLfkNxWCSwPQKJ"
   },
   {
     "id": 433,
     "titles": ["Celebrity Skin"],
     "artists": ["Hole"],
     "year": 1998,
-    "spotify_id": "https://open.spotify.com/track/2V4Bc2I962j7acQj1N0PiQ"
+    "spotify_id": "2V4Bc2I962j7acQj1N0PiQ"
   },
   {
     "id": 434,
     "titles": ["Silent Lucidity"],
     "artists": ["Queensrÿche", "Queensryche"],
     "year": 1990,
-    "spotify_id": "https://open.spotify.com/track/6OSyCAmXT4Gkd3OQ2aPOaF"
+    "spotify_id": "6OSyCAmXT4Gkd3OQ2aPOaF"
   },
   {
     "id": 435,
     "titles": ["Holy Diver"],
     "artists": ["Dio"],
     "year": 1983,
-    "spotify_id": "https://open.spotify.com/track/54yLLvpezvPO1lA3GspiZj"
+    "spotify_id": "54yLLvpezvPO1lA3GspiZj"
   },
   {
     "id": 436,
     "titles": ["Juke Box Hero"],
     "artists": ["Foreigner"],
     "year": 1981,
-    "spotify_id": "https://open.spotify.com/track/00qOE7OjRl0BpYiCiweZB2"
+    "spotify_id": "00qOE7OjRl0BpYiCiweZB2"
   },
   {
     "id": 437,
     "titles": ["Don't Bring Me Down", "Do Not Bring Me Down"],
     "artists": ["Electric Light Orchestra", "ELO"],
     "year": 1979,
-    "spotify_id": "https://open.spotify.com/track/72ahyckBJfTigJCFCviVN7"
+    "spotify_id": "72ahyckBJfTigJCFCviVN7"
   },
   {
     "id": 438,
     "titles": ["Rose Tattoo"],
     "artists": ["Dropkick Murphys", "The Dropkick Murphys", "DM"],
     "year": 2013,
-    "spotify_id": "https://open.spotify.com/track/3j5QcKYJ836ZBbcj1OoEod"
+    "spotify_id": "3j5QcKYJ836ZBbcj1OoEod"
   },
   {
     "id": 439,
     "titles": ["Get It On"],
     "artists": ["T. Rex", "T-Rex", "T Rex"],
     "year": 1971,
-    "spotify_id": "https://open.spotify.com/track/0LoQuiekvzqx7n8flgEKzF"
+    "spotify_id": "0LoQuiekvzqx7n8flgEKzF"
   },
   {
     "id": 440,
     "titles": ["Bulls On Parade"],
     "artists": ["Rage Against The Machine", "RATM"],
     "year": 1996,
-    "spotify_id": "https://open.spotify.com/track/0tZ3mElWcr74OOhKEiNz1x"
+    "spotify_id": "0tZ3mElWcr74OOhKEiNz1x"
   },
   {
     "id": 441,
     "titles": ["Hit The Road Jack"],
     "artists": ["Ray Charles"],
     "year": 1961,
-    "spotify_id": "https://open.spotify.com/track/49fzPkBb3aOUWYRKaTWVhm"
+    "spotify_id": "49fzPkBb3aOUWYRKaTWVhm"
   },
   {
     "id": 442,
     "titles": ["Come As You Are"],
     "artists": ["Nirvana"],
     "year": 1991,
-    "spotify_id": "https://open.spotify.com/track/2RsAajgo0g7bMCHxwH3Sk0"
+    "spotify_id": "2RsAajgo0g7bMCHxwH3Sk0"
   },
   {
     "id": 443,
     "titles": ["Square Hammer"],
     "artists": ["Ghost"],
     "year": 2016,
-    "spotify_id": "https://open.spotify.com/track/5TNhjanmvwvmjCz2WYwSAv"
+    "spotify_id": "5TNhjanmvwvmjCz2WYwSAv"
   },
   {
     "id": 444,
     "titles": ["Savior"],
     "artists": ["Rise Against", "RA"],
     "year": 2008,
-    "spotify_id": "https://open.spotify.com/track/1vcxF91pWs9uNwDROuiCPB"
+    "spotify_id": "1vcxF91pWs9uNwDROuiCPB"
   },
   {
     "id": 445,
     "titles": ["Cut The Cord"],
     "artists": ["Shinedown"],
     "year": 2015,
-    "spotify_id": "https://open.spotify.com/track/4LFBVDJV0xpayUvquQVzhS"
+    "spotify_id": "4LFBVDJV0xpayUvquQVzhS"
   },
   {
     "id": 446,
     "titles": ["Death By Rock And Roll", "Death by Rock'n'Roll"],
     "artists": ["The Pretty Reckless", "Pretty Reckless"],
     "year": 2020,
-    "spotify_id": "https://open.spotify.com/track/18DJQsejI5e1ZwO2wyuP2g"
+    "spotify_id": "18DJQsejI5e1ZwO2wyuP2g"
   },
   {
     "id": 447,
     "titles": ["Misery Business"],
     "artists": ["Paramore"],
     "year": 2007,
-    "spotify_id": "https://open.spotify.com/track/3l9CW99AHtExIRV4hW2N5m"
+    "spotify_id": "3l9CW99AHtExIRV4hW2N5m"
   },
   {
     "id": 448,
     "titles": ["Fat Lip"],
     "artists": ["Sum 41", "Sum Fourty-One", "Sum Fourty One"],
     "year": 2001,
-    "spotify_id": "https://open.spotify.com/track/4KacUpvbA3Mfo05gttTjhN"
+    "spotify_id": "4KacUpvbA3Mfo05gttTjhN"
   },
   {
     "id": 449,
     "titles": ["November Rain"],
     "artists": ["Guns N' Roses", "Guns And Roses"],
     "year": 1991,
-    "spotify_id": "https://open.spotify.com/track/3YRCqOhFifThpSRFJ1VWFM"
+    "spotify_id": "3YRCqOhFifThpSRFJ1VWFM"
   },
   {
     "id": 450,
     "titles": ["I Love Rock'n'Roll", "I Love Rock N' Roll", "I Love Rock And Roll"],
     "artists": ["Joan Jett & The Blackhearts", "Joan Jett and The Blackhearts", "Joan Jett", "The Blackhearts", "Blackhearts"],
     "year": 1981,
-    "spotify_id": "https://open.spotify.com/track/2Cdvbe2G4hZsnhNMKyGrie"
+    "spotify_id": "2Cdvbe2G4hZsnhNMKyGrie"
   },
   {
     "id": 451,
     "titles": ["Go Your Own Way"],
     "artists": ["Fleetwood Mac"],
     "year": 1976,
-    "spotify_id": "https://open.spotify.com/track/15rjQH7nTcTomKwfVMd4xl"
+    "spotify_id": "15rjQH7nTcTomKwfVMd4xl"
   },
   {
     "id": 452,
     "titles": ["Satellite"],
     "artists": ["Rise Against", "RA"],
     "year": 2011,
-    "spotify_id": "https://open.spotify.com/track/5sG3G54H21hNfd5etlheoe"
+    "spotify_id": "5sG3G54H21hNfd5etlheoe"
   },
   {
     "id": 453,
     "titles": ["Highway Tune"],
     "artists": ["Greta Van Fleet", "GVF"],
     "year": 2017,
-    "spotify_id": "https://open.spotify.com/track/7aOor99o8NNLZYElOXlBG1"
+    "spotify_id": "7aOor99o8NNLZYElOXlBG1"
   },
   {
     "id": 454,
     "titles": ["Give It Away"],
     "artists": ["Red Hot Chili Peppers", "RHCP"],
     "year": 1991,
-    "spotify_id": "https://open.spotify.com/track/0uppYCG86ajpV2hSR3dJJ0"
+    "spotify_id": "0uppYCG86ajpV2hSR3dJJ0"
   },
   {
     "id": 455,
     "titles": ["Just Like Heaven"],
     "artists": ["The Cure", "Cure"],
     "year": 1987,
-    "spotify_id": "https://open.spotify.com/track/4NnWuGQujzWUEg0uZokO5M"
+    "spotify_id": "4NnWuGQujzWUEg0uZokO5M"
   },
   {
     "id": 456,
     "titles": ["Fear Of The Dark"],
     "artists": ["Iron Maiden", "IM"],
     "year": 1992,
-    "spotify_id": "https://open.spotify.com/track/6p8eFfPw3nQkf37aT3AkmK"
+    "spotify_id": "6p8eFfPw3nQkf37aT3AkmK"
   },
   {
     "id": 457,
     "titles": ["Call Me"],
     "artists": ["Blondie"],
     "year": 1980,
-    "spotify_id": "https://open.spotify.com/track/4qO03RMQm88DdpTJcxlglY"
+    "spotify_id": "4qO03RMQm88DdpTJcxlglY"
   },
   {
     "id": 458,
     "titles": ["Hard To Handle"],
     "artists": ["The Black Crowes", "Black Crowes", "TBC", "BC"],
     "year": 1990,
-    "spotify_id": "https://open.spotify.com/track/05NYcsjJwOYq4jIiKPVj9p"
+    "spotify_id": "05NYcsjJwOYq4jIiKPVj9p"
   },
   {
     "id": 459,
     "titles": ["Hells Bells"],
     "artists": ["AC/DC", "ACDC", "AC DC"],
     "year": 1980,
-    "spotify_id": "https://open.spotify.com/track/2P884dqfjksDMSzUZksfrS"
+    "spotify_id": "2P884dqfjksDMSzUZksfrS"
   },
   {
     "id": 460,
     "titles": ["Welcome To The Black Parade"],
     "artists": ["My Chemical Romance", "MCR"],
     "year": 2006,
-    "spotify_id": "https://open.spotify.com/track/5wQnmLuC1W7ATsArWACrgW"
+    "spotify_id": "5wQnmLuC1W7ATsArWACrgW"
   },
   {
     "id": 461,
     "titles": ["I Will Not Bow", "I Won't Bow"],
-    "artists": ["Breaking Benjamin"],
+    "artists": ["Breaking Benjamin", "BB"],
     "year": 2009,
-    "spotify_id": "https://open.spotify.com/track/2yXyz4NLTZx9CLdXfLTp5E"
+    "spotify_id": "2yXyz4NLTZx9CLdXfLTp5E"
   },
   {
     "id": 462,
     "titles": ["Run For Cover"],
     "artists": ["The Killers", "Killers"],
     "year": 2017,
-    "spotify_id": "https://open.spotify.com/track/5NAiPIEzxAexFE3ucV18Q8"
+    "spotify_id": "5NAiPIEzxAexFE3ucV18Q8"
   },
   {
     "id": 463,
     "titles": ["Dance, Dance"],
     "artists": ["Fall Out Boy", "FOB"],
     "year": 2005,
-    "spotify_id": "https://open.spotify.com/track/0a7BloCiNzLDD9qSQHh5m7"
+    "spotify_id": "0a7BloCiNzLDD9qSQHh5m7"
+  },
+  {
+    "id": 464,
+    "titles": ["Riptide"],
+    "artists": ["Beartooth"],
+    "year": 2023,
+    "spotify_id": "4Xgono4pmRbojXlCIYh8or"
+  },
+  {
+    "id": 465,
+    "titles": ["Coming Undone"],
+    "artists": ["Korn"],
+    "year": 2005,
+    "spotify_id": "3o7TMr6RmIusYH7Kkg7ujR"
+  },
+  {
+    "id": 466,
+    "titles": ["Barracuda"],
+    "artists": ["Heart"],
+    "year": 1977,
+    "spotify_id": "4KfSdst7rW39C0sfhArdrz"
+  },
+  {
+    "id": 467,
+    "titles": ["You Give Love A Bad Name"],
+    "artists": ["Bon Jovi"],
+    "year": 1986,
+    "spotify_id": "0rmGAIH9LNJewFw7nKzZnc"
+  },
+  {
+    "id": 468,
+    "titles": ["All Day And All Of The Night"],
+    "artists": ["The Kinks", "Kinks"],
+    "year": 1964,
+    "spotify_id": "1mfV2kv9RwFKVI8kEQlmOJ"
+  },
+  {
+    "id": 469,
+    "titles": ["Every You Every Me"],
+    "artists": ["Placebo"],
+    "year": 1998,
+    "spotify_id": "2Srd8Jgif3kc6ou6Z4pSYJ"
+  },
+  {
+    "id": 470,
+    "titles": ["Paradise City"],
+    "artists": ["Guns N' Roses", "Guns And Roses"],
+    "year": 1987,
+    "spotify_id": "6eN1f9KNmiWEhpE2RhQqB5"
+  },
+  {
+    "id": 471,
+    "titles": ["Bohemian Rhapsody"],
+    "artists": ["Queen"],
+    "year": 1975,
+    "spotify_id": "4u7EnebtmKWzUH433cf5Qv"
+  },
+  {
+    "id": 472,
+    "titles": ["Dancing With Myself"],
+    "artists": ["Billy Idol"],
+    "year": 1980,
+    "spotify_id": "1BY1Vd2Bt6JPOhMvsIwtVv"
+  },
+  {
+    "id": 473,
+    "titles": ["Duality"],
+    "artists": ["Slipknot"],
+    "year": 2004,
+    "spotify_id": "61mWefnWQOLf90gepjOCb3"
+  },
+  {
+    "id": 474,
+    "titles": ["Bark At The Moon"],
+    "artists": ["Ozzy Osbourne"],
+    "year": 1983,
+    "spotify_id": "2E7W1X4maFFcjHrVrFA7Vs"
+  },
+  {
+    "id": 475,
+    "titles": ["Bite Me"],
+    "artists": ["Avril Lavigne", "Avril"],
+    "year": 2021,
+    "spotify_id": "6dfwRetlyLPBoQzdufbOWj"
+  },
+  {
+    "id": 476,
+    "titles": ["Immigrant Song"],
+    "artists": ["Led Zeppelin", "LZ"],
+    "year": 1970,
+    "spotify_id": "78lgmZwycJ3nzsdgmPPGNx"
+  },
+  {
+    "id": 477,
+    "titles": ["House Of The Rising Sun"],
+    "artists": ["The Animals", "Animals"],
+    "year": 1964,
+    "spotify_id": "4mn2kNTqiGLwaUR8JdhJ1l"
+  },
+  {
+    "id": 478,
+    "titles": ["London Calling"],
+    "artists": ["The Clash", "Clash"],
+    "year": 1979,
+    "spotify_id": "124Y9LPRCAz3q2OP0iCvcJ"
+  },
+  {
+    "id": 479,
+    "titles": ["Fox On The Run"],
+    "artists": ["The Sweet", "Sweet"],
+    "year": 1974,
+    "spotify_id": "1kecaz54iduPLO4VPszTbC"
+  },
+  {
+    "id": 480,
+    "titles": ["I Wanna Be Sedated"],
+    "artists": ["Ramones"],
+    "year": 1978,
+    "spotify_id": "5NoQvINZLBV1wMYPdNmReL"
+  },
+  {
+    "id": 481,
+    "titles": ["Highway Star"],
+    "artists": ["Deep Purple"],
+    "year": 1972,
+    "spotify_id": "79q7xFOodcfIVbpNHjE2gB"
+  },
+  {
+    "id": 482,
+    "titles": ["Figure It Out"],
+    "artists": ["Royal Blood", "RB"],
+    "year": 2014,
+    "spotify_id": "3MjrueDQKVr6xDDseZwhEd"
+  },
+  {
+    "id": 483,
+    "titles": ["Nothin' But A Good Time", "Nothing But A Good Time"],
+    "artists": ["Poison"],
+    "year": 1988,
+    "spotify_id": "6G09JrmKdDAe29eSH8ZQmR"
+  },
+  {
+    "id": 484,
+    "titles": ["You're The One", "You Are The One"],
+    "artists": ["Greta Van Fleet", "GVF"],
+    "year": 2018,
+    "spotify_id": "0iYBNrznkCwhN3xCmNVJpo"
+  },
+  {
+    "id": 485,
+    "titles": ["Guerrilla Radio", "Gorilla Radio"],
+    "artists": ["Rage Against The Machine", "RATM"],
+    "year": 1999,
+    "spotify_id": "1wsRitfRRtWyEapl0q22o8"
+  },
+  {
+    "id": 486,
+    "titles": ["Down With The Sickness"],
+    "artists": ["Disturbed"],
+    "year": 2000,
+    "spotify_id": "40rvBMQizxkIqnjPdEWY1v"
+  },
+  {
+    "id": 487,
+    "titles": ["Stay"],
+    "artists": ["Maurice Williams & The Zodiacs", "Maurice Williams and The Zodiacs", "Maurice Williams", "The Zodiacs", "Zodiacs"],
+    "year": 1960,
+    "spotify_id": "12BB5t506Of3s3NPBoKScC"
+  },
+  {
+    "id": 488,
+    "titles": ["Open Your Eyes"],
+    "artists": ["Guano Apes", "GA"],
+    "year": 1997,
+    "spotify_id": "5oxpT46KeiEuckYnChgFFT"
+  },
+  {
+    "id": 489,
+    "titles": ["1979", "Nineteen-hundred Seventy-nine", "Nineteen hundred Seventy nine"],
+    "artists": ["The Smashing Pumpkins", "Smashing Pumpkins"],
+    "year": 1995,
+    "spotify_id": "3h5zik31hTTat9jmpCZZNC"
+  },
+  {
+    "id": 490,
+    "titles": ["Like A Stone"],
+    "artists": ["Audioslave"],
+    "year": 2002,
+    "spotify_id": "2MrWu3Gt6ucsOHC6eE8oLV"
+  },
+  {
+    "id": 491,
+    "titles": ["Radioactive"],
+    "artists": ["Kings of Leon", "KoL"],
+    "year": 2010,
+    "spotify_id": "60CirPlTOEWOUBus7HxV3B"
+  },
+  {
+    "id": 492,
+    "titles": ["Ocean Avenue"],
+    "artists": ["Yellowcard", "Yellow Card"],
+    "year": 2004,
+    "spotify_id": "23oxJmDc1V9uLUSmN2LIvx"
+  },
+  {
+    "id": 493,
+    "titles": ["Man In The Box"],
+    "artists": ["Alice In Chains", "AIC"],
+    "year": 1990,
+    "spotify_id": "6gZVQvQZOFpzIy3HblJ20F"
+  },
+  {
+    "id": 494,
+    "titles": ["Cherry Pie"],
+    "artists": ["Warrant"],
+    "year": 1990,
+    "spotify_id": "7LygtNjQ65PSdzVjUnHXQb"
+  },
+  {
+    "id": 495,
+    "titles": ["Higher"],
+    "artists": ["Creed"],
+    "year": 1999,
+    "spotify_id": "1ZozJfi8u9cO2Ob8KwiwNT"
+  },
+  {
+    "id": 496,
+    "titles": ["Drive"],
+    "artists": ["Incubus"],
+    "year": 1999,
+    "spotify_id": "7nnWIPM5hwE3DaUBkvOIpy"
+  },
+  {
+    "id": 497,
+    "titles": ["Another Brick In The Wall, Pt. 2", "Another Brick In The Wall", "Another Brick In The Wall, Part 2", "Another Brick In The Wall, Part Two"],
+    "artists": ["Pink Floyd", "PF"],
+    "year": 1979,
+    "spotify_id": "7rPzEczIS574IgPaiPieS3"
+  },
+  {
+    "id": 498,
+    "titles": ["Girls, Girls, Girls", "Girls"],
+    "artists": ["Mötley Crüe", "Motley Crue"],
+    "year": 1987,
+    "spotify_id": "3439OLNIeD3y68kVuoZUO5"
+  },
+  {
+    "id": 499,
+    "titles": ["Lonely Boy"],
+    "artists": ["The Black Keys", "Black Keys", "TBK", "BK"],
+    "year": 2011,
+    "spotify_id": "5G1sTBGbZT5o4PNRc75RKI"
+  },
+  {
+    "id": 500,
+    "titles": ["Fortunate Son"],
+    "artists": ["Creedence Clearwater Revival", "CCR"],
+    "year": 1969,
+    "spotify_id": "4BP3uh0hFLFRb5cjsgLqDh"
+  },
+  {
+    "id": 501,
+    "titles": ["Push"],
+    "artists": ["Matchbox Twenty", "Matchbox 20", "MT", "M20"],
+    "year": 1996,
+    "spotify_id": "2KVwlelhxKUy8LVV6JypH3"
+  },
+  {
+    "id": 502,
+    "titles": ["Mr. Brightside", "Mister Brightside"],
+    "artists": ["The Killers", "Killers"],
+    "year": 2003,
+    "spotify_id": "003vvx7Niy0yvhvHt4a68B"
+  },
+  {
+    "id": 503,
+    "titles": ["Free Fallin'", "Free Falling"],
+    "artists": ["Tom Petty"],
+    "year": 1989,
+    "spotify_id": "5tVA6TkbaAH9QMITTQRrNv"
+  },
+  {
+    "id": 504,
+    "titles": ["Come Together"],
+    "artists": ["The Beatles", "Beatles"],
+    "year": 1969,
+    "spotify_id": "2EqlS6tkEnglzr7tkKAAYD"
+  },
+  {
+    "id": 505,
+    "titles": ["Dream On"],
+    "artists": ["Aerosmith"],
+    "year": 1973,
+    "spotify_id": "1xsYj84j7hUDDnTTerGWlH"
+  },
+  {
+    "id": 506,
+    "titles": ["Army Of The Night"],
+    "artists": ["Powerwolf", "Power Wolf"],
+    "year": 2015,
+    "spotify_id": "6vQT1Y3MTGCpc31VIF5Ela"
+  },
+  {
+    "id": 507,
+    "titles": ["Paint It Black"],
+    "artists": ["The Rolling Stones", "Rolling Stones"],
+    "year": 1966,
+    "spotify_id": "63T7DJ1AFDD6Bn8VzG6JE8"
+  },
+  {
+    "id": 508,
+    "titles": ["Everlong"],
+    "artists": ["Foo Fighters", "FF"],
+    "year": 1997,
+    "spotify_id": "5UWwZ5lm5PKu6eKsHAGxOk"
+  },
+  {
+    "id": 509,
+    "titles": ["Crazy Train"],
+    "artists": ["Ozzy Osbourne"],
+    "year": 1980,
+    "spotify_id": "7ACxUo21jtTHzy7ZEV56vU"
+  },
+  {
+    "id": 510,
+    "titles": ["Entre Dos Tierras"],
+    "artists": ["Heroes Del Silencio", "Heroes De El Silencio"],
+    "year": 1990,
+    "spotify_id": "4rJdaSwOCHLBhxdMsymeMw"
+  },
+  {
+    "id": 511,
+    "titles": ["1985", "Nineteen-hundred Eighty-five", "Nineteen hundred Eighty five"],
+    "artists": ["Bowling For Soup", "BFS"],
+    "year": 2004,
+    "spotify_id": "4UuHWIkAWnN176A2rx7YFB"
+  },
+  {
+    "id": 512,
+    "titles": ["Mother"],
+    "artists": ["Danzig", "Glenn Danzig"],
+    "year": 1988,
+    "spotify_id": "7txxAtOMwLLnQTpKeBL6bp"
+  },
+  {
+    "id": 513,
+    "titles": ["Dark Matter"],
+    "artists": ["Pearl Jam", "PJ"],
+    "year": 2024,
+    "spotify_id": "0S4VR8n0KBkE6DxrjArswJ"
+  },
+  {
+    "id": 514,
+    "titles": ["Won't Stand Down", "Will Not Stand Down", "I Won't Stand Down", "I Will Not Stand Down"],
+    "artists": ["Muse"],
+    "year": 2022,
+    "spotify_id": "6Wi8Byfq6xH0lEkqZbOZg9"
+  },
+  {
+    "id": 515,
+    "titles": ["School's Out", "School Is Out"],
+    "artists": ["Alice Cooper"],
+    "year": 1972,
+    "spotify_id": "5Z8EDau8uNcP1E8JvmfkZe"
+  },
+  {
+    "id": 516,
+    "titles": ["My Own Summer (Shove It)", "My Own Summer"],
+    "artists": ["Deftones"],
+    "year": 1997,
+    "spotify_id": "1158ckiB5S4cpsdYHDB9IF"
+  },
+  {
+    "id": 517,
+    "titles": ["Trouble's Coming", "Trouble Is Coming"],
+    "artists": ["Royal Blood", "RB"],
+    "year": 2020,
+    "spotify_id": "6voIJ7OWwRabSZDC77D5Hp"
+  },
+  {
+    "id": 518,
+    "titles": ["Panama"],
+    "artists": ["Van Halen"],
+    "year": 1984,
+    "spotify_id": "42Lq6GBO5KUSNeSgJsOoke"
+  },
+  {
+    "id": 519,
+    "titles": ["All I Want"],
+    "artists": ["A Day To Remember", "ADTR"],
+    "year": 2010,
+    "spotify_id": "4JsDHMv5PVO8N07DbDq33r"
+  },
+  {
+    "id": 520,
+    "titles": ["Walk This Way"],
+    "artists": ["Aerosmith"],
+    "year": 1975,
+    "spotify_id": "4JfuiOWlWCkjP6OKurHjSn"
+  },
+  {
+    "id": 521,
+    "titles": ["Song 2", "Song Two"],
+    "artists": ["Blur"],
+    "year": 1997,
+    "spotify_id": "3GfOAdcoc3X5GPiiXmpBjK"
+  },
+  {
+    "id": 522,
+    "titles": ["Run To You"],
+    "artists": ["Bryan Adams"],
+    "year": 1984,
+    "spotify_id": "2RWFncSWZEhSRRifqiDNVV"
+  },
+  {
+    "id": 523,
+    "titles": ["Lola Montez"],
+    "artists": ["Volbeat"],
+    "year": 2013,
+    "spotify_id": "34rCwPVIy1OZKfIbXC9KmN"
+  },
+  {
+    "id": 524,
+    "titles": ["Self Esteem"],
+    "artists": ["The Offspring", "Offspring"],
+    "year": 1994,
+    "spotify_id": "1FkoVC85Ds3mFoK0fVqEqP"
+  },
+  {
+    "id": 525,
+    "titles": ["Jekyll And Hyde"],
+    "artists": ["Five Finger Death Punch", "FFDP"],
+    "year": 2015,
+    "spotify_id": "6efSwlK3LOlWOeKK9xlUKF"
+  },
+  {
+    "id": 526,
+    "titles": ["In The End"],
+    "artists": ["Linkin Park", "LP"],
+    "year": 2000,
+    "spotify_id": "60a0Rd6pjrkxjPbaKzXjfq"
+  },
+  {
+    "id": 527,
+    "titles": ["Buddy Holly"],
+    "artists": ["Weezer"],
+    "year": 1994,
+    "spotify_id": "3mwvKOyMmG77zZRunnxp9E"
+  },
+  {
+    "id": 528,
+    "titles": ["Tom Sawyer"],
+    "artists": ["Rush"],
+    "year": 1981,
+    "spotify_id": "3QZ7uX97s82HFYSmQUAN1D"
+  },
+  {
+    "id": 529,
+    "titles": ["Ain't Talkin' Bout Love", "I'm Not Talkin' Bout Love", "I Am Not Talkin' Bout Love", "I Am Not Talking Bout Love",
+               "Ain't Talkin' About Love", "I'm Not Talkin' About Love", "I Am Not Talkin' About Love", "I Am Not Talking About Love"],
+    "artists": ["Van Halen"],
+    "year": 1978,
+    "spotify_id": "0ddmUcKR9WjqmaT4FlhMNU"
+  },
+  {
+    "id": 530,
+    "titles": ["I WANNA BE YOUR SLAVE"],
+    "artists": ["Måneskin", "Maneskin"],
+    "year": 2021,
+    "spotify_id": "4pt5fDVTg5GhEvEtlz9dKk"
+  },
+  {
+    "id": 531,
+    "titles": ["Tanzt Du Noch Einmal Mit Mir?"],
+    "artists": ["Broilers", "Die Broilers", "The Broilers"],
+    "year": 2011,
+    "spotify_id": "1QH6osxkowQm4nkulzn7wX"
+  },
+  {
+    "id": 532,
+    "titles": ["White Rabbit"],
+    "artists": ["Jefferson Airplane", "JA"],
+    "year": 1967,
+    "spotify_id": "4vpeKl0vMGdAXpZiQB2Dtd"
+  },
+  {
+    "id": 533,
+    "titles": ["Could Have Been me"],
+    "artists": ["The Struts", "Struts"],
+    "year": 2014,
+    "spotify_id": "3IyCL4Em1GOpNGDf451Hg1"
+  },
+  {
+    "id": 534,
+    "titles": ["Absolute Zero"],
+    "artists": ["Stone Sour", "SS"],
+    "year": 2012,
+    "spotify_id": "14EORgkbXqIx5K4Haucmnb"
+  },
+  {
+    "id": 535,
+    "titles": ["Planet Zero"],
+    "artists": ["Shinedown"],
+    "year": 2022,
+    "spotify_id": "7g2LuO2QFplZfsLKRFiVHl"
+  },
+  {
+    "id": 536,
+    "titles": ["Manic"],
+    "artists": ["Wage War", "WW"],
+    "year": 2021,
+    "spotify_id": "5d0CEohvmvqcizfc0cXn1t"
+  },
+  {
+    "id": 537,
+    "titles": ["The Summoning"],
+    "artists": ["Sleep Token", "ST"],
+    "year": 2023,
+    "spotify_id": "5bG7kGH4z8hG2jJQLoyy0O"
+  },
+  {
+    "id": 538,
+    "titles": ["Centuries"],
+    "artists": ["Fall Out Boy", "FOB"],
+    "year": 2014,
+    "spotify_id": "04aAxqtGp5pv12UXAg4pkq"
+  },
+  {
+    "id": 539,
+    "titles": ["Sk8er Boi", "Skater Boi", "Sk8er Boy", "Skater Boy"],
+    "artists": ["Avril Lavigne", "Avril"],
+    "year": 2002,
+    "spotify_id": "00Mb3DuaIH1kjrwOku9CGU"
+  },
+  {
+    "id": 540,
+    "titles": ["Run Through The Jungle"],
+    "artists": ["Creedence Clearwater Revival", "CCR"],
+    "year": 1970,
+    "spotify_id": "6J0AjzrYsPZrQtw6IjErhy"
+  },
+  {
+    "id": 541,
+    "titles": ["Hotel California"],
+    "artists": ["Eagles", "The Eagles"],
+    "year": 1976,
+    "spotify_id": "1rh232CwAy3EDEWFJkwH88"
+  },
+  {
+    "id": 542,
+    "titles": ["Burning Heart"],
+    "artists": ["Survivor"],
+    "year": 1985,
+    "spotify_id": "2avaSeKHI5l4sLruVfLdi2"
+  },
+  {
+    "id": 543,
+    "titles": ["No One Knows"],
+    "artists": ["Queens Of The Stone Age", "QoTSA"],
+    "year": 2002,
+    "spotify_id": "6y20BV5L33R8YXM0YuI38N"
+  },
+  {
+    "id": 544,
+    "titles": ["I Stand Alone"],
+    "artists": ["Godsmack"],
+    "year": 2002,
+    "spotify_id": "6eYUbXmncekAKMYZcsSkyD"
+  },
+  {
+    "id": 545,
+    "titles": ["Tears Don't Fall", "Tears Do Not Fall"],
+    "artists": ["Bullet For My Valentine", "BFMV"],
+    "year": 2006,
+    "spotify_id": "7ln7o4q6y9h8qEc6hGrtr1"
+  },
+  {
+    "id": 546,
+    "titles": ["Raining Blood"],
+    "artists": ["Slayer"],
+    "year": 1986,
+    "spotify_id": "4fiOTntQKr24p07FvQDHZE"
+  },
+  {
+    "id": 547,
+    "titles": ["Gossip (feat. Tom Morello)", "Gossip"],
+    "artists": ["Måneskin", "Maneskin", "Tom Morello"],
+    "year": 2023,
+    "spotify_id": "44Xyja7xYPlVC6v2CeweSi"
+  },
+  {
+    "id": 548,
+    "titles": ["Bulletproof"],
+    "artists": ["Godsmack"],
+    "year": 2018,
+    "spotify_id": "4Pp7tPCBM9ywQexWvCz6iH"
+  },
+  {
+    "id": 549,
+    "titles": ["Song #3", "Song 3", "Song Three"],
+    "artists": ["Stone Sour", "SS"],
+    "year": 2017,
+    "spotify_id": "5jsDxDkJ1PqyYUWhDMr86B"
+  },
+  {
+    "id": 550,
+    "titles": ["Going Under"],
+    "artists": ["Evanescence"],
+    "year": 2003,
+    "spotify_id": "3UygY7qW2cvG9Llkay6i1i"
+  },
+  {
+    "id": 551,
+    "titles": ["Be Bop a Lula"],
+    "artists": ["Gene Vincent & His Blue Caps", "Gene Vincent and His Blue Caps", "Gene Vincent", " The Blue Caps", "Blue Caps"],
+    "year": 1956,
+    "spotify_id": "1QUQkPdroMjVD4FeEQ1c3U"
+  },
+  {
+    "id": 552,
+    "titles": ["Break On Through (To The Other Side)", "Break On Through", "To The Other Side"],
+    "artists": ["The Doors", "Doors"],
+    "year": 1967,
+    "spotify_id": "6ToM0uwxtPKo9CMpbPGYvM"
+  },
+  {
+    "id": 553,
+    "titles": ["Painkiller"],
+    "artists": ["Judas Priest", "JP"],
+    "year": 1990,
+    "spotify_id": "0L7zm6afBEtrNKo6C6Gj08"
+  },
+  {
+    "id": 554,
+    "titles": ["Symphony Of Destruction"],
+    "artists": ["Megadeth", "Megadeath", "Mega Deth", "Mega Death"],
+    "year": 1992,
+    "spotify_id": "51TG9W3y9qyO8BY5RXKgnZ"
+  },
+  {
+    "id": 555,
+    "titles": ["S.O.S. (Sawed Off Shotgun)", "S.O.S.", "Sawed Off Shotgun"],
+    "artists": ["The Glorious Sons", "Glorious Sons"],
+    "year": 2017,
+    "spotify_id": "1FjvK5qumqi0sMbw8yqmMX"
+  },
+  {
+    "id": 556,
+    "titles": ["I Hate Everything About You"],
+    "artists": ["Three Days Grace", "3 Days Grace"],
+    "year": 2003,
+    "spotify_id": "6rUp7v3l8yC4TKxAAR5Bmx"
+  },
+  {
+    "id": 557,
+    "titles": ["She Sells Sanctuary"],
+    "artists": ["The Cult", "Cult"],
+    "year": 1985,
+    "spotify_id": "3qLZ866ZfaK0B0R5FIqXLG"
+  },
+  {
+    "id": 558,
+    "titles": ["Dark Side", "Darkside"],
+    "artists": ["Blind Channel"],
+    "year": 2021,
+    "spotify_id": "2vICdcAEc10WfqMeRxOF1I"
+  },
+  {
+    "id": 559,
+    "titles": ["The Anthem"],
+    "artists": ["Good Charlotte", "GC"],
+    "year": 2002,
+    "spotify_id": "0BRHnOFm6sjxN1i9LJrUDu"
+  },
+  {
+    "id": 560,
+    "titles": ["Just A Girl"],
+    "artists": ["No Doubt"],
+    "year": 1995,
+    "spotify_id": "5lWRaa0fBxDE5yU91npPq7"
+  },
+  {
+    "id": 561,
+    "titles": ["Nightmare"],
+    "artists": ["Avenged Sevenfold", "A7X"],
+    "year": 2010,
+    "spotify_id": "4UEo1b0wWrtHMC8bVqPiH8"
+  },
+  {
+    "id": 562,
+    "titles": ["Thunderstruck"],
+    "artists": ["AC/DC", "ACDC", "AC DC"],
+    "year": 1990,
+    "spotify_id": "57bgtoPSgt236HzfBOd8kj"
+  },
+  {
+    "id": 563,
+    "titles": ["San Quentin"],
+    "artists": ["Nickelback"],
+    "year": 2022,
+    "spotify_id": "2fDy68BuFDTa7UGVicym4Z"
+  },
+  {
+    "id": 564,
+    "titles": ["Getting Along"],
+    "artists": ["Royal Republic", "RR"],
+    "year": 2016,
+    "spotify_id": "1Ly7xppUgLEZ4iwxRAR9Sf"
+  },
+  {
+    "id": 565,
+    "titles": ["Seven Nation Army"],
+    "artists": ["The White Stripes", "White Stripes", "TWS"],
+    "year": 2003,
+    "spotify_id": "3dPQuX8Gs42Y7b454ybpMR"
+  },
+  {
+    "id": 566,
+    "titles": ["Bad To The Bone"],
+    "artists": ["George Thorogood & The Destroyers", "George Thorogood and The Destroyers", "George Thorogood", "The Destroyers", "Destroyers"],
+    "year": 1982,
+    "spotify_id": "6s0NHplywwr1IjnQpUpWJk"
+  },
+  {
+    "id": 567,
+    "titles": ["Enter Sandman"],
+    "artists": ["Metallica"],
+    "year": 1991,
+    "spotify_id": "5sICkBXVmaCQk5aISGR3x1"
+  },
+  {
+    "id": 568,
+    "titles": ["Monsters (feat. Blackbear)", "Monsters"],
+    "artists": ["All Time Low", "ATL", "Blackbear"],
+    "year": 2020,
+    "spotify_id": "0tyR7Bu9P086aWBFZ4QJoo"
+  },
+  {
+    "id": 569,
+    "titles": ["Children of The Grave"],
+    "artists": ["Black Sabbath", "BS"],
+    "year": 1971,
+    "spotify_id": "4JADjxwEqz3UOQROjg9TiJ"
+  },
+  {
+    "id": 570,
+    "titles": ["Poison"],
+    "artists": ["Alice Cooper"],
+    "year": 1989,
+    "spotify_id": "5XcZRgJv3zMhTqCyESjQrF"
+  },
+  {
+    "id": 571,
+    "titles": ["Fake It"],
+    "artists": ["Seether"],
+    "year": 2007,
+    "spotify_id": "4eAwB5pnKFTmsgc3zWoYO0"
+  },
+  {
+    "id": 572,
+    "titles": ["Black Betty"],
+    "artists": ["Ram Jam", "RJ"],
+    "year": 1977,
+    "spotify_id": "6kooDsorCpWVMGc994XjWN"
+  },
+  {
+    "id": 573,
+    "titles": ["Last Resort"],
+    "artists": ["Papa Roach"],
+    "year": 2000,
+    "spotify_id": "5W8YXBz9MTIDyrpYaCg2Ky"
+  },
+  {
+    "id": 574,
+    "titles": ["Hey Joe"],
+    "artists": ["Jimi Hendrix", "JH"],
+    "year": 1966,
+    "spotify_id": "0OQcEcs36ckWOB1nywhmBV"
+  },
+  {
+    "id": 575,
+    "titles": ["Danger Zone"],
+    "artists": ["Kenny Loggins", "KL"],
+    "year": 1986,
+    "spotify_id": "34x6hEJgGAOQvmlMql5Ige"
+  },
+  {
+    "id": 576,
+    "titles": ["Detroit Rock City"],
+    "artists": ["KISS"],
+    "year": 1976,
+    "spotify_id": "0PQ51hZtABYRaXNHkVpAfD"
+  },
+  {
+    "id": 577,
+    "titles": ["Your Betrayal"],
+    "artists": ["Bullet For My Valentine", "BFMV"],
+    "year": 2010,
+    "spotify_id": "25GC50HslaaruyrKjdu0lP"
+  },
+  {
+    "id": 578,
+    "titles": ["Even Flow"],
+    "artists": ["Pearl Jam", "PJ"],
+    "year": 1991,
+    "spotify_id": "6QewNVIDKdSl8Y3ycuHIei"
+  },
+  {
+    "id": 579,
+    "titles": ["I'd Do Anything For Love (But I Won't Do That)", "I'd Do Anything For Love", "I Would Do Anything For Love",
+               "I Would Do Anything For Love (But I Won't Do That)", "I Would Do Anything For Love (But I Will Not Do That)", "I'd Do Anything For Love (But I Will Not Do That)"],
+    "artists": ["Meat Loaf", "ML"],
+    "year": 1992,
+    "spotify_id": "3IuSgREoO5y88HdIcE2Xee"
+  },
+  {
+    "id": 580,
+    "titles": ["Risin' High (Def Core Grind Version)", "Rising High (Def Core Grind Version)", "Risin' High", "Rising High"],
+    "artists": ["H-Blockx", "H-Blocks", "H Blockx", "H Blocks"],
+    "year": 1993,
+    "spotify_id": "0H16myxA7GIjekgP0YC8Sa"
+  },
+  {
+    "id": 581,
+    "titles": ["Love Hurts"],
+    "artists": ["Nazareth"],
+    "year": 1974,
+    "spotify_id": "11lz5IuUrg2qVuNrGPRVq2"
+  },
+  {
+    "id": 582,
+    "titles": ["Gimme Shelter"],
+    "artists": ["The Rolling Stones", "Rolling Stones"],
+    "year": 1969,
+    "spotify_id": "6H3kDe7CGoWYBabAeVWGiD"
+  },
+  {
+    "id": 583,
+    "titles": ["Don't Stop Me Now", "Do Not Stop Me Now"],
+    "artists": ["Queen"],
+    "year": 1978,
+    "spotify_id": "5T8EDUDqKcs6OSOwEsfqG7"
+  },
+  {
+    "id": 584,
+    "titles": ["Break"],
+    "artists": ["Three Days Grace", "3 Days Grace"],
+    "year": 2009,
+    "spotify_id": "1uDoIHd5SWYKWvorJvMoWE"
+  },
+  {
+    "id": 585,
+    "titles": ["Sharp Dressed Man"],
+    "artists": ["ZZ Top"],
+    "year": 1983,
+    "spotify_id": "7aXgo7vAHDjHR0JrCX2qJv"
+  },
+  {
+    "id": 586,
+    "titles": ["Dragula", "Dracula"],
+    "artists": ["Rob Zombie"],
+    "year": 1998,
+    "spotify_id": "6Nm8h73ycDG2saCnZV8poF"
+  },
+  {
+    "id": 587,
+    "titles": ["Don't Threaten Me With A Good Time", "Do Not Threaten Me With A Good Time"],
+    "artists": ["Panic! At The Disco", "PATD"],
+    "year": 2016,
+    "spotify_id": "2fh3bZ8jZhMxOcfESE9nQY"
+  },
+  {
+    "id": 588,
+    "titles": ["The Kids Aren't Alright", "The Kids Are Not Alright"],
+    "artists": ["The Offspring", "Offspring"],
+    "year": 1998,
+    "spotify_id": "4EchqUKQ3qAQuRNKmeIpnf"
+  },
+  {
+    "id": 589,
+    "titles": ["First Date"],
+    "artists": ["blink-182", "blink 182", "blink"],
+    "year": 2001,
+    "spotify_id": "1fJFuvU2ldmeAm5nFIHcPP"
+  },
+  {
+    "id": 590,
+    "titles": ["Red Flag"],
+    "artists": ["Billy Talent", "BT"],
+    "year": 2006,
+    "spotify_id": "2RZWdE8kYPlCAcRUYDeuLC"
+  },
+  {
+    "id": 591,
+    "titles": ["I Miss The Misery"],
+    "artists": ["Halestorm"],
+    "year": 2012,
+    "spotify_id": "60rHc4AkLlP4XVSATvBb6K"
+  },
+  {
+    "id": 592,
+    "titles": ["Altes Fieber"],
+    "artists": ["Die Toten Hosen", "Toten Hosen", "Tote Hosen", "DTH"],
+    "year": 2012,
+    "spotify_id": "1qPea3SGgcs2ODFweqK7hP"
+  },
+  {
+    "id": 593,
+    "titles": ["Still Into You"],
+    "artists": ["Paramore"],
+    "year": 2013,
+    "spotify_id": "1yjY7rpaAQvKwpdUliHx0d"
+  },
+  {
+    "id": 594,
+    "titles": ["Help"],
+    "artists": ["Papa Roach"],
+    "year": 2017,
+    "spotify_id": "0IbiFpXPFpvCAIs9WMX5wC"
+  },
+  {
+    "id": 595,
+    "titles": ["Heaven Knows"],
+    "artists": ["The Pretty Reckless", "Pretty Reckless"],
+    "year": 2014,
+    "spotify_id": "7F5jxmwf1uWVqh6nbYz7rl"
+  },
+  {
+    "id": 596,
+    "titles": ["Breaking The Law"],
+    "artists": ["Judas Priest", "JP"],
+    "year": 1980,
+    "spotify_id": "2RaA6kIcvomt77qlIgGhCT"
+  },
+  {
+    "id": 597,
+    "titles": ["Seperate Ways (Worlds Apart)", "Seperate Ways", "Worlds Apart"],
+    "artists": ["Journey"],
+    "year": 1983,
+    "spotify_id": "4NiyMmBdlVHpZWScgdBvnt"
+  },
+  {
+    "id": 598,
+    "titles": ["Just What I Need"],
+    "artists": ["The Cars", "Cars"],
+    "year": 1978,
+    "spotify_id": "4alHo6RGd0D3OUbTPExTHN"
+  },
+  {
+    "id": 599,
+    "titles": ["To Hell And Back"],
+    "artists": ["Sabaton"],
+    "year": 2014,
+    "spotify_id": "1BrgjqSg9du0lj3TUMLluL"
+  },
+  {
+    "id": 600,
+    "titles": ["Angels Fall"],
+    "artists": ["Breaking Benjamin", "BB"],
+    "year": 2015,
+    "spotify_id": "2D9BrlpeyjXF0vli2dYQ5V"
+  },
+  {
+    "id": 601,
+    "titles": ["Two Princes", "2 Princes"],
+    "artists": ["Spin Doctors"],
+    "year": 1991,
+    "spotify_id": "4ePP9So5xRzspjLFVVbj90"
+  },
+  {
+    "id": 602,
+    "titles": ["Creep"],
+    "artists": ["Radiohead"],
+    "year": 1992,
+    "spotify_id": "70LcF31zb1H0PyJoS1Sx1r"
+  },
+  {
+    "id": 603,
+    "titles": ["Joker & The Thief", "Joker and The Thief"],
+    "artists": ["Wolfmother", "Wolf Mother"],
+    "year": 2005,
+    "spotify_id": "6dNJ3lasVLPd0078T9yqlm"
+  },
+  {
+    "id": 604,
+    "titles": ["All Star"],
+    "artists": ["Smash Mouth", "SM"],
+    "year": 1999,
+    "spotify_id": "3cfOd4CMv2snFaKAnMdnvK"
+  },
+  {
+    "id": 605,
+    "titles": ["White Trash Millionaire"],
+    "artists": ["Black Stone Cherry", "BSC"],
+    "year": 2011,
+    "spotify_id": "3UWYmWg9j8KVV08ANBqcLB"
   }
 ]

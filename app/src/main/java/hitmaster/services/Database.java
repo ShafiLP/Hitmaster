@@ -257,6 +257,19 @@ public class Database {
         }
     }
 
+    private static boolean createDefaultUser() {
+        try (Connection conn = Database.connect();) {
+            Statement stmt = conn.createStatement();
+
+            stmt.execute("INSERT INTO user (username) VALUES ('New User')");
+            return true;
+        }
+        catch (Exception e) {
+            Log.Error("Error while creating default user: " + e.getMessage());
+            return false;
+        }
+    }
+
 
     // ==============================
     // GET OPERATIONS
@@ -279,7 +292,13 @@ public class Database {
         }
         catch (SQLException e) {
             Log.Error("Error while fetching user from database: " + e.getMessage());
-            return new User();
+
+            if (createDefaultUser()) {
+                return getCurrentUser();
+            }
+            else {
+                return new User();
+            }
         }
     }
 
