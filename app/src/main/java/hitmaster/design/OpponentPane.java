@@ -107,7 +107,11 @@ public final class OpponentPane extends HBox {
     public void setSongs(List<Song> songs) {
         this.opponentSongs.clear();
         this.opponentSongs.addAll(songs);
-        refreshCardLayout();
+        this.refreshCardLayout();
+    }
+
+    public List<Song> getSongs() {
+        return this.opponentSongs;
     }
 
     /**
@@ -115,7 +119,7 @@ public final class OpponentPane extends HBox {
      */
     public void addSong(Song song) {
         this.opponentSongs.add(song);
-        refreshCardLayout();
+        this.refreshCardLayout();
     }
 
     public void addChip() { chipPane.addChip(); }

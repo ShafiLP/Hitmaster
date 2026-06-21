@@ -19,16 +19,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class OnlineMultiplayerSettings {
 
     private final MainMenu PARENT;
     private final Stage STAGE;
+    private final Stage PREV_STAGE;
 
-    public OnlineMultiplayerSettings(MainMenu parent) {
+    public OnlineMultiplayerSettings(MainMenu parent, Stage prevStage) {
         this.PARENT = parent;
+        this.PREV_STAGE = prevStage;
 
         STAGE = new Stage();
         STAGE.setTitle("Match Setup");
@@ -99,7 +100,7 @@ public class OnlineMultiplayerSettings {
         cancel.setPrefWidth(120);
         cancel.setOnAction(e -> {
             STAGE.close();
-            new MultiplayerMenuView(PARENT).show();
+            //new MultiplayerMenuView(PARENT).show();
         });
 
         Button startGame = new Button("Start Game");
@@ -115,7 +116,7 @@ public class OnlineMultiplayerSettings {
             options.players[0] = new Player(user.username, user.picture);
             options.players[0].role = Player.Role.HOST;
 
-            WaitingForPlayerView waiting = new WaitingForPlayerView(PARENT, options);
+            WaitingForPlayerView waiting = new WaitingForPlayerView(PARENT, STAGE, options);
             waiting.show();
         });
 
@@ -185,7 +186,9 @@ public class OnlineMultiplayerSettings {
     }
 
     public void show() {
-        STAGE.initModality(Modality.APPLICATION_MODAL);
-        STAGE.showAndWait();
+        if (PREV_STAGE != null) 
+            PREV_STAGE.close();
+
+        STAGE.show();
     }
 }

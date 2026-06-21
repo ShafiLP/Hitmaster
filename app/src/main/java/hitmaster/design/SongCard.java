@@ -65,7 +65,7 @@ public class SongCard extends StackPane {
      * Back side contains UI to control the playing song.
      * Steal Button is shown here when playing multiplayer.
      */
-    private void showBack() {
+    public void showBack() {
         // 1) Prepare Layout
         BorderPane layout = new BorderPane();
         layout.setPrefSize(this.getPrefWidth(), this.getPrefHeight());

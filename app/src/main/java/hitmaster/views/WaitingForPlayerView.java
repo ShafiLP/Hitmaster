@@ -17,25 +17,26 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class WaitingForPlayerView {
 
     private final MainMenu PARENT;
     private final Stage STAGE;
+    private final Stage PREV_STAGE;
 
     private NetworkManager netManager;
     private GameOptions options;
 
     Button startGame;
 
-    public WaitingForPlayerView(MainMenu parent, GameOptions options) {
+    public WaitingForPlayerView(MainMenu parent, Stage prevStage, GameOptions options) {
         this.PARENT = parent;
+        this.PREV_STAGE = prevStage;
         this.options = options;
 
         STAGE = new Stage();
-        STAGE.setTitle("Connect To Host");
+        STAGE.setTitle("Waiting for Players");
 
         // =========================
         // ROOT LAYOUT
@@ -102,7 +103,6 @@ public class WaitingForPlayerView {
                 netManager.closeConnection();
             }
             STAGE.close();
-            new MultiplayerMenuView(PARENT).show();
         });
 
         startGame = new Button("Connect");
@@ -151,10 +151,12 @@ public class WaitingForPlayerView {
             }
         });
 
-        STAGE.initModality(Modality.APPLICATION_MODAL);
+        if (PREV_STAGE != null) 
+            PREV_STAGE.close();
+
         STAGE.setOnCloseRequest(e -> {
             if (netManager != null) netManager.closeConnection();
         });
-        STAGE.showAndWait();
+        STAGE.show();
     }
 }

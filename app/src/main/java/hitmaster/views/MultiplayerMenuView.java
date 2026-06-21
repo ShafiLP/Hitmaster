@@ -67,7 +67,7 @@ public class MultiplayerMenuView {
         hostBtn.getStyleClass().add("modern-button");
         hostBtn.setPrefWidth(180);
         hostBtn.setOnAction(e -> {
-            OnlineMultiplayerSettings settings = new OnlineMultiplayerSettings(PARENT);
+            OnlineMultiplayerSettings settings = new OnlineMultiplayerSettings(PARENT, STAGE);
             settings.show();
 
             STAGE.close();

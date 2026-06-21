@@ -18,7 +18,9 @@ import hitmaster.services.Log;
 import hitmaster.services.MusicPlayer;
 import hitmaster.services.NetworkManager;
 import hitmaster.views.GameView;
+import hitmaster.views.StealView;
 import javafx.application.Platform;
+import javafx.stage.Stage;
 
 public final class GameLogic {
 
@@ -156,7 +158,7 @@ public final class GameLogic {
 
         if (PLAYERS[currentPlayerIdx].role.equals(Player.Role.CLIENT)) {
             this.sendObject(new SongDTO(currentSong, "ADD_CARD_TO_STACK"));
-            VIEW.setMoveTimerForOpponent(OPTIONS.moveTime);
+            VIEW.setTimerForOpponent(OPTIONS.moveTime);
             return;
         }
 
@@ -179,7 +181,7 @@ public final class GameLogic {
         PLAYERS[currentPlayerIdx].hitmasterPoints = 0;
 
         VIEW.removeAllHitmasterChips();
-        VIEW.insertCardIntoStrip();
+        VIEW.insertCardIntoStrip(false);
     }
 
     /**
@@ -189,6 +191,11 @@ public final class GameLogic {
      * @param player Player to insert current song in list.
      */
     public void addCardToPlayerSorted(Player player) {
+        if (player.songs.isEmpty()) {
+            Log.Error("List of player \"" + player.username + "\" is empty!");
+            return;
+        }
+
         // 1) Check if first index fits
         if (currentSong.year <= player.songs.getFirst().year) {
             player.songs.addFirst(currentSong);
@@ -306,6 +313,10 @@ public final class GameLogic {
 
     public int getChipCountOfCurrentPlayer() {
         return PLAYERS[currentPlayerIdx].hitmasterPoints;
+    }
+
+    public Song getCurrentSong() {
+        return currentSong;
     }
 
     public GameOptions getGameOptions() {
@@ -464,6 +475,12 @@ public final class GameLogic {
 
     public synchronized void sendObject (Object object) {
         if (networkManager != null) {
+            if (object instanceof SongDTO dto) {
+                Log.Info("Sending object: " + object + " with purpose " + dto.purpose);
+                networkManager.sendObject(object);
+                return;
+            }
+
             Log.Info("Sending object: " + object);
             networkManager.sendObject(object);
         }
@@ -484,11 +501,15 @@ public final class GameLogic {
 
             case "PLAYER_NEXT":
                 this.switchToNextPlayer();
-                this.addFirstToCardStack();
+                if (isHost)
+                    this.addFirstToCardStack();
+                break;
+
+            case "ENABLE STEAL":
                 break;
 
             case "OPPONENT_MOVE_TIMER":
-                VIEW.setMoveTimerForOpponent(OPTIONS.moveTime);
+                VIEW.setTimerForOpponent(OPTIONS.moveTime);
                 break;
 
             case "OPPONENT_RIGHT":
@@ -510,12 +531,42 @@ public final class GameLogic {
 
             case "OPPONENT_DECREASE_CHIP":
                 PLAYERS[currentPlayerIdx].hitmasterPoints--;
-                VIEW.removeHitmasterChip();
+                VIEW.removeOpponentChip();
                 break;
 
             case "OPPONENT_REMOVE_CHIPS":
                 PLAYERS[currentPlayerIdx].hitmasterPoints = 0;
-                VIEW.removeAllHitmasterChips();
+                // TODO
+                break;
+
+            // Shows the overlay pane to start a steal attempt on GameView
+            case "OPPONENT_ASK_STEAL":
+                VIEW.showStealOverlay();
+                break;
+
+            case "OPPONENT_STEAL_START":
+                /*List<SongCard> cards = VIEW.getCardsFromStrip();
+                List<Song> songsFromCards = new ArrayList<>();
+
+                for (SongCard card : cards) {
+                    songsFromCards.add(card.song);
+                }
+
+                this.sendObject(new SongDTO(songsFromCards, "OPEN_STEAL_WINDOW"));*/
+                VIEW.setTimerForOpponent(OPTIONS.stealTime);
+                break;
+
+            case "OPPONENT_STEAL_CORRECT":
+                // TODO: Visual feedback and continue game
+                Platform.runLater(() -> {
+                    VIEW.confirmInput();
+                    this.addCardToPlayerSorted(this.getPreviousPlayer());
+                });
+                break;
+
+            case "OPPONENT_STEAL_FALSE":
+                // TODO: Visual feedback and continue game
+                VIEW.confirmInput();
                 break;
 
             case "OPPONENT_WIN":
@@ -540,6 +591,7 @@ public final class GameLogic {
                 if (receivedObj instanceof SongDTO receivedDTO) {
                     if ("OPPONENT_LIVE_MOVE".equals(receivedDTO.purpose)) {
                         Log.Info("Received " + receivedDTO.toSong() + " with purpose " + receivedDTO.purpose);
+
                         Platform.runLater(() -> {
                             PLAYERS[currentPlayerIdx].songs.clear();
 
@@ -549,8 +601,25 @@ public final class GameLogic {
 
                             VIEW.updateOpponentCards(PLAYERS[currentPlayerIdx].songs);
                         });
+
                         return;
                     }
+
+                    /*if ("OPEN_STEAL_WINDOW".equals(receivedDTO.purpose)) {
+                        Log.Info("Received " + receivedDTO.toSong() + " with purpose " + receivedDTO.purpose);
+
+                        Platform.runLater(() -> {
+                            List<Song> opponentSongs = new ArrayList<>();
+
+                            for (SongDTO dto : receivedDTO.songList) {
+                                opponentSongs.add(dto.toSong());
+                            }
+
+                            this.openStealWindow(opponentSongs);
+                        });
+                        
+                        return;
+                    }*/
                     
                     Song receivedSong = receivedDTO.toSong();
                     Log.Info("Received " + receivedSong + " with purpose " + receivedDTO.purpose);
@@ -558,7 +627,7 @@ public final class GameLogic {
                     Platform.runLater(() -> {
                         switch (receivedDTO.purpose) {
                             case "CLIENT_STRIP":
-                                PLAYERS[0].songs.add(receivedSong);
+                                PLAYERS[0].songs.add(receivedSong); //TODO: Check if idx is correct
                                 VIEW.addToCardStrip(receivedSong);
                                 break;
                                 
@@ -603,6 +672,87 @@ public final class GameLogic {
         }
     }
 
+    // ========== STEAL ACTIONS ==========
+
+    /**
+     * Sends a command to start steal timer to the opponent player.
+     * If opponent doesn't have enough Hitmaster chips to attempt a steal,
+     * continues with reveal of the guess instead.
+     */
+    public void startStealTimer() {
+        if (MULTIPLAYER && networkManager != null && this.getPreviousPlayer().hitmasterPoints > 0) {
+            this.sendObject("OPPONENT_ASK_STEAL");
+        }
+        else {
+            Log.Info("Not enough points!");
+            VIEW.confirmInput();
+        }
+    }
+
+    /**
+     * Starts a steal action for the currently inactive player.
+     * If inactive player doesn't have any hitmaster points the action gets skipped.
+     * Removes a chip from the inactive player and opens the steal window.
+     */
+    public void startStealAction() {
+        // 1) Check if player got enough points to attempt a steal
+        if (this.getPreviousPlayer().hitmasterPoints < 1)
+            return;
+
+        // 2) Remove a hitmaster chip
+        this.getPreviousPlayer().hitmasterPoints--;
+        VIEW.removeHitmasterChip();
+        this.sendObject("OPPONENT_DECREASE_CHIP");
+
+        // 3) Send command to other player
+        this.sendObject("OPPONENT_STEAL_START");
+
+        // 4) Open steal view
+        Platform.runLater(() -> {
+            StealView stealView = new StealView(this);
+            stealView.setStripCards(VIEW.getOpponentPane().getSongs());
+            stealView.showAndWait((Stage) VIEW.getScene().getWindow());
+        });
+    }
+
+    public void confirmStealAction(List<SongCard> cards, int placedIdx) {
+        // 1) Check if guess was made
+        if (placedIdx == -1) {
+            this.sendObject("OPPONENT_STEAL_FALSE");
+            return;
+        }
+
+        this.handleCardMove(VIEW.getCardsFromStrip());
+        boolean correctSteal;
+
+        // 2) Check position of steal guess
+        if (placedIdx == 0) {
+            correctSteal = (currentSong.year <= cards.get(placedIdx + 1).song.year);
+        }
+        else if (placedIdx == cards.size() - 1) {
+            correctSteal = (currentSong.year >= cards.get(placedIdx - 1).song.year);
+        }
+        else {
+            correctSteal = (currentSong.year >= cards.get(placedIdx - 1).song.year) && (currentSong.year <= cards.get(placedIdx + 1).song.year);
+        }
+
+        // 4) Add song to player's song list if guess was correct
+        //! BUG: Both could be correct (if song was 2005 and both place it next to 2005)
+        if (correctSteal) {
+            this.addCardToPlayerSorted(this.getPreviousPlayer());
+            Platform.runLater(() -> {
+                VIEW.addToCardStack(currentSong);
+                VIEW.insertCardIntoStrip(true);
+            });
+        }
+
+        // 3) Send result to opponent
+        this.sendObject(correctSteal ? "OPPONENT_STEAL_CORRECT" : "OPPONENT_STEAL_FALSE");
+
+        // 4) Display result on own view
+        // TODO
+    }
+
     /**
      * End the current player's turn.
      * Switches to the next player in Player array and adds a new card to their GameView.
@@ -610,6 +760,8 @@ public final class GameLogic {
      * Called when player made their guess or player run out of time.
      */
     public void finishTurn() {
+        VIEW.stopTimer();
+
         // ----- HOST & SINGLEPLAYER LOGIC -----
         if (isHost) {
             // 1) Update Card Strip
@@ -625,8 +777,10 @@ public final class GameLogic {
 
         // ----- CLIENT LOGIC -----
         else {
-            this.handleCardMove(VIEW.getCardsFromStrip());
-            this.sendObject("CLIENT_FINISH_TURN");
+            if (PLAYERS[currentPlayerIdx].role.equals(Player.Role.CLIENT)) {
+                this.handleCardMove(VIEW.getCardsFromStrip());
+                this.sendObject("CLIENT_FINISH_TURN");
+            }
         }
     }
 

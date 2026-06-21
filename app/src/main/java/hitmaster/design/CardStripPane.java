@@ -3,7 +3,7 @@ package hitmaster.design;
 import java.util.ArrayList;
 import java.util.List;
 
-import hitmaster.views.GameView;
+import hitmaster.GameLogic;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -13,7 +13,7 @@ import javafx.util.Duration;
 
 public class CardStripPane extends Pane {
     
-    private final GameView PARENT;
+    private final GameLogic GAME;
     private final List<SongCard> cards = new ArrayList<>();
     private int originalIndex = -1;
     private int insertIndex = -1;
@@ -27,8 +27,8 @@ public class CardStripPane extends Pane {
 
     private final Line marker = new Line();
 
-    public CardStripPane(GameView PARENT) {
-        this.PARENT = PARENT;
+    public CardStripPane(GameLogic game) {
+        this.GAME = game;
 
         this.widthProperty().addListener((obs, oldVal, newVal) -> layoutCards());
         this.heightProperty().addListener((obs, oldVal, newVal) -> layoutCards());
@@ -102,7 +102,7 @@ public class CardStripPane extends Pane {
             originalIndex = -1;
             this.layoutCards();
 
-            PARENT.getGameLogic().handleCardMove(cards);
+            GAME.handleCardMove(cards);
         });
     }
 
