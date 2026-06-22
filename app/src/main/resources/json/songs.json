@@ -612,7 +612,7 @@
   {
     "id": 88,
     "titles": ["Just Give Me A Reason (feat. Nate Ruess)", "Just Give Me A Reason"],
-    "artists": ["P!nk", "Pink"],
+    "artists": ["P!nk", "Pink", "Nate Ruess"],
     "year": 2012,
     "spotify_id": "1mKXFLRA179hdOWQBwUk9e"
   },
@@ -955,7 +955,7 @@
   {
     "id": 137,
     "titles": ["Don't You Want Me"],
-    "artists": ["The Human League"],
+    "artists": ["The Human League", "Human League"],
     "year": 1981,
     "spotify_id": "3L7RtEcu1Hw3OXrpnthngx"
   },
@@ -1858,7 +1858,7 @@
   {
     "id": 266,
     "titles": ["Where Is the Love? (feat. Justin Timberlake)", "Where Is the Love?", "Where's The Love?"],
-    "artists": ["The Black Eyed Peas", "Black Eyes Peas", "Justin Timberlake"],
+    "artists": ["The Black Eyed Peas", "Black Eyed Peas", "Justin Timberlake"],
     "year": 2003,
     "spotify_id": "0xmjwnQ3FNE6HuWCt2nHdZ"
   },
@@ -4239,5 +4239,320 @@
     "artists": ["Black Stone Cherry", "BSC"],
     "year": 2011,
     "spotify_id": "3UWYmWg9j8KVV08ANBqcLB"
+  },
+  {
+    "id": 606,
+    "titles": ["Year 3000", "Year Three-Thousand", "Year Three Thousand"],
+    "artists": ["Busted"],
+    "year": 2003,
+    "spotify_id": "https://open.spotify.com/track/5pWRdriPCFhfz0JSswkdHo"
+  },
+  {
+    "id": 607,
+    "titles": ["Step On"],
+    "artists": ["Happy Mondays", "HM"],
+    "year": 1990,
+    "spotify_id": "https://open.spotify.com/track/7yZ1Oz7ULHsWFUnOmElqbB"
+  },
+  {
+    "id": 608,
+    "titles": ["Groove Is In The Heart"],
+    "artists": ["Deee-Lite", "Deee Lite", "De-Lite", "De Lite", "Delight"],
+    "year": 1990,
+    "spotify_id": "https://open.spotify.com/track/2He3NOyqtLNE3RQPpeDdSb"
+  },
+  {
+    "id": 609,
+    "titles": ["Afternoon Delight"],
+    "artists": ["Starland Vocal Band", "SVB"],
+    "year": 1976,
+    "spotify_id": "https://open.spotify.com/track/1pBAsoHy7eN9aeVCTAiKua"
+  },
+  {
+    "id": 610,
+    "titles": ["Another Day In Paradise"],
+    "artists": ["Phil Collins"],
+    "year": 1989,
+    "spotify_id": "https://open.spotify.com/track/1NCuYqMc8hKMb4cpNTcJbD"
+  },
+  {
+    "id": 611,
+    "titles": ["This Charming Man"],
+    "artists": ["The Smiths", "Smiths"],
+    "year": 1983,
+    "spotify_id": "https://open.spotify.com/track/1FvDJ9KGxcqwv1utyPL3JZ"
+  },
+  {
+    "id": 612,
+    "titles": ["Like A Virgin"],
+    "artists": ["Madonna"],
+    "year": 1984,
+    "spotify_id": "https://open.spotify.com/track/1ZPlNanZsJSPK5h9YZZFbZ"
+  },
+  {
+    "id": 613,
+    "titles": ["Achy Breaky Heart"],
+    "artists": ["Billy Ray Cyrus", "Billy Cyrus"],
+    "year": 1992,
+    "spotify_id": "https://open.spotify.com/track/2EoIt9vdgFRNW03u5IvFsQ"
+  },
+  {
+    "id": 614,
+    "titles": ["Human"],
+    "artists": ["Rag'n'Bone Man", "Rag n Bone Man", "Rag and Bone Man"],
+    "year": 2016,
+    "spotify_id": "https://open.spotify.com/track/58zsLZPvfflaiIbNWoA22O"
+  },
+  {
+    "id": 615,
+    "titles": ["Itsy Bitsy Teenie Weenie Yellow Polkadot Bikini"],
+    "artists": ["Brian Hyland"],
+    "year": 1960,
+    "spotify_id": "https://open.spotify.com/track/4aTCNddtjztjuK2EOgz7ZZ"
+  },
+  {
+    "id": 616,
+    "titles": ["Shut Up"],
+    "artists": ["Stormzy"],
+    "year": 2015,
+    "spotify_id": "https://open.spotify.com/track/2LPUvD5DDOO4UYGkWgjI2C"
+  },
+  {
+    "id": 617,
+    "titles": ["Wait So Long"],
+    "artists": ["Trampled By Turtles", "TbT"],
+    "year": 2011,
+    "spotify_id": "https://open.spotify.com/track/1QesQ27kCWYTYuXJi8SApS"
+  },
+  {
+    "id": 618,
+    "titles": ["Cigarettes & Alcohol", "Cigarettes and Alcohol"],
+    "artists": ["Oasis"],
+    "year": 1994,
+    "spotify_id": "https://open.spotify.com/track/3nK2qGHdVAEOuVAmMSWQPW"
+  },
+  {
+    "id": 619,
+    "titles": ["Back For Good"],
+    "artists": ["Take That", "TT"],
+    "year": 1995,
+    "spotify_id": "https://open.spotify.com/track/6vcdzohhBSbNdsZBh5IRpQ"
+  },
+  {
+    "id": 620,
+    "titles": ["Black Beatles (feat. Gucci Mane)"],
+    "artists": ["Rae Sremmurd", "Gucci Mane"],
+    "year": 2016,
+    "spotify_id": "https://open.spotify.com/track/6fujklziTHa8uoM5OQSfIo"
+  },
+  {
+    "id": 621,
+    "titles": ["Crank That (Soulja Boy)", "Crank That"],
+    "artists": ["Soulja Boy", "Soulja Boy Tell'em", "Soulja Boy Tell Them"],
+    "year": 2007,
+    "spotify_id": "https://open.spotify.com/track/66TRwr5uJwPt15mfFkzhbi"
+  },
+  {
+    "id": 622,
+    "titles": ["Going Underground"],
+    "artists": ["The Jam", "Jam"],
+    "year": 1980,
+    "spotify_id": "https://open.spotify.com/track/6ALPLbDJ9eWVij9ep3Cgf4"
+  },
+  {
+    "id": 623,
+    "titles": ["Ballroom Blitz", "The Ballroom Blitz"],
+    "artists": ["The Sweet", "Sweet"],
+    "year": 1973,
+    "spotify_id": "https://open.spotify.com/track/3Pu3IChaAoa5EjgUBv5F6x"
+  },
+  {
+    "id": 624,
+    "titles": ["Perfect Day"],
+    "artists": ["Lou Reed"],
+    "year": 1972,
+    "spotify_id": "https://open.spotify.com/track/4TOMI010Sd4ZAX4aZ5TS85"
+  },
+  {
+    "id": 625,
+    "titles": ["Boys Don't Cry", "Boys Do Not Cry"],
+    "artists": ["The Cure", "Cure"],
+    "year": 1979,
+    "spotify_id": "https://open.spotify.com/track/1QFh8OH1e78dGd3VyJZCAC"
+  },
+  {
+    "id": 626,
+    "titles": ["Never Gonna Give You Up", "Never Going To Give You Up"],
+    "artists": ["Rick Astley"],
+    "year": 1987,
+    "spotify_id": "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT"
+  },
+  {
+    "id": 627,
+    "titles": ["Funkytown"],
+    "artists": ["Lipps Inc.", "Lipps Incorporated", "Lipps"],
+    "year": 1980,
+    "spotify_id": "https://open.spotify.com/track/37yIrMPeJYRm7zJ8rr3Uvv"
+  },
+  {
+    "id": 628,
+    "titles": ["Road To Nowhere"],
+    "artists": ["Talking Heads", "The Talking Heads"],
+    "year": 1985,
+    "spotify_id": "https://open.spotify.com/track/2co8fDyaVmxv8xruQWORnC"
+  },
+  {
+    "id": 629,
+    "titles": ["Take Me Out"],
+    "artists": ["Franz Ferdinand"],
+    "year": 2004,
+    "spotify_id": "https://open.spotify.com/track/20I8RduZC2PWMWTDCZuuAN"
+  },
+  {
+    "id": 630,
+    "titles": ["Bad, Bad Leroy Brown", "Bad Leroy Brown"],
+    "artists": ["Jim Croce", "James Joseph Croce"],
+    "year": 1973,
+    "spotify_id": "https://open.spotify.com/track/1O0xeZrBDbq7HPREdmYUYK"
+  },
+  {
+    "id": 631,
+    "titles": ["Faith"],
+    "artists": ["George Michael"],
+    "year": 1987,
+    "spotify_id": "https://open.spotify.com/track/0HEmnAUT8PHznIAAmVXqFJ"
+  },
+  {
+    "id": 632,
+    "titles": ["You're Beautiful", "You Are Beautiful"],
+    "artists": ["James Blunt"],
+    "year": 2005,
+    "spotify_id": "https://open.spotify.com/track/0vg4WnUWvze6pBOJDTq99k"
+  },
+  {
+    "id": 633,
+    "titles": ["Stayin' Alive", "Staying Alive"],
+    "artists": ["Bee Gees"],
+    "year": 1977,
+    "spotify_id": "https://open.spotify.com/track/4UDmDIqJIbrW0hMBQMFOsM"
+  },
+  {
+    "id": 634,
+    "titles": ["Can't Stand Me Now", "Cannot Stand Me Now", "Can Not Stand Me Now"],
+    "artists": ["The Libertines", "Libertines"],
+    "year": 2004,
+    "spotify_id": "https://open.spotify.com/track/2EtZFeLn9msgg4qJzT9Vql"
+  },
+  {
+    "id": 635,
+    "titles": ["Parklife"],
+    "artists": ["Blur"],
+    "year": 1994,
+    "spotify_id": "https://open.spotify.com/track/7FSzJQV6thyoQptFCUTV9c"
+  },
+  {
+    "id": 636,
+    "titles": ["Royals"],
+    "artists": ["Lorde"],
+    "year": 2013,
+    "spotify_id": "https://open.spotify.com/track/4SDWMFvYJKtK1QPhIOeZhd"
+  },
+  {
+    "id": 637,
+    "titles": ["Timber (feat. Kesha)", "Timber"],
+    "artists": ["Pitbull", "Kesha"],
+    "year": 2013,
+    "spotify_id": "https://open.spotify.com/track/3cHyrEgdyYRjgJKSOiOtcS"
+  },
+  {
+    "id": 638,
+    "titles": ["Love Train"],
+    "artists": ["The O'Jays", "O'Jays","The O Jays", "O Jays"],
+    "year": 1972,
+    "spotify_id": "https://open.spotify.com/track/28285KFbyCq8sJofn58qlD"
+  },
+  {
+    "id": 639,
+    "titles": ["Anarchy In The U.K.", "Anarchy In The UK", "Anarchy In The United Kingdom"],
+    "artists": ["Sex Pistols", "Pistols", "SP"],
+    "year": 1976,
+    "spotify_id": "https://open.spotify.com/track/5moTxUGPZXgGmosl4rIELm"
+  },
+  {
+    "id": 640,
+    "titles": ["One Day Like This"],
+    "artists": ["Elbow"],
+    "year": 2008,
+    "spotify_id": "https://open.spotify.com/track/1OZSVl0JJ1MBzibpuhmmXb"
+  },
+  {
+    "id": 641,
+    "titles": ["That Don't Impress Me Much", "That Doesn't Impress Me Much", "That Do Not Impress Me Much", "That Does Not Impress Me Much"],
+    "artists": ["Shania Twain"],
+    "year": 1998,
+    "spotify_id": "https://open.spotify.com/track/4I7DV3MIgxJGlObiy9s6nx"
+  },
+  {
+    "id": 642,
+    "titles": ["Y.M.C.A.", "YMCA"],
+    "artists": ["Village People"],
+    "year": 1978,
+    "spotify_id": "https://open.spotify.com/track/4YOJFyjqh8eAcbKFfv88mV"
+  },
+  {
+    "id": 643,
+    "titles": ["I Gotta Feeling", "I Got A Feeling", "I Got To Feeling"],
+    "artists": ["The Black Eyed Peas", "Black Eyed Peas"],
+    "year": 2009,
+    "spotify_id": "https://open.spotify.com/track/2H1047e0oMSj10dgp7p2VG"
+  },
+  {
+    "id": 644,
+    "titles": ["Heart of Glass"],
+    "artists": ["Blondie"],
+    "year": 1979,
+    "spotify_id": "https://open.spotify.com/track/41AE8ODX2JETBCa6muhSLY"
+  },
+  {
+    "id": 645,
+    "titles": ["Flashdance...What a Feeling", "Flashdance", "Flashdance What a Feeling"],
+    "artists": ["Irene Cara"],
+    "year": 1983,
+    "spotify_id": "https://open.spotify.com/track/3cbV252akVZInSvJk7jAYX"
+  },
+  {
+    "id": 646,
+    "titles": ["Second Hand Rose"],
+    "artists": ["Fanny Brice"],
+    "year": 1922,
+    "spotify_id": "https://open.spotify.com/track/3vbJPtXl5luZNy8XEyR5fF"
+  },
+  {
+    "id": 647,
+    "titles": ["2002", "Two-Thousand Two", "Two Thousand Two"],
+    "artists": ["Anne-Marie"],
+    "year": 2018,
+    "spotify_id": "https://open.spotify.com/track/2BgEsaKNfHUdlh97KmvFyo"
+  },
+  {
+    "id": 648,
+    "titles": ["Cars"],
+    "artists": ["Gary Numan"],
+    "year": 1979,
+    "spotify_id": "https://open.spotify.com/track/4QQEzkxcONBthDLfzqIh9S"
+  },
+  {
+    "id": 649,
+    "titles": ["Superstition"],
+    "artists": ["Stevie Wonder"],
+    "year": 1972,
+    "spotify_id": "https://open.spotify.com/track/4N0TP4Rmj6QQezWV88ARNJ"
+  },
+  {
+    "id": 650,
+    "titles": ["Hollaback Girl"],
+    "artists": ["Gwen Stefani"],
+    "year": 2005,
+    "spotify_id": "https://open.spotify.com/track/0LzrhCZFXW94Y8nwtTuRlw"
   }
 ]

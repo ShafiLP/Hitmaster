@@ -518,16 +518,23 @@ public class GameView extends Pane {
      * Waits three seconds until game moves on.
      */
     public void removeCurrentCard() {
+        if (currentCard == null)
+            return;
+
         currentCard.showFront();
         currentCard.setBorderColor("rgb(255, 0, 0)");
 
-        Timer timer = new Timer(3);
-        timer.start(
+        if (timerUnit != null)
+            timerUnit.stop();
+
+        timerUnit = new Timer(3);
+        timerUnit.start(
             () -> Platform.runLater(() -> 
-                STATUS.setRemainingTime(timer.getRemainingSeconds())
+                STATUS.setRemainingTime(timerUnit.getRemainingSeconds())
             ),
             () -> Platform.runLater(() -> {
                 final SongCard wrongCard = this.currentCard;
+
                 if (wrongCard != null) {
                     double sceneX = wrongCard.localToScene(0, 0).getX();
                     double sceneY = wrongCard.localToScene(0, 0).getY();
@@ -543,12 +550,11 @@ public class GameView extends Pane {
                     wrongCard.setTranslateY(0);
                     wrongCard.toFront();
 
-                    Platform.runLater(() -> {
-                        DISCARD_PILE.discardCard(wrongCard);
-                    });
+                    DISCARD_PILE.discardCard(wrongCard);
                 }
                 
-                GAME.addFirstToCardStack();
+                GAME.finishTurn();
+                //GAME.addFirstToCardStack();
             })
         );
     }

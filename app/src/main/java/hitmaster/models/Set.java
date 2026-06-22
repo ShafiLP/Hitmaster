@@ -9,22 +9,30 @@ import javafx.scene.image.ImageView;
 public class Set {
     public int id;
     public String name;
-    public String image;
+    public String img;
+    public String icon;
     public String csv;
     public boolean isActive;
 
     public Set() {}
 
-    public Set(String name, String image, String csv, boolean isActive) {
+    public Set(String name, String image, String icon, String csv, boolean isActive) {
         this.name = name;
-        this.image = image;
+        this.img = image;
+        this.icon = icon;
         this.csv = csv;
         this.isActive = isActive;
     }
 
     public ImageView getImage() {
         return new ImageView(
-            new Image(getClass().getResourceAsStream("/setImages/" + image))
+            new Image(getClass().getResourceAsStream("/setImages/" + img))
+        );
+    }
+
+    public ImageView getIcon() {
+        return new ImageView(
+            new Image(getClass().getResourceAsStream("/icons/set-icons/" + icon))
         );
     }
 

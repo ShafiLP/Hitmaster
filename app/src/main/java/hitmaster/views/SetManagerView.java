@@ -310,7 +310,7 @@ public class SetManagerView {
                 // Generate set instance
                 Set newSet = new Set();
                 newSet.name = setName;
-                newSet.image = imagePath;
+                newSet.img = imagePath;
                 
                 // TODO: Save set
                 // Database.saveCustomSet(newSet); 

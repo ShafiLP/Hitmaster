@@ -1,23 +1,28 @@
 package hitmaster.design;
 
+import java.util.List;
+
 import hitmaster.models.Player;
+import hitmaster.models.Set;
 import hitmaster.models.Song;
 import hitmaster.views.GameView;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-public class SongCard extends StackPane {
+public final class SongCard extends StackPane {
 
     public Song song;
     public Color color;
@@ -127,14 +132,12 @@ public class SongCard extends StackPane {
      * Front side contains artist, year and title.
      */
     public void showFront() {
-        // TODO: Set Icon 
-
         this.isDraggable = false;
 
         // 1) Prepare Layout
-        BorderPane layout = new BorderPane();
-        layout.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
-        layout.setStyle(String.format(
+        StackPane root = new StackPane();
+        root.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
+        root.setStyle(String.format(
             "-fx-background-color: rgb(%d,%d,%d);" +
             "-fx-background-radius: 12;" +
             "-fx-border-radius: 12;" +
@@ -144,24 +147,89 @@ public class SongCard extends StackPane {
             (int)(color.getBlue() * 255)
         ));
 
-        // 2) Set Labels
+        VBox textBox = new VBox(2);
+        textBox.setAlignment(Pos.CENTER);
+        textBox.setStyle("-fx-padding: 0 6px 0 6px;"); 
+        textBox.setPrefWidth(this.getPrefWidth());
+        StackPane.setAlignment(textBox, Pos.CENTER);
+
+        // ARTIST
         Label artist = new Label(song.artists.getFirst());
+        artist.setStyle("-fx-font-weight: bold; -fx-font-size: 12px;");
+        artist.setWrapText(true);
+        artist.setMaxWidth(Double.MAX_VALUE);
+        artist.setAlignment(Pos.CENTER);
+        artist.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+
+        // YEAR
         Label year = new Label(String.valueOf(song.year));
+        year.setStyle("-fx-font-size: 38px; -fx-font-weight: bold;");
+        year.setMaxWidth(Double.MAX_VALUE);
+        year.setAlignment(Pos.CENTER);
+
+        // TITLE
         Label title = new Label(song.titles.getFirst());
+        title.setWrapText(true);
+        title.setMaxWidth(Double.MAX_VALUE);
+        title.setAlignment(Pos.CENTER);
+        title.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+        
+        title.setMinHeight(Region.USE_PREF_SIZE);
+        title.setMaxHeight(title.getFont().getSize() * 2.6);
 
-        artist.setStyle("-fx-font-weight: bold;");
-        year.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;");
+        title.setOnMouseEntered(e -> {
+            if (title.getText().length() > 20) {
+                Tooltip.install(title, new Tooltip(title.getText()));
+            }
+        });
 
-        StackPane top = new StackPane(artist);
-        StackPane bottom = new StackPane(title);
+        textBox.getChildren().addAll(artist, year, title);
+        root.getChildren().add(textBox);
 
-        // 3) Set Layout
-        layout.setTop(top);
-        layout.setCenter(year);
-        layout.setBottom(bottom);
+        // =========================
+        // ICON OVERLAY (TOP LEFT)
+        // =========================
+        List<Set> songSets = song.getActiveSongSets();
 
-        this.getChildren().clear();
-        this.getChildren().add(layout);
+        if (!songSets.isEmpty()) {
+            VBox iconLayout = new VBox(1);
+            iconLayout.setAlignment(Pos.TOP_CENTER);
+            iconLayout.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+            iconLayout.setMouseTransparent(false);
+
+            iconLayout.setTranslateX(2);
+            iconLayout.setTranslateY(2);
+
+            ImageView icon = songSets.getFirst().getIcon();
+            icon.setFitWidth(18);
+            icon.setFitHeight(18);
+            icon.setPreserveRatio(true);
+            iconLayout.getChildren().add(icon);
+
+            if (songSets.size() > 1) {
+                Label moreSets = new Label("+" + (songSets.size() - 1));
+                moreSets.setStyle("""
+                    -fx-font-size: 9px;
+                    -fx-font-weight: bold;
+                    -fx-text-fill: white;
+                    -fx-alignment: center;
+                """);
+                iconLayout.getChildren().add(moreSets);
+            }
+
+            String allSets = songSets.stream()
+                .map(s -> s.name != null ? s.name : "")
+                .collect(java.util.stream.Collectors.joining("\n"));
+
+            Tooltip tooltip = new Tooltip(allSets);
+            tooltip.setStyle("-fx-font-size: 11px;"); 
+            Tooltip.install(iconLayout, tooltip);
+
+            StackPane.setAlignment(iconLayout, Pos.TOP_LEFT);
+            root.getChildren().add(iconLayout);
+        }
+
+        this.getChildren().setAll(root);
     }
 
     /**
