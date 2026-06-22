@@ -82,20 +82,23 @@ public class DiscardPile extends StackPane {
      * Animates the movement of a card to discard pile smoothly.
      * Old card gets deleted after animation.
      */
-    public void setDiscardedCard(SongCard card) {
-        if (card == null) return;
+    public void setDiscardedCard(Card card) {
+        if (card == null)
+            return;
 
-        double cardWidth = card.getBoundsInLocal().getWidth();
-        double cardHeight = card.getBoundsInLocal().getHeight();
+        double cardWidth = card.getBoundsInLocal().getWidth() > 0 ? card.getBoundsInLocal().getWidth() : 140;
+        double cardHeight = card.getBoundsInLocal().getHeight() > 0 ? card.getBoundsInLocal().getHeight() : 150;
 
         card.setTranslateX(0);
         card.setTranslateY(0);
 
         card.setManaged(false);
 
+        card.resize(cardWidth, cardHeight);
+
         card.setLayoutX((this.getPrefWidth() - cardWidth) / 2);
         card.setLayoutY((this.getPrefHeight() - cardHeight) / 2);
-
+        
         cardContainer.getChildren().clear();
         cardContainer.getChildren().add(card);
     }

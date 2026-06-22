@@ -28,9 +28,15 @@ public abstract class Card extends StackPane {
         // ----- Set Layout and Style -----
         this.setPrefSize(150, 150);
 
-        Rectangle clip = new Rectangle(150, 150);
+        Rectangle clip = new Rectangle();
+
+        clip.widthProperty().bind(widthProperty());
+        clip.heightProperty().bind(heightProperty());
+
         clip.setArcWidth(24);
         clip.setArcHeight(24);
+
+        setClip(clip);
 
         this.setClip(clip);
 

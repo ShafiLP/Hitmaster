@@ -550,15 +550,14 @@ public final class GameLogic {
                 VIEW.showStealOverlay();
                 break;
 
+            // If steal action was available for opponent but they skipped,
+            // continue with confirmation of own input.
+            case "OPPONENT_STEAL_SKIP":
+                VIEW.confirmInput();
+                break;
+
+            // Sets timer for opponent steal attempt and waits for opponent.
             case "OPPONENT_STEAL_START":
-                /*List<SongCard> cards = VIEW.getCardsFromStrip();
-                List<Song> songsFromCards = new ArrayList<>();
-
-                for (SongCard card : cards) {
-                    songsFromCards.add(card.song);
-                }
-
-                this.sendObject(new SongDTO(songsFromCards, "OPEN_STEAL_WINDOW"));*/
                 VIEW.setTimerForOpponent(OPTIONS.stealTime);
                 break;
 

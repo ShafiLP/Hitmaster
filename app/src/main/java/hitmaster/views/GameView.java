@@ -667,6 +667,10 @@ public class GameView extends Pane {
         });
     }
 
+    public void stealSkip() {
+        GAME.sendObject("OPPONENT_STEAL_SKIP");
+    }
+
     public void stealButtonPressed() {
         GAME.startStealAction();
     }
@@ -780,12 +784,32 @@ public class GameView extends Pane {
         return (!(stealCardIdx - 1 == currentCardIdx) && !(stealCardIdx + 1 == currentCardIdx));
     }
 
+    /**
+     * Adds a song as a SongCard to discard pile.
+     * Directly shows Card front.
+     * @param song Song to put in discard Pile.
+     */
     public void addNewCardToDiscard(Song song) {
-        SongCard card = new SongCard(this, song);
-        card.showFront();
-
         Platform.runLater(() -> {
-            DISCARD_PILE.setDiscardedCard(card);
+            final SongCard wrongCard = new SongCard(this, song);
+
+            double sceneX = wrongCard.localToScene(0, 0).getX();
+            double sceneY = wrongCard.localToScene(0, 0).getY();
+            Point2D localPos = this.sceneToLocal(sceneX, sceneY);
+
+            STRIP.removeCard(wrongCard, false);
+            if (wrongCard.getParent() != this) {
+                this.getChildren().add(wrongCard);
+            }
+            wrongCard.setLayoutX(localPos.getX());
+            wrongCard.setLayoutY(localPos.getY());
+            wrongCard.setTranslateX(0);
+            wrongCard.setTranslateY(0);
+            wrongCard.toFront();
+
+            wrongCard.showFront();
+
+            DISCARD_PILE.setDiscardedCard(wrongCard);
         });
     }
 }

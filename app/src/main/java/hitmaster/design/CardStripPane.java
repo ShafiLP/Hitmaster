@@ -249,10 +249,6 @@ public class CardStripPane extends Pane {
 
             card.setPrefSize(currentCardWidth, CARDHEIGHT);
             
-            if (card.getClip() instanceof javafx.scene.shape.Rectangle rectangle) {
-                rectangle.setWidth(currentCardWidth);
-            }
-
             double x = startX + i * (currentCardWidth + currentHGap);
             card.relocate(x, stripY);
 

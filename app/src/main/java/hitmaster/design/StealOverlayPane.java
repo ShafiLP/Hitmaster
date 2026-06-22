@@ -8,7 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -22,7 +21,7 @@ public class StealOverlayPane extends StackPane {
     private final Button actionButton;
     private Timeline timeline;
     private int remainingSeconds;
-    private final Pane parentContainer;
+    private final GameView parentContainer;
 
     /**
      * Erstellt ein verdunkelndes Overlay.
@@ -82,7 +81,8 @@ public class StealOverlayPane extends StackPane {
             timerLabel.setText(String.valueOf(remainingSeconds));
 
             if (remainingSeconds <= 0) {
-                closeOverlay();
+                this.closeOverlay();
+                parentContainer.stealSkip();
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
