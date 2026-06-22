@@ -100,7 +100,6 @@ public class OnlineMultiplayerSettings {
         cancel.setPrefWidth(120);
         cancel.setOnAction(e -> {
             STAGE.close();
-            //new MultiplayerMenuView(PARENT).show();
         });
 
         Button startGame = new Button("Start Game");

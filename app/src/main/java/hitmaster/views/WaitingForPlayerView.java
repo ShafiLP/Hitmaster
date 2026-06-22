@@ -140,6 +140,7 @@ public class WaitingForPlayerView {
                 
                 this.options.players[1] = clientPlayer;
                 options.players[1].role = Player.Role.CLIENT;
+                options.players[1].decodeImage();
                 netManager.sendObject(this.options);
 
                 Platform.runLater(() -> {

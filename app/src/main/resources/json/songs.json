@@ -1,8 +1,7 @@
 [
   {
     "id": 1,
-    "titles": ["Wann Wird's Mal Wieder Richtig Sommer", "Wann Wird Es Mal Wieder Richtig Sommer"
-    ],
+    "titles": ["Wann Wird's Mal Wieder Richtig Sommer", "Wann Wird Es Mal Wieder Richtig Sommer"],
     "artists": ["Rudi Carrell"],
     "year": 1975,
     "spotify_id": "59VR9MekNIMRLxQYfSn3Qr"
@@ -4900,7 +4899,7 @@
   },
   {
     "id": 700,
-    "titles": ["This Is the Life"],
+    "titles": ["This Is The Life"],
     "artists": ["Amy Macdonald", "Amy McDonald"],
     "year": 2007,
     "spotify_id": "2T3jgoAMbBXiMMD8pSc6QL"

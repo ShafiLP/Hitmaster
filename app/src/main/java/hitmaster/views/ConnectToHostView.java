@@ -106,6 +106,10 @@ public class ConnectToHostView {
                         if (receivedObj instanceof GameOptions hostOptions) {
                             Platform.runLater(() -> {
                                 STAGE.close(); 
+
+                                for (Player player : hostOptions.players) {
+                                    player.decodeImage();
+                                }
                                 
                                 GameLogic gameLogic = new GameLogic(hostOptions, false, netManager);
                                 PARENT.setStage(gameLogic.getView(), true);
