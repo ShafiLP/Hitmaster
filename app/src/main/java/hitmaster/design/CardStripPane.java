@@ -14,7 +14,7 @@ import javafx.util.Duration;
 public class CardStripPane extends Pane {
     
     private final GameLogic GAME;
-    private final List<SongCard> cards = new ArrayList<>();
+    private final List<Card> cards = new ArrayList<>();
     private int originalIndex = -1;
     private int insertIndex = -1;
 
@@ -42,14 +42,14 @@ public class CardStripPane extends Pane {
         this.getStyleClass().add("card-strip");
     }
 
-    public void addCard(SongCard card) {
+    public void addCard(Card card) {
         if (!cards.contains(card)) {
             cards.add(card);
         }
         layoutCards();
     }
 
-    public void registerExternalCard(SongCard card) {
+    public void registerExternalCard(Card card) {
         card.setOnDragStarted(() -> {
             originalIndex = cards.indexOf(card);
             if (originalIndex >= 0) {
@@ -147,18 +147,21 @@ public class CardStripPane extends Pane {
      * Adds a card automatically at the index where it fits according to song.year
      * and animates it moving to that indexed position.
      */
-    public void addCardSorted(SongCard card) {
+    public void addCardSorted(Card card, int year) {
         if (card == null) return;
         
         // 1) Calculate index
         int targetIndex = 0;
-        int newCardYear = card.song.year;
+        int newCardYear = year;
 
         for (int i = 0; i < cards.size(); i++) {
-            if (newCardYear >= cards.get(i).song.year) {
-                targetIndex = i + 1;
-            } else {
-                break;
+            if (cards.get(i) instanceof SongCard songCard) {
+                if (newCardYear >= songCard.song.year) {
+                    targetIndex = i + 1;
+                }
+                else {
+                    break;
+                }
             }
         }
 
@@ -177,13 +180,13 @@ public class CardStripPane extends Pane {
         layoutCards();
 
         // 3) Animate movement to CardStripPane
-        animateCardToPosition(card, initialSceneX, initialSceneY);
+        this.animateCardToPosition(card, initialSceneX, initialSceneY);
     }
 
     /**
      * Moves a card into CardStripPane smoothly.
      */
-    private void animateCardToPosition(SongCard card, double fromSceneX, double fromSceneY) {
+    private void animateCardToPosition(Card card, double fromSceneX, double fromSceneY) {
         double targetX = card.getLayoutX();
         double targetY = card.getLayoutY();
 
@@ -242,7 +245,7 @@ public class CardStripPane extends Pane {
         double stripY = (getHeight() - CARDHEIGHT) / 2.0;
 
         for (int i = 0; i < totalCards; i++) {
-            SongCard card = cards.get(i);
+            Card card = cards.get(i);
 
             card.setPrefSize(currentCardWidth, CARDHEIGHT);
             
@@ -277,7 +280,18 @@ public class CardStripPane extends Pane {
         this.requestLayout();
     }
 
-    public List<SongCard> getCards() {
+    public List<Card> getCards() {
         return cards;
+    }
+
+    public List<SongCard> getSongCards() {
+        List<SongCard> songCards = new ArrayList<>();
+
+        for (Card card : cards) {
+            if (card instanceof SongCard songCard)
+                songCards.add(songCard);
+        }
+
+        return songCards;
     }
 }

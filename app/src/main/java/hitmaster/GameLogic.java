@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
+import hitmaster.design.Card;
+import hitmaster.design.PlayerCard;
 import hitmaster.design.SongCard;
 import hitmaster.design.WinnerPane;
 import hitmaster.models.GameOptions;
@@ -247,30 +249,34 @@ public final class GameLogic {
         return (songCards.get(idx - 1).song.year <= songCards.get(idx).song.year && songCards.get(idx + 1).song.year >= songCards.get(idx).song.year);
     }
 
-    public boolean checkStealOrder(List<SongCard> songCards, SongCard stealCard) {
-        // 1) Search for steal card
+    public boolean checkStealOrder(List<Card> cardList) {
+        // 1) Search for steal card (PlayerCard)
         int idx = -1;
-        for (int i = 0; i < songCards.size(); i++) {
-            if (songCards.get(i) == stealCard) {
+
+        for (int i = 0; i < cardList.size(); i++) {
+            if (cardList.get(i) instanceof PlayerCard) {
                 idx = i;
                 break;
             }
         }
-        if (idx == -1)
+
+        if (idx == -1) {
+            Log.Error("No PlayerCard found while checking steal order!");
             return false;
+        }
 
         // 2) Check if stealCard position is true
-        songCards.get(idx).song = new Song();
-        songCards.get(idx).song = SONGS.getFirst(); // TODO: Replace with debug song (For steal card functionality only)
-        songCards.get(idx).song.year = currentSong.year;
-        
-        if (songCards.get(idx).equals(songCards.getFirst()))
-            return (songCards.get(idx + 1).song.year >= songCards.get(idx).song.year);
+        if (cardList.get(idx).equals(cardList.getFirst()) && cardList.getFirst() instanceof SongCard songCard)
+            return (songCard.song.year >= currentSong.year);
 
-        if (songCards.get(idx).equals(songCards.getLast()))
-            return (songCards.get(idx - 1).song.year <= songCards.get(idx).song.year);
+        if (cardList.get(idx).equals(cardList.getLast()) && cardList.getLast() instanceof SongCard songCard)
+            return (songCard.song.year <= currentSong.year);
 
-        return (songCards.get(idx - 1).song.year <= songCards.get(idx).song.year && songCards.get(idx + 1).song.year >= songCards.get(idx).song.year);
+        if (cardList.get(idx - 1) instanceof SongCard songCardBefore && cardList.get(idx - 1) instanceof SongCard songCardAfter)
+            return (songCardBefore.song.year <= currentSong.year && songCardAfter.song.year >= currentSong.year);
+
+        Log.Error("Cards next to PlayerCard aren't Song Cards!");
+        return false;
     }
 
     /**
@@ -655,13 +661,13 @@ public final class GameLogic {
         }
     }
 
-    public void handleCardMove(List<SongCard> updatedSongCards) {
+    public void handleCardMove(List<Card> updatedSongCards) {
         if (networkManager != null) {
             List<Song> songsFromCards = new ArrayList<>();
 
-            for (SongCard card : updatedSongCards) {
-                if (!card.isDraggable) {
-                    songsFromCards.add(card.song);
+            for (Card card : updatedSongCards) {
+                if (!card.isDraggable() && card instanceof SongCard songCard) {
+                    songsFromCards.add(songCard.song);
                 }
                 else {
                     songsFromCards.add(new Song());
@@ -709,13 +715,13 @@ public final class GameLogic {
 
         // 4) Open steal view
         Platform.runLater(() -> {
-            StealView stealView = new StealView(this);
+            StealView stealView = new StealView(this, this.getPreviousPlayer());
             stealView.setStripCards(VIEW.getOpponentPane().getSongs());
             stealView.showAndWait((Stage) VIEW.getScene().getWindow());
         });
     }
 
-    public void confirmStealAction(List<SongCard> cards, int placedIdx) {
+    public void confirmStealAction(List<Card> cards, int placedIdx) {
         // 1) Check if guess was made
         if (placedIdx == -1) {
             this.sendObject("OPPONENT_STEAL_FALSE");
@@ -726,14 +732,18 @@ public final class GameLogic {
         boolean correctSteal;
 
         // 2) Check position of steal guess
-        if (placedIdx == 0) {
-            correctSteal = (currentSong.year <= cards.get(placedIdx + 1).song.year);
+        if (placedIdx == 0 && cards.get(placedIdx + 1) instanceof SongCard songCard) {
+            correctSteal = (currentSong.year <= songCard.song.year);
         }
-        else if (placedIdx == cards.size() - 1) {
-            correctSteal = (currentSong.year >= cards.get(placedIdx - 1).song.year);
+        else if (placedIdx == cards.size() - 1 && cards.get(placedIdx - 1) instanceof SongCard songCard) {
+            correctSteal = (currentSong.year >= songCard.song.year);
+        }
+        else if (cards.get(placedIdx - 1) instanceof SongCard songCardBefore && cards.get(placedIdx + 1) instanceof SongCard songCardAfter) {
+            correctSteal = (currentSong.year >= songCardBefore.song.year) && (currentSong.year <= songCardAfter.song.year);
         }
         else {
-            correctSteal = (currentSong.year >= cards.get(placedIdx - 1).song.year) && (currentSong.year <= cards.get(placedIdx + 1).song.year);
+            Log.Error("Couldn't check result of steal card placement.");
+            correctSteal = false;
         }
 
         // 4) Add song to player's song list if guess was correct

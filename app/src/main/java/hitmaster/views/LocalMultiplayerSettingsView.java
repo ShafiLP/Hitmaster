@@ -124,9 +124,9 @@ public class LocalMultiplayerSettingsView {
         startGame.setOnAction(e -> {
             GameOptions options = new GameOptions();
             options.players = new Player[2];
-            options.players[0] = new Player(p1Name.getText(), "/" + Database.getCurrentUser().picture);
+            options.players[0] = new Player(p1Name.getText(), Database.getCurrentUser().picture);
             options.players[0].role = Player.Role.HOST;
-            options.players[1] = new Player(p2Name.getText(), "/" + Database.getCurrentUser().picture);
+            options.players[1] = new Player(p2Name.getText(), null);
             options.players[1].role = Player.Role.HOST;
             options.moveTime = Integer.parseInt(turnTimeInput.getText());
             options.stealTime = Integer.parseInt(stealTimeInput.getText());

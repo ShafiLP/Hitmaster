@@ -270,12 +270,15 @@
     -fx-text-fill: black;
 }
 
-.song-card {
-    -fx-text-fill: black;
+.card {
     -fx-background-color: black;
     -fx-background-radius: 12;
     -fx-border-radius: 12;
     -fx-border-color: black;
+}
+
+.song-card {
+    -fx-text-fill: black;
 }
 
 .card-strip {

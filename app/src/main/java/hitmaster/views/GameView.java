@@ -3,10 +3,12 @@ package hitmaster.views;
 import java.util.List;
 
 import hitmaster.GameLogic;
+import hitmaster.design.Card;
 import hitmaster.design.CardStripPane;
 import hitmaster.design.ChipPane;
 import hitmaster.design.DiscardPile;
 import hitmaster.design.OpponentPane;
+import hitmaster.design.PlayerCard;
 import hitmaster.design.SongCard;
 import hitmaster.design.StatusBar;
 import hitmaster.design.StealOverlayPane;
@@ -39,7 +41,7 @@ public class GameView extends Pane {
 
     private Timer timerUnit;
     private SongCard currentCard;
-    private SongCard stealCard = new SongCard(this, null);
+    private PlayerCard stealCard = new PlayerCard(null);
     private boolean isStealing = false;
 
     // UI elements
@@ -307,7 +309,7 @@ public class GameView extends Pane {
             GAME.checkSongInformation(ARTIST.getText(), TITLE.getText());
 
             // 3) Check position of card
-            boolean guess = GAME.checkSongOrder(STRIP.getCards());
+            boolean guess = GAME.checkSongOrder(STRIP.getSongCards());
             currentCard.setBorderColor(guess ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)");
 
             // 4) Send result to connected player
@@ -357,7 +359,7 @@ public class GameView extends Pane {
         // 2) Check for win if guess was correct
         if (guess) {
             GAME.addCardToPlayerSorted(GAME.getCurrentPlayer());
-            if (GAME.checkForWin(STRIP.getCards())) {
+            if (GAME.checkForWin(STRIP.getSongCards())) {
                 Platform.runLater(() -> {
                     STATUS.setInfoText(GAME.getCurrentPlayer().username + " won the game!");
 
@@ -482,8 +484,8 @@ public class GameView extends Pane {
      */
     public void insertCardIntoStrip(boolean showFront) {
         Platform.runLater(() -> {
-            STRIP.addCardSorted(currentCard);
-            currentCard.isDraggable = false;
+            STRIP.addCardSorted(currentCard, currentCard.song.year);
+            currentCard.setDraggable(false);
 
             if (showFront)
                 currentCard.showFront();
@@ -578,7 +580,7 @@ public class GameView extends Pane {
         return currentCard;
     }
 
-    public List<SongCard> getCardsFromStrip() {
+    public List<Card> getCardsFromStrip() {
         return STRIP.getCards();
     }
 
@@ -709,9 +711,8 @@ public class GameView extends Pane {
         );
         
         // 3) Add new SongCard to steal
-        stealCard = new SongCard(this, null);
+        stealCard = new PlayerCard(GAME.getPreviousPlayer());
         stealCard.setVisible(true);
-        stealCard.showStealInfo(GAME.getPreviousPlayer());
         stealCard.setLayoutX(500); 
         stealCard.setLayoutY(50);
         stealCard.toFront();
@@ -732,8 +733,8 @@ public class GameView extends Pane {
         timerUnit.stop();
 
         // 2) Check position of steal card
-        boolean guess = GAME.checkStealOrder(STRIP.getCards(), stealCard);
-        if (guess && !GAME.checkSongOrder(STRIP.getCards())) {
+        boolean guess = GAME.checkStealOrder(STRIP.getCards());
+        if (guess && !GAME.checkSongOrder(STRIP.getSongCards())) {
             stealCard.setBorderColor("rgb(0, 255, 0)");
             GAME.addCardToPlayerSorted(GAME.getPreviousPlayer());
         }
@@ -752,12 +753,12 @@ public class GameView extends Pane {
      */
     private boolean checkValidStealPosition() {
         // 1) Get list of song cards
-        List<SongCard> songCards = STRIP.getCards();
+        List<Card> cards = STRIP.getCards();
 
         // 2) Look for currentCard index
         int currentCardIdx = -1;
-        for (int i = 0; i < songCards.size(); i++) {
-            if (songCards.get(i).equals(currentCard)) {
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i).equals(currentCard)) {
                 currentCardIdx = i;
                 break;
             }
@@ -765,8 +766,8 @@ public class GameView extends Pane {
 
         // 3) Loook for stealCard index
         int stealCardIdx = -1;
-        for (int i = 0; i < songCards.size(); i++) {
-            if (songCards.get(i).equals(stealCard)) {
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i).equals(stealCard)) {
                 stealCardIdx = i;
                 break;
             }

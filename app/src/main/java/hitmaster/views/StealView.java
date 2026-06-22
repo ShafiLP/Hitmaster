@@ -4,9 +4,11 @@ import java.util.List;
 
 import hitmaster.GameLogic;
 import hitmaster.design.CardStripPane;
+import hitmaster.design.PlayerCard;
 import hitmaster.design.SongCard;
 import hitmaster.design.StatusBar;
 import hitmaster.design.StyleDialog;
+import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.ThemeManager;
 import hitmaster.services.Timer;
@@ -28,14 +30,14 @@ public class StealView extends Stage {
     private final CardStripPane cardStripPane;
     private final StatusBar statusBar;
     private final Button confirmButton;
-    private final SongCard targetCard;
+    private final PlayerCard targetCard;
     private Timer timerUnit;
     
     private boolean confirmed = false;
 
-    public StealView(GameLogic game) {
+    public StealView(GameLogic game, Player stealingPlayer) {
         this.GAME = game;
-        this.targetCard = new SongCard(null, GAME.getCurrentSong());
+        this.targetCard = new PlayerCard(stealingPlayer);
         this.targetCard.setDraggable(true);
 
         this.setTitle("Steal Attempt!");
@@ -119,14 +121,13 @@ public class StealView extends Stage {
             cardFromSong.setDraggable(false);
 
             if (cardFromSong.song.titles.isEmpty()) {
-                cardFromSong.showBack();
-                // TODO: replace with opponent pfp
+                PlayerCard playerCard = new PlayerCard(GAME.getCurrentPlayer());
+                cardStripPane.addCard(playerCard);
             }
             else {
                 cardFromSong.showFront();
+                cardStripPane.addCard(cardFromSong);
             }
-
-            cardStripPane.addCard(cardFromSong);
         }
     }
 
