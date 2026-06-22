@@ -497,10 +497,13 @@ public final class GameLogic {
         String action = parts[0];
 
         switch (action) {
+
+            // Signal that Host is ready: Sets flag
             case "HOST_READY":
                 hostReady.set(true);
                 break;
 
+            // Signal that Client is ready: Sets flag
             case "CLIENT_READY":
                 clientReady.set(true);
                 break;
@@ -610,22 +613,6 @@ public final class GameLogic {
                         return;
                     }
 
-                    /*if ("OPEN_STEAL_WINDOW".equals(receivedDTO.purpose)) {
-                        Log.Info("Received " + receivedDTO.toSong() + " with purpose " + receivedDTO.purpose);
-
-                        Platform.runLater(() -> {
-                            List<Song> opponentSongs = new ArrayList<>();
-
-                            for (SongDTO dto : receivedDTO.songList) {
-                                opponentSongs.add(dto.toSong());
-                            }
-
-                            this.openStealWindow(opponentSongs);
-                        });
-                        
-                        return;
-                    }*/
-                    
                     Song receivedSong = receivedDTO.toSong();
                     Log.Info("Received " + receivedSong + " with purpose " + receivedDTO.purpose);
                     
