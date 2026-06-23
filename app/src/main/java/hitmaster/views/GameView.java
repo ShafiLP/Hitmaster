@@ -51,7 +51,14 @@ public class GameView extends Pane {
     private final ChipPane CHIP_PANE;
     private final TextField ARTIST;
     private final TextField TITLE;
+
+    private final Button SUBMIT;
     private final Button PLAYPAUSE;
+    private final Button BACKWARD;
+    private final Button FORWARD;
+    private final Button RESTART;
+    private final Button SKIP;
+    private final Button INSERT;
 
     private final ImageView PILE_IMAGE;
     private final Label REMAINING_CARDS;
@@ -126,10 +133,10 @@ public class GameView extends Pane {
         TITLE.getStyleClass().add("modern-textbox");
         TITLE.setPromptText("Song title...");
 
-        Button flip = new Button("Flip");
-        flip.getStyleClass().add("primary-button");
-        flip.setMaxWidth(Double.MAX_VALUE);
-        flip.setOnAction(e -> {
+        SUBMIT = new Button("Submit");
+        SUBMIT.getStyleClass().add("primary-button");
+        SUBMIT.setMaxWidth(Double.MAX_VALUE);
+        SUBMIT.setOnAction(e -> {
             if (!isStealing) {
                 this.startStealTime();
             }
@@ -138,31 +145,33 @@ public class GameView extends Pane {
             }
         });
 
-        VBox inputs = new VBox(8, ARTIST, TITLE, flip);
+        VBox inputs = new VBox(8, ARTIST, TITLE, SUBMIT);
 
         // 6) Spotify media control
-        Button back = new Button("⏮");
+        BACKWARD = new Button("⏮");
         PLAYPAUSE = new Button("►");
-        Button forward = new Button("⏭");
-        Button restart = new Button("↺");
-        Button skip = new Button("Skip");
-        Button insert = new Button("Insert");
+        FORWARD = new Button("⏭");
+        RESTART = new Button("↺");
+        SKIP = new Button("Skip");
+        INSERT = new Button("Insert");
 
-        back.getStyleClass().add("modern-button");
+        BACKWARD.getStyleClass().add("modern-button");
         PLAYPAUSE.getStyleClass().add("modern-button");
-        forward.getStyleClass().add("modern-button");
-        restart.getStyleClass().add("modern-button");
-        skip.getStyleClass().add("modern-button");
-        insert.getStyleClass().add("modern-button");
+        FORWARD.getStyleClass().add("modern-button");
+        RESTART.getStyleClass().add("modern-button");
+        SKIP.getStyleClass().add("modern-button");
+        INSERT.getStyleClass().add("modern-button");
 
-        back.setOnAction(e -> GAME.seek5secBackward());
+        BACKWARD.setOnAction(e -> GAME.seek5secBackward());
         PLAYPAUSE.setOnAction(e -> this.playPause());
-        forward.setOnAction(e -> GAME.seek5secForward());
-        restart.setOnAction(e -> GAME.restartCurrentSong());
-        skip.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 1) GAME.skipCurrentSong(); });
-        insert.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 3) GAME.insertCardIntoStrip(); });
+        FORWARD.setOnAction(e -> GAME.seek5secForward());
+        RESTART.setOnAction(e -> GAME.restartCurrentSong());
+        SKIP.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 1) GAME.skipCurrentSong(); });
+        INSERT.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 3) GAME.insertCardIntoStrip(); });
 
-        HBox mediaRow = new HBox(15, back, PLAYPAUSE, forward, restart, skip, insert);
+        this.setInputsEnabled(false);
+
+        HBox mediaRow = new HBox(15, BACKWARD, PLAYPAUSE, FORWARD, RESTART, SKIP, INSERT);
         mediaRow.setAlignment(Pos.CENTER);
 
         ComboBox<String> deviceDropdown = new ComboBox<>();
@@ -221,8 +230,7 @@ public class GameView extends Pane {
      */
     private void startStealTime() {
         // 1) Lock current guess by disabling all inputs
-        ARTIST.setEditable(false);
-        TITLE.setEditable(false);
+        this.setInputsEnabled(false);
         currentCard.setDraggable(false);
 
         // 2) Skip if multiplayer is disabled or opponent doesn't have any chips
@@ -432,6 +440,7 @@ public class GameView extends Pane {
             if (GAME.isLAN())
                 this.resetOpponentCard();
 
+            this.setInputsEnabled(true);
             this.initializeNewTimer();
         });
 
@@ -561,6 +570,23 @@ public class GameView extends Pane {
                 //
             })
         );
+    }
+
+    /**
+     * Enables or disables all input methods for Player that owns this view.
+     * @param enabled Property if inputs should be enabled or not.
+     */
+    private void setInputsEnabled(boolean enabled) {
+        ARTIST.setDisable(!enabled);
+        TITLE.setDisable(!enabled);
+
+        SUBMIT.setDisable(!enabled);
+        PLAYPAUSE.setDisable(!enabled);
+        BACKWARD.setDisable(!enabled);
+        FORWARD.setDisable(!enabled);
+        RESTART.setDisable(!enabled);
+        SKIP.setDisable(!enabled);
+        INSERT.setDisable(!enabled);
     }
 
     public SongCard getCurrentSongCard() {

@@ -72,13 +72,9 @@ public class DiscardPile extends StackPane {
             card.setTranslateX(0);
             card.setTranslateY(0);
 
-            card.setManaged(false);
+            card.setMaxSize(cardWidth, cardHeight);
+            card.setPrefSize(cardWidth, cardHeight);
 
-            card.resize(cardWidth, cardHeight);
-
-            card.setLayoutX((this.getWidth() - cardWidth) / 2);
-            card.setLayoutY((this.getHeight() - cardHeight) / 2);
-            
             cardContainer.getChildren().clear();
             cardContainer.getChildren().add(card);
         });
