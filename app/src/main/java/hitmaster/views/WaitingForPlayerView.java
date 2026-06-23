@@ -97,6 +97,7 @@ public class WaitingForPlayerView {
         // =========================
         Button cancel = new Button("Cancel");
         cancel.getStyleClass().add("modern-button");
+        cancel.setCancelButton(true);
         cancel.setPrefWidth(120);
         cancel.setOnAction(e -> {
             if (netManager != null) {
@@ -129,9 +130,11 @@ public class WaitingForPlayerView {
         Scene scene = new Scene(root, 520, 240);
         ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
+
+        Platform.runLater(STAGE::requestFocus);
     }
 
-    public void show() {
+    public void show(Stage parent) {
         this.netManager = new NetworkManager();
 
         int port = 5050; // Same as client!
@@ -157,6 +160,24 @@ public class WaitingForPlayerView {
 
         STAGE.setOnCloseRequest(e -> {
             if (netManager != null) netManager.closeConnection();
+        });
+
+        STAGE.setOnShowing(e -> {
+            Platform.runLater(() -> {
+                double ownerX = parent.getX();
+                double ownerY = parent.getY();
+                double ownerWidth = parent.getWidth();
+                double ownerHeight = parent.getHeight();
+
+                double newWidth = STAGE.getWidth();
+                double newHeight = STAGE.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                STAGE.setX(centerX);
+                STAGE.setY(centerY);
+            });
         });
         STAGE.show();
     }

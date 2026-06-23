@@ -11,6 +11,7 @@ import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.ThemeManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
@@ -132,6 +133,7 @@ public class UserSettingsView {
         // =========================
         Button cancelBtn = new Button("Cancel");
         cancelBtn.getStyleClass().add("modern-button");
+        cancelBtn.setCancelButton(true);
         cancelBtn.setPrefWidth(100);
         cancelBtn.setOnAction(e -> STAGE.close());
 
@@ -192,6 +194,8 @@ public class UserSettingsView {
         Scene scene = new Scene(root, 520, 300);
         ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
+
+        Platform.runLater(STAGE::requestFocus);
     }
 
     /**
@@ -276,7 +280,25 @@ public class UserSettingsView {
         return row;
     }
 
-    public void show() {
+    public void show(Stage parent) {
+        STAGE.setOnShowing(e -> {
+            Platform.runLater(() -> {
+                double ownerX = parent.getX();
+                double ownerY = parent.getY();
+                double ownerWidth = parent.getWidth();
+                double ownerHeight = parent.getHeight();
+
+                double newWidth = STAGE.getWidth();
+                double newHeight = STAGE.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                STAGE.setX(centerX);
+                STAGE.setY(centerY);
+            });
+        });
+
         STAGE.initModality(Modality.APPLICATION_MODAL);
         STAGE.showAndWait();
     }

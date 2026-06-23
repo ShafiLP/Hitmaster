@@ -8,6 +8,7 @@ import hitmaster.models.Player;
 import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,10 +16,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class OnlineMultiplayerSettings {
@@ -65,7 +69,7 @@ public class OnlineMultiplayerSettings {
         manageSetsBtn.setPrefWidth(180);
         manageSetsBtn.setOnAction(e -> {
             SetManagerView setManagerView = new SetManagerView();
-            setManagerView.show();
+            setManagerView.show(STAGE);
         });
         
         HBox setsRow = createSettingRow("Song Sets", "Import, export or edit your custom song packages.", manageSetsBtn);
@@ -97,6 +101,7 @@ public class OnlineMultiplayerSettings {
         // =========================
         Button cancel = new Button("Cancel");
         cancel.getStyleClass().add("modern-button");
+        cancel.setCancelButton(true);
         cancel.setPrefWidth(120);
         cancel.setOnAction(e -> {
             STAGE.close();
@@ -116,7 +121,7 @@ public class OnlineMultiplayerSettings {
             options.players[0].role = Player.Role.HOST;
 
             WaitingForPlayerView waiting = new WaitingForPlayerView(PARENT, STAGE, options);
-            waiting.show();
+            waiting.show(STAGE);
         });
 
         HBox footer = new HBox(10, cancel, startGame);
@@ -130,7 +135,17 @@ public class OnlineMultiplayerSettings {
 
         Scene scene = new Scene(root, 520, 380);
         ThemeManager.getInstance().registerScene(scene);
+
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                startGame.fire();
+                event.consume(); 
+            }
+        });
+
         STAGE.setScene(scene);
+
+        Platform.runLater(STAGE::requestFocus);
     }
 
     private HBox createSettingRow(String titleText, String descText, javafx.scene.Node control) {
@@ -184,10 +199,29 @@ public class OnlineMultiplayerSettings {
         return new TextFormatter<>(filter);
     }
 
-    public void show() {
+    public void show(Stage parent) {
         if (PREV_STAGE != null) 
             PREV_STAGE.close();
 
+        STAGE.setOnShowing(e -> {
+            Platform.runLater(() -> {
+                double ownerX = parent.getX();
+                double ownerY = parent.getY();
+                double ownerWidth = parent.getWidth();
+                double ownerHeight = parent.getHeight();
+
+                double newWidth = STAGE.getWidth();
+                double newHeight = STAGE.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                STAGE.setX(centerX);
+                STAGE.setY(centerY);
+            });
+        });
+
+        STAGE.initModality(Modality.APPLICATION_MODAL);
         STAGE.show();
     }
 }

@@ -1,12 +1,15 @@
 package hitmaster.views;
 
 import hitmaster.services.ThemeManager;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -16,12 +19,9 @@ import javafx.stage.Stage;
 
 public class GameSettingsView {
 
-    private final MainMenu PARENT;
     private final Stage STAGE;
 
-    public GameSettingsView(MainMenu parent) {
-        this.PARENT = parent;
-
+    public GameSettingsView() {
         STAGE = new Stage();
         STAGE.setTitle("Match Setup");
 
@@ -45,12 +45,11 @@ public class GameSettingsView {
         header.setAlignment(Pos.TOP_LEFT);
 
         // =========================
-        // SETTINGS CONTENT (Platzhalter-Formular)
+        // SETTINGS CONTENT
         // =========================
         VBox content = new VBox(15);
         content.setFillWidth(true);
 
-        // Platzhalter 1: Game Mode
         ComboBox<String> modeDropdown = new ComboBox<>();
         modeDropdown.getStyleClass().add("modern-dropdown");
         modeDropdown.getItems().addAll("Standard Match", "Time Attack", "Sudden Death");
@@ -59,7 +58,6 @@ public class GameSettingsView {
         
         HBox modeRow = createSettingRow("Game Mode", "Select the ruleset for this session.", modeDropdown);
 
-        // Platzhalter 2: Max Players
         ComboBox<Integer> playerDropdown = new ComboBox<>();
         playerDropdown.getStyleClass().add("modern-dropdown");
         playerDropdown.getItems().addAll(2, 3, 4, 8);
@@ -68,7 +66,6 @@ public class GameSettingsView {
         
         HBox playerRow = createSettingRow("Max Players", "Limit the amount of players allowed to join.", playerDropdown);
 
-        // Platzhalter 3: Round Limit
         ComboBox<String> roundsDropdown = new ComboBox<>();
         roundsDropdown.getStyleClass().add("modern-dropdown");
         roundsDropdown.getItems().addAll("Best of 3", "Best of 5", "Endless");
@@ -77,26 +74,23 @@ public class GameSettingsView {
         
         HBox roundsRow = createSettingRow("Match Duration", "Set how many rounds are required to win.", roundsDropdown);
 
-        // Inhaltszeilen hinzufügen
         content.getChildren().addAll(modeRow, playerRow, roundsRow);
 
         // =========================
-        // FOOTER (Abbrechen & Starten)
+        // FOOTER (Cancel & Start)
         // =========================
         Button cancel = new Button("Cancel");
         cancel.getStyleClass().add("modern-button");
+        cancel.setCancelButton(true);
         cancel.setPrefWidth(120);
         cancel.setOnAction(e -> {
             STAGE.close();
-            // Zurück zum Multiplayer-Hauptmenü
-            new MultiplayerMenuView(PARENT).show();
         });
 
         Button startGame = new Button("Start Game");
         startGame.getStyleClass().add("primary-button");
         startGame.setPrefWidth(140);
         startGame.setOnAction(e -> {
-            // TODO: Server-Socket initialisieren und Spielwelt laden
             System.out.println("Spiel gestartet mit Modus: " + modeDropdown.getValue());
             STAGE.close();
         });
@@ -113,7 +107,17 @@ public class GameSettingsView {
 
         Scene scene = new Scene(root, 520, 380);
         ThemeManager.getInstance().registerScene(scene);
+
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                startGame.fire();
+                event.consume(); 
+            }
+        });
+
         STAGE.setScene(scene);
+
+        Platform.runLater(STAGE::requestFocus);
     }
 
     private HBox createSettingRow(String titleText, String descText, javafx.scene.Node control) {
@@ -137,7 +141,25 @@ public class GameSettingsView {
         return row;
     }
 
-    public void show() {
+    public void show(Stage parent) {
+        STAGE.setOnShowing(e -> {
+            Platform.runLater(() -> {
+                double ownerX = parent.getX();
+                double ownerY = parent.getY();
+                double ownerWidth = parent.getWidth();
+                double ownerHeight = parent.getHeight();
+
+                double newWidth = STAGE.getWidth();
+                double newHeight = STAGE.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                STAGE.setX(centerX);
+                STAGE.setY(centerY);
+            });
+        });
+
         STAGE.initModality(Modality.APPLICATION_MODAL);
         STAGE.showAndWait();
     }

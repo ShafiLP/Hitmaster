@@ -4,6 +4,7 @@ import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Spotify;
 import hitmaster.services.ThemeManager;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -99,6 +100,7 @@ public class ProviderSettingsView {
         // =========================
         Button close = new Button("Close");
         close.getStyleClass().add("primary-button");
+        close.setCancelButton(true);
         close.setOnAction(e -> STAGE.close());
 
         HBox footer = new HBox(close);
@@ -113,6 +115,8 @@ public class ProviderSettingsView {
         Scene scene = new Scene(root, 650, 270);
         ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
+
+        Platform.runLater(STAGE::requestFocus);
     }
 
     private HBox createCell(String imagePath, String text, Button button) {
@@ -139,7 +143,25 @@ public class ProviderSettingsView {
         return cell;
     }
 
-    public void show() {
+    public void show(Stage parent) {
+        STAGE.setOnShowing(e -> {
+            Platform.runLater(() -> {
+                double ownerX = parent.getX();
+                double ownerY = parent.getY();
+                double ownerWidth = parent.getWidth();
+                double ownerHeight = parent.getHeight();
+
+                double newWidth = STAGE.getWidth();
+                double newHeight = STAGE.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                STAGE.setX(centerX);
+                STAGE.setY(centerY);
+            });
+        });
+
         STAGE.initModality(Modality.APPLICATION_MODAL);
         STAGE.showAndWait();
     }
@@ -147,7 +169,8 @@ public class ProviderSettingsView {
     public void focus() {
         if (STAGE.isShowing()) {
             STAGE.toFront();
-        } else {
+        }
+        else {
             STAGE.show();
         }
     }

@@ -122,6 +122,7 @@ public class StealView extends Stage {
 
             if (cardFromSong.song.titles.isEmpty()) {
                 PlayerCard playerCard = new PlayerCard(GAME.getCurrentPlayer());
+                playerCard.setDraggable(false);
                 cardStripPane.addCard(playerCard);
             }
             else {

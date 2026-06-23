@@ -11,6 +11,7 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.Spotify;
 import hitmaster.services.ThemeManager;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -91,7 +92,7 @@ public class MainMenu {
             if (providerStatus) {
                 try {
                     SingleplayerSettingsView singleplayerMenuView = new SingleplayerSettingsView(this);
-                    singleplayerMenuView.show();
+                    singleplayerMenuView.show(STAGE);
                 }
                 catch (Exception ex) {
                     StyleDialog.errorDialog("Error", "Error while starting game:\n" + ex.getMessage());
@@ -111,7 +112,7 @@ public class MainMenu {
             if (providerStatus) {
                 try {
                     MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView(this);
-                    multiplayerMenuView.show();
+                    multiplayerMenuView.show(STAGE);
                 }
                 catch (Exception ex) {
                     StyleDialog.errorDialog("Error", "Error while starting game:\n" + ex.getMessage());
@@ -159,7 +160,7 @@ public class MainMenu {
 
         PROFILE.setOnAction(e -> {
             UserSettingsView userSettings = new UserSettingsView(this);
-            userSettings.show();
+            userSettings.show(STAGE);
         });
 
         this.initialiseProviderButton();
@@ -172,7 +173,7 @@ public class MainMenu {
         settingsBtn.setPrefHeight(30);
         settingsBtn.setOnAction(e -> {
             SettingsView settingsView = new SettingsView(this);
-            settingsView.show();
+            settingsView.show(STAGE);
         });
 
         // Add all to Top
@@ -261,6 +262,8 @@ public class MainMenu {
         bottom.setStyle("-fx-background-color: rgba(0, 0, 0, 0.05);");
 
         ROOT.setBottom(bottom);
+
+        Platform.runLater(STAGE::requestFocus);
     }
 
     /**
@@ -315,7 +318,7 @@ public class MainMenu {
         PROVIDER.getStyleClass().add("prov-button-none");
         PROVIDER.setOnAction(e -> {
             ProviderSettingsView providerSettingsView = new ProviderSettingsView(this);
-            providerSettingsView.show();
+            providerSettingsView.show(STAGE);
         });
         providerStatus = false;
 

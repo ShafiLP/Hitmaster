@@ -7,6 +7,7 @@ import hitmaster.models.Set;
 import hitmaster.models.Song;
 import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -45,10 +46,10 @@ public class SetManagerView {
         // HEADER
         // =========================
         Label title = new Label("Set Manager");
-        title.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+        title.getStyleClass().add("header");
 
         Label description = new Label("Enable or disable active card packages, or create your own.");
-        description.setStyle("-fx-text-fill: gray; -fx-font-size: 12px;");
+        description.getStyleClass().add("header-description");
 
         VBox header = new VBox(5, title, description);
         header.setAlignment(Pos.TOP_LEFT);
@@ -93,6 +94,7 @@ public class SetManagerView {
         // =========================
         Button close = new Button("Close");
         close.getStyleClass().add("primary-button");
+        close.setCancelButton(true);
         close.setPrefWidth(120);
         close.setOnAction(e -> STAGE.close());
 
@@ -117,7 +119,7 @@ public class SetManagerView {
         for (Set set : getAllSets()) {
             set.isActive = active;
         }
-        refreshSetList();
+        this.refreshSetList();
     }
 
     private HBox createSetRow(Set set) {
@@ -135,7 +137,7 @@ public class SetManagerView {
 
         // 2) Text information
         Label setName = new Label(set.name);
-        setName.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+        setName.getStyleClass().add("subheader");
 
         Label songCount = new Label(set.getSongs().size() + " Songs");
         songCount.setStyle("-fx-text-fill: #888888; -fx-font-size: 11px;");
@@ -340,9 +342,29 @@ public class SetManagerView {
         ThemeManager.getInstance().registerScene(scene);
         dialog.setScene(scene);
         dialog.showAndWait();
+
+        Platform.runLater(STAGE::requestFocus);
     }
 
-    public void show() {
+    public void show(Stage parent) {
+        STAGE.setOnShowing(e -> {
+            Platform.runLater(() -> {
+                double ownerX = parent.getX();
+                double ownerY = parent.getY();
+                double ownerWidth = parent.getWidth();
+                double ownerHeight = parent.getHeight();
+
+                double newWidth = STAGE.getWidth();
+                double newHeight = STAGE.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                STAGE.setX(centerX);
+                STAGE.setY(centerY);
+            });
+        });
+
         STAGE.initModality(Modality.APPLICATION_MODAL);
         STAGE.showAndWait();
     }

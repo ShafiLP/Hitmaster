@@ -1,6 +1,7 @@
 package hitmaster.views;
 
 import hitmaster.services.ThemeManager;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -85,7 +86,7 @@ public class SettingsView {
         manageMusicBtn.setPrefWidth(180);
         manageMusicBtn.setOnAction(e -> {
             ProviderSettingsView providerSettings = new ProviderSettingsView(PARENT);
-            providerSettings.show();
+            providerSettings.show(STAGE);
         });
         
         HBox musicRow = createSettingRow("Music Providers", "Connect and manage your streaming accounts.", manageMusicBtn);
@@ -96,7 +97,7 @@ public class SettingsView {
         manageSetsBtn.setPrefWidth(180);
         manageSetsBtn.setOnAction(e -> {
             SetManagerView setManagerView = new SetManagerView();
-            setManagerView.show();
+            setManagerView.show(STAGE);
         });
         
         HBox setsRow = createSettingRow("Song Sets", "Import, export or edit your custom song packages.", manageSetsBtn);
@@ -119,6 +120,7 @@ public class SettingsView {
         // =========================
         Button close = new Button("Close");
         close.getStyleClass().add("primary-button");
+        close.setCancelButton(true);
         close.setPrefWidth(120);
         close.setOnAction(e -> STAGE.close());
 
@@ -134,6 +136,8 @@ public class SettingsView {
         Scene scene = new Scene(root, 520, 480);
         ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
+
+        Platform.runLater(STAGE::requestFocus);
     }
 
     /**
@@ -162,7 +166,25 @@ public class SettingsView {
         return row;
     }
 
-    public void show() {
+    public void show(Stage parent) {
+        STAGE.setOnShowing(e -> {
+            Platform.runLater(() -> {
+                double ownerX = parent.getX();
+                double ownerY = parent.getY();
+                double ownerWidth = parent.getWidth();
+                double ownerHeight = parent.getHeight();
+
+                double newWidth = STAGE.getWidth();
+                double newHeight = STAGE.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                STAGE.setX(centerX);
+                STAGE.setY(centerY);
+            });
+        });
+
         STAGE.initModality(Modality.APPLICATION_MODAL);
         STAGE.showAndWait();
     }
