@@ -5,12 +5,12 @@ import java.util.List;
 import hitmaster.GameLogic;
 import hitmaster.design.Card;
 import hitmaster.design.CardStripPane;
+import hitmaster.design.ChatPane;
 import hitmaster.design.ChipPane;
 import hitmaster.design.DiscardPile;
 import hitmaster.design.OpponentPane;
 import hitmaster.design.PlayerCard;
 import hitmaster.design.SongCard;
-import hitmaster.design.StatusBar;
 import hitmaster.design.StealOverlayPane;
 import hitmaster.design.WinnerPane;
 import hitmaster.models.Player;
@@ -45,7 +45,7 @@ public class GameView extends Pane {
     private boolean isStealing = false;
 
     // UI elements
-    private final StatusBar STATUS;
+    private final ChatPane CHAT;
     private final CardStripPane STRIP;
     private final DiscardPile DISCARD_PILE;
     private final ChipPane CHIP_PANE;
@@ -61,16 +61,14 @@ public class GameView extends Pane {
     public GameView(GameLogic GAME) {
         this.GAME = GAME;
 
-        // 1) Initialize StatusBar
-        STATUS = new StatusBar();
-        STATUS.setInfoText(GAME.getCurrentPlayer().username + " is making their guess.");
+        // 1) Initialize ChatPane
+        CHAT = new ChatPane(GAME);
 
-        this.getChildren().add(STATUS);
+        CHAT.layoutXProperty().bind(this.widthProperty().subtract(CHAT.prefWidthProperty()).subtract(20));
+        CHAT.setLayoutY(20);
 
-        STATUS.prefWidthProperty().bind(this.widthProperty());
-
-        STATUS.setLayoutX(0);
-        STATUS.setLayoutY(0);
+        this.getChildren().add(CHAT);
+        CHAT.addInfoMessage("Welcome to Hitmaster!");
 
         // 2) Initialize CardStripPane
         final double CONTROLS_WIDTH = 320;
@@ -260,7 +258,7 @@ public class GameView extends Pane {
         }
 
         // 3) Set Status
-        STATUS.setInfoText(GAME.getCurrentPlayer().username + " placed their guess - other players can now attempt to steal.");
+        CHAT.addInfoMessage(GAME.getCurrentPlayer().username + " placed their guess - Other players can now attempt to steal!");
 
         // 4) Enable steal action
         if (GAME.isLAN()) {
@@ -275,9 +273,9 @@ public class GameView extends Pane {
             
             timerUnit = new Timer(3);
             timerUnit.start(
-                () -> Platform.runLater(() -> {
-                    STATUS.setRemainingTime(timerUnit.getRemainingSeconds());
-                }),
+                () -> Platform.runLater(() -> 
+                    CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                ),
                 () -> Platform.runLater(() -> {
                     currentCard.setStealState(false);
 
@@ -304,9 +302,15 @@ public class GameView extends Pane {
                 stealCard.setDraggable(false);
 
             // 2) Color border of artist and title input green if correct and red if incorrect
-            ARTIST.setStyle(GAME.checkArtistInformation(ARTIST.getText()) ? "-fx-border-color:rgb(0, 255, 0);" : "-fx-border-color:rgb(255, 0, 0);");
-            TITLE.setStyle(GAME.checkTitleInformation(TITLE.getText()) ? "-fx-border-color:rgb(0, 255, 0);" : "-fx-border-color:rgb(255, 0, 0);");
-            GAME.checkSongInformation(ARTIST.getText(), TITLE.getText());
+            String artistInput = ARTIST.getText().trim().isEmpty() ? "X" : ARTIST.getText().trim();
+            String titleInput = TITLE.getText().trim().isEmpty() ? "X" : TITLE.getText().trim();
+
+            GAME.sendObject("CHAT:PLAYER_GUESS:" + artistInput + ":" + titleInput);
+            this.addPlayerMessage(GAME.getLocalPlayer(), "ARTIST: " + artistInput + "\nTITLE: " + titleInput);
+
+            ARTIST.setStyle(GAME.checkArtistInformation(artistInput) ? "-fx-border-color:rgb(0, 255, 0);" : "-fx-border-color:rgb(255, 0, 0);");
+            TITLE.setStyle(GAME.checkTitleInformation(titleInput) ? "-fx-border-color:rgb(0, 255, 0);" : "-fx-border-color:rgb(255, 0, 0);");
+            GAME.checkSongInformation(artistInput, titleInput);
 
             // 3) Check position of card
             boolean guess = GAME.checkSongOrder(STRIP.getSongCards());
@@ -317,7 +321,13 @@ public class GameView extends Pane {
             GAME.sendObject(guess ? "OPPONENT_RIGHT" : "OPPONENT_WRONG");
 
             // 5) Set Status and start Timer
-            STATUS.setInfoText(guess ? GAME.getCurrentPlayer().username + " guessed right!" : GAME.getCurrentPlayer().username + " guessed wrong!");
+            if (guess) {
+                CHAT.addSuccessMessage(GAME.getCurrentPlayer().username + " guessed right!");
+            }
+            else {
+                CHAT.addErrorMessage(GAME.getCurrentPlayer().username + " guessed wrong!");
+            }
+            
 
             if (timerUnit != null)
                 timerUnit.stop();
@@ -325,7 +335,7 @@ public class GameView extends Pane {
             timerUnit = new Timer(3);
             timerUnit.start(
                 () -> Platform.runLater(() -> 
-                    STATUS.setRemainingTime(timerUnit.getRemainingSeconds())
+                    CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
                 ),
                 () -> this.checkForWin(guess)
             );
@@ -361,7 +371,7 @@ public class GameView extends Pane {
             GAME.addCardToPlayerSorted(GAME.getCurrentPlayer());
             if (GAME.checkForWin(STRIP.getSongCards())) {
                 Platform.runLater(() -> {
-                    STATUS.setInfoText(GAME.getCurrentPlayer().username + " won the game!");
+                    CHAT.addSuccessMessage(GAME.getCurrentPlayer().username + " won the game!");
 
                     if (timerUnit != null)
                         timerUnit.stop();
@@ -407,9 +417,6 @@ public class GameView extends Pane {
 
         // 4) Swap active player
         GAME.finishTurn();
-        Platform.runLater(() -> {
-            STATUS.setInfoText(GAME.getCurrentPlayer().username + " is making their guess.");
-        });
         this.initializeNewTimer();
     }
 
@@ -466,9 +473,9 @@ public class GameView extends Pane {
 
         timerUnit = new Timer(GAME.getGameOptions().moveTime);
         timerUnit.start(
-            () -> Platform.runLater(() -> {
-                STATUS.setRemainingTime(timerUnit.getRemainingSeconds());
-            }),
+            () -> Platform.runLater(() -> 
+                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+            ),
             () -> Platform.runLater(() -> {
                 this.confirmInput();
             })
@@ -536,7 +543,7 @@ public class GameView extends Pane {
         timerUnit = new Timer(3);
         timerUnit.start(
             () -> Platform.runLater(() -> 
-                STATUS.setRemainingTime(timerUnit.getRemainingSeconds())
+                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
             ),
             () -> Platform.runLater(() -> {
                 final SongCard wrongCard = this.currentCard;
@@ -573,9 +580,9 @@ public class GameView extends Pane {
 
         timerUnit = new Timer(time);
         timerUnit.start(
-            () -> Platform.runLater(() -> {
-                STATUS.setRemainingTime(timerUnit.getRemainingSeconds());
-            }),
+            () -> Platform.runLater(() ->
+                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+            ),
             () -> Platform.runLater(() -> {
                 //
             })
@@ -606,7 +613,7 @@ public class GameView extends Pane {
     public void initializeOpponentPane(Player opponent) {
         OPPONENT_PANE = new OpponentPane(opponent.username, opponent.img);
         OPPONENT_PANE.setLayoutX(0);
-        OPPONENT_PANE.layoutYProperty().bind(STATUS.heightProperty());
+        OPPONENT_PANE.setLayoutY(20);
         OPPONENT_PANE.prefWidthProperty().bind(this.widthProperty());
         
         this.getChildren().add(OPPONENT_PANE);
@@ -703,7 +710,7 @@ public class GameView extends Pane {
 
         // 2) Set steal state
         isStealing = true;
-        STATUS.setInfoText(GAME.getPreviousPlayer().username + " is attempting to steal!");
+        CHAT.addInfoMessage(GAME.getPreviousPlayer().username + " is attempting to steal!");
 
         timerUnit.stop();
         currentCard.setStealState(false);
@@ -711,9 +718,9 @@ public class GameView extends Pane {
         // 3) Set timer (Load steal duration from Game Options)
         timerUnit = new Timer(GAME.getGameOptions().stealTime);
         timerUnit.start(
-            () -> Platform.runLater(() -> {
-                STATUS.setRemainingTime(timerUnit.getRemainingSeconds());
-            }),
+            () -> Platform.runLater(() ->
+                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+            ),
             () -> Platform.runLater(() -> {
                 if (stealCard != null) {
                     stealCard.setVisible(true);
@@ -806,6 +813,22 @@ public class GameView extends Pane {
         Platform.runLater(() -> {
             OPPONENT_PANE.resetOpponentCard();
         });
+    }
+
+    public void addPlayerMessage(Player player, String message) {
+        Platform.runLater(() -> CHAT.addPlayerMessage(player, message));
+    }
+
+    public void addInfoMessage(String message) {
+        Platform.runLater(() -> CHAT.addInfoMessage(message));
+    }
+
+    public void addSuccessMessage(String message) {
+        Platform.runLater(() -> CHAT.addSuccessMessage(message));
+    }
+
+    public void addErrorMessage(String message) {
+        Platform.runLater(() -> CHAT.addErrorMessage(message));
     }
 
     /**

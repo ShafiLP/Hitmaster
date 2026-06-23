@@ -153,6 +153,8 @@ public final class GameLogic {
         // 5) Add first song to Card Stack (Host begins)
         if (isHost)
             this.addFirstToCardStack();
+
+        VIEW.addInfoMessage(this.getCurrentPlayer().username + " is making their guess!");
     }
 
     /**
@@ -325,6 +327,8 @@ public final class GameLogic {
         // 2) Update UI
         if (MULTIPLAYER && networkManager == null)
             VIEW.switchSideWithOpponent();
+
+        VIEW.addInfoMessage(this.getCurrentPlayer().username + " is making their guess!");
     }
 
     public Player getCurrentPlayer() {
@@ -352,6 +356,28 @@ public final class GameLogic {
 
     public boolean isMultiplayer() {
         return MULTIPLAYER;
+    }
+
+    public Player getLocalPlayer() {
+        if (this.isLAN()) {
+            if (isHost)
+                return PLAYERS[0];
+
+            return PLAYERS[1];
+        }
+
+        return PLAYERS[currentPlayerIdx];
+    }
+
+    public Player getOpponentPlayer() {
+        if (this.isLAN()) {
+            if (isHost)
+                return PLAYERS[1];
+
+            return PLAYERS[0];
+        }
+
+        return this.getPreviousPlayer();
     }
 
     /**
@@ -522,18 +548,18 @@ public final class GameLogic {
             // Signal that Host is ready: Sets flag
             case "HOST_READY":
                 hostReady.set(true);
-                break;
+            break;
 
             // Signal that Client is ready: Sets flag
             case "CLIENT_READY":
                 clientReady.set(true);
-                break;
+            break;
 
             case "PLAYER_NEXT":
                 this.switchToNextPlayer();
                 if (isHost)
                     this.addFirstToCardStack();
-                break;
+            break;
 
             // Update count of remaining cards in GameView
             // Called by host when initializing the game
@@ -545,21 +571,23 @@ public final class GameLogic {
                 catch (NumberFormatException e) {
                     Log.Error("Command \"UPDATE_STACK\" contains unvalid integer.");
                 }
-                break;
+            break;
 
             case "OPPONENT_MOVE_TIMER":
                 VIEW.setTimerForOpponent(OPTIONS.moveTime);
-                break;
+            break;
 
             // Displays current song in Opponent fan with a green border
             case "OPPONENT_RIGHT":
+                VIEW.addSuccessMessage(this.getCurrentPlayer().username + " guessed right!");
                 VIEW.paintOpponentCard(currentSong, "rgb(0, 255, 0)");
-                break;
+            break;
 
             // Displays current song in Opponent fan with a red border
             case "OPPONENT_WRONG":
+                VIEW.addErrorMessage(this.getCurrentPlayer().username + " guessed wrong!");
                 VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
-                break;
+            break;
 
             // Skips the current card and places a new card to stack
             // If host, update card of client
@@ -570,46 +598,46 @@ public final class GameLogic {
                 VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
                 VIEW.addNewCardToDiscard(currentSong);
                 this.addFirstToCardStack(); 
-                break;
+            break;
 
             // Move card of opponent to discard pile
             case "OPPONENT_DISCARD":
                 VIEW.addNewCardToDiscard(currentSong);
-                break;
+            break;
 
             // Add Hitmaster Chip to opponent pane
             case "OPPONENT_ADD_CHIP":
                 PLAYERS[currentPlayerIdx].increaseHitmasterPoints();
                 VIEW.addOpponentChip();
-                break;
+            break;
 
             // Decrase Hitmaster Chips in opponent pane by one
             case "OPPONENT_DECREASE_CHIP":
                 PLAYERS[currentPlayerIdx].hitmasterPoints--;
                 VIEW.removeOpponentChip();
-                break;
+            break;
 
             // Remove all Hitsmaster Chips in opponent pane
             case "OPPONENT_REMOVE_CHIPS":
                 PLAYERS[currentPlayerIdx].hitmasterPoints = 0;
                 VIEW.removeAllOpponentChips();
-                break;
+            break;
 
             // Shows the overlay pane to start a steal attempt on GameView
             case "OPPONENT_ASK_STEAL":
                 VIEW.showStealOverlay();
-                break;
+            break;
 
             // If steal action was available for opponent but they skipped,
             // continue with confirmation of own input.
             case "OPPONENT_STEAL_SKIP":
                 VIEW.confirmInput();
-                break;
+            break;
 
             // Sets timer for opponent steal attempt and waits for opponent.
             case "OPPONENT_STEAL_START":
                 VIEW.setTimerForOpponent(OPTIONS.stealTime);
-                break;
+            break;
 
             case "OPPONENT_STEAL_CORRECT":
                 // TODO: Visual feedback and continue game
@@ -617,20 +645,41 @@ public final class GameLogic {
                     VIEW.confirmInput();
                     this.addCardToPlayerSorted(this.getPreviousPlayer());
                 });
-                break;
+            break;
 
             case "OPPONENT_STEAL_FALSE":
                 // TODO: Visual feedback and continue game
                 VIEW.confirmInput();
-                break;
+            break;
 
             case "OPPONENT_WIN":
                 WinnerPane.winnerDialog(VIEW, getCurrentPlayer());
-                break;
+            break;
 
             case "CLIENT_FINISH_TURN":
                 this.finishTurn();
-                break;
+            break;
+
+            case "CHAT":
+                switch (parts[1]) {
+                    case "PLAYER_MESSAGE":
+                        String playerMessage = parts[2];
+                        VIEW.addPlayerMessage(this.getOpponentPlayer(), playerMessage);
+                    break;
+
+                    case "PLAYER_GUESS":
+                        String artistGuess = (parts.length > 2 && !parts[2].isEmpty())
+                            ? "\"" + parts[2] + "\""
+                            : "X";
+
+                        String titleGuess = (parts.length > 3 && !parts[3].isEmpty())
+                            ? "\"" + parts[3] + "\""
+                            : "X";
+
+                        VIEW.addPlayerMessage(this.getOpponentPlayer(), "ARTIST: " + artistGuess + "\nTITLE: " + titleGuess);
+                    break;
+                }
+            break;
         }
     }
 
@@ -726,6 +775,8 @@ public final class GameLogic {
      * continues with reveal of the guess instead.
      */
     public void startStealTimer() {
+        VIEW.addInfoMessage(this.getCurrentPlayer().username + " placed their guess - Other players can now attempt to steal!");
+        
         if (MULTIPLAYER && networkManager != null && this.getPreviousPlayer().hitmasterPoints > 0) {
             this.sendObject("OPPONENT_ASK_STEAL");
         }

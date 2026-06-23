@@ -305,6 +305,103 @@
     -fx-background-radius: 50;
 }
 
+.chat-pane {
+    -fx-background-color: rgba(30, 30, 30, 0.6);
+    -fx-background-radius: 15;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 15;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+.chat-pane .timer {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.chat-pane .text-field {
+    -fx-background-color: rgba(255,255,255,0.08);
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255,255,255,0.4);
+    -fx-background-radius: 20;
+    -fx-padding: 8 12;
+    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-border-radius: 20;
+}
+
+.chat-pane .text-field:focused {
+    -fx-border-color: #1e90ff;
+    -fx-background-color: rgba(255,255,255,0.12);
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: transparent;
+}
+
+.chat-messages {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: rgba(255,255,255,0.05);
+    -fx-background-radius: 20;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(255,255,255,0.25);
+    -fx-background-radius: 20;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgba(255,255,255,0.4);
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: "";
+    -fx-padding: 0;
+}
+
+.message-bubble {
+    -fx-background-color: rgba(0, 0, 0, 0.04);
+    -fx-background-radius: 0 14 14 14;
+    -fx-padding: 6 10;
+}
+
+.message-username {
+    -fx-text-fill: #1e90ff;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.message-content {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+}
+
 .control-button {
     -fx-font-family: Segoe UI Symbol;
     -fx-font-size: 14px;
