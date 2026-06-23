@@ -16,9 +16,13 @@ import javafx.scene.shape.Rectangle;
 
 public class MiniSongCard extends StackPane {
 
+    private final Song SONG;
     private final Color COLOR;
+    
+    private String borderColor;
 
     public MiniSongCard(Song song, double size, Image img, Paint fill, String letter) {
+        this.SONG = song;
         this.COLOR = PastelColor.random();
 
         this.setPrefSize(size, size);
@@ -39,6 +43,7 @@ public class MiniSongCard extends StackPane {
                 "-fx-border-color: #333333;" +
                 "-fx-border-width: 1.5px;"
             );
+            borderColor = "black";
 
             StackPane miniAvatarContainer = new StackPane();
             double miniAvatarSize = size * 0.55;
@@ -82,6 +87,7 @@ public class MiniSongCard extends StackPane {
                 (int)(COLOR.getGreen() * 255),
                 (int)(COLOR.getBlue() * 255)
             ));
+            borderColor = "black";
 
             Label artistLabel = new Label(song.artists.getFirst());
             artistLabel.setStyle("-fx-font-size: " + (size * 0.09) + "px; -fx-text-fill: black;");
@@ -102,6 +108,22 @@ public class MiniSongCard extends StackPane {
         }
 
         this.getChildren().add(layout);
+    }
+
+    public void paintBorder(String cssColor) {
+        if (borderColor.equals(cssColor))
+            return;
+        
+        this.setStyle("-fx-border-radius: 8; -fx-border-color:" + cssColor + ";");
+        borderColor = cssColor;
+    }
+
+    public Song getSong() {
+        return SONG;
+    }
+
+    public String getBorderColor() {
+        return borderColor;
     }
 
     private static class PastelColor {

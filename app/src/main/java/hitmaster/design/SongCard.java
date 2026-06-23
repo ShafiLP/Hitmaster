@@ -24,6 +24,7 @@ public final class SongCard extends Card {
     public Song song;
     public Color color;
     public boolean isPlaying = false;
+    public boolean isShowingFront = false;
     
     private Button playPause;
     private Button stealButton;
@@ -107,6 +108,7 @@ public final class SongCard extends Card {
      * Front side contains artist, year and title.
      */
     public void showFront() {
+        this.isShowingFront = true;
         this.isDraggable = false;
 
         // 1) Prepare Layout

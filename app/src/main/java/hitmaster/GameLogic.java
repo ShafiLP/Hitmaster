@@ -35,6 +35,7 @@ public final class GameLogic {
 
     private final List<Song> SONGS;
     private Song currentSong;
+    private int remaining_cards;
 
     // LAN connection
     private NetworkManager networkManager;
@@ -113,6 +114,9 @@ public final class GameLogic {
         if (isHost) {
             SONGS = Database.getSongFromActiveSets();
             Collections.shuffle(SONGS);
+
+            remaining_cards = SONGS.size();
+            this.sendObject("UPDATE_STACK:" + remaining_cards);
         }
 
         // ----- CLIENT LOGIC -----
@@ -151,12 +155,20 @@ public final class GameLogic {
             this.addFirstToCardStack();
     }
 
+    /**
+     * Adds first song from global list SONGS to GameView of the current player.
+     * Updates count of remaining cards on GameView.
+     * Returns if method is called by client.
+     */
     public void addFirstToCardStack() {
         if (!isHost)
             return;
 
         currentSong = SONGS.removeFirst();
         this.sendObject(new SongDTO(currentSong, "CURRENT_SONG"));
+
+        remaining_cards--;
+        VIEW.setRemainingCards(remaining_cards);
 
         if (PLAYERS[currentPlayerIdx].role.equals(Player.Role.CLIENT)) {
             this.sendObject(new SongDTO(currentSong, "ADD_CARD_TO_STACK"));
@@ -168,19 +180,28 @@ public final class GameLogic {
         this.sendObject("OPPONENT_MOVE_TIMER");
     }
 
-    public void addCardToCorrectSongs() {
-        PLAYERS[currentPlayerIdx].songs.add(currentSong);
-    }
-
+    /**
+     * Skip song fur current player and place new card on theyr GameView.
+     * Removes a Hitmaster Chip from current player.
+     */
     public void skipCurrentSong() {
+        this.sendObject("OPPONENT_SKIP");
+
         PLAYERS[currentPlayerIdx].hitmasterPoints--;
 
         VIEW.removeHitmasterChip();
-        VIEW.removeCurrentCard();
+        VIEW.skipCard();
+        this.addFirstToCardStack();
     }
 
-    public void markCurrentSongAsCorrect() {
+    /**
+     * Inserts a SongCard on GameView into the CardStripPane of current player correctly sorted.
+     * Removes all Hitmaster Chips from current player.
+     */
+    public void insertCardIntoStrip() {
         PLAYERS[currentPlayerIdx].hitmasterPoints = 0;
+
+        this.sendObject("OPPONENT_REMOVE_CHIPS");
 
         VIEW.removeAllHitmasterChips();
         VIEW.insertCardIntoStrip(false);
@@ -514,38 +535,64 @@ public final class GameLogic {
                     this.addFirstToCardStack();
                 break;
 
-            case "ENABLE STEAL":
+            // Update count of remaining cards in GameView
+            // Called by host when initializing the game
+            case "UPDATE_STACK":
+                try {
+                    remaining_cards = Integer.parseInt(parts[1]);
+                    VIEW.setRemainingCards(remaining_cards);
+                }
+                catch (NumberFormatException e) {
+                    Log.Error("Command \"UPDATE_STACK\" contains unvalid integer.");
+                }
                 break;
 
             case "OPPONENT_MOVE_TIMER":
                 VIEW.setTimerForOpponent(OPTIONS.moveTime);
                 break;
 
+            // Displays current song in Opponent fan with a green border
             case "OPPONENT_RIGHT":
-                // TODO
+                VIEW.paintOpponentCard(currentSong, "rgb(0, 255, 0)");
                 break;
 
+            // Displays current song in Opponent fan with a red border
             case "OPPONENT_WRONG":
-                // TODO
+                VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
                 break;
 
+            // Skips the current card and places a new card to stack
+            // If host, update card of client
+            case "OPPONENT_SKIP":
+                PLAYERS[currentPlayerIdx].hitmasterPoints--;
+                VIEW.removeOpponentChip();
+
+                VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
+                VIEW.addNewCardToDiscard(currentSong);
+                this.addFirstToCardStack(); 
+                break;
+
+            // Move card of opponent to discard pile
             case "OPPONENT_DISCARD":
                 VIEW.addNewCardToDiscard(currentSong);
                 break;
 
+            // Add Hitmaster Chip to opponent pane
             case "OPPONENT_ADD_CHIP":
                 PLAYERS[currentPlayerIdx].increaseHitmasterPoints();
                 VIEW.addOpponentChip();
                 break;
 
+            // Decrase Hitmaster Chips in opponent pane by one
             case "OPPONENT_DECREASE_CHIP":
                 PLAYERS[currentPlayerIdx].hitmasterPoints--;
                 VIEW.removeOpponentChip();
                 break;
 
+            // Remove all Hitsmaster Chips in opponent pane
             case "OPPONENT_REMOVE_CHIPS":
                 PLAYERS[currentPlayerIdx].hitmasterPoints = 0;
-                // TODO
+                VIEW.removeAllOpponentChips();
                 break;
 
             // Shows the overlay pane to start a steal attempt on GameView
@@ -630,6 +677,8 @@ public final class GameLogic {
 
                             case "CURRENT_SONG":
                                 currentSong = receivedSong;
+                                remaining_cards--;
+                                VIEW.setRemainingCards(remaining_cards);
                                 break;
 
                             case "ADD_CARD_TO_STACK":
@@ -652,8 +701,13 @@ public final class GameLogic {
             List<Song> songsFromCards = new ArrayList<>();
 
             for (Card card : updatedSongCards) {
-                if (!card.isDraggable() && card instanceof SongCard songCard) {
-                    songsFromCards.add(songCard.song);
+                if (card instanceof SongCard songCard) {
+                    if (!songCard.isShowingFront) {
+                        songsFromCards.add(new Song());
+                    }
+                    else {
+                        songsFromCards.add(songCard.song);
+                    }
                 }
                 else {
                     songsFromCards.add(new Song());

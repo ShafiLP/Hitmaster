@@ -190,7 +190,7 @@ public class GameView extends Pane {
         });
         insert.setOnAction(e -> {
             if (GAME.getChipCountOfCurrentPlayer() >= 3)
-                GAME.markCurrentSongAsCorrect();
+                GAME.insertCardIntoStrip();
         });
 
         HBox mediaRow = new HBox(15, back, PLAYPAUSE, forward, restart, skip, insert);
@@ -447,7 +447,9 @@ public class GameView extends Pane {
             this.getChildren().add(currentCard);
             currentCard.toFront();
 
-            REMAINING_CARDS.setText("0 cards left"); // TODO: Updated by GameLogic
+            // Reset border color of opponent card if LAN is active
+            if (GAME.isLAN())
+                this.resetOpponentCard();
 
             this.initializeNewTimer();
         });
@@ -455,6 +457,7 @@ public class GameView extends Pane {
         //! DEBUG
         Log.Info("Artist: " + song.artists.getFirst());
         Log.Info("Name: " + song.titles.getFirst());
+        Log.Info("Year: " + song.year);
     }
 
     private void initializeNewTimer() {
@@ -467,8 +470,7 @@ public class GameView extends Pane {
                 STATUS.setRemainingTime(timerUnit.getRemainingSeconds());
             }),
             () -> Platform.runLater(() -> {
-                this.removeCurrentCard();
-                GAME.finishTurn();
+                this.confirmInput();
             })
         );
     }
@@ -476,6 +478,10 @@ public class GameView extends Pane {
     public void stopTimer() {
         if (timerUnit != null)
             timerUnit.stop();
+    }
+
+    public void setRemainingCards(int remainingCards) {
+        Platform.runLater(() -> REMAINING_CARDS.setText(remainingCards + " cards left"));
     }
 
     /**
@@ -489,6 +495,8 @@ public class GameView extends Pane {
 
             if (showFront)
                 currentCard.showFront();
+
+            GAME.handleCardMove(STRIP.getCards());
         });
     }
 
@@ -515,11 +523,7 @@ public class GameView extends Pane {
         }
     }
 
-    /**
-     * Marks the current card as wrong and skips to the next card.
-     * Waits three seconds until game moves on.
-     */
-    public void removeCurrentCard() {
+    public void skipCard() {
         if (currentCard == null)
             return;
 
@@ -546,6 +550,11 @@ public class GameView extends Pane {
                     if (wrongCard.getParent() != this) {
                         this.getChildren().add(wrongCard);
                     }
+                    
+                    if (wrongCard.isDraggable()) {
+                        wrongCard.showFront();
+                    }
+
                     wrongCard.setLayoutX(localPos.getX());
                     wrongCard.setLayoutY(localPos.getY());
                     wrongCard.setTranslateX(0);
@@ -554,9 +563,6 @@ public class GameView extends Pane {
 
                     DISCARD_PILE.discardCard(wrongCard);
                 }
-                
-                GAME.finishTurn();
-                //GAME.addFirstToCardStack();
             })
         );
     }
@@ -651,6 +657,12 @@ public class GameView extends Pane {
 
     public void removeOpponentChip() {
         Platform.runLater(() -> OPPONENT_PANE.removeChip());
+    }
+
+    public void removeAllOpponentChips() {
+        while (OPPONENT_PANE.getChipsCount() > 0) {
+            Platform.runLater(() -> OPPONENT_PANE.removeChip());
+        }
     }
 
     public OpponentPane getOpponentPane() {
@@ -782,6 +794,18 @@ public class GameView extends Pane {
             return false;
 
         return (!(stealCardIdx - 1 == currentCardIdx) && !(stealCardIdx + 1 == currentCardIdx));
+    }
+
+    public void paintOpponentCard(Song currentSong, String cssColor) {
+        Platform.runLater(() -> {
+            OPPONENT_PANE.paintOpponentCard(currentSong, cssColor);
+        });
+    }
+
+    public void resetOpponentCard() {
+        Platform.runLater(() -> {
+            OPPONENT_PANE.resetOpponentCard();
+        });
     }
 
     /**
