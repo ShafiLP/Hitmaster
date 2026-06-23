@@ -61,19 +61,15 @@ public class GameView extends Pane {
     public GameView(GameLogic GAME) {
         this.GAME = GAME;
 
-        // 1) Initialize ChatPane
-        CHAT = new ChatPane(GAME);
-
-        CHAT.layoutXProperty().bind(this.widthProperty().subtract(CHAT.prefWidthProperty()).subtract(20));
-        CHAT.setLayoutY(20);
-
-        this.getChildren().add(CHAT);
-        CHAT.addInfoMessage("Welcome to Hitmaster!");
-
-        // 2) Initialize CardStripPane
         final double CONTROLS_WIDTH = 320;
         final double GAP = 20;
 
+        // 1) Chat Pane
+        CHAT = new ChatPane(GAME);
+        CHAT.addInfoMessage("Welcome to Hitmaster!");
+        VBox.setVgrow(CHAT, Priority.ALWAYS);
+
+        // 2) Card Strip Pane
         STRIP = new CardStripPane(GAME);
         STRIP.setPrefHeight(200);
 
@@ -82,7 +78,7 @@ public class GameView extends Pane {
         STRIP.setLayoutX(GAP);
         this.getChildren().add(STRIP);
 
-        // 3) Inizialize card pile
+        // 3) Card Pile
         BorderPane cardPile = new BorderPane();
         cardPile.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 
@@ -102,7 +98,7 @@ public class GameView extends Pane {
         clip.setArcHeight(20);
         PILE_IMAGE.setClip(clip);
 
-        REMAINING_CARDS = new Label("0 cards left"); // TODO: Updated by GameLogic
+        REMAINING_CARDS = new Label("0 cards left");
         REMAINING_CARDS.setStyle("-fx-text-fill: black; -fx-font-weight: bold;");
 
         VBox cardPileLayout = new VBox(5, PILE_IMAGE, REMAINING_CARDS);
@@ -113,24 +109,13 @@ public class GameView extends Pane {
         double totalPileHeight = targetHeight + 25;
         cardPile.setPrefSize(targetHeight, totalPileHeight);
 
-        cardPile.layoutXProperty().bind(
-            this.widthProperty().subtract(cardPile.prefWidthProperty()).divide(2)
-        );
-        cardPile.layoutYProperty().bind(
-            this.heightProperty().subtract(cardPile.prefHeightProperty()).divide(2)
-        );
+        cardPile.layoutXProperty().bind(this.widthProperty().subtract(cardPile.prefWidthProperty()).divide(2));
+        cardPile.layoutYProperty().bind( this.heightProperty().subtract(cardPile.prefHeightProperty()).divide(2));
 
         this.getChildren().add(cardPile);
 
-        // 4) Initilize discard pile
+        // 4) Discard Pile
         DISCARD_PILE = new DiscardPile();
-        DISCARD_PILE.setLayoutX(GAP);
-        DISCARD_PILE.layoutYProperty().bind(
-            this.heightProperty()
-                 .subtract(DISCARD_PILE.prefHeightProperty())
-                 .divide(2)
-        );
-        this.getChildren().add(DISCARD_PILE);
 
         // 5) Text fields and button
         ARTIST = new TextField();
@@ -170,26 +155,12 @@ public class GameView extends Pane {
         skip.getStyleClass().add("modern-button");
         insert.getStyleClass().add("modern-button");
 
-        back.setOnAction(e -> {
-            GAME.seek5secBackward();
-        });
-        PLAYPAUSE.setOnAction(e -> {
-            playPause();
-        });
-        forward.setOnAction(e -> {
-            GAME.seek5secForward();
-        });
-        restart.setOnAction(e -> {
-            GAME.restartCurrentSong();
-        });
-        skip.setOnAction(e -> {
-            if (GAME.getChipCountOfCurrentPlayer() >= 1)
-                GAME.skipCurrentSong();
-        });
-        insert.setOnAction(e -> {
-            if (GAME.getChipCountOfCurrentPlayer() >= 3)
-                GAME.insertCardIntoStrip();
-        });
+        back.setOnAction(e -> GAME.seek5secBackward());
+        PLAYPAUSE.setOnAction(e -> this.playPause());
+        forward.setOnAction(e -> GAME.seek5secForward());
+        restart.setOnAction(e -> GAME.restartCurrentSong());
+        skip.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 1) GAME.skipCurrentSong(); });
+        insert.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 3) GAME.insertCardIntoStrip(); });
 
         HBox mediaRow = new HBox(15, back, PLAYPAUSE, forward, restart, skip, insert);
         mediaRow.setAlignment(Pos.CENTER);
@@ -200,15 +171,11 @@ public class GameView extends Pane {
         deviceDropdown.setPrefWidth(130);
         deviceDropdown.getItems().addAll(GAME.getAvailablePlayingDevices());
         deviceDropdown.getSelectionModel().select(GAME.getCurrentPlayingDevice());
-        deviceDropdown.setOnAction(e -> {
-            GAME.setPlayerDevice(deviceDropdown.getValue());
-        });
+        deviceDropdown.setOnAction(e -> { GAME.setPlayerDevice(deviceDropdown.getValue()); });
 
         Slider volumeSlider = new Slider(0, 100, GAME.getVolume());
         volumeSlider.getStyleClass().add("modern-slider");
-        volumeSlider.setOnMouseReleased(e -> {
-            GAME.setVolume((int) volumeSlider.getValue());
-        });
+        volumeSlider.setOnMouseReleased(e -> { GAME.setVolume((int) volumeSlider.getValue()); });
         HBox.setHgrow(volumeSlider, Priority.ALWAYS);
 
         HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
@@ -218,13 +185,20 @@ public class GameView extends Pane {
         CHIP_PANE = new ChipPane();
 
         // 8) Build full panel
-        VBox controlPanel = new VBox(15, CHIP_PANE, inputs, mediaRow, audioRow);
-        controlPanel.setPrefWidth(CONTROLS_WIDTH);
+        VBox controlPanel = new VBox(15, inputs, mediaRow, audioRow);
+
+        VBox rightSidebar = new VBox(15);
+        rightSidebar.setPrefWidth(CONTROLS_WIDTH);
+
+        rightSidebar.setAlignment(Pos.CENTER_RIGHT);
+
+        rightSidebar.layoutXProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + GAP));
+        rightSidebar.setLayoutY(GAP);
+        rightSidebar.prefHeightProperty().bind(this.heightProperty().subtract(GAP * 2));
+
+        rightSidebar.getChildren().addAll(CHAT, DISCARD_PILE, CHIP_PANE, controlPanel);
         
-        controlPanel.layoutXProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + GAP));
-        controlPanel.layoutYProperty().bind(this.heightProperty().subtract(controlPanel.heightProperty().add(GAP)));
-        
-        this.getChildren().add(controlPanel);
+        this.getChildren().add(rightSidebar);
         Platform.runLater(this::requestFocus);
     }
 
