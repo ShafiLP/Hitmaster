@@ -182,6 +182,9 @@ public class ConnectToHostView {
 
                 STAGE.setX(centerX);
                 STAGE.setY(centerY);
+
+                if (PREV_STAGE != null)
+                    PREV_STAGE.close();
             });
         });
         
