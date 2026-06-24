@@ -215,7 +215,6 @@ public final class OpponentPane extends HBox {
     public void paintOpponentCard(Song song, String cssColor) {
         // 1) Search for song
         for (int i = 0; i < miniSongCards.size(); i++) {
-            Log.Info(miniSongCards.get(i).getSong().id + "");
             if (miniSongCards.get(i).getSong().id == song.id) {
                 // 2) Paint border of card
                 miniSongCards.get(i).paintBorder(cssColor);

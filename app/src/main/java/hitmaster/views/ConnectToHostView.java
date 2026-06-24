@@ -28,11 +28,13 @@ public class ConnectToHostView {
     
     private final MainMenu PARENT;
     private final Stage STAGE;
+    private final Stage PREV_STAGE;
 
     private final Player PLAYER;
 
-    public ConnectToHostView(MainMenu parent) {
+    public ConnectToHostView(MainMenu parent, Stage prevStage) {
         this.PARENT = parent;
+        this.PREV_STAGE = prevStage;
 
         STAGE = new Stage();
         STAGE.setTitle("Connect To Host");

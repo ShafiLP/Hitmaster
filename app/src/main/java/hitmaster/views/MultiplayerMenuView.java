@@ -79,7 +79,7 @@ public class MultiplayerMenuView {
         joinBtn.getStyleClass().add("modern-button");
         joinBtn.setPrefWidth(180);
         joinBtn.setOnAction(e -> {
-            ConnectToHostView connect = new ConnectToHostView(PARENT);
+            ConnectToHostView connect = new ConnectToHostView(PARENT, STAGE);
             connect.show(STAGE);
         });
 

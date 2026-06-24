@@ -3,6 +3,7 @@ package hitmaster.views;
 import java.util.List;
 
 import hitmaster.GameLogic;
+import hitmaster.design.Card;
 import hitmaster.design.CardStripPane;
 import hitmaster.design.PlayerCard;
 import hitmaster.design.SongCard;
@@ -94,7 +95,13 @@ public class StealView extends Stage {
      * Shows warning if card is not in strip pane.
      */
     private void handleConfirmation() {
-        if (isCardPlaced()) {
+        if (this.isCardPlaced()) {
+
+            if (!this.checkValidPosition()) {
+                StyleDialog.warningDialog("Invalid position!", "Don't place your player card next to another player card!");
+                return;
+            }
+
             confirmed = true;
             this.close();
 
@@ -104,8 +111,33 @@ public class StealView extends Stage {
             GAME.confirmStealAction(cardStripPane.getCards(), this.getPlacedPosition());
         }
         else {
-            StyleDialog.warningDialog("Place Card!", "Place the song card inside the strip before confirming your input!");
+            StyleDialog.warningDialog("Place Card!", "Place your placer card inside the strip before confirming your input!");
         }
+    }
+
+    /**
+     * Check if songs next to steal card are all SongCards.
+     * Cards next to steal cards are not allowed to be Player Cards.
+     * @return Result of valid position as boolean.
+     */
+    private boolean checkValidPosition() {
+        // 1) Get list of song cards
+        List<Card> cards = cardStripPane.getCards();
+
+        // 2) Look for stealCard index
+        int stealCardIdx = cardStripPane.getCards().indexOf(targetCard);
+
+        if (stealCardIdx == -1)
+            return false;
+
+        // 3) Look for next to card
+        if (stealCardIdx == 0)
+            return (cards.get(stealCardIdx + 1) instanceof SongCard);
+
+        if (stealCardIdx == cards.size() - 1)
+            return (cards.get(stealCardIdx - 1) instanceof SongCard);
+
+        return (cards.get(stealCardIdx - 1) instanceof SongCard && cards.get(stealCardIdx + 1) instanceof SongCard);
     }
 
     /**
@@ -181,7 +213,9 @@ public class StealView extends Stage {
             }),
             () -> {
                 GAME.confirmStealAction(cardStripPane.getCards(), this.getPlacedPosition());
-                this.close();
+                Platform.runLater(() -> {
+                    this.close();
+                });
             }
         );
 
