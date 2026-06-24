@@ -299,8 +299,7 @@ public class GameView extends Pane {
             currentCard.setBorderColor(guess ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)");
 
             // 4) Send result to connected player
-            GAME.handleCardMove(STRIP.getCards());
-            GAME.sendObject(guess ? "OPPONENT_RIGHT" : "OPPONENT_WRONG");
+            GAME.revealCards(STRIP.getCards(), guess);
 
             // 5) Set Status and start Timer
             if (guess) {

@@ -693,20 +693,59 @@ public final class GameLogic {
                 } 
 
                 if (receivedObj instanceof SongDTO receivedDTO) {
-                    if ("OPPONENT_LIVE_MOVE".equals(receivedDTO.purpose)) {
-                        Log.Info("Received " + receivedDTO.toSong() + " with purpose " + receivedDTO.purpose);
+                    
+                    Log.Info("Received " + receivedDTO.toSong() + " with purpose " + receivedDTO.purpose);
 
-                        Platform.runLater(() -> {
-                            PLAYERS[currentPlayerIdx].songs.clear();
+                    String[] parts = receivedDTO.purpose.split(":");
+                    String action = parts[0];
 
-                            for (SongDTO dto : receivedDTO.songList) {
-                                PLAYERS[currentPlayerIdx].songs.add(dto.toSong());
+                    switch (action) {
+                        case "OPPONENT" -> {
+                            switch (parts[1]) {
+                                case "REVEAL":
+                                    if (parts[2].equals("CORRECT")) {
+                                        Platform.runLater(() -> {
+                                            PLAYERS[currentPlayerIdx].songs.clear();
+
+                                            for (SongDTO dto : receivedDTO.songList) {
+                                                PLAYERS[currentPlayerIdx].songs.add(dto.toSong());
+                                            }
+
+                                            VIEW.updateOpponentCards(PLAYERS[currentPlayerIdx].songs);
+
+                                            VIEW.addSuccessMessage(this.getCurrentPlayer().username + " guessed right!");
+                                            VIEW.paintOpponentCard(currentSong, "rgb(0, 255, 0)");
+                                        });
+                                    }
+                                    else if (parts[2].equals("WRONG")) {
+                                        Platform.runLater(() -> {
+                                            PLAYERS[currentPlayerIdx].songs.clear();
+
+                                            for (SongDTO dto : receivedDTO.songList) {
+                                                PLAYERS[currentPlayerIdx].songs.add(dto.toSong());
+                                            }
+
+                                            VIEW.updateOpponentCards(PLAYERS[currentPlayerIdx].songs);
+
+                                            VIEW.addErrorMessage(this.getCurrentPlayer().username + " guessed wrong!");
+                                            VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
+                                        });
+                                    }
+                                    break;
+                                    
+                                case "MOVE":
+                                    Platform.runLater(() -> {
+                                        PLAYERS[currentPlayerIdx].songs.clear();
+
+                                        for (SongDTO dto : receivedDTO.songList) {
+                                            PLAYERS[currentPlayerIdx].songs.add(dto.toSong());
+                                        }
+
+                                        VIEW.updateOpponentCards(PLAYERS[currentPlayerIdx].songs);
+                                    });
+                                    break;
                             }
-
-                            VIEW.updateOpponentCards(PLAYERS[currentPlayerIdx].songs);
-                        });
-
-                        return;
+                        }
                     }
 
                     Song receivedSong = receivedDTO.toSong();
@@ -763,8 +802,28 @@ public final class GameLogic {
                 }
             }
 
-            this.sendObject(new SongDTO(songsFromCards, "OPPONENT_LIVE_MOVE"));
+            this.sendObject(new SongDTO(songsFromCards, "OPPONENT:MOVE"));
         }
+    }
+
+    public void revealCards(List<Card> revealedSongCards, boolean correct) {
+        List<Song> songsFromCards = new ArrayList<>();
+
+        for (Card card : revealedSongCards) {
+            if (card instanceof SongCard songCard) {
+                if (!songCard.isShowingFront) {
+                    songsFromCards.add(new Song());
+                }
+                else {
+                    songsFromCards.add(songCard.song);
+                }
+            }
+            else {
+                songsFromCards.add(new Song());
+            }
+        }
+
+        this.sendObject(new SongDTO(songsFromCards, "OPPONENT:REVEAL:" + (correct ? "CORRECT" : "WRONG")));
     }
 
     // ========== STEAL ACTIONS ==========
