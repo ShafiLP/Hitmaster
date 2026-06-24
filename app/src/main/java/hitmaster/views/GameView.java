@@ -245,6 +245,7 @@ public class GameView extends Pane {
         // 4) Enable steal action
         if (GAME.isLAN()) {
             GAME.startStealTimer();
+            currentCard.startCountdown(5);
         }
         else {
             currentCard.setStealState(true);

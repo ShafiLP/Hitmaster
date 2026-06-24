@@ -4,7 +4,9 @@ import java.util.List;
 
 import hitmaster.models.Set;
 import hitmaster.models.Song;
+import hitmaster.services.Timer;
 import hitmaster.views.GameView;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -211,6 +213,20 @@ public final class SongCard extends Card {
 
     public void setStealState(boolean state) {
         stealButton.setVisible(state);
+    }
+
+    public void startCountdown(int time) {
+        String originalText = playPause.getText();
+
+        Timer timerUnit = new Timer(time);
+        timerUnit.start(
+            () -> Platform.runLater(() -> {
+                playPause.setText(String.valueOf(timerUnit.getRemainingSeconds() + 1));
+            }),
+            () -> Platform.runLater(() -> {
+                playPause.setText(originalText);
+            })
+        );
     }
 
     public void togglePlayPause() {
