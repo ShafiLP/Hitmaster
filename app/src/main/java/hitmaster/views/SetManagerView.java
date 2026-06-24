@@ -118,6 +118,7 @@ public class SetManagerView {
     private void setAllSetsActive(boolean active) {
         for (Set set : getAllSets()) {
             set.isActive = active;
+            Database.updateSetStatus(set.id, active);
         }
         this.refreshSetList();
     }

@@ -247,17 +247,24 @@ public class Database {
                 return mapUser(rs);
             }
 
-            throw new Error("No user found.");
+            // Enters this section if no user exists
+            Database.createDefaultUser();
+            
+            rs = stmt.executeQuery("""
+                SELECT *
+                FROM user
+                WHERE id = 1
+            """);
+
+            if (rs.next()) {
+                return mapUser(rs);
+            }
+
+            throw new Error("No user found in database. Couldn't create new default user.");
         }
         catch (SQLException e) {
             Log.Error("Error while fetching user from database: " + e.getMessage());
-
-            if (createDefaultUser()) {
-                return getCurrentUser();
-            }
-            else {
-                return new User();
-            }
+            return new User();
         }
     }
 
