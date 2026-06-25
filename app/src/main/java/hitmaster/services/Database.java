@@ -99,6 +99,10 @@ public class Database {
             Database.addSetToDatabase(new Set("Rock & Metal - DE", "rock-de.jpg", "rock-de.png", "rock-de.csv", false));
             addSongsToSetFromCsv("rock-de.csv", 3);
 
+            Database.addSetToDatabase(new Set("Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
+            addSongsToSetFromCsv("punk-expansion.csv", 4);
+
+
             return true;
         }
         catch (SQLException e) {

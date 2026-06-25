@@ -5385,5 +5385,579 @@
     "artists": ["Justin Bieber (feat. Ludacris)", "Justin Bieber", "Ludacris"],
     "year": 2010,
     "spotify_id": "6epn3r7S14KUqlReYr77hA"
+  },
+  {
+    "id": 770,
+    "titles": ["Blitzkrieg Bop"],
+    "artists": ["Ramones"],
+    "year": 1976,
+    "spotify_id": "4KcH1ZRV2W1q7Flq0QqC76"
+  },
+  {
+    "id": 771,
+    "titles": ["White Riot"],
+    "artists": ["The Clash", "Clash"],
+    "year": 1977,
+    "spotify_id": "0brrVj6VnvrG70SjRTnEJA"
+  },
+  {
+    "id": 772,
+    "titles": ["God Save the Queen"],
+    "artists": ["Sex Pistols", "Pistols", "SP"],
+    "year": 1977,
+    "spotify_id": "2mHchPRtQWet3iIS3jANr1"
+  },
+  {
+    "id": 773,
+    "titles": ["Ever Fallen in Love (With Someone You Shouldn't've?)", "Ever Fallen in Love (With Someone You Should Not Have?)",
+               "Ever Fallen in Love (With Someone You Shouldn't Have?)", "Ever Fallen in Love"],
+    "artists": ["Buzzcocks"],
+    "year": 1978,
+    "spotify_id": "5YUJMvTg4AWHKjqQidTsGK"
+  },
+  {
+    "id": 774,
+    "titles": ["California Über Alles", "California Ueber Alles"],
+    "artists": ["Dead Kennedys"],
+    "year": 1979,
+    "spotify_id": "3Mf8JHWEHGk2vJAigborF6"
+  },
+  {
+    "id": 775,
+    "titles": ["Transmission"],
+    "artists": ["Joy Division", "JD"],
+    "year": 1979,
+    "spotify_id": "1Bq65xKgu0kjSUMUlfWyPl"
+  },
+  {
+    "id": 776,
+    "titles": ["Straight Edge"],
+    "artists": ["Minor Threat", "MT"],
+    "year": 1981,
+    "spotify_id": "1x8N5sNHdQtY328uP5DxIp"
+  },
+  {
+    "id": 777,
+    "titles": ["Rise Above"],
+    "artists": ["Black Flag", "BF"],
+    "year": 1981,
+    "spotify_id": "4kFfFe38CRVnTsakUTL4E4"
+  },
+  {
+    "id": 778,
+    "titles": ["Hope"],
+    "artists": ["Descendents", "The Descendents"],
+    "year": 1982,
+    "spotify_id": "1MPEPvmX18S9MK4RlMKIst"
+  },
+  {
+    "id": 779,
+    "titles": ["Good Good Things", "Good Things"],
+    "artists": ["Descendents", "The Descendents"],
+    "year": 1985,
+    "spotify_id": "7HHle8A6urSZT4RxkDQIiz"
+  },
+  {
+    "id": 780,
+    "titles": ["Waiting Room"],
+    "artists": ["Fugazi"],
+    "year": 1988,
+    "spotify_id": "2DBlfjL5chsdeULzhTp5K8"
+  },
+  {
+    "id": 781,
+    "titles": ["Sound System"],
+    "artists": ["Operation Ivy", "OI"],
+    "year": 1989,
+    "spotify_id": "4Pmo0mMgiyBCj1Zd7Axsi1"
+  },
+  {
+    "id": 782,
+    "titles": ["Story Of My Life"],
+    "artists": ["Social Distortion", "SD"],
+    "year": 1990,
+    "spotify_id": "4Q4w8aRdfhIIEhBututktL"
+  },
+  {
+    "id": 783,
+    "titles": ["Linoleum"],
+    "artists": ["NOFX", "N O F X"],
+    "year": 1994,
+    "spotify_id": "4uB28m7RAflobYpnLMb6A2"
+  },
+  {
+    "id": 784,
+    "titles": ["Time Bomb"],
+    "artists": ["Rancid"],
+    "year": 1995,
+    "spotify_id": "56hwcJKj0M40A3qdhV3177"
+  },
+  {
+    "id": 785,
+    "titles": ["Dammit", "Damit"],
+    "artists": ["blink-182", "blink 182", "blink"],
+    "year": 1997,
+    "spotify_id": "6HvUYS1xDfTCGWoeVrv3XS"
+  },
+  {
+    "id": 786,
+    "titles": ["All the Small Things"],
+    "artists": ["blink-182", "blink 182", "blink"],
+    "year": 1999,
+    "spotify_id": "2m1hi0nfMR9vdGC8UcrnwU"
+  },
+  {
+    "id": 787,
+    "titles": ["Give It All"],
+    "artists": ["Rise Against", "RA"],
+    "year": 2004,
+    "spotify_id": "5O6SumCYk8Ug81UbfXAPJC"
+  },
+  {
+    "id": 788,
+    "titles": ["Sugar, We're Goin Down", "Sugar, We Are Going Down",
+               "Sugar, We're Going Down", "Sugar, We Are Going Down",
+               "We're Going Down", "We Are Going Down"],
+    "artists": ["Fall Out Boy", "FOB"],
+    "year": 2005,
+    "spotify_id": "2TfSHkHiFO4gRztVIkggkE"
+  },
+  {
+    "id": 789,
+    "titles": ["Rock and Roll Queen", "Rock & Roll Queen",
+               "Rock 'n' Roll Queen", "Rock'n'Roll Queen"],
+    "artists": ["The Subways", "Subways"],
+    "year": 2005,
+    "spotify_id": "1uNKzxSXBkPTngkASu10pl"
+  },
+  {
+    "id": 790,
+    "titles": ["Red Flag"],
+    "artists": ["Billy Talent", "BT"],
+    "year": 2006,
+    "spotify_id": "2RZWdE8kYPlCAcRUYDeuLC"
+  },
+  {
+    "id": 791,
+    "titles": ["21 Guns", "Twenty-One Guns", "Twenty One Guns"],
+    "artists": ["Green Day", "GD"],
+    "year": 2009,
+    "spotify_id": "64yrDBpcdwEdNY9loyEGbX"
+  },
+  {
+    "id": 792,
+    "titles": ["I Was a Teenage Anarchist"],
+    "artists": ["Against Me!", "AM"],
+    "year": 2010,
+    "spotify_id": "5HhbHz7Z4HVPZQMDVNhXtM"
+  },
+  {
+    "id": 793,
+    "titles": ["DVP", "D V P"],
+    "artists": ["PUP", "Pathetic Use of Potential", "Topanga"],
+    "year": 2016,
+    "spotify_id": "5YZ6H4r7vjHa6V1fSqiDst"
+  },
+  {
+    "id": 794,
+    "titles": ["Never Fight a Man with a Perm"],
+    "artists": ["IDLES", "The Idles"],
+    "year": 2018,
+    "spotify_id": "5DrkhJaGka08ZK6QyuMK0W"
+  },
+  {
+    "id": 795,
+    "titles": ["Security"],
+    "artists": ["Amyl and The Sniffers", "Amyl & The Sniffers", "Amyl", "The Sniffers"],
+    "year": 2021,
+    "spotify_id": "20atdt1Upmx1npN3zY4JtM"
+  },
+  {
+    "id": 796,
+    "titles": ["Boys in the Better Land"],
+    "artists": ["Fontaines D.C.", "Fontaines DC", "Fontaines"],
+    "year": 2019,
+    "spotify_id": "7cucVWdmNeaPJuo7WkxaZ8"
+  },
+  {
+    "id": 797,
+    "titles": ["Blackout"],
+    "artists": ["Turnstile"],
+    "year": 2021,
+    "spotify_id": "0bGImSqDB2ebdeoCidUC8o"
+  },
+  {
+    "id": 798,
+    "titles": ["emo girl"],
+    "artists": ["mgk (feat. WILLOW)", "mgk", "machine gun kelly", "WILLOW"],
+    "year": 2022,
+    "spotify_id": "3tBZ60j1jQ7NJm8IjelyQe"
+  },
+  {
+    "id": 799,
+    "titles": ["Dancer"],
+    "artists": ["IDLES (feat. LCD Soundsystem)", "IDLES", "The Idles", "LCD Soundsystem"],
+    "year": 2023,
+    "spotify_id": "15uzP4I5pMX4dfQ9Lx72h1"
+  },
+  {
+    "id": 800,
+    "titles": ["You Really Got Me"],
+    "artists": ["The Kinks", "Kinks"],
+    "year": 1964,
+    "spotify_id": "6tZdL3Zp8JgrfDbsSeSV1S"
+  },
+  {
+    "id": 801,
+    "titles": ["Kick Out the Jams"],
+    "artists": ["MC5", "MC 5", "MC Five"],
+    "year": 1969,
+    "spotify_id": "1cLfXnBwTFuRngRZfQeLof"
+  },
+  {
+    "id": 802,
+    "titles": ["Search and Destroy", "Search & Destroy"],
+    "artists": ["Iggy and the Stooges", "Iggy & the Stooges", "Iggy Pop", "The Stooges", "Stooges"],
+    "year": 1973,
+    "spotify_id": "6LCw7eVCjDq7568JhgFgZI"
+  },
+  {
+    "id": 803,
+    "titles": ["Personality Crisis"],
+    "artists": ["New York Dolls", "NYD"],
+    "year": 1973,
+    "spotify_id": "4AwKXevZmsTNa3KZVj3rzl"
+  },
+  {
+    "id": 804,
+    "titles": ["American Jesus"],
+    "artists": ["Bad Religion", "BR"],
+    "year": 1993,
+    "spotify_id": "5TZn3LQSWwVPnBlPgFKb54"
+  },
+  {
+    "id": 805,
+    "titles": ["Spiderwebs"],
+    "artists": ["No Doubt"],
+    "year": 1995,
+    "spotify_id": "4ZD6SiaJi75smnel0d7jl3"
+  },
+  {
+    "id": 806,
+    "titles": ["I Don't Wanna Be An Asshole Anymore", "I Do Not Want To Be An Asshole Anymore", "I Don't Want To Be An Asshole Anymore",
+               "I Do Not Wanna Be An Asshole Anymore"],
+    "artists": ["The Menzingers", "Menzingers"],
+    "year": 2014,
+    "spotify_id": "1BqJIsOlo8rpm6FJ5N8VtJ"
+  },
+  {
+    "id": 807,
+    "titles": ["Institutionalized"],
+    "artists": ["Suicidal Tendencies", "ST"],
+    "year": 1983,
+    "spotify_id": "7G83ZwD2msTtFaBQExc8QB"
+  },
+  {
+    "id": 808,
+    "titles": ["Don't Want to Know If You Are Lonely", "Do Not Want to Know If You Are Lonely",
+               "I Don't Want to Know If You Are Lonely", "I Do Not Want to Know If You Are Lonely"],
+    "artists": ["Hüsker Dü", "Husker Du", "Huesker Due"],
+    "year": 1986,
+    "spotify_id": "4tPFEWRuNQhibDQSGB2PVE"
+  },
+  {
+    "id": 809,
+    "titles": ["I Against I", "Against I"],
+    "artists": ["Bad Brains", "BB"],
+    "year": 1986,
+    "spotify_id": "5sNRPeIYoLJU5OSb7lSXPj"
+  },
+  {
+    "id": 810,
+    "titles": ["Alex Chilton"],
+    "artists": ["The Replacements", "Replacements"],
+    "year": 1987,
+    "spotify_id": "2g9EvzLR2sYscJQubwKGqu"
+  },
+  {
+    "id": 811,
+    "titles": ["New Noise"],
+    "artists": ["Refused"],
+    "year": 1998,
+    "spotify_id": "35iLpqqQg4KrfYAzbvN1vH"
+  },
+  {
+    "id": 812,
+    "titles": ["The Taste of Ink"],
+    "artists": ["The Used", "Used"],
+    "year": 2002,
+    "spotify_id": "5jZ1Z2GFTf2gwmFc3qiUxs"
+  },
+  {
+    "id": 813,
+    "titles": ["New Rose"],
+    "artists": ["The Damned", "Damned"],
+    "year": 1976,
+    "spotify_id": "3Mpiu7WHNGSIMxn1oe03U3"
+  },
+  {
+    "id": 814,
+    "titles": ["Wild In The Streets"],
+    "artists": ["Circle Jerks", "CJ"],
+    "year": 1982,
+    "spotify_id": "2teaBsajEi4BWAZOD92vmS"
+  },
+  {
+    "id": 815,
+    "titles": ["Drain the Blood"],
+    "artists": ["The Distillers", "Distillers"],
+    "year": 2003,
+    "spotify_id": "3kYWrBoFBQGctF0UwgP8N1"
+  },
+  {
+    "id": 816,
+    "titles": ["Lifestyles of The Rich and Famous", "Lifestyles of The Rich & Famous",
+               "Lifestyle of The Rich and Famous", "Lifestyle of The Rich & Famous"],
+    "artists": ["Good Charlotte", "GC"],
+    "year": 2002,
+    "spotify_id": "2g2a5kDeZexbUTD8abcvm6"
+  },
+  {
+    "id": 817,
+    "titles": ["The River", "River"],
+    "artists": ["Good Charlotte", "GC"],
+    "year": 2007,
+    "spotify_id": "0d8aJLKZI1r4uOSLZBJaBK"
+  },
+  {
+    "id": 818,
+    "titles": ["BIRDS"],
+    "artists": ["Turnstile"],
+    "year": 2025,
+    "spotify_id": "0kshHISCRGn9MwpkbqafG4"
+  },
+  {
+    "id": 819,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 820,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 821,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 822,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 823,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 824,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 825,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 826,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 827,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 828,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 829,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 830,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 831,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 832,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 833,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 834,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 835,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 836,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 837,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 838,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 839,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 840,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 841,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 842,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 843,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 844,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 845,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 846,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 847,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 848,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 849,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 850,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
   }
 ]

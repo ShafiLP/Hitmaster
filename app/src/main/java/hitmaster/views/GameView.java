@@ -310,7 +310,6 @@ public class GameView extends Pane {
                 CHAT.addErrorMessage(GAME.getCurrentPlayer().username + " guessed wrong!");
             }
             
-
             if (timerUnit != null)
                 timerUnit.stop();
 
