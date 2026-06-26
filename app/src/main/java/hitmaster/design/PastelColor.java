@@ -6,10 +6,11 @@ import javafx.scene.paint.Color;
 
 public enum PastelColor {
 
-    PINK(Color.rgb(255, 209, 220)),
+    ROSA(Color.rgb(255, 209, 220)),
+    PINK(Color.rgb(255, 144, 170)),
     BLUE(Color.rgb(174, 198, 255)),
-    GREEN(Color.rgb(180, 238, 180)),
-    YELLOW(Color.rgb(255, 255, 186)),
+    GREEN(Color.rgb(191, 255, 191)),
+    YELLOW(Color.rgb(255, 255, 158)),
     PURPLE(Color.rgb(220, 208, 255)),
     ORANGE(Color.rgb(255, 223, 186));
 

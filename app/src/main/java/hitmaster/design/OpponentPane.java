@@ -3,30 +3,27 @@ package hitmaster.design;
 import java.util.ArrayList;
 import java.util.List;
 
+import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.Log;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
 
 public final class OpponentPane extends HBox {
 
     private final StackPane avatarContainer;
-    private final ImageView avatarView;
-    private final Label avatarLetterLabel;
-    private final Circle avatarCircle;
     private final Label nameLabel;
     private final ChipPane chipPane;
     private final Pane cardRowPane;
+
+    private Player player;
 
     private final List<Song> opponentSongs = new ArrayList<>();
     private final List<MiniSongCard> miniSongCards = new ArrayList<>();
@@ -34,8 +31,9 @@ public final class OpponentPane extends HBox {
     private final double CARD_SIZE = 100.0; 
     private final double CARD_GAP = 10.0;
 
-    public OpponentPane(String opponentName, Image avatarImage) {
+    public OpponentPane(Player player) {
         super(20);
+        this.player = player;
         this.setAlignment(Pos.CENTER_LEFT);
         this.setPadding(new Insets(10, 20, 10, 20));
         
@@ -46,32 +44,14 @@ public final class OpponentPane extends HBox {
         // ==========================================
         // PLAYER INFORMATION
         // ==========================================
-        avatarView = new ImageView();
-        avatarView.setFitWidth(60);
-        avatarView.setFitHeight(60);
-        avatarView.setPreserveRatio(true);
-        
-        Rectangle avatarClip = new Rectangle(60, 60);
-        avatarClip.setArcWidth(60);
-        avatarClip.setArcHeight(60);
-        avatarView.setClip(avatarClip);
-
-        avatarCircle = new Circle(30);
-        avatarLetterLabel = new Label();
-        avatarLetterLabel.setStyle("""
-            "-fx-font-size: 24px;" +
-            "-fx-font-weight: bold;" +
-            "-fx-text-fill: white;"
-        """); 
-        
         avatarContainer = new StackPane();
         avatarContainer.setMinSize(60, 60);
         avatarContainer.setPrefSize(60, 60);
         avatarContainer.setMaxSize(60, 60);
 
-        this.updateAvatar(opponentName, avatarImage);
+        this.updateAvatar(player);
 
-        nameLabel = new Label(opponentName);
+        nameLabel = new Label(player.username);
         nameLabel.getStyleClass().add("subheader");
 
         chipPane = new ChipPane();
@@ -160,33 +140,32 @@ public final class OpponentPane extends HBox {
      * Completely static without drag & drop handler.
      */
     private MiniSongCard createMiniCard(Song song, double size) {
-        return new MiniSongCard(song, size, avatarView.getImage(), avatarCircle.getFill(), avatarLetterLabel.getText());
+        if (player == null) 
+            return new MiniSongCard(song, size, null, Color.GRAY, "?");
+        
+
+        return new MiniSongCard(
+            song, 
+            size, 
+            player.img, 
+            player.color != null ? player.color : Color.GRAY, 
+            player.initial != null ? player.initial : "?"
+        );
     }
 
     /**
      * Updates avatar image.
      * If image is null, use username to create a new default avatar image
      * containing first letter of username and a coloured background.
-     * @param username Username to use if image is null.
-     * @param image Image to set avatar.
+     * @param player Player object containing username and image.
      */
-    public void updateAvatar(String username, Image image) {
+    public void updateAvatar(Player player) {
+        this.player = player;
         avatarContainer.getChildren().clear();
 
-        if (image != null) {
-            avatarView.setImage(image);
-            avatarContainer.getChildren().add(avatarView);
-        }
-        else {
-            String initial = "?";
-
-            if (username != null && !username.isBlank())
-                initial = username.substring(0, 1).toUpperCase();
-
-            avatarLetterLabel.setText(initial);
-            avatarCircle.setFill(PastelColor.random());
-
-            avatarContainer.getChildren().addAll(avatarCircle, avatarLetterLabel);
+        if (player != null) {
+            StackPane playerAvatar = player.getPlayerImage(60);
+            avatarContainer.getChildren().add(playerAvatar);
         }
     }
 

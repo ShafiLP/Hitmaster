@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
 
 public class PlayerCard extends Card {
 
@@ -37,40 +36,8 @@ public class PlayerCard extends Card {
         // 3) Initialize Profile Picture
         double imgSize = 75;
 
-        if (PLAYER != null && PLAYER.img != null) {
-            ImageView profileImage = new ImageView(PLAYER.img);
-            profileImage.setFitWidth(imgSize);
-            profileImage.setFitHeight(imgSize);
-            profileImage.setPreserveRatio(true);
-
-            // Kreisförmig ausschneiden
-            Circle clip = new Circle(imgSize / 2, imgSize / 2, imgSize / 2);
-            profileImage.setClip(clip);
-
-            StackPane.setAlignment(profileImage, Pos.CENTER);
-            layout.getChildren().add(profileImage);
-        } 
-        else {
-            String initial = "?";
-            if (PLAYER != null && PLAYER.username != null && !PLAYER.username.isBlank()) {
-                initial = PLAYER.username.substring(0, 1).toUpperCase();
-            }
-
-            Circle avatarCircle = new Circle(imgSize / 2);
-            avatarCircle.setFill(hitmaster.design.PastelColor.random()); 
-
-            Label avatarLetterLabel = new Label(initial);
-            avatarLetterLabel.setStyle("""
-                -fx-font-size: 28px;
-                -fx-text-fill: white;
-                -fx-font-weight: bold;
-            """);
-
-            StackPane.setAlignment(avatarCircle, Pos.CENTER);
-            StackPane.setAlignment(avatarLetterLabel, Pos.CENTER);
-
-            layout.getChildren().addAll(avatarCircle, avatarLetterLabel);
-        }
+        if (PLAYER != null && PLAYER.img != null)
+            layout.getChildren().add(PLAYER.getPlayerImage(imgSize));
 
         // 4) Username Text
         Label displayText = new Label(player != null ? player.username : "");

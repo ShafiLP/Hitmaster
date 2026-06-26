@@ -599,7 +599,7 @@ public class GameView extends Pane {
      * @param opponent Player object of opponent.
      */
     public void initializeOpponentPane(Player opponent) {
-        OPPONENT_PANE = new OpponentPane(opponent.username, opponent.img);
+        OPPONENT_PANE = new OpponentPane(opponent);
         OPPONENT_PANE.setLayoutX(0);
         OPPONENT_PANE.setLayoutY(20);
         OPPONENT_PANE.prefWidthProperty().bind(this.widthProperty());
@@ -631,7 +631,7 @@ public class GameView extends Pane {
             }
 
             // 3) Set new opponent progress
-            OPPONENT_PANE.updateAvatar(GAME.getPreviousPlayer().username, GAME.getPreviousPlayer().img);
+            OPPONENT_PANE.updateAvatar(GAME.getPreviousPlayer());
             OPPONENT_PANE.setName(GAME.getPreviousPlayer().username);
             OPPONENT_PANE.setSongs(GAME.getPreviousPlayer().songs);
             OPPONENT_PANE.setChipsCount(GAME.getPreviousPlayer().hitmasterPoints);

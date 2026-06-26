@@ -9,12 +9,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 
 public class ChatPane extends VBox {
 
@@ -125,42 +122,11 @@ public class ChatPane extends VBox {
             HBox row = new HBox(8);
             row.setAlignment(Pos.TOP_LEFT);
 
-            Node avatarNode;
+            Node avatarNode = null;
             double pfpSize = 32;
 
-            if (player != null && player.img != null) {
-                ImageView avatarView = new ImageView(player.img);
-                avatarView.setFitWidth(pfpSize);
-                avatarView.setFitHeight(pfpSize);
-                avatarView.setPreserveRatio(true);
-                avatarView.setSmooth(true);
-
-                Circle clip = new Circle(pfpSize / 2, pfpSize / 2, pfpSize / 2);
-                avatarView.setClip(clip);
-                
-                avatarNode = avatarView;
-            }
-            else {
-                String initial = "?";
-                if (player != null && player.username != null && !player.username.isBlank()) {
-                    initial = player.username.substring(0, 1).toUpperCase();
-                }
-
-                Circle avatarCircle = new Circle(pfpSize / 2);
-                avatarCircle.setFill(hitmaster.design.PastelColor.random()); 
-
-                Label avatarLetterLabel = new Label(initial);
-                avatarLetterLabel.setStyle("""
-                    -fx-font-size: 14px;
-                    -fx-text-fill: white;
-                    -fx-font-weight: bold;
-                """);
-
-                StackPane fallbackStack = new StackPane();
-                fallbackStack.getChildren().addAll(avatarCircle, avatarLetterLabel);
-                
-                avatarNode = fallbackStack;
-            }
+            if (player != null)
+                avatarNode = player.getPlayerImage(pfpSize);
 
             VBox textBubble = new VBox(2);
             Label nameLabel = new Label(player != null ? player.username : "Unknown");
