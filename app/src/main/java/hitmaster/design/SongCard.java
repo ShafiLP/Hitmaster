@@ -183,6 +183,7 @@ public final class SongCard extends Card {
             icon.setFitWidth(18);
             icon.setFitHeight(18);
             icon.setPreserveRatio(true);
+            icon.setSmooth(true);
             iconLayout.getChildren().add(icon);
 
             if (songSets.size() > 1) {

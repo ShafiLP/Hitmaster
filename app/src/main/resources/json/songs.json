@@ -1486,7 +1486,7 @@
   {
     "id": 213,
     "titles": ["Engel"],
-    "artists": ["Rammstein"],
+    "artists": ["Rammstein", "Ramstein"],
     "year": 1997,
     "spotify_id": "0xrkyEMkG4dVa5OMLQZOX8"
   },
@@ -5738,226 +5738,226 @@
   },
   {
     "id": 819,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Keine Macht für Niemand"],
+    "artists": ["Ton Steine Scherben", "TSS"],
+    "year": 1972,
+    "spotify_id": "2yw6quFRAzoigN89yf6q6x"
   },
   {
     "id": 820,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Macht Kaputt, Was Euch Kaputt Macht"],
+    "artists": ["Ton Steine Scherben", "TSS"],
+    "year":	1970,
+    "spotify_id": "2Uf1RUfs6sbGXVrwTETMYS"
   },
   {
     "id": 821,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Halt Dich An Deiner Liebe Fest"],
+    "artists": ["Ton Steine Scherben", "TSS"],
+    "year": 1975,
+    "spotify_id": "0UIJh1j0OqO7se1J3JeX1X"
   },
   {
     "id": 822,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Eiszeit"],
+    "artists": ["Ideal"],
+    "year": 1981,
+    "spotify_id": "4WOGvfip17yNBmLpPSZWBV"
   },
   {
     "id": 823,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Sternenhimmel"],
+    "artists": ["Hubert Kah"],
+    "year": 1982,
+    "spotify_id": "79hX0z70ufkP63Ocr4Jz4K"
   },
   {
     "id": 824,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Hier Kommt Alex"],
+    "artists": ["Die Toten Hosen", "Toten Hosen", "Tote Hosen", "DTH"],
+    "year": 1988,
+    "spotify_id": "1zs0BxFFLfbJQTSo84rkhy"
   },
   {
     "id": 825,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Verdamp Lang Her", "Verdammt Lang Her", "Verdamp Lange Her", "Verdammt Lange Her"],
+    "artists": ["BAP", "Niedeckens BAP", "Niedecken", "Wolfgang Niedecken"],
+    "year": 1981,
+    "spotify_id": "12Gf7Ffl7pxj7mQF1ehRBy"
   },
   {
     "id": 826,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Wünsch Dir Was"],
+    "artists": ["Die Toten Hosen", "Toten Hosen", "Tote Hosen", "DTH"],
+    "year": 1993,
+    "spotify_id": "1uwKheREvZPoKTbZ72usSV"
   },
   {
     "id": 827,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Du Hast"],
+    "artists": ["Rammstein", "Ramstein"],
+    "year": 1997,
+    "spotify_id": "5awDvzxWfd53SSrsRZ8pXO"
   },
   {
     "id": 828,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Junimond"],
+    "artists": ["Rio Reiser"],
+    "year": 1986,
+    "spotify_id": "22CpeaLcxTA6tMe5grCUee"
   },
   {
     "id": 829,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Mein Herz Brennt"],
+    "artists": ["Rammstein", "Ramstein"],
+    "year": 2001,
+    "spotify_id": "5ArNGisLzrNOIVwWajRRdt"
   },
   {
     "id": 830,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Augen Auf!"],
+    "artists": ["Oomph!", "Omph!"],
+    "year": 2004,
+    "spotify_id": "6gcFq5UOdNa8LzTRd4lldD"
   },
   {
     "id": 831,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Nur Ein Wort"],
+    "artists": ["Wir Sind Helden", "WSH"],
+    "year": 2005,
+    "spotify_id": "4hYinIaRxdaoEFSQni6K6I"
   },
   {
     "id": 832,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Das Kann Uns Keiner Nehmen"],
+    "artists": ["Revolverheld"],
+    "year": 2013,
+    "spotify_id": "4xONI8LFfRPm7OSBKsFYqj"
   },
   {
     "id": 833,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Leichtes Gepäck", "Leichtes Gepaeck"],
+    "artists": ["Silbermond"],
+    "year": 2015,
+    "spotify_id": "2kUUMGxMFcKItXfy36x7Th"
   },
   {
     "id": 834,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Auf Gute Freunde"],
+    "artists": ["Böhse Onkelz", "Boehse Onkelz", "Böse Onkels", "Boese Onkels", "BO"],
+    "year": 1996,
+    "spotify_id": "0oIVNEkOgvOU9yG9oW13xC"
   },
   {
     "id": 835,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Deutschland"],
+    "artists": ["Rammstein", "Ramstein"],
+    "year": 2019,
+    "spotify_id": "2bPGTMB5sFfFYQ2YvSmup0"
   },
   {
     "id": 836,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Wo Sind Die Clowns?"],
+    "artists": ["Saltatio Mortis", "SM"],
+    "year": 2016,
+    "spotify_id": "24wv4TYqBSBzogJy75j2dF"
   },
   {
     "id": 837,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Memento Mori"],
+    "artists": ["Feuerschwanz"],
+    "year": 2021,
+    "spotify_id": "03oHAs15zDUtiAep2p64u3"
   },
   {
     "id": 838,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Goldener Reiter"],
+    "artists": ["Joachim Witt"],
+    "year": 1980,
+    "spotify_id": "7sgbBeINoJ4TDUDIloK9li"
   },
   {
     "id": 839,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Du Schreibst Geschichte"],
+    "artists": ["Madsen"],
+    "year": 2006,
+    "spotify_id": "7xEMiARPodjJLd83LBw8SQ"
   },
   {
     "id": 840,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Macht Euch Laut"],
+    "artists": ["Madsen"],
+    "year": 2018,
+    "spotify_id": "0rAQ4KegNcsTAiANJIAT2I"
   },
   {
     "id": 841,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
+    "titles": ["Smile"],
+    "artists": ["Madsen"],
     "year": 2026,
-    "spotify_id": "XXXXX"
+    "spotify_id": "1Oph8bINn70ulhEAiCpTzF"
   },
   {
     "id": 842,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Deine Schuld"],
+    "artists": ["Die Ärzte", "Ärzte", "DÄ"],
+    "year": 2003,
+    "spotify_id": "0oEp3d8au0a3Qp78F2QxtB"
   },
   {
     "id": 843,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Rebell", "Rebel"],
+    "artists": ["Die Ärzte", "Ärzte", "DÄ"],
+    "year": 1999,
+    "spotify_id": "40XVlo9EB7accZxq4cskhc"
   },
   {
     "id": 844,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Ist Das Noch Punkrock?"],
+    "artists": ["Die Ärzte", "Ärzte", "DÄ"],
+    "year": 2012,
+    "spotify_id": "09j3jdYr3eVJSkrGMFmjN2"
   },
   {
     "id": 845,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Ein Jahr (Es Geht Voran)", "Ein Jahr", "Es Geht Voran"],
+    "artists": ["Fehlfarben"],
+    "year": 1982,
+    "spotify_id": "6mMUoEgOl1yuGMJ6dfHzh6"
   },
   {
     "id": 846,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Applaus, Applaus"],
+    "artists": ["Sportfreunde Stiller"],
+    "year": 2013,
+    "spotify_id": "0qOZEyHXwMC5JqcUeTaPvi"
   },
   {
     "id": 847,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["'54, '74, '90, '2006", "Vierundfünfzig, Vierundsiebzig, Neunzig, Zweitausendsechs"],
+    "artists": ["Sportfreunde Stiller"],
+    "year": 2006,
+    "spotify_id": "5UVXLUq8m3CnehQ283wkrv"
   },
   {
     "id": 848,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Schüsse In Die Luft"],
+    "artists": ["Kraftklub", "Kraftclub", "KK"],
+    "year": 2014,
+    "spotify_id": "0ZtOSLwLq2dm8u5HscsCZu"
   },
   {
     "id": 849,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Meine Familie"],
+    "artists": ["Broilers", "Die Broilers", "The Broilers"],
+    "year": 2017,
+    "spotify_id": "3nYsjRadpZ6K7mzm7gXzQj"
   },
   {
     "id": 850,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Fick Dich Und Verpiss Dich"],
+    "artists": ["Frei.Wild", "FreiWild", "Frei Wild"],
+    "year": 2018,
+    "spotify_id": "4LFZgDtqsYwRPiPwsvtvYD"
   }
 ]

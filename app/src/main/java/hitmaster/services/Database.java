@@ -102,6 +102,8 @@ public class Database {
             Database.addSetToDatabase(new Set("Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
             addSongsToSetFromCsv("punk-expansion.csv", 4);
 
+            Database.addSetToDatabase(new Set("Deutschrock Expansion", "deutschrock-placeholder.jpg", "deutschrock-ex.png", "deutschrock-ex.csv", false));
+            addSongsToSetFromCsv("deutschrock-ex.csv", 5);
 
             return true;
         }

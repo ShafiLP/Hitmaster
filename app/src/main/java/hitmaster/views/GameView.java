@@ -289,7 +289,7 @@ public class GameView extends Pane {
             String titleInput = TITLE.getText().trim().isEmpty() ? "X" : TITLE.getText().trim();
 
             GAME.sendObject("CHAT:PLAYER_GUESS:" + artistInput + ":" + titleInput);
-            this.addPlayerMessage(GAME.getLocalPlayer(), "ARTIST: " + artistInput + "\nTITLE: " + titleInput);
+            this.addPlayerMessage(GAME.getLocalPlayer(), "ARTIST: \"" + artistInput + "\"\nTITLE: \"" + titleInput + "\"");
 
             ARTIST.setStyle(GAME.checkArtistInformation(artistInput) ? "-fx-border-color:rgb(0, 255, 0);" : "-fx-border-color:rgb(255, 0, 0);");
             TITLE.setStyle(GAME.checkTitleInformation(titleInput) ? "-fx-border-color:rgb(0, 255, 0);" : "-fx-border-color:rgb(255, 0, 0);");
@@ -357,8 +357,8 @@ public class GameView extends Pane {
                     if (timerUnit != null)
                         timerUnit.stop();
 
-                    WinnerPane.winnerDialog(this, GAME.getCurrentPlayer());
                     GAME.sendObject("OPPONENT_WIN");
+                    WinnerPane.winnerDialog(this, GAME.getCurrentPlayer());
                 });
             }
         }
@@ -516,44 +516,33 @@ public class GameView extends Pane {
         if (currentCard == null)
             return;
 
-        currentCard.showFront();
-        currentCard.setBorderColor("rgb(255, 0, 0)");
+        Platform.runLater(() -> {
+            currentCard.showFront();
+            currentCard.setBorderColor("rgb(255, 0, 0)");
 
-        if (timerUnit != null)
-            timerUnit.stop();
+            final SongCard wrongCard = this.currentCard; 
+    
+            if (wrongCard == null) return;
 
-        timerUnit = new Timer(3);
-        timerUnit.start(
-            () -> Platform.runLater(() -> 
-                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
-            ),
-            () -> Platform.runLater(() -> {
-                final SongCard wrongCard = this.currentCard;
+            double sceneX = wrongCard.localToScene(0, 0).getX();
+            double sceneY = wrongCard.localToScene(0, 0).getY();
+            
+            Point2D localPos = this.sceneToLocal(sceneX, sceneY);
 
-                if (wrongCard != null) {
-                    double sceneX = wrongCard.localToScene(0, 0).getX();
-                    double sceneY = wrongCard.localToScene(0, 0).getY();
-                    Point2D localPos = this.sceneToLocal(sceneX, sceneY);
+            STRIP.removeCard(wrongCard, false); 
 
-                    STRIP.removeCard(wrongCard, false);
-                    if (wrongCard.getParent() != this) {
-                        this.getChildren().add(wrongCard);
-                    }
-                    
-                    if (wrongCard.isDraggable()) {
-                        wrongCard.showFront();
-                    }
+            if (wrongCard.getParent() != this) {
+                this.getChildren().add(wrongCard);
+            }
 
-                    wrongCard.setLayoutX(localPos.getX());
-                    wrongCard.setLayoutY(localPos.getY());
-                    wrongCard.setTranslateX(0);
-                    wrongCard.setTranslateY(0);
-                    wrongCard.toFront();
+            wrongCard.setLayoutX(localPos.getX());
+            wrongCard.setLayoutY(localPos.getY());
+            wrongCard.setTranslateX(0);
+            wrongCard.setTranslateY(0);
+            wrongCard.toFront();
 
-                    DISCARD_PILE.discardCard(wrongCard);
-                }
-            })
-        );
+            DISCARD_PILE.discardCard(wrongCard);
+        });
     }
 
     public void setTimerForOpponent(int time) {

@@ -130,6 +130,7 @@ public class SetManagerView {
             setImageView.setFitWidth(50);
             setImageView.setFitHeight(50);
             setImageView.setPreserveRatio(true);
+            setImageView.setSmooth(true);
         } else {
             setImageView = new ImageView();
             setImageView.setFitWidth(50);

@@ -188,6 +188,7 @@ public final class GameLogic {
      */
     public void skipCurrentSong() {
         this.sendObject("OPPONENT_SKIP");
+        VIEW.addInfoMessage(this.getCurrentPlayer().username + " skipped their song!");
 
         PLAYERS[currentPlayerIdx].hitmasterPoints--;
 
@@ -235,7 +236,7 @@ public final class GameLogic {
 
         // 3) Search for index
         int insertionIdx = -1;
-        for (int i = 1; i < player.songs.size() - 1; i++) {
+        for (int i = 1; i < player.songs.size(); i++) {
             if (player.songs.get(i - 1).year < currentSong.year && player.songs.get(i).year > currentSong.year) {
                 insertionIdx = i;
                 break;
@@ -592,6 +593,8 @@ public final class GameLogic {
             // Skips the current card and places a new card to stack
             // If host, update card of client
             case "OPPONENT_SKIP":
+                VIEW.addInfoMessage(this.getCurrentPlayer().username + " skipped their song!");
+
                 PLAYERS[currentPlayerIdx].hitmasterPoints--;
                 VIEW.removeOpponentChip();
 
@@ -625,6 +628,7 @@ public final class GameLogic {
 
             // Shows the overlay pane to start a steal attempt on GameView
             case "OPPONENT_ASK_STEAL":
+                VIEW.addInfoMessage(this.getCurrentPlayer().username + " placed their guess - Other players can now attempt to steal!");
                 VIEW.showStealOverlay();
             break;
 
@@ -636,6 +640,8 @@ public final class GameLogic {
 
             // Sets timer for opponent steal attempt and waits for opponent.
             case "OPPONENT_STEAL_START":
+                this.getPreviousPlayer().hitmasterPoints--;
+                VIEW.removeOpponentChip();
                 VIEW.setTimerForOpponent(OPTIONS.stealTime);
             break;
 
@@ -653,7 +659,7 @@ public final class GameLogic {
             break;
 
             case "OPPONENT_WIN":
-                WinnerPane.winnerDialog(VIEW, getCurrentPlayer());
+                Platform.runLater(() -> WinnerPane.winnerDialog(VIEW, getCurrentPlayer()));
             break;
 
             case "CLIENT_FINISH_TURN":
@@ -700,7 +706,7 @@ public final class GameLogic {
                     String action = parts[0];
 
                     switch (action) {
-                        case "OPPONENT" -> {
+                        case "OPPONENT":
                             switch (parts[1]) {
                                 case "REVEAL":
                                     if (parts[2].equals("CORRECT")) {
@@ -716,6 +722,7 @@ public final class GameLogic {
                                             VIEW.addSuccessMessage(this.getCurrentPlayer().username + " guessed right!");
                                             VIEW.paintOpponentCard(currentSong, "rgb(0, 255, 0)");
                                         });
+                                        return;
                                     }
                                     else if (parts[2].equals("WRONG")) {
                                         Platform.runLater(() -> {
@@ -730,8 +737,9 @@ public final class GameLogic {
                                             VIEW.addErrorMessage(this.getCurrentPlayer().username + " guessed wrong!");
                                             VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
                                         });
+                                        return;
                                     }
-                                    break;
+                                break;
                                     
                                 case "MOVE":
                                     Platform.runLater(() -> {
@@ -743,9 +751,9 @@ public final class GameLogic {
 
                                         VIEW.updateOpponentCards(PLAYERS[currentPlayerIdx].songs);
                                     });
-                                    break;
+                                return;
                             }
-                        }
+                        break;
                     }
 
                     Song receivedSong = receivedDTO.toSong();
@@ -834,9 +842,7 @@ public final class GameLogic {
      * continues with reveal of the guess instead.
      */
     public void startStealTimer() {
-        VIEW.addInfoMessage(this.getCurrentPlayer().username + " placed their guess - Other players can now attempt to steal!");
-        
-        if (MULTIPLAYER && networkManager != null && this.getPreviousPlayer().hitmasterPoints > 0) {
+        if (MULTIPLAYER && this.isLAN() && this.getPreviousPlayer().hitmasterPoints > 0) {
             this.sendObject("OPPONENT_ASK_STEAL");
         }
         else {
@@ -852,13 +858,14 @@ public final class GameLogic {
      */
     public void startStealAction() {
         // 1) Check if player got enough points to attempt a steal
-        if (this.getPreviousPlayer().hitmasterPoints < 1)
+        if (this.getPreviousPlayer().hitmasterPoints < 1) {
+            this.sendObject("STEAL_SKIP");
             return;
+        }
 
         // 2) Remove a hitmaster chip
         this.getPreviousPlayer().hitmasterPoints--;
         VIEW.removeHitmasterChip();
-        this.sendObject("OPPONENT_DECREASE_CHIP");
 
         // 3) Send command to other player
         this.sendObject("OPPONENT_STEAL_START");

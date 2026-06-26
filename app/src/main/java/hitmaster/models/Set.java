@@ -26,13 +26,21 @@ public class Set {
 
     public ImageView getImage() {
         return new ImageView(
-            new Image(getClass().getResourceAsStream("/setImages/" + img))
+            new Image(getClass().getResourceAsStream("/setImages/" + img),
+            18,
+            18,
+            true,
+            true)
         );
     }
 
     public ImageView getIcon() {
         return new ImageView(
-            new Image(getClass().getResourceAsStream("/icons/set-icons/" + icon))
+            new Image(getClass().getResourceAsStream("/icons/set-icons/" + icon),
+            18,
+            18,
+            true,
+            true)
         );
     }
 

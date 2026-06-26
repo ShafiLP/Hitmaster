@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
@@ -124,15 +125,45 @@ public class ChatPane extends VBox {
             HBox row = new HBox(8);
             row.setAlignment(Pos.TOP_LEFT);
 
-            // Round clip for pfp
-            ImageView avatarView = new ImageView(player.img);
-            avatarView.setFitWidth(32);
-            avatarView.setFitHeight(32);
-            Circle clip = new Circle(16, 16, 16);
-            avatarView.setClip(clip);
+            Node avatarNode;
+            double pfpSize = 32;
+
+            if (player != null && player.img != null) {
+                ImageView avatarView = new ImageView(player.img);
+                avatarView.setFitWidth(pfpSize);
+                avatarView.setFitHeight(pfpSize);
+                avatarView.setPreserveRatio(true);
+                avatarView.setSmooth(true);
+
+                Circle clip = new Circle(pfpSize / 2, pfpSize / 2, pfpSize / 2);
+                avatarView.setClip(clip);
+                
+                avatarNode = avatarView;
+            }
+            else {
+                String initial = "?";
+                if (player != null && player.username != null && !player.username.isBlank()) {
+                    initial = player.username.substring(0, 1).toUpperCase();
+                }
+
+                Circle avatarCircle = new Circle(pfpSize / 2);
+                avatarCircle.setFill(hitmaster.design.PastelColor.random()); 
+
+                Label avatarLetterLabel = new Label(initial);
+                avatarLetterLabel.setStyle("""
+                    -fx-font-size: 14px;
+                    -fx-text-fill: white;
+                    -fx-font-weight: bold;
+                """);
+
+                StackPane fallbackStack = new StackPane();
+                fallbackStack.getChildren().addAll(avatarCircle, avatarLetterLabel);
+                
+                avatarNode = fallbackStack;
+            }
 
             VBox textBubble = new VBox(2);
-            Label nameLabel = new Label(player.username);
+            Label nameLabel = new Label(player != null ? player.username : "Unknown");
             nameLabel.getStyleClass().add("message-username");
             
             Label contentLabel = new Label(text);
@@ -142,7 +173,7 @@ public class ChatPane extends VBox {
             textBubble.getStyleClass().add("message-bubble");
             textBubble.getChildren().addAll(nameLabel, contentLabel);
             
-            row.getChildren().addAll(avatarView, textBubble);
+            row.getChildren().addAll(avatarNode, textBubble);
             this.appendRow(row);
         });
     }
