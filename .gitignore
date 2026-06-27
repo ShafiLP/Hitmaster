@@ -10,3 +10,4 @@ app/spotify.properties
 app/src/main/resources/userImage.png
 TODO
 app/build.gradle.kts
+app/src/main/java/hitmaster/models/EnvValues.java

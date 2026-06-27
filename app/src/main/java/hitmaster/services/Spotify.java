@@ -18,8 +18,8 @@ import org.apache.hc.core5.http.ParseException;
 import com.google.gson.JsonArray;
 import com.sun.net.httpserver.HttpServer;
 
+import hitmaster.models.EnvValues;
 import hitmaster.models.User;
-import io.github.cdimascio.dotenv.Dotenv;
 import javafx.scene.media.Track;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
@@ -30,7 +30,7 @@ import se.michaelthelin.spotify.model_objects.miscellaneous.Device;
 public class Spotify {
 
     public static String CLIENT_ID;
-    public static String CLIENT_SECRET;;
+    public static String CLIENT_SECRET;
 
     private static HttpServer activeServer;
     private static CountDownLatch activeLatch;
@@ -43,7 +43,9 @@ public class Spotify {
      * @return Success result.
      */
     public static boolean createSpotifyConnection() {
-        Spotify.loadEnvValues();
+        CLIENT_ID = EnvValues.CLIENT_ID;
+        CLIENT_SECRET = EnvValues.CLIENT_SECRET;
+
         wasCancelled = false;
 
         try {
@@ -164,7 +166,9 @@ public class Spotify {
      * @return SpotifyApi object with linked user account.
      */
     public static SpotifyApi requestSpotifyConnection() {
-        loadEnvValues();
+        CLIENT_ID = EnvValues.CLIENT_ID;
+        CLIENT_SECRET = EnvValues.CLIENT_SECRET;
+        
         try {
             // 1) Load properties from file
             Properties props = new Properties();
@@ -513,21 +517,5 @@ public class Spotify {
             Log.Error("Error occured while checking current playback state: " + e.getMessage());
             return false;
         }
-    }
-
-    /**
-     * Loads CLIENT_ID and CLIENT_SECRET from .env file
-     */
-    private static void loadEnvValues() {
-        String executionPath = System.getProperty("user.dir");
-
-        Dotenv dotenv = Dotenv.configure()
-            .directory(executionPath)
-            .ignoreIfMalformed()
-            .ignoreIfMissing()
-            .load();
-
-        CLIENT_ID = dotenv.get("CLIENT_ID");
-        CLIENT_SECRET = dotenv.get("CLIENT_SECRET");
     }
 }
