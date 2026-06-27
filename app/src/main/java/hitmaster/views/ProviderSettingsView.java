@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -25,6 +26,9 @@ public class ProviderSettingsView {
 
     private final Stage STAGE;
     private final MainMenu PARENT;
+    private final StackPane ROOT;
+    private StackPane overlay;
+    private Thread authThread;
 
     public ProviderSettingsView(MainMenu parent) {
         this.PARENT = parent;
@@ -33,7 +37,12 @@ public class ProviderSettingsView {
         STAGE.setTitle("Provider Settings");
 
         // =========================
-        // ROOT LAYOUT
+        // ROOT CONTAINER (StackPane)
+        // =========================
+        ROOT = new StackPane();
+
+        // =========================
+        // CONTENT LAYOUT (VBox)
         // =========================
         VBox root = new VBox(15);
         root.setPadding(new Insets(15));
@@ -73,21 +82,28 @@ public class ProviderSettingsView {
             connections[i] = new Button("Add connection");
             connections[i].getStyleClass().add("modern-button");
         }
+        
         connections[0].setOnAction(e -> {
-            if (Spotify.createSpotifyConnection()) {
-                PARENT.initialiseProviderButton();
-                connections[0].setText("Connected");
-                connections[0].setStyle("""
-                    -fx-background-color: rgba(0, 255, 0, 0.2);
-                """);
-            }
+            showOverlay();
+            
+            authThread = new Thread(() -> {
+                boolean success = Spotify.createSpotifyConnection();
+                Platform.runLater(() -> {
+                    hideOverlay();
+                    if (success) {
+                        PARENT.initialiseProviderButton();
+                        connections[0].setText("Connected");
+                        connections[0].setStyle("-fx-background-color: rgba(0, 255, 0, 0.2);");
+                    }
+                });
+            });
+            authThread.start();
         });
+        
         User user = Database.getCurrentUser();
-        if (user.provider != null && user.provider.equals("spotify")  && Spotify.requestSpotifyConnection() != null) {
+        if (user.provider != null && user.provider.equals("spotify") && Spotify.requestSpotifyConnection() != null) {
             connections[0].setText("Connected");
-            connections[0].setStyle("""
-                -fx-background-color: rgba(0, 255, 0, 0.2);
-            """);
+            connections[0].setStyle("-fx-background-color: rgba(0, 255, 0, 0.2);");
         }
 
         grid.add(createCell("spotify.png", "Spotify", connections[0]), 0, 0);
@@ -111,8 +127,11 @@ public class ProviderSettingsView {
         // ROOT ASSEMBLY
         // =========================
         root.getChildren().addAll(header, grid, footer);
+        
+        // Inhalt in den Container packen
+        ROOT.getChildren().add(root);
 
-        Scene scene = new Scene(root, 650, 270);
+        Scene scene = new Scene(ROOT, 650, 270);
         ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
 
@@ -120,7 +139,6 @@ public class ProviderSettingsView {
     }
 
     private HBox createCell(String imagePath, String text, Button button) {
-        // Image
         ImageView image = new ImageView(
             new Image(getClass().getResourceAsStream("/icons/" + imagePath))
         );
@@ -128,11 +146,9 @@ public class ProviderSettingsView {
         image.setFitHeight(40);
         image.setPreserveRatio(true);
 
-        // Text
         Label label = new Label(text);
         label.getStyleClass().add("subheader");
 
-        // Button
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
@@ -141,6 +157,60 @@ public class ProviderSettingsView {
         cell.setPadding(new Insets(10));
 
         return cell;
+    }
+
+    // =========================
+    // OVERLAY MANAGEMENT
+    // =========================
+    private void showOverlay() {
+        if (overlay != null) return;
+
+        overlay = new StackPane();
+        overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.6);");
+        overlay.setFocusTraversable(true);
+
+        VBox dialogBox = new VBox(15);
+        dialogBox.setAlignment(Pos.CENTER);
+        dialogBox.setPadding(new Insets(20, 30, 20, 30));
+        dialogBox.setMaxSize(280, 140); // Feste Größe für die innere Box
+
+        dialogBox.setStyle("""
+            -fx-background-color: -fx-background; 
+            -fx-border-color: -fx-box-border;
+            -fx-border-width: 1;
+            -fx-border-radius: 8;
+            -fx-background-radius: 8;
+        """);
+
+        Label messageLabel = new Label("Continue in Browser");
+        messageLabel.getStyleClass().add("subheader");
+
+        Button cancelButton = new Button("Cancel");
+        cancelButton.getStyleClass().add("modern-button");
+        
+        cancelButton.setOnAction(e -> {
+            // Stop background thread
+            if (authThread != null && authThread.isAlive()) {
+                authThread.interrupt(); 
+            }
+            
+            // Stop authentication
+            Spotify.cancelAuthentication();
+            
+            this.hideOverlay();
+        });
+
+        dialogBox.getChildren().addAll(messageLabel, cancelButton);
+        overlay.getChildren().add(dialogBox);
+
+        ROOT.getChildren().add(overlay);
+    }
+
+    private void hideOverlay() {
+        if (overlay != null) {
+            ROOT.getChildren().remove(overlay);
+            overlay = null;
+        }
     }
 
     public void show(Stage parent) {

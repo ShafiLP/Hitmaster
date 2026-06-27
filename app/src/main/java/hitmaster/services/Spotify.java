@@ -32,6 +32,10 @@ public class Spotify {
     public static String CLIENT_ID;
     public static String CLIENT_SECRET;;
 
+    private static HttpServer activeServer;
+    private static CountDownLatch activeLatch;
+    private static boolean wasCancelled = false;
+
     /**
      * Creates a new connection to user's spotify account.
      * User gets redirected to authentification screen.
@@ -39,7 +43,9 @@ public class Spotify {
      * @return Success result.
      */
     public static boolean createSpotifyConnection() {
-        loadEnvValues();
+        Spotify.loadEnvValues();
+        wasCancelled = false;
+
         try {
             // 1) Spotify Login
             SpotifyApi spotify = new SpotifyApi.Builder()
@@ -56,11 +62,12 @@ public class Spotify {
                 .execute();
 
             // 2) Replace code with token
-            HttpServer server = HttpServer.create(new InetSocketAddress(8888), 0);
-            CountDownLatch latch = new CountDownLatch(1);
+            activeServer = HttpServer.create(new InetSocketAddress(8888), 0);
+            activeLatch = new CountDownLatch(1);
             String[] code = new String[1];
+                
 
-            server.createContext("/callback", exchange -> {
+            activeServer.createContext("/callback", exchange -> {
                 try {
                     String query = exchange.getRequestURI().getQuery();
 
@@ -83,14 +90,20 @@ public class Spotify {
                     exchange.close();
                 }
                 finally {
-                    latch.countDown();
+                    activeLatch.countDown();
                 }
             });
 
-            server.start();
+            activeServer.start();
             Desktop.getDesktop().browse(uri);
-            latch.await();
-            server.stop(0);
+
+            activeLatch.await();
+            activeServer.stop(0);
+
+            if (wasCancelled || code[0] == null) {
+                System.out.println("Spotify connection was cancelled by user.");
+                return false;
+            }
 
             AuthorizationCodeCredentials credentials = null;
             try {
@@ -132,6 +145,17 @@ public class Spotify {
         catch (IOException | InterruptedException e) {
             Log.Error("Connection to Spotify failed: " + e.getMessage());
             return false;
+        }
+    }
+
+    public static void cancelAuthentication() {
+        wasCancelled = true;
+        
+        if (activeServer != null) {
+            activeServer.stop(0);
+        }
+        if (activeLatch != null) {
+            activeLatch.countDown();
         }
     }
 

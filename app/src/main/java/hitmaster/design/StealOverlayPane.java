@@ -24,7 +24,7 @@ public class StealOverlayPane extends StackPane {
     private final GameView parentContainer;
 
     /**
-     * Erstellt ein verdunkelndes Overlay.
+     * Creates a dark overlay with timer.
      * @param parentContainer Das Container-Pane der GameView (z.B. die View selbst), aus dem sich das Overlay später wieder entfernt.
      * @param initialSeconds Die Startzeit für den Timer in Sekunden.
      */
@@ -32,7 +32,7 @@ public class StealOverlayPane extends StackPane {
         this.parentContainer = parentContainer;
         this.remainingSeconds = initialSeconds;
 
-        // 1) Hintergrund verdunkeln (Halbtransparentes Schwarz)
+        // 1) Darken background
         this.setStyle("-fx-background-color: rgba(0, 0, 0, 0.75);");
 
         this.prefWidthProperty().bind(parentContainer.widthProperty());
@@ -40,7 +40,7 @@ public class StealOverlayPane extends StackPane {
         
         this.setFocusTraversable(true); 
 
-        // 2) UI-Elemente erstellen
+        // 2) Create UI elements
         timerLabel = new Label(String.valueOf(remainingSeconds));
         timerLabel.setFont(Font.font("System", FontWeight.BOLD, 48));
         timerLabel.setTextFill(Color.WHITE);
@@ -49,27 +49,26 @@ public class StealOverlayPane extends StackPane {
         actionButton.setFont(Font.font("System", FontWeight.NORMAL, 18));
         actionButton.getStyleClass().add("primary-button");
         
-        // Aktion für den Button setzen
+        // Set action for button
         actionButton.setOnAction(e -> {
             this.closeOverlay();
             parentContainer.stealButtonPressed();
         });
 
-        // 3) Enter-Taste an den Button binden
-        // Sobald das Overlay angezeigt wird, lauschen wir auf die ENTER-Taste
+        // 3) Bind Enter Key to Button
         this.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                actionButton.fire(); // Löst den OnAction-Event aus
+                actionButton.fire();
                 event.consume();
             }
         });
 
-        // 4) Layout-Anordnung (Zentrierte VBox im StackPane)
+        // 4) Layout
         VBox contentBox = new VBox(25, timerLabel, actionButton);
         contentBox.setAlignment(Pos.CENTER);
         this.getChildren().add(contentBox);
 
-        // 5) Timer (Timeline) starten
+        // 5) Timer
         this.startTimer();
 
         Platform.runLater(this::requestFocus);
@@ -93,7 +92,7 @@ public class StealOverlayPane extends StackPane {
         if (timeline != null) {
             timeline.stop();
         }
-        // Entfernt sich selbst aus der GameView
+
         if (parentContainer != null) {
             parentContainer.getChildren().remove(this);
         }

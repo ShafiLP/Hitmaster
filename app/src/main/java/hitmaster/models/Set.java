@@ -27,8 +27,8 @@ public class Set {
     public ImageView getImage() {
         return new ImageView(
             new Image(getClass().getResourceAsStream("/setImages/" + img),
-            18,
-            18,
+            500,
+            500,
             true,
             true)
         );
