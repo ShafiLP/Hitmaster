@@ -495,7 +495,14 @@ public class Spotify {
      * Loads CLIENT_ID and CLIENT_SECRET from .env file
      */
     private static void loadEnvValues() {
-        Dotenv dotenv = Dotenv.load();
+        String executionPath = System.getProperty("user.dir");
+
+        Dotenv dotenv = Dotenv.configure()
+            .directory(executionPath)
+            .ignoreIfMalformed()
+            .ignoreIfMissing()
+            .load();
+
         CLIENT_ID = dotenv.get("CLIENT_ID");
         CLIENT_SECRET = dotenv.get("CLIENT_SECRET");
     }

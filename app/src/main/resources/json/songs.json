@@ -877,7 +877,7 @@
   {
     "id": 126,
     "titles": ["Männer"],
-    "artists": ["Herbert Grönemeyer"],
+    "artists": ["Herbert Grönemeyer", "Herbert Groenemeyer"],
     "year": 1984,
     "spotify_id": "2PfEAFaaLabTXfmlV58LIj"
   },
@@ -5959,5 +5959,356 @@
     "artists": ["Frei.Wild", "FreiWild", "Frei Wild"],
     "year": 2018,
     "spotify_id": "4LFZgDtqsYwRPiPwsvtvYD"
+  },
+  {
+    "id": 851,
+    "titles": ["Menschenmühle", "Menschenmuehle"],
+    "artists": ["Kanonenfieber"],
+    "year": 2024,
+    "spotify_id": "4lOqPyvR1xRoZgyfjcbL0x"
+  },
+  {
+    "id": 852,
+    "titles": ["Bierosaufus Ex", "Bierosaufus-Ex"],
+    "artists": ["The Butcher Sisters", "Butcher Sisters", "TBS"],
+    "year": 2025,
+    "spotify_id": "5RUNN3SlYt27tn9aiVt0R2"
+  },
+  {
+    "id": 853,
+    "titles": ["Verrückt", "Verrueckt"],
+    "artists": ["Eisbrecher"],
+    "year": 2011,
+    "spotify_id": "2sthTH1yFONaJVw2oEvMKl"
+  },
+  {
+    "id": 854,
+    "titles": ["Kinder An Die Macht"],
+    "artists": ["Herbert Grönemeyer", "Herbert Groenemeyer"],
+    "year": 1986,
+    "spotify_id": "19w8ChnDiyS5Jcj8TLBX6O"
+  },
+  {
+    "id": 855,
+    "titles": ["Keine Amnestie für MTV", "Keine Amnestie für M T V"],
+    "artists": ["Böhse Onkelz", "Boehse Onkelz", "Böse Onkels", "Boese Onkels", "BO"],
+    "year": 2002,
+    "spotify_id": "61mjDq7ShrHXK65WfM1P1Q"
+  },
+  {
+    "id": 856,
+    "titles": ["Terpentin"],
+    "artists": ["Böhse Onkelz", "Boehse Onkelz", "Böse Onkels", "Boese Onkels", "BO"],
+    "year": 1998,
+    "spotify_id": "1QZ2EDvjCPJNv5n9ZVMNuC"
+  },
+  {
+    "id": 857,
+    "titles": ["Alles klar auf der Andrea Doria"],
+    "artists": ["Udo Lindenberg & Das Panik Orchester", "Udo Lindenberg & Das Panik-Orchester", "Udo Lindenberg und Das Panik-Orchester",
+                "Udo Lindenberg und Das Panik Orchester", "Udo Lindenberg"],
+    "year": 1973,
+    "spotify_id": "7J5xzs2XGtGFjoBYfGQwnd"
+  },
+  {
+    "id": 858,
+    "titles": ["Und Es War Sommer"],
+    "artists": ["Peter Maffay"],
+    "year": 1976,
+    "spotify_id": "4i6mkvKRIO07bHANBNRDWe"
+  },
+  {
+    "id": 859,
+    "titles": ["Mit Pfefferminz Bin Ich Dein Prinz"],
+    "artists": ["Westernhagen", "Marius-Müller Westernhagen", "Marius Müller Westernhagen", "Marius Westernhagen"],
+    "year": 1978,
+    "spotify_id": "61uIub4nS6R2qjmoFX1BWk"
+  },
+  {
+    "id": 860,
+    "titles": ["Willenlos"],
+    "artists": ["Westernhagen", "Marius-Müller Westernhagen", "Marius Müller Westernhagen", "Marius Westernhagen"],
+    "year": 1994,
+    "spotify_id": "46vOwVfosQJ4bFdY1ryVnU"
+  },
+  {
+    "id": 861,
+    "titles": ["Gute Zeiten"],
+    "artists": ["Sondaschule"],
+    "year": 2021,
+    "spotify_id": "7h8ZT9G1pNFd9orlwaXNoe"
+  },
+  {
+    "id": 862,
+    "titles": ["Was Uns High Macht"],
+    "artists": ["Provinz"],
+    "year": 2019,
+    "spotify_id": "7nrjWF8qnqT59lIFLLh1Di"
+  },
+  {
+    "id": 863,
+    "titles": ["Komplett Im Arsch"],
+    "artists": ["Feine Sahne Fischfilet", "FSF"],
+    "year": 2012,
+    "spotify_id": "3P3FtBvq2ScPgichia9u6a"
+  },
+  {
+    "id": 864,
+    "titles": ["Alles Auf Rausch"],
+    "artists": ["Feine Sahne Fischfilet", "FSF"],
+    "year": 2017,
+    "spotify_id": "2IHmEQ3gHMjJZUYdKTt0Vb"
+  },
+  {
+    "id": 865,
+    "titles": ["Kopf Oder Zahl"],
+    "artists": ["Jennifer Rostock", "Rostock"],
+    "year": 2008,
+    "spotify_id": "0pTuBfTJ3fAqgXPv0q4u7H"
+  },
+  {
+    "id": 866,
+    "titles": ["Pocahontas"],
+    "artists": ["AnnenMayKantereit", "Annen May Kantereit"],
+    "year": 2016,
+    "spotify_id": "4poYvYKOKtpAOoXSIYeU0A"
+  },
+  {
+    "id": 867,
+    "titles": ["Landungsbrücken Raus"],
+    "artists": ["Kettcar"],
+    "year": 2002,
+    "spotify_id": "3RHaMwcMM8rL1pkI2DtCNC"
+  },
+  {
+    "id": 868,
+    "titles": ["Ich Sang Die Ganze Zeit Von Dir"],
+    "artists": ["Tomte", "Thees Uhlmann"],
+    "year": 2006,
+    "spotify_id": "2Yr4E5B39z8Te3FMPUS9Q5"
+  },
+  {
+    "id": 869,
+    "titles": ["Zum Laichen und Sterben Ziehen Die Lachse Den Fluss Hinauf"],
+    "artists": ["Thees Uhlmann", "Tomte"],
+    "year": 2011,
+    "spotify_id": "1DCx5SCqZGVUgnxEMkd91p"
+  },
+  {
+    "id": 870,
+    "titles": ["Perfekte Welle", "Die Perfekte Welle"],
+    "artists": ["Juli"],
+    "year": 2004,
+    "spotify_id": "2LV5joNDrsyuXEh4FBARVK"
+  },
+  {
+    "id": 871,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 872,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 873,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 874,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 875,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 876,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 877,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 878,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 879,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 880,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 881,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 882,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 883,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 884,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 885,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 886,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 887,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 888,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 889,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 890,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 891,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 892,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 893,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 894,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 895,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 896,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 897,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 898,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 899,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 900,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
   }
 ]

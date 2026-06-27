@@ -10,6 +10,8 @@ plugins {
     java
     application
     id("org.openjfx.javafxplugin") version "0.1.0"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("edu.sc.seis.launch4j") version "4.0.0"
 }
 
 repositories {
@@ -39,6 +41,26 @@ application {
 javafx {
     version = "21"
     modules = listOf("javafx.controls", "javafx.fxml", "javafx.media", "javafx.swing")
+}
+
+tasks.shadowJar {
+    archiveClassifier.set("all")
+    manifest {
+        attributes["Main-Class"] = "hitmaster.Main"
+    }
+}
+
+launch4j {
+    outputDir.set(layout.buildDirectory.dir("distributions").get().asFile.absolutePath)
+    outfile.set("HitMaster.exe")
+    
+    setJarTask(tasks.shadowJar.get())
+    
+    mainClassName.set("hitmaster.Launcher")
+    dontWrapJar.set(false)
+    
+    headerType.set("gui")
+    jreMinVersion.set("21")
 }
 
 tasks.named<Test>("test") {
