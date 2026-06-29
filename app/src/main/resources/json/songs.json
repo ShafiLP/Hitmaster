@@ -4212,7 +4212,7 @@
   {
     "id": 602,
     "titles": ["Creep"],
-    "artists": ["Radiohead"],
+    "artists": ["Radiohead", "Radio Head"],
     "year": 1992,
     "spotify_id": "70LcF31zb1H0PyJoS1Sx1r"
   },
@@ -7369,349 +7369,772 @@
     "titles": ["There Is a Light That Never Goes Out", "There's a Light That Never Goes Out"],
     "artists": ["The Smiths", "Smiths"],
     "year": 1992,
-    "spotify_id": "https://open.spotify.com/track/0WQiDwKJclirSYG9v5tayI"
+    "spotify_id": "0WQiDwKJclirSYG9v5tayI"
   },
   {
     "id": 1052,
     "titles": ["Closer"],
     "artists": ["Nine Inch Nails", "NIN"],
     "year": 1994,
-    "spotify_id": "https://open.spotify.com/track/5mc6EyF1OIEOhAkD0Gg9Lc"
+    "spotify_id": "5mc6EyF1OIEOhAkD0Gg9Lc"
   },
   {
     "id": 1053,
     "titles": ["Bad Reputation"],
     "artists": ["Joan Jett & The Blackhearts", "Joan Jett and The Blackhearts", "Joan Jett", "The Blackhearts", "Blackhearts"],
     "year": 1980,
-    "spotify_id": "https://open.spotify.com/track/7pu8AhGUxHZSCWTkQ2eb5M"
+    "spotify_id": "7pu8AhGUxHZSCWTkQ2eb5M"
   },
   {
     "id": 1054,
     "titles": ["Spirit In The Sky"],
     "artists": ["Norman Greenbaum"],
     "year": 1969,
-    "spotify_id": "https://open.spotify.com/track/0jvN7eQJJt4nxQzgQfZ1SP"
+    "spotify_id": "0jvN7eQJJt4nxQzgQfZ1SP"
   },
   {
     "id": 1055,
     "titles": ["Take It Off"],
     "artists": ["The Donnas", "Donnas"],
     "year": 2002,
-    "spotify_id": "https://open.spotify.com/track/6QyBIZEvs11K9lKjyLYtv6"
+    "spotify_id": "6QyBIZEvs11K9lKjyLYtv6"
   },
   {
     "id": 1056,
     "titles": ["Stranglehold"],
     "artists": ["Ted Nugent", "Theodore Nugent"],
     "year": 1975,
-    "spotify_id": "https://open.spotify.com/track/2f0P7iELCvAlV8j6Z3rGDE"
+    "spotify_id": "2f0P7iELCvAlV8j6Z3rGDE"
   },
   {
     "id": 1057,
     "titles": ["Sleeping My Day Away"],
     "artists": ["D-A-D", "DAD", "Disneyland After Dark"],
     "year": 1989,
-    "spotify_id": "https://open.spotify.com/track/5ZuXgk0enEvv2HlnUe2rj3"
+    "spotify_id": "5ZuXgk0enEvv2HlnUe2rj3"
   },
   {
     "id": 1058,
     "titles": ["Living In America"],
     "artists": ["The Sounds", "Sounds"],
     "year": 2002,
-    "spotify_id": "https://open.spotify.com/track/5FQ2oC15Omm9sdBZVQTPjw"
+    "spotify_id": "5FQ2oC15Omm9sdBZVQTPjw"
   },
   {
     "id": 1059,
     "titles": ["Shake, Rattle and Roll", "Shake, Rattle & Roll"],
     "artists": ["Bill Haley & His Comets", "Bill Haley and His Comets", "Bill Haley"],
     "year": 1954,
-    "spotify_id": "https://open.spotify.com/track/5z2Gef9D3UgRquZXe7UUW4"
+    "spotify_id": "5z2Gef9D3UgRquZXe7UUW4"
   },
   {
     "id": 1060,
     "titles": ["Double Nature"],
     "artists": ["Mustasch"],
     "year": 2007,
-    "spotify_id": "https://open.spotify.com/track/5xA9VxfWPaJ3Ivspz3JRLh"
+    "spotify_id": "5xA9VxfWPaJ3Ivspz3JRLh"
   },
   {
     "id": 1061,
     "titles": ["Maggie May"],
     "artists": ["Rod Stewart"],
     "year": 1971,
-    "spotify_id": "https://open.spotify.com/track/7GSwMCEpyPiG5xKAQZX09x"
+    "spotify_id": "7GSwMCEpyPiG5xKAQZX09x"
   },
   {
     "id": 1062,
     "titles": ["Do I Wanna Know?", "Do I Want To Know?"],
     "artists": ["Arctic Monkeys", "The Arctic Monkeys", "AM"],
     "year": 2013,
-    "spotify_id": "https://open.spotify.com/track/5FVd6KXrgO9B3JPmC8OPst"
+    "spotify_id": "5FVd6KXrgO9B3JPmC8OPst"
   },
   {
     "id": 1063,
     "titles": ["Sweater Weather"],
     "artists": ["The Neighbourhood", "Neighbourhood"],
     "year": 2012,
-    "spotify_id": "https://open.spotify.com/track/2QjOHCTQ1Jl3zawyYOpxh6"
+    "spotify_id": "2QjOHCTQ1Jl3zawyYOpxh6"
   },
   {
     "id": 1064,
     "titles": ["All My Friends Are Dead"],
     "artists": ["Turbonegro", "Turbo Negro"],
     "year": 2005,
-    "spotify_id": "https://open.spotify.com/track/6fEztciYVlIyWTBe66clVj"
+    "spotify_id": "6fEztciYVlIyWTBe66clVj"
   },
   {
     "id": 1065,
     "titles": ["With Arms Wide Open"],
     "artists": ["Creed"],
     "year": 2000,
-    "spotify_id": "https://open.spotify.com/track/0eKyHwckh9vQb8ncZ2DXCs"
+    "spotify_id": "0eKyHwckh9vQb8ncZ2DXCs"
   },
   {
     "id": 1066,
     "titles": ["Whatever You Want"],
     "artists": ["Status Quo", "SQ"],
     "year": 1979,
-    "spotify_id": "https://open.spotify.com/track/2kUzt5LsTUR0ggquP7O3eN"
+    "spotify_id": "2kUzt5LsTUR0ggquP7O3eN"
   },
   {
     "id": 1067,
     "titles": ["Man Must Dance"],
     "artists": ["Johnossi"],
     "year": 2006,
-    "spotify_id": "https://open.spotify.com/track/7FxmsmphMyy09gdqGHeqFC"
+    "spotify_id": "7FxmsmphMyy09gdqGHeqFC"
   },
   {
     "id": 1068,
     "titles": ["Highway To Hell"],
     "artists": ["AC/DC", "ACDC", "AC DC"],
     "year": 1979,
-    "spotify_id": "https://open.spotify.com/track/2zYzyRzz6pRmhPzyfMEC8s"
+    "spotify_id": "2zYzyRzz6pRmhPzyfMEC8s"
   },
   {
     "id": 1069,
     "titles": ["Beast of Burden"],
     "artists": ["Bette Midler"],
     "year": 1984,
-    "spotify_id": "https://open.spotify.com/track/6TgqY8Vfm4StBe8hsxi3Ti"
+    "spotify_id": "6TgqY8Vfm4StBe8hsxi3Ti"
   },
   {
     "id": 1070,
     "titles": ["Rocket 88", "Rocket Eighty-Eight", "Rocket Eighty Eight"],
     "artists": ["Ike Turner"],
     "year": 1951,
-    "spotify_id": "https://open.spotify.com/track/4IiEsxrgzIMdqoN3dwxk6g"
+    "spotify_id": "4IiEsxrgzIMdqoN3dwxk6g"
   },
   {
     "id": 1071,
     "titles": ["Devil"],
     "artists": ["Shinedown"],
     "year": 2018,
-    "spotify_id": "https://open.spotify.com/track/2hEYslbdYWFSIA6JboUvnR"
+    "spotify_id": "2hEYslbdYWFSIA6JboUvnR"
   },
   {
     "id": 1072,
     "titles": ["Thunder Kiss '65", "Thunder Kiss", "Thunder Kiss 1965"],
     "artists": ["White Zombie"],
     "year": 1992,
-    "spotify_id": "https://open.spotify.com/track/4tvBoSWeIW0bjhKNre5mod"
+    "spotify_id": "4tvBoSWeIW0bjhKNre5mod"
   },
   {
     "id": 1073,
     "titles": ["Old Time Rock and Roll", "Old Time Rock'n'Roll"],
     "artists": ["Bob Seger"],
     "year": 1979,
-    "spotify_id": "https://open.spotify.com/track/5EOoMWIB9iK4ZpcSex9Ec7"
+    "spotify_id": "5EOoMWIB9iK4ZpcSex9Ec7"
   },
   {
     "id": 1074,
     "titles": ["Since You Been Gone"],
     "artists": ["Rainbow"],
     "year": 1979,
-    "spotify_id": "https://open.spotify.com/track/6xq5DxZWGgdStAxGAil0yw"
+    "spotify_id": "6xq5DxZWGgdStAxGAil0yw"
   },
   {
     "id": 1075,
     "titles": ["Complicated"],
     "artists": ["Avril Lavigne", "Avril"],
     "year": 2002,
-    "spotify_id": "https://open.spotify.com/track/5xEM5hIgJ1jjgcEBfpkt2F"
+    "spotify_id": "5xEM5hIgJ1jjgcEBfpkt2F"
   },
   {
     "id": 1076,
     "titles": ["Roll Over Beethoven"],
     "artists": ["Chuck Berry"],
     "year": 1956,
-    "spotify_id": "https://open.spotify.com/track/6C7aTTCUWRK7dD379yUT3W"
+    "spotify_id": "6C7aTTCUWRK7dD379yUT3W"
   },
   {
     "id": 1077,
     "titles": ["Footsteps"],
     "artists": ["Pop Evil"],
     "year": 2015,
-    "spotify_id": "https://open.spotify.com/track/6hvSILCCQT5a0MRcOE36zd"
+    "spotify_id": "6hvSILCCQT5a0MRcOE36zd"
   },
   {
     "id": 1078,
     "titles": ["The Distance", "Distance"],
     "artists": ["Cake"],
     "year": 1996,
-    "spotify_id": "https://open.spotify.com/track/0fsz7tJ7UKXT9hliLfO7aE"
+    "spotify_id": "0fsz7tJ7UKXT9hliLfO7aE"
   },
   {
     "id": 1079,
     "titles": ["Wrong Side of Heaven"],
     "artists": ["Five Finger Death Punch", "FFDP"],
     "year": 2014,
-    "spotify_id": "https://open.spotify.com/track/11Ojp7JniVvwd0gmgvyKkd"
+    "spotify_id": "11Ojp7JniVvwd0gmgvyKkd"
   },
   {
     "id": 1080,
     "titles": ["Peggy Sue"],
     "artists": ["Buddy Holly", "The Crickets", "Crickets"],
     "year": 1957,
-    "spotify_id": "https://open.spotify.com/track/2OARIMw1hpehr86Iwmv04c"
+    "spotify_id": "2OARIMw1hpehr86Iwmv04c"
   },
   {
     "id": 1081,
     "titles": ["We Got The Beat"],
     "artists": ["The Go-Go's", "Go-Go's", "The Go Go's", "Go Go's", "The Go-Gos", "Go-Gos", "The Go Gos", "Go Gos"],
     "year": 1980,
-    "spotify_id": "https://open.spotify.com/track/5kz9GDBTX846OXwqWoyKzF"
+    "spotify_id": "5kz9GDBTX846OXwqWoyKzF"
   },
   {
     "id": 1082,
     "titles": ["All the Young Dudes"],
     "artists": ["Mott The Hoople"],
     "year": 1972,
-    "spotify_id": "https://open.spotify.com/track/0WNGPpmWqzPnk0psUhJ3SX"
+    "spotify_id": "0WNGPpmWqzPnk0psUhJ3SX"
   },
   {
     "id": 1083,
     "titles": ["Slide"],
     "artists": ["The Goo Goo Dolls", "Goo Goo Dolls", "The Go Go Dolls", "Go Go Dolls"],
     "year": 1998,
-    "spotify_id": "https://open.spotify.com/track/0nnwn7LWHCAu09jfuH1xTA"
+    "spotify_id": "0nnwn7LWHCAu09jfuH1xTA"
   },
   {
     "id": 1084,
     "titles": ["Lost in the Dream"],
     "artists": ["The War On Drugs", "War On Drugs"],
     "year": 2014,
-    "spotify_id": "https://open.spotify.com/track/0rUIff1QHd5zlOBtlHVqd9"
+    "spotify_id": "0rUIff1QHd5zlOBtlHVqd9"
   },
   {
     "id": 1085,
     "titles": ["Miss Alissa"],
     "artists": ["Eagles of Death Metal", "EoDM"],
     "year": 2004,
-    "spotify_id": "https://open.spotify.com/track/1YIxmHt4EKS0gMs3L0mxQV"
+    "spotify_id": "1YIxmHt4EKS0gMs3L0mxQV"
   },
   {
     "id": 1086,
     "titles": ["Let's Go Crazy", "Let Us Go Crazy"],
     "artists": ["Prince"],
     "year": 1984,
-    "spotify_id": "https://open.spotify.com/track/0QeI79sp1vS8L3JgpEO7mD"
+    "spotify_id": "0QeI79sp1vS8L3JgpEO7mD"
   },
   {
     "id": 1087,
     "titles": ["Schism"],
     "artists": ["TOOL"],
     "year": 2001,
-    "spotify_id": "https://open.spotify.com/track/55mJleti2WfWEFNFcBduhc"
+    "spotify_id": "55mJleti2WfWEFNFcBduhc"
   },
   {
     "id": 1088,
     "titles": ["Killing in the Name"],
     "artists": ["Rage Against The Machine", "RATM"],
     "year": 1992,
-    "spotify_id": "https://open.spotify.com/track/59WN2psjkt1tyaxjspN8fp"
+    "spotify_id": "59WN2psjkt1tyaxjspN8fp"
   },
   {
     "id": 1089,
     "titles": ["Come Sail Away"],
     "artists": ["Styx"],
     "year": 1977,
-    "spotify_id": "https://open.spotify.com/track/0PsbWiVtix5FoTZ1s00mEl"
+    "spotify_id": "0PsbWiVtix5FoTZ1s00mEl"
   },
   {
     "id": 1090,
     "titles": ["Apache"],
     "artists": ["The Shadows", "Shadows"],
     "year": 1960,
-    "spotify_id": "https://open.spotify.com/track/0sZy1HE2aGBQABHfVRQ4jB"
+    "spotify_id": "0sZy1HE2aGBQABHfVRQ4jB"
   },
   {
     "id": 1091,
     "titles": ["Magic Carpet Ride"],
     "artists": ["Steppenwolf"],
     "year": 1968,
-    "spotify_id": "https://open.spotify.com/track/4c4jJJoaiY21t2TyRZgdWS"
+    "spotify_id": "4c4jJJoaiY21t2TyRZgdWS"
   },
   {
     "id": 1092,
     "titles": ["Atomic City"],
     "artists": ["U2", "U Two"],
     "year": 2023,
-    "spotify_id": "https://open.spotify.com/track/0Zp4PR3jLHfxcXdBdRLh7M"
+    "spotify_id": "0Zp4PR3jLHfxcXdBdRLh7M"
   },
   {
     "id": 1093,
     "titles": ["Only the Lonely (Know the Way I Feel)", "Only the Lonely", "Know the Way I Feel"],
     "artists": ["Roy Orbison", "The Candy Men", "Candy Men"],
     "year": 1960,
-    "spotify_id": "https://open.spotify.com/track/7HZv4KAYOv867dAiZwrFoR"
+    "spotify_id": "7HZv4KAYOv867dAiZwrFoR"
   },
   {
     "id": 1094,
     "titles": ["Louie Louie", "Louie"],
     "artists": ["The Kingsmen", "Kingsmen"],
     "year": 1963,
-    "spotify_id": "https://open.spotify.com/track/0iA3xXSkSCiJywKyo1UKjQ"
+    "spotify_id": "0iA3xXSkSCiJywKyo1UKjQ"
   },
   {
     "id": 1095,
     "titles": ["Through The Fire and Flames", "Through The Fire & Flames"],
     "artists": ["DragonForce", "Dragon Force", "DF"],
     "year": 2006,
-    "spotify_id": "https://open.spotify.com/track/1UMdbkqX19OiwfExH7gzYA"
+    "spotify_id": "1UMdbkqX19OiwfExH7gzYA"
   },
   {
     "id": 1096,
     "titles": ["The Weight", "Weight"],
     "artists": ["The Band", "Band"],
     "year": 1968,
-    "spotify_id": "https://open.spotify.com/track/2UgZeV435iztRTLrUeOrtk"
+    "spotify_id": "2UgZeV435iztRTLrUeOrtk"
   },
   {
     "id": 1097,
     "titles": ["My Demons"],
     "artists": ["Starset"],
     "year": 2013,
-    "spotify_id": "https://open.spotify.com/track/3Xfg7AegXaDLoD5GOUMf2e"
+    "spotify_id": "3Xfg7AegXaDLoD5GOUMf2e"
   },
   {
     "id": 1098,
     "titles": ["Woman"],
     "artists": ["Wolfmother", "Wolf Mother"],
     "year": 2006,
-    "spotify_id": "https://open.spotify.com/track/2pcwmk8c1pTYwX0COSVX52"
+    "spotify_id": "2pcwmk8c1pTYwX0COSVX52"
   },
   {
     "id": 1099,
     "titles": ["Stuck In The Middle With You"],
     "artists": ["Stealers Wheel", "SW"],
     "year": 1973,
-    "spotify_id": "https://open.spotify.com/track/6pNVhq4m3S9iNRxpwmVQZm"
+    "spotify_id": "6pNVhq4m3S9iNRxpwmVQZm"
   },
   {
     "id": 1100,
     "titles": ["The Worrying Kind", "Worrying Kind"],
     "artists": ["The Ark", "Ark"],
     "year": 2026,
-    "spotify_id": "https://open.spotify.com/track/45DP2cidC1BdeIU0WmjIYY"
+    "spotify_id": "45DP2cidC1BdeIU0WmjIYY"
+  },
+  {
+    "id": 1101,
+    "titles": ["Yellow"],
+    "artists": ["Coldplay"],
+    "year": 2000,
+    "spotify_id": "3AJwUDP919kvQ9QcozQPxg"
+  },
+  {
+    "id": 1102,
+    "titles": ["The Best", "Best"],
+    "artists": ["Bonnie Tyler"],
+    "year": 1988,
+    "spotify_id": "3EomK9rNYn6zSle7sMNSde"
+  },
+  {
+    "id": 1103,
+    "titles": ["Cum On Feel the Noize", "Come On Feel the Noize", "Cum On Feel the Noise", "Come On Feel the Noise"],
+    "artists": ["Quiet Riot", "QR"],
+    "year": 1983,
+    "spotify_id": "3vV3cr2TpPqFk07zxYUbla"
+  },
+  {
+    "id": 1104,
+    "titles": ["Hearts On Fire"],
+    "artists": ["HammerFall", "Hammer Fall"],
+    "year": 2002,
+    "spotify_id": "0eV3PB3T0OxW4feG1DlOjQ"
+  },
+  {
+    "id": 1105,
+    "titles": ["Die MF Die", "Die Motherfucker Die", "Die MF", "MF Die", "Die Motherfucker", "Motherfucker Die"],
+    "artists": ["Dope"],
+    "year": 2001,
+    "spotify_id": "5bU4KX47KqtDKKaLM4QCzh"
+  },
+  {
+    "id": 1106,
+    "titles": ["Glycerine"],
+    "artists": ["Bush"],
+    "year": 1996,
+    "spotify_id": "0SQQBl0LIx0tzAr9gHAQXa"
+  },
+  {
+    "id": 1107,
+    "titles": ["Rebel Yell"],
+    "artists": ["Billy Idol"],
+    "year": 1984,
+    "spotify_id": "2ZTIw0fZhFp3nnvF41nvVc"
+  },
+  {
+    "id": 1108,
+    "titles": ["Kool-Aid", "KoolAid", "Cool-Aid", "CoolAid"],
+    "artists": ["Bring Me The Horizon", "BMTH"],
+    "year": 2024,
+    "spotify_id": "1rBiNR61IhvbzeKwfs3AwE"
+  },
+  {
+    "id": 1109,
+    "titles": ["I Can't Dance", "I Can Not Dance", "I Cannot Dance"],
+    "artists": ["Genesis"],
+    "year": 1991,
+    "spotify_id": "0No5Hr1LxZjJHGsQSTy2bm"
+  },
+  {
+    "id": 1110,
+    "titles": ["Space Lord"],
+    "artists": ["Monster Magnet", "MM"],
+    "year": 1998,
+    "spotify_id": "6GGfYfQlQhHidVOJO1tNgK"
+  },
+  {
+    "id": 1111,
+    "titles": ["Californication"],
+    "artists": ["Red Hot Chili Peppers", "RHCP"],
+    "year": 1999,
+    "spotify_id": "48UPSzbZjgc449aqz8bxox"
+  },
+  {
+    "id": 1112,
+    "titles": ["Runaround Sue"],
+    "artists": ["Dion"],
+    "year": 1961,
+    "spotify_id": "3u6v1F9EQqYFaCAou7ipzN"
+  },
+  {
+    "id": 1113,
+    "titles": ["Streets"],
+    "artists": ["Kensington"],
+    "year": 2014,
+    "spotify_id": "61ks9qYaFaMxUGpYsl1BCF"
+  },
+  {
+    "id": 1114,
+    "titles": ["Marquee Moon"],
+    "artists": ["Television"],
+    "year": 1977,
+    "spotify_id": "7Me0vOSlJfaPY7Pc4GeItd"
+  },
+  {
+    "id": 1115,
+    "titles": ["Black Velvet"],
+    "artists": ["Alannah Myles"],
+    "year": 1989,
+    "spotify_id": "1KU5EHSz04JhGg3rReGJ0N"
+  },
+  {
+    "id": 1116,
+    "titles": ["Slow Ride"],
+    "artists": ["Foghat", "Fog Hat"],
+    "year": 1975,
+    "spotify_id": "3OUExRnXWXzMc5sJ39u7ru"
+  },
+  {
+    "id": 1117,
+    "titles": ["This Is My Life"],
+    "artists": ["Gasolin'", "Gasoline"],
+    "year": 1976,
+    "spotify_id": "2aJSaIEowroNh5jq4aADHT"
+  },
+  {
+    "id": 1118,
+    "titles": ["Gypsy Road"],
+    "artists": ["Cinderella"],
+    "year": 1988,
+    "spotify_id": "2F8Glc7r4mHHSCEegD4Ju1"
+  },
+  {
+    "id": 1119,
+    "titles": ["The Beautiful People", "Beautiful People"],
+    "artists": ["Marilyn Manson", "MM"],
+    "year": 1996,
+    "spotify_id": "2aIB1CdRRG7YLBu9hNw9nR"
+  },
+  {
+    "id": 1120,
+    "titles": ["Still Counting"],
+    "artists": ["Volbeat"],
+    "year": 2008,
+    "spotify_id": "7nsO4eXkY7DvrWbjYUDLJS"
+  },
+  {
+    "id": 1121,
+    "titles": ["21st Century (Digital Boy)", "Twenty-First Century (Digital Boy)", "Twenty First Century (Digital Boy)", "Digital Boy"],
+    "artists": ["Bad Religion", "BR"],
+    "year": 1990,
+    "spotify_id": "7C794YeXiiSdlvGLxgabkd"
+  },
+  {
+    "id": 1122,
+    "titles": ["Chelsea Dagger"],
+    "artists": ["The Fratellis", "Fratellis"],
+    "year": 2006,
+    "spotify_id": "1bCmvezFg5MRcENzCGG1Cy"
+  },
+  {
+    "id": 1123,
+    "titles": ["The Gang's All Here", "The Gang is All Here"],
+    "artists": ["Skid Row", "SR"],
+    "year": 2022,
+    "spotify_id": "7rYSaTuE60HiGRnytFcSIc"
+  },
+  {
+    "id": 1124,
+    "titles": ["What It's Like", "What It Is Like"],
+    "artists": ["Everlast"],
+    "year": 1998,
+    "spotify_id": "6vUPPEN2V2lZ78b6DyEIjZ"
+  },
+  {
+    "id": 1125,
+    "titles": ["No One's Gonna Love You", "No One Is Gonna Love You"],
+    "artists": ["Band of Horses", "BoH"],
+    "year": 2008,
+    "spotify_id": "2IvNxLl01CTAfCOA103Tgx"
+  },
+  {
+    "id": 1126,
+    "titles": ["Nobody's Wife", "Nobody His Wife"],
+    "artists": ["Anouk"],
+    "year": 1997,
+    "spotify_id": "1Q0p30HuN1ADMX2CmPzIvO"
+  },
+  {
+    "id": 1127,
+    "titles": ["Radioactive"],
+    "artists": ["Imagine Dragons"],
+    "year": 2026,
+    "spotify_id": "1PzoM54jr13a5eUfCycMKc"
+  },
+  {
+    "id": 1128,
+    "titles": ["Jeremy"],
+    "artists": ["Pearl Jam", "PJ"],
+    "year": 1992,
+    "spotify_id": "62nQ8UZVqR2RMvkJHkcO2o"
+  },
+  {
+    "id": 1129,
+    "titles": ["By The Grace of God"],
+    "artists": ["The Hellacopters", "Hellacopters"],
+    "year": 2002,
+    "spotify_id": "5KpYYRnknZ4rKOk6NYLEjZ"
+  },
+  {
+    "id": 1130,
+    "titles": ["No Cigar", "No Cigarette"],
+    "artists": ["Millencolin"],
+    "year": 2001,
+    "spotify_id": "3KLkRy9l3us98SIp6mmxkk"
+  },
+  {
+    "id": 1131,
+    "titles": ["Reelin' In The Years", "Reeling In The Years"],
+    "artists": ["Steely Dan"],
+    "year": 1972,
+    "spotify_id": "1x1XQqhBViz4opcpwc7FVs"
+  },
+  {
+    "id": 1132,
+    "titles": ["Itchycoo Park"],
+    "artists": ["Small Faces", "SF"],
+    "year": 1967,
+    "spotify_id": "3ogbNolvuLnFZRbfykTfIs"
+  },
+  {
+    "id": 1133,
+    "titles": ["Unbreakable"],
+    "artists": ["Stratovarius"],
+    "year": 2013,
+    "spotify_id": "1IaQLINjiOCSv4INrrv0aS"
+  },
+  {
+    "id": 1134,
+    "titles": ["It's Been Awhile", "It's Been A While", "It Has Been Awhile", "It Has Been A While"],
+    "artists": ["Staind"],
+    "year": 2001,
+    "spotify_id": "1BExV8JprNJLvLeDE9qdEW"
+  },
+  {
+    "id": 1135,
+    "titles": ["In Too Deep"],
+    "artists": ["Sum 41", "Sum Fourty-One", "Sum Fourty One"],
+    "year": 2001,
+    "spotify_id": "1HNE2PX70ztbEl6MLxrpNL"
+  },
+  {
+    "id": 1136,
+    "titles": ["Kathleen"],
+    "artists": ["Catfish and The Bottlemen", "Catfish & The Bottlemen", "Catfish", "The Bottlemen", "Bottlemen"],
+    "year": 2014,
+    "spotify_id": "1MHYAqWWdDRePmnqORynrq"
+  },
+  {
+    "id": 1137,
+    "titles": ["Don't Let Me Be Misunderstood", "Do Not Let Me Be Misunderstood"],
+    "artists": ["The Animals", "Animals"],
+    "year": 1965,
+    "spotify_id": "0KpTFH1SzexN8SGc0GPILC"
+  },
+  {
+    "id": 1138,
+    "titles": ["Karma Police"],
+    "artists": ["Radiohead", "Radio Head"],
+    "year": 1997,
+    "spotify_id": "63OQupATfueTdZMWTxW03A"
+  },
+  {
+    "id": 1139,
+    "titles": ["Rescue Me"],
+    "artists": ["Bell, Book & Candle", "Bell, Book and Candle"],
+    "year": 1997,
+    "spotify_id": "3sryjPEihgzXH84vu943pX"
+  },
+  {
+    "id": 1140,
+    "titles": ["Brand New Cadillac"],
+    "artists": ["Vince Taylor and His Playboys", "Vince Taylor & His Playboys", "Vince Taylor"],
+    "year": 1959,
+    "spotify_id": "40Hx0p4YQp8aiotm6DV1mQ"
+  },
+  {
+    "id": 1141,
+    "titles": ["Don't Look Back in Anger", "Do Not Look Back in Anger"],
+    "artists": ["Oasis"],
+    "year": 1996,
+    "spotify_id": "7ppPZa3TRUSGKaks9wH7VT"
+  },
+  {
+    "id": 1142,
+    "titles": ["Are You Gonna Go My Way", "Are You Going To Go My Way"],
+    "artists": ["Lenny Kravitz"],
+    "year": 1993,
+    "spotify_id": "45Ia1U4KtIjAPPU7Wv1Sea"
+  },
+  {
+    "id": 1143,
+    "titles": ["The Reason", "Reason"],
+    "artists": ["Hoobastank"],
+    "year": 2004,
+    "spotify_id": "5B5eTk7DF8KVp1zpQoY1XY"
+  },
+  {
+    "id": 1144,
+    "titles": ["Youth of The Nation"],
+    "artists": ["P.O.D.", "POD"],
+    "year": 2001,
+    "spotify_id": "0UrWr7Jnu1heq1o99ZwUd0"
+  },
+  {
+    "id": 1145,
+    "titles": ["I'm Gonna Be (500 Miles)", "I Am Gonna Be (500 Miles)",
+               "I'm Goint To Be (500 Miles)", "I Am Goint To Be (500 Miles)",
+               "I'm Gonna Be", "I Am Gonna Be", "I'm Goint To Be", "I Am Goint To Be",
+               "500 Miles", "Fivehundred Miles", "Five Hundred Miles"],
+    "artists": ["The Proclaimers", "Proclaimers"],
+    "year": 1988,
+    "spotify_id": "67iAlVNDDdddxqSD2EZhFs"
+  },
+  {
+    "id": 1146,
+    "titles": ["I Want Out"],
+    "artists": ["Helloween"],
+    "year": 1988,
+    "spotify_id": "5ObemyuL5dhT67hyz1iWlA"
+  },
+  {
+    "id": 1147,
+    "titles": ["Biggest & The Best", "Biggest and The Best"],
+    "artists": ["Clawfinger"],
+    "year": 1997,
+    "spotify_id": "51XrhhPlt1smLatJgcBrUb"
+  },
+  {
+    "id": 1148,
+    "titles": ["Peace of Mind"],
+    "artists": ["Boston"],
+    "year": 1976,
+    "spotify_id": "1GqlvSEtMx5xbGptxOTTyk"
+  },
+  {
+    "id": 1149,
+    "titles": ["Rock The Night"],
+    "artists": ["Europe"],
+    "year": 1985,
+    "spotify_id": "3J9NEWkd9Cx1MwSSvDySkL"
+  },
+  {
+    "id": 1150,
+    "titles": ["Laid To Rest"],
+    "artists": ["Lamb of God"],
+    "year": 2004,
+    "spotify_id": "4VdQBhm4dnvBPgZfFNjSzH"
+  },
+  {
+    "id": 1151,
+    "titles": ["Is This Love"],
+    "artists": ["Whitesnake"],
+    "year": 1987,
+    "spotify_id": "78FzQfooQzB43sGzlpI2At"
+  },
+  {
+    "id": 1152,
+    "titles": ["Going Up The Country"],
+    "artists": ["Canned Heat", "CH"],
+    "year": 1968,
+    "spotify_id": "57460SJgSpCXaRJ9YIYHxy"
+  },
+  {
+    "id": 1153,
+    "titles": ["Aqualung", "Aqua Lung"],
+    "artists": ["Jethro Tull"],
+    "year": 1971,
+    "spotify_id": "5UuikgHTxSRFRnC0zXx10i"
+  },
+  {
+    "id": 1154,
+    "titles": ["Keep On Running"],
+    "artists": ["The Spencer Davis Group", "Spencer Davis Group", "Spencer Davis"],
+    "year": 1965,
+    "spotify_id": "45ghY6i6XTeHuOEtG1HwrQ"
+  },
+  {
+    "id": 1155,
+    "titles": ["Stupid Girl"],
+    "artists": ["Garbage"],
+    "year": 1995,
+    "spotify_id": "4dC0fWZm8tU5dNdVutSMVP"
+  },
+  {
+    "id": 1156,
+    "titles": ["Limelight", "Lime Light"],
+    "artists": ["Rush"],
+    "year": 1981,
+    "spotify_id": "0K6yUnIKNsFtfIpTgGtcHm"
+  },
+  {
+    "id": 1157,
+    "titles": ["Bohemian Like You"],
+    "artists": ["The Dandy Warhols", "Dandy Warhols", "DH"],
+    "year": 2000,
+    "spotify_id": "3APHT3KjbHi9OllkVQsuXF"
+  },
+  {
+    "id": 1158,
+    "titles": ["Amaranth"],
+    "artists": ["Nightwish"],
+    "year": 2007,
+    "spotify_id": "1sXdW94CrEIrYdbfON4Sxt"
+  },
+  {
+    "id": 1159,
+    "titles": ["Any Way You Want It"],
+    "artists": ["Journey"],
+    "year": 1980,
+    "spotify_id": "71SvEDmsOwIWw1IozsZoMA"
+  },
+  {
+    "id": 1160,
+    "titles": ["Someone To Love"],
+    "artists": ["Jefferson Airplane", "JA"],
+    "year": 1967,
+    "spotify_id": "4uGIJG1jYFonGc4LGp5uQL"
   }
 ]
