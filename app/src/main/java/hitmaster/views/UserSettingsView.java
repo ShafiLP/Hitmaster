@@ -152,10 +152,13 @@ public class UserSettingsView {
 
             if (selectedImagePath != null) {
                 try {
-                    File prevFile = new File(user.picture);
+                    if (user.picture != null && !user.picture.isEmpty()) {
+                        File prevFile = new File(user.picture);
 
-                    if (prevFile.exists())
-                        Files.delete(prevFile.toPath());
+                        if (prevFile.exists()) {
+                            Files.delete(prevFile.toPath());
+                        }
+                    }
 
                     File sourceFile = new File(selectedImagePath);
                     String fileName = sourceFile.getName();
