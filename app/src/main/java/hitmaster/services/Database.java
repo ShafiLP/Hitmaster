@@ -102,11 +102,14 @@ public class Database {
             Database.addSetToDatabase(new Set("Bayern1 Expansion", "bavaria-ex.png", "bavaria-ex.png", "bavaria-ex.csv", false));
             addSongsToSetFromCsv("bavaria-ex.csv", 4);
 
+            Database.addSetToDatabase(new Set("Rock & Metal - Nordics", "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
+            addSongsToSetFromCsv("rock-nordics.csv", 5);
+
             Database.addSetToDatabase(new Set("Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
-            addSongsToSetFromCsv("punk-expansion.csv", 5);
+            addSongsToSetFromCsv("punk-expansion.csv", 6);
 
             Database.addSetToDatabase(new Set("Deutschrock Expansion", "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
-            addSongsToSetFromCsv("deutschrock-ex.csv", 6);
+            addSongsToSetFromCsv("deutschrock-ex.csv", 7);
 
             return true;
         }
