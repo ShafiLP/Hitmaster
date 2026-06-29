@@ -1,6 +1,7 @@
 package hitmaster.services;
 
 import java.awt.Desktop;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -133,8 +134,21 @@ public class Spotify {
             props.setProperty("accessToken", accessToken);
             props.setProperty("refreshToken", refreshToken);
 
-            try (FileOutputStream out = new FileOutputStream("spotify.properties")) {
-                props.store(out, "Spotify Tokens");
+            try {
+                String userHome = System.getProperty("user.home");
+                File appStorageDir = new File(userHome, ".hitmaster");
+
+                if (!appStorageDir.exists())
+                    appStorageDir.mkdir();
+
+                File propertyFile = new File(appStorageDir, "spotify.properties");
+
+                try (FileOutputStream out = new FileOutputStream(propertyFile)) {
+                    props.store(out, "Spotify Tokens");
+                }
+            }
+            catch (IOException e) {
+                Log.Error("Error while saving Spotify properties: " + e.getMessage());
             }
 
             User user = Database.getCurrentUser();
@@ -173,8 +187,21 @@ public class Spotify {
             // 1) Load properties from file
             Properties props = new Properties();
 
-            try (FileInputStream in = new FileInputStream("spotify.properties")) {
-                props.load(in);
+            try {
+                String userHome = System.getProperty("user.home");
+                File propertiesFile = new File(userHome, ".hitmaster/spotify.properties");
+
+                if (propertiesFile.exists()) {
+                    try (FileInputStream in = new FileInputStream(propertiesFile)) {
+                        props.load(in);
+                    }
+                }
+                else {
+                    Log.Warning("No properties file found in directory.");
+                }
+            }
+            catch (IOException e) {
+                Log.Error("Error while loading Spotify properties: " + e.getMessage());
             }
 
             // 2) Build connection to Spotify
@@ -190,7 +217,7 @@ public class Spotify {
             Log.Success("Connection to Spotify was successful.");
             return spotify;
         }
-        catch (IOException e) {
+        catch (Exception e) {
             Log.Error("Connection to Spotify failed: " + e.getMessage());
             return null;
         }

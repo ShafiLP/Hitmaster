@@ -1,5 +1,7 @@
 package hitmaster.models;
 
+import java.io.File;
+
 import hitmaster.services.Log;
 import javafx.scene.image.Image;
 
@@ -10,14 +12,14 @@ public class User {
     public String provider;
 
     public Image getImage() {
-        if (picture == null)
+        if (picture == null || picture.isEmpty())
             return null;
 
         try {
-            var resourceUrl = getClass().getResource("/" + picture);
+            File file = new File(picture);
 
-            if (resourceUrl != null)
-                return new Image(resourceUrl.toExternalForm(), 0, 0, true, true, false);
+            if (file.isAbsolute() && file.exists())
+                return new Image(file.toURI().toString(), 0, 0, true, true, false);
         }
         catch (Exception e) {
             Log.Error("An error occured while loading user profile picture: " + e.getMessage());

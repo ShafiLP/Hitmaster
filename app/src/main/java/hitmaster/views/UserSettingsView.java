@@ -152,29 +152,27 @@ public class UserSettingsView {
 
             if (selectedImagePath != null) {
                 try {
-                    // 1) Delete previous profile picture
-                    if (user != null && user.picture != null) {
-                        File previousPfp = new File(user.picture);
-                        
-                        if (previousPfp.exists())
-                            Files.delete(previousPfp.toPath());
-                    }
+                    File prevFile = new File(user.picture);
 
-                    // 2) Write new profile picture
+                    if (prevFile.exists())
+                        Files.delete(prevFile.toPath());
+
                     File sourceFile = new File(selectedImagePath);
-
                     String fileName = sourceFile.getName();
                     String extension = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
 
-                    File resourcesDir = new File("src/main/resources");
-                    if (!resourcesDir.exists())
-                        resourcesDir.mkdirs();
+                    String userHome = System.getProperty("user.home");
+                    File appStorageDir = new File(userHome, ".hitmaster/pfp");
 
-                    File destFile = new File(resourcesDir, "userImage" + extension);
+                    if (!appStorageDir.exists()) {
+                        appStorageDir.mkdirs();
+                    }
+
+                    File destFile = new File(appStorageDir, "user_" + user.id + "_" + System.currentTimeMillis() + extension);
 
                     Files.copy(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                    user.picture = "userImage" + extension;
+                    user.picture = destFile.getAbsolutePath();
                 }
                 catch (IOException ex) {
                     Log.Warning("Failed to save profile image: " + ex.getMessage());
