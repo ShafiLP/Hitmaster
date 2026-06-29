@@ -152,6 +152,15 @@ public class UserSettingsView {
 
             if (selectedImagePath != null) {
                 try {
+                    // 1) Delete previous profile picture
+                    if (user != null && user.picture != null) {
+                        File previousPfp = new File(user.picture);
+                        
+                        if (previousPfp.exists())
+                            Files.delete(previousPfp.toPath());
+                    }
+
+                    // 2) Write new profile picture
                     File sourceFile = new File(selectedImagePath);
 
                     String fileName = sourceFile.getName();
@@ -174,11 +183,11 @@ public class UserSettingsView {
                 }
             }
 
-            Database.updateUser(user);
+            if (Database.updateUser(user)) {
+                PARENT.initialiseProviderButton(); 
+                PARENT.updateProfileButton();
+            }
 
-            PARENT.initialiseProviderButton(); 
-            PARENT.updateProfileButton();
-            
             STAGE.close();
         });
 
@@ -256,7 +265,7 @@ public class UserSettingsView {
         canvas.snapshot(null, image);
 
         return image;
-}
+    }
 
     private HBox createSettingRow(String titleText, String descText, javafx.scene.Node control) {
         Label rowTitle = new Label(titleText);

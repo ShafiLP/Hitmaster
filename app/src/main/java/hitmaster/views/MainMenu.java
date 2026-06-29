@@ -370,8 +370,6 @@ public class MainMenu {
 
             PROFILE.setGraphic(icon);
             PROFILE.setContentDisplay(ContentDisplay.LEFT);
-        } else {
-            PROFILE.setGraphic(null); 
         }
     }
 }
