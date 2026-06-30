@@ -32,6 +32,7 @@ public final class GameLogic {
     private final Player[] PLAYERS;
     private final boolean MULTIPLAYER;
     private int currentPlayerIdx = 0;
+    private boolean hasPlayer = false;
 
     private final List<Song> SONGS;
     private Song currentSong;
@@ -59,6 +60,8 @@ public final class GameLogic {
      */
     public GameLogic(GameOptions OPTIONS, boolean isHost, NetworkManager netManager) {
         this.MUSICPLAYER = new MusicPlayer();
+        hasPlayer = MUSICPLAYER.validateConnection();
+
         this.OPTIONS = OPTIONS;
         this.PLAYERS = OPTIONS.players;
         this.MULTIPLAYER = (PLAYERS.length > 1);
@@ -484,6 +487,8 @@ public final class GameLogic {
     // ==============================
 
     public void togglePlayPause(Song song, boolean play) {
+        if (!hasPlayer) return;
+
         if (play) {
             MUSICPLAYER.play(song);
         } else {
@@ -492,33 +497,47 @@ public final class GameLogic {
     }
 
     public void seek5secForward() {
+        if (!hasPlayer) return;
+        
         MUSICPLAYER.seekForward5sec();
         this.sendObject(new SongDTO(currentSong, "SONG:FORWARD"));
     }
 
     public void seek5secBackward() {
+        if (!hasPlayer) return;
+        
         MUSICPLAYER.seekForward5sec();
         this.sendObject(new SongDTO(currentSong, "SONG:BACKWARD"));
     }
 
     public void restartCurrentSong() {
+        if (!hasPlayer) return;
+        
         MUSICPLAYER.restart(currentSong);
         this.sendObject(new SongDTO(currentSong, "SONG:RESTART"));
     }
 
     public String[] getAvailablePlayingDevices() {
+        if (!hasPlayer) return null;
+        
         return MUSICPLAYER.getAvailableDevices();
     }
 
     public String getCurrentPlayingDevice() {
+        if (!hasPlayer) return null;
+        
         return MUSICPLAYER.getCurrentDevice();
     }
 
     public void setPlayerDevice(String device) {
+        if (!hasPlayer) return;
+        
         MUSICPLAYER.setCurrentDevice(device);
     }
 
     public int getVolume() {
+        if (!hasPlayer) return -1;
+        
         return MUSICPLAYER.getVolume();
     }
 

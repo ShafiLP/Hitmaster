@@ -12,6 +12,11 @@ public class MusicPlayer {
         spotifyConnection = Spotify.requestSpotifyConnection();
     }
 
+    public boolean validateConnection() {
+        if (spotifyConnection == null) Log.Info("No connection");
+        return spotifyConnection != null;
+    }
+
     public void playPause(Song song) {
         isPlaying = Spotify.isSongPlaying(spotifyConnection);
 

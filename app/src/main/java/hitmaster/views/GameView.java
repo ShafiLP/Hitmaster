@@ -178,11 +178,24 @@ public class GameView extends Pane {
         deviceDropdown.getStyleClass().add("modern-dropdown");
         deviceDropdown.setPromptText("Device...");
         deviceDropdown.setPrefWidth(130);
-        deviceDropdown.getItems().addAll(GAME.getAvailablePlayingDevices());
-        deviceDropdown.getSelectionModel().select(GAME.getCurrentPlayingDevice());
+
+        String[] devices = GAME.getAvailablePlayingDevices();
+        if (devices != null) {
+            deviceDropdown.getItems().addAll(devices);
+            deviceDropdown.getSelectionModel().select(GAME.getCurrentPlayingDevice());
+        }
+        else {
+            deviceDropdown.setDisable(true);
+        }
+
         deviceDropdown.setOnAction(e -> { GAME.setPlayerDevice(deviceDropdown.getValue()); });
 
-        Slider volumeSlider = new Slider(0, 100, GAME.getVolume());
+        int vol = GAME.getVolume();
+        Slider volumeSlider = new Slider(0, 100, vol >= 0 ? vol : 0);
+
+        if (vol == -1)
+            volumeSlider.setDisable(true);
+        
         volumeSlider.getStyleClass().add("modern-slider");
         volumeSlider.setOnMouseReleased(e -> { GAME.setVolume((int) volumeSlider.getValue()); });
         HBox.setHgrow(volumeSlider, Priority.ALWAYS);

@@ -404,7 +404,8 @@ public class Spotify {
                 return deviceNames;
             }
 
-            throw new Error("No devices found.");
+            Log.Warning("No Spotify device for playing songs found: Returning null.");
+            return null;
         }
         catch (IOException | ParseException | SpotifyWebApiException e) {
             Log.Error("Error occured while fetching devices: " + e.getMessage());
@@ -429,7 +430,8 @@ public class Spotify {
             if (currentDevice != null)
                 return currentDevice.getName();
             
-            throw new Error("No device found (currentDevice is null).");
+            Log.Warning("No Spotify device for playing songs found: Returning null.");
+            return null;
         }
         catch (IOException | ParseException | SpotifyWebApiException e) {
             Log.Error("Error occured while fetching devices: " + e.getMessage());
@@ -495,11 +497,12 @@ public class Spotify {
                     return device.getVolume_percent();
             }
 
-            throw new Error("Context or Device is null.");
+            Log.Warning("Context or Device is null: Returning -1.");
+            return -1;
         }
         catch (IOException | ParseException | SpotifyWebApiException e) {
             Log.Error("Error occured while changing volume of current user playback: " + e.getMessage());
-            return 0;
+            return -1;
         }
     }
 

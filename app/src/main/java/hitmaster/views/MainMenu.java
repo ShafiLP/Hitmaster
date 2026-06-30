@@ -118,6 +118,13 @@ public class MainMenu {
                     StyleDialog.errorDialog("Error", "Error while starting game:\n" + ex.getMessage());
                 }
             }
+            else {
+                boolean continueWithoutProv = StyleDialog.questionDialog("No Provider", "No music provider is set. To listen to the songs the host must play them to you.\nWould you like to continue?", "OK");
+                if (continueWithoutProv) {
+                    MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView(this);
+                    multiplayerMenuView.show(STAGE);
+                }
+            }
         });
 
         // Quit Button
