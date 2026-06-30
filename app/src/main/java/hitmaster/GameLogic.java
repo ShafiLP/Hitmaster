@@ -237,7 +237,7 @@ public final class GameLogic {
         // 3) Search for index
         int insertionIdx = -1;
         for (int i = 1; i < player.songs.size(); i++) {
-            if (player.songs.get(i - 1).year < currentSong.year && player.songs.get(i).year > currentSong.year) {
+            if (player.songs.get(i - 1).year <= currentSong.year && player.songs.get(i).year >= currentSong.year) {
                 insertionIdx = i;
                 break;
             }
@@ -493,14 +493,17 @@ public final class GameLogic {
 
     public void seek5secForward() {
         MUSICPLAYER.seekForward5sec();
+        this.sendObject(new SongDTO(currentSong, "SONG:FORWARD"));
     }
 
     public void seek5secBackward() {
         MUSICPLAYER.seekForward5sec();
+        this.sendObject(new SongDTO(currentSong, "SONG:BACKWARD"));
     }
 
     public void restartCurrentSong() {
         MUSICPLAYER.restart(currentSong);
+        this.sendObject(new SongDTO(currentSong, "SONG:RESTART"));
     }
 
     public String[] getAvailablePlayingDevices() {
@@ -664,6 +667,30 @@ public final class GameLogic {
 
             case "CLIENT_FINISH_TURN":
                 this.finishTurn();
+            break;
+
+            case "SONG":
+                switch (parts[1]) {
+                    case "PLAY":
+                        this.togglePlayPause(currentSong, true);
+                    break;
+
+                    case "PAUSE":
+                        this.togglePlayPause(currentSong, false);
+                    break;
+
+                    case "FORWARD":
+                        this.seek5secForward();
+                    break;
+
+                    case "BACKWARD":
+                        this.seek5secBackward();
+                    break;
+
+                    case "RESTART":
+                        this.restartCurrentSong();
+                    break;
+                }
             break;
 
             case "CHAT":

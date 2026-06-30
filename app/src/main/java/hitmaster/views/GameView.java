@@ -162,10 +162,10 @@ public class GameView extends Pane {
         SKIP.getStyleClass().add("modern-button");
         INSERT.getStyleClass().add("modern-button");
 
-        BACKWARD.setOnAction(e -> GAME.seek5secBackward());
-        PLAYPAUSE.setOnAction(e -> this.playPause());
-        FORWARD.setOnAction(e -> GAME.seek5secForward());
-        RESTART.setOnAction(e -> GAME.restartCurrentSong());
+        BACKWARD.setOnAction(e -> { GAME.seek5secBackward(); GAME.sendObject("SONG:BACKWARD"); } );
+        PLAYPAUSE.setOnAction(e -> { this.playPause(); });
+        FORWARD.setOnAction(e -> { GAME.seek5secForward(); GAME.sendObject("SONG:FORWARD"); });
+        RESTART.setOnAction(e -> { GAME.restartCurrentSong(); GAME.sendObject("SONG:RESTART"); });
         SKIP.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 1) GAME.skipCurrentSong(); });
         INSERT.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 3) GAME.insertCardIntoStrip(); });
 
@@ -222,6 +222,7 @@ public class GameView extends Pane {
 
         currentCard.togglePlayPause();
         GAME.togglePlayPause(currentCard.song, currentCard.isPlaying);
+        GAME.sendObject(currentCard.isPlaying ? "SONG:PLAY" : "SONG:PAUSE");
     }
 
     /**
@@ -351,8 +352,9 @@ public class GameView extends Pane {
         if (guess) {
             GAME.addCardToPlayerSorted(GAME.getCurrentPlayer());
             if (GAME.checkForWin(STRIP.getSongCards())) {
+                Player winner = GAME.getCurrentPlayer();
                 Platform.runLater(() -> {
-                    CHAT.addSuccessMessage(GAME.getCurrentPlayer().username + " won the game!");
+                    CHAT.addSuccessMessage(winner.username + " won the game!");
 
                     if (timerUnit != null)
                         timerUnit.stop();
@@ -729,6 +731,8 @@ public class GameView extends Pane {
         stealCard.toFront();
         STRIP.registerExternalCard(stealCard);
         this.getChildren().add(stealCard);
+
+        this.setInputsEnabled(true);
     }
 
     /**

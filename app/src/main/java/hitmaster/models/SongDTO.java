@@ -11,13 +11,15 @@ public class SongDTO implements Serializable {
     public int year;
     public List<String> artists;
     public List<String> titles;
-    public String purpose; 
+    public String spotifyUri;
+    public String purpose;
 
     public List<SongDTO> songList;
 
     public SongDTO(Song song, String purpose) {
         this.id = song.id;
         this.year = song.year;
+        this.spotifyUri = song.spotify;
 
         if (song.artists != null) {
             this.artists = new ArrayList<>(song.artists);
