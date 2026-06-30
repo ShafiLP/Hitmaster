@@ -3,6 +3,7 @@ package hitmaster.models;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,7 +46,10 @@ public class Player implements Serializable {
 
         if (imgPath != null) {
             try {
-                this.img = new Image(getClass().getResourceAsStream("/" + imgPath));
+                File file = new File(imgPath);
+
+                if (file.isAbsolute() && file.exists())
+                this.img = new Image(file.toURI().toString(), 0, 0, true, true, false);
             } 
             catch (Exception e) {
                 this.img = null;
