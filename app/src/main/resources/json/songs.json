@@ -37,7 +37,7 @@
   {
     "id": 6,
     "titles": ["Hangover"],
-    "artists": ["Taio Cruz (feat. Flo Rida)", "Taio Cruz", "Flo Rida"],
+    "artists": ["Taio Cruz (feat. Flo Rida)", "Taio Cruz", "Flo Rida", "Florida"],
     "year": 2011,
     "spotify_id": "23TrBtndcavtlYBQg5GoR8"
   },
@@ -6281,7 +6281,7 @@
   {
     "id": 896,
     "titles": ["Mull of Kintyre"],
-    "artists": ["Paul McCartney & Wings", "Paul McCartney and Wings", "Paul McCartney", "Wings"],
+    "artists": ["Paul McCartney & Wings", "Paul McCartney and Wings", "Paul McCartney", "The Wings", "Wings"],
     "year": 1977,
     "spotify_id": "2eYjEQFSl43STOZZe86QgB"
   },
@@ -8371,7 +8371,7 @@
   {
     "id": 1194,
     "titles": ["Listen To The Music"],
-    "artists": ["The Doobie Brothers", "Doobie Brothers"],
+    "artists": ["The Doobie Brothers", "Doobie Brothers", "DB"],
     "year": 1972,
     "spotify_id": "7Ar4G7Ci11gpt6sfH9Cgz5"
   },
@@ -9819,5 +9819,705 @@
     "artists": ["Mike Krüger", "Mike Krueger"],
     "year": 1983,
     "spotify_id": "6Ad5UmaaLYodJfYUTauDLO"
+  },
+  {
+    "id": 1401,
+    "titles": ["A Thousand Miles"],
+    "artists": ["Vanessa Carlton"],
+    "year": 2002,
+    "spotify_id": "4w1lzcaoZ1IC2K5TwjalRP"
+  },
+  {
+    "id": 1402,
+    "titles": ["Girls Just Want to Have Fun"],
+    "artists": ["Cyndi Lauper"],
+    "year": 1983,
+    "spotify_id": "4y1LsJpmMti1PfRQV9AWWe"
+  },
+  {
+    "id": 1403,
+    "titles": ["Nur In Meinem Kopf"],
+    "artists": ["Andreas Bourani"],
+    "year": 2011,
+    "spotify_id": "6sJqyTUtxpzdISd2iYVAPT"
+  },
+  {
+    "id": 1404,
+    "titles": ["Total Eclipse of The Heart"],
+    "artists": ["Bonnie Tyler"],
+    "year": 1983,
+    "spotify_id": "7wuJGgpTNzbUyn26IOY6rj"
+  },
+  {
+    "id": 1405,
+    "titles": ["Yes Sir, I Can Boogie"],
+    "artists": ["Baccara"],
+    "year": 1977,
+    "spotify_id": "2LScqpywMqGcnum6nNaxXX"
+  },
+  {
+    "id": 1406,
+    "titles": ["Livin' la Vida Loca", "Living la Vida Loca"],
+    "artists": ["Ricky Martin"],
+    "year": 1999,
+    "spotify_id": "0Ph6L4l8dYUuXFmb71Ajnd"
+  },
+  {
+    "id": 1407,
+    "titles": ["Yellow River"],
+    "artists": ["Christie"],
+    "year": 1970,
+    "spotify_id": "4VnzKUBMB6cvog8Jvv1few"
+  },
+  {
+    "id": 1408,
+    "titles": ["Amoi Seg' Ma Uns Wieder", "Einmal Sehen Wir Uns Wieder"],
+    "artists": ["Andreas Gabalier"],
+    "year": 2008,
+    "spotify_id": "1s9Iij8FwCbeyxDCBdlz9P"
+  },
+  {
+    "id": 1409,
+    "titles": ["The Power of Love", "Power of Love"],
+    "artists": ["Huey Lewis & The News", "Huey Lewis and The News", "Huey Lewis", "The News", "News"],
+    "year": 1985,
+    "spotify_id": "2olVm1lHicpveMAo4AUDRB"
+  },
+  {
+    "id": 1410,
+    "titles": ["Music Is the Key"],
+    "artists": ["Sarah Connor (feat. Naturally 7)", "Sarah Connor", "Naturally 7", "Naturally Seven"],
+    "year": 2003,
+    "spotify_id": "2dRrRVZ2P7yc5FFeGTKLNd"
+  },
+  {
+    "id": 1411,
+    "titles": ["Be My Baby"],
+    "artists": ["The Ronettes", "Ronettes"],
+    "year": 1963,
+    "spotify_id": "2G2YzndIA6jeWFPBXhUjh5"
+  },
+  {
+    "id": 1412,
+    "titles": ["I'm Yours", "I Am Yours"],
+    "artists": ["Jason Mraz"],
+    "year": 2008,
+    "spotify_id": "1EzrEOXmMH3G43AXT1y7pA"
+  },
+  {
+    "id": 1413,
+    "titles": ["Magia"],
+    "artists": ["Alvaro Soler"],
+    "year": 2021,
+    "spotify_id": "3KJ1QkwWObfuq54pgwTRyW"
+  },
+  {
+    "id": 1414,
+    "titles": ["Mrs. Robinson", "Mistress Robinson"],
+    "artists": ["Simon & Garfunkel", "Simon and Garfunkel"],
+    "year": 1968,
+    "spotify_id": "0iOZM63lendWRTTeKhZBSC"
+  },
+  {
+    "id": 1415,
+    "titles": ["Forever In Love"],
+    "artists": ["Sylver", "Silver"],
+    "year": 2001,
+    "spotify_id": "4l49RkY90qqeJZ72nVbdkC"
+  },
+  {
+    "id": 1416,
+    "titles": ["Désenchantée", "Disenchanted", "Disappointed"],
+    "artists": ["Kate Ryan"],
+    "year": 2002,
+    "spotify_id": "4yOU9FaCmFFo2qfy1FHIe3"
+  },
+  {
+    "id": 1417,
+    "titles": ["Trustfall", "Trust Fall"],
+    "artists": ["P!nk", "Pink"],
+    "year": 2023,
+    "spotify_id": "1gUwi1o1S9W9P0FQgJdY8s"
+  },
+  {
+    "id": 1418,
+    "titles": ["Never Going Home"],
+    "artists": ["Kungs"],
+    "year": 2021,
+    "spotify_id": "0xfMlIW8lS40qvpsUw1l0X"
+  },
+  {
+    "id": 1419,
+    "titles": ["Engel Wie Du"],
+    "artists": ["Juliane Werding"],
+    "year": 1994,
+    "spotify_id": "6zAHbtMdTtwqxlhzd7dGY0"
+  },
+  {
+    "id": 1420,
+    "titles": ["Promises"],
+    "artists": ["Calvin Harris & Sam Smith", "Calvin Harris and Sam Smith", "Calvin Harris", "Sam Smith"],
+    "year": 2018,
+    "spotify_id": "5N5k9nd479b1xpDZ4usjrg"
+  },
+  {
+    "id": 1421,
+    "titles": ["Stay"],
+    "artists": ["Bonnie Bianco & Pierre Cosso", "Bonnie Bianco", "Pierre Cosso"],
+    "year": 1984,
+    "spotify_id": "0hLHQyq7hpwq4qbXz3WNtH"
+  },
+  {
+    "id": 1422,
+    "titles": ["Human"],
+    "artists": ["The Killers", "Killers"],
+    "year": 2008,
+    "spotify_id": "1sTsuZTdANkiFd7T34H3nb"
+  },
+  {
+    "id": 1423,
+    "titles": ["Nur Ein Kuss, Maddalena", "Nur Ein Kuß, Maddalena", "Nur Ein Kuss", "Nur Ein Kuß"],
+    "artists": ["Michael Holm"],
+    "year": 1974,
+    "spotify_id": "2gT46NitMujTCwYWpwrPNW"
+  },
+  {
+    "id": 1424,
+    "titles": ["Im Himmel Geht Es Weiter"],
+    "artists": ["Matthias Reim"],
+    "year": 1994,
+    "spotify_id": "5lj2XEAhr9jdSpE2v14k0G"
+  },
+  {
+    "id": 1425,
+    "titles": ["Dream of You"],
+    "artists": ["Schiller & Heppner", "Schiller und Heppner", "Schiller", "Heppner"],
+    "year": 2001,
+    "spotify_id": "2vFl6t6ZjyvNCAT1X5N0I5"
+  },
+  {
+    "id": 1426,
+    "titles": ["From Paris to Berlin"],
+    "artists": ["Infernal"],
+    "year": 2004,
+    "spotify_id": "5ClXLJW6OLZuTLCwhmX9h9"
+  },
+  {
+    "id": 1427,
+    "titles": ["Sie Liebt Den DJ", "Sie Liebt Den D J"],
+    "artists": ["Michael Wendler"],
+    "year": 2004,
+    "spotify_id": "1K472pWWx3mGL0UBoT0B7O"
+  },
+  {
+    "id": 1428,
+    "titles": ["Never Ending Song of Love"],
+    "artists": ["The New Seekers", "New Seekers", "NS"],
+    "year": 1971,
+    "spotify_id": "6rbetlu2qWoxKi5c0u70Dq"
+  },
+  {
+    "id": 1429,
+    "titles": ["You Are the Sunshine of My Life"],
+    "artists":["Stevie Wonder"],
+    "year": 1972,
+    "spotify_id": "0n2pjCIMKwHSXoYfEbYMfX"
+  },
+  {
+    "id": 1430,
+    "titles": ["When Love Takes Over"],
+    "artists": ["David Guetta (feat. Kelly Rowland)", "David Guetta", "Kelly Rowland"],
+    "year": 2009,
+    "spotify_id": "619bJQ9uDi8dnXzLebFI7y"
+  },
+  {
+    "id": 1431,
+    "titles": ["Jump"],
+    "artists": ["Van Halen"],
+    "year": 1983,
+    "spotify_id": "6Fba9RZtC6vTY814JToDtP"
+  },
+  {
+    "id": 1432,
+    "titles": ["Marleen"],
+    "artists": ["Marianne Rosenberg", "Mariane Rosenberg"],
+    "year": 1976,
+    "spotify_id": "2HTv1UzO7ksJFqScMYb2NR"
+  },
+  {
+    "id": 1433,
+    "titles": ["You're The First, The Last, My Everything", "You Are The First, The Last, My Everything"],
+    "artists": ["Barry White"],
+    "year": 1974,
+    "spotify_id": "5dXJ1SoksFkgdx3yxIoYNO"
+  },
+  {
+    "id": 1434,
+    "titles": ["Dich Zu Lieben"],
+    "artists": ["Roland Kaiser"],
+    "year": 1981,
+    "spotify_id": "0XYIiBfxfN0TlFGPUNsYZT"
+  },
+  {
+    "id": 1435,
+    "titles": ["Because The Night", "Because of The Night"],
+    "artists": ["Patti Smith", "Patti Smith Group"],
+    "year": 1978,
+    "spotify_id": "0lIoY4ZQsdn5QzhraM9o9u"
+  },
+  {
+    "id": 1436,
+    "titles": ["Zwei Kleine Italiener"],
+    "artists": ["Conny Froboess", "Die Kleine Cornelia", "Conny"],
+    "year": 1962,
+    "spotify_id": "2v3TG35plidR486Cltpgxs"
+  },
+  {
+    "id": 1437,
+    "titles": ["I Will Survive", "I'll Survive"],
+    "artists": ["Gloria Gaynor"],
+    "year": 1978,
+    "spotify_id": "7cv28LXcjAC3GsXbUvXKbX"
+  },
+  {
+    "id": 1438,
+    "titles": ["I Love to Love"],
+    "artists": ["Tina Charles"],
+    "year": 1976,
+    "spotify_id": "5jWI1xNxABzDRFTnD2yp8L"
+  },
+  {
+    "id": 1439,
+    "titles": ["Layla"],
+    "artists": ["DJ Robin & Schürze", "DJ Robin und Schürze", "DJ Robin", "D J Robin", "Schürze", "Schuerze"],
+    "year": 2022,
+    "spotify_id": "3ujiq7yK4Uan5z4876fHLK"
+  },
+  {
+    "id": 1440,
+    "titles": ["Was Für Eine Geile Zeit", "Was Fuer Eine Geile Zeit"],
+    "artists": ["Ben Zucker"],
+    "year": 2017,
+    "spotify_id": "6OniQ6SfLGKJkL0Wn5nNBL"
+  },
+  {
+    "id": 1441,
+    "titles": ["Silly Love Songs"],
+    "artists": ["Paul McCartney & Wings", "Paul McCartney and Wings", "Paul McCartney", "The Wings", "Wings"],
+    "year": 1976,
+    "spotify_id": "3uiMBldZ07pW0ySHDX5gzE"
+  },
+  {
+    "id": 1442,
+    "titles": ["Rude"],
+    "artists": ["Magic!"],
+    "year": 2013,
+    "spotify_id": "6RtPijgfPKROxEzTHNRiDp"
+  },
+  {
+    "id": 1443,
+    "titles": ["Sarà Perché Ti Amo"],
+    "artists": ["Ricchi e Poveri"],
+    "year": 1981,
+    "spotify_id": "7037bX3jdaUWUAXL12CHGy"
+  },
+  {
+    "id": 1444,
+    "titles": ["Not Fair"],
+    "artists": ["Lily Allen"],
+    "year": 2009,
+    "spotify_id": "76VWuBu8qoFxzfhpfW0lE6"
+  },
+  {
+    "id": 1445,
+    "titles": ["Moving On Up"],
+    "artists": ["M People", "MPeople"],
+    "year": 1993,
+    "spotify_id": "6vGW3d8X48CBaLdU0PQbey"
+  },
+  {
+    "id": 1446,
+    "titles": ["Wasted Love"],
+    "artists": ["Ofenbach (feat. Lagique)", "Ofenbach", "Lagique"],
+    "year": 2021,
+    "spotify_id": "1cYyZ1N98GyRS3cMcccFHd"
+  },
+  {
+    "id": 1447,
+    "titles": ["Save Your Tears"],
+    "artists": ["The Weeknd", "The Weekend", "Weeknd", "Weekend"],
+    "year": 2020,
+    "spotify_id": "5QO79kh1waicV47BqGRL3g"
+  },
+  {
+    "id": 1448,
+    "titles": ["Arcade"],
+    "artists": ["Duncan Laurence"],
+    "year": 2019,
+    "spotify_id": "1Xi84slp6FryDSCbzq4UCD"
+  },
+  {
+    "id": 1449,
+    "titles": ["Stay"],
+    "artists": ["Hurts", "The Hurts"],
+    "year": 2010,
+    "spotify_id": "2WmDlNSXpyYgMK0ws7ZWDa"
+  },
+  {
+    "id": 1450,
+    "titles": ["Candy"],
+    "artists": ["Robbie Williams"],
+    "year": 2012,
+    "spotify_id": "5NlFXQ0si6U87gXs6hq81B"
+  },
+  {
+    "id": 1451,
+    "titles": ["Na Na Hey Hey Kiss Him Goodbye", "Kiss Him Goodbye"],
+    "artists": ["Steam"],
+    "year": 1969,
+    "spotify_id": "5xMLcSEstX1jN4arpNXqtX"
+  },
+  {
+    "id": 1452,
+    "titles": ["Gib Mir Sonne"],
+    "artists": ["Rosenstolz", "Rosen Stolz"],
+    "year": 2008,
+    "spotify_id": "3sfKfoEJp8uR7syEMze89R"
+  },
+  {
+    "id": 1453,
+    "titles": ["The Tide Is High", "Tide Is High"],
+    "artists": ["Blondie"],
+    "year": 1980,
+    "spotify_id": "52Rp3xBJFYYdmpgzDy0Quf"
+  },
+  {
+    "id": 1454,
+    "titles": ["Dolce Vita"],
+    "artists": ["Ryan Paris"],
+    "year": 1983,
+    "spotify_id": "6AsF1pBjFMIEMXuA8JgRag"
+  },
+  {
+    "id": 1455,
+    "titles": ["Sucker"],
+    "artists": ["Jonas Brothers", "The Jonas Brothers", "JB"],
+    "year": 2019,
+    "spotify_id": "22vgEDb5hykfaTwLuskFGD"
+  },
+  {
+    "id": 1456,
+    "titles": ["Chirpy Chirpy Cheep Cheep"],
+    "artists": ["Middle of The Road", "The Middle of The Road", "MoTR"],
+    "year": 1970,
+    "spotify_id": "2ZAqFu7QLIoNXSkvpwrKMU"
+  },
+  {
+    "id": 1457,
+    "titles": ["We Don't Talk Anymore", "We Do Not Talk Anymore"],
+    "artists": ["Cliff Richard"],
+    "year": 1979,
+    "spotify_id": "3Ug96zKa29P3vICEEcYajZ"
+  },
+  {
+    "id": 1458,
+    "titles": ["Rosamunde"],
+    "artists": ["Dennie Christian"],
+    "year": 1974,
+    "spotify_id": "2RnfgTNXtmvXRXjSXdMJvB"
+  },
+  {
+    "id": 1459,
+    "titles": ["How Deep Is Your Love"],
+    "artists": ["Bee Gees"],
+    "year": 1977,
+    "spotify_id": "2JoZzpdeP2G6Csfdq5aLXP"
+  },
+  {
+    "id": 1460,
+    "titles": ["Long Train Runnin'", "Long Train Running"],
+    "artists": ["The Doobie Brothers", "Doobie Brothers", "DB"],
+    "year": 1973,
+    "spotify_id": "4nXkbcTj3nyww1cHkw5RAP"
+  },
+  {
+    "id": 1461,
+    "titles": ["Whistle"],
+    "artists": ["Flo Rida", "Florida"],
+    "year": 2012,
+    "spotify_id": "3bC1ahPIYt1btJzSSEyyrF"
+  },
+  {
+    "id": 1462,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1463,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1464,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1465,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1466,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1467,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1468,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1469,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1470,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1471,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1472,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1473,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1474,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1475,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1476,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1477,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1478,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1479,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1480,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1481,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1482,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1483,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1484,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1485,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1486,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1487,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1488,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1489,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1490,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1491,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1492,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1493,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1494,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1495,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1496,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1497,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1498,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1499,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1500,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
   }
 ]
