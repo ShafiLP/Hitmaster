@@ -99,17 +99,20 @@ public class Database {
             Database.addSetToDatabase(new Set("Rock & Metal - DE", "rock-de.jpg", "rock-de.png", "rock-de.csv", false));
             addSongsToSetFromCsv("rock-de.csv", 3);
 
+            Database.addSetToDatabase(new Set("Guilty Pleasures - DE", "guilty-de.png", "guilty-de.png", "guilty-de.csv", false));
+            addSongsToSetFromCsv("guilty-de.csv", 4);
+
             Database.addSetToDatabase(new Set("Bayern1 Expansion", "bavaria-ex.png", "bavaria-ex.png", "bavaria-ex.csv", false));
-            addSongsToSetFromCsv("bavaria-ex.csv", 4);
+            addSongsToSetFromCsv("bavaria-ex.csv", 5);
 
             Database.addSetToDatabase(new Set("Rock & Metal - Nordics", "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
-            addSongsToSetFromCsv("rock-nordics.csv", 5);
+            addSongsToSetFromCsv("rock-nordics.csv", 6);
 
             Database.addSetToDatabase(new Set("Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
-            addSongsToSetFromCsv("punk-expansion.csv", 6);
+            addSongsToSetFromCsv("punk-expansion.csv", 7);
 
             Database.addSetToDatabase(new Set("Deutschrock Expansion", "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
-            addSongsToSetFromCsv("deutschrock-ex.csv", 7);
+            addSongsToSetFromCsv("deutschrock-ex.csv", 8);
 
             return true;
         }
