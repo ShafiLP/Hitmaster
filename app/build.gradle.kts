@@ -10,6 +10,8 @@ plugins {
     java
     application
     id("org.openjfx.javafxplugin") version "0.1.0"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("edu.sc.seis.launch4j") version "4.0.0"
 }
 
 repositories {
@@ -17,15 +19,12 @@ repositories {
     mavenCentral()
 }
 
-/*dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation(libs.junit.jupiter)
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    // This dependency is used by the application.
-    implementation(libs.guava)
-}*/
+dependencies {
+    implementation ("org.xerial:sqlite-jdbc:3.46.1.0")
+    implementation ("se.michaelthelin.spotify:spotify-web-api-java:9.3.0")
+    implementation ("com.google.code.gson:gson:2.11.0")
+    implementation ("io.github.cdimascio:dotenv-java:3.0.0")
+}
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
@@ -41,7 +40,27 @@ application {
 
 javafx {
     version = "21"
-    modules = listOf("javafx.controls", "javafx.fxml")
+    modules = listOf("javafx.controls", "javafx.fxml", "javafx.media", "javafx.swing")
+}
+
+tasks.shadowJar {
+    archiveClassifier.set("all")
+    manifest {
+        attributes["Main-Class"] = "hitmaster.Main"
+    }
+}
+
+launch4j {
+    outputDir.set(layout.buildDirectory.dir("distributions").get().asFile.absolutePath)
+    outfile.set("HitMaster.exe")
+    
+    setJarTask(tasks.shadowJar.get())
+    
+    mainClassName.set("hitmaster.Launcher")
+    dontWrapJar.set(false)
+    
+    headerType.set("gui")
+    jreMinVersion.set("21")
 }
 
 tasks.named<Test>("test") {
