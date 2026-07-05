@@ -2,6 +2,7 @@ package hitmaster;
 
 import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
+import hitmaster.services.UpdateService;
 import hitmaster.views.MainMenu;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,6 +12,9 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) {
+        // 1) Check For Update
+        UpdateService.checkForUpdates();
+
         //! DEBUG
         Database.initializeDatabase();
 

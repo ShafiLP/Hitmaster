@@ -2,8 +2,10 @@ package hitmaster.views;
 
 import java.awt.Desktop;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Properties;
 
 import hitmaster.design.StyleDialog;
 import hitmaster.models.User;
@@ -11,6 +13,7 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.Spotify;
 import hitmaster.services.ThemeManager;
+import hitmaster.services.UpdateService;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,7 +42,7 @@ public class MainMenu {
     private boolean providerStatus = false;
 
     // App Info
-    private final String VERSION = "0.0.1";
+    private final String VERSION = MainMenu.loadVersion();
     private final String AUTHOR = "Shafi";
 
     // UI Elements
@@ -377,6 +380,25 @@ public class MainMenu {
 
             PROFILE.setGraphic(icon);
             PROFILE.setContentDisplay(ContentDisplay.LEFT);
+        }
+    }
+
+    /**
+     * Loads current version of app from project.proerties file.
+     * @return Current app version as String.
+     */
+    private static String loadVersion() {
+        Properties properties = new Properties();
+
+        try (InputStream input = UpdateService.class.getClassLoader().getResourceAsStream("project.properties")) {
+            if (input == null)
+                return "unknown";
+
+            properties.load(input);
+            return properties.getProperty("version", "unknown");
+        }
+        catch (IOException e) {
+            return "unknown";
         }
     }
 }
