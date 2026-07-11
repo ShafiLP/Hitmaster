@@ -15,7 +15,6 @@ import hitmaster.design.StealOverlayPane;
 import hitmaster.design.WinnerPane;
 import hitmaster.models.Player;
 import hitmaster.models.Song;
-import hitmaster.services.Log;
 import hitmaster.services.Timer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -44,8 +43,6 @@ public class GameView extends Pane {
     private final GameLogic GAME;
 
     private Timer timerUnit;
-    private SongCard currentCard;
-    private PlayerCard stealCard = new PlayerCard(null);
     private boolean isStealing = false;
 
     // UI elements
@@ -67,7 +64,14 @@ public class GameView extends Pane {
     private final ImageView PILE_IMAGE;
     private final Label REMAINING_CARDS;
 
+    private SongCard currentCard;
+    private PlayerCard stealCard = new PlayerCard(null);
+
     private OpponentPane OPPONENT_PANE;
+
+    // ==============================
+    // CONSTRUCTOR
+    // ==============================
 
     public GameView(GameLogic GAME) {
         this.GAME = GAME;
@@ -233,6 +237,180 @@ public class GameView extends Pane {
         Platform.runLater(this::requestFocus);
     }
 
+    //#region UI OPERATIONS
+
+    /**
+     * Enables or disables all input methods for Player that owns this view.
+     * @param enabled Boolean if inputs should be enabled or not.
+     */
+    private void setInputsEnabled(boolean enabled) {
+        ARTIST.setDisable(!enabled);
+        TITLE.setDisable(!enabled);
+
+        SUBMIT.setDisable(!enabled);
+        PLAYPAUSE.setDisable(!enabled);
+        BACKWARD.setDisable(!enabled);
+        FORWARD.setDisable(!enabled);
+        RESTART.setDisable(!enabled);
+        SKIP.setDisable(!enabled);
+        INSERT.setDisable(!enabled);
+    }
+
+    // ==============================
+    // Card Operations
+    // ==============================
+
+    /**
+     * Adds a new song as SongCard frame.
+     * Animates Card from Card Pile to center.
+     * Current player can move the card freely and place it in their Card Strip.
+     * @param song Song to add as new SongCard.
+     */
+    public void addToCardStack(Song song) {
+        // 1) Reset borders of opponent cards from previous move
+        if (GAME.isLAN())
+            this.resetOpponentCard();
+
+        // 2) Create a new SongCard
+        SongCard card = new SongCard(this, song);
+
+        Platform.runLater(() -> {
+            // 3) Add & Animate SongCard from Pile to Center
+            Point2D sceneCoords = PILE_IMAGE.localToScene(0, 0);
+            Point2D localCoords = this.sceneToLocal(sceneCoords);
+
+            if (localCoords != null) {
+                card.setLayoutX(localCoords.getX());
+                card.setLayoutY(localCoords.getY());
+            }
+
+            currentCard = card;
+
+            this.getChildren().add(currentCard);
+            currentCard.toFront();
+
+            double targetX = (STRIP.getWidth() - currentCard.getBoundsInLocal().getWidth()) / 2.0;
+            double targetY = (this.getHeight() - card.getBoundsInLocal().getHeight()) / 2.0;
+
+            Timeline timeline = new Timeline();
+
+            KeyValue kvX = new KeyValue(currentCard.layoutXProperty(), targetX);
+            KeyValue kvY = new KeyValue(currentCard.layoutYProperty(), targetY);
+            
+            KeyFrame kf = new KeyFrame(Duration.millis(600), kvX, kvY);
+            timeline.getKeyFrames().add(kf);
+            
+            timeline.setOnFinished(e -> {
+                this.keepCardInBounds(currentCard);
+            });
+        
+            timeline.play();
+
+            this.setInputsEnabled(true);
+            this.initializeNewTimer();
+
+            STRIP.registerExternalCard(currentCard);
+        });
+    }
+
+    /**
+     * Adds a song as SongCard to Card Strip.
+     * Used at the beginning of the game to give players their first card.
+     * @param song Song to place in Card Strip as SongCard.
+     */
+    public void addToCardStrip(Song song) {
+        SongCard card = new SongCard(this, song);
+        card.showFront();
+        STRIP.addCard(card);
+    }
+
+    /**
+     * Inserts current card into current player's Card Strip.
+     * Automatically sorts the Card Strip by Release Year.
+     */
+    public void insertCardIntoStrip(boolean showFront) {
+        Platform.runLater(() -> {
+            STRIP.addCardSorted(currentCard, currentCard.song.year);
+            currentCard.setDraggable(false);
+
+            if (showFront)
+                currentCard.showFront();
+
+            GAME.handleCardMove(STRIP.getCards());
+        });
+    }
+
+    /**
+     * Adds a song as a SongCard to discard pile.
+     * Directly shows Card front.
+     * @param song Song to put in discard Pile.
+     */
+    public void addNewCardToDiscard(Song song) {
+        Platform.runLater(() -> {
+            final SongCard wrongCard = new SongCard(this, song);
+
+            double sceneX = wrongCard.localToScene(0, 0).getX();
+            double sceneY = wrongCard.localToScene(0, 0).getY();
+            Point2D localPos = this.sceneToLocal(sceneX, sceneY);
+
+            STRIP.removeCard(wrongCard, false);
+            if (wrongCard.getParent() != this) {
+                this.getChildren().add(wrongCard);
+            }
+            wrongCard.setLayoutX(localPos.getX());
+            wrongCard.setLayoutY(localPos.getY());
+            wrongCard.setTranslateX(0);
+            wrongCard.setTranslateY(0);
+            wrongCard.toFront();
+
+            wrongCard.showFront();
+
+            DISCARD_PILE.setDiscardedCard(wrongCard);
+        });
+    }
+
+    /**
+     * Marks current SongCard as wrong and moves it to discard pile without taking any other action.
+     * Game will continue without player switch.
+     */
+    public void skipCard() {
+        if (currentCard == null)
+            return;
+
+        Platform.runLater(() -> {
+            currentCard.showFront();
+            currentCard.setBorderColor("rgb(255, 0, 0)");
+
+            final SongCard wrongCard = this.currentCard; 
+    
+            if (wrongCard == null) return;
+
+            double sceneX = wrongCard.localToScene(0, 0).getX();
+            double sceneY = wrongCard.localToScene(0, 0).getY();
+            
+            Point2D localPos = this.sceneToLocal(sceneX, sceneY);
+
+            STRIP.removeCard(wrongCard, false); 
+
+            if (wrongCard.getParent() != this) {
+                this.getChildren().add(wrongCard);
+            }
+
+            wrongCard.setLayoutX(localPos.getX());
+            wrongCard.setLayoutY(localPos.getY());
+            wrongCard.setTranslateX(0);
+            wrongCard.setTranslateY(0);
+            wrongCard.toFront();
+
+            DISCARD_PILE.discardCard(wrongCard);
+        });
+    }
+
+    /**
+     * Keeps a Card object in bounds of frame.
+     * Called when Card gets dragged or frame gets resized.
+     * @param card Card object to keep in bounds.
+     */
     public void keepCardInBounds(Card card) {
         if (card != null) {
             double minX = 0;
@@ -248,7 +426,145 @@ public class GameView extends Pane {
     }
 
     /**
-     * Toggles play and pause for the current song.
+     * Sets counter for remaining cards below Card Pile.
+     * @param remainingCards Cards left in queue.
+     */
+    public void setRemainingCards(int remainingCards) {
+        Platform.runLater(() -> REMAINING_CARDS.setText(remainingCards + " cards left"));
+    }
+
+    // ==============================
+    // Timer Operations
+    // ==============================
+
+    /**
+     * Starts a new timer with starting time being the Move Time of game round.
+     * After times finished, inputs of player will be confirmed like they are at the end of timer.
+     */
+    private void initializeNewTimer() {
+        this.stopTimer();
+
+        timerUnit = new Timer(GAME.getGameOptions().moveTime);
+        timerUnit.start(
+            () -> Platform.runLater(() -> 
+                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+            ),
+            () -> Platform.runLater(() -> {
+                this.confirmInput();
+            })
+        );
+    }
+
+    /**
+     * Sets a visiual timer that won't do any action after timer finished.
+     * @param time Starting time for timer.
+     */
+    public void setTimerForOpponent(int time) {
+        if (timerUnit != null)
+            timerUnit.stop();
+
+        timerUnit = new Timer(time);
+        timerUnit.start(
+            () -> Platform.runLater(() ->
+                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+            ),
+            () -> Platform.runLater(() -> {
+                //
+            })
+        );
+    }
+
+    /**
+     * Stops the current timer.
+     * Action that was given as parameter for end of timer will be ignored.
+     */
+    public void stopTimer() {
+        if (timerUnit != null)
+            timerUnit.stop();
+    }
+
+    // ==============================
+    // Chip Operations
+    // ==============================
+
+    /**
+     * Adds a new Hitmaster Chip to chip pane of the current player.
+     */
+    public void addHitmasterChip() {
+        Platform.runLater(() -> CHIP_PANE.addChip());
+    }
+
+    /**
+     * Removes a Hitmaster Chip from chip pane of the current player.
+     */
+    public void removeHitmasterChip() {
+        Platform.runLater(() -> CHIP_PANE.removeChip());
+    }
+
+    /**
+     * Removes ALL Hitmaster chips from chip pane of the current player.
+     */
+    public void removeAllHitmasterChips() {
+        while (CHIP_PANE.getActiveChipsCount() > 0) {
+            CHIP_PANE.removeChip();
+        }
+    }
+
+    // ==============================
+    // Chat Operations
+    // ==============================
+
+    /**
+     * Adds a new info message to ChatPane.
+     * @param message Content of info message.
+     */
+    public void addInfoMessage(String message) {
+        Platform.runLater(() -> CHAT.addInfoMessage(message));
+    }
+
+    /**
+     * Adds a success message to ChatPane.
+     * @param message Content of success message.
+     */
+    public void addSuccessMessage(String message) {
+        Platform.runLater(() -> CHAT.addSuccessMessage(message));
+    }
+
+    /**
+     * Adds a new error message to ChatPane.
+     * @param message Content of error message.
+     */
+    public void addErrorMessage(String message) {
+        Platform.runLater(() -> CHAT.addErrorMessage(message));
+    }
+
+    /**
+     * Adds a new player message to ChatPane.
+     * @param player Owner of message.
+     * @param message Content of player message.
+     */
+    public void addPlayerMessage(Player player, String message) {
+        Platform.runLater(() -> CHAT.addPlayerMessage(player, message));
+    }
+
+    // ==============================
+    // Get Operations
+    // ==============================
+
+    /**
+     * Gets and returns all SongCards from Card Strip.
+     * @return All SongCard from Card Strip.
+     */
+    public List<Card> getCardsFromStrip() {
+        return STRIP.getCards();
+    }
+
+    //#endregion
+
+    //#region GAME OPERATIONS
+
+    /**
+     * Toggles playing status for the current song.
      * Updates all play/pause buttons on the UI.
      */
     public void playPause() {
@@ -259,51 +575,6 @@ public class GameView extends Pane {
         currentCard.togglePlayPause();
         GAME.togglePlayPause(currentCard.song, currentCard.isPlaying);
         GAME.sendObject(currentCard.isPlaying ? "SONG:PLAY" : "SONG:PAUSE");
-    }
-
-    /**
-     * Starts the countdown for the second player to steal the SongCard by guessing it correct.
-     * If no player interrupts game continues with reveal.
-     */
-    private void startStealTime() {
-        // 1) Lock current guess by disabling all inputs
-        this.setInputsEnabled(false);
-        currentCard.setDraggable(false);
-
-        // 2) Skip if multiplayer is disabled or opponent doesn't have any chips
-        if (!GAME.isMultiplayer() || GAME.getPreviousPlayer().hitmasterPoints < 1) {
-            this.confirmInput();
-            return;
-        }
-
-        // 3) Set Status
-        CHAT.addInfoMessage(GAME.getCurrentPlayer().username + " placed their guess - Other players can now attempt to steal!");
-
-        // 4) Enable steal action
-        if (GAME.isLAN()) {
-            GAME.startStealTimer();
-            currentCard.startCountdown(5);
-        }
-        else {
-            currentCard.setStealState(true);
-
-            // 5) Start Timer
-            if (timerUnit != null)
-                timerUnit.stop();
-            
-            timerUnit = new Timer(3);
-            timerUnit.start(
-                () -> Platform.runLater(() -> 
-                    CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
-                ),
-                () -> Platform.runLater(() -> {
-                    currentCard.setStealState(false);
-
-                    if (!isStealing)
-                        this.confirmInput();
-                })
-            );
-        }
     }
 
     /**
@@ -364,7 +635,7 @@ public class GameView extends Pane {
      * If guess was correct, check for win.
      * If guess was incorrect, move card to discard pile.
      * After checking, continues game with next player.
-     * @param guess
+     * @param guess Boolean if position of guess was correct.
      */
     private void checkForWin(boolean guess) {
         // 1) Reset styles
@@ -439,216 +710,9 @@ public class GameView extends Pane {
         this.initializeNewTimer();
     }
 
-    /**
-     * Adds a song as SongCard to Card Strip.
-     * Used at the beginning of the game to give players their first card.
-     * @param song Song to place in Card Strip as SongCard.
-     */
-    public void addToCardStrip(Song song) {
-        SongCard card = new SongCard(this, song);
-        card.showFront();
-        STRIP.addCard(card);
-    }
+    //#endregion
 
-    /**
-     * Adds a new song as SongCard to stack.
-     * Current player can move the card freely and place it in their Card Strip.
-     * @param song Song for parameter for new SongCard.
-     */
-    public void addToCardStack(Song song) {
-        SongCard card = new SongCard(this, song);
-
-        Platform.runLater(() -> {
-            Point2D sceneCoords = PILE_IMAGE.localToScene(0, 0);
-            Point2D localCoords = this.sceneToLocal(sceneCoords);
-
-            if (localCoords != null) {
-                card.setLayoutX(localCoords.getX());
-                card.setLayoutY(localCoords.getY());
-            }
-
-            currentCard = card;
-
-            this.getChildren().add(currentCard);
-            currentCard.toFront();
-
-            double targetX = (STRIP.getWidth() - currentCard.getBoundsInLocal().getWidth()) / 2.0;
-            double targetY = (this.getHeight() - card.getBoundsInLocal().getHeight()) / 2.0;
-
-            Timeline timeline = new Timeline();
-
-            KeyValue kvX = new KeyValue(currentCard.layoutXProperty(), targetX);
-            KeyValue kvY = new KeyValue(currentCard.layoutYProperty(), targetY);
-            
-            KeyFrame kf = new KeyFrame(Duration.millis(600), kvX, kvY);
-            timeline.getKeyFrames().add(kf);
-            
-            timeline.setOnFinished(e -> {
-                this.keepCardInBounds(currentCard);
-            });
-        
-            timeline.play();
-
-            // Reset border color of opponent card if LAN is active
-            if (GAME.isLAN())
-                this.resetOpponentCard();
-
-            this.setInputsEnabled(true);
-            this.initializeNewTimer();
-
-            STRIP.registerExternalCard(currentCard);
-        });
-
-        //! DEBUG
-        Log.Info("Artist: " + song.artists.getFirst());
-        Log.Info("Name: " + song.titles.getFirst());
-        Log.Info("Year: " + song.year);
-    }
-
-    private void initializeNewTimer() {
-        if (timerUnit != null)
-            timerUnit.stop();
-
-        timerUnit = new Timer(GAME.getGameOptions().moveTime);
-        timerUnit.start(
-            () -> Platform.runLater(() -> 
-                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
-            ),
-            () -> Platform.runLater(() -> {
-                this.confirmInput();
-            })
-        );
-    }
-
-    public void stopTimer() {
-        if (timerUnit != null)
-            timerUnit.stop();
-    }
-
-    public void setRemainingCards(int remainingCards) {
-        Platform.runLater(() -> REMAINING_CARDS.setText(remainingCards + " cards left"));
-    }
-
-    /**
-     * Inserts a card into current player's Card Strip.
-     * Automatically sorts the Card Strip by Release Year.
-     */
-    public void insertCardIntoStrip(boolean showFront) {
-        Platform.runLater(() -> {
-            STRIP.addCardSorted(currentCard, currentCard.song.year);
-            currentCard.setDraggable(false);
-
-            if (showFront)
-                currentCard.showFront();
-
-            GAME.handleCardMove(STRIP.getCards());
-        });
-    }
-
-    /**
-     * Adds a new Hitmaster Chip to chip pane of the current player.
-     */
-    public void addHitmasterChip() {
-        Platform.runLater(() -> CHIP_PANE.addChip());
-    }
-
-    /**
-     * Removes a Hitmaster Chip from chip pane of the current player.
-     */
-    public void removeHitmasterChip() {
-        Platform.runLater(() -> CHIP_PANE.removeChip());
-    }
-
-    /**
-     * Removes ALL Hitmaster chips from chip pane of the current player.
-     */
-    public void removeAllHitmasterChips() {
-        while (CHIP_PANE.getActiveChipsCount() > 0) {
-            CHIP_PANE.removeChip();
-        }
-    }
-
-    public void skipCard() {
-        if (currentCard == null)
-            return;
-
-        Platform.runLater(() -> {
-            currentCard.showFront();
-            currentCard.setBorderColor("rgb(255, 0, 0)");
-
-            final SongCard wrongCard = this.currentCard; 
-    
-            if (wrongCard == null) return;
-
-            double sceneX = wrongCard.localToScene(0, 0).getX();
-            double sceneY = wrongCard.localToScene(0, 0).getY();
-            
-            Point2D localPos = this.sceneToLocal(sceneX, sceneY);
-
-            STRIP.removeCard(wrongCard, false); 
-
-            if (wrongCard.getParent() != this) {
-                this.getChildren().add(wrongCard);
-            }
-
-            wrongCard.setLayoutX(localPos.getX());
-            wrongCard.setLayoutY(localPos.getY());
-            wrongCard.setTranslateX(0);
-            wrongCard.setTranslateY(0);
-            wrongCard.toFront();
-
-            DISCARD_PILE.discardCard(wrongCard);
-        });
-    }
-
-    public void setTimerForOpponent(int time) {
-        if (timerUnit != null)
-            timerUnit.stop();
-
-        timerUnit = new Timer(time);
-        timerUnit.start(
-            () -> Platform.runLater(() ->
-                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
-            ),
-            () -> Platform.runLater(() -> {
-                //
-            })
-        );
-    }
-
-    /**
-     * Enables or disables all input methods for Player that owns this view.
-     * @param enabled Property if inputs should be enabled or not.
-     */
-    private void setInputsEnabled(boolean enabled) {
-        ARTIST.setDisable(!enabled);
-        TITLE.setDisable(!enabled);
-
-        SUBMIT.setDisable(!enabled);
-        PLAYPAUSE.setDisable(!enabled);
-        BACKWARD.setDisable(!enabled);
-        FORWARD.setDisable(!enabled);
-        RESTART.setDisable(!enabled);
-        SKIP.setDisable(!enabled);
-        INSERT.setDisable(!enabled);
-    }
-
-    public SongCard getCurrentSongCard() {
-        return currentCard;
-    }
-
-    public List<Card> getCardsFromStrip() {
-        return STRIP.getCards();
-    }
-
-    public GameLogic getGameLogic() {
-        return GAME;
-    }
-
-
-    // ==============================
-    // Multiplayer methods
-    // ==============================
+    //#region MULTIPLAYER OPERATIONS
 
     /**
      * Initializes OpponentPane with oponnent Card Strip, Avatar and Username.
@@ -736,6 +800,51 @@ public class GameView extends Pane {
 
     public void stealButtonPressed() {
         GAME.startStealAction();
+    }
+
+    /**
+     * Starts the countdown for the second player to steal the SongCard by guessing it correct.
+     * If no player interrupts game continues with reveal.
+     */
+    private void startStealTime() {
+        // 1) Lock current guess by disabling all inputs
+        this.setInputsEnabled(false);
+        currentCard.setDraggable(false);
+
+        // 2) Skip if multiplayer is disabled or opponent doesn't have any chips
+        if (!GAME.isMultiplayer() || GAME.getPreviousPlayer().hitmasterPoints < 1) {
+            this.confirmInput();
+            return;
+        }
+
+        // 3) Set Status
+        CHAT.addInfoMessage(GAME.getCurrentPlayer().username + " placed their guess - Other players can now attempt to steal!");
+
+        // 4) Enable steal action
+        if (GAME.isLAN()) {
+            GAME.startStealTimer();
+            currentCard.startCountdown(5);
+        }
+        else {
+            currentCard.setStealState(true);
+
+            // 5) Start Timer
+            if (timerUnit != null)
+                timerUnit.stop();
+            
+            timerUnit = new Timer(3);
+            timerUnit.start(
+                () -> Platform.runLater(() -> 
+                    CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                ),
+                () -> Platform.runLater(() -> {
+                    currentCard.setStealState(false);
+
+                    if (!isStealing)
+                        this.confirmInput();
+                })
+            );
+        }
     }
 
     /**
@@ -861,48 +970,5 @@ public class GameView extends Pane {
         });
     }
 
-    public void addPlayerMessage(Player player, String message) {
-        Platform.runLater(() -> CHAT.addPlayerMessage(player, message));
-    }
-
-    public void addInfoMessage(String message) {
-        Platform.runLater(() -> CHAT.addInfoMessage(message));
-    }
-
-    public void addSuccessMessage(String message) {
-        Platform.runLater(() -> CHAT.addSuccessMessage(message));
-    }
-
-    public void addErrorMessage(String message) {
-        Platform.runLater(() -> CHAT.addErrorMessage(message));
-    }
-
-    /**
-     * Adds a song as a SongCard to discard pile.
-     * Directly shows Card front.
-     * @param song Song to put in discard Pile.
-     */
-    public void addNewCardToDiscard(Song song) {
-        Platform.runLater(() -> {
-            final SongCard wrongCard = new SongCard(this, song);
-
-            double sceneX = wrongCard.localToScene(0, 0).getX();
-            double sceneY = wrongCard.localToScene(0, 0).getY();
-            Point2D localPos = this.sceneToLocal(sceneX, sceneY);
-
-            STRIP.removeCard(wrongCard, false);
-            if (wrongCard.getParent() != this) {
-                this.getChildren().add(wrongCard);
-            }
-            wrongCard.setLayoutX(localPos.getX());
-            wrongCard.setLayoutY(localPos.getY());
-            wrongCard.setTranslateX(0);
-            wrongCard.setTranslateY(0);
-            wrongCard.toFront();
-
-            wrongCard.showFront();
-
-            DISCARD_PILE.setDiscardedCard(wrongCard);
-        });
-    }
+    //#endregion
 }
