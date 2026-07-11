@@ -17,6 +17,9 @@ import hitmaster.models.Player;
 import hitmaster.models.Song;
 import hitmaster.services.Log;
 import hitmaster.services.Timer;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -34,6 +37,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 public class GameView extends Pane {
 
@@ -70,6 +74,11 @@ public class GameView extends Pane {
 
         final double CONTROLS_WIDTH = 320;
         final double GAP = 20;
+
+        this.widthProperty().addListener((obs, oldVal, newVal) -> {
+            if (currentCard != null)
+                this.keepCardInBounds(currentCard);
+        });
 
         // 1) Chat Pane
         CHAT = new ChatPane(GAME);
@@ -116,8 +125,8 @@ public class GameView extends Pane {
         double totalPileHeight = targetHeight + 25;
         cardPile.setPrefSize(targetHeight, totalPileHeight);
 
-        cardPile.layoutXProperty().bind(this.widthProperty().subtract(cardPile.prefWidthProperty()).divide(2));
-        cardPile.layoutYProperty().bind( this.heightProperty().subtract(cardPile.prefHeightProperty()).divide(2));
+        cardPile.setLayoutX(GAP);
+        cardPile.layoutYProperty().bind(this.heightProperty().subtract(cardPile.prefHeightProperty()).divide(2));
 
         this.getChildren().add(cardPile);
 
@@ -222,6 +231,20 @@ public class GameView extends Pane {
         
         this.getChildren().add(rightSidebar);
         Platform.runLater(this::requestFocus);
+    }
+
+    public void keepCardInBounds(Card card) {
+        if (card != null) {
+            double minX = 0;
+            double maxX = this.getWidth() - card.getBoundsInLocal().getWidth();
+            double minY = 0;
+            double maxY = this.getHeight() - card.getBoundsInLocal().getHeight();
+
+            if (card.getLayoutX() < minX) card.setLayoutX(minX);
+            if (card.getLayoutX() > maxX) card.setLayoutX(maxX);
+            if (card.getLayoutY() < minY) card.setLayoutY(minY);
+            if (card.getLayoutY() > maxY) card.setLayoutY(maxY);
+        }
     }
 
     /**
@@ -430,7 +453,7 @@ public class GameView extends Pane {
     /**
      * Adds a new song as SongCard to stack.
      * Current player can move the card freely and place it in their Card Strip.
-     * @param song
+     * @param song Song for parameter for new SongCard.
      */
     public void addToCardStack(Song song) {
         SongCard card = new SongCard(this, song);
@@ -444,11 +467,27 @@ public class GameView extends Pane {
                 card.setLayoutY(localCoords.getY());
             }
 
-            STRIP.registerExternalCard(card);
             currentCard = card;
 
             this.getChildren().add(currentCard);
             currentCard.toFront();
+
+            double targetX = (STRIP.getWidth() - currentCard.getBoundsInLocal().getWidth()) / 2.0;
+            double targetY = (this.getHeight() - card.getBoundsInLocal().getHeight()) / 2.0;
+
+            Timeline timeline = new Timeline();
+
+            KeyValue kvX = new KeyValue(currentCard.layoutXProperty(), targetX);
+            KeyValue kvY = new KeyValue(currentCard.layoutYProperty(), targetY);
+            
+            KeyFrame kf = new KeyFrame(Duration.millis(600), kvX, kvY);
+            timeline.getKeyFrames().add(kf);
+            
+            timeline.setOnFinished(e -> {
+                this.keepCardInBounds(currentCard);
+            });
+        
+            timeline.play();
 
             // Reset border color of opponent card if LAN is active
             if (GAME.isLAN())
@@ -456,6 +495,8 @@ public class GameView extends Pane {
 
             this.setInputsEnabled(true);
             this.initializeNewTimer();
+
+            STRIP.registerExternalCard(currentCard);
         });
 
         //! DEBUG
