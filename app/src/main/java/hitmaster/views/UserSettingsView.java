@@ -1,10 +1,12 @@
 package hitmaster.views;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+
+import javax.imageio.ImageIO;
 
 import hitmaster.design.StyleDialog;
 import hitmaster.models.User;
@@ -12,6 +14,7 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.ThemeManager;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
@@ -45,12 +48,12 @@ public class UserSettingsView {
     private final User user;
     
     private ImageView avatarPreview;
-    private String selectedImagePath;
+    private Image croppedImage;
 
     public UserSettingsView(MainMenu parent) {
         this.PARENT = parent;
         this.user = Database.getCurrentUser();
-        this.selectedImagePath = null; 
+        this.croppedImage = null; 
 
         STAGE = new Stage();
         STAGE.setTitle("User Profile Settings");
@@ -113,9 +116,17 @@ public class UserSettingsView {
             if (selectedFile != null) {
                 try {
                     String fileUrl = selectedFile.toURI().toURL().toExternalForm();
-                    avatarPreview.setImage(new Image(fileUrl));
-                    selectedImagePath = selectedFile.getAbsolutePath(); 
-                } catch (MalformedURLException ex) {
+                    Image originalImage = new Image(fileUrl);
+
+                    ImageCropDialog cropper = new ImageCropDialog(STAGE, originalImage);
+                    WritableImage result = cropper.showAndGetResult();
+
+                    if (result != null) {
+                        avatarPreview.setImage(result);
+                        croppedImage = result;
+                    }
+                }
+                catch (MalformedURLException ex) {
                     StyleDialog.warningDialog("Error", "Could not load the selected image.");
                 }
             }
@@ -150,7 +161,7 @@ public class UserSettingsView {
 
             user.username = newUsername;
 
-            if (selectedImagePath != null) {
+            if (croppedImage != null) {
                 try {
                     if (user.picture != null && !user.picture.isEmpty()) {
                         File prevFile = new File(user.picture);
@@ -160,10 +171,6 @@ public class UserSettingsView {
                         }
                     }
 
-                    File sourceFile = new File(selectedImagePath);
-                    String fileName = sourceFile.getName();
-                    String extension = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
-
                     String userHome = System.getProperty("user.home");
                     File appStorageDir = new File(userHome, ".hitmaster/pfp");
 
@@ -171,9 +178,10 @@ public class UserSettingsView {
                         appStorageDir.mkdirs();
                     }
 
-                    File destFile = new File(appStorageDir, "user_" + user.id + "_" + System.currentTimeMillis() + extension);
+                    File destFile = new File(appStorageDir, "user_" + user.id + "_" + System.currentTimeMillis() + ".png");
 
-                    Files.copy(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    BufferedImage bufferedImage = SwingFXUtils.fromFXImage(croppedImage, null);
+                    ImageIO.write(bufferedImage, "png", destFile);
 
                     user.picture = destFile.getAbsolutePath();
                 }
