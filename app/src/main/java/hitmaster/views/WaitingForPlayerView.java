@@ -136,10 +136,14 @@ public class WaitingForPlayerView {
 
     public void show(Stage parent) {
         this.netManager = new NetworkManager();
-
         int port = 5050; // Same as client!
+
+        String lobbyName = options.players[0] != null ? options.players[0].username : "HitMaster Lobby";
+        netManager.startLobbyBroadcast(lobbyName, port);
+
         netManager.startAsHost(port, receivedObj -> {
             if (receivedObj instanceof Player clientPlayer) {
+                netManager.stopLobbyBroadcast();
                 
                 this.options.players[1] = clientPlayer;
                 options.players[1].role = Player.Role.CLIENT;

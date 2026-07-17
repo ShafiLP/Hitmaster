@@ -1,6 +1,8 @@
 package hitmaster.views;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import hitmaster.GameLogic;
 import hitmaster.models.GameOptions;
@@ -16,6 +18,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -31,6 +34,9 @@ public class ConnectToHostView {
     private final Stage PREV_STAGE;
 
     private final Player PLAYER;
+
+    private NetworkManager discoveryNetManager;
+    private final Set<String> foundLobbiesTracker = new HashSet<>(); // Prevents duplicates
 
     public ConnectToHostView(MainMenu parent, Stage prevStage) {
         this.PARENT = parent;
@@ -66,13 +72,19 @@ public class ConnectToHostView {
         // =========================
         VBox content = new VBox(15);
         content.setFillWidth(true);
+
+        Label statusLabel = new Label("Searching for lobbies...");
+
+        ListView<String> lobbyListView = new ListView<>();
+        lobbyListView.setPrefHeight(120);
+        lobbyListView.getStyleClass().add("modern-listview");
         
         TextField ipInput = new TextField();
         ipInput.getStyleClass().add("modern-textbox");
         ipInput.setPrefWidth(180);
-        ipInput.setPromptText("e.g. 192.168.1.1");
+        ipInput.setPromptText("Enter IP manually (e.g. 192.168.1.1)");
 
-        content.getChildren().add(ipInput);
+        content.getChildren().addAll(statusLabel, lobbyListView, ipInput);
 
         // =========================
         // FOOTER (Cancel & Start)
@@ -96,8 +108,11 @@ public class ConnectToHostView {
                 return;
             }
 
+            this.stopDiscovery();
+
             connectToGame.setDisable(true);
             connectToGame.setText("Connecting...");
+            lobbyListView.setDisable(true);
             ipInput.setEditable(false);
 
             new Thread(() -> {
@@ -134,12 +149,29 @@ public class ConnectToHostView {
                     Platform.runLater(() -> {
                         connectToGame.setDisable(false);
                         connectToGame.setText("Connect");
+
+                        lobbyListView.setDisable(false);
+                        this.startDiscovery(lobbyListView, statusLabel);
+
                         ipInput.setStyle("-fx-border-color: red;");
+                        ipInput.setEditable(true);
                     });
 
-                    ipInput.setEditable(true);
+                    
                 }
             }).start();
+        });
+
+        lobbyListView.setOnMouseClicked(click -> {
+            if (click.getClickCount() == 2) {
+                String selected = lobbyListView.getSelectionModel().getSelectedItem();
+                
+                if (selected != null && selected.contains("(") && selected.contains(")")) {
+                    String ip = selected.substring(selected.indexOf("(") + 1, selected.indexOf(")"));
+                    ipInput.setText(ip);
+                    connectToGame.fire();
+                }
+            }
         });
 
         HBox footer = new HBox(10, cancel, connectToGame);
@@ -151,7 +183,7 @@ public class ConnectToHostView {
         // =========================
         root.getChildren().addAll(header, content, footer);
 
-        Scene scene = new Scene(root, 520, 200);
+        Scene scene = new Scene(root, 520, 360);
         ThemeManager.getInstance().registerScene(scene);
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
@@ -162,8 +194,38 @@ public class ConnectToHostView {
         });
 
         STAGE.setScene(scene);
+        STAGE.setOnCloseRequest(e -> this.stopDiscovery());
 
         Platform.runLater(STAGE::requestFocus);
+        this.startDiscovery(lobbyListView, statusLabel);
+    }
+
+    private void startDiscovery(ListView<String> lobbyListView, Label statusLabel) {
+        if (discoveryNetManager == null) {
+            foundLobbiesTracker.clear();
+            lobbyListView.getItems().clear();
+            
+            discoveryNetManager = new NetworkManager();
+            discoveryNetManager.startLobbyDiscovery((lobbyName, ipAddress, port) -> {
+                String entry = lobbyName + " (" + ipAddress + ")";
+                
+                if (!foundLobbiesTracker.contains(entry)) {
+                    foundLobbiesTracker.add(entry);
+                    Platform.runLater(() -> {
+                        lobbyListView.getItems().add(entry);
+                        statusLabel.setText("Lobbies found in your network (Double-click to join):");
+                    });
+                }
+            });
+        }
+    }
+
+    private void stopDiscovery() {
+        if (discoveryNetManager != null) {
+            discoveryNetManager.stopLobbyDiscovery();
+            discoveryNetManager = null;
+            Log.Info("Stopped LAN Discovery thread.");
+        }
     }
 
     public void show(Stage parent) {
