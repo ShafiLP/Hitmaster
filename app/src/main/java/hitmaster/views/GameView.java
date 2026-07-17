@@ -663,11 +663,10 @@ public class GameView extends Pane {
                 Platform.runLater(() -> {
                     CHAT.addSuccessMessage(winner.username + " won the game!");
 
-                    if (timerUnit != null)
-                        timerUnit.stop();
+                    this.stopTimer();
 
                     GAME.sendObject("OPPONENT_WIN");
-                    WinnerPane.winnerDialog(this, GAME.getCurrentPlayer());
+                    WinnerPane.winnerDialog(this, winner);
                 });
             }
         }
@@ -714,6 +713,10 @@ public class GameView extends Pane {
 
     //#region MULTIPLAYER OPERATIONS
 
+    // ==============================
+    // Opponent Pane Operations
+    // ==============================
+
     /**
      * Initializes OpponentPane with oponnent Card Strip, Avatar and Username.
      * @param opponent Player object of opponent.
@@ -758,32 +761,77 @@ public class GameView extends Pane {
         });
     }
 
+    /**
+     * Replaces cards in Opponent Pane with a new set of songs.
+     * @param songs New set of songs for Opponent Pane.
+     */
     public void updateOpponentCards(List<Song> songs) {
         Platform.runLater(() -> OPPONENT_PANE.setSongs(songs));
     }
 
+    /**
+     * Adds a card at the end of list of cards in Opponent Pane.
+     * Called when initializing Opponent Pane with starting card.
+     * @param song
+     */
     public void addOpponentCard(Song song) {
         Platform.runLater(() -> OPPONENT_PANE.addSong(song));
     }
 
+    /**
+     * Adds a chip to Opponent Pane.
+     * Only works when opponent has less than three chips.
+     */
     public void addOpponentChip() {
         Platform.runLater(() -> OPPONENT_PANE.addChip());
     }
 
+    /**
+     * Removes a chip from Opponent Pane.
+     * Only works when opponent has one or more chips.
+     */
     public void removeOpponentChip() {
         Platform.runLater(() -> OPPONENT_PANE.removeChip());
     }
 
+    /**
+     * Removes all chips from Opponent Pane.
+     * If opponent has no chips, method will do nothing.
+     */
     public void removeAllOpponentChips() {
         while (OPPONENT_PANE.getChipsCount() > 0) {
             Platform.runLater(() -> OPPONENT_PANE.removeChip());
         }
     }
 
-    public OpponentPane getOpponentPane() {
-        return this.OPPONENT_PANE;
+    /**
+     * Paints a card's border in Opponent Pane in a given color.
+     * @param song Song of card to color in Opponent Pane.
+     * @param cssColor New color of card's border as CSS value.
+     */
+    public void paintOpponentCard(Song song, String cssColor) {
+        Platform.runLater(() -> {
+            OPPONENT_PANE.paintOpponentCard(song, cssColor);
+        });
     }
 
+    /**
+     * Resets all card borders in Opponent Pane.
+     * Default color of card borders is black.
+     */
+    public void resetOpponentCard() {
+        Platform.runLater(() -> {
+            OPPONENT_PANE.resetOpponentCard();
+        });
+    }
+
+    // ==============================
+    // Steal Operations
+    // ==============================
+
+    /**
+     * Shows overlay with countdown and button to attempt a steal.
+     */
     public void showStealOverlay() {
         Platform.runLater(() -> {
             StealOverlayPane overlay = new StealOverlayPane(this, 5);
@@ -794,10 +842,18 @@ public class GameView extends Pane {
         });
     }
 
+    /**
+     * Sends object that player doesn't attempt a steal to opponent player.
+     * Called when timer of StealOverlayPane runs out.
+     */
     public void stealSkip() {
         GAME.sendObject("OPPONENT_STEAL_SKIP");
     }
 
+    /**
+     * Runs startStealAction() method in Game class.
+     * Called when button in StealOverlayPane gets pressed.
+     */
     public void stealButtonPressed() {
         GAME.startStealAction();
     }
@@ -958,16 +1014,16 @@ public class GameView extends Pane {
         return (!(stealCardIdx - 1 == currentCardIdx) && !(stealCardIdx + 1 == currentCardIdx));
     }
 
-    public void paintOpponentCard(Song currentSong, String cssColor) {
-        Platform.runLater(() -> {
-            OPPONENT_PANE.paintOpponentCard(currentSong, cssColor);
-        });
-    }
+    // ==============================
+    // Get Operations
+    // ==============================
 
-    public void resetOpponentCard() {
-        Platform.runLater(() -> {
-            OPPONENT_PANE.resetOpponentCard();
-        });
+    /**
+     * Gets Opponent Pane and returns it.
+     * @return Opponent Pane.
+     */
+    public OpponentPane getOpponentPane() {
+        return this.OPPONENT_PANE;
     }
 
     //#endregion
