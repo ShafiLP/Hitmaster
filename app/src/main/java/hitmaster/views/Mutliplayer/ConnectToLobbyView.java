@@ -1,17 +1,22 @@
 package hitmaster.views.Mutliplayer;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
 import hitmaster.GameLogic;
+import hitmaster.design.StyleDialog;
 import hitmaster.models.GameOptions;
+import hitmaster.models.MultiplayerLobby;
 import hitmaster.models.Player;
 import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.NetworkManager;
 import hitmaster.services.ThemeManager;
+import hitmaster.services.UpdateService;
 import hitmaster.views.MainMenu;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -37,6 +42,7 @@ public class ConnectToLobbyView {
     private final Stage PREV_STAGE;
 
     private final Player PLAYER;
+    private final String APP_VERSION;
 
     private NetworkManager discoveryNetManager;
     private final Set<String> foundLobbiesTracker = new HashSet<>(); // Prevents duplicates
@@ -50,6 +56,8 @@ public class ConnectToLobbyView {
     public ConnectToLobbyView(MainMenu parent, Stage prevStage) {
         this.PARENT = parent;
         this.PREV_STAGE = prevStage;
+
+        APP_VERSION = ConnectToLobbyView.loadAppVersion();
 
         STAGE = new Stage();
         STAGE.setTitle("Connect To Host");
@@ -84,7 +92,7 @@ public class ConnectToLobbyView {
 
         Label statusLabel = new Label("Searching for lobbies...");
 
-        ListView<String> lobbyListView = new ListView<>();
+        ListView<MultiplayerLobby> lobbyListView = new ListView<>();
         lobbyListView.setPrefHeight(120);
         lobbyListView.getStyleClass().add("modern-listview");
 
@@ -104,7 +112,7 @@ public class ConnectToLobbyView {
             }
 
             @Override
-            protected void updateItem(String item, boolean empty) {
+            protected void updateItem(MultiplayerLobby item, boolean empty) {
                 super.updateItem(item, empty);
                 
                 if (empty || item == null) {
@@ -112,7 +120,7 @@ public class ConnectToLobbyView {
                     setGraphic(null);
                 }
                 else {
-                    nameLabel.setText(item);
+                    nameLabel.setText(item.name);
                     nameLabel.textFillProperty().bind(this.textFillProperty()); 
                     setGraphic(layout);
                 }
@@ -179,9 +187,7 @@ public class ConnectToLobbyView {
                         Log.Info("Received by host: " + receivedObj);
                     });
 
-                    Log.Info("Sending player");
                     netManager.sendObject(PLAYER);
-                    Log.Info("Sent player");
                 }
                 catch (IOException ex) {
                     Log.Error("Couldn't connect to host: " + ex.getMessage());
@@ -202,10 +208,16 @@ public class ConnectToLobbyView {
 
         lobbyListView.setOnMouseClicked(click -> {
             if (click.getClickCount() == 2) {
-                String selected = lobbyListView.getSelectionModel().getSelectedItem();
+                MultiplayerLobby selected = lobbyListView.getSelectionModel().getSelectedItem();
                 
-                if (selected != null && selected.contains("(") && selected.contains(")")) {
-                    String ip = selected.substring(selected.indexOf("(") + 1, selected.indexOf(")"));
+                if (selected != null) {
+                    // Check if app version of host and client are equal
+                    if (!selected.appVersion.equals(APP_VERSION)) {
+                        StyleDialog.errorDialog("Version Error", "Couldn't connect to host:\nApp versions are not equal.\nHost Version: " + selected.appVersion + "\nYour Version: " + APP_VERSION);
+                        return;
+                    }
+
+                    String ip = selected.ip;
                     ipInput.setText(ip);
                     connectToGame.fire();
                 }
@@ -244,19 +256,17 @@ public class ConnectToLobbyView {
      * @param lobbyListView ListView of available lobbies to put new found lobbies at.
      * @param statusLabel Status label to put current status on.
      */
-    private void startDiscovery(ListView<String> lobbyListView, Label statusLabel) {
+    private void startDiscovery(ListView<MultiplayerLobby> lobbyListView, Label statusLabel) {
         if (discoveryNetManager == null) {
             foundLobbiesTracker.clear();
             lobbyListView.getItems().clear();
             
             discoveryNetManager = new NetworkManager();
-            discoveryNetManager.startLobbyDiscovery((lobbyName, ipAddress, port) -> {
-                String entry = lobbyName;
-                
-                if (!foundLobbiesTracker.contains(entry)) {
-                    foundLobbiesTracker.add(entry);
+            discoveryNetManager.startLobbyDiscovery((lobby) -> {
+                if (!foundLobbiesTracker.contains(lobby.ip)) {
+                    foundLobbiesTracker.add(lobby.ip);
                     Platform.runLater(() -> {
-                        lobbyListView.getItems().add(entry);
+                        lobbyListView.getItems().add(lobby);
                         statusLabel.setText("Lobbies found in your network (Double-click to join):");
                     });
                 }
@@ -306,5 +316,24 @@ public class ConnectToLobbyView {
         // 2) Show view and wait
         STAGE.initModality(Modality.APPLICATION_MODAL);
         STAGE.showAndWait();
+    }
+
+    /**
+     * Loads current version of app from project.proerties file.
+     * @return Current app version as String.
+     */
+    private static String loadAppVersion() {
+        Properties properties = new Properties();
+
+        try (InputStream input = UpdateService.class.getClassLoader().getResourceAsStream("project.properties")) {
+            if (input == null)
+                return "unknown";
+
+            properties.load(input);
+            return properties.getProperty("version", "unknown");
+        }
+        catch (IOException e) {
+            return "unknown";
+        }
     }
 }

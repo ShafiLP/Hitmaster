@@ -1,13 +1,18 @@
 package hitmaster.services;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Properties;
+
+import hitmaster.models.MultiplayerLobby;
 
 public class NetworkManager {
 
@@ -29,16 +34,19 @@ public class NetworkManager {
     public void startLobbyBroadcast(String lobbyName, int tcpPort) {
         this.isBroadcasting = true;
 
+        String appVersion = NetworkManager.loadVersion();
+
         new Thread(() -> {
             try {
                 udpSocket = new DatagramSocket();
                 udpSocket.setBroadcast(true);
 
-                String message = "LOBBY:" + lobbyName + ":" + tcpPort;
+                String message = "LOBBY:" + lobbyName + ":" + tcpPort + ":" + appVersion;
                 byte[] buffer = message.getBytes();
 
                 InetAddress broadcastAdress = InetAddress.getByName("255.255.255.255"); // 255.255.255.255 gets all devices from current subnet
                 Log.Info("Starting LAN Broadcast...");
+
                 while (isBroadcasting) {
                     DatagramPacket packet = new DatagramPacket(buffer, buffer.length, broadcastAdress, DISCOVERY_PORT);
                     udpSocket.send(packet);
@@ -64,14 +72,17 @@ public class NetworkManager {
     }
 
     public interface DiscoveryListener {
-        void onLobbyFound(String lobbyName ,String ipAdress, int port);
+        void onLobbyFound(MultiplayerLobby lobby);
     }
 
     public void startLobbyDiscovery(DiscoveryListener discoveryListener) {
         this.isDiscovering = true;
 
         new Thread(() -> {
-            try (DatagramSocket receiveSocket = new DatagramSocket(DISCOVERY_PORT)) {
+            try (DatagramSocket receiveSocket = new DatagramSocket(null)) {
+                receiveSocket.setReuseAddress(true);
+                receiveSocket.bind(new InetSocketAddress(DISCOVERY_PORT));
+
                 receiveSocket.setSoTimeout(3000);
                 byte[] buffer = new byte[1024];
 
@@ -87,9 +98,10 @@ public class NetworkManager {
                             String[] parts = message.split(":");
                             String lobbyName = parts[1];
                             int tcpPort = Integer.parseInt(parts[2]);
+                            String appVersion = parts[3];
                             String hostIp = packet.getAddress().getHostAddress();
 
-                            discoveryListener.onLobbyFound(lobbyName, hostIp, tcpPort);
+                            discoveryListener.onLobbyFound(new MultiplayerLobby(lobbyName, hostIp, appVersion, 1, 2));
                         }
                     }
                     catch (IOException | NumberFormatException e) {
@@ -197,5 +209,24 @@ public class NetworkManager {
 
     public void setListener(NetworkListener listener) {
         this.listener = listener;
+    }
+
+    /**
+     * Loads current version of app from project.proerties file.
+     * @return Current app version as String.
+     */
+    private static String loadVersion() {
+        Properties properties = new Properties();
+
+        try (InputStream input = UpdateService.class.getClassLoader().getResourceAsStream("project.properties")) {
+            if (input == null)
+                return "unknown";
+
+            properties.load(input);
+            return properties.getProperty("version", "unknown");
+        }
+        catch (IOException e) {
+            return "unknown";
+        }
     }
 }

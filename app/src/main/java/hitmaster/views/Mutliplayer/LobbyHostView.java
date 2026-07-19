@@ -112,7 +112,7 @@ public class LobbyHostView {
         VBox leftColumn = new VBox(8);
         HBox.setHgrow(leftColumn, Priority.ALWAYS);
         Label playersTitle = new Label("Players in Lobby:");
-        playersTitle.setStyle("-fx-font-weight: bold;");
+        playersTitle.getStyleClass().add("subheader");
         
         PLAYERLIST_VIEW = new ListView<>();
         PLAYERLIST_VIEW.getStyleClass().add("modern-listview");
