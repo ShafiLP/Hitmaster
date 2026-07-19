@@ -18,11 +18,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -61,14 +63,14 @@ public class ConnectToHostView {
         Label title = new Label("Connect To Host");
         title.getStyleClass().add("header");
 
-        Label description = new Label("Enter host's IP-adress to connect to game.");
+        Label description = new Label("Select a lobby from list or enter host's IP-adress to connect to game.");
         description.getStyleClass().add("header-description");
 
         VBox header = new VBox(5, title, description);
         header.setAlignment(Pos.TOP_LEFT);
 
         // =========================
-        // SETTINGS CONTENT
+        // CONTENT
         // =========================
         VBox content = new VBox(15);
         content.setFillWidth(true);
@@ -78,6 +80,37 @@ public class ConnectToHostView {
         ListView<String> lobbyListView = new ListView<>();
         lobbyListView.setPrefHeight(120);
         lobbyListView.getStyleClass().add("modern-listview");
+
+        lobbyListView.setCellFactory(lv -> new ListCell<>() {
+            private final HBox layout = new HBox();
+            private final Label nameLabel = new Label();
+            private final Label countLabel = new Label("1/2 👤");
+
+            {
+                layout.setAlignment(Pos.CENTER_LEFT);
+                countLabel.setStyle("-fx-text-fill: gray; -fx-font-size: 13px;");
+                
+                HBox.setHgrow(nameLabel, Priority.ALWAYS);
+                nameLabel.setMaxWidth(Double.MAX_VALUE);
+                
+                layout.getChildren().addAll(nameLabel, countLabel);
+            }
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                }
+                else {
+                    nameLabel.setText(item);
+                    nameLabel.textFillProperty().bind(this.textFillProperty()); 
+                    setGraphic(layout);
+                }
+            }
+        });
         
         TextField ipInput = new TextField();
         ipInput.getStyleClass().add("modern-textbox");
@@ -156,8 +189,6 @@ public class ConnectToHostView {
                         ipInput.setStyle("-fx-border-color: red;");
                         ipInput.setEditable(true);
                     });
-
-                    
                 }
             }).start();
         });

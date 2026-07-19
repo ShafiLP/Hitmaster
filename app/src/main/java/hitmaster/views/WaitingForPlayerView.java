@@ -1,11 +1,13 @@
 package hitmaster.views;
 
-import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import hitmaster.GameLogic;
 import hitmaster.models.GameOptions;
 import hitmaster.models.Player;
+import hitmaster.models.User;
+import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.NetworkManager;
 import hitmaster.services.ThemeManager;
@@ -15,28 +17,46 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class WaitingForPlayerView {
 
     private final MainMenu PARENT;
     private final Stage STAGE;
-    private final Stage PREV_STAGE;
 
+    private final Player HOST_PLAYER;
     private NetworkManager netManager;
     private GameOptions options;
 
-    Button startGame;
+    private ListView<String> playerListView;
 
-    public WaitingForPlayerView(MainMenu parent, Stage prevStage, GameOptions options) {
+    private Label moveTimeLabel;
+    private Label stealTimeLabel;
+    private Label maxPlayersLabel;
+    private Label activeSetsLabel;
+
+    public WaitingForPlayerView(MainMenu parent, String lobbyName, int tcpPort) {
         this.PARENT = parent;
-        this.PREV_STAGE = prevStage;
-        this.options = options;
 
         STAGE = new Stage();
         STAGE.setTitle("Waiting for Players");
+
+        User user = Database.getCurrentUser();
+        HOST_PLAYER = new Player(user.username, user.picture);
+        HOST_PLAYER.role = Player.Role.HOST;
+
+        // Default Settings
+        this.options = new GameOptions();
+        this.options.players = new Player[2];
+        this.options.players[0] = HOST_PLAYER;
+
+        this.options.moveTime = 300;
+        this.options.stealTime = 30;
 
         // =========================
         // ROOT LAYOUT
@@ -48,141 +68,178 @@ public class WaitingForPlayerView {
         // =========================
         // HEADER
         // =========================
-        Label title = new Label("Waiting For Players");
+        HBox header = new HBox();
+        header.setAlignment(Pos.CENTER_LEFT);
+
+        VBox titleContainer = new VBox(5);
+        Label title = new Label("Lobby: " + lobbyName);
         title.getStyleClass().add("header");
 
-        Label description = new Label("Waiting for other players to joing your hosted game.");
-        description.getStyleClass().add("header-description");
+        Label subtitle = new Label("Waiting for players to join...");
+        subtitle.getStyleClass().add("header-description");
+        titleContainer.getChildren().addAll(title, subtitle);
 
-        VBox header = new VBox(5, title, description);
-
-        // =========================
-        // SETTINGS CONTENT
-        // =========================
-        VBox content = new VBox(15);
-        content.setFillWidth(true);
-        content.setAlignment(Pos.CENTER);
-
-        String hostIp = "error";
+        String localIp = "Unknown";
         try {
-            hostIp = Inet4Address.getLocalHost().getHostAddress();
+            localIp = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            Log.Error("Could not determine local IP");
         }
-        catch (UnknownHostException e) {
-            Log.Error("IPv4 from current machine couldn't be found.");
-        }
-        String[] finalIp = new String[1];
-        finalIp[0] = hostIp;
+        Label ipLabel = new Label("Your IP: " + localIp);
+        ipLabel.getStyleClass().add("modern-label"); 
+        ipLabel.setStyle("-fx-text-fill: gray; -fx-background-color: transparent; -fx-font-size: 13px;");
 
-        String censoredIp = hostIp.replaceAll("[^.]", "*");
-
-        Label ipLabel = new Label(censoredIp);
-        ipLabel.getStyleClass().add("subheader");
-
-        Button toggle = new Button("Show IP");
-        toggle.getStyleClass().add("modern-button");
-        toggle.setOnAction(e -> {
-            if (ipLabel.getText().equals(censoredIp)) {
-                ipLabel.setText(finalIp[0]);
-                toggle.setText("Hide IP");
-            } else {
-                ipLabel.setText(censoredIp);
-                toggle.setText("Show IP");
-            }
-        });
-
-        content.getChildren().addAll(ipLabel, toggle);
+        HBox.setHgrow(titleContainer, Priority.ALWAYS);
+        header.getChildren().addAll(titleContainer, ipLabel);
 
         // =========================
-        // FOOTER (Cancel & Start)
+        // CONTENT
         // =========================
-        Button cancel = new Button("Cancel");
-        cancel.getStyleClass().add("modern-button");
-        cancel.setCancelButton(true);
-        cancel.setPrefWidth(120);
-        cancel.setOnAction(e -> {
-            if (netManager != null) {
-                netManager.closeConnection();
-            }
+        HBox content = new HBox(20);
+        content.setFillHeight(true);
+        VBox.setVgrow(content, Priority.ALWAYS);
+
+        // Player List
+        VBox leftColumn = new VBox(8);
+        HBox.setHgrow(leftColumn, Priority.ALWAYS);
+        Label playersTitle = new Label("Players in Lobby:");
+        playersTitle.setStyle("-fx-font-weight: bold;");
+        
+        playerListView = new ListView<>();
+        playerListView.getStyleClass().add("modern-listview");
+        playerListView.setPrefHeight(180);
+        playerListView.getItems().add(HOST_PLAYER.username + " (Host)");
+        leftColumn.getChildren().addAll(playersTitle, playerListView);
+
+        // Settings
+        VBox rightColumn = new VBox(12);
+        rightColumn.setAlignment(Pos.TOP_LEFT);
+        rightColumn.setPrefWidth(180);
+        rightColumn.setStyle("-fx-background-color: rgba(255,255,255,0.05); -fx-padding: 10; -fx-background-radius: 5;");
+
+        Label settingsTitle = new Label("Lobby Settings:");
+        settingsTitle.getStyleClass().add("description");
+
+        maxPlayersLabel = new Label("• Max. Players: 2");
+        maxPlayersLabel.getStyleClass().add("description");
+
+        moveTimeLabel = new Label("• Move Time: " + this.options.moveTime + "s");
+        moveTimeLabel.getStyleClass().add("description");
+
+        stealTimeLabel = new Label("• Steal Time: " + this.options.stealTime + "s");
+        stealTimeLabel.getStyleClass().add("description");
+
+        // TODO: Implement activeSetsLabel
+        activeSetsLabel = new Label("• Active Sets: " + "/");
+        activeSetsLabel.getStyleClass().add("description");
+
+        rightColumn.getChildren().addAll(settingsTitle, maxPlayersLabel, moveTimeLabel, stealTimeLabel);
+
+        content.getChildren().addAll(leftColumn, rightColumn);
+
+        // =========================
+        // FOOTER (Settings, Cancel & Start)
+        // =========================
+
+        Button openSettingsBtn = new Button("⚙ Options");
+        openSettingsBtn.getStyleClass().add("modern-button");
+        openSettingsBtn.setPrefWidth(120);
+        openSettingsBtn.setOnAction(e -> this.openLobbySettingsDialog());
+
+        Button cancelBtn = new Button("Close Lobby");
+        cancelBtn.getStyleClass().add("modern-button");
+        cancelBtn.setPrefWidth(120);
+        cancelBtn.setOnAction(e -> {
+            this.stopServer();
             STAGE.close();
         });
 
-        startGame = new Button("Connect");
-        startGame.getStyleClass().add("primary-button");
-        startGame.setPrefWidth(140);
-        startGame.setDisable(true);
-
-        startGame.setOnAction(e -> {
-            STAGE.close();
-
-            GameLogic gameLogic = new GameLogic(options, false, netManager);
+        Button startGameBtn = new Button("Start Game");
+        startGameBtn.getStyleClass().add("primary-button");
+        startGameBtn.setPrefWidth(140);
+        startGameBtn.setDisable(true);
+        startGameBtn.setOnAction(e -> {
+            this.stopServerBroadcastOnly(); 
+            
+            netManager.sendObject(this.options); 
+            
+            GameLogic gameLogic = new GameLogic(this.options, true, netManager);
             PARENT.setStage(gameLogic.getView(), true);
+            STAGE.close();
         });
 
-        HBox footer = new HBox(10, cancel, startGame);
-        footer.setAlignment(Pos.BOTTOM_RIGHT);
-        footer.setPadding(new Insets(10, 0, 0, 0));
+        HBox rightButtons = new HBox(10, cancelBtn, startGameBtn);
+        rightButtons.setAlignment(Pos.CENTER_RIGHT);
+        HBox.setHgrow(rightButtons, Priority.ALWAYS);
 
-        // =========================
-        // ROOT ASSEMBLY & SCENE
-        // =========================
+        HBox footer = new HBox(10, openSettingsBtn, rightButtons);
+        footer.setAlignment(Pos.CENTER_LEFT);
+
         root.getChildren().addAll(header, content, footer);
 
-        Scene scene = new Scene(root, 520, 240);
+        Scene scene = new Scene(root, 580, 390); // Leicht angepasst für die Einstellungsbox
         ThemeManager.getInstance().registerScene(scene);
-        STAGE.setScene(scene);
 
-        Platform.runLater(STAGE::requestFocus);
+        STAGE.setScene(scene);
+        STAGE.setOnCloseRequest(e -> this.stopServer());
+
+        this.startNetworking(tcpPort, lobbyName, startGameBtn);
+        
+        STAGE.initModality(Modality.APPLICATION_MODAL);
+    }
+
+    private void startNetworking(int port, String lobbyName, Button startGameBtn) {
+        netManager = new NetworkManager();
+        
+        new Thread(() -> {
+            netManager.startAsHost(port, receivedObj -> {
+                if (receivedObj instanceof Player clientPlayer) {
+                    clientPlayer.decodeImage();
+                    this.options.players[1] = clientPlayer;
+
+                    Platform.runLater(() -> {
+                        playerListView.getItems().add(clientPlayer.username);
+                        startGameBtn.setDisable(false);
+                        subtitleLabelUpdate("Player connected! Ready to start.");
+                    });
+                }
+            });
+        }).start();
+
+        netManager.startLobbyBroadcast(lobbyName, port);
+    }
+
+    private void subtitleLabelUpdate(String text) {
+        Log.Info(text);
+    }
+
+    private void openLobbySettingsDialog() {
+        OnlineMultiplayerSettings settingsView = new OnlineMultiplayerSettings(options);
+        settingsView.showAndWait(STAGE);
+
+        this.updateSettingsLabels();
+    }
+
+    private void updateSettingsLabels() {
+        Platform.runLater(() -> {
+            moveTimeLabel.setText("• Move Time: " + this.options.moveTime + "s");
+            stealTimeLabel.setText("• Steal Time: " + this.options.stealTime + "s");
+        });
+    }
+
+    private void stopServerBroadcastOnly() {
+        if (netManager != null) {
+            netManager.stopLobbyBroadcast();
+        }
+    }
+
+    private void stopServer() {
+        if (netManager != null) {
+            netManager.stopLobbyBroadcast();
+        }
     }
 
     public void show(Stage parent) {
-        this.netManager = new NetworkManager();
-        int port = 5050; // Same as client!
-
-        String lobbyName = options.players[0] != null ? options.players[0].username : "HitMaster Lobby";
-        netManager.startLobbyBroadcast(lobbyName, port);
-
-        netManager.startAsHost(port, receivedObj -> {
-            if (receivedObj instanceof Player clientPlayer) {
-                netManager.stopLobbyBroadcast();
-                
-                this.options.players[1] = clientPlayer;
-                options.players[1].role = Player.Role.CLIENT;
-                options.players[1].decodeImage();
-                netManager.sendObject(this.options);
-
-                Platform.runLater(() -> {
-                    STAGE.close();
-
-                    GameLogic gameLogic = new GameLogic(options, true, netManager);
-                    PARENT.setStage(gameLogic.getView(), true);
-                });
-            }
-        });
-
-        if (PREV_STAGE != null) 
-            PREV_STAGE.close();
-
-        STAGE.setOnCloseRequest(e -> {
-            if (netManager != null) netManager.closeConnection();
-        });
-
-        STAGE.setOnShowing(e -> {
-            Platform.runLater(() -> {
-                double ownerX = parent.getX();
-                double ownerY = parent.getY();
-                double ownerWidth = parent.getWidth();
-                double ownerHeight = parent.getHeight();
-
-                double newWidth = STAGE.getWidth();
-                double newHeight = STAGE.getHeight();
-
-                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
-                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
-
-                STAGE.setX(centerX);
-                STAGE.setY(centerY);
-            });
-        });
-        STAGE.show();
+        STAGE.showAndWait();
     }
 }

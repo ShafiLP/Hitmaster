@@ -302,6 +302,11 @@
     -fx-background-color: rgba(0, 0, 0, 0.18);
 }
 
+.modern-listview .list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-cursor: default;
+}
+
 .status-bar {
     -fx-background-color: rgba(0, 0, 0, 0.2);
     -fx-text-fill: black;

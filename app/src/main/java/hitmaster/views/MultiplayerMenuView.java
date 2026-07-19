@@ -1,5 +1,6 @@
 package hitmaster.views;
 
+import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -68,8 +69,10 @@ public class MultiplayerMenuView {
         hostBtn.getStyleClass().add("modern-button");
         hostBtn.setPrefWidth(180);
         hostBtn.setOnAction(e -> {
-            OnlineMultiplayerSettings settings = new OnlineMultiplayerSettings(PARENT, STAGE);
-            settings.show(STAGE);
+            WaitingForPlayerView hostLobbyView = new WaitingForPlayerView(parent, Database.getCurrentUser().username + "'s Lobby", 5050);
+            hostLobbyView.show(STAGE);
+
+            STAGE.close();
         });
         
         HBox hostRow = createSettingRow("Host Game", "Create a new session as the server host.", hostBtn);
@@ -81,6 +84,8 @@ public class MultiplayerMenuView {
         joinBtn.setOnAction(e -> {
             ConnectToHostView connect = new ConnectToHostView(PARENT, STAGE);
             connect.show(STAGE);
+
+            STAGE.close();
         });
 
         HBox joinRow = createSettingRow("Join Game", "Connect to an existing host session.", joinBtn);
