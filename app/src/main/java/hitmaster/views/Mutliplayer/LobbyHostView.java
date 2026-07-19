@@ -1,4 +1,4 @@
-package hitmaster.views;
+package hitmaster.views.Mutliplayer;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -11,6 +11,8 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.NetworkManager;
 import hitmaster.services.ThemeManager;
+import hitmaster.views.MainMenu;
+import hitmaster.views.OnlineMultiplayerSettings;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -24,7 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class WaitingForPlayerView {
+public class LobbyHostView {
 
     private final MainMenu PARENT;
     private final Stage STAGE;
@@ -33,14 +35,21 @@ public class WaitingForPlayerView {
     private NetworkManager netManager;
     private GameOptions options;
 
-    private ListView<String> playerListView;
+    private final Label MOVETIME_LABEL;
+    private final Label STEALTIME_LABEL;
+    private final Label MAXPLAYERS_LABEL;
+    private final Label ACTIVESETS_LABEL;
 
-    private Label moveTimeLabel;
-    private Label stealTimeLabel;
-    private Label maxPlayersLabel;
-    private Label activeSetsLabel;
+    private final ListView<String> PLAYERLIST_VIEW;
 
-    public WaitingForPlayerView(MainMenu parent, String lobbyName, int tcpPort) {
+    /**
+     * Constructor for "LobbyHostView".
+     * Initializes UI and starts lobby broadcasting.
+     * @param parent MainMenu that started this view. Used to set stage later.
+     * @param lobbyName Name of this lobby.
+     * @param tcpPort Port to start the lobby broadcasting at.
+     */
+    public LobbyHostView(MainMenu parent, String lobbyName, int tcpPort) {
         this.PARENT = parent;
 
         STAGE = new Stage();
@@ -105,11 +114,11 @@ public class WaitingForPlayerView {
         Label playersTitle = new Label("Players in Lobby:");
         playersTitle.setStyle("-fx-font-weight: bold;");
         
-        playerListView = new ListView<>();
-        playerListView.getStyleClass().add("modern-listview");
-        playerListView.setPrefHeight(180);
-        playerListView.getItems().add(HOST_PLAYER.username + " (Host)");
-        leftColumn.getChildren().addAll(playersTitle, playerListView);
+        PLAYERLIST_VIEW = new ListView<>();
+        PLAYERLIST_VIEW.getStyleClass().add("modern-listview");
+        PLAYERLIST_VIEW.setPrefHeight(180);
+        PLAYERLIST_VIEW.getItems().add(HOST_PLAYER.username + " (Host)");
+        leftColumn.getChildren().addAll(playersTitle, PLAYERLIST_VIEW);
 
         // Settings
         VBox rightColumn = new VBox(12);
@@ -120,20 +129,20 @@ public class WaitingForPlayerView {
         Label settingsTitle = new Label("Lobby Settings:");
         settingsTitle.getStyleClass().add("description");
 
-        maxPlayersLabel = new Label("• Max. Players: 2");
-        maxPlayersLabel.getStyleClass().add("description");
+        MAXPLAYERS_LABEL = new Label("• Max. Players: 2");
+        MAXPLAYERS_LABEL.getStyleClass().add("description");
 
-        moveTimeLabel = new Label("• Move Time: " + this.options.moveTime + "s");
-        moveTimeLabel.getStyleClass().add("description");
+        MOVETIME_LABEL = new Label("• Move Time: " + this.options.moveTime + "s");
+        MOVETIME_LABEL.getStyleClass().add("description");
 
-        stealTimeLabel = new Label("• Steal Time: " + this.options.stealTime + "s");
-        stealTimeLabel.getStyleClass().add("description");
+        STEALTIME_LABEL = new Label("• Steal Time: " + this.options.stealTime + "s");
+        STEALTIME_LABEL.getStyleClass().add("description");
 
-        // TODO: Implement activeSetsLabel
-        activeSetsLabel = new Label("• Active Sets: " + "/");
-        activeSetsLabel.getStyleClass().add("description");
+        // TODO: Implement ACTIVESETS_LABEL
+        ACTIVESETS_LABEL = new Label("• Active Sets: " + "/");
+        ACTIVESETS_LABEL.getStyleClass().add("description");
 
-        rightColumn.getChildren().addAll(settingsTitle, maxPlayersLabel, moveTimeLabel, stealTimeLabel);
+        rightColumn.getChildren().addAll(settingsTitle, MAXPLAYERS_LABEL, MOVETIME_LABEL, STEALTIME_LABEL);
 
         content.getChildren().addAll(leftColumn, rightColumn);
 
@@ -188,6 +197,13 @@ public class WaitingForPlayerView {
         STAGE.initModality(Modality.APPLICATION_MODAL);
     }
 
+    /**
+     * Starts lobby as host and waits for a player to join.
+     * When player object received, displays player in player list and unlocks play button.
+     * @param port Port to wait for player object.
+     * @param lobbyName Name of lobby (used for lobby broadcast).
+     * @param startGameBtn Reference to "Start Game" button so it can be enabled when player connects.
+     */
     private void startNetworking(int port, String lobbyName, Button startGameBtn) {
         netManager = new NetworkManager();
         
@@ -198,9 +214,8 @@ public class WaitingForPlayerView {
                     this.options.players[1] = clientPlayer;
 
                     Platform.runLater(() -> {
-                        playerListView.getItems().add(clientPlayer.username);
+                        PLAYERLIST_VIEW.getItems().add(clientPlayer.username);
                         startGameBtn.setDisable(false);
-                        subtitleLabelUpdate("Player connected! Ready to start.");
                     });
                 }
             });
@@ -209,10 +224,10 @@ public class WaitingForPlayerView {
         netManager.startLobbyBroadcast(lobbyName, port);
     }
 
-    private void subtitleLabelUpdate(String text) {
-        Log.Info(text);
-    }
-
+    /**
+     * Opens settings view for this lobby's game.
+     * Labels of settings get updated when closing settings view.
+     */
     private void openLobbySettingsDialog() {
         OnlineMultiplayerSettings settingsView = new OnlineMultiplayerSettings(options);
         settingsView.showAndWait(STAGE);
@@ -220,26 +235,41 @@ public class WaitingForPlayerView {
         this.updateSettingsLabels();
     }
 
+    /**
+     * Updates all texts for settings labels.
+     * Called after GameOptions object was updated.
+     */
     private void updateSettingsLabels() {
         Platform.runLater(() -> {
-            moveTimeLabel.setText("• Move Time: " + this.options.moveTime + "s");
-            stealTimeLabel.setText("• Steal Time: " + this.options.stealTime + "s");
+            MOVETIME_LABEL.setText("• Move Time: " + this.options.moveTime + "s");
+            STEALTIME_LABEL.setText("• Steal Time: " + this.options.stealTime + "s");
         });
     }
 
+    /**
+     * Stops broadcasting lobby to other players without closing connection.
+     * Called when lobby is full.
+     */
     private void stopServerBroadcastOnly() {
         if (netManager != null) {
             netManager.stopLobbyBroadcast();
         }
     }
 
+    /**
+     * Stops server connection fully.
+     * Closes lobby and stops server broadcasting.
+     * Used when game gets cancelled instead of started.
+     */
     private void stopServer() {
-        if (netManager != null) {
-            netManager.stopLobbyBroadcast();
-        }
+        this.stopServerBroadcastOnly();
+        netManager.closeConnection();
     }
 
-    public void show(Stage parent) {
+    /**
+     * Shows the already initialized stage and waits.
+     */
+    public void show() {
         STAGE.showAndWait();
     }
 }

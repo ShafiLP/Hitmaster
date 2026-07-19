@@ -1,4 +1,4 @@
-package hitmaster.views;
+package hitmaster.views.Mutliplayer;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -12,6 +12,7 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.NetworkManager;
 import hitmaster.services.ThemeManager;
+import hitmaster.views.MainMenu;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,7 +30,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ConnectToHostView {
+public class ConnectToLobbyView {
     
     private final MainMenu PARENT;
     private final Stage STAGE;
@@ -40,7 +41,13 @@ public class ConnectToHostView {
     private NetworkManager discoveryNetManager;
     private final Set<String> foundLobbiesTracker = new HashSet<>(); // Prevents duplicates
 
-    public ConnectToHostView(MainMenu parent, Stage prevStage) {
+    /**
+     * Constructor for ConnectToLobbyView.
+     * Initializes UI and starts looking for available lobbies.
+     * @param parent MainMenu that started this view (Used to set stage later).
+     * @param prevStage Previous stage (Used to show view on top of it).
+     */
+    public ConnectToLobbyView(MainMenu parent, Stage prevStage) {
         this.PARENT = parent;
         this.PREV_STAGE = prevStage;
 
@@ -231,6 +238,12 @@ public class ConnectToHostView {
         this.startDiscovery(lobbyListView, statusLabel);
     }
 
+    /**
+     * Starts searching for open lobbies.
+     * When lobby gets found, adds it to list of available lobbies.
+     * @param lobbyListView ListView of available lobbies to put new found lobbies at.
+     * @param statusLabel Status label to put current status on.
+     */
     private void startDiscovery(ListView<String> lobbyListView, Label statusLabel) {
         if (discoveryNetManager == null) {
             foundLobbiesTracker.clear();
@@ -238,7 +251,7 @@ public class ConnectToHostView {
             
             discoveryNetManager = new NetworkManager();
             discoveryNetManager.startLobbyDiscovery((lobbyName, ipAddress, port) -> {
-                String entry = lobbyName + " (" + ipAddress + ")";
+                String entry = lobbyName;
                 
                 if (!foundLobbiesTracker.contains(entry)) {
                     foundLobbiesTracker.add(entry);
@@ -251,6 +264,10 @@ public class ConnectToHostView {
         }
     }
 
+    /**
+     * Stops searching for open lobbies.
+     * Called when connecting to a lobby or when closing view.
+     */
     private void stopDiscovery() {
         if (discoveryNetManager != null) {
             discoveryNetManager.stopLobbyDiscovery();
@@ -259,13 +276,18 @@ public class ConnectToHostView {
         }
     }
 
-    public void show(Stage parent) {
+    /**
+     * Shows already initialized UI and waits.
+     * Shows UI right above previous stage.
+     */
+    public void show() {
+        // 1) Place view on top of previous stage
         STAGE.setOnShowing(e -> {
             Platform.runLater(() -> {
-                double ownerX = parent.getX();
-                double ownerY = parent.getY();
-                double ownerWidth = parent.getWidth();
-                double ownerHeight = parent.getHeight();
+                double ownerX = PREV_STAGE.getX();
+                double ownerY = PREV_STAGE.getY();
+                double ownerWidth = PREV_STAGE.getWidth();
+                double ownerHeight = PREV_STAGE.getHeight();
 
                 double newWidth = STAGE.getWidth();
                 double newHeight = STAGE.getHeight();
@@ -281,6 +303,7 @@ public class ConnectToHostView {
             });
         });
         
+        // 2) Show view and wait
         STAGE.initModality(Modality.APPLICATION_MODAL);
         STAGE.showAndWait();
     }

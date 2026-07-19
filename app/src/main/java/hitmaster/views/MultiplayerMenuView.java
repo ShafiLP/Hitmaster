@@ -2,6 +2,8 @@ package hitmaster.views;
 
 import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
+import hitmaster.views.Mutliplayer.ConnectToLobbyView;
+import hitmaster.views.Mutliplayer.LobbyHostView;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -69,8 +71,8 @@ public class MultiplayerMenuView {
         hostBtn.getStyleClass().add("modern-button");
         hostBtn.setPrefWidth(180);
         hostBtn.setOnAction(e -> {
-            WaitingForPlayerView hostLobbyView = new WaitingForPlayerView(parent, Database.getCurrentUser().username + "'s Lobby", 5050);
-            hostLobbyView.show(STAGE);
+            LobbyHostView hostLobbyView = new LobbyHostView(parent, Database.getCurrentUser().username + "'s Lobby", 5050);
+            hostLobbyView.show();
 
             STAGE.close();
         });
@@ -82,8 +84,8 @@ public class MultiplayerMenuView {
         joinBtn.getStyleClass().add("modern-button");
         joinBtn.setPrefWidth(180);
         joinBtn.setOnAction(e -> {
-            ConnectToHostView connect = new ConnectToHostView(PARENT, STAGE);
-            connect.show(STAGE);
+            ConnectToLobbyView connect = new ConnectToLobbyView(PARENT, STAGE);
+            connect.show();
 
             STAGE.close();
         });
