@@ -9,6 +9,7 @@ import java.util.Set;
 import hitmaster.GameLogic;
 import hitmaster.design.StyleDialog;
 import hitmaster.models.GameOptions;
+import hitmaster.models.JoinRequest;
 import hitmaster.models.MultiplayerLobby;
 import hitmaster.models.Player;
 import hitmaster.models.User;
@@ -26,9 +27,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -99,16 +102,18 @@ public class ConnectToLobbyView {
         lobbyListView.setCellFactory(lv -> new ListCell<>() {
             private final HBox layout = new HBox();
             private final Label nameLabel = new Label();
+            private final Label lockLabel = new Label("🔒");
             private final Label countLabel = new Label("1/2 👤");
 
             {
                 layout.setAlignment(Pos.CENTER_LEFT);
                 countLabel.setStyle("-fx-text-fill: gray; -fx-font-size: 13px;");
+                lockLabel.setStyle("-fx-font-size: 13px;");
                 
                 HBox.setHgrow(nameLabel, Priority.ALWAYS);
                 nameLabel.setMaxWidth(Double.MAX_VALUE);
                 
-                layout.getChildren().addAll(nameLabel, countLabel);
+                layout.getChildren().addAll(nameLabel, lockLabel, countLabel);
             }
 
             @Override
@@ -122,6 +127,10 @@ public class ConnectToLobbyView {
                 else {
                     nameLabel.setText(item.name);
                     nameLabel.textFillProperty().bind(this.textFillProperty()); 
+
+                    lockLabel.setVisible(item.hasPassword);
+                    lockLabel.setManaged(item.hasPassword);
+
                     setGraphic(layout);
                 }
             }
@@ -156,54 +165,19 @@ public class ConnectToLobbyView {
                 return;
             }
 
-            this.stopDiscovery();
+            MultiplayerLobby selectedLobby = lobbyListView.getSelectionModel().getSelectedItem();
 
-            connectToGame.setDisable(true);
-            connectToGame.setText("Connecting...");
-            lobbyListView.setDisable(true);
-            ipInput.setEditable(false);
+            if (selectedLobby != null && selectedLobby.hasPassword) {
+                String password = this.showPasswordInputDialog(selectedLobby.name);
 
-            new Thread(() -> {
-                try {
-                    int port = 5050; // Same port as host!
-                    NetworkManager netManager = new NetworkManager();
-                    
-                    // Start connecting
-                    netManager.startAsClient(ip, port, receivedObj -> {
-                        if (receivedObj instanceof GameOptions hostOptions) {
-                            Platform.runLater(() -> {
-                                STAGE.close(); 
+                if (password == null) 
+                    return;
 
-                                for (Player player : hostOptions.players) {
-                                    player.decodeImage();
-                                }
-                                
-                                GameLogic gameLogic = new GameLogic(hostOptions, false, netManager);
-                                PARENT.setStage(gameLogic.getView(), true);
-                                
-                                Log.Success("GameOptions received! Starting Game...");
-                            });
-                        }
-                        Log.Info("Received by host: " + receivedObj);
-                    });
-
-                    netManager.sendObject(PLAYER);
-                }
-                catch (IOException ex) {
-                    Log.Error("Couldn't connect to host: " + ex.getMessage());
-                    
-                    Platform.runLater(() -> {
-                        connectToGame.setDisable(false);
-                        connectToGame.setText("Connect");
-
-                        lobbyListView.setDisable(false);
-                        this.startDiscovery(lobbyListView, statusLabel);
-
-                        ipInput.setStyle("-fx-border-color: red;");
-                        ipInput.setEditable(true);
-                    });
-                }
-            }).start();
+                this.connectToHost(ip, password, connectToGame, lobbyListView, ipInput, statusLabel);
+            }
+            else {
+                this.connectToHost(ip, "", connectToGame, lobbyListView, ipInput, statusLabel);
+            }
         });
 
         lobbyListView.setOnMouseClicked(click -> {
@@ -217,8 +191,7 @@ public class ConnectToLobbyView {
                         return;
                     }
 
-                    String ip = selected.ip;
-                    ipInput.setText(ip);
+                    ipInput.setText(selected.ip);
                     connectToGame.fire();
                 }
             }
@@ -248,6 +221,143 @@ public class ConnectToLobbyView {
 
         Platform.runLater(STAGE::requestFocus);
         this.startDiscovery(lobbyListView, statusLabel);
+    }
+
+    private void connectToHost(String ip, String password, Button connectBtn, ListView<MultiplayerLobby> lobbyListView, TextField ipInput, Label statusLabel) {
+        this.stopDiscovery();
+
+        connectBtn.setDisable(true);
+        connectBtn.setText("Connecting...");
+        lobbyListView.setDisable(true);
+        ipInput.setEditable(false);
+        ipInput.setStyle("");
+        statusLabel.setText("Connecting to " + ip + "...");
+
+        new Thread(() -> {
+            try {
+                NetworkManager netManager = new NetworkManager();
+                
+                netManager.startAsClient(ip, 5050, receivedObj -> {
+                    if (receivedObj instanceof GameOptions hostOptions) {
+                        Platform.runLater(() -> {
+                            STAGE.close(); 
+
+                            for (Player player : hostOptions.players) {
+                                if (player != null) {
+                                    player.decodeImage();
+                                }
+                            }
+                            
+                            GameLogic gameLogic = new GameLogic(hostOptions, false, netManager);
+                            PARENT.setStage(gameLogic.getView(), true);
+                            
+                            Log.Success("GameOptions received! Starting Game...");
+                        });
+                    }
+                    else if ("JOIN_SUCCESS".equals(receivedObj)) {
+                        Log.Success("Successfully joined lobby!");
+                        Platform.runLater(() -> statusLabel.setText("Joined! Waiting for Host to start..."));
+                    }
+                    else if ("REJECTED_PASSWORD".equals(receivedObj)) {
+                        Log.Error("Rejected connection: Wrong password!");
+                        Platform.runLater(() -> {
+                            StyleDialog.errorDialog("Access Denied", "Incorrect password entered for this lobby.");
+                            this.resetUiAfterConnectionError(connectBtn, lobbyListView, ipInput, statusLabel);
+                        });
+                    }
+                });
+
+                netManager.sendObject(new JoinRequest(PLAYER, password));
+            }
+            catch (IOException ex) {
+                Log.Error("Couldn't connect to host: " + ex.getMessage());
+                
+                Platform.runLater(() -> {
+                    StyleDialog.errorDialog("Connection Error", "Failed to connect to host at " + ip);
+                    this.resetUiAfterConnectionError(connectBtn, lobbyListView, ipInput, statusLabel);
+                });
+            }
+        }).start();
+    }
+
+    private void resetUiAfterConnectionError(Button connectBtn, ListView<MultiplayerLobby> lobbyListView, TextField ipInput, Label statusLabel) {
+        connectBtn.setDisable(false);
+        connectBtn.setText("Connect");
+
+        lobbyListView.setDisable(false);
+        ipInput.setStyle("-fx-border-color: red;");
+        ipInput.setEditable(true);
+
+        this.startDiscovery(lobbyListView, statusLabel);
+    }
+
+    private String showPasswordInputDialog(String lobbyName) {
+        Stage stage = new Stage();
+        stage.setTitle("Protected Lobby");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(STAGE);
+
+        Label headerLabel = new Label("Password Required");
+        headerLabel.getStyleClass().add("header");
+
+        Label descriptionLabel = new Label("The lobby \"" + lobbyName + "\" is protected with a password.");
+        descriptionLabel.getStyleClass().add("description");
+        descriptionLabel.setWrapText(true);
+
+        GridPane inputGrid = new GridPane();
+        inputGrid.setHgap(15);
+        inputGrid.setVgap(12);
+        inputGrid.setPadding(new Insets(10, 0, 10, 0));
+
+        Label passwordPrompt = new Label("Password: ");
+        passwordPrompt.getStyleClass().add("subheader");
+
+        PasswordField passwordInput = new PasswordField();
+        passwordInput.getStyleClass().add("modern-textbox");
+        passwordInput.setPromptText("Enter Password");
+        passwordInput.setPrefWidth(200);
+
+        inputGrid.add(passwordPrompt, 0, 0);
+        inputGrid.add(passwordInput, 1, 0);
+
+        final String[] result = new String[1]; // Aufnahme des Rückgabewerts
+
+        Button joinButton = new Button("Join");
+        joinButton.getStyleClass().add("primary-button");
+        joinButton.setOnAction(e -> {
+            result[0] = passwordInput.getText().trim();
+            stage.close();
+        });
+
+        Button cancelButton = new Button("Cancel");
+        cancelButton.getStyleClass().add("error-button");
+        cancelButton.setOnAction(e -> {
+            result[0] = null;
+            stage.close();
+        });
+
+        HBox buttonBox = new HBox(15, cancelButton, joinButton);
+        buttonBox.setAlignment(Pos.CENTER_RIGHT);
+
+        VBox root = new VBox(15, headerLabel, descriptionLabel, inputGrid, buttonBox);
+        root.setPadding(new Insets(20));
+
+        Scene scene = new Scene(root);
+        ThemeManager.getInstance().registerScene(scene);
+
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                joinButton.fire();
+                event.consume();
+            }
+        });
+
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.sizeToScene();
+        stage.showAndWait();
+
+        return result[0];
     }
 
     /**

@@ -1,5 +1,7 @@
 package hitmaster.views;
 
+import hitmaster.design.StyleDialog;
+import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
 import hitmaster.views.Mutliplayer.ConnectToLobbyView;
@@ -10,6 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -22,8 +26,11 @@ public class MultiplayerMenuView {
     private final MainMenu PARENT;
     private final Stage STAGE;
 
+    private final User USER;
+
     public MultiplayerMenuView(MainMenu parent) {
         this.PARENT = parent;
+        this.USER = Database.getCurrentUser();
 
         STAGE = new Stage();
         STAGE.setTitle("Multiplayer");
@@ -71,8 +78,9 @@ public class MultiplayerMenuView {
         hostBtn.getStyleClass().add("modern-button");
         hostBtn.setPrefWidth(180);
         hostBtn.setOnAction(e -> {
-            LobbyHostView hostLobbyView = new LobbyHostView(parent, Database.getCurrentUser().username + "'s Lobby", 5050);
-            hostLobbyView.show();
+            this.showCreateLobbyDialog();
+            //LobbyHostView hostLobbyView = new LobbyHostView(parent, Database.getCurrentUser().username + "'s Lobby", 5050);
+            //hostLobbyView.show();
 
             STAGE.close();
         });
@@ -166,8 +174,105 @@ public class MultiplayerMenuView {
     public void focus() {
         if (STAGE.isShowing()) {
             STAGE.toFront();
-        } else {
+        }
+        else {
             STAGE.show();
         }
+    }
+
+    // ==============================
+    // Creating Lobby Dialog
+    // ==============================
+
+    /**
+     * Opens dialog for creating a new LAN multiplayer lobby.
+     * User can make input for lobby name and password.
+     */
+    private void showCreateLobbyDialog() {
+        Stage stage = new Stage();
+        stage.setTitle("Create Lobby");
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        // ===== Header & Description =====
+        Label headerLabel = new Label("Create New Lobby");
+        headerLabel.getStyleClass().add("header");
+
+        Label descriptionLabel = new Label("Set up your lobby details below.\nYou can optionally set a password.");
+        descriptionLabel.getStyleClass().add("description");
+        descriptionLabel.setWrapText(true);
+
+        // ===== Inputs =====
+        GridPane inputGrid = new GridPane();
+        inputGrid.setHgap(15);
+        inputGrid.setVgap(12);
+        inputGrid.setPadding(new Insets(10, 0, 10, 0));
+
+        // Lobby Name
+        Label lobbyNamePrompt = new Label("Lobby Name: ");
+        lobbyNamePrompt.getStyleClass().add("subheader");
+
+        TextField lobbyNameInput = new TextField(USER.username + "'s Lobby");
+        lobbyNameInput.getStyleClass().add("modern-textbox");
+        lobbyNameInput.setPromptText("Lobby Name");
+        lobbyNameInput.setPrefWidth(200);
+
+        // Password
+        Label passwordPrompt = new Label("Password: ");
+        passwordPrompt.getStyleClass().add("subheader");
+
+        TextField passwordInput = new TextField();
+        passwordInput.getStyleClass().add("modern-textbox");
+        passwordInput.setPromptText("Password");
+        passwordInput.setPrefWidth(200);
+
+        // Add Elements to Grid
+        inputGrid.add(lobbyNamePrompt, 0, 0);
+        inputGrid.add(lobbyNameInput, 1, 0);
+        inputGrid.add(passwordPrompt, 0, 1);
+        inputGrid.add(passwordInput, 1, 1);
+
+        // ===== Buttons =====
+        Button hostLobbyButton = new Button("Host");
+        hostLobbyButton.getStyleClass().add("primary-button");
+        hostLobbyButton.setOnAction(e -> {
+            if (!lobbyNameInput.getText().isEmpty() || !lobbyNameInput.getText().isBlank()) {
+                stage.close();
+                this.createNewLobby(lobbyNameInput.getText().trim(), passwordInput.getText().trim());
+            }
+            else {
+                StyleDialog.errorDialog("Enter Lobby Name", "Please enter a valid name for your lobby before hosting!");
+            }
+        });
+
+        Button cancelButton = new Button("Cancel");
+        cancelButton.getStyleClass().add("error-button");
+        cancelButton.setOnAction(e -> stage.close());
+
+        HBox buttonBox = new HBox(15);
+        buttonBox.getChildren().addAll(cancelButton, hostLobbyButton);
+        buttonBox.setAlignment(Pos.CENTER_RIGHT);
+
+        // ===== Build Layout =====
+        VBox root = new VBox(15);
+        root.setPadding(new Insets(20));
+        root.getChildren().addAll(headerLabel, descriptionLabel, inputGrid, buttonBox);
+
+        Scene scene = new Scene(root);
+        ThemeManager.getInstance().registerScene(scene);
+
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.sizeToScene();
+        stage.showAndWait();
+    }
+
+    /**
+     * Creates a new LobbyHostView. Lobby name and password will be used as parameters.
+     * @param lobbyName Name of lobby to create.
+     * @param password Password of lobby to create. Blank if none.
+     */
+    private void createNewLobby(String lobbyName, String password) {
+        LobbyHostView hostLobbyView = new LobbyHostView(PARENT, lobbyName, password, 5050);
+        hostLobbyView.show();
     }
 }

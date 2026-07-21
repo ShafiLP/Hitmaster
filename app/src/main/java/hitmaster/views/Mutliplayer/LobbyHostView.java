@@ -5,6 +5,7 @@ import java.net.UnknownHostException;
 
 import hitmaster.GameLogic;
 import hitmaster.models.GameOptions;
+import hitmaster.models.JoinRequest;
 import hitmaster.models.Player;
 import hitmaster.models.User;
 import hitmaster.services.Database;
@@ -49,7 +50,7 @@ public class LobbyHostView {
      * @param lobbyName Name of this lobby.
      * @param tcpPort Port to start the lobby broadcasting at.
      */
-    public LobbyHostView(MainMenu parent, String lobbyName, int tcpPort) {
+    public LobbyHostView(MainMenu parent, String lobbyName, String password, int tcpPort) {
         this.PARENT = parent;
 
         STAGE = new Stage();
@@ -192,7 +193,7 @@ public class LobbyHostView {
         STAGE.setScene(scene);
         STAGE.setOnCloseRequest(e -> this.stopServer());
 
-        this.startNetworking(tcpPort, lobbyName, startGameBtn);
+        this.startNetworking(tcpPort, lobbyName, password, startGameBtn);
         
         STAGE.initModality(Modality.APPLICATION_MODAL);
     }
@@ -202,16 +203,20 @@ public class LobbyHostView {
      * When player object received, displays player in player list and unlocks play button.
      * @param port Port to wait for player object.
      * @param lobbyName Name of lobby (used for lobby broadcast).
+     * @param password Passowrd to join lobby. Blank if none.
      * @param startGameBtn Reference to "Start Game" button so it can be enabled when player connects.
      */
-    private void startNetworking(int port, String lobbyName, Button startGameBtn) {
+    private void startNetworking(int port, String lobbyName, String password, Button startGameBtn) {
         netManager = new NetworkManager();
         
         new Thread(() -> {
-            netManager.startAsHost(port, receivedObj -> {
-                if (receivedObj instanceof Player clientPlayer) {
+            netManager.startAsHost(port, password, receivedObj -> {
+                if (receivedObj instanceof JoinRequest request) {
+                    Player clientPlayer = request.player;
                     clientPlayer.decodeImage();
                     this.options.players[1] = clientPlayer;
+
+                    Log.Info("Player joined host lobby: " + clientPlayer.username);
 
                     Platform.runLater(() -> {
                         PLAYERLIST_VIEW.getItems().add(clientPlayer.username);
@@ -221,7 +226,7 @@ public class LobbyHostView {
             });
         }).start();
 
-        netManager.startLobbyBroadcast(lobbyName, port);
+        netManager.startLobbyBroadcast(lobbyName, !password.isEmpty());
     }
 
     /**
@@ -267,9 +272,9 @@ public class LobbyHostView {
     }
 
     /**
-     * Shows the already initialized stage and waits.
+     * Shows the already initialized stage.
      */
     public void show() {
-        STAGE.showAndWait();
+        STAGE.show();
     }
 }
