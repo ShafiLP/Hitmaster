@@ -5,6 +5,7 @@ import java.net.UnknownHostException;
 
 import hitmaster.GameLogic;
 import hitmaster.models.GameOptions;
+import hitmaster.models.GameOptionsDTO;
 import hitmaster.models.JoinRequest;
 import hitmaster.models.Player;
 import hitmaster.models.User;
@@ -54,7 +55,7 @@ public class LobbyHostView {
         this.PARENT = parent;
 
         STAGE = new Stage();
-        STAGE.setTitle("Waiting for Players");
+        STAGE.setTitle("Lobby: " + lobbyName);
 
         User user = Database.getCurrentUser();
         HOST_PLAYER = new Player(user.username, user.picture);
@@ -118,7 +119,7 @@ public class LobbyHostView {
         PLAYERLIST_VIEW = new ListView<>();
         PLAYERLIST_VIEW.getStyleClass().add("modern-listview");
         PLAYERLIST_VIEW.setPrefHeight(180);
-        PLAYERLIST_VIEW.getItems().add(HOST_PLAYER.username + " (Host)");
+        PLAYERLIST_VIEW.getItems().add(HOST_PLAYER.username + " (Host) (You)");
         leftColumn.getChildren().addAll(playersTitle, PLAYERLIST_VIEW);
 
         // Settings
@@ -150,7 +151,6 @@ public class LobbyHostView {
         // =========================
         // FOOTER (Settings, Cancel & Start)
         // =========================
-
         Button openSettingsBtn = new Button("⚙ Options");
         openSettingsBtn.getStyleClass().add("modern-button");
         openSettingsBtn.setPrefWidth(120);
@@ -171,7 +171,7 @@ public class LobbyHostView {
         startGameBtn.setOnAction(e -> {
             this.stopServerBroadcastOnly(); 
             
-            netManager.sendObject(this.options); 
+            netManager.sendObject(new GameOptionsDTO(this.options, "START_GAME")); 
             
             GameLogic gameLogic = new GameLogic(this.options, true, netManager);
             PARENT.setStage(gameLogic.getView(), true);
@@ -187,7 +187,7 @@ public class LobbyHostView {
 
         root.getChildren().addAll(header, content, footer);
 
-        Scene scene = new Scene(root, 580, 390); // Leicht angepasst für die Einstellungsbox
+        Scene scene = new Scene(root, 580, 390);
         ThemeManager.getInstance().registerScene(scene);
 
         STAGE.setScene(scene);
@@ -222,6 +222,8 @@ public class LobbyHostView {
                         PLAYERLIST_VIEW.getItems().add(clientPlayer.username);
                         startGameBtn.setDisable(false);
                     });
+
+                    netManager.sendObject(new GameOptionsDTO(this.options, "OPTIONS_UPDATE"));
                 }
             });
         }).start();
@@ -237,6 +239,7 @@ public class LobbyHostView {
         OnlineMultiplayerSettings settingsView = new OnlineMultiplayerSettings(options);
         settingsView.showAndWait(STAGE);
 
+        netManager.sendObject(new GameOptionsDTO(options, "OPTIONS_UPDATE"));
         this.updateSettingsLabels();
     }
 
@@ -273,8 +276,29 @@ public class LobbyHostView {
 
     /**
      * Shows the already initialized stage.
+     * Centeres stage based on position of stage of previous frame.
+     * @param parent Stage of previous frame.
      */
-    public void show() {
+    public void show(Stage parent) {
+        // Place centered to parent
+        STAGE.setOnShowing(e -> {
+            Platform.runLater(() -> {
+                double ownerX = parent.getX();
+                double ownerY = parent.getY();
+                double ownerWidth = parent.getWidth();
+                double ownerHeight = parent.getHeight();
+
+                double newWidth = parent.getWidth();
+                double newHeight = parent.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                STAGE.setX(centerX);
+                STAGE.setY(centerY);
+            });
+        });
+
         STAGE.show();
     }
 }

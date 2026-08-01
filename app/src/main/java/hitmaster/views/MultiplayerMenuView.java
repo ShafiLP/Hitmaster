@@ -79,9 +79,6 @@ public class MultiplayerMenuView {
         hostBtn.setPrefWidth(180);
         hostBtn.setOnAction(e -> {
             this.showCreateLobbyDialog();
-            //LobbyHostView hostLobbyView = new LobbyHostView(parent, Database.getCurrentUser().username + "'s Lobby", 5050);
-            //hostLobbyView.show();
-
             STAGE.close();
         });
         
@@ -260,6 +257,25 @@ public class MultiplayerMenuView {
         Scene scene = new Scene(root);
         ThemeManager.getInstance().registerScene(scene);
 
+        // Place centered to parent
+        stage.setOnShowing(e -> {
+            Platform.runLater(() -> {
+                double ownerX = STAGE.getX();
+                double ownerY = STAGE.getY();
+                double ownerWidth = STAGE.getWidth();
+                double ownerHeight = STAGE.getHeight();
+
+                double newWidth = STAGE.getWidth();
+                double newHeight = STAGE.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                stage.setX(centerX);
+                stage.setY(centerY);
+            });
+        });
+
         stage.setScene(scene);
         stage.setResizable(false);
         stage.sizeToScene();
@@ -273,6 +289,6 @@ public class MultiplayerMenuView {
      */
     private void createNewLobby(String lobbyName, String password) {
         LobbyHostView hostLobbyView = new LobbyHostView(PARENT, lobbyName, password, 5050);
-        hostLobbyView.show();
+        hostLobbyView.show(STAGE);
     }
 }

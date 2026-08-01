@@ -192,6 +192,7 @@ public class NetworkManager {
             Object firstObject = clientIn.readObject();
 
             if (firstObject instanceof JoinRequest joinRequest) {
+
                 // Check password
                 if (!this.hostPassword.isEmpty() && !this.hostPassword.equals(joinRequest.password)) {
                     Log.Warning("Client tried to join with wrong password!");
@@ -204,6 +205,7 @@ public class NetworkManager {
                 ClientHandler handler = new ClientHandler(socket, clientIn, clientOut);
                 connectedClients.add(handler);
 
+                clientOut.writeObject("JOIN_SUCCESS");
                 Log.Info("Client joined successfully! Total clients: " + connectedClients.size());
 
                 if (listener != null) {

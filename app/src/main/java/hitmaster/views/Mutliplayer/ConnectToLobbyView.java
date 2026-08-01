@@ -8,7 +8,7 @@ import java.util.Set;
 
 import hitmaster.GameLogic;
 import hitmaster.design.StyleDialog;
-import hitmaster.models.GameOptions;
+import hitmaster.models.GameOptionsDTO;
 import hitmaster.models.JoinRequest;
 import hitmaster.models.MultiplayerLobby;
 import hitmaster.models.Player;
@@ -49,6 +49,8 @@ public class ConnectToLobbyView {
 
     private NetworkManager discoveryNetManager;
     private final Set<String> foundLobbiesTracker = new HashSet<>(); // Prevents duplicates
+
+    private LobbyClientView clientView;
 
     /**
      * Constructor for ConnectToLobbyView.
@@ -238,25 +240,48 @@ public class ConnectToLobbyView {
                 NetworkManager netManager = new NetworkManager();
                 
                 netManager.startAsClient(ip, 5050, receivedObj -> {
-                    if (receivedObj instanceof GameOptions hostOptions) {
-                        Platform.runLater(() -> {
-                            STAGE.close(); 
+                    if (receivedObj instanceof GameOptionsDTO hostOptions) {
+                        switch (hostOptions.purpose) {
+                            case "START_GAME":
+                                Platform.runLater(() -> {
+                                    clientView.close();
+                                    STAGE.close();
 
-                            for (Player player : hostOptions.players) {
-                                if (player != null) {
-                                    player.decodeImage();
+                                    for (Player player : hostOptions.players) {
+                                        if (player != null) {
+                                            player.decodeImage();
+                                        }
+                                    }
+                                    
+                                    GameLogic gameLogic = new GameLogic(hostOptions.getGameOptions(), false, netManager);
+                                    PARENT.setStage(gameLogic.getView(), true);
+                                    
+                                    Log.Success("GameOptions received! Starting Game...");
+                                });
+                            break;
+
+                            case "OPTIONS_UPDATE":
+                                // 1) Check if clientView is initialized
+                                if (this.clientView == null) {
+                                    Log.Error("Received \"" + hostOptions.purpose + "\" with clientView being null");
+                                    return;
                                 }
-                            }
-                            
-                            GameLogic gameLogic = new GameLogic(hostOptions, false, netManager);
-                            PARENT.setStage(gameLogic.getView(), true);
-                            
-                            Log.Success("GameOptions received! Starting Game...");
-                        });
+
+                                // 2) Update game options on UI
+                                clientView.updateGameOptions(hostOptions.getGameOptions());
+                            break;
+                        }
+                        
                     }
                     else if ("JOIN_SUCCESS".equals(receivedObj)) {
                         Log.Success("Successfully joined lobby!");
                         Platform.runLater(() -> statusLabel.setText("Joined! Waiting for Host to start..."));
+
+                        // Show lobby to client
+                        Platform.runLater(() -> {
+                            clientView = new LobbyClientView(PARENT, ip, password, PLAYER, netManager);
+                            clientView.show(STAGE);
+                        });
                     }
                     else if ("REJECTED_PASSWORD".equals(receivedObj)) {
                         Log.Error("Rejected connection: Wrong password!");
