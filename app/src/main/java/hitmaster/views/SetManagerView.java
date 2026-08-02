@@ -3,7 +3,7 @@ package hitmaster.views;
 import java.util.ArrayList;
 import java.util.List;
 
-import hitmaster.models.Set;
+import hitmaster.models.GameSet;
 import hitmaster.models.Song;
 import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
@@ -110,20 +110,20 @@ public class SetManagerView {
 
     private void refreshSetList() {
         SET_LIST_CONTAINER.getChildren().clear();
-        for (Set set : getAllSets()) {
+        for (GameSet set : getAllSets()) {
             SET_LIST_CONTAINER.getChildren().add(createSetRow(set));
         }
     }
 
     private void setAllSetsActive(boolean active) {
-        for (Set set : getAllSets()) {
+        for (GameSet set : getAllSets()) {
             set.isActive = active;
             Database.updateSetStatus(set.id, active);
         }
         this.refreshSetList();
     }
 
-    private HBox createSetRow(Set set) {
+    private HBox createSetRow(GameSet set) {
         // 1) Set Image
         ImageView setImageView = set.getImage();
         if (setImageView != null) {
@@ -186,7 +186,7 @@ public class SetManagerView {
         btn.setPrefWidth(120);
     }
     
-    private List<Set> getAllSets() {
+    private List<GameSet> getAllSets() {
         return Database.getAllSets();
     }
 
@@ -312,7 +312,7 @@ public class SetManagerView {
 
             if (!setName.isEmpty()) {
                 // Generate set instance
-                Set newSet = new Set();
+                GameSet newSet = new GameSet();
                 newSet.name = setName;
                 newSet.img = imagePath;
                 

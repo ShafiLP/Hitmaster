@@ -11,7 +11,7 @@ public class Song {
     public int year;
     public String spotify;
 
-    public List<Set> getActiveSongSets() {
+    public List<GameSet> getActiveSongSets() {
         return Database.getActiveSetsBySongId(id);
     }
 }

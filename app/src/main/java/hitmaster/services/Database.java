@@ -24,7 +24,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-import hitmaster.models.Set;
+import hitmaster.models.GameSet;
 import hitmaster.models.Song;
 import hitmaster.models.User;
 
@@ -90,28 +90,28 @@ public class Database {
             //! DEBUG
             Database.insertJsonIntoSongs("songs.json");
 
-            Database.addSetToDatabase(new Set("Hitster - UK", "hitster-uk.jpg", "hitster-uk.png", "hitster-uk.csv", true));
+            Database.addSetToDatabase(new GameSet("Hitster - UK", "hitster-uk.jpg", "hitster-uk.png", "hitster-uk.csv", true));
             addSongsToSetFromCsv("hitster-uk.csv", 1);
 
-            Database.addSetToDatabase(new Set("Hitster - DE", "hitster-de.jpg", "hitster-de.png", "hitster-de.csv", false));
+            Database.addSetToDatabase(new GameSet("Hitster - DE", "hitster-de.jpg", "hitster-de.png", "hitster-de.csv", false));
             addSongsToSetFromCsv("hitster-de.csv", 2);
 
-            Database.addSetToDatabase(new Set("Rock & Metal - DE", "rock-de.jpg", "rock-de.png", "rock-de.csv", false));
+            Database.addSetToDatabase(new GameSet("Rock & Metal - DE", "rock-de.jpg", "rock-de.png", "rock-de.csv", false));
             addSongsToSetFromCsv("rock-de.csv", 3);
 
-            Database.addSetToDatabase(new Set("Guilty Pleasures - DE", "guilty-de.png", "guilty-de.png", "guilty-de.csv", false));
+            Database.addSetToDatabase(new GameSet("Guilty Pleasures - DE", "guilty-de.png", "guilty-de.png", "guilty-de.csv", false));
             addSongsToSetFromCsv("guilty-de.csv", 4);
 
-            Database.addSetToDatabase(new Set("Bayern1 Expansion", "bavaria-ex.png", "bavaria-ex.png", "bavaria-ex.csv", false));
+            Database.addSetToDatabase(new GameSet("Bayern1 Expansion", "bavaria-ex.png", "bavaria-ex.png", "bavaria-ex.csv", false));
             addSongsToSetFromCsv("bavaria-ex.csv", 5);
 
-            Database.addSetToDatabase(new Set("Rock & Metal - Nordics", "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
+            Database.addSetToDatabase(new GameSet("Rock & Metal - Nordics", "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
             addSongsToSetFromCsv("rock-nordics.csv", 6);
 
-            Database.addSetToDatabase(new Set("Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
+            Database.addSetToDatabase(new GameSet("Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
             addSongsToSetFromCsv("punk-expansion.csv", 7);
 
-            Database.addSetToDatabase(new Set("Deutschrock Expansion", "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
+            Database.addSetToDatabase(new GameSet("Deutschrock Expansion", "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
             addSongsToSetFromCsv("deutschrock-ex.csv", 8);
 
             return true;
@@ -283,7 +283,7 @@ public class Database {
         }
     }
 
-    public static List<Set> getAllSets() {
+    public static List<GameSet> getAllSets() {
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("""
@@ -291,7 +291,7 @@ public class Database {
                 FROM sets
             """);
 
-            List<Set> sets = new ArrayList<>();
+            List<GameSet> sets = new ArrayList<>();
             while (rs.next()) {
                 sets.add(mapSet(rs));
             }
@@ -400,7 +400,7 @@ public class Database {
         }
     }
 
-    public static List<Set> getSetsBySongId(int songId) {
+    public static List<GameSet> getSetsBySongId(int songId) {
         try (Connection conn = Database.connect()) {
             String sql = """
                 SELECT s.*
@@ -414,7 +414,7 @@ public class Database {
 
             ResultSet rs = ps.executeQuery();
 
-            List<Set> sets = new ArrayList<>();
+            List<GameSet> sets = new ArrayList<>();
             while (rs.next()) {
                 sets.add(mapSet(rs));
             }
@@ -427,7 +427,7 @@ public class Database {
         }
     }
 
-    public static List<Set> getActiveSetsBySongId(int songId) {
+    public static List<GameSet> getActiveSetsBySongId(int songId) {
         try (Connection conn = Database.connect()) {
             String sql = """
                 SELECT s.*
@@ -442,7 +442,7 @@ public class Database {
 
             ResultSet rs = ps.executeQuery();
 
-            List<Set> sets = new ArrayList<>();
+            List<GameSet> sets = new ArrayList<>();
             while (rs.next()) {
                 sets.add(mapSet(rs));
             }
@@ -484,7 +484,7 @@ public class Database {
         }
     }
 
-    public static boolean addSetToDatabase(Set set) {
+    public static boolean addSetToDatabase(GameSet set) {
         try (Connection conn = Database.connect()) {
 
             PreparedStatement stmt = conn.prepareStatement("""
@@ -547,8 +547,8 @@ public class Database {
         return user;
     }
 
-    private static Set mapSet(ResultSet rs) throws SQLException {
-        Set set = new Set();
+    private static GameSet mapSet(ResultSet rs) throws SQLException {
+        GameSet set = new GameSet();
 
         set.id = rs.getInt("id");
         set.name= rs.getString("name");

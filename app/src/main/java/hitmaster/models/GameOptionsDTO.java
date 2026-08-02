@@ -9,7 +9,7 @@ public class GameOptionsDTO implements Serializable {
     public int moveTime;
     public int stealTime;
 
-    public List<Set> activeSets;
+    public List<GameSet> activeSets;
 
     public String purpose;
 
@@ -21,7 +21,7 @@ public class GameOptionsDTO implements Serializable {
         this.purpose = purpose;
     }
 
-    public GameOptionsDTO(GameOptions options, List<Set> activeSets, String purpose) {
+    public GameOptionsDTO(GameOptions options, List<GameSet> activeSets, String purpose) {
         this.players = options.players;
         this.moveTime = options.moveTime;
         this.stealTime = options.stealTime;

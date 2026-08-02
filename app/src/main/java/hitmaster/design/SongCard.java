@@ -2,7 +2,7 @@ package hitmaster.design;
 
 import java.util.List;
 
-import hitmaster.models.Set;
+import hitmaster.models.GameSet;
 import hitmaster.models.Song;
 import hitmaster.services.Timer;
 import hitmaster.views.GameView;
@@ -168,7 +168,7 @@ public final class SongCard extends Card {
         // =========================
         // ICON OVERLAY (TOP LEFT)
         // =========================
-        List<Set> songSets = song.getActiveSongSets();
+        List<GameSet> songSets = song.getActiveSongSets();
 
         if (!songSets.isEmpty()) {
             VBox iconLayout = new VBox(1);
