@@ -51,8 +51,8 @@ public class MainMenu {
     private final Button PROVIDER;
     private final Button PROFILE;
 
-    public MainMenu(Stage stage) {
-        user = Database.getCurrentUser();
+    public MainMenu(Stage stage, User user) {
+        this.user = user;
         PROVIDER = new Button();
         PROFILE = new Button();
 
@@ -182,7 +182,7 @@ public class MainMenu {
         settingsBtn.setPrefWidth(30);
         settingsBtn.setPrefHeight(30);
         settingsBtn.setOnAction(e -> {
-            SettingsView settingsView = new SettingsView(this);
+            SettingsView settingsView = new SettingsView(this, user);
             settingsView.show(STAGE);
         });
 
@@ -285,6 +285,9 @@ public class MainMenu {
     public void setStage(Pane pane, boolean maximized) {
         Scene scene = new Scene(pane, 800, 600);
         ThemeManager.getInstance().registerScene(scene);
+        Log.Info(user.theme.toString());
+        ThemeManager.getInstance().setTheme(user.theme);
+
         STAGE.setScene(scene);
         STAGE.setMaximized(maximized);
         STAGE.getIcons().add(new Image(getClass().getResourceAsStream("/cardDesign.png")));

@@ -49,7 +49,9 @@ public class Database {
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT NOT NULL,
                     picture TEXT,
-                    provider TEXT
+                    provider TEXT,
+                    theme TEXT DEFAULT light,
+                    autoCheckUpdate INTEGER DEFAULT 1
                 );
             """);
 
@@ -548,14 +550,16 @@ public class Database {
 
             PreparedStatement stmt = conn.prepareStatement("""
                 UPDATE user
-                SET username = ?, picture = ?, provider = ?
+                SET username = ?, picture = ?, provider = ?, theme = ?, autoCheckUpdate = ?
                 WHERE id = ?
             """);
 
             stmt.setString(1, user.username);
             stmt.setString(2, user.picture);
             stmt.setString(3, user.provider);
-            stmt.setInt(4, user.id);
+            stmt.setString(4, user.theme.equals(ThemeManager.Theme.DARK) ? "dark" : "light");
+            stmt.setBoolean(5, user.autoCheckUpdate);
+            stmt.setInt(6, user.id);
 
             stmt.executeUpdate();
 
@@ -654,6 +658,8 @@ public class Database {
         user.username = rs.getString("username");
         user.picture = rs.getString("picture");
         user.provider = rs.getString("provider");
+        user.theme = rs.getString("theme").equals("dark") ? ThemeManager.Theme.DARK : ThemeManager.Theme.LIGHT;
+        user.autoCheckUpdate = rs.getBoolean("autoCheckUpdate");
 
         return user;
     }

@@ -1,5 +1,6 @@
 package hitmaster;
 
+import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
 import hitmaster.services.UpdateService;
@@ -15,15 +16,18 @@ public class Main extends Application {
         // 1) Check For Update
         UpdateService.checkForUpdates();
 
-        //! DEBUG
+        // 2) Initialize Database
         Database.initializeDatabase();
 
-        MainMenu menu = new MainMenu(stage);
+        // 3) Initialize UI
+        User user = Database.getCurrentUser();
+        MainMenu menu = new MainMenu(stage, user);
 
         Scene scene = new Scene(menu.getView(), 600, 450);
         menu.getView().prefWidthProperty().bind(scene.widthProperty());
 
         ThemeManager.getInstance().registerScene(scene);
+        ThemeManager.getInstance().setTheme(user.theme);
 
         stage.setTitle("Hitmaster");
         stage.setScene(scene);
