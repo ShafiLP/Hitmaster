@@ -127,7 +127,7 @@ public final class GameLogic {
             SONGS = new ArrayList<>();
         }
 
-        // 4) Iniitialize Starting Cards for all players
+        // 4) Initialize Starting Cards for all players
         if (MULTIPLAYER) {
             if (isHost) {
                 // ----- HOST LOGIC -----

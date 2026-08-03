@@ -208,6 +208,13 @@ public class LobbyHostView {
      */
     private void startNetworking(int port, String lobbyName, String password, Button startGameBtn) {
         netManager = new NetworkManager();
+
+        PARENT.getStage().setOnCloseRequest(event -> {
+            netManager.closeConnection();
+
+            Platform.exit();
+            System.exit(0);
+        });
         
         new Thread(() -> {
             netManager.startAsHost(port, password, receivedObj -> {

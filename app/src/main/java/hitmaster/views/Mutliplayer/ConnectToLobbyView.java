@@ -238,6 +238,13 @@ public class ConnectToLobbyView {
         new Thread(() -> {
             try {
                 NetworkManager netManager = new NetworkManager();
+
+                PARENT.getStage().setOnCloseRequest(event -> {
+                    netManager.closeConnection();
+
+                    Platform.exit();
+                    System.exit(0);
+                });
                 
                 netManager.startAsClient(ip, 5050, receivedObj -> {
                     if (receivedObj instanceof GameOptionsDTO hostOptions) {

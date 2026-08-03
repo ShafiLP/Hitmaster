@@ -291,6 +291,10 @@ public class MainMenu {
         STAGE.show();
     }
 
+    public Stage getStage() {
+        return STAGE;
+    }
+
     /**
      * Gets the BorderPane ROOT and returns it.
      * @return BorderPane ROOT.
