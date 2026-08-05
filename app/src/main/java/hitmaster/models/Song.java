@@ -12,6 +12,6 @@ public class Song {
     public String spotify;
 
     public List<GameSet> getActiveSongSets() {
-        return Database.getActiveSetsBySongId(id);
+        return Database.getInstance().getActiveSetsBySongId(id);
     }
 }

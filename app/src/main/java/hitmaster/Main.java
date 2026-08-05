@@ -17,10 +17,10 @@ public class Main extends Application {
         UpdateService.checkForUpdates();
 
         // 2) Initialize Database
-        Database.initializeDatabase();
+        Database.getInstance().initializeDatabase();
 
         // 3) Initialize UI
-        User user = Database.getCurrentUser();
+        User user = Database.getInstance().getCurrentUser();
         MainMenu menu = new MainMenu(stage, user);
 
         Scene scene = new Scene(menu.getView(), 600, 450);

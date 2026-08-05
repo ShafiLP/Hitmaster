@@ -118,7 +118,7 @@ public class SetManagerView {
     private void setAllSetsActive(boolean active) {
         for (GameSet set : getAllSets()) {
             set.isActive = active;
-            Database.updateSetStatus(set.id, active);
+            Database.getInstance().updateSetStatus(set.id, active);
         }
         this.refreshSetList();
     }
@@ -161,7 +161,7 @@ public class SetManagerView {
             boolean newState = !set.isActive;
             set.isActive = newState;
             updateToggleButtonState(toggleBtn, newState);
-            Database.updateSetStatus(set.id, newState);
+            Database.getInstance().updateSetStatus(set.id, newState);
         });
 
         HBox row = new HBox(10, infoLeft, spacer, toggleBtn);
@@ -187,7 +187,7 @@ public class SetManagerView {
     }
     
     private List<GameSet> getAllSets() {
-        return Database.getAllSets();
+        return Database.getInstance().getAllSets();
     }
 
     private void showCreateSetDialog() {

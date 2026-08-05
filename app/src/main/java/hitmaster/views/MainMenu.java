@@ -329,7 +329,7 @@ public class MainMenu {
      */
     public void initialiseProviderButton() {
         // Re-load user
-        user = Database.getCurrentUser();
+        user = Database.getInstance().getCurrentUser();
 
         PROVIDER.setText("No provider");
         PROVIDER.getStyleClass().add("prov-button-none");
@@ -372,7 +372,7 @@ public class MainMenu {
      */
     public void updateProfileButton() {
         // 1) Re-Load user from Database
-        user = Database.getCurrentUser();
+        user = Database.getInstance().getCurrentUser();
 
         // 2) Set new username and profile picture
         PROFILE.setText(user.getImage() == null ? "👤 " + user.username : user.username);

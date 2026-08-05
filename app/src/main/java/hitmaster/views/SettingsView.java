@@ -81,7 +81,7 @@ public class SettingsView {
             if (selectedTheme != null) {
                 ThemeManager.getInstance().setTheme(selectedTheme);
                 USER.theme = selectedTheme;
-                Database.updateUser(USER);
+                Database.getInstance().updateUser(USER);
             }
         });
         

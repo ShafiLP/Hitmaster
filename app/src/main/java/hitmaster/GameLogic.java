@@ -115,7 +115,7 @@ public final class GameLogic {
         // 3) Initialize Database
         // ----- HOST & SINGLEPLAYER LOGIC -----
         if (isHost) {
-            SONGS = Database.getSongFromActiveSets();
+            SONGS = Database.getInstance().getSongFromActiveSets();
             Collections.shuffle(SONGS);
 
             remaining_cards = SONGS.size();

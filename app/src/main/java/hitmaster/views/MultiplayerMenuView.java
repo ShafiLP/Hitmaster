@@ -30,7 +30,7 @@ public class MultiplayerMenuView {
 
     public MultiplayerMenuView(MainMenu parent) {
         this.PARENT = parent;
-        this.USER = Database.getCurrentUser();
+        this.USER = Database.getInstance().getCurrentUser();
 
         STAGE = new Stage();
         STAGE.setTitle("Multiplayer");

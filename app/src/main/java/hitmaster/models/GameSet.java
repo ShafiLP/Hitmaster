@@ -45,6 +45,6 @@ public class GameSet {
     }
 
     public List<Song> getSongs() {
-        return Database.getSongsBySetId(id);
+        return Database.getInstance().getSongsBySetId(id);
     }
 }

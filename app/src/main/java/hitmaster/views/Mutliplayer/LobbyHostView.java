@@ -57,7 +57,7 @@ public class LobbyHostView {
         STAGE = new Stage();
         STAGE.setTitle("Lobby: " + lobbyName);
 
-        User user = Database.getCurrentUser();
+        User user = Database.getInstance().getCurrentUser();
         HOST_PLAYER = new Player(user.username, user.picture);
         HOST_PLAYER.role = Player.Role.HOST;
 

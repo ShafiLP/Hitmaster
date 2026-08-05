@@ -67,7 +67,7 @@ public class ConnectToLobbyView {
         STAGE = new Stage();
         STAGE.setTitle("Connect To Host");
 
-        User user = Database.getCurrentUser();
+        User user = Database.getInstance().getCurrentUser();
         PLAYER = new Player(user.username, user.picture);
 
         // =========================

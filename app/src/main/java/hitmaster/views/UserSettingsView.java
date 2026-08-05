@@ -52,7 +52,7 @@ public class UserSettingsView {
 
     public UserSettingsView(MainMenu parent) {
         this.PARENT = parent;
-        this.user = Database.getCurrentUser();
+        this.user = Database.getInstance().getCurrentUser();
         this.croppedImage = null; 
 
         STAGE = new Stage();
@@ -192,7 +192,7 @@ public class UserSettingsView {
                 }
             }
 
-            if (Database.updateUser(user)) {
+            if (Database.getInstance().updateUser(user)) {
                 PARENT.initialiseProviderButton(); 
                 PARENT.updateProfileButton();
             }
