@@ -285,7 +285,6 @@ public class MainMenu {
     public void setStage(Pane pane, boolean maximized) {
         Scene scene = new Scene(pane, 800, 600);
         ThemeManager.getInstance().registerScene(scene);
-        Log.Info(user.theme.toString());
         ThemeManager.getInstance().setTheme(user.theme);
 
         STAGE.setScene(scene);

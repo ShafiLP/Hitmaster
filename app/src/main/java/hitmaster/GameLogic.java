@@ -48,7 +48,6 @@ public final class GameLogic {
     // Regex Patterns
     private static final Pattern DIACRITICS = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
     private static final Pattern SPECIAL_CHARS = Pattern.compile("[^a-z0-9 ]");
-    private static final Pattern MULTIPLE_SPACES = Pattern.compile("\\s+");
 
     /**
      * Constructor for GameLogic class.
@@ -474,8 +473,8 @@ public final class GameLogic {
         // 4) Remove everything that's not a letter, a number or a space
         String cleanChars = SPECIAL_CHARS.matcher(noAccents).replaceAll("");
 
-        // 5) Delete additional spacings
-        return MULTIPLE_SPACES.matcher(cleanChars).replaceAll(" ").trim();
+        // 5) Delete all spacings
+        return cleanChars.replaceAll(" ", "");
     }
 
     public GameView getView() {
