@@ -102,29 +102,32 @@ public class Database {
             this.insertJsonIntoSongs("songs.json");
 
             // 3) Insert GameSets into Database
-            this.addSetToDatabase(new GameSet("Hitster - UK", "hitster-uk.jpg", "hitster-uk.png", "hitster-uk.csv", true));
+            this.addSetToDatabase(new GameSet(1, "Hitster - UK", "hitster-uk.jpg", "hitster-uk.png", "hitster-uk.csv", true));
             this.addSongsToSetFromCsv("hitster-uk.csv", 1);
 
-            this.addSetToDatabase(new GameSet("Hitster - DE", "hitster-de.jpg", "hitster-de.png", "hitster-de.csv", false));
+            this.addSetToDatabase(new GameSet(2, "Hitster - DE", "hitster-de.jpg", "hitster-de.png", "hitster-de.csv", false));
             this.addSongsToSetFromCsv("hitster-de.csv", 2);
 
-            this.addSetToDatabase(new GameSet("Rock & Metal - DE", "rock-de.jpg", "rock-de.png", "rock-de.csv", false));
+            this.addSetToDatabase(new GameSet(3, "Rock & Metal - DE", "rock-de.jpg", "rock-de.png", "rock-de.csv", false));
             this.addSongsToSetFromCsv("rock-de.csv", 3);
 
-            this.addSetToDatabase(new GameSet("Guilty Pleasures - DE", "guilty-de.png", "guilty-de.png", "guilty-de.csv", false));
+            this.addSetToDatabase(new GameSet(4, "Guilty Pleasures - DE", "guilty-de.png", "guilty-de.png", "guilty-de.csv", false));
             this.addSongsToSetFromCsv("guilty-de.csv", 4);
 
-            this.addSetToDatabase(new GameSet("Bayern1 Expansion", "bavaria-ex.png", "bavaria-ex.png", "bavaria-ex.csv", false));
-            this.addSongsToSetFromCsv("bavaria-ex.csv", 5);
+            this.addSetToDatabase(new GameSet(5, "Summer Party - DE", "summer-de.jpg", "summer-de.png", "summer-de.csv", false));
+            this.addSongsToSetFromCsv("summer-de.csv", 5);
 
-            this.addSetToDatabase(new GameSet("Rock & Metal - Nordics", "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
-            this.addSongsToSetFromCsv("rock-nordics.csv", 6);
+            this.addSetToDatabase(new GameSet(6, "Bayern1 Expansion", "bavaria-ex.png", "bavaria-ex.png", "bavaria-ex.csv", false));
+            this.addSongsToSetFromCsv("bavaria-ex.csv", 6);
 
-            this.addSetToDatabase(new GameSet("Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
-            this.addSongsToSetFromCsv("punk-expansion.csv", 7);
+            this.addSetToDatabase(new GameSet(7, "Rock & Metal - Nordics", "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
+            this.addSongsToSetFromCsv("rock-nordics.csv", 7);
 
-            this.addSetToDatabase(new GameSet("Deutschrock Expansion", "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
-            this.addSongsToSetFromCsv("deutschrock-ex.csv", 8);
+            this.addSetToDatabase(new GameSet(8, "Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
+            this.addSongsToSetFromCsv("punk-expansion.csv", 8);
+
+            this.addSetToDatabase(new GameSet(9, "Deutschrock Expansion", "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
+            this.addSongsToSetFromCsv("deutschrock-ex.csv", 9);
 
             Log.Success("Succesfully initialized Database.");
             return true;
@@ -528,24 +531,34 @@ public class Database {
 
     public boolean addSetToDatabase(GameSet set) {
         // 1) Check if GameSet already exists in Database
-        if (this.checkIfSetExists(set.name)) {
+        if (checkIfSetExists(set)) {
             Log.Info("GameSet \"" + set.name + "\" already exists in Database: Skipping insertion to Database.");
             return true;
         }
 
-        // 2) Insert set if doesn't already exist in Database
+        // 2) Delete all sets after parameter set's ID to prevent wrong order
         try (Connection conn = Database.connect()) {
 
-            PreparedStatement stmt = conn.prepareStatement("""
-                INSERT INTO sets (name, img, icon, csv, is_active)
-                VALUES (?, ?, ?, ?, ?)
+            PreparedStatement deleteStmt = conn.prepareStatement("""
+                DELETE FROM sets
+                WHERE id >= ?;
             """);
 
-            stmt.setString(1, set.name);
-            stmt.setString(2, set.img);
-            stmt.setString(3, set.icon);
-            stmt.setString(4, set.csv);
-            stmt.setInt(5, set.isActive ? 1 : 0);
+            deleteStmt.setInt(1, set.id);
+            deleteStmt.executeUpdate();
+            
+            // 3) Insert set if doesn't already exist in Database
+            PreparedStatement stmt = conn.prepareStatement("""
+                INSERT INTO sets (id, name, img, icon, csv, is_active)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """);
+
+            stmt.setInt(1, set.id);
+            stmt.setString(2, set.name);
+            stmt.setString(3, set.img);
+            stmt.setString(4, set.icon);
+            stmt.setString(5, set.csv);
+            stmt.setInt(6, set.isActive ? 1 : 0);
 
             stmt.executeUpdate();
 
@@ -558,20 +571,21 @@ public class Database {
         }
     }
 
-    private boolean checkIfSetExists(String setName) {
+    private boolean checkIfSetExists(GameSet set) {
         try (Connection conn = Database.connect()) {
             
             PreparedStatement checkStmt = conn.prepareStatement("""
-                SELECT COUNT(*) FROM sets WHERE name = ?
+                SELECT COUNT(*) FROM sets WHERE name = ? AND id = ?
             """);
 
-            checkStmt.setString(1, setName);
+            checkStmt.setString(1, set.name);
+            checkStmt.setInt(2, set.id);
 
             ResultSet rs = checkStmt.executeQuery();
             return (rs.next() && rs.getInt(1) > 0);
         }
         catch (Exception e) {
-            Log.Error("Error while checking existance of GameSet \"" + setName + "\" in Database: " + e.getMessage());
+            Log.Error("Error while checking existance of GameSet \"" + set.name + "\" in Database: " + e.getMessage());
             return false;
         }
     }

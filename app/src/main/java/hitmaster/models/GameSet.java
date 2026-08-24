@@ -16,7 +16,8 @@ public class GameSet {
 
     public GameSet() {}
 
-    public GameSet(String name, String image, String icon, String csv, boolean isActive) {
+    public GameSet(int id, String name, String image, String icon, String csv, boolean isActive) {
+        this.id = id;
         this.name = name;
         this.img = image;
         this.icon = icon;
