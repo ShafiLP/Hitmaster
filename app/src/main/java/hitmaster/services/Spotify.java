@@ -151,9 +151,9 @@ public class Spotify {
                 Log.Error("Error while saving Spotify properties: " + e.getMessage());
             }
 
-            User user = Database.getCurrentUser();
+            User user = Database.getInstance().getCurrentUser();
             user.provider = "spotify";
-            Database.updateUser(user);
+            Database.getInstance().updateUser(user);
             
             Log.Success("Connection to Spotify was successful.\nTokens saved in \"spotify.properties\".");
             return true;

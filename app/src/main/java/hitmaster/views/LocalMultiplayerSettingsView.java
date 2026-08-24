@@ -78,7 +78,7 @@ public class LocalMultiplayerSettingsView {
         p1Name.getStyleClass().add("modern-textbox");
         p1Name.setPrefWidth(180);
         p1Name.setPromptText("Player 1...");
-        p1Name.setText(Database.getCurrentUser().username);
+        p1Name.setText(Database.getInstance().getCurrentUser().username);
         playerNames.getChildren().add(p1Name);
         TextField p2Name = new TextField();
         p2Name.getStyleClass().add("modern-textbox");
@@ -127,7 +127,7 @@ public class LocalMultiplayerSettingsView {
         startGame.setOnAction(e -> {
             GameOptions options = new GameOptions();
             options.players = new Player[2];
-            options.players[0] = new Player(p1Name.getText(), Database.getCurrentUser().picture);
+            options.players[0] = new Player(p1Name.getText(), Database.getInstance().getCurrentUser().picture);
             options.players[0].role = Player.Role.HOST;
             options.players[1] = new Player(p2Name.getText(), null);
             options.players[1].role = Player.Role.HOST;

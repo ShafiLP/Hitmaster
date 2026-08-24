@@ -100,7 +100,7 @@ public class ProviderSettingsView {
             authThread.start();
         });
         
-        User user = Database.getCurrentUser();
+        User user = Database.getInstance().getCurrentUser();
         if (user.provider != null && user.provider.equals("spotify") && Spotify.requestSpotifyConnection() != null) {
             connections[0].setText("Connected");
             connections[0].setStyle("-fx-background-color: rgba(0, 255, 0, 0.2);");

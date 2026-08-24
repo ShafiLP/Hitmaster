@@ -12,7 +12,8 @@ public class Launcher {
             
             Main.main(args);
             
-        } catch (Throwable t) {
+        }
+        catch (Throwable t) {
             t.printStackTrace();
         }
     }

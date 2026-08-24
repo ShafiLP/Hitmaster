@@ -30,7 +30,7 @@
   {
     "id": 5,
     "titles": ["Blurred Lines"],
-    "artists": ["Robin Thicke (feat. T.I. & Pharrell Williams)", "Robin Thicke", "T. I.", "Pharrell Williams"],
+    "artists": ["Robin Thicke (feat. T.I. & Pharrell Williams)", "Robin Thicke", "T. I.", "Pharrell Williams", "Pharrell"],
     "year": 2013,
     "spotify_id": "2pgbGOb00WrlXY3ZRFKn7v"
   },
@@ -142,7 +142,7 @@
   {
     "id": 21,
     "titles": ["Lean On"],
-    "artists": ["Major Lazer (feat. DJ Snake & MØ)", "Major Lazer", "DJ Snake", "MØ"],
+    "artists": ["Major Lazer (feat. DJ Snake & MØ)", "Major Lazer", "DJ Snake", "Snake", "MØ"],
     "year": 2015,
     "spotify_id": "2YWjW3wwQIBLNhxWKBQd16"
   },
@@ -681,7 +681,7 @@
   {
     "id": 98,
     "titles": ["Happy"],
-    "artists": ["Pharrell Williams"],
+    "artists": ["Pharrell Williams", "Pharrell"],
     "year": 2013,
     "spotify_id": "60nZcImufyMA1MKQY3dcCH"
   },
@@ -1605,7 +1605,7 @@
   {
     "id": 230,
     "titles": ["Itsy Bitsy Teenie Weenie Honolulu-Strand-Bikini", "Itsy Bitsy Teenie Weenie Honolulu Strand Bikini"],
-    "artists": ["Caterina Valente & Silvio Francesco", "Caterina Valente", "Silvio Francesco"],
+    "artists": ["Caterina Valente & Silvio Francesco", "Caterina Valente", "Silvio Francesco", "Club Honolulu"],
     "year": 1960,
     "spotify_id": "30ge50akdCCPPKcELnQtx0"
   },
@@ -1626,7 +1626,7 @@
   {
     "id": 233,
     "titles": ["Celebration"],
-    "artists": ["Kool & The Gang", "Kool and The Gang", "Kool"],
+    "artists": ["Kool & The Gang", "Kool and The Gang", "Kool", "The Gang", "Gang"],
     "year": 1980,
     "spotify_id": "3K7Q9PHUWPTaknlbFPThn2"
   },
@@ -1829,7 +1829,7 @@
   {
     "id": 262,
     "titles": ["Das Boot"],
-    "artists": ["U 96", "U96"],
+    "artists": ["U96", "U Sechsundneunzig"],
     "year": 1991,
     "spotify_id": "5A3IdgGphzKS2etiGFB73S"
   },
@@ -5934,10 +5934,10 @@
   },
   {
     "id": 847,
-    "titles": ["'54, '74, '90, '2006", "Vierundfünfzig, Vierundsiebzig, Neunzig, Zweitausendsechs"],
+    "titles": ["'54, '74, '90, '2010", "Vierundfünfzig, Vierundsiebzig, Neunzig, Zweitausendzehn"],
     "artists": ["Sportfreunde Stiller"],
     "year": 2006,
-    "spotify_id": "5UVXLUq8m3CnehQ283wkrv"
+    "spotify_id": "6ee1motyT1KuUMiz8dMqxj"
   },
   {
     "id": 848,
@@ -6701,7 +6701,7 @@
   {
     "id": 956,
     "titles": ["Red Red Wine"],
-    "artists": ["UB40", "UB 40", "UB-Fourty", "UB Fourty"],
+    "artists": ["UB40", "UB-Fourty"],
     "year": 1983,
     "spotify_id": "1tOE1dIyIjsfLJWiQ4ZRJW"
   },
@@ -10249,275 +10249,2017 @@
   },
   {
     "id": 1462,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Am Fenster"],
+    "artists": ["City"],
+    "year": 1977,
+    "spotify_id": "3y8lnCA8R91z9CArWY6DPw"
   },
   {
     "id": 1463,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Irgendwie, Irgendwo, Irgendwann"],
+    "artists": ["Nena"],
+    "year": 1984,
+    "spotify_id": "2KTxKoM4iUYCtuUGGIh9Qu"
   },
   {
     "id": 1464,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Horizont"],
+    "artists": ["Udo Lindenberg"],
+    "year": 1986,
+    "spotify_id": "6oXjl47yMZ8AigDIqyMx0I"
   },
   {
     "id": 1465,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Frei Zu Sein"],
+    "artists": ["In Extremo", "Extremo"],
+    "year": 2008,
+    "spotify_id": "5jPTja4yKNnkx1NaELvtVh"
   },
   {
     "id": 1466,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["TV-Glotzer"],
+    "artists": ["Nina Hagen Band", "Nina Hagen"],
+    "year": 1978,
+    "spotify_id": "5nVnroK6bWLVyZDtPo4H7I"
   },
   {
     "id": 1467,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Es Regnet Bier"],
+    "artists": ["Hämatom", "Haematom"],
+    "year": 2022,
+    "spotify_id": "6jeM1OMTY7FpJd6RVqL6kp"
   },
   {
     "id": 1468,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Alter Mann"],
+    "artists": ["Knorkator"],
+    "year": 2007,
+    "spotify_id": "5A4Od5Rt4u63a0Jk0jZRRm"
   },
   {
     "id": 1469,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Das Schlimmste Ist, Wenn Das Bier Alle Ist"],
+    "artists": ["Die Kassierer", "Kassierer"],
+    "year": 2003,
+    "spotify_id": "2FUWANPXYiOz6RjRKVvofb"
   },
   {
     "id": 1470,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Dreh Auf!"],
+    "artists": ["We Butter The Bread With Butter", "WBTBWB"],
+    "year": 2019,
+    "spotify_id": "3mduN26ufQQd29RcB86U8R"
   },
   {
     "id": 1471,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Traum Von Freiheit"],
+    "artists": ["Betontod", "Beton Tod"],
+    "year": 2015,
+    "spotify_id": "26SDO1ACMmVGscfTqCQviU"
   },
   {
     "id": 1472,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Küss Mich", "Kuess Mich"],
+    "artists": ["Betontod", "Beton Tod"],
+    "year": 2017,
+    "spotify_id": "41OX05ujh4Y3WFtuCDhhL6"
   },
   {
     "id": 1473,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Mutmacher", "Mut Macher"],
+    "artists": ["Kärbholz", "Kärb Holz", "Kaerbholz", "Kaerb Holz"],
+    "year": 2018,
+    "spotify_id": "55BLayUosqcqnEd8gtqEsL"
   },
   {
     "id": 1474,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Walking on Sunshine"],
+    "artists": ["Katrina & The Waves", "Katrina and The Waves", "Katrina", "The Waves", "Waves"],
+    "year": 1983,
+    "spotify_id": "05wIrZSwuaVWhcv5FfqeH0"
   },
   {
     "id": 1475,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Summer in The City"],
+    "artists": ["Joe Cocker"],
+    "year": 1994,
+    "spotify_id": "4JaAu7X4zqWols837Myn5X"
   },
   {
     "id": 1476,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Perfect"],
+    "artists": ["Fairground Attraction", "FA"],
+    "year": 1988,
+    "spotify_id": "2X90tKH59XlulLjbT4vci1"
   },
   {
     "id": 1477,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Je Ne Parle Pas Français", "Je Ne Parle Pas Francais"],
+    "artists": ["Namika (feat. Black M)", "Namika", "Black M"],
+    "year": 2018,
+    "spotify_id": "4eJqzRN15DabYK4byfWghD"
   },
   {
     "id": 1478,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["One Dance"],
+    "artists": ["Drake (feat. Wizkid and Kyla)", "Drake", "Wizkid", "Kyla"],
+    "year": 2016,
+    "spotify_id": "1zi7xx7UVEFkmKfv06H8x0"
   },
   {
     "id": 1479,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Vayamos Compañeros", "Vayamos Companeros"],
+    "artists": ["Marquess"],
+    "year": 2007,
+    "spotify_id": "6LTAv2W4zYWM5rSKdgHWZS"
   },
   {
     "id": 1480,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["High"],
+    "artists": ["Lighthouse Family", "The Lighthouse Family", "LF"],
+    "year": 1997,
+    "spotify_id": "0AQHfKjzky28rf5ytfBANJ"
   },
   {
     "id": 1481,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["All Night Long (All Night)", "All Night Long", "All Night"],
+    "artists": ["Lionel Richie"],
+    "year": 1983,
+    "spotify_id": "4czNORk5MjW5WOn98bki32"
   },
   {
     "id": 1482,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Let The Music Play"],
+    "artists": ["Barry White"],
+    "year": 1975,
+    "spotify_id": "2sR6PY1YgPZTB8hZflRbFq"
   },
   {
     "id": 1483,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Shut Up (and Sleep With Me)", "Shut Up", "And Sleep With Me"],
+    "artists": ["Sin With Sebastian", "SwS"],
+    "year": 1995,
+    "spotify_id": "0fXy5mDtuSBtBMkNtAUhG6"
   },
   {
     "id": 1484,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Baila Me"],
+    "artists": ["Gipsy Kings"],
+    "year": 1991,
+    "spotify_id": "06HRc41zK97Hh9AcuyXVZn"
   },
   {
     "id": 1485,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Summertime"],
+    "artists": ["DJ Jazzy Jeff & The Fresh Prince", "DJ Jazzy Jeff and The Fresh Prince", "DJ Jazzy Jeff", "Jazzy Jeff", "The Fresh Prince", "Fresh Prince"],
+    "year": 1991,
+    "spotify_id": "20XdEFyaUR9C7aDIdq2OAd"
   },
   {
     "id": 1486,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Suavemente"],
+    "artists": ["Elvis Crespo"],
+    "year": 1998,
+    "spotify_id": "1YwPNemawMgGe6sF4U0FTE"
   },
   {
     "id": 1487,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Mysterious Girl"],
+    "artists": ["Peter Andre"],
+    "year": 1995,
+    "spotify_id": "3CiM7fBGbaP6jiyuH2Ot4j"
   },
   {
     "id": 1488,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Breaking Me"],
+    "artists": ["Topic & A7S", "Topic and A7S", "Topic", "A7S", "A Seven S", "Topic & A Seven S", "Topic and A Seven S"],
+    "year": 2019,
+    "spotify_id": "3H7ihDc1dqLriiWXwsc2po"
   },
   {
     "id": 1489,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Here Comes The Sun"],
+    "artists": ["The Beatles", "Beatles"],
+    "year": 1969,
+    "spotify_id": "6dGnYIeXmHdcikdzNNDMm2"
   },
   {
     "id": 1490,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Eine Woche Wach"],
+    "artists": ["Mickie Krause"],
+    "year": 2019,
+    "spotify_id": "6aRlZoOO6dqXQtqq2wiQZ1"
   },
   {
     "id": 1491,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Was Du Liebe Nennst"],
+    "artists": ["Bausa"],
+    "year": 2017,
+    "spotify_id": "4hKWUzhQWsOkgT6LnDEASe"
   },
   {
     "id": 1492,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["A Horse with No Name"],
+    "artists": ["America"],
+    "year": 1971,
+    "spotify_id": "3BCSIFo2mLFFhSsg0QwpPw"
   },
   {
     "id": 1493,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["How Deep Is Your Love"],
+    "artists": ["Calvin Harris & Disciples", "Calvin Harris and Disciples", "Calvin Harris", "Disciples"],
+    "year": 2015,
+    "spotify_id": "22mek4IiqubGD9ctzxc69s"
   },
   {
     "id": 1494,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Hey! Baby (Uhh, Ahh)", "Hey! Baby"],
+    "artists": ["DJ Ötzi", "Ötzi"],
+    "year": 2000,
+    "spotify_id": "0HNXnhNZZtRZFLhP4hfyCP"
   },
   {
     "id": 1495,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Lady Marmalade"],
+    "artists": ["Christina Aguilera, Mýa, Pink & Lil' Kim", "Christina Aguilera", "Mýa", "P!nk", "Pink", "Lil' Kim", "Little Kim"],
+    "year": 2001,
+    "spotify_id": "0PSZ9G584Ve27GK6ThlY6P"
   },
   {
     "id": 1496,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Loco Contigo"],
+    "artists": ["DJ Snake, J Balvin & Tyga", "DJ Snake", "Snake", "J Balvin", "Tyga"],
+    "year": 2019,
+    "spotify_id": "6osaMSJh9NguagEDQcZaKx"
   },
   {
     "id": 1497,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Alles Neu"],
+    "artists": ["Peter Fox"],
+    "year": 2008,
+    "spotify_id": "5hqxBvQJ3XJDSbxT9vyyqA"
   },
   {
     "id": 1498,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Reggae Night"],
+    "artists": ["Jimmy Cliff"],
+    "year": 1983,
+    "spotify_id": "1OE5bn5HUmCqTLNpo13ya3"
   },
   {
     "id": 1499,
+    "titles": ["World in Our Hands"],
+    "artists": ["Taio Cruz"],
+    "year": 2011,
+    "spotify_id": "79xJXZeudmfMq4ay9yCFGd"
+  },
+  {
+    "id": 1500,
+    "titles": ["Mama Loo"],
+    "artists": ["Les Humphries Singers", "Humphries Singers"],
+    "year": 1973,
+    "spotify_id": "3Y37ytfQDMp2KTA1SG9bpl"
+  },
+  {
+    "id": 1501,
+    "titles": ["New York - Rio - Tokyo"],
+    "artists": ["Trio Rio"],
+    "year": 1986,
+    "spotify_id": "68h3Um0UOY8FkMfcelv4Vb"
+  },
+  {
+    "id": 1502,
+    "titles": ["Sunshine Reggae"],
+    "artists": ["Laid Back", "LB"],
+    "year": 1983,
+    "spotify_id": "0z0JSkE5Nw3i3nin3BBSuG"
+  },
+  {
+    "id": 1503,
+    "titles": ["Sun of Jamaica"],
+    "artists": ["Goombay Dance Band", "Goombay Dance", "GDB"],
+    "year": 1979,
+    "spotify_id": "5apwlmvQphkCJbHnMGUP2t"
+  },
+  {
+    "id": 1504,
+    "titles": ["Sweet Sixteen", "Sweet 16"],
+    "artists": ["Billy Idol"],
+    "year": 1986,
+    "spotify_id": "3kyW3qviTr2dIyvqa1lEWC"
+  },
+  {
+    "id": 1505,
+    "titles": ["All I Wanna Do", "All I Want To Do"],
+    "artists": ["Sheryl Crow"],
+    "year": 1993,
+    "spotify_id": "3ZpQiJ78LKINrW9SQTgbXd"
+  },
+  {
+    "id": 1506,
+    "titles": ["Ella, Elle l'a"],
+    "artists": ["France Gall"],
+    "year": 1987,
+    "spotify_id": "6fyyO9wAmiW9oEAXrOR8jQ"
+  },
+  {
+    "id": 1507,
+    "titles": ["Sweat (A La La La La Long)", "Sweat", "A La La La La Long"],
+    "artists": ["Inner Circle", "IC"],
+    "year": 1992,
+    "spotify_id": "1SssFw74DdHVjRa6ADggdD"
+  },
+  {
+    "id": 1508,
+    "titles": ["River"],
+    "artists": ["Tom Gregory"],
+    "year": 2021,
+    "spotify_id": "5nD2zmNcN7jZ1lrdj4ZVxX"
+  },
+  {
+    "id": 1509,
+    "titles": ["Boom, Boom, Boom, Boom!!", "Boom, Boom, Boom!!", "Boom, Boom!!", "Boom!!"],
+    "artists": ["Vengaboys", "The Vengaboys"],
+    "year": 1998,
+    "spotify_id": "5N6M8yDiMV32T6Rkzh8EbW"
+  },
+  {
+    "id": 1510,
+    "titles": ["So Schmeckt Der Sommer"],
+    "artists": ["Edward Reekers"],
+    "year": 1995,
+    "spotify_id": "0ftIaUx27vc9K0ztdiZgHf"
+  },
+  {
+    "id": 1511,
+    "titles": ["Boys (Summertime Love)", "Boys", "Summertime Love"],
+    "artists": ["Sabrina"],
+    "year": 1987,
+    "spotify_id": "1uI848raFaNWwe9HjHpjQ5"
+  },
+  {
+    "id": 1512,
+    "titles": ["Summer Jam"],
+    "artists": ["The Underdog Project", "Underdog Project", "UP"],
+    "year": 2000,
+    "spotify_id": "78Mqt7lWuaxVhN0ZptsuCY"
+  },
+  {
+    "id": 1513,
     "titles": ["Titel"],
     "artists": ["Artist"],
     "year": 2026,
     "spotify_id": "XXXXX"
   },
   {
-    "id": 1500,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "id": 1514,
+    "titles": ["Flying Through The Air"],
+    "artists": ["Oliver Onions", "OO"],
+    "year": 1989,
+    "spotify_id": "1PEZiGU255hLkwyn5CwHqj"
+  },
+  {
+    "id": 1515,
+    "titles": ["Wavin' Flag", "Waving Flag"],
+    "artists": ["K'naan"],
+    "year": 2009,
+    "spotify_id": "20Vs0dtWsL7eZ87YAvubJj"
+  },
+  {
+    "id": 1516,
+    "titles": ["Could You Be Loved"],
+    "artists": ["Bob Marley & The Wailers", "Bob Marley and The Wailers", "Bob Marley"],
+    "year": 1980,
+    "spotify_id": "5O4erNlJ74PIF6kGol1ZrC"
+  },
+  {
+    "id": 1517,
+    "titles": ["Take Me Tonight"],
+    "artists": ["Alexander Klaws", "Alexander"],
+    "year": 2003,
+    "spotify_id": "2lWLGJ0C4vCi8EmNAvzzzm"
+  },
+  {
+    "id": 1518,
+    "titles": ["United"],
+    "artists": ["Prince Ital Joe (feat. Marky Mark)", "Prince Ital Joe", "Prince Ital", "Prince Joe", "Ital Joe", "Marky Mark"],
+    "year": 1994,
+    "spotify_id": "0f3cKxB4avKAHNgucJ6S9O"
+  },
+  {
+    "id": 1519,
+    "titles": ["Alors On Danse"],
+    "artists": ["Stromae"],
+    "year": 2009,
+    "spotify_id": "2GYHyAoLWpkxLVa4oYTVko"
+  },
+  {
+    "id": 1520,
+    "titles": ["Volare (Nel Blu di Pinto di Blu)", "Volare", "Nel Blu di Pinto di Blu"],
+    "artists": ["Domenico Modugno"],
+    "year": 1958,
+    "spotify_id": "71hIekopkrYCGgggsBOpVG"
+  },
+  {
+    "id": 1521,
+    "titles": ["Faded Love"],
+    "artists": ["Leony"],
+    "year": 2021,
+    "spotify_id": "0HzHUF33G1dPmd2eNULyfa"
+  },
+  {
+    "id": 1522,
+    "titles": ["La La La", "La La", "La"],
+    "artists": ["Naughty Boy (feat. Sam Smith)", "Naughty Boy", "NB", "Sam Smith"],
+    "year": 2013,
+    "spotify_id": "3wPPWcVuinAU7dXcJXtCID"
+  },
+  {
+    "id": 1523,
+    "titles": ["Fresh"],
+    "artists": ["Kool & The Gang", "Kool and The Gang", "Kool", "The Gang", "Gang"],
+    "year": 1984,
+    "spotify_id": "1mMYaXpT65iZDtvfRA9EkE"
+  },
+  {
+    "id": 1524,
+    "titles": ["Helden 2008", "Helden Zweitausendacht", "Helden"],
+    "artists": ["Revolverheld"],
+    "year": 2008,
+    "spotify_id": "4iyshfXSQnB0yhQr4Uoyqp"
+  },
+  {
+    "id": 1525,
+    "titles": ["Ratzfatz Nach Mallorca"],
+    "artists": ["Ibo"],
+    "year": 2000,
+    "spotify_id": "6G2lRHL7CJjHEaf6AGK9Q5"
+  },
+  {
+    "id": 1526,
+    "titles": ["Sofia"],
+    "artists": ["Alvaro Soler"],
+    "year": 2015,
+    "spotify_id": "5vj59ONIVbyhcrI8ZSwoRo"
+  },
+  {
+    "id": 1527,
+    "titles": ["Cruisen"],
+    "artists": ["Massive Töne", "Massive Toene", "MT"],
+    "year": 2002,
+    "spotify_id": "6e5kuZssmkwWL3Yt4jwTRy"
+  },
+  {
+    "id": 1528,
+    "titles": ["This Girl"],
+    "artists": ["Kungs", "Cookin' on 3 Burners", "Cooking on 3 Burners", "Cookin' on three Burners", "Cooking on three Burners"],
+    "year": 2016,
+    "spotify_id": "1A8j067qyiNwQnZT0bzUpZ"
+  },
+  {
+    "id": 1529,
+    "titles": ["Nutbush City Limits"],
+    "artists": ["Ike & Tina Turner", "Ike and Tina Turner", "Ike Turner", "Tina Turner"],
+    "year": 1973,
+    "spotify_id": "06yREZ9X92R2e9RJpdzZ2O"
+  },
+  {
+    "id": 1530,
+    "titles": ["I Want To Break Free"],
+    "artists": ["Queen"],
+    "year": 1984,
+    "spotify_id": "7iAqvWLgZzXvH38lA06QZg"
+  },
+  {
+    "id": 1531,
+    "titles": ["Footloose"],
+    "artists": ["Kenny Loggins", "KL"],
+    "year": 1984,
+    "spotify_id": "6W2VbtvMrDXm5vYeB7amkO"
+  },
+  {
+    "id": 1532,
+    "titles": ["Can't Stop The Feeling!", "Cannot Stop The Feeling!", "Can Not Stop The Feeling!"],
+    "artists": ["Justin Timberlake"],
+    "year": 2016,
+    "spotify_id": "0x93VOS1AOKUgJkZjcG1sh"
+  },
+  {
+    "id": 1533,
+    "titles": ["Wake Me Up"],
+    "artists": ["Avicii (feat. Aloe Blacc)", "Avicii", "Aloe Blacc"],
+    "year": 2013,
+    "spotify_id": "0nrRP2bk19rLc0orkWPQk2"
+  },
+  {
+    "id": 1534,
+    "titles": ["Where Do You Go"],
+    "artists": ["No Mercy"],
+    "year": 1996,
+    "spotify_id": "37tzoWY1ubBQKGXiWdO5Qv"
+  },
+  {
+    "id": 1535,
+    "titles": ["Bella Isola"],
+    "artists": ["Bata Illic"],
+    "year": 2003,
+    "spotify_id": "0tRdzXtsvcdVcUCvLYa6Ow"
+  },
+  {
+    "id": 1536,
+    "titles": ["Lessons in Love"],
+    "artists": ["Level 42", "Level Fourty-Two"],
+    "year": 1986,
+    "spotify_id": "3EGI5qmVmGlfgy9BmNb1R8"
+  },
+  {
+    "id": 1537,
+    "titles": ["Whatever"],
+    "artists": ["Cro"],
+    "year": 2013,
+    "spotify_id": "2jEM4UBJxs98Uf4NEe48iD"
+  },
+  {
+    "id": 1538,
+    "titles": ["Venus"],
+    "artists": ["Bananarama"],
+    "year": 1986,
+    "spotify_id": "4XX1pFUkQOZTYp6Hb6a6Ae"
+  },
+  {
+    "id": 1539,
+    "titles": ["Happy Together"],
+    "artists": ["The Turtles", "Turtles"],
+    "year": 1967,
+    "spotify_id": "1JO1xLtVc8mWhIoE3YaCL0"
+  },
+  {
+    "id": 1540,
+    "titles": ["Pump Up the Jam"],
+    "artists": ["Technotronic"],
+    "year": 1989,
+    "spotify_id": "21qnJAMtzC6S5SESuqQLEK"
+  },
+  {
+    "id": 1541,
+    "titles": ["Heat Waves"],
+    "artists": ["Glass Animals"],
+    "year": 2020,
+    "spotify_id": "3USxtqRwSYz57Ewm6wWRMp"
+  },
+  {
+    "id": 1542,
+    "titles": ["Lonely"],
+    "artists": ["Nana Darkman", "Nana", "Darkman"],
+    "year": 1997,
+    "spotify_id": "5TxlsxGp0CYnntNNIBzSrq"
+  },
+  {
+    "id": 1543,
+    "titles": ["Conga!"],
+    "artists": ["Miami Sound Machine", "MSM"],
+    "year": 1985,
+    "spotify_id": "3FdHgoJbH3DXNtGLh56pFu"
+  },
+  {
+    "id": 1544,
+    "titles": ["Holiday Rap"],
+    "artists": ["MC Miker G & DJ Sven", "MC Miker G and DJ Sven", "MC Miker G", "MC Miker", "Miker G", "DJ Sven", "Sven"],
+    "year": 1986,
+    "spotify_id": "2wCgOxYof67qXam24a3pHz"
+  },
+  {
+    "id": 1545,
+    "titles": ["Weekend"],
+    "artists": ["Earth & Fire", "Earth and Fire"],
+    "year": 1979,
+    "spotify_id": "1bZr5vH0cfmKu5ODpD0DEO"
+  },
+  {
+    "id": 1546,
+    "titles": ["Love Is You"],
+    "artists": ["Thomas Godoj"],
+    "year": 2008,
+    "spotify_id": "0ydk0oiUuGNyeUFeWlkjUS"
+  },
+  {
+    "id": 1547,
+    "titles": ["People Everyday"],
+    "artists": ["Arrested Development", "AD"],
+    "year": 1992,
+    "spotify_id": "6JvodgYcsthsORxPsEYUoe"
+  },
+  {
+    "id": 1548,
+    "titles": ["California Gurls"],
+    "artists": ["Katy Perry (feat. Snoop Dogg)", "Katy Perry", "Snoop Dogg", "Snoop Dog"],
+    "year": 2010,
+    "spotify_id": "6tS3XVuOyu10897O3ae7bi"
+  },
+  {
+    "id": 1549,
+    "titles": ["Let's Get Loud", "Let Us Get Loud"],
+    "artists": ["Jennifer Lopez"],
+    "year": 1999,
+    "spotify_id": "42nSaPdT6g3ZIMHmKLlP2p"
+  },
+  {
+    "id": 1550,
+    "titles": ["One Kiss"],
+    "artists": ["Calvin Harris & Dua Lipa", "Calvin Harris and Dua Lipa", "Calvin Harris", "Dua Lipa"],
+    "year": 2018,
+    "spotify_id": "7ef4DlsgrMEH11cDZd32M6"
+  },
+  {
+    "id": 1551,
+    "titles": ["Mambo No. 5 (A Little Bit Of...)", "Mambo No. 5", "Mambo No. Five", "Mambo Number 5", "Mambo Number Five", "A Little Bit Of...",
+               "Mambo No. 5 (A Little Bit Of...)", "Mambo No. Five (A Little Bit Of...)", "Mambo Number 5 (A Little Bit Of...)", "Mambo Number Five (A Little Bit Of...)"],
+    "artists": ["Lou Bega"],
+    "year": 1999,
+    "spotify_id": "6x4tKaOzfNJpEJHySoiJcs"
+  },
+  {
+    "id": 1552,
+    "titles": ["The Girl From Ipanema"],
+    "artists": ["Stan Getz & João Gilberto", "Stan Getz and João Gilberto", "Stan Getz", "João Gilberto"],
+    "year": 1964,
+    "spotify_id": "4qGfJb2KByjvzrwo8HNibg"
+  },
+  {
+    "id": 1553,
+    "titles": ["Talkin' 'bout a Revolution", "Talking 'bout a Revolution", "Talkin' about a Revolution", "Talking about a Revolution"],
+    "artists": ["Tracy Chapman"],
+    "year": 1988,
+    "spotify_id": "0YMFcrMtBowDdD5bPz0cgy"
+  },
+  {
+    "id": 1554,
+    "titles": ["Sonic Empire"],
+    "artists": ["Members of Mayday", "MoM"],
+    "year": 1997,
+    "spotify_id": "19iYbGg080uoVvudEvrN43"
+  },
+  {
+    "id": 1555,
+    "titles": ["Senza Una Donna (Without A Woman)", "Senza Una Donna", "Without A Woman"],
+    "artists": ["Zucchero"],
+    "year": 1987,
+    "spotify_id": "3ShEGKdskF0ke7iW2u9gjD"
+  },
+  {
+    "id": 1556,
+    "titles": ["Don't Stop", "Do Not Stop"],
+    "artists": ["Fleetwood Mac"],
+    "year": 1977,
+    "spotify_id": "6l6vgKIgXLnqgSMqf4nGNc"
+  },
+  {
+    "id": 1557,
+    "titles": ["Coco Jamboo", "Coco Jambo"],
+    "artists": ["Mr. President", "Mister President"],
+    "year": 1996,
+    "spotify_id": "5fRvePkRGdpn2nKacG7I6d"
+  },
+  {
+    "id": 1558,
+    "titles": ["Never Leave You (Uh Oooh, Uh Oooh)", "Never Leave You"],
+    "artists": ["Lumidee"],
+    "year": 2003,
+    "spotify_id": "1AjQE5MtP5jHQMyDepbvLI"
+  },
+  {
+    "id": 1559,
+    "titles": ["Ö La Palöma Blanca", "Oe La Paloema Blanca", "Ö La Palöma", "Oe La Paloema"],
+    "artists": ["Ö La Palöma Boys", "O La Paloma Boys", "Oe La Paloema Boys"],
+    "year": 1999,
+    "spotify_id": "1va0F65ETZcPToyqAuda8Q"
+  },
+  {
+    "id": 1560,
+    "titles": ["Jetzt Oder Nie"],
+    "artists": ["Maite Kelly"],
+    "year": 2016,
+    "spotify_id": "5Q5mE6WAW410uleWj0Qjz7"
+  },
+  {
+    "id": 1561,
+    "titles": ["I.O.I.O."],
+    "artists": ["B3", "B Three"],
+    "year": 2002,
+    "spotify_id": "3b2lYcUl4Scnm4CnltLMvY"
+  },
+  {
+    "id": 1562,
+    "titles": ["SOS"],
+    "artists": ["ABBA"],
+    "year": 1975,
+    "spotify_id": "5pMmWfuL0FTGshYt7HVJ8P"
+  },
+  {
+    "id": 1563,
+    "titles": ["Balada", "Balada (Tchê Tcherere Tchê Tchê)", "Tchê Tcherere Tchê Tchê"],
+    "artists": ["Gusttavo Lima", "Gustavo Lima"],
+    "year": 2011,
+    "spotify_id": "6d63QA85w4FXhlXYtz7nco"
+  },
+  {
+    "id": 1564,
+    "titles": ["The Shoop Shoop Song (It's in His Kiss)", "The Shoop Shoop Song", "Shoop Shoop Song",
+               "The Shoop Song", "Shoop Song", "It's in His Kiss", "It is in His Kiss"],
+    "artists": ["Cher"],
+    "year": 1990,
+    "spotify_id": "5oV1YjM2rtyZ55txHHsFUu"
+  },
+  {
+    "id": 1565,
+    "titles": ["Samba de Janeiro"],
+    "artists": ["Bellini"],
+    "year": 1997,
+    "spotify_id": "4YopUHLBgDj3l17HYm2OoX"
+  },
+  {
+    "id": 1566,
+    "titles": ["Stop! In the Name of Love", "In the Name of Love"],
+    "artists": ["The Supremes", "Supremes"],
+    "year": 1965,
+    "spotify_id": "52FlwUMMDnTK8TGkCag9Jd"
+  },
+  {
+    "id": 1567,
+    "titles": ["Voyage, Voyage", "Voyage"],
+    "artists": ["Desireless"],
+    "year": 1986,
+    "spotify_id": "2d8D7uk3tbAThjRkdfrx9c"
+  },
+  {
+    "id": 1568,
+    "titles": ["Vamos a la Playa"],
+    "artists": ["Righeira"],
+    "year": 1983,
+    "spotify_id": "3iB7lzsBC7PdJLU9k2nttT"
+  },
+  {
+    "id": 1569,
+    "titles": ["Macarena"],
+    "artists": ["Los Del Río", "The Del Ríos", "Del Ríos"],
+    "year": 1993,
+    "spotify_id": "6mhw2fEPH4fMF0wolNm96e"
+  },
+  {
+    "id": 1570,
+    "titles": ["Summer Wine"],
+    "artists": ["Nancy Sinatra & Lee Hazlewood", "Nancy Sinatra and Lee Hazlewood",
+                "Nancy Sinatra", "Lee Hazlewood"],
+    "year": 1966,
+    "spotify_id": "2JKRZGp4LwT9GGbcXtx2sw"
+  },
+  {
+    "id": 1571,
+    "titles": ["Dance The Night"],
+    "artists": ["Dua Lipa"],
+    "year": 2023,
+    "spotify_id": "11C4y2Yz1XbHmaQwO06s9f"
+  },
+  {
+    "id": 1572,
+    "titles": ["One Night Stand"],
+    "artists": ["Capital Bra", "Joker Bra"],
+    "year": 2018,
+    "spotify_id": "4i2DmyVwf29lEdmLGNTyGM"
+  },
+  {
+    "id": 1573,
+    "titles": ["Sunny"],
+    "artists": ["Bobby Hebb", "Bobby Heb"],
+    "year": 1966,
+    "spotify_id": "4vju55Ag7apDL2CfotuE7Q"
+  },
+  {
+    "id": 1574,
+    "titles": ["Ti Amo"],
+    "artists": ["Pietro Lombardi"],
+    "year": 2021,
+    "spotify_id": "2vlXmglKhzSlV5XJgPzjnx"
+  },
+  {
+    "id": 1575,
+    "titles": ["Stadt"],
+    "artists": ["Cassandra Steen (feat. Adel Tawil)", "Cassandra Steen", "Adel Tawil"],
+    "year": 2009,
+    "spotify_id": "6nE5RgNaFN5E5bpXeH2z9M"
+  },
+  {
+    "id": 1576,
+    "titles": ["Lila Wolken"],
+    "artists": ["Marteria, Yasha & Miss Platnum", "Marteria", "Yasha", "Miss Platnum", "Ms. Platnum"],
+    "year": 2012,
+    "spotify_id": "2i7LYnvqSFfmimscnZqVLn"
+  },
+  {
+    "id": 1577,
+    "titles": ["Sailing"],
+    "artists": ["Rod Stewart"],
+    "year": 1975,
+    "spotify_id": "6OuRbvP4PgbuzBIapVzmFJ"
+  },
+  {
+    "id": 1578,
+    "titles": ["Am Tag Als Conny Kramer Starb"],
+    "artists": ["Juliane Werding"],
+    "year": 1972,
+    "spotify_id": "7kTHUVnGMMOHW1CLdgvzui"
+  },
+  {
+    "id": 1579,
+    "titles": ["Mi Gente"],
+    "artists": ["J Balvin & Willy William", "J Balvin and Willy William",
+                "J Balvin", "Willy William"],
+    "year": 2017,
+    "spotify_id": "5r6X3m7zrVHmU2lSp3DXmP"
+  },
+  {
+    "id": 1580,
+    "titles": ["One Day / Reckoning Song", "One Day", "Reckoning Song"],
+    "artists": ["Asaf Avidan, The Mojos & Wankelmut", "Asaf Avidan", "The Mojos", "Mojos", "Wankelmut"],
+    "year": 2012,
+    "spotify_id": "5bGG1abhVIUm6EAa36ipRX"
+  },
+  {
+    "id": 1581,
+    "titles": ["I Feel Love"],
+    "artists": ["Donna Summer"],
+    "year": 1977,
+    "spotify_id": "3x0wa95iAU1ZMmf3yAQkjZ"
+  },
+  {
+    "id": 1582,
+    "titles": ["Du"],
+    "artists": ["Peter Maffay"],
+    "year": 1970,
+    "spotify_id": "6fFshpRdAV1MHSpzXP3Yyk"
+  },
+  {
+    "id": 1583,
+    "titles": ["Rhythm Is a Dancer"],
+    "artists": ["Snap!"],
+    "year": 1992,
+    "spotify_id": "1IWzfq3sLedGQ3fb2hAMBA"
+  },
+  {
+    "id": 1584,
+    "titles": ["Dubi Dam Dam", "Dubi Damm Damm"],
+    "artists": ["Banaroo"],
+    "year": 2005,
+    "spotify_id": "6FRw4Ed7mA8b1bVbWVL3yI"
+  },
+  {
+    "id": 1585,
+    "titles": ["Night Fever"],
+    "artists": ["Bee Gees"],
+    "year": 1977,
+    "spotify_id": "0qemIQjSxcKyf42VPfZnfa"
+  },
+  {
+    "id": 1586,
+    "titles": ["Without You"],
+    "artists": ["Mariah Carey", "Maria Carey"],
+    "year": 1993,
+    "spotify_id": "1kMOJBmpfWD9fir6st9uqS"
+  },
+  {
+    "id": 1587,
+    "titles": ["Un'estate italiana"],
+    "artists": ["Edoardo Bennato & Gianna Nannini", "Edoardo Bennato and Gianna Nannini", "Gianna Nannini", "Edoardo Bennato"],
+    "year": 1989,
+    "spotify_id": "50jCUPNEHtmLfK6PQzcnOH"
+  },
+  {
+    "id": 1588,
+    "titles": ["Evacuate The Dancefloor"],
+    "artists": ["Cascada"],
+    "year": 2009,
+    "spotify_id": "4Zfq7r0v4FKeoxwhyLYSyb"
+  },
+  {
+    "id": 1589,
+    "titles": ["Closer"],
+    "artists": ["Ne-Yo"],
+    "year": 2008,
+    "spotify_id": "0GX5oOKtU0nnx5OkhenW2i"
+  },
+  {
+    "id": 1590,
+    "titles": ["Boom Boom Boom", "Boom Boom", "Boom"],
+    "artists": ["The Outhere Brothers", "Outhere Brothers", "OB"],
+    "year": 1994,
+    "spotify_id": "1m3YR95r3ZuLtu66T8l4Ab"
+  },
+  {
+    "id": 1591,
+    "titles": ["The Cup Of Life (La Copa de la Vida)", "The Cup Of Life", "La Copa de la Vida"],
+    "artists": ["Ricky Martin"],
+    "year": 1998,
+    "spotify_id": "7aUCLXZ4D4UD5sCgIgxqjl"
+  },
+  {
+    "id": 1592,
+    "titles": ["Let's Get Back to Bed - Boy!", "Let's Get Back to Bed", "Let Us Get Back to Bed - Boy!", "Let Us Get Back to Bed"],
+    "artists": ["Sarah Connor (feat. TQ)", "Sarah Connor", "TQ", "Terrance Quaites"],
+    "year": 2001,
+    "spotify_id": "0EbWhshcHu8Y0NkdgABv3d"
+  },
+  {
+    "id": 1593,
+    "titles": ["Waterfall"],
+    "artists": ["Michael Schulte & R3hab", "Michael Schulte", "R3hab", "Rehab"],
+    "year": 2023,
+    "spotify_id": "7aJgh6LCvhXJfD7PHjhG70"
+  },
+  {
+    "id": 1594,
+    "titles": ["Bailando"],
+    "artists": ["Loona", "Lona"],
+    "year": 1998,
+    "spotify_id": "0oxOXYVVZ7vDknU6kagLwO"
+  },
+  {
+    "id": 1595,
+    "titles": ["The Power", "Power"],
+    "artists": ["Snap!"],
+    "year": 1990,
+    "spotify_id": "0nQLxiNGbbUoSGrxksETLm"
+  },
+  {
+    "id": 1596,
+    "titles": ["Drop It Like It's Hot", "Drop It Like It Is Hot"],
+    "artists": ["Snoop Dogg (feat. Pharrell)", "Snoop Dogg", "Snoop Dog", "Pharrell Williams", "Pharrell"],
+    "year": 2004,
+    "spotify_id": "2NBQmPrOEEjA8VbeWOQGxO"
+  },
+  {
+    "id": 1597,
+    "titles": ["Love Generation"],
+    "artists": ["Bob Sinclar (feat. Gary Pine)", "Bob Sinclar", "Gary Pine"],
+    "year": 2005,
+    "spotify_id": "3s3DWOPtKQSgJVDRKu85Tt"
+  },
+  {
+    "id": 1598,
+    "titles": ["Get Busy"],
+    "artists": ["Sean Paul"],
+    "year": 2002,
+    "spotify_id": "6bK9BH9Ts8Gj5JFvnQkzak"
+  },
+  {
+    "id": 1599,
+    "titles": ["Barbara Ann", "Barbara An"],
+    "artists": ["The Beach Boys", "Beach Boys"],
+    "year": 1965,
+    "spotify_id": "2KOt2JrCB720UxIbyzweQo"
+  },
+  {
+    "id": 1600,
+    "titles": ["Femme Like U (Donne-moi ton corps)", "Femme Like You (Donne-moi ton corps)",
+               "Femme Like U", "Femme Like You", "Donne-moi ton corps"],
+    "artists": ["K.Maro"],
+    "year": 2004,
+    "spotify_id": "4iVnfuAmwJNAGsiHz8Po6Y"
+  },
+  {
+    "id": 1601,
+    "titles": ["Akropolis Adieu", "Acropolis Adieu"],
+    "artists": ["Mireille Mathieu"],
+    "year": 1971,
+    "spotify_id": "5mmuzYKRWwpgsUNxhMg2ZW"
+  },
+  {
+    "id": 1602,
+    "titles": ["San Francisco (Be Sure to Wear Flowers in Your Hair)", "San Francisco", "Be Sure to Wear Flowers in Your Hair"],
+    "artists": ["Scott McKenzie"],
+    "year": 1967,
+    "spotify_id": "6vcNJUWtUPB0hKC6VbZriY"
+  },
+  {
+    "id": 1603,
+    "titles": ["I Believe"],
+    "artists": ["KAMRAD"],
+    "year": 2022,
+    "spotify_id": "6Gz7e7gqh7ytnzZzgSA9AR"
+  },
+  {
+    "id": 1604,
+    "titles": ["Substitution"],
+    "artists": ["Purple Disco Machine & Kungs (feat. Julian Perretta)", "Purple Disco Machine", "PDM", "Kungs", "Julian Perretta"],
+    "year": 2023,
+    "spotify_id": "2F2p7b5Xq20mRyEeWYaeUF"
+  },
+  {
+    "id": 1605,
+    "titles": ["Lush Life"],
+    "artists": ["Zara Larsson"],
+    "year": 2015,
+    "spotify_id": "1rIKgCH4H52lrvDcz50hS8"
+  },
+  {
+    "id": 1606,
+    "titles": ["So Am I", "So I Am"],
+    "artists": ["Ava Max"],
+    "year": 2019,
+    "spotify_id": "2Xnv3GntqbBH1juvUYSpHG"
+  },
+  {
+    "id": 1607,
+    "titles": ["La Tortura", "Tortura"],
+    "artists": ["Shakira (feat. Alejandro Sanz)", "Shakira", "Alejandro Sanz"],
+    "year": 2005,
+    "spotify_id": "5BSclXJTa9B0iURhUjZo50"
+  },
+  {
+    "id": 1608,
+    "titles": ["Axel F", "Axel"],
+    "artists": ["Harold Faltermeyer", "Harold Faltermeier"],
+    "year": 1984,
+    "spotify_id": "2kgqupahrJpYB4r1poTXEY"
+  },
+  {
+    "id": 1609,
+    "titles": ["Summer Of '69", "Summer Of Sixty-Nine", "Summer Of 1969"],
+    "artists": ["Bryan Adams"],
+    "year": 1984,
+    "spotify_id": "0GONea6G2XdnHWjNZd6zt3"
+  },
+  {
+    "id": 1610,
+    "titles": ["Cover Me in Sunshine"],
+    "artists": ["P!nk & Willow Sage Hart", "P!nk", "Pink", "Willow Sage Hart", "Willow Hart"],
+    "year": 2021,
+    "spotify_id": "6Tio0ZoDeSQnI7EBAqWer2"
+  },
+  {
+    "id": 1611,
+    "titles": ["Hot In Herre"],
+    "artists": ["Nelly"],
+    "year": 2002,
+    "spotify_id": "3hpUL1gDZWiz8k4DtYhZsS"
+  },
+  {
+    "id": 1612,
+    "titles": ["Be My Lover"],
+    "artists": ["La Bouche", "Bouche"],
+    "year": 1995,
+    "spotify_id": "3vSn1frPgFcRXrjWOfhMLl"
+  },
+  {
+    "id": 1613,
+    "titles": ["No Doubt About It"],
+    "artists": ["Hot Chocolate"],
+    "year": 1980,
+    "spotify_id": "1XcyciZOU2UcFgvSlFazeW"
+  },
+  {
+    "id": 1614,
+    "titles": ["Guten Morgen, Sonnenschein"],
+    "artists": ["Nana Mouskouri"],
+    "year": 1977,
+    "spotify_id": "5lpXFKgD6PeT6endUq5EX9"
+  },
+  {
+    "id": 1615,
+    "titles": ["Dance Little Birdie", "Dance Little Bird"],
+    "artists": ["De Electronica's", "Electronica's"],
+    "year": 1980,
+    "spotify_id": "5WIWTRAfxVY5mvRw4cdb0c"
+  },
+  {
+    "id": 1616,
+    "titles": ["Ice in The Sunshine", "Like Ice in The Sunshine"],
+    "artists": ["Beagle Music", "Beagle Music Ltd."],
+    "year": 1985,
+    "spotify_id": "0UNzSO6Ahn3MQ8izYLwc5K"
+  },
+  {
+    "id": 1617,
+    "titles": ["It's My Life", "It Is My Life"],
+    "artists": ["Dr. Alban", "Doctor Alban"],
+    "year": 1992,
+    "spotify_id": "4539Tbm6Rt5BaNKXJJj9RH"
+  },
+  {
+    "id": 1618,
+    "titles": ["Blondes Wunder"],
+    "artists": ["Bernhard Brink"],
+    "year": 1990,
+    "spotify_id": "6Nrs5TM730JUEp44XKOWqu"
+  },
+  {
+    "id": 1619,
+    "titles": ["The Rhythm of the Night", "Rhythm of the Night"],
+    "artists": ["Corona"],
+    "year": 1993,
+    "spotify_id": "0ofMkI3jzmGCElAOgOLeo3"
+  },
+  {
+    "id": 1620,
+    "titles": ["Seasons in The Sun"],
+    "artists": ["Terry Jacks"],
+    "year": 1973,
+    "spotify_id": "7pGMRy91RcQT9oHdPgYz3A"
+  },
+  {
+    "id": 1621,
+    "titles": ["Nur Noch Schuhe An!"],
+    "artists": ["Mickie Krause"],
+    "year": 2012,
+    "spotify_id": "2Fo33Bf61uSKCtFmTcgxuV"
+  },
+  {
+    "id": 1622,
+    "titles": ["Sexy Eis"],
+    "artists": ["Bürger Lars Dietrich", "Buerger Lars Dietrich", "Lars Dietrich"],
+    "year": 1996,
+    "spotify_id": "76UofYbCEIpOfu12Ls1kPt"
+  },
+  {
+    "id": 1623,
+    "titles": ["It Feels So Good"],
+    "artists": ["Sonique"],
+    "year": 1998,
+    "spotify_id": "4Y8q64VnhD0vFYy9g2WFpi"
+  },
+  {
+    "id": 1624,
+    "titles": ["Ain't Nobody (Loves Me Better)", "Ain't Nobody", "Loves Me Better"],
+    "artists": ["Felix Jaehn (feat. Jasmine Thompson)", "Felix Jaehn", "Jasmine Thompson"],
+    "year": 2015,
+    "spotify_id": "3c8iiZGfEammKJuWTErE5x"
+  },
+  {
+    "id": 1625,
+    "titles": ["Tacata"],
+    "artists": ["Tacabro (feat. Rodríguez)", "Tacabro", "Romano & Sapienza", "Romano and Sapienza",
+                "Romano", "Sapienza", "Rodríguez", "Ruly MC", "Ruly"],
+    "year": 2012,
+    "spotify_id": "6EhPXpRYkwGwg8lx3XiGTI"
+  },
+  {
+    "id": 1626,
+    "titles": ["Scatman's World", "Scatman His World"],
+    "artists": ["Scatman John", "Scatman"],
+    "year": 1995,
+    "spotify_id": "6dugx9WBSS8TDxbKqp9zmj"
+  },
+  {
+    "id": 1627,
+    "titles": ["Moonlight Shadow"],
+    "artists": ["Mike Oldfield"],
+    "year": 1983,
+    "spotify_id": "4WpmwEdc4RBos8W8icSSxW"
+  },
+  {
+    "id": 1628,
+    "titles": ["Waves"],
+    "artists": ["Mr. Probz", "Mister Probz", "Mr. Probs", "Mister Probs"],
+    "year": 2013,
+    "spotify_id": "3s8GJ1A9ujxsKcLaJ2wY7Q"
+  },
+  {
+    "id": 1629,
+    "titles": ["Rosemarie"],
+    "artists": ["Hubert Kah"],
+    "year": 1982,
+    "spotify_id": "4LYvl2jiB2EkCpZzTA8vxS"
+  },
+  {
+    "id": 1630,
+    "titles": ["Fade to Grey"],
+    "artists": ["Visage"],
+    "year": 1980,
+    "spotify_id": "3yobQNuKVJ62WDU7h725Fu"
+  },
+  {
+    "id": 1631,
+    "titles": ["Solo Para Ti"],
+    "artists": ["Alvaro Soler & Topic", "Alvaro Soler", "Topic"],
+    "year": 2022,
+    "spotify_id": "2uAgZ0PelSImQe3BME9CiT"
+  },
+  {
+    "id": 1632,
+    "titles": ["Everytime"],
+    "artists": ["Britney Spears"],
+    "year": 2003,
+    "spotify_id": "0dRhSF9LV0HR8Jwd3MMMKJ"
+  },
+  {
+    "id": 1633,
+    "titles": ["Jungle Drum"],
+    "artists": ["Emilíana Torrini"],
+    "year": 2008,
+    "spotify_id": "49sGyqfSqURWHIKDbkTfdQ"
+  },
+  {
+    "id": 1634,
+    "titles": ["Nevermind"],
+    "artists": ["Dennis Lloyd"],
+    "year": 2016,
+    "spotify_id": "63SevszngYpZOwf63o61K4"
+  },
+  {
+    "id": 1635,
+    "titles": ["Prayer in C (Remix)", "Prayer in C"],
+    "artists": ["Lilly Wood & The Prick", "Lilly Wood", "The Prick", "Prick", "Robin Schulz"],
+    "year": 2014,
+    "spotify_id": "5fnA9mkIfScSqHIpeDyvck"
+  },
+  {
+    "id": 1636,
+    "titles": ["Obsesión", "Obsession"],
+    "artists": ["Aventura (feat. Judy Santos)", "Aventura", "Judy Santos"],
+    "year": 2002,
+    "spotify_id": "65H6t1WQBim6q93yM8fEwn"
+  },
+  {
+    "id": 1637,
+    "titles": ["The Edge Of Glory", "Edge Of Glory"],
+    "artists": ["Lady Gaga"],
+    "year": 2011,
+    "spotify_id": "57F80059mWaWFvWG3tBTbO"
+  },
+  {
+    "id": 1638,
+    "titles": ["Cake By The Ocean"],
+    "artists": ["DNCE", "DANCE"],
+    "year": 2015,
+    "spotify_id": "76hfruVvmfQbw0eYn1nmeC"
+  },
+  {
+    "id": 1639,
+    "titles": ["Heaven"],
+    "artists": ["U96", "U Sechsundneunzig"],
+    "year": 1996,
+    "spotify_id": "3gpFz8oAnbKQz83jf17yco"
+  },
+  {
+    "id": 1640,
+    "titles": ["I Know You Want Me (Calle Ocho)", "I Know You Want Me", "Calle Ocho"],
+    "artists": ["Pitbull"],
+    "year": 2009,
+    "spotify_id": "5RzFJd6W40SDTyZkX6xx45"
+  },
+  {
+    "id": 1641,
+    "titles": ["Daddy Cool"],
+    "artists": ["Boney M.", "BoneyM", "Boney"],
+    "year": 1976,
+    "spotify_id": "3WMbD1OyfKuwWDWMNbPQ4g"
+  },
+  {
+    "id": 1642,
+    "titles": ["Beautiful Sunday"],
+    "artists": ["Daniel Boone"],
+    "year": 1972,
+    "spotify_id": "6DqNZJ4hhBYd8qj9WbpSTJ"
+  },
+  {
+    "id": 1643,
+    "titles": ["I'll Be Missing You", "I Will Be Missing You"],
+    "artists": ["P. Diddy & Faith Evans (feat. 112)", "P. Diddy", "Diddy", "Puff Daddy",
+                "Faith Evans", "112", "One-One-Two"],
+    "year": 1997,
+    "spotify_id": "3QHONiXGMGU3z68mQInncF"
+  },
+  {
+    "id": 1644,
+    "titles": ["Stole the Show"],
+    "artists": ["Kygo (feat. Parson James)", "Kygo", "Parson James"],
+    "year": 2015,
+    "spotify_id": "5masKPHeAOVNgxdLebIcK7"
+  },
+  {
+    "id": 1645,
+    "titles": ["Despacito"],
+    "artists": ["Luis Fonsi (feat. Daddy Yankee)", "Luis Fonsi", "Daddy Yankee"],
+    "year": 2017,
+    "spotify_id": "6habFhsOp2NvshLv26DqMb"
+  },
+  {
+    "id": 1646,
+    "titles": ["Sweet About Me"],
+    "artists": ["Gabriella Cilmi"],
+    "year": 2008,
+    "spotify_id": "3Ws8j16fKE1jj74XksiyV6"
+  },
+  {
+    "id": 1647,
+    "titles": ["Au Revoir"],
+    "artists": ["Mark Forster (feat. Sido)", "Mark Forster", "Sido"],
+    "year": 2014,
+    "spotify_id": "1ZMODMeLK5x6W8r8jsmmgX"
+  },
+  {
+    "id": 1648,
+    "titles": ["Hamma!"],
+    "artists": ["Culcha Candela"],
+    "year": 2007,
+    "spotify_id": "3vaBHxfz5WPBLLPt1hTUvI"
+  },
+  {
+    "id": 1649,
+    "titles": ["Shape of You"],
+    "artists": ["Ed Sheeran"],
+    "year": 2017,
+    "spotify_id": "7qiZfU4dY1lWllzX7mPBI3"
+  },
+  {
+    "id": 1650,
+    "titles": ["Swing The Mood"],
+    "artists": ["Jive Bunny & The Mastermixers", "Jive Bunny and The Mastermixers", "Jive Bunny",
+                "The Mastermixers", "Mastermixers"],
+    "year": 1989,
+    "spotify_id": "3Aimpqxpvmz7jhJlNnEd5c"
+  },
+  {
+    "id": 1651,
+    "titles": ["Jumpin' Jack Flash", "Jumping Jack Flash"],
+    "artists": ["The Rolling Stones", "Rolling Stones"],
+    "year": 1968,
+    "spotify_id": "1uBsu3PbD2909UBIfEMLvK"
+  },
+  {
+    "id": 1652,
+    "titles": ["Played-A-Live (The Bongo Song)", "Played-A-Live", "The Bongo Song", "Bongo Song"],
+    "artists": ["Safri Duo"],
+    "year": 2000,
+    "spotify_id": "2MDdh4rbNNBiy8l6XgI6E9"
+  },
+  {
+    "id": 1653,
+    "titles": ["Kingston Town"],
+    "artists": ["UB40", "UB-Fourty"],
+    "year": 1990,
+    "spotify_id": "1YnVYHXoak0syv4xBRHQRb"
+  },
+  {
+    "id": 1654,
+    "titles": ["I Don't Care", "I Do Not Care"],
+    "artists": ["Ed Sheeran & Justin Bieber", "Ed Sheeran", "Justin Bieber"],
+    "year": 2019,
+    "spotify_id": "3HVWdVOQ0ZA45FuZGSfvns"
+  },
+  {
+    "id": 1655,
+    "titles": ["I'll Be There for You", "I Will Be There for You"],
+    "artists": ["The Rembrandts", "Rembrandts"],
+    "year": 1995,
+    "spotify_id": "1lfjTOtTRUDkzcmahA4lcs"
+  },
+  {
+    "id": 1656,
+    "titles": ["Please Don't Go", "Please Do Not Go"],
+    "artists": ["Double You"],
+    "year": 1992,
+    "spotify_id": "0bwNb4KRkhzahJJMFsGoPR"
+  },
+  {
+    "id": 1657,
+    "titles": ["In My Mind"],
+    "artists": ["Dynoro & Gigi D'Agostino", "Dynoro", "Gigi D'Agostino"],
+    "year": 2018,
+    "spotify_id": "0E9ZjEAyAwOXZ7wJC0PD33"
+  },
+  {
+    "id": 1658,
+    "titles": ["Rose Garden"],
+    "artists": ["Lynn Anderson"],
+    "year": 1970,
+    "spotify_id": "5YwgJ6lpZ3SiAQwBEpjqey"
+  },
+  {
+    "id": 1659,
+    "titles": ["Perdono"],
+    "artists": ["Tiziano Ferro"],
+    "year": 2001,
+    "spotify_id": "4T3o83F13gwUaF0xCtAfNl"
+  },
+  {
+    "id": 1660,
+    "titles": ["This Love"],
+    "artists": ["Maroon 5", "Maroon Five"],
+    "year": 2002,
+    "spotify_id": "6ECp64rv50XVz93WvxXMGF"
+  },
+  {
+    "id": 1661,
+    "titles": ["It's Not Unusual", "It Is Not Unusual"],
+    "artists": ["Tom Jones"],
+    "year": 1965,
+    "spotify_id": "3TlIt0ReIxPsVZcOEivT5U"
+  },
+  {
+    "id": 1662,
+    "titles": ["Türlich, Türlich (Sicher, Dicker)", "Türlich, Türlich", "Sicher, Dicker", "Sicher, Digga"],
+    "artists": ["Das Bo", "Bo"],
+    "year": 2000,
+    "spotify_id": "0zv3f19rNhmZhNmNA2xJsF"
+  },
+  {
+    "id": 1663,
+    "titles": ["Ghetto Supastar (That Is What You Are)", "Ghetto Supastar", "That Is What You Are", "That's What You Are"],
+    "artists": ["Pras Michel (feat. Ol' Dirty Bastard and Mýa)", "Pras Michel", "Pras",
+                "Ol' Dirty Bastard", "Old Dirty Bastard", "Mýa"],
+    "year": 1998,
+    "spotify_id": "31bf9SEOppLU6lQ85d8om6"
+  },
+  {
+    "id": 1664,
+    "titles": ["La Camisa Negra"],
+    "artists": ["Juanes"],
+    "year": 2005,
+    "spotify_id": "0sUWZTmLTZj21G6dmlsJlj"
+  },
+  {
+    "id": 1665,
+    "titles": ["Call Me Maybe"],
+    "artists": ["Carly Rae Jepsen"],
+    "year": 2011,
+    "spotify_id": "20I6sIOMTCkB6w7ryavxtO"
+  },
+  {
+    "id": 1666,
+    "titles": ["No No Never", "No Never"],
+    "artists": ["Texas Lightning"],
+    "year": 2006,
+    "spotify_id": "5EEiZp74udn1TOG6ty9Pq6"
+  },
+  {
+    "id": 1667,
+    "titles": ["Everybody"],
+    "artists": ["DJ BoBo", "DJ Bo Bo", "BoBo", "Bo Bo"],
+    "year": 1993,
+    "spotify_id": "4Kc0S6bWVeO7Q4SoMPAyX1"
+  },
+  {
+    "id": 1668,
+    "titles": ["Cose Della Vita"],
+    "artists": ["Eros Ramazzotti (feat. Tina Turner)", "Eros Ramazzotti", "Tina Turner"],
+    "year": 1997,
+    "spotify_id": "2bJtJv5NGkYUFP6prU3WSg"
+  },
+  {
+    "id": 1669,
+    "titles": ["Miss California", "Ms. California"],
+    "artists": ["Dante Thomas (feat. Pras)", "Dante Thomas", "Pras Michel", "Pras"],
+    "year": 2001,
+    "spotify_id": "7ct57a8zA6DTc8Cz2QIFIg"
+  },
+  {
+    "id": 1670,
+    "titles": ["Country Roads"],
+    "artists": ["Hermes House Band", "Hermes House", "HHB"],
+    "year": 2001,
+    "spotify_id": "0yD9qeu9sM5HhKWzv8dZ5N"
+  },
+  {
+    "id": 1671,
+    "titles": ["The Safety Dance", "Safety Dance"],
+    "artists": ["Men Without Hats", "MWH"],
+    "year": 1982,
+    "spotify_id": "5O4NFbDqJ8SOfbjnIhdPDt"
+  },
+  {
+    "id": 1672,
+    "titles": ["Gypsy Woman (She's Homeless)", "Gypsy Woman", "She's Homeless", "She Is Homeless"],
+    "artists": ["Crystal Waters"],
+    "year": 1991,
+    "spotify_id": "4UJ1AKSbXAbPlPVFe66wK7"
+  },
+  {
+    "id": 1673,
+    "titles": ["Summertime Sadness"],
+    "artists": ["Lana Del Rey", "LDR"],
+    "year": 2012,
+    "spotify_id": "7sZUHAC6nadme4EwrLe99Q"
+  },
+  {
+    "id": 1674,
+    "titles": ["Blue (Da Ba Dee)", "Blue", "Da Ba Dee"],
+    "artists": ["Eiffel 65", "Eiffel", "Eiffel Sixty-Five"],
+    "year": 1998,
+    "spotify_id": "2yAVzRiEQooPEJ9SYx11L3"
+  },
+  {
+    "id": 1675,
+    "titles": ["Maria"],
+    "artists": ["US5", "US Five"],
+    "year": 2005,
+    "spotify_id": "5e4K5KMw5o13ZDLS6ONAEf"
+  },
+  {
+    "id": 1676,
+    "titles": ["No Limit"],
+    "artists": ["2 Unlimited", "Two Unlimited", "Too Unlimited"],
+    "year": 1993,
+    "spotify_id": "1hGvGM76KOX6tpAyaHB0au"
+  },
+  {
+    "id": 1677,
+    "titles": ["Sugar Baby Love"],
+    "artists": ["The Rubettes", "Rubettes"],
+    "year": 1974,
+    "spotify_id": "294ii3rwz6bTJ2XMn5BDu0"
+  },
+  {
+    "id": 1678,
+    "titles": ["Lieblingsmensch"],
+    "artists": ["Namika"],
+    "year": 2015,
+    "spotify_id": "6oHDvarQSp0mf5AD1SyNH0"
+  },
+  {
+    "id": 1679,
+    "titles": ["Around the World (La La La La La)", "Around the World", "La La La La La"],
+    "artists": ["A Touch of Class", "Touch of Class", "ATC"],
+    "year": 2000,
+    "spotify_id": "0IbTukfZdB91gclEXUQZkH"
+  },
+  {
+    "id": 1680,
+    "titles": ["Party Rock Anthem"],
+    "artists": ["LMFAO (feat. Lauren Bennett and GoonRock)", "LMFAO", "Lauren Bennett", "GoonRock"],
+    "year": 2011,
+    "spotify_id": "7mitXLIMCflkhZiD34uEQI"
+  },
+  {
+    "id": 1681,
+    "titles": ["Backseat of Your Cadillac"],
+    "artists": ["C. C. Catch", "Catch"],
+    "year": 1988,
+    "spotify_id": "08ELdy0Y3kHX59SR5qy69z"
+  },
+  {
+    "id": 1682,
+    "titles": ["Tom's Diner", "Tom His Diner"],
+    "artists": ["DNA & Suzanne Vega", "DNA", "Suzanne Vega"],
+    "year": 1990,
+    "spotify_id": "0mFIn4etymn4sDWNrERNJh"
+  },
+  {
+    "id": 1683,
+    "titles": ["Love Runs Out"],
+    "artists": ["OneRepublic", "One Republic"],
+    "year": 2014,
+    "spotify_id": "3cOO5IQtOYs7huq4Z6lYfr"
+  },
+  {
+    "id": 1684,
+    "titles": ["It's a Real Good Feeling", "It Is a Real Good Feeling"],
+    "artists": ["Peter Kent"],
+    "year": 1979,
+    "spotify_id": "3k2F7ncBMqQOwAY29KiiPF"
+  },
+  {
+    "id": 1685,
+    "titles": ["Aïcha", "Aicha"],
+    "artists": ["Outlandish"],
+    "year": 2002,
+    "spotify_id": "5g7rz8nma2gAaEBHlvT68N"
+  },
+  {
+    "id": 1686,
+    "titles": ["Heart of Gold"],
+    "artists": ["Neil Young"],
+    "year": 1972,
+    "spotify_id": "5vd1QZ0tdXOExiegC55IAS"
+  },
+  {
+    "id": 1687,
+    "titles": ["Glow"],
+    "artists": ["Madcon"],
+    "year": 2010,
+    "spotify_id": "4icNLSquKZp6e0iEkBn9RP"
+  },
+  {
+    "id": 1688,
+    "titles": ["Looking For Freedom"],
+    "artists": ["David Hasselhoff"],
+    "year": 1988,
+    "spotify_id": "1eMhNaN4a92qoidBbkQCmG"
+  },
+  {
+    "id": 1689,
+    "titles": ["All Summer Long"],
+    "artists": ["Kid Rock"],
+    "year": 2007,
+    "spotify_id": "5rX6C5QVvvZB7XckETNych"
+  },
+  {
+    "id": 1690,
+    "titles": ["Zwei Mädchen aus Germany", "Zwei Maedchen aus Germany"],
+    "artists": ["Paul Anka"],
+    "year": 1964,
+    "spotify_id": "4ImlIOgbZtZbhY9AUSHpGm"
+  },
+  {
+    "id": 1691,
+    "titles": ["Mr. Saxobeat", "Mister Saxobeat"],
+    "artists": ["Alexandra Stan"],
+    "year": 2010,
+    "spotify_id": "2BTSWfjaTMYWCxhmVRhqLK"
+  },
+  {
+    "id": 1692,
+    "titles": ["Ferrari"],
+    "artists": ["James Hype & Miggy Dela Rosa", "James Hype", "Miggy Dela Rosa"],
+    "year": 2022,
+    "spotify_id": "4zN21mbAuaD0WqtmaTZZeP"
+  },
+  {
+    "id": 1693,
+    "titles": ["Wunder Gibt Es Immer Wieder"],
+    "artists": ["Katja Ebstein"],
+    "year": 1970,
+    "spotify_id": "68pun2nSn33MONTnLYKgpm"
+  },
+  {
+    "id": 1694,
+    "titles": ["Chocolate (Choco Choco)", "Chocolate", "Choco Choco"],
+    "artists": ["Soul Control", "SC"],
+    "year": 2004,
+    "spotify_id": "3J5F2R62SIyivGUdebjR0O"
+  },
+  {
+    "id": 1695,
+    "titles": ["I Swear"],
+    "artists": ["All-4-One", "All-Four-One", "All-For-One"],
+    "year": 1994,
+    "spotify_id": "4WUnM4KNZ0kjp0CUeoyOnS"
+  },
+  {
+    "id": 1696,
+    "titles": ["Zeit, Dass Sich Was Dreht"],
+    "artists": ["Herbert Grönemeyer (feat. Amadou & Mariam)", "Herbert Grönemeyer", "Herbert Groenemeyer",
+                "Amadou", "Mariam"],
+    "year": 2006,
+    "spotify_id": "2ln6685JphEqCJYclkusqW"
+  },
+  {
+    "id": 1697,
+    "titles": ["Ich Bin Der Martin, Ne...?! (Martin My Love)", "Ich Bin Der Martin", "Martin My Love"],
+    "artists": ["Diether Krebs"],
+    "year": 1991,
+    "spotify_id": "2znqUPNy69gC4l5cC6CtAK"
+  },
+  {
+    "id": 1698,
+    "titles": ["Komet"],
+    "artists": ["Udo Lindenberg & Apache 207", "Udo Lindenberg", "Apache 207", "Apache Zwei-Null-Sieben"],
+    "year": 2023,
+    "spotify_id": "7oQepKHmXDaPC3rgeLRvQu"
+  },
+  {
+    "id": 1699,
+    "titles": ["Dicht Im Flieger"],
+    "artists": ["Julian Sommer"],
+    "year": 2022,
+    "spotify_id": "6sS77FZh2eJfYBsFUW6hjI"
+  },
+  {
+    "id": 1700,
+    "titles": ["Rock Your Baby"],
+    "artists": ["George McCrae", "George MacCrae"],
+    "year": 1974,
+    "spotify_id": "6pMHMzwTsWIxLigr54GGVm"
+  },
+  {
+    "id": 1701,
+    "titles": ["We're Going to Ibiza!", "We Are Going to Ibiza!", "Going To Ibiza"],
+    "artists": ["Vengaboys", "The Vengaboys"],
+    "year": 1999,
+    "spotify_id": "6trzHhvr6xqYJkNnbWwXz2"
+  },
+  {
+    "id": 1702,
+    "titles": ["Frühstück in Paris", "Fruehstueck in Paris"],
+    "artists": ["Capital Bra", "Joker Bra"],
+    "year": 2020,
+    "spotify_id": "6qAxQhNfM909QrDGLYEocf"
+  },
+  {
+    "id": 1703,
+    "titles": ["Satellite"],
+    "artists": ["Lena", "Lena Meyer-Landrut"],
+    "year": 2010,
+    "spotify_id": "2UjNsh4ipNrmog6wdS2JVv"
+  },
+  {
+    "id": 1704,
+    "titles": ["Smooth"],
+    "artists": ["Santana (feat. Rob Thomas)", "Santana", "Rob Thomas"],
+    "year": 1999,
+    "spotify_id": "0n2SEXB2qoRQg171q7XqeW"
+  },
+  {
+    "id": 1705,
+    "titles": ["Don't Cha", "Do Not Cha"],
+    "artists": ["The Pussycat Dolls (feat. Busta Rhymes)", "The Pussycat Dolls", "Pussycat Dolls",
+                "Busta Rhymes"],
+    "year": 2005,
+    "spotify_id": "0BxfFnk0YzONqvmrkO0QrB"
+  },
+  {
+    "id": 1706,
+    "titles": ["You Can Get It"],
+    "artists": ["Mark Medlock (feat. Dieter Bohlen)", "Mark Medlock", "Dieter Bohlen"],
+    "year": 2007,
+    "spotify_id": "264b3qoi07fjK6KxLuQ1NP"
+  },
+  {
+    "id": 1707,
+    "titles": ["Let's Talk About Sex", "Let Us Talk About Sex"],
+    "artists": ["Salt-N-Pepa", "Salt and Pepa", "Salt & Pepa",
+                "Salt and Pepper", "Salt & Pepper", "Salt-N-Pepper"],
+    "year": 1990,
+    "spotify_id": "6hTBP6QLwJdxbKyLlLXrGo"
+  },
+  {
+    "id": 1708,
+    "titles": ["Hot Summer"],
+    "artists": ["Monrose"],
+    "year": 2007,
+    "spotify_id": "2vxYcyUrfuyqjF8psauo6k"
+  },
+  {
+    "id": 1709,
+    "titles": ["Friday"],
+    "artists": ["Riton & Nightcrawlers (feat. Mufasa & Hypeman)", "Riton", "Nightcrawlers",
+                "Mufasa & Hypeman", "Mufasa and Hypeman", "Mufasa", "Hypeman"],
+    "year": 2021,
+    "spotify_id": "4cG7HUWYHBV6R6tHn1gxrl"
+  },
+  {
+    "id": 1710,
+    "titles": ["The Free Electric Band", "Free Electric Band"],
+    "artists": ["Albert Hammond"],
+    "year": 1973,
+    "spotify_id": "2bbIswC2E2MMSSjcHFD17G"
+  },
+  {
+    "id": 1711,
+    "titles": ["Kung Fu Fighting"],
+    "artists": ["Carl Douglas"],
+    "year": 1974,
+    "spotify_id": "40NRm1ZLvZpUSCUXAGGZ8J"
+  },
+  {
+    "id": 1712,
+    "titles": ["Ma Chérie"],
+    "artists": ["DJ Antoine (feat. The Beat Shakers)", "DJ Antoine", "The Beat Shakers", "Beat Shakers"],
+    "year": 2010,
+    "spotify_id": "2TwfqpwieYnr3B2xKCxTQB"
+  },
+  {
+    "id": 1713,
+    "titles": ["Im Nin'alu"],
+    "artists": ["Ofra Haza"],
+    "year": 1978,
+    "spotify_id": "5PomJFkGwOHkrk0Rfs2DnH"
+  },
+  {
+    "id": 1714,
+    "titles": ["D.I.S.C.O."],
+    "artists": ["Ottawan"],
+    "year": 1979,
+    "spotify_id": "7KkdYJqxvq4ZFq9gvFy06v"
+  },
+  {
+    "id": 1715,
+    "titles": ["Paloma Blanca"],
+    "artists": ["George Baker Selection", "George Baker"],
+    "year": 1975,
+    "spotify_id": "37dPgiT3cY5XFbG3Ldq7zv"
+  },
+  {
+    "id": 1716,
+    "titles": ["Tarzan Boy"],
+    "artists": ["Baltimora"],
+    "year": 1985,
+    "spotify_id": "273uCXd7NPrInaiNqtkOrA"
+  },
+  {
+    "id": 1717,
+    "titles": ["Stars on 45", "Stars on Fourty-Five"],
+    "artists": ["Stars on 45", "Stars on Fourty-Five", "Starsound"],
+    "year": 1981,
+    "spotify_id": "59BkBWQitTPgS1inzGfyI5"
+  },
+  {
+    "id": 1718,
+    "titles": ["Carnaval de Paris"],
+    "artists": ["Dario G", "Dario"],
+    "year": 1998,
+    "spotify_id": "59mdyQniSaNFeXaKMGu9RB"
+  },
+  {
+    "id": 1719,
+    "titles": ["Aloha-Ahe", "Aló-Ahe", "Aloha 'Oe"],
+    "artists": ["Freddy Quinn"],
+    "year": 1962,
+    "spotify_id": "6oCNhDipqAForPCDGtTBQP"
+  },
+  {
+    "id": 1720,
+    "titles": ["Chequered Love"],
+    "artists": ["Kim Wilde", "Kim Wild"],
+    "year": 1981,
+    "spotify_id": "32CzlQoaKgZxT3WA4qHSgs"
+  },
+  {
+    "id": 1721,
+    "titles": ["Arrivederci Claire"],
+    "artists": ["Andy Borg"],
+    "year": 1982,
+    "spotify_id": "0iSRq1li0tV14LuvlfLXtN"
+  },
+  {
+    "id": 1722,
+    "titles": ["Flowers"],
+    "artists": ["Miley Cyrus"],
+    "year": 2023,
+    "spotify_id": "4DHcnVTT87F0zZhRPYmZ3B"
+  },
+  {
+    "id": 1723,
+    "titles": ["Iko Iko (My Bestie)", "Iko Iko", "My Bestie"],
+    "artists": ["Justin Wellington (feat. Small Jam)", "Justin Wellington", "Small Jam"],
+    "year": 2019,
+    "spotify_id": "3pnxj3KnSjqO1Qkl2qLHIz"
+  },
+  {
+    "id": 1724,
+    "titles": ["You're the One That I Want", "You Are the One That I Want"],
+    "artists": ["John Travolta & Olivia Newton-John", "John Travolta", "Olivia Newton-John"],
+    "year": 1978,
+    "spotify_id": "0B9x2BRHqj3Qer7biM3pU3"
+  },
+  {
+    "id": 1725,
+    "titles": ["Want to Want Me"],
+    "artists": ["Jason Derulo"],
+    "year": 2015,
+    "spotify_id": "7oGZAicScQt96OAW4AruYy"
+  },
+  {
+    "id": 1726,
+    "titles": ["Self Control"],
+    "artists": ["Laura Branigan"],
+    "year": 1984,
+    "spotify_id": "0ZX1AU9VjSVkzb8vro8PMU"
+  },
+  {
+    "id": 1727,
+    "titles": ["Ai Se Eu Te Pego"],
+    "artists": ["Michel Teló"],
+    "year": 2011,
+    "spotify_id": "0INaMqjJJe1BZpnWuCxDzt"
+  },
+  {
+    "id": 1728,
+    "titles": ["Live Is Life"],
+    "artists": ["Opus"],
+    "year": 1984,
+    "spotify_id": "5luOvrlnzfvJQdQjrScVj4"
+  },
+  {
+    "id": 1729,
+    "titles": ["Unsere Lieder"],
+    "artists": ["Ben Zucker"],
+    "year": 2022,
+    "spotify_id": "2GGJzyfq6mNovzf5vqv9MQ"
+  },
+  {
+    "id": 1730,
+    "titles": ["In Your Eyes"],
+    "artists": ["Robin Schulz (feat. Alida)", "Robin Schulz", "Alida"],
+    "year": 2020,
+    "spotify_id": "61ZM92T2zaXIVsqncThQzC"
+  },
+  {
+    "id": 1731,
+    "titles": ["Never Let Me Down"],
+    "artists": ["Tom Gregory & VIZE", "Tom Gregory", "VIZE"],
+    "year": 2020,
+    "spotify_id": "0Je3J2ml1lrnTLXXIlxrvR"
+  },
+  {
+    "id": 1732,
+    "titles": ["Millionen Lichter"],
+    "artists": ["Christina Stürmer", "Christina Stuermer"],
+    "year": 2013,
+    "spotify_id": "66og7eLYQaDJwjWbFB0IiJ"
+  },
+  {
+    "id": 1733,
+    "titles": ["When the Beat Drops Out"],
+    "artists": ["Marlon Roudette"],
+    "year": 2014,
+    "spotify_id": "5aJhuze13LOoLthmiG8YIA"
+  },
+  {
+    "id": 1734,
+    "titles": ["Butterfly"],
+    "artists": ["Danyel Gérard"],
+    "year": 1971,
+    "spotify_id": "72rLswhYvQz9LRx3LogMIW"
+  },
+  {
+    "id": 1735,
+    "titles": ["Danza Kuduro"],
+    "artists": ["Don Omar & Lucenzo", "Don Omar", "Lucenzo"],
+    "year": 2010,
+    "spotify_id": "6DXLO8LndZMVOHM0wNbpzg"
+  },
+  {
+    "id": 1736,
+    "titles": ["La Vie en rose"],
+    "artists": ["Grace Jones"],
+    "year": 1977,
+    "spotify_id": "3hpa0c7IAnst3pdnZTXGXT"
+  },
+  {
+    "id": 1737,
+    "titles": ["Club Tropicana"],
+    "artists": ["Wham!"],
+    "year": 1983,
+    "spotify_id": "6tASfEUyB7lE2r6DLzURji"
+  },
+  {
+    "id": 1738,
+    "titles": ["Maneater"],
+    "artists": ["Nelly Furtado"],
+    "year": 2006,
+    "spotify_id": "4wH4dJgrsxONID6KS2tDQM"
+  },
+  {
+    "id": 1739,
+    "titles": ["La Isla Bonita"],
+    "artists": ["Madonna"],
+    "year": 1986,
+    "spotify_id": "6r8k1vznHrzlEKYxL4dZEe"
+  },
+  {
+    "id": 1740,
+    "titles": ["Übermorgen", "Uebermorgen"],
+    "artists": ["Mark Forster"],
+    "year": 2020,
+    "spotify_id": "1NP7bzm8UksJUWXsuFoOwE"
+  },
+  {
+    "id": 1741,
+    "titles": ["Get Down"],
+    "artists": ["Gilbert O'Sullivan"],
+    "year": 1973,
+    "spotify_id": "1kX0JVbq1lG9VZNiLF3Bwz"
+  },
+  {
+    "id": 1742,
+    "titles": ["Israelites"],
+    "artists": ["Desmond Dekker"],
+    "year": 1968,
+    "spotify_id": "0di7hMT6o1ogeUN1XDB9Ft"
+  },
+  {
+    "id": 1743,
+    "titles": ["What a Feeling", "What a Feelin'"],
+    "artists": ["Irene Cara"],
+    "year": 1983,
+    "spotify_id": "0aAR5HogGoT68EWFbyRFqx"
+  },
+  {
+    "id": 1744,
+    "titles": ["Music"],
+    "artists": ["John Miles"],
+    "year": 1976,
+    "spotify_id": "2oXchyEBxQBe8vH6iFgbv0"
+  },
+  {
+    "id": 1745,
+    "titles": ["Santamaria"],
+    "artists": ["Oliver Onions", "OO"],
+    "year": 1980,
+    "spotify_id": "3GYdFB1UtGEqKGlf6R80Nx"
+  },
+  {
+    "id": 1746,
+    "titles": ["Radar Love"],
+    "artists": ["Golden Earring", "GE"],
+    "year": 1973,
+    "spotify_id": "4Zau4QvgyxWiWQ5KQrwL43"
+  },
+  {
+    "id": 1747,
+    "titles": ["Lovers on The Sun"],
+    "artists": ["David Guetta (feat. Sam Martin)", "David Guetta", "Sam Martin"],
+    "year": 2014,
+    "spotify_id": "5UUr2ji5Lacg72thqzLyth"
   }
 ]

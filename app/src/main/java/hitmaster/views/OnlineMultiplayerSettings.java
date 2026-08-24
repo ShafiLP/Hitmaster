@@ -4,9 +4,6 @@ import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 import hitmaster.models.GameOptions;
-import hitmaster.models.Player;
-import hitmaster.models.User;
-import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -27,14 +24,9 @@ import javafx.stage.Stage;
 
 public class OnlineMultiplayerSettings {
 
-    private final MainMenu PARENT;
     private final Stage STAGE;
-    private final Stage PREV_STAGE;
 
-    public OnlineMultiplayerSettings(MainMenu parent, Stage prevStage) {
-        this.PARENT = parent;
-        this.PREV_STAGE = prevStage;
-
+    public OnlineMultiplayerSettings(GameOptions options) {
         STAGE = new Stage();
         STAGE.setTitle("Match Setup");
 
@@ -78,6 +70,7 @@ public class OnlineMultiplayerSettings {
         TextField turnTimeInput = new TextField();
         turnTimeInput.setTextFormatter(createNumberFormatter());
         turnTimeInput.setPromptText("Turn Time...");
+        turnTimeInput.setText(String.valueOf(options.moveTime));
         turnTimeInput.getStyleClass().add("modern-textbox");
         turnTimeInput.setPrefWidth(180);
         HBox turnTimeControl = createSecondsInput(turnTimeInput, 300);
@@ -88,6 +81,7 @@ public class OnlineMultiplayerSettings {
         TextField stealTimeInput = new TextField();
         stealTimeInput.setTextFormatter(createNumberFormatter());
         stealTimeInput.setPromptText("Steal Time...");
+        stealTimeInput.setText(String.valueOf(options.stealTime));
         stealTimeInput.getStyleClass().add("modern-textbox");
         stealTimeInput.setPrefWidth(180);
         HBox stealTimeControl = createSecondsInput(stealTimeInput, 30);
@@ -107,24 +101,17 @@ public class OnlineMultiplayerSettings {
             STAGE.close();
         });
 
-        Button startGame = new Button("Start Game");
-        startGame.getStyleClass().add("primary-button");
-        startGame.setPrefWidth(140);
-        startGame.setOnAction(e -> {
-            GameOptions options = new GameOptions();
+        Button confirmButton = new Button("Confirm");
+        confirmButton.getStyleClass().add("primary-button");
+        confirmButton.setPrefWidth(140);
+        confirmButton.setOnAction(e -> {
             options.moveTime = Integer.parseInt(turnTimeInput.getText());
             options.stealTime = Integer.parseInt(stealTimeInput.getText());
 
-            User user = Database.getCurrentUser();
-            options.players = new Player[2];
-            options.players[0] = new Player(user.username, user.picture);
-            options.players[0].role = Player.Role.HOST;
-
-            WaitingForPlayerView waiting = new WaitingForPlayerView(PARENT, STAGE, options);
-            waiting.show(STAGE);
+            STAGE.close();
         });
 
-        HBox footer = new HBox(10, cancel, startGame);
+        HBox footer = new HBox(10, cancel, confirmButton);
         footer.setAlignment(Pos.BOTTOM_RIGHT);
         footer.setPadding(new Insets(10, 0, 0, 0));
 
@@ -138,7 +125,7 @@ public class OnlineMultiplayerSettings {
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                startGame.fire();
+                confirmButton.fire();
                 event.consume(); 
             }
         });
@@ -199,10 +186,7 @@ public class OnlineMultiplayerSettings {
         return new TextFormatter<>(filter);
     }
 
-    public void show(Stage parent) {
-        if (PREV_STAGE != null) 
-            PREV_STAGE.close();
-
+    public void showAndWait(Stage parent) {
         STAGE.setOnShowing(e -> {
             Platform.runLater(() -> {
                 double ownerX = parent.getX();
@@ -222,6 +206,6 @@ public class OnlineMultiplayerSettings {
         });
 
         STAGE.initModality(Modality.APPLICATION_MODAL);
-        STAGE.show();
+        STAGE.showAndWait();
     }
 }

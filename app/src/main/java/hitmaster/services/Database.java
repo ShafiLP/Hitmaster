@@ -24,7 +24,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-import hitmaster.models.Set;
+import hitmaster.models.GameSet;
 import hitmaster.models.Song;
 import hitmaster.models.User;
 
@@ -32,19 +32,28 @@ public class Database {
 
     public static final String URL = "jdbc:sqlite:hitmaster.db";
 
-    private static final Gson gson = new Gson();
+    private static final Gson GSON = new Gson();
     private static final Type LIST_TYPE = new TypeToken<List<String>>(){}.getType();
+
+    private static Database instance;
+
+    private Database() {}
+
+    public static synchronized Database getInstance() {
+        if (instance == null)
+            instance = new Database();
+
+        return instance;
+    }
 
     private static Connection connect() throws SQLException {
         return DriverManager.getConnection(URL);
     }
 
-    public static boolean initializeDatabase() {
-        // 1) Delete existing database to initialize new one
-        deleteDatabase();
-
-        // 2) Initialize new database
+    public boolean initializeDatabase() {
+        // 1) Initialize new database
         try (Connection conn = Database.connect()) {
+
             Statement stmt = conn.createStatement();
 
             stmt.execute("""
@@ -52,7 +61,9 @@ public class Database {
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT NOT NULL,
                     picture TEXT,
-                    provider TEXT
+                    provider TEXT,
+                    theme TEXT DEFAULT light,
+                    autoCheckUpdate INTEGER DEFAULT 1
                 );
             """);
 
@@ -87,33 +98,38 @@ public class Database {
                 );
             """);
 
-            //! DEBUG
-            Database.insertJsonIntoSongs("songs.json");
+            // 2) Insert Songs into Database
+            this.insertJsonIntoSongs("songs.json");
 
-            Database.addSetToDatabase(new Set("Hitster - UK", "hitster-uk.jpg", "hitster-uk.png", "hitster-uk.csv", true));
-            addSongsToSetFromCsv("hitster-uk.csv", 1);
+            // 3) Insert GameSets into Database
+            this.addSetToDatabase(new GameSet(1, "Hitster - UK", "hitster-uk.jpg", "hitster-uk.png", "hitster-uk.csv", true));
+            this.addSongsToSetFromCsv("hitster-uk.csv", 1);
 
-            Database.addSetToDatabase(new Set("Hitster - DE", "hitster-de.jpg", "hitster-de.png", "hitster-de.csv", false));
-            addSongsToSetFromCsv("hitster-de.csv", 2);
+            this.addSetToDatabase(new GameSet(2, "Hitster - DE", "hitster-de.jpg", "hitster-de.png", "hitster-de.csv", false));
+            this.addSongsToSetFromCsv("hitster-de.csv", 2);
 
-            Database.addSetToDatabase(new Set("Rock & Metal - DE", "rock-de.jpg", "rock-de.png", "rock-de.csv", false));
-            addSongsToSetFromCsv("rock-de.csv", 3);
+            this.addSetToDatabase(new GameSet(3, "Rock & Metal - DE", "rock-de.jpg", "rock-de.png", "rock-de.csv", false));
+            this.addSongsToSetFromCsv("rock-de.csv", 3);
 
-            Database.addSetToDatabase(new Set("Guilty Pleasures - DE", "guilty-de.png", "guilty-de.png", "guilty-de.csv", false));
-            addSongsToSetFromCsv("guilty-de.csv", 4);
+            this.addSetToDatabase(new GameSet(4, "Guilty Pleasures - DE", "guilty-de.png", "guilty-de.png", "guilty-de.csv", false));
+            this.addSongsToSetFromCsv("guilty-de.csv", 4);
 
-            Database.addSetToDatabase(new Set("Bayern1 Expansion", "bavaria-ex.png", "bavaria-ex.png", "bavaria-ex.csv", false));
-            addSongsToSetFromCsv("bavaria-ex.csv", 5);
+            this.addSetToDatabase(new GameSet(5, "Summer Party - DE", "summer-de.jpg", "summer-de.png", "summer-de.csv", false));
+            this.addSongsToSetFromCsv("summer-de.csv", 5);
 
-            Database.addSetToDatabase(new Set("Rock & Metal - Nordics", "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
-            addSongsToSetFromCsv("rock-nordics.csv", 6);
+            this.addSetToDatabase(new GameSet(6, "Bayern1 Expansion", "bavaria-ex.png", "bavaria-ex.png", "bavaria-ex.csv", false));
+            this.addSongsToSetFromCsv("bavaria-ex.csv", 6);
 
-            Database.addSetToDatabase(new Set("Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
-            addSongsToSetFromCsv("punk-expansion.csv", 7);
+            this.addSetToDatabase(new GameSet(7, "Rock & Metal - Nordics", "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
+            this.addSongsToSetFromCsv("rock-nordics.csv", 7);
 
-            Database.addSetToDatabase(new Set("Deutschrock Expansion", "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
-            addSongsToSetFromCsv("deutschrock-ex.csv", 8);
+            this.addSetToDatabase(new GameSet(8, "Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
+            this.addSongsToSetFromCsv("punk-expansion.csv", 8);
 
+            this.addSetToDatabase(new GameSet(9, "Deutschrock Expansion", "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
+            this.addSongsToSetFromCsv("deutschrock-ex.csv", 9);
+
+            Log.Success("Succesfully initialized Database.");
             return true;
         }
         catch (SQLException e) {
@@ -122,134 +138,11 @@ public class Database {
         }
     }
 
-    private static boolean deleteDatabase() {
-        try (Connection conn = Database.connect()) {
-            Statement stmt = conn.createStatement();
-
-            stmt.execute("DROP TABLE IF EXISTS sets");
-            stmt.execute("DROP TABLE IF EXISTS songs");
-            stmt.execute("DROP TABLE IF EXISTS set_songs");
-
-            Log.Success("Deleted all data from tables.");
-            return true;
-        }
-        catch (SQLException e) {
-            Log.Error("Error while deleting data from database: " + e.getMessage());
-            return false;
-        }
-    }
-
-    public static boolean addSongsToSetFromCsv(String csvFileName, int setId) {
-        try {
-            InputStream is = Database.class.getResourceAsStream("/csv/" + csvFileName);
-            if (is == null) {
-                Log.Error("CSV file not found: /csv/" + csvFileName);
-                return false;
-            }
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            List<String> lines = reader.lines()
-                .filter(line -> line != null && !line.trim().isEmpty())
-                .toList();
-
-            if (lines.isEmpty()) {
-                Log.Error("CSV file is empty: " + csvFileName);
-                return false;
-            }
-
-            try (Connection conn = Database.connect();
-                PreparedStatement ps = conn.prepareStatement("""
-                    INSERT OR IGNORE INTO set_songs (set_id, song_id)
-                    VALUES (?, ?)
-                """)) {
-
-                // i = 1 to skip head row
-                for (int i = 1; i < lines.size(); i++) {
-                    String line = lines.get(i).trim();
-                    try {
-                        int songId = Integer.parseInt(line);
-                        
-                        ps.setInt(1, setId);
-                        ps.setInt(2, songId);
-                        ps.addBatch();
-                    } catch (NumberFormatException e) {
-                        Log.Error("Skipped invalid ID in CSV: " + line);
-                    }
-                }
-
-                ps.executeBatch();
-                Log.Success("Succesfully added " + (lines.size() - 1) + " songs to set with ID " + setId + ".");
-                return true;
-            }
-        }
-        catch (SQLException e) {
-            Log.Error("Error while reading set CSV: " + e.getMessage());
-            return false;
-        }
-    }
-
-    public static boolean insertJsonIntoSongs(String jsonFileName) {
-        try {
-            // 1) JSON aus dem Ressourcen-Pfad laden
-            InputStream is = Database.class.getResourceAsStream("/json/" + jsonFileName);
-            if (is == null) {
-                Log.Error("JSON file not found: /json/" + jsonFileName);
-                return false;
-            }
-
-            // 2) Gson liest direkt aus dem Reader in ein JsonArray
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            JsonArray songsArray = JsonParser.parseReader(reader).getAsJsonArray();
-
-            // 3) In die Datenbank schreiben
-            try (Connection conn = Database.connect();
-                PreparedStatement ps = conn.prepareStatement("""
-                    INSERT INTO songs (titles, artists, year, spotify)
-                    VALUES (?, ?, ?, ?)
-                """)) {
-
-                for (JsonElement element : songsArray) {
-                    JsonObject songObj = element.getAsJsonObject();
-
-                    // Die inneren Arrays konvertieren wir wieder zu Strings für die DB-Spalten
-                    ps.setString(1, songObj.getAsJsonArray("titles").toString());
-                    ps.setString(2, songObj.getAsJsonArray("artists").toString());
-                    ps.setInt(3, songObj.get("year").getAsInt());
-                    ps.setString(4, songObj.get("spotify_id").getAsString());
-
-                    ps.addBatch();
-                }
-
-                ps.executeBatch();
-                Log.Success("Successfully inserted " + songsArray.size() + " songs from \"" + jsonFileName + "\" into 'songs'.");
-                return true;
-            }
-        }
-        catch (JsonIOException | JsonSyntaxException | UnsupportedEncodingException | SQLException e) {
-            Log.Error("Error while inserting data from \"" + jsonFileName + "\" into table \"songs\": " + e.getMessage());
-            return false;
-        }
-    }
-
-    private static boolean createDefaultUser() {
-        try (Connection conn = Database.connect();) {
-            Statement stmt = conn.createStatement();
-
-            stmt.execute("INSERT INTO user (username) VALUES ('New User')");
-            return true;
-        }
-        catch (Exception e) {
-            Log.Error("Error while creating default user: " + e.getMessage());
-            return false;
-        }
-    }
-
-
     // ==============================
-    // GET OPERATIONS
+    // #region USER OPERATIONS
     // ==============================
 
-    public static User getCurrentUser() {
+    public User getCurrentUser() {
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("""
@@ -263,7 +156,7 @@ public class Database {
             }
 
             // Enters this section if no user exists
-            Database.createDefaultUser();
+            this.createDefaultUser();
             
             rs = stmt.executeQuery("""
                 SELECT *
@@ -272,7 +165,7 @@ public class Database {
             """);
 
             if (rs.next()) {
-                return mapUser(rs);
+                return this.mapUser(rs);
             }
 
             throw new Error("No user found in database. Couldn't create new default user.");
@@ -283,28 +176,146 @@ public class Database {
         }
     }
 
-    public static List<Set> getAllSets() {
-        try (Connection conn = Database.connect()) {
+    private boolean createDefaultUser() {
+        try (Connection conn = Database.connect();) {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("""
-                SELECT *
-                FROM sets
-            """);
 
-            List<Set> sets = new ArrayList<>();
-            while (rs.next()) {
-                sets.add(mapSet(rs));
-            }
-
-            return sets;
+            stmt.execute("INSERT INTO user (username) VALUES ('New User')");
+            return true;
         }
-        catch (SQLException e) {
-            Log.Error("Error while fetching sets from database: " + e.getMessage());
-            return Collections.emptyList();
+        catch (Exception e) {
+            Log.Error("Error while creating default user: " + e.getMessage());
+            return false;
         }
     }
 
-    public static List<Song> getAllSongs() {
+    public boolean updateUser(User user) {
+        try (Connection conn = Database.connect()) {
+
+            PreparedStatement stmt = conn.prepareStatement("""
+                UPDATE user
+                SET username = ?, picture = ?, provider = ?, theme = ?, autoCheckUpdate = ?
+                WHERE id = ?
+            """);
+
+            stmt.setString(1, user.username);
+            stmt.setString(2, user.picture);
+            stmt.setString(3, user.provider);
+            stmt.setString(4, user.theme.equals(ThemeManager.Theme.DARK) ? "dark" : "light");
+            stmt.setBoolean(5, user.autoCheckUpdate);
+            stmt.setInt(6, user.id);
+
+            stmt.executeUpdate();
+
+            Log.Success("User updated successfully.");
+            return true;
+        }
+        catch (Exception e) {
+            Log.Error("Error while updating user: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private User mapUser(ResultSet rs) throws SQLException {
+        User user = new User();
+
+        user.id = rs.getInt("id");
+        user.username = rs.getString("username");
+        user.picture = rs.getString("picture");
+        user.provider = rs.getString("provider");
+        user.theme = rs.getString("theme").equals("dark") ? ThemeManager.Theme.DARK : ThemeManager.Theme.LIGHT;
+        user.autoCheckUpdate = rs.getBoolean("autoCheckUpdate");
+
+        return user;
+    }
+
+    // #endregion
+
+
+    // ==============================
+    // #region SONG OPERATIONS
+    // ==============================
+
+    public boolean insertJsonIntoSongs(String jsonFileName) {
+        try {
+            // 1) Load JSON from Ressource Path
+            InputStream is = Database.class.getResourceAsStream("/json/" + jsonFileName);
+            if (is == null) {
+                Log.Error("JSON file not found: /json/" + jsonFileName);
+                return false;
+            }
+
+            // 2) GSON converts JSON to JsonArray
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            JsonArray songsArray = JsonParser.parseReader(reader).getAsJsonArray();
+
+            // 3) Check if number of songs in JSON is equal to Database
+            int dbCount = this.getSongCount();
+            if (dbCount == songsArray.size()) {
+                Log.Info("Database already contains " + dbCount + " songs: Skipping update.");
+                return true;
+            }
+
+            // 4) Write songs into Database
+            try (Connection conn = Database.connect()) {
+
+                conn.setAutoCommit(false);
+
+                // Delete old Data
+                try (Statement deleteStmt = conn.createStatement()) {
+                    deleteStmt.executeUpdate("DELETE FROM songs");
+                    deleteStmt.executeUpdate("DELETE FROM sqlite_sequence WHERE name='songs'");
+                    Log.Success("Succesfully deleted all songs from Database.");
+                }
+
+                PreparedStatement ps = conn.prepareStatement("""
+                    INSERT INTO songs (titles, artists, year, spotify)
+                    VALUES (?, ?, ?, ?)
+                """);
+
+                for (JsonElement element : songsArray) {
+                    JsonObject songObj = element.getAsJsonObject();
+
+                    ps.setString(1, songObj.getAsJsonArray("titles").toString());
+                    ps.setString(2, songObj.getAsJsonArray("artists").toString());
+                    ps.setInt(3, songObj.get("year").getAsInt());
+                    ps.setString(4, songObj.get("spotify_id").getAsString());
+
+                    ps.addBatch();
+                }
+
+                ps.executeBatch();
+                conn.commit();
+
+                Log.Success("Successfully inserted " + songsArray.size() + " songs from \"" + jsonFileName + "\" into 'songs'.");
+                return true;
+            }
+        }
+        catch (JsonIOException | JsonSyntaxException | UnsupportedEncodingException | SQLException e) {
+            Log.Error("Error while inserting data from \"" + jsonFileName + "\" into table \"songs\": " + e.getMessage());
+            return false;
+        }
+    }
+
+    public int getSongCount() {
+        String sql = "SELECT COUNT(*) FROM songs";
+
+        try (Connection conn = Database.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }
+        catch (SQLException e) {
+            Log.Error("Error while counting songs in database: " + e.getMessage());
+        }
+
+        return -1;
+    }
+
+    public List<Song> getAllSongs() {
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("""
@@ -314,7 +325,7 @@ public class Database {
 
             List<Song> songs = new ArrayList<>();
             while (rs.next()) {
-                songs.add(mapSong(rs));
+                songs.add(this.mapSong(rs));
             }
 
             return songs;
@@ -325,7 +336,7 @@ public class Database {
         }
     }
 
-    public static List<Song> getSongFromActiveSets() {
+    public List<Song> getSongFromActiveSets() {
         try (Connection conn = Database.connect()) {
             Statement stmt = conn.createStatement();
 
@@ -339,7 +350,7 @@ public class Database {
 
             List<Song> songs = new ArrayList<>();
             while (rs.next()) {
-                songs.add(mapSong(rs));
+                songs.add(this.mapSong(rs));
             }
 
             return songs;
@@ -350,20 +361,22 @@ public class Database {
         }
     }
 
-    public static Song getSongById(int songId) {
+    public Song getSongById(int songId) {
         try (Connection conn = Database.connect()) {
+
             String sqlExecute = """
                 SELECT *
                 FROM songs
-                WHERE song_id = ?
+                WHERE id = ?
             """;
+
             PreparedStatement ps = conn.prepareStatement(sqlExecute);
             ps.setInt(1, songId);
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                return mapSong(rs);
+                return this.mapSong(rs);
             }
 
             Log.Error("Error while fetching songs from database: Couldn't find match.");
@@ -375,7 +388,7 @@ public class Database {
         }
     }
 
-    public static List<Song> getSongsBySetId(int setId) {
+    public List<Song> getSongsBySetId(int setId) {
         try (Connection conn = Database.connect()) {
             String sqlExecute = """
                 SELECT s.* FROM songs s
@@ -389,7 +402,7 @@ public class Database {
 
             List<Song> songs = new ArrayList<>();
             while(rs.next()) {
-                songs.add(mapSong(rs));
+                songs.add(this.mapSong(rs));
             }
 
             return songs;
@@ -400,103 +413,152 @@ public class Database {
         }
     }
 
-    public static List<Set> getSetsBySongId(int songId) {
-        try (Connection conn = Database.connect()) {
-            String sql = """
-                SELECT s.*
-                FROM sets s
-                INNER JOIN set_songs ss ON s.id = ss.set_id
-                WHERE ss.song_id = ?
-            """;
+    private Song mapSong(ResultSet rs) throws SQLException {
+        Song song = new Song();
 
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, songId);
+        song.id = rs.getInt("id");
+        song.year = rs.getInt("year");
+        song.spotify = rs.getString("spotify");
 
-            ResultSet rs = ps.executeQuery();
+        // Gson wandelt den JSON-String direkt in eine List<String> um
+        song.titles = GSON.fromJson(rs.getString("titles"), LIST_TYPE);
+        song.artists = GSON.fromJson(rs.getString("artists"), LIST_TYPE);
 
-            List<Set> sets = new ArrayList<>();
-            while (rs.next()) {
-                sets.add(mapSet(rs));
-            }
-
-            return sets;
-        }
-        catch (SQLException e) {
-            Log.Error("Error while fetching sets by song ID: " + e.getMessage());
-            return Collections.emptyList();
-        }
+        return song;
     }
 
-    public static List<Set> getActiveSetsBySongId(int songId) {
-        try (Connection conn = Database.connect()) {
-            String sql = """
-                SELECT s.*
-                FROM sets s
-                INNER JOIN set_songs ss ON s.id = ss.set_id
-                WHERE ss.song_id = ?
-                AND s.is_active = 1
-            """;
+    // #endregion
 
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, songId);
+    // ==============================
+    // #region GAME SET OPERATIONS
+    // ==============================
 
-            ResultSet rs = ps.executeQuery();
-
-            List<Set> sets = new ArrayList<>();
-            while (rs.next()) {
-                sets.add(mapSet(rs));
+    public boolean addSongsToSetFromCsv(String csvFileName, int setId) {
+        try {
+            // 1) Locate CSV file
+            InputStream is = Database.class.getResourceAsStream("/csv/" + csvFileName);
+            if (is == null) {
+                Log.Error("CSV file not found: /csv/" + csvFileName);
+                return false;
             }
 
-            return sets;
+            // 2) Read CSV and check if file contains data
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            List<String> lines = reader.lines()
+                .filter(line -> line != null && !line.trim().isEmpty())
+                .toList();
+
+            if (lines.isEmpty()) {
+                Log.Error("CSV file is empty: " + csvFileName);
+                return false;
+            }
+
+            // 3) Check if amount of songs in CSV and Database are equal
+            int csvSongCount = lines.size() - 1;
+
+            int dbSongCount = getSongCountForSet(setId);
+            if (dbSongCount == csvSongCount) {
+                Log.Info("Set with ID " + setId + " already contains " + dbSongCount + " songs. Skipping update.");
+                return true;
+            }
+
+            // 4) Connect songs to set in table "set_songs" with set ID and song ID
+            try (Connection conn = Database.connect()) {
+
+                conn.setAutoCommit(false);
+
+                // Reset set_songs for this set
+                try (PreparedStatement deletePs = conn.prepareStatement("DELETE FROM set_songs WHERE set_id = ?")) {
+                    deletePs.setInt(1, setId);
+                    deletePs.executeUpdate();
+                }
+
+                try (PreparedStatement ps = conn.prepareStatement("""
+                    INSERT INTO set_songs (set_id, song_id)
+                    VALUES (?, ?)
+                """)) {
+                    for (int i = 1; i < lines.size(); i++) {
+                        String line = lines.get(i).trim();
+                        try {
+                            int songId = Integer.parseInt(line);
+                            
+                            ps.setInt(1, setId);
+                            ps.setInt(2, songId);
+                            ps.addBatch();
+                        }
+                        catch (NumberFormatException e) {
+                            Log.Error("Skipped invalid ID in CSV: " + line);
+                        }
+                    }
+                    ps.executeBatch();
+                }
+
+                conn.commit();
+                Log.Success("Successfully added " + csvSongCount + " songs to set with ID " + setId + ".");
+                return true;
+            }
         }
         catch (SQLException e) {
-            Log.Error("Error while fetching active sets by song ID: " + e.getMessage());
-            return Collections.emptyList();
-        }
-    }
-
-    // ==============================
-    // SET OPERATIONS
-    // ==============================
-
-    public static boolean updateUser(User user) {
-        try (Connection conn = Database.connect()) {
-
-            PreparedStatement stmt = conn.prepareStatement("""
-                UPDATE user
-                SET username = ?, picture = ?, provider = ?
-                WHERE id = ?
-            """);
-
-            stmt.setString(1, user.username);
-            stmt.setString(2, user.picture);
-            stmt.setString(3, user.provider);
-            stmt.setInt(4, user.id);
-
-            stmt.executeUpdate();
-
-            Log.Success("User updated successfully.");
-            return true;
-        }
-        catch (Exception e) {
-            Log.Error("Error while updating user: " + e.getMessage());
+            Log.Error("Error while reading set CSV: " + e.getMessage());
             return false;
         }
     }
 
-    public static boolean addSetToDatabase(Set set) {
+    public int getSongCountForSet(int setId) {
+        String sql = """
+            SELECT COUNT(*) 
+            FROM set_songs ss
+            INNER JOIN songs s ON ss.song_id = s.id
+            WHERE ss.set_id = ?
+        """;
+
+        try (Connection conn = Database.connect();
+            PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, setId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        }
+        catch (SQLException e) {
+            Log.Error("Error while counting valid songs for set ID " + setId + ": " + e.getMessage());
+        }
+
+        return -1;
+    }
+
+    public boolean addSetToDatabase(GameSet set) {
+        // 1) Check if GameSet already exists in Database
+        if (checkIfSetExists(set)) {
+            Log.Info("GameSet \"" + set.name + "\" already exists in Database: Skipping insertion to Database.");
+            return true;
+        }
+
+        // 2) Delete all sets after parameter set's ID to prevent wrong order
         try (Connection conn = Database.connect()) {
 
-            PreparedStatement stmt = conn.prepareStatement("""
-                INSERT INTO sets (name, img, icon, csv, is_active)
-                VALUES (?, ?, ?, ?, ?)
+            PreparedStatement deleteStmt = conn.prepareStatement("""
+                DELETE FROM sets
+                WHERE id >= ?;
             """);
 
-            stmt.setString(1, set.name);
-            stmt.setString(2, set.img);
-            stmt.setString(3, set.icon);
-            stmt.setString(4, set.csv);
-            stmt.setInt(5, set.isActive ? 1 : 0);
+            deleteStmt.setInt(1, set.id);
+            deleteStmt.executeUpdate();
+            
+            // 3) Insert set if doesn't already exist in Database
+            PreparedStatement stmt = conn.prepareStatement("""
+                INSERT INTO sets (id, name, img, icon, csv, is_active)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """);
+
+            stmt.setInt(1, set.id);
+            stmt.setString(2, set.name);
+            stmt.setString(3, set.img);
+            stmt.setString(4, set.icon);
+            stmt.setString(5, set.csv);
+            stmt.setInt(6, set.isActive ? 1 : 0);
 
             stmt.executeUpdate();
 
@@ -509,7 +571,26 @@ public class Database {
         }
     }
 
-    public static boolean updateSetStatus(int setId, boolean isActive) {
+    private boolean checkIfSetExists(GameSet set) {
+        try (Connection conn = Database.connect()) {
+            
+            PreparedStatement checkStmt = conn.prepareStatement("""
+                SELECT COUNT(*) FROM sets WHERE name = ? AND id = ?
+            """);
+
+            checkStmt.setString(1, set.name);
+            checkStmt.setInt(2, set.id);
+
+            ResultSet rs = checkStmt.executeQuery();
+            return (rs.next() && rs.getInt(1) > 0);
+        }
+        catch (Exception e) {
+            Log.Error("Error while checking existance of GameSet \"" + set.name + "\" in Database: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateSetStatus(int setId, boolean isActive) {
         try (Connection conn = Database.connect()) {
 
             PreparedStatement stmt = conn.prepareStatement("""
@@ -532,23 +613,84 @@ public class Database {
         }
     }
 
-    // ==============================
-    // MAPPERS
-    // ==============================
+    public List<GameSet> getAllSets() {
+        try (Connection conn = Database.connect()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("""
+                SELECT *
+                FROM sets
+            """);
 
-    private static User mapUser(ResultSet rs) throws SQLException {
-        User user = new User();
+            List<GameSet> sets = new ArrayList<>();
+            while (rs.next()) {
+                sets.add(this.mapSet(rs));
+            }
 
-        user.id = rs.getInt("id");
-        user.username = rs.getString("username");
-        user.picture = rs.getString("picture");
-        user.provider = rs.getString("provider");
-
-        return user;
+            return sets;
+        }
+        catch (SQLException e) {
+            Log.Error("Error while fetching sets from database: " + e.getMessage());
+            return Collections.emptyList();
+        }
     }
 
-    private static Set mapSet(ResultSet rs) throws SQLException {
-        Set set = new Set();
+    public List<GameSet> getActiveSetsBySongId(int songId) {
+        try (Connection conn = Database.connect()) {
+            String sql = """
+                SELECT s.*
+                FROM sets s
+                INNER JOIN set_songs ss ON s.id = ss.set_id
+                WHERE ss.song_id = ?
+                AND s.is_active = 1
+            """;
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, songId);
+
+            ResultSet rs = ps.executeQuery();
+
+            List<GameSet> sets = new ArrayList<>();
+            while (rs.next()) {
+                sets.add(this.mapSet(rs));
+            }
+
+            return sets;
+        }
+        catch (SQLException e) {
+            Log.Error("Error while fetching active sets by song ID: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+    public List<GameSet> getSetsBySongId(int songId) {
+        try (Connection conn = Database.connect()) {
+            String sql = """
+                SELECT s.*
+                FROM sets s
+                INNER JOIN set_songs ss ON s.id = ss.set_id
+                WHERE ss.song_id = ?
+            """;
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, songId);
+
+            ResultSet rs = ps.executeQuery();
+
+            List<GameSet> sets = new ArrayList<>();
+            while (rs.next()) {
+                sets.add(this.mapSet(rs));
+            }
+
+            return sets;
+        }
+        catch (SQLException e) {
+            Log.Error("Error while fetching sets by song ID: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+    private GameSet mapSet(ResultSet rs) throws SQLException {
+        GameSet set = new GameSet();
 
         set.id = rs.getInt("id");
         set.name= rs.getString("name");
@@ -560,17 +702,5 @@ public class Database {
         return set;
     }
 
-    private static Song mapSong(ResultSet rs) throws SQLException {
-        Song song = new Song();
-
-        song.id = rs.getInt("id");
-        song.year = rs.getInt("year");
-        song.spotify = rs.getString("spotify");
-
-        // Gson wandelt den JSON-String direkt in eine List<String> um
-        song.titles = gson.fromJson(rs.getString("titles"), LIST_TYPE);
-        song.artists = gson.fromJson(rs.getString("artists"), LIST_TYPE);
-
-        return song;
-    }
+    // #endregion
 }

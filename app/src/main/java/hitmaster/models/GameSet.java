@@ -6,7 +6,7 @@ import hitmaster.services.Database;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Set {
+public class GameSet {
     public int id;
     public String name;
     public String img;
@@ -14,9 +14,10 @@ public class Set {
     public String csv;
     public boolean isActive;
 
-    public Set() {}
+    public GameSet() {}
 
-    public Set(String name, String image, String icon, String csv, boolean isActive) {
+    public GameSet(int id, String name, String image, String icon, String csv, boolean isActive) {
+        this.id = id;
         this.name = name;
         this.img = image;
         this.icon = icon;
@@ -45,6 +46,6 @@ public class Set {
     }
 
     public List<Song> getSongs() {
-        return Database.getSongsBySetId(id);
+        return Database.getInstance().getSongsBySetId(id);
     }
 }

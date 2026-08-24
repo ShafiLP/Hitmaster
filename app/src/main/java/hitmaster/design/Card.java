@@ -61,10 +61,25 @@ public abstract class Card extends StackPane {
             if (!isDraggable)
                 return;
 
-            if (getParent() != null) {
-                Point2D localParam = getParent().sceneToLocal(e.getSceneX(), e.getSceneY());
-                setLayoutX(localParam.getX() - mouseX);
-                setLayoutY(localParam.getY() - mouseY);
+            if (this.getParent() != null) {
+                Point2D localParam = this.getParent().sceneToLocal(e.getSceneX(), e.getSceneY());
+
+                double newX = localParam.getX() - mouseX;
+                double newY = localParam.getY() - mouseY;
+                
+                double parentWidth = this.getParent().getBoundsInLocal().getWidth();
+                double parentHeight = this.getParent().getBoundsInLocal().getHeight();
+                
+                double maxX = parentWidth - this.getWidth();
+                double maxY = parentHeight - this.getHeight();
+                
+                if (newX < 0) newX = 0;
+                if (newX > maxX) newX = maxX;
+                if (newY < 0) newY = 0;
+                if (newY > maxY) newY = maxY;
+                
+                this.setLayoutX(newX);
+                this.setLayoutY(newY);
             }
 
             if (dragListener != null) {

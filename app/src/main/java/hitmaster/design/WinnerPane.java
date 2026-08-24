@@ -1,6 +1,7 @@
 package hitmaster.design;
 
 import hitmaster.models.Player;
+import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
 import hitmaster.views.GameView;
 import hitmaster.views.MainMenu;
@@ -80,7 +81,7 @@ public class WinnerPane {
             Stage currentStage = (Stage) parent.getScene().getWindow();
             currentStage.close();
 
-            MainMenu menu = new MainMenu(stage);
+            MainMenu menu = new MainMenu(stage, Database.getInstance().getCurrentUser());
 
             Scene scene = new Scene(menu.getView(), 600, 450);
             menu.getView().prefWidthProperty().bind(scene.widthProperty());

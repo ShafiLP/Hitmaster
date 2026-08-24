@@ -3,7 +3,7 @@ package hitmaster.views;
 import java.util.ArrayList;
 import java.util.List;
 
-import hitmaster.models.Set;
+import hitmaster.models.GameSet;
 import hitmaster.models.Song;
 import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
@@ -110,20 +110,20 @@ public class SetManagerView {
 
     private void refreshSetList() {
         SET_LIST_CONTAINER.getChildren().clear();
-        for (Set set : getAllSets()) {
+        for (GameSet set : getAllSets()) {
             SET_LIST_CONTAINER.getChildren().add(createSetRow(set));
         }
     }
 
     private void setAllSetsActive(boolean active) {
-        for (Set set : getAllSets()) {
+        for (GameSet set : getAllSets()) {
             set.isActive = active;
-            Database.updateSetStatus(set.id, active);
+            Database.getInstance().updateSetStatus(set.id, active);
         }
         this.refreshSetList();
     }
 
-    private HBox createSetRow(Set set) {
+    private HBox createSetRow(GameSet set) {
         // 1) Set Image
         ImageView setImageView = set.getImage();
         if (setImageView != null) {
@@ -161,7 +161,7 @@ public class SetManagerView {
             boolean newState = !set.isActive;
             set.isActive = newState;
             updateToggleButtonState(toggleBtn, newState);
-            Database.updateSetStatus(set.id, newState);
+            Database.getInstance().updateSetStatus(set.id, newState);
         });
 
         HBox row = new HBox(10, infoLeft, spacer, toggleBtn);
@@ -186,8 +186,8 @@ public class SetManagerView {
         btn.setPrefWidth(120);
     }
     
-    private List<Set> getAllSets() {
-        return Database.getAllSets();
+    private List<GameSet> getAllSets() {
+        return Database.getInstance().getAllSets();
     }
 
     private void showCreateSetDialog() {
@@ -312,7 +312,7 @@ public class SetManagerView {
 
             if (!setName.isEmpty()) {
                 // Generate set instance
-                Set newSet = new Set();
+                GameSet newSet = new GameSet();
                 newSet.name = setName;
                 newSet.img = imagePath;
                 

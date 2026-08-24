@@ -266,6 +266,47 @@
     -fx-font-style: italic;
 }
 
+.modern-listview {
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(0, 0, 0, 0.15);
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 3;
+}
+
+.modern-listview .virtual-flow {
+    -fx-background-color: transparent;
+}
+
+.modern-listview .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font-size: 14px;
+    -fx-padding: 6 10;
+    -fx-background-radius: 6;
+}
+
+.modern-listview .list-cell:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.08); 
+    -fx-cursor: hand;
+}
+
+.modern-listview .list-cell:selected {
+    -fx-background-color: rgba(0, 0, 0, 0.15); 
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font-weight: bold;
+}
+
+.modern-listview:focused .list-cell:selected {
+    -fx-background-color: rgba(0, 0, 0, 0.18);
+}
+
+.modern-listview .list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-cursor: default;
+}
+
 .status-bar {
     -fx-background-color: rgba(0, 0, 0, 0.2);
     -fx-text-fill: black;

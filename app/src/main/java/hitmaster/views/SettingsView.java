@@ -1,5 +1,7 @@
 package hitmaster.views;
 
+import hitmaster.models.User;
+import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -19,9 +21,11 @@ public class SettingsView {
 
     private final MainMenu PARENT;
     private final Stage STAGE;
+    private final User USER;
 
-    public SettingsView(MainMenu parent) {
+    public SettingsView(MainMenu parent, User currentUser) {
         this.PARENT = parent;
+        this.USER = currentUser;
 
         STAGE = new Stage();
         STAGE.setTitle("Settings");
@@ -74,8 +78,11 @@ public class SettingsView {
         
         themeDropdown.setOnAction(e -> {
             ThemeManager.Theme selectedTheme = themeDropdown.getValue();
-            if (selectedTheme != null)
+            if (selectedTheme != null) {
                 ThemeManager.getInstance().setTheme(selectedTheme);
+                USER.theme = selectedTheme;
+                Database.getInstance().updateUser(USER);
+            }
         });
         
         HBox themeRow = createSettingRow("Application Theme", "Change the visual appearance of Hitmaster.", themeDropdown);

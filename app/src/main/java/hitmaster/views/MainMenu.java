@@ -2,8 +2,10 @@ package hitmaster.views;
 
 import java.awt.Desktop;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Properties;
 
 import hitmaster.design.StyleDialog;
 import hitmaster.models.User;
@@ -11,6 +13,7 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.Spotify;
 import hitmaster.services.ThemeManager;
+import hitmaster.services.UpdateService;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,7 +42,7 @@ public class MainMenu {
     private boolean providerStatus = false;
 
     // App Info
-    private final String VERSION = "0.0.1";
+    private final String VERSION = MainMenu.loadVersion();
     private final String AUTHOR = "Shafi";
 
     // UI Elements
@@ -48,8 +51,8 @@ public class MainMenu {
     private final Button PROVIDER;
     private final Button PROFILE;
 
-    public MainMenu(Stage stage) {
-        user = Database.getCurrentUser();
+    public MainMenu(Stage stage, User user) {
+        this.user = user;
         PROVIDER = new Button();
         PROFILE = new Button();
 
@@ -179,7 +182,7 @@ public class MainMenu {
         settingsBtn.setPrefWidth(30);
         settingsBtn.setPrefHeight(30);
         settingsBtn.setOnAction(e -> {
-            SettingsView settingsView = new SettingsView(this);
+            SettingsView settingsView = new SettingsView(this, user);
             settingsView.show(STAGE);
         });
 
@@ -282,10 +285,16 @@ public class MainMenu {
     public void setStage(Pane pane, boolean maximized) {
         Scene scene = new Scene(pane, 800, 600);
         ThemeManager.getInstance().registerScene(scene);
+        ThemeManager.getInstance().setTheme(user.theme);
+
         STAGE.setScene(scene);
         STAGE.setMaximized(maximized);
         STAGE.getIcons().add(new Image(getClass().getResourceAsStream("/cardDesign.png")));
         STAGE.show();
+    }
+
+    public Stage getStage() {
+        return STAGE;
     }
 
     /**
@@ -319,7 +328,7 @@ public class MainMenu {
      */
     public void initialiseProviderButton() {
         // Re-load user
-        user = Database.getCurrentUser();
+        user = Database.getInstance().getCurrentUser();
 
         PROVIDER.setText("No provider");
         PROVIDER.getStyleClass().add("prov-button-none");
@@ -362,7 +371,7 @@ public class MainMenu {
      */
     public void updateProfileButton() {
         // 1) Re-Load user from Database
-        user = Database.getCurrentUser();
+        user = Database.getInstance().getCurrentUser();
 
         // 2) Set new username and profile picture
         PROFILE.setText(user.getImage() == null ? "👤 " + user.username : user.username);
@@ -377,6 +386,25 @@ public class MainMenu {
 
             PROFILE.setGraphic(icon);
             PROFILE.setContentDisplay(ContentDisplay.LEFT);
+        }
+    }
+
+    /**
+     * Loads current version of app from project.proerties file.
+     * @return Current app version as String.
+     */
+    private static String loadVersion() {
+        Properties properties = new Properties();
+
+        try (InputStream input = UpdateService.class.getClassLoader().getResourceAsStream("project.properties")) {
+            if (input == null)
+                return "unknown";
+
+            properties.load(input);
+            return properties.getProperty("version", "unknown");
+        }
+        catch (IOException e) {
+            return "unknown";
         }
     }
 }
