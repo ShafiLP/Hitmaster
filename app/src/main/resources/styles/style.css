@@ -1,0 +1,169 @@
+.root {
+    -fx-header-size: 20px;
+    -fx-subheader-size: 14px;
+    -fx-text-size: 11px;
+
+    /* Placeholders: Override in theme */
+    -fx-primary-brush: #000000;
+    -fx-secondary-brush: #505050;
+
+    -fx-transparent: rgba(0, 0, 0, 0.2);
+    -fx-transparent-focus: rgba(0, 0, 0, 0.3);
+
+    -fx-subtile-transparent: rgba(0, 0, 0, 0.1);
+    -fx-subtile-transparent-focus: rgba(0, 0, 0, 0.15);
+}
+
+/* ============================== */
+/* Labels                         */
+/* ============================== */
+
+.header {
+    -fx-text-fill: -fx-primary-brush;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.subheader {
+    -fx-text-fill: -fx-primary-brush;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.description {
+    -fx-text-fill: -fx-primary-brush;
+    -fx-font-size: 11px;
+}
+
+/* ============================== */
+/* Buttons                        */
+/* ============================== */
+
+.modern-button {
+    -fx-background-color: -fx-transparent;
+    -fx-text-fill: -fx-primary-brush;
+    -fx-font-size: 11px;
+    -fx-radius: 14;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.modern-button:hover {
+    -fx-background-color: -fx-transparent-focus;
+}
+
+.segmented-control {
+    -fx-background-color: transparent;
+}
+
+.segmented-button-left, 
+.segmented-button-right {
+    -fx-background-color: -fx-transparent;
+    -fx-text-fill: -fx-secondary-brush;
+    -fx-padding: 8 15 8 15;
+    -fx-font-size: -fx-text-size;
+    -fx-border-color: rgba(255,255,255,0.1);
+}
+
+.segmented-button-left {
+    -fx-background-radius: 20 0 0 20;
+    -fx-border-radius: 20 0 0 20;
+    -fx-border-width: 1 0 1 1;
+}
+
+.segmented-button-right {
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-radius: 0 20 20 0;
+    -fx-border-width: 1 1 1 1;
+}
+
+.segmented-button-left:selected,
+.segmented-button-right:selected {
+    -fx-background-color: -fx-transparent-focus;
+    -fx-text-fill: -fx-primary-brush;
+    -fx-font-weight: bold;
+}
+
+.segmented-button-left:hover,
+.segmented-button-right:hover {
+    -fx-cursor: hand;
+    -fx-background-color: -fx-transparent-focus;
+}
+
+/* ============================== */
+/* Scroll Bar                     */
+/* ============================== */
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10px;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-secondary-brush;
+    -fx-background-radius: 5px;
+}
+
+.scrollpane .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+/* ============================== */
+/* Set Manager                    */
+/* ============================== */
+
+.switch-toggle:hover{
+    -fx-cursor: hand;
+}
+
+.switch-toggle .mark {
+    -fx-background-color: transparent;
+    -fx-shape: null;
+}
+
+.switch-toggle .box {
+    -fx-background-color: #555555;
+    -fx-background-radius: 15;
+    -fx-padding: 0;
+    -fx-pref-width: 40;
+    -fx-pref-height: 22;
+    -fx-alignment: CENTER_LEFT;
+    -fx-transition: -fx-background-color 0.2s ease-out;
+}
+
+.switch-toggle:selected .box {
+    -fx-background-color: #00cc00;
+}
+
+.switch-toggle .box::after {
+    -fx-content: "";
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-pref-width: 18;
+    -fx-pref-height: 18;
+    -fx-translate-x: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 3, 0, 0, 1);
+    -fx-transition: -fx-translate-x 0.2s ease-out;
+}
+
+.switch-toggle:selected .box::after {
+    -fx-translate-x: 20; /* 40 - 18 - 2 */
+}
+
+.set-card-grid {
+    -fx-border-color: gray;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-background-color: -fx-subtile-transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 2);
+}

@@ -9,6 +9,8 @@ import javafx.scene.image.ImageView;
 public class GameSet {
     public int id;
     public String name;
+    public String region;
+    public String desc;
     public String img;
     public String icon;
     public String csv;
@@ -16,9 +18,11 @@ public class GameSet {
 
     public GameSet() {}
 
-    public GameSet(int id, String name, String image, String icon, String csv, boolean isActive) {
+    public GameSet(int id, String name, String region, String desc, String image, String icon, String csv, boolean isActive) {
         this.id = id;
         this.name = name;
+        this.region = region;
+        this.desc = desc;
         this.img = image;
         this.icon = icon;
         this.csv = csv;

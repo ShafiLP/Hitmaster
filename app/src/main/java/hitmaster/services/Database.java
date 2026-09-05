@@ -71,6 +71,8 @@ public class Database {
                 CREATE TABLE IF NOT EXISTS sets (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
+                    region TEXT,
+                    desc TEXT,
                     img TEXT,
                     icon TEXT,
                     csv TEXT,
@@ -102,32 +104,49 @@ public class Database {
             this.insertJsonIntoSongs("songs.json");
 
             // 3) Insert GameSets into Database
-            this.addSetToDatabase(new GameSet(1, "Hitster - UK", "hitster-uk.jpg", "hitster-uk.png", "hitster-uk.csv", true));
+            this.addSetToDatabase(new GameSet(1,"Hitster - UK", "EN", 
+                "The ultimate party game: Turn any gathering into an unforgettable experience with Hitster Original - a thrilling party game for adults that combines music and fun!",
+                "hitster-uk_standard.png", "hitster-uk.png", "hitster-uk.csv", true));
             this.addSongsToSetFromCsv("hitster-uk.csv", 1);
 
-            this.addSetToDatabase(new GameSet(2, "Hitster - DE", "hitster-de.jpg", "hitster-de.png", "hitster-de.csv", false));
+            this.addSetToDatabase(new GameSet(2, "Hitster - DE", "DE",
+                "Feier die ultimative Party mit Hitster! Mit über 300 der größten Hits der letzten 100 Jahre ist Hitster das perfekte Partyspiel für einen Abend voller Lachen, Singen, Tanzen und gemeinsamen Erinnerungen.",
+                "hitster-de_standard.png", "hitster-de.png", "hitster-de.csv", false));
             this.addSongsToSetFromCsv("hitster-de.csv", 2);
 
-            this.addSetToDatabase(new GameSet(3, "Rock & Metal - DE", "rock-de.jpg", "rock-de.png", "rock-de.csv", false));
+            this.addSetToDatabase(new GameSet(3, "Rock - DE", "DE",
+                "Tauche ein in die elektrisierende Welt der Rockmusik mit HITSTER Rock Radio BOB! Diese Ausgabe bietet eine speziell zusammengestellte Sammlung legendärer Rocksongs aus verschiedenen Epochen.",
+                "hitster-de_rock.png", "rock-de.png", "rock-de.csv", false));
             this.addSongsToSetFromCsv("rock-de.csv", 3);
 
-            this.addSetToDatabase(new GameSet(4, "Guilty Pleasures - DE", "guilty-de.png", "guilty-de.png", "guilty-de.csv", false));
+            this.addSetToDatabase(new GameSet(4, "Guilty Pleasures - DE", "DE",
+                "Die Party geht weiter mit Hitster Guilty Pleasures! Das lustigste Partyspiel kommt mit einer neuen Ausgabe, diesmal mit den Hits die angeblich keiner kennt und trotzdem jeder mitsingen kann.",
+                "hitster-de_guilty.png", "guilty-de.png", "guilty-de.csv", false));
             this.addSongsToSetFromCsv("guilty-de.csv", 4);
 
-            this.addSetToDatabase(new GameSet(5, "Summer Party - DE", "summer-de.jpg", "summer-de.png", "summer-de.csv", false));
+            this.addSetToDatabase(new GameSet(5, "Summer Party - DE", "DE",
+                "Alle Sommerhits der vergangenen Jahrzehnte kommen in dieser Variante von Hitster zusammen! Feiert eure ultimative Sommerparty mit internationalen und deutschen Hits, die jeder kennt und begebt euch auf die Zeitreise.",
+                "hitster-de_summer.png", "summer-de.png", "summer-de.csv", false));
             this.addSongsToSetFromCsv("summer-de.csv", 5);
 
-            this.addSetToDatabase(new GameSet(6, "Bayern1 Expansion", "bavaria-ex.png", "bavaria-ex.png", "bavaria-ex.csv", false));
-            this.addSongsToSetFromCsv("bavaria-ex.csv", 6);
+            this.addSetToDatabase(new GameSet(6, "Schlager Party - DE", "DE",
+                "Hitster Schlagerparty ist das ultimative Partyspiel für alle, die bereit sind, sich durch die Nächte zuschlagen. Diese Variante des beliebten Partyspiels enthält die größten Schlagerhits der vergangenen Jahrzehnte.",
+                "hitster-de_schlager.png", "schlager-de.png", "schlager-de.csv", false));
+            this.addSongsToSetFromCsv("schlager-de.csv", 6);
 
-            this.addSetToDatabase(new GameSet(7, "Rock & Metal - Nordics", "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
-            this.addSongsToSetFromCsv("rock-nordics.csv", 7);
+            this.addSetToDatabase(new GameSet(7, "Bayern1 Expansion", "DE",
+                "Bayern 1 Hitliste: Tauche ein in eine Sammlung von über 150 Karten mit den größten Radiohits der vergangenen Jahrzehnte.",
+                "hitster-de_bavaria.png", "bavaria-ex.png", "bavaria-ex.csv", false));
+            this.addSongsToSetFromCsv("bavaria-ex.csv", 7);
 
-            this.addSetToDatabase(new GameSet(8, "Punk Expansion", "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
-            this.addSongsToSetFromCsv("punk-expansion.csv", 8);
+            this.addSetToDatabase(new GameSet(8, "Rock & Metal - Nordics", "INT", null, "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
+            this.addSongsToSetFromCsv("rock-nordics.csv", 8);
 
-            this.addSetToDatabase(new GameSet(9, "Deutschrock Expansion", "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
-            this.addSongsToSetFromCsv("deutschrock-ex.csv", 9);
+            this.addSetToDatabase(new GameSet(9, "Punk Expansion", "INT", null, "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
+            this.addSongsToSetFromCsv("punk-expansion.csv", 9);
+
+            this.addSetToDatabase(new GameSet(10, "Deutschrock Expansion", "DE", null, "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
+            this.addSongsToSetFromCsv("deutschrock-ex.csv", 10);
 
             Log.Success("Succesfully initialized Database.");
             return true;
@@ -549,16 +568,18 @@ public class Database {
             
             // 3) Insert set if doesn't already exist in Database
             PreparedStatement stmt = conn.prepareStatement("""
-                INSERT INTO sets (id, name, img, icon, csv, is_active)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO sets (id, name, region, desc, img, icon, csv, is_active)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """);
 
             stmt.setInt(1, set.id);
             stmt.setString(2, set.name);
-            stmt.setString(3, set.img);
-            stmt.setString(4, set.icon);
-            stmt.setString(5, set.csv);
-            stmt.setInt(6, set.isActive ? 1 : 0);
+            stmt.setString(3, set.region);
+            stmt.setString(4, set.desc);
+            stmt.setString(5, set.img);
+            stmt.setString(6, set.icon);
+            stmt.setString(7, set.csv);
+            stmt.setInt(8, set.isActive ? 1 : 0);
 
             stmt.executeUpdate();
 
@@ -694,6 +715,8 @@ public class Database {
 
         set.id = rs.getInt("id");
         set.name= rs.getString("name");
+        set.region = rs.getString("region");
+        set.desc = rs.getString("desc");
         set.img = rs.getString("img");
         set.icon = rs.getString("icon");
         set.csv = rs.getString("csv"); 

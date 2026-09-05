@@ -1,26 +1,17 @@
 .root {
-    -fx-background-color: #eef2ff;
-}
+    -fx-primary-brush: #000000;
+    -fx-secondary-brush: #505050;
 
-.header {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
+    -fx-transparent: rgba(0, 0, 0, 0.2);
+    -fx-transparent-focus: rgba(0, 0, 0, 0.3);
+
+    -fx-subtile-transparent: rgba(0, 0, 0, 0.1);
+    -fx-subtile-transparent-focus: rgba(0, 0, 0, 0.15);
 }
 
 .header-description {
     -fx-text-fill: gray;
     -fx-font-size: 12px;
-}
-
-.subheader {
-    -fx-text-fill: black;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-}
-
-.description {
-    -fx-text-fill: #888888;
-    -fx-font-size: 11px;
 }
 
 .title {
@@ -145,19 +136,6 @@
 
 .error-button:hover {
     -fx-background-color: #c0392b;
-}
-
-.modern-button {
-    -fx-background-color: rgba(0, 0, 0, 0.2);
-    -fx-font-size: 14px;
-    -fx-text-fill: rgb(0, 0, 0);
-    -fx-background-radius: 10;
-    -fx-padding: 4 7;
-    -fx-cursor: hand;
-}
-
-.modern-button:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.3);
 }
 
 .modern-label {
