@@ -772,7 +772,7 @@
   {
     "id": 111,
     "titles": ["Ich will 'nen Cowboy als Mann", "Ich will einen Cowboy als Mann"],
-    "artists": ["Gitte Hænning", "Gitte Hanning", "Gitte Haenning"],
+    "artists": ["Gitte Hænning", "Gitte Hanning", "Gitte Haenning", "Gitte"],
     "year": 1963,
     "spotify_id": "6fsTEzoIeqlkydroKJqQAc"
   },
@@ -1780,7 +1780,7 @@
   {
     "id": 255,
     "titles": ["Marmor, Stein und Eisen bricht"],
-    "artists": ["Drafi Deutscher"],
+    "artists": ["Drafi Deutscher", "Drafi Deutscher & His Magics", "Drafi Deutscher and His Magics"],
     "year": 1965,
     "spotify_id": "70gS6bjAjFc96IIunuRj1c"
   },
@@ -1954,7 +1954,7 @@
   },
   {
     "id": 280,
-    "titles": ["Er hat ein knallrotes Gummiboot"],
+    "titles": ["Er Hat ein Knallrotes Gummiboot"],
     "artists": ["Wencke Myhre"],
     "year": 1970,
     "spotify_id": "1ewNSEjaSpjLQTgfk1JaZG"
@@ -5934,7 +5934,8 @@
   },
   {
     "id": 847,
-    "titles": ["'54, '74, '90, '2010", "Vierundfünfzig, Vierundsiebzig, Neunzig, Zweitausendzehn"],
+    "titles": ["'54, '74, '90, 2010", "1954, 1974, 1990, 2010",
+               "Vierundfünfzig, Vierundsiebzig, Neunzig, Zweitausendzehn"],
     "artists": ["Sportfreunde Stiller"],
     "year": 2006,
     "spotify_id": "6ee1motyT1KuUMiz8dMqxj"
@@ -6005,14 +6006,14 @@
   {
     "id": 857,
     "titles": ["Alles klar auf der Andrea Doria"],
-    "artists": ["Udo Lindenberg & Das Panik Orchester", "Udo Lindenberg & Das Panik-Orchester", "Udo Lindenberg und Das Panik-Orchester",
-                "Udo Lindenberg und Das Panik Orchester", "Udo Lindenberg"],
+    "artists": ["Udo Lindenberg & Das Panik-Orchester", "Udo Lindenberg und Das Panik-Orchester",
+                "Udo Lindenberg", "Das Panik-Orchester", "Panik-Orchester"],
     "year": 1973,
     "spotify_id": "7J5xzs2XGtGFjoBYfGQwnd"
   },
   {
     "id": 858,
-    "titles": ["Und Es War Sommer"],
+    "titles": ["Und Es War Sommer", "Es War Sommer"],
     "artists": ["Peter Maffay"],
     "year": 1976,
     "spotify_id": "4i6mkvKRIO07bHANBNRDWe"
@@ -7352,7 +7353,7 @@
   },
   {
     "id": 1049,
-    "titles": ["Titel"],
+    "titles": ["I Wanna Be Your Dog", "I Want To Be Your Dog"],
     "artists": ["Iggy and The Stooges", "Iggy & The Stooges", "Iggy Pop", "The Stooges", "Stooges"],
     "year": 1969,
     "spotify_id": "672N8DGGTOLCOgWe0koX5g"
@@ -7711,7 +7712,7 @@
     "id": 1100,
     "titles": ["The Worrying Kind", "Worrying Kind"],
     "artists": ["The Ark", "Ark"],
-    "year": 2026,
+    "year": 2007,
     "spotify_id": "45DP2cidC1BdeIU0WmjIYY"
   },
   {
@@ -7900,7 +7901,7 @@
     "id": 1127,
     "titles": ["Radioactive"],
     "artists": ["Imagine Dragons", "ID"],
-    "year": 2026,
+    "year": 2012,
     "spotify_id": "1PzoM54jr13a5eUfCycMKc"
   },
   {
@@ -8391,7 +8392,8 @@
   },
   {
     "id": 1197,
-    "titles": ["Nachts, Wenn Alles Schläft", "Nachts, Wenn Alles Schlaeft"],
+    "titles": ["Nachts, Wenn Alles Schläft", "Nachts, Wenn Alles Schlaeft",
+               "Wenn Alles Schläft", "Wenn Alles Schlaeft"],
     "artists": ["Howard Carpendale"],
     "year": 1979,
     "spotify_id": "5NFZ9y9Px11uTuiSnv8Emn"
@@ -8617,7 +8619,7 @@
     "id": 1229,
     "titles": ["So Lang' Man Träume Noch Leben Kann", "Solang Man Träume Noch Leben Kann",
                "So Lang' Man Traeume Noch Leben Kann", "Solang Man Traeume Noch Leben Kann"],
-    "artists": ["Münchener Freiheit"],
+    "artists": ["Münchener Freiheit", "Muenchener Freiheit"],
     "year": 1987,
     "spotify_id": "6bsrVpcZbja30aeYQuRnFv"
   },
@@ -8765,12 +8767,13 @@
     "id": 1250,
     "titles": ["Schickeria"],
     "artists": ["Spider Murphy Gang", "SMG"],
-    "year":  	1981,
+    "year": 1981,
     "spotify_id": "1mOIOim4QHFVKavrJQ8G90"
   },
   {
     "id": 1251,
-    "titles": ["Ja, Ja Die Katja, Die Hat Ja..."],
+    "titles": ["Ja, Ja Die Katja, Die Hat Ja...", "Ja Die Katja, Die Hat Ja...",
+               "Die Katja", "Katja", "Die Hat Ja...", "Ja, Ja Die Katja"],
     "artists": ["Heino"],
     "year": 1980,
     "spotify_id": "15AckmWpq9fpJ9MpwIGdyu"
@@ -8848,7 +8851,7 @@
   {
     "id": 1262,
     "titles": ["Sommernacht In Rom"],
-    "artists": ["G. G. Anderson", "GG Anderson", "Anderson"],
+    "artists": ["G.G. Anderson", "Anderson"],
     "year": 1985,
     "spotify_id": "5h87ecAlxNNuIDnpSof1zx"
   },
@@ -9107,7 +9110,7 @@
   {
     "id": 1299,
     "titles": ["Ein Stern (… Der Deinen Namen Trägt)", "Ein Stern"],
-    "artists": ["DJ Ötzi & Nik P.", "DJ Ötzi", "Ötzi", "Nik P", "Nik"],
+    "artists": ["DJ Ötzi & Nik P.", "DJ Ötzi", "Ötzi", "DJ Oetzi", "Oetzi", "Nik P", "Nik"],
     "year": 2007,
     "spotify_id": "2H11a2O8kG97rcnkJt23hi"
   },
@@ -10180,7 +10183,7 @@
   {
     "id": 1452,
     "titles": ["Gib Mir Sonne"],
-    "artists": ["Rosenstolz", "Rosen Stolz"],
+    "artists": ["Rosenstolz"],
     "year": 2008,
     "spotify_id": "3sfKfoEJp8uR7syEMze89R"
   },
@@ -10474,7 +10477,7 @@
   {
     "id": 1494,
     "titles": ["Hey! Baby (Uhh, Ahh)", "Hey! Baby"],
-    "artists": ["DJ Ötzi", "Ötzi"],
+    "artists": ["DJ Ötzi", "Ötzi", "DJ Oetzi", "Oetzi"],
     "year": 2000,
     "spotify_id": "0HNXnhNZZtRZFLhP4hfyCP"
   },
@@ -12261,5 +12264,2452 @@
     "artists": ["David Guetta (feat. Sam Martin)", "David Guetta", "Sam Martin"],
     "year": 2014,
     "spotify_id": "5UUr2ji5Lacg72thqzLyth"
+  },
+  {
+    "id": 1748,
+    "titles": ["Heute Male Ich Dein Bild, Cindy Lou", "Heute Male Ich Dein Bild"],
+    "artists": ["Drafi Deutscher", "Drafi Deutscher & His Magics", "Drafi Deutscher and His Magics"],
+    "year": 1965,
+    "spotify_id": "6S0Y6EQoeWX8sh3iydAUN5"
+  },
+  {
+    "id": 1749,
+    "titles": ["Aloha Heja He", "Aloha Heja Hey"],
+    "artists": ["Achim Reichel"],
+    "year": 1991,
+    "spotify_id": "3AQLL3Waks6LJ9FI8TFHGA"
+  },
+  {
+    "id": 1750,
+    "titles": ["Herz auf Rot"],
+    "artists": ["G.G. Anderson", "Anderson"],
+    "year": 2003,
+    "spotify_id": "2nRvwfAs9iTfxvUNHWcJNL"
+  },
+  {
+    "id": 1751,
+    "titles": ["Sternenregen"],
+    "artists": ["Thomas Anders"],
+    "year": 2017,
+    "spotify_id": "7g3M5euTiBBoTJ9bQ12tYr"
+  },
+  {
+    "id": 1752,
+    "titles": ["Das Lied der Schlümpfe", "Das Lied der Schluempfe",
+               "Lied der Schlümpfe", "Lied der Schluempfe", "'t Smurfenlied", "Smurfenlied"],
+    "artists": ["Vader Abraham"],
+    "year": 1977,
+    "spotify_id": "0mwDB1nJ18ln9zoO4bkrOt"
+  },
+  {
+    "id": 1753,
+    "titles": ["Jenseits von Eden"],
+    "artists": ["Nino de Angelo"],
+    "year": 1983,
+    "spotify_id": "3oS0q79t6MUPzkKv8ykMcO"
+  },
+  {
+    "id": 1754,
+    "titles": ["Die Hände zum Himmel", "Hände zum Himmel",
+              "Die Haende zum Himmel", "Haende zum Himmel"],
+    "artists": ["Die Kolibris", "Kolibris"],
+    "year": 1998,
+    "spotify_id": "6NvKqGgbYwbqWRVyIdZjGR"
+  },
+  {
+    "id": 1755,
+    "titles": ["So Wie Man Tanzt So Liebt Man"],
+    "artists": ["Maite Kelly"],
+    "year": 2011,
+    "spotify_id": "4geRKNmqbOSJc1GvweEAUK"
+  },
+  {
+    "id": 1756,
+    "titles": ["Ich Lass' nur noch Sonne in Mein Herz", "Ich Lasse nur noch Sonne in Mein Herz"],
+    "artists": ["Liane"],
+    "year": 2013,
+    "spotify_id": "0MGLXSJHMO1IY0LiQKYR5i"
+  },
+  {
+    "id": 1757,
+    "titles": ["Schönes Mädchen aus Arcadia", "Schoenes Maedchen aus Arcadia"],
+    "artists": ["Demis Roussos"],
+    "year": 1973,
+    "spotify_id": "02NKTxBbcbauX1saQ6Vlcm"
+  },
+  {
+    "id": 1758,
+    "titles": ["Ich Will Dich Immer Noch"],
+    "artists": ["Matthias Reim"],
+    "year": 2007,
+    "spotify_id": "0YMzG6R5oOEuQiKmyu72JN"
+  },
+  {
+    "id": 1759,
+    "titles": ["I steh auf Bergbauernbuam", "Ich stehe auf Bergbauernbuben",
+               "Ich stehe auf Bergbauernjungen", "Ich steh auf Bergbauernbuben",
+               "Ich steh auf Bergbauernjungen"],
+    "artists": ["Melissa Naschenweng"],
+    "year": 2019,
+    "spotify_id": "1waQTvOWV18qC4qEyo9pGu"
+  },
+  {
+    "id": 1760,
+    "titles": ["Welch Ein Tag"],
+    "artists": ["Mario Jordan"],
+    "year": 1991,
+    "spotify_id": "1wNXkEKCcspETALfsr7GvN"
+  },
+  {
+    "id": 1761,
+    "titles": ["Der Zug Hat Keine Bremse (Mallorcastyle Edition)", "Der Zug Hat Keine Bremse"],
+    "artists": ["Malle Anja, Mia Julia & Lorenz Büffel", "Malle Anja", "Mia Julia", "Lorenz Büffel", "Lorenz Bueffel"],
+    "year": 2022,
+    "spotify_id": "3T4DdPVqWeaC4U7vrIxlKz"
+  },
+  {
+    "id": 1762,
+    "titles": ["Frankreich, Frankreich", "Frankreich"],
+    "artists": ["Bläck Fööss", "Blaeck Foeoess", "Black Fooss"],
+    "year": 1985,
+    "spotify_id": "5ZC4HBv4CnBuppLIycGJIq"
+  },
+  {
+    "id": 1763,
+    "titles": ["Ich Bin Da"],
+    "artists": ["Jan Smit"],
+    "year": 2013,
+    "spotify_id": "3Wc1b0B74Xw65k5paLxFzu"
+  },
+  {
+    "id": 1764,
+    "titles": ["Heute Fährt die 18 bis nach Istanbul", "Heute Fährt die Achtzehn bis nach Istanbul",
+               "Heute Faehrt die 18 bis nach Istanbul", "Heute Faehrt die Achtzehn bis nach Istanbul"],
+    "artists": ["Jürgen Milski", "Juergen Milski"],
+    "year": 2004,
+    "spotify_id": "1dv17FKzaL1rXrZbtoESBJ"
+  },
+  {
+    "id": 1765,
+    "titles": ["Der Eiermann", "Eiermann"],
+    "artists": ["Klaus & Klaus", "Klaus und Klaus"],
+    "year": 1988,
+    "spotify_id": "6aUN5gXfkXKl4GBiVTLLZI"
+  },
+  {
+    "id": 1766,
+    "titles": ["Zu Nah am Feuer"],
+    "artists": ["Stefan Waggershausen & Alice", "Stefan Waggershausen", "Alice"],
+    "year": 1984,
+    "spotify_id": "1M3nns66BR1nO4IJiMzuwF"
+  },
+  {
+    "id": 1767,
+    "titles": ["Hier Spricht die Polizei"],
+    "artists": ["Sandy Wagner"],
+    "year": 2002,
+    "spotify_id": "3DelaacjOD7LpDygDydl9L"
+  },
+  {
+    "id": 1768,
+    "titles": ["Kettenkarussell"],
+    "artists": ["Ross Antony"],
+    "year": 2013,
+    "spotify_id": "3UeKTVMcnZbpOfR3OVF9D1"
+  },
+  {
+    "id": 1769,
+    "titles": ["Schlager Ist Nicht Kriminell"],
+    "artists": ["Rebel Tell"],
+    "year": 2022,
+    "spotify_id": "02L6Gd6M9LaBxaSeum3bwV"
+  },
+  {
+    "id": 1770,
+    "titles": ["Su Mädche Wie Mir", "So Mädchen Wie Wir",
+               "Su Maedche Wie Mir", "So Maedchen Wie Wir"],
+    "artists": ["Colör", "Coloer", "Color"],
+    "year": 2001,
+    "spotify_id": "4WLKnFCLxcK0Wtx7T8FDIQ"
+  },
+  {
+    "id": 1771,
+    "titles": ["Der Kommissar", "Kommissar"],
+    "artists": ["Falco"],
+    "year": 1981,
+    "spotify_id": "3TBRJsLCcwroEkA3tD4u2N"
+  },
+  {
+    "id": 1772,
+    "titles": ["Dein Zug ist Abgefahr'n", "Dein Zug ist Abgefahren"],
+    "artists": ["Nico Gemba"],
+    "year": 2006,
+    "spotify_id": "5lo52acOaW0GDQYrhZwzoS"
+  },
+  {
+    "id": 1773,
+    "titles": ["Mein Lieber Mann"],
+    "artists": ["Hanne Haller"],
+    "year": 1989,
+    "spotify_id": "07gDofsPhMYgXz6zNbCuaI"
+  },
+  {
+    "id": 1774,
+    "titles": ["Codo (… düse im Sauseschritt)", "Codo", "Codo (... duese im Sauseschritt",
+               "Düse im Sauseschritt", "Duese im Sauseschritt"],
+    "artists": ["Deutsch-Österreichisches Feingefühl", "Deutsch-Oesterreichisches Feingefuehl", "DÖF", "DOEF"],
+    "year": 1983,
+    "spotify_id": "5qvdVmvmbMGWMcmZ60vlPu"
+  },
+  {
+    "id": 1775,
+    "titles": ["Du Bist Alles (Maria, Maria)", "Du Bist Alles", "Maria, Maria", "Maria"],
+    "artists": ["Andreas Martin"],
+    "year": 1987,
+    "spotify_id": "32hWGHVUBskZ1sr49ecbEg"
+  },
+  {
+    "id": 1776,
+    "titles": ["Verliab Di", "Verlieb Dich"],
+    "artists": ["Die Trenkwalder", "Trenkwalder"],
+    "year": 2001,
+    "spotify_id": "4wWCfdkg0aWAwXZNs9qpoa"
+  },
+  {
+    "id": 1777,
+    "titles": ["1000 Träume Weit (Tornerò)", "1000 Träume Weit", "Tausend Träume Weit",
+               "1000 Traeume Weit", "Tausend Traeume Weit", "Tornerò"],
+    "artists": ["Anna-Maria Zimmermann"],
+    "year": 2009,
+    "spotify_id": "1fE2zhbqWBo0DgAJmHEVx2"
+  },
+  {
+    "id": 1778,
+    "titles": ["Zeit Zu Gehen", "Zeit Zu Geh'n"],
+    "artists":["Unheilig"],
+    "year": 2014,
+    "spotify_id": "0sKIlIyuCtb59r8MYmB2cb"
+  },
+  {
+    "id": 1779,
+    "titles": ["Ich Will Dich Für Immer", "Ich Will Dich Fuer Immer"],
+    "artists": ["Nic"],
+    "year": 2007,
+    "spotify_id": "2HhKDdGjgXC4vyDOmtwzNP"
+  },
+  {
+    "id": 1780,
+    "titles": ["Steirermen San Very Good", "Steirermen Sind Very Good"],
+    "artists": ["Das Stoakogler Trio", "Stoakogler Trio"],
+    "year": 1992,
+    "spotify_id": "2HclOVB5b88sN0Ac2mnNCb"
+  },
+  {
+    "id": 1781,
+    "titles": ["Irgendwie Wird's Schon Geh'n", "Irgendwie Wird Es Schon Gehen"],
+    "artists": ["Tom Astor"],
+    "year": 1996,
+    "spotify_id": "0MOVuqZgdwYdJiOFv3hyhz"
+  },
+  {
+    "id": 1782,
+    "titles": ["Die Pure Lust am Leben", "Pure Lust am Leben"],
+    "artists": ["Geier Sturzflug"],
+    "year": 1984,
+    "spotify_id": "1lqS2d1wKlz4jGWtz6nZ2V"
+  },
+  {
+    "id": 1783,
+    "titles": ["Sind Sie der Graf von Luxemburg?"],
+    "artists": ["Dorthe"],
+    "year": 1968,
+    "spotify_id": "2jvPETfvUp63D05WMRR5lV"
+  },
+  {
+    "id": 1784,
+    "titles": ["Weekend"],
+    "artists": ["DJ Herzbeat (feat. Sarah Engels)", "DJ Herzbeat", "Herzbeat", "Sarah Engels", "Sarah"],
+    "year": 2019,
+    "spotify_id": "0yrZHjRVqkajH9xePjFI1C"
+  },
+  {
+    "id": 1785,
+    "titles": ["Du Musst Deinen Weg Alleine Geh'n", "Du Musst Deinen Weg Alleine Gehen"],
+    "artists": ["Dirk Busch"],
+    "year": 1994,
+    "spotify_id": "7ljqYQ9je16MNSaWg4shQy"
+  },
+  {
+    "id": 1786,
+    "titles": ["Nein Heißt Ja", "Nein Heisst Ja"],
+    "artists": ["G.G. Anderson", "Anderson"],
+    "year": 2000,
+    "spotify_id": "38weYqkGVSMsZqPfV1Epuc"
+  },
+  {
+    "id": 1787,
+    "titles": ["Daliah Lavi"],
+    "artists": ["Oh, Wann Kommst Du?", "Wann Kommst Du?"],
+    "year": 1970,
+    "spotify_id": "0sckKnlXr0nV9zYfLDmUuF"
+  },
+  {
+    "id": 1788,
+    "titles": ["Gold"],
+    "artists": ["Jasmin Wagner"],
+    "year": 2021,
+    "spotify_id": "7iwZxTPvg1h5rYmmwEd8GI"
+  },
+  {
+    "id": 1789,
+    "titles": ["Paradies"],
+    "artists": ["Francine Jordi"],
+    "year": 2015,
+    "spotify_id": "4uUdr8JGDWyFe8N8GaJYmS"
+  },
+  {
+    "id": 1790,
+    "titles": ["Das Kann Nur Liebe Sein"],
+    "artists": ["Vikinger", "Wikinger", "Vikingarna"],
+    "year": 2003,
+    "spotify_id": "0UsS9sFnIaMMHLox3lP6NB"
+  },
+  {
+    "id": 1791,
+    "titles": ["Die Immer Lacht"],
+    "artists": ["Stereoact (feat. Kerstin Ott)", "Stereoact", "Kerstin Ott"],
+    "year": 2015,
+    "spotify_id": "2mnQXxj6keAVaqa5FpoDSk"
+  },
+  {
+    "id": 1792,
+    "titles": ["Ich Kauf' Mir Lieber Einen Tirolerhut", "Ich Kaufe Mir Lieber Einen Tirolerhut"],
+    "artists": ["Billy Mo"],
+    "year": 1962,
+    "spotify_id": "1v207ZF2NQmkp1bp6ehphg"
+  },
+  {
+    "id": 1793,
+    "titles": ["Wenn Ich Nur ein Trucker Wär", "Wenn Ich Nur ein Trucker Wäre",
+               "Wenn Ich Nur ein Trucker Waer", "Wenn Ich Nur ein Trucker Waere"],
+    "artists": ["Gunter Gabriel & Linda Feller", "Gunter Gabriel", "Linda Feller"],
+    "year": 1995,
+    "spotify_id": "16eKf9DcgwytudS5LUDogC"
+  },
+  {
+    "id": 1794,
+    "titles": ["Engel"],
+    "artists": ["Nino de Angelo"],
+    "year": 2001,
+    "spotify_id": "2A8aopZvdCJ9yYoZLt6TqN"
+  },
+  {
+    "id": 1795,
+    "titles": ["Hör Gut Zu", "Hoer Gut Zu"],
+    "artists": ["Pur"],
+    "year": 1993,
+    "spotify_id": "1SqipU2h7pOMZd4ynckn6k"
+  },
+  {
+    "id": 1796,
+    "titles": ["Eine Nacht"],
+    "artists": ["Ramon Roselly"],
+    "year": 2020,
+    "spotify_id": "7AgLXVsuToMUB8BlPdiWxr"
+  },
+  {
+    "id": 1797,
+    "titles": ["Erst Du, Dann Du"],
+    "artists": ["Stefanie Hertel"],
+    "year": 2004,
+    "spotify_id": "05FFPLWGCJ2rGrwwTxjE9x"
+  },
+  {
+    "id": 1798,
+    "titles": ["Wenn I Mit Dir Tanz", "Wenn Ich Mit Dir Tanze", "Wenn Ich Mit Dir Tanz'"],
+    "artists": ["Nicki"],
+    "year": 1986,
+    "spotify_id": "1UYWocoT1yNBAedYF7UBZw"
+  },
+  {
+    "id": 1799,
+    "titles": ["Barfuß Bis Ans Ende Der Welt", "Barfuss Bis Ans Ende Der Welt",
+               "Barfuß Bis An Das Ende Der Welt", "Barfuss Bis An Das Ende Der Welt"],
+    "artists": ["Fernando Express"],
+    "year": 2005,
+    "spotify_id": "4mlWlvWRvvnemGaIlnTF4e"
+  },
+  {
+    "id": 1800,
+    "titles": ["Tanz Mit Mir Durch die Nacht"],
+    "artists": ["Freddy Breck"],
+    "year": 1993,
+    "spotify_id": "4isdtsKAS5AG2RQt3jQ7hb" 
+  },
+  {
+    "id": 1801,
+    "titles": ["Willst Du Mich Für Immer"],
+    "artists": ["Michelle"],
+    "year": 2006,
+    "spotify_id": "0PiB3p8khJF6ULEvmzuhx1"
+  },
+  {
+    "id": 1802,
+    "titles": ["Anita"],
+    "artists": ["Costa Cordalis"],
+    "year": 1976,
+    "spotify_id": "2vxuxvz9A8f6GrShbytu4J"
+  },
+  {
+    "id": 1803,
+    "titles": ["Mit Dir Vielleicht..."],
+    "artists": ["Nicole"],
+    "year": 1992,
+    "spotify_id": "0Bq4OlOqTenKiLCKzml0Hn"
+  },
+  {
+    "id": 1804,
+    "titles": ["Mein Ein und Mein Alles"],
+    "artists": ["Carrière", "Karriere"],
+    "year": 1994,
+    "spotify_id": "1oy5gYPBNzICwy4VCvrc6k"
+  },
+  {
+    "id": 1805,
+    "titles": ["Flaschenpost"],
+    "artists": ["Fantasy"],
+    "year": 2013,
+    "spotify_id": "2MgX1Pwhs18O2iXelFbtIR"
+  },
+  {
+    "id": 1806,
+    "titles": ["So Bist Du"],
+    "artists": ["Peter Maffay"],
+    "year": 1979,
+    "spotify_id": "3a5Pk82SnxIfGbuu78jCGp"
+  },
+  {
+    "id": 1807,
+    "titles": ["Lebenslänglich Du", "Lebenslaenglich Du"],
+    "artists": ["Oliver Haidt"],
+    "year": 1996,
+    "spotify_id": "5g5MuODGRtOqj0IVJjG8P2"
+  },
+  {
+    "id": 1808,
+    "titles": ["Ich Küss Dir Die Angst Von Deiner Haut", "Ich Kuess Dir Die Angst Von Deiner Haut",
+               "Ich Küsse Dir Die Angst Von Deiner Haut", "Ich Kuesse Dir Die Angst Von Deiner Haut"],
+    "artists": ["Wolfgang Ziegler"],
+    "year": 2003,
+    "spotify_id": "65WVmgaxXQINP00OgTrntq"
+  },
+  {
+    "id": 1809,
+    "titles": ["Wer Die Sehnsucht Kennt"],
+    "artists": ["Claudia Jung"],
+    "year": 1995,
+    "spotify_id": "2SVHVXpoEfFumA74FpO0Sh"
+  },
+  {
+    "id": 1810,
+    "titles": ["Du Entschuldige, I Kenn Di", "Du Entschuldige, Ich Kenne Dich",
+               "Du Entschuldige, Ich Kenn Dich"],
+    "artists": ["Peter Cornelius"],
+    "year": 1980,
+    "spotify_id": "04voeuIParTaNr91SHuXiJ"
+  },
+  {
+    "id": 1811,
+    "titles": ["Schlittenfahren in Tirol (Der Schnittensong)", "Schlittenfahren in Tirol",
+               "Der Schnittensong", "Schnittensong"],
+    "artists": ["DJ Zipfelmann", "Zipfelmann"],
+    "year": 2004,
+    "spotify_id": "50XIyAl7f1IvBTrmPWWtxg"
+  },
+  {
+    "id": 1812,
+    "titles": ["Weiß der Geier", "Weiss der Geier"],
+    "artists": ["Wolfgang Petry"],
+    "year": 1997,
+    "spotify_id": "50cyrBR7nyOEJFT6ISOuTc"
+  },
+  {
+    "id": 1813,
+    "titles": ["Das Trampolin"],
+    "artists": ["Mike Krüger", "Mike Krueger"],
+    "year": 1994,
+    "spotify_id": "34Es0Uze2sbSc8jhkvU2P7"
+  },
+  {
+    "id": 1814,
+    "titles": ["Kreuzberger Nächte", "Kreuzberger Naechte"],
+    "artists": ["Gebrüder Blattschuss", "Gebrueder Blattschuss", "GB"],
+    "year": 1978,
+    "spotify_id": "5zOTYihDHgLl1K2o2w1S9O"
+  },
+  {
+    "id": 1815,
+    "titles": ["Ibiza"],
+    "artists": ["Ibo"],
+    "year": 1985,
+    "spotify_id": "5cDkS4YY5zmjjTUnrNTO5F"
+  },
+  {
+    "id": 1816,
+    "titles": ["Auf Der Straße Nach Süden", "Auf Der Straße Nach Sueden",
+               "Auf Der Strasse Nach Süden", "Auf Der Strasse Nach Sueden"],
+    "artists": ["Tony Marshall"],
+    "year": 1978,
+    "spotify_id": "6VuP54I5GDugYPVRQJqCYA"
+  },
+  {
+    "id": 1817,
+    "titles": ["Ich Liebe Das Leben"],
+    "artists": ["Vicky Leandros"],
+    "year": 1975,
+    "spotify_id": "3c12xbWbu6Xv3oeoV2upg6"
+  },
+  {
+    "id": 1818,
+    "titles": ["Macho Macho", "Macho"],
+    "artists": ["Rainhard Fendrich"],
+    "year": 1988,
+    "spotify_id": "15aPUZJtmf5wy84rt25Pef"
+  },
+  {
+    "id": 1819,
+    "titles": ["Heidi"],
+    "artists": ["Gitti und Erica", "Gitti und Erika", "Gitti & Erica", "Gitti & Erika"],
+    "year": 1977,
+    "spotify_id": "2n8UJmTeKTE2h7VNZRJiF8"
+  },
+  {
+    "id": 1820,
+    "titles": ["Früh-Stück", "Frueh-Stueck"],
+    "artists": ["Gebrüder Blattschuss", "Gebrueder Blattschuss", "GB"],
+    "year": 1979,
+    "spotify_id": "3PeUytVHSB0plBO03sT7NA"
+  },
+  {
+    "id": 1821,
+    "titles": ["Des Geht Vorbei"],
+    "artists": ["Nicki"],
+    "year": 1992,
+    "spotify_id": "46R8l8fBUfMe716BfGNHXW"
+  },
+  {
+    "id": 1822,
+    "titles": ["Ich Liebe Dich"],
+    "artists": ["Clowns & Helden", "Clowns und Helden"],
+    "year": 1986,
+    "spotify_id": "1iTFJGcZT9gA0CzlSCTQ8r"
+  },
+  {
+    "id": 1823,
+    "titles": ["Fang Das Licht"],
+    "artists": ["Karel Gott & Darinka", "Karel Gott", "Darinka"],
+    "year": 1985,
+    "spotify_id": "4Ov2I9GCsSQN90lSX6EDuo"
+  },
+  {
+    "id": 1824,
+    "titles": ["Wo Finde Ich Den Mann?"],
+    "artists": ["Lil Babs", "Lill Babs", "Little Babs", "Little Babs"],
+    "year": 1961,
+    "spotify_id": "3NLceKthps36K4AeixwSsJ"
+  },
+  {
+    "id": 1825,
+    "titles": ["Gold, Platin und Diamant", "Gold, Platin & Diamant"],
+    "artists": ["Die Fidelen Mölltaler", "Fidelen Mölltaler", "Original Fidelen Mölltaler",
+                "Die Fidelen Moelltaler", "Fidelen Moelltaler", "Original Fidelen Moelltaler", "FM", "OFM"],
+    "year": 1984,
+    "spotify_id": "4Nfd91XYD16Rx5R2hPRo7c"
+  },
+  {
+    "id": 1826,
+    "titles": ["Santa Catarina"],
+    "artists": ["Andrea Jürgens", "Andrea Juergens"],
+    "year": 1991,
+    "spotify_id": "1jVFe4jxD9sccMlWyIBtHM"
+  },
+  {
+    "id": 1827,
+    "titles": ["Der Blonde Hans"],
+    "artists": ["Hannes Kröger", "Hannes Kroeger"],
+    "year": 1988,
+    "spotify_id": "3OUj5lijPrVjTdh0RjO5gC"
+  },
+  {
+    "id": 1828,
+    "titles": ["Das Ganze Leben Ist Ein Quiz"],
+    "artists": ["Hape Kerkeling"],
+    "year": 1991,
+    "spotify_id": "14FSVZBZOcVTaOQwPEJ7qe"
+  },
+  {
+    "id": 1829,
+    "titles": ["Lass Die Sonne In Dein Herz"],
+    "artists": ["Wind"],
+    "year": 1987,
+    "spotify_id": "7sMd8AmgwoHgw674d2oQgB"
+  },
+  {
+    "id": 1830,
+    "titles": ["Ein Bisschen Spaß Muss Sein", "Ein Bißchen Spaß Muß Sein", "Ein Bisschen Spass Muss Sein"],
+    "artists": ["Roberto Blanco"],
+    "year": 1972,
+    "spotify_id": "6qqUDmf0LFP7lFZODj6PWH"
+  },
+  {
+    "id": 1831,
+    "titles": ["Da Da Da Ich Lieb Dich Nicht Du Liebst Mich Nicht Aha Aha Aha",
+               "Da Da Ich Lieb Dich Nicht Du Liebst Mich Nicht Aha Aha",
+               "Da Ich Lieb Dich Nicht Du Liebst Mich Nicht Aha",
+               "Ich Lieb Dich Nicht Du Liebst Mich Nicht"],
+    "artists": ["Trio"],
+    "year": 1982,
+    "spotify_id": "4HCdu48LScraIfJ7Ik7EhE"
+  },
+  {
+    "id": 1832,
+    "titles": ["Scheiss Drauf! (Mallorca Ist Nur Einmal Im Jahr)", "Scheiss Drauf!", "Scheiß Drauf!",
+               "Mallorca Ist Nur Einmal Im Jahr"],
+    "artists": ["Peter Wackel"],
+    "year": 2013,
+    "spotify_id": "3E4Sl55jfbru7BmCfh8pcu"
+  },
+  {
+    "id": 1833,
+    "titles": ["Mendocino"],
+    "artists": ["Michael Holm"],
+    "year": 1969,
+    "spotify_id": "7lBO5RpWhr6yPUwWkXHsWf"
+  },
+  {
+    "id": 1834,
+    "titles": ["Zwei Senoritas", "Zwei Señoritas", "2 Senoritas", "2 Señoritas"],
+    "artists": ["Sigrid & Marina", "Sigrid und Marina"],
+    "year": 2008,
+    "spotify_id": "0CECyQToxeHqXdylm1E3WK"
+  },
+  {
+    "id": 1835,
+    "titles": ["Ich Vermiss' Dich... (Wie Die Hölle)", "Ich Vermiss' Dich", "Ich Vermisse Dich",
+               "Ich Vermisse Dich... (Wie Die Hölle)", "Wie Die Hölle", "Wie Die Hoelle",
+               "Ich Vermiss' Dich... (Wie Die Hoelle)", "Ich Vermisse Dich... (Wie Die Hoelle)"],
+    "artists": ["Zlatko"],
+    "year": 2000,
+    "spotify_id": "5qAtXePWHaJMSCjz2kMyeX"
+  },
+  {
+    "id": 1836,
+    "titles": ["Du Schaffst Das Schon"],
+    "artists": ["Klubbb3", "Klub3", "Klubbb", "Klub", "Klubbb Drei", "Klub Drei",
+                "Clubbb3", "Club3", "Clubbb", "Club", "Clubbb Drei", "Club Drei"],
+    "year": 2016,
+    "spotify_id": "4eh0ZnjqYVs5RDc4UZ8pu6"
+  },
+  {
+    "id": 1837,
+    "titles": ["Tanze Mit Mir In Den Morgen", "Tanz Mit Mir In Den Morgen"],
+    "artists": ["Gerhard Wendland"],
+    "year": 1961,
+    "spotify_id": "4TFOBUQ9Vfm1nCfG07eedq"
+  },
+  {
+    "id": 1838,
+    "titles": ["Lass Mi Bei Dir Sein", "Lass Mich Bei Dir Sein"],
+    "artists": ["Atlantis"],
+    "year": 1987,
+    "spotify_id": "3znNv4cuLyXbs3eGdNRqfz"
+  },
+  {
+    "id": 1839,
+    "titles": ["Rote Lippen Soll Man Küssen", "Rote Lippen Soll Man Kuessen"],
+    "artists": ["Cliff Richard & The Shadows", "Cliff Richard", "The Shadows", "Shadows"],
+    "year": 1963,
+    "spotify_id": "2z0ObRjCedb9HKxquvvpPO"
+  },
+  {
+    "id": 1840,
+    "titles": ["Ich Brauch Ein Bisschen Glück", "Ich Brauche Ein Bisschen Glück", "Ich Brauch Ein Bißchen Glück",
+               "Ich Brauch Ein Bisschen Glueck", "Ich Brauche Ein Bisschen Glueck", "Ich Brauch Ein Bißchen Glueck"],
+    "artists": ["Andy Borg"],
+    "year": 1994,
+    "spotify_id": "0YuNGTa3rYsayd8pjMLQsd"
+  },
+  {
+    "id": 1841,
+    "titles": ["Warum Hast Du Nicht Nein Gesagt"],
+    "artists": ["Roland Kaiser (feat. Maite Kelly)", "Roland Kaiser", "Maite Kelly"],
+    "year": 2014,
+    "spotify_id": "4omRd4BJaHglIrmJeUttJl"
+  },
+  {
+    "id": 1842,
+    "titles": ["Bierkapitän", "Bierkapitaen"],
+    "artists": ["Bierkapitän & Markus Becker", "Bierkapitän", "Bierkapitaen", "Richard Bier", "Markus Becker"],
+    "year": 2018,
+    "spotify_id": "3nm3zHhlOE7LZ4SdqPLhpI"
+  },
+  {
+    "id": 1843,
+    "titles": ["Glücksmoment", "Gluecksmoment"],
+    "artists": ["Prince Damien"],
+    "year": 2016,
+    "spotify_id": "1QleddKv5OZcFSDvszJr20"
+  },
+  {
+    "id": 1844,
+    "titles": ["Cordula Grün", "Cordula Gruen"],
+    "artists": ["Josh."],
+    "year": 2018,
+    "spotify_id": "483ykNWhSQXYprueXUMNeo"
+  },
+  {
+    "id": 1845,
+    "titles": ["Der Geilste Fehler"],
+    "artists": ["Marina Marx"],
+    "year": 2020,
+    "spotify_id": "28ooNJCBh2MWbCVYhZ8aqx"
+  },
+  {
+    "id": 1846,
+    "titles": ["Regenbogenfarben"],
+    "artists": ["Kerstin Ott"],
+    "year": 2018,
+    "spotify_id": "1L0zpRujG3Rgq7K1I8E3nD"
+  },
+  {
+    "id": 1847,
+    "titles": ["Lovesong"],
+    "artists": ["Francine Jordi"],
+    "year": 2018,
+    "spotify_id": "6h2phRX5aM4uLPZQv2Hulo"
+  },
+  {
+    "id": 1848,
+    "titles": ["Tanze Samba Mit Mir", "Tanz Samba Mit Mir"],
+    "artists": ["Tony Holiday"],
+    "year": 1977,
+    "spotify_id": "667HVkr7MavlBv2DhzQS3k"
+  },
+  {
+    "id": 1849,
+    "titles": ["Herz Ist Trumpf (Dann Rufst Du An...)", "Herz Ist Trumpf", "Dann Rufst Du An..."],
+    "artists": ["Trio"],
+    "year": 1983,
+    "spotify_id": "2d3QIyikjmsaxNaKasGS1K"
+  },
+  {
+    "id": 1850,
+    "titles": ["Viva Colonia"],
+    "artists": ["Höhner", "Hoehner"],
+    "year": 2003,
+    "spotify_id": "4tNwc7jQ5eqWFGDlX8YBtT"
+  },
+  {
+    "id": 1851,
+    "titles": ["Königin Der Nacht", "Koenigin Der Nacht"],
+    "artists": ["Cordalis"],
+    "year": 2003,
+    "spotify_id": "0BRoLVlLvbRmxZrluFNLmK"
+  },
+  {
+    "id": 1852,
+    "titles": ["Es Ist Geil Ein Arschloch Zu Sein"],
+    "artists": ["Christian Möllmann", "Christian Moellmann", "Christian"],
+    "year": 2000,
+    "spotify_id": "7FalyYEX2URpR9CEYS8Z2W"
+  },
+  {
+    "id": 1853,
+    "titles": ["Männertango", "Maennertango"],
+    "artists": ["Ella Endlich"],
+    "year": 2011,
+    "spotify_id": "6zXpujCKpOye18GbdAq2lD"
+  },
+  {
+    "id": 1854,
+    "titles": ["Sieben Leben Für Dich", "Sieben Leben Fuer Dich"],
+    "artists": ["Maite Kelly"],
+    "year": 2016,
+    "spotify_id": "3vMiVz4dMHyHVkWuduPTfj"
+  },
+  {
+    "id": 1855,
+    "titles": ["Ich Bin Wer Ich Sein Will"],
+    "artists": ["Musikapostel (feat. Allessa)", "Musikapostel", "Allessa"],
+    "year": 2019,
+    "spotify_id": "454AXybVbhF6TZeCo5lcc8"
+  },
+  {
+    "id": 1856,
+    "titles": ["Wie Kannst Du Mich Bloß Lieben", "Wie Kannst Du Mich Bloss Lieben"],
+    "artists": ["Andy Borg"],
+    "year": 2000,
+    "spotify_id": "0Oz7TnVm5xNgvLx0xSREt3"
+  },
+  {
+    "id": 1857,
+    "titles": ["Wolke 7", "Wolke Sieben"],
+    "artists": ["Wolkenfrei", "Vanessa Mai"],
+    "year": 2015,
+    "spotify_id": "1I14TXOgylN4gTuGkrNCYb"
+  },
+  {
+    "id": 1858,
+    "titles": ["Fiesta Mexicana"],
+    "artists": ["Rex Gildo"],
+    "year": 1972,
+    "spotify_id": "4M6yJ0JjTbMW7DhBJ68heC"
+  },
+  {
+    "id": 1859,
+    "titles": ["Sonderzug Nach Pankow"],
+    "artists": ["Udo Lindenberg & Das Panik-Orchester", "Udo Lindenberg und Das Panik-Orchester",
+                "Udo Lindenberg", "Das Panik-Orchester", "Panik-Orchester"],
+    "year": 1983,
+    "spotify_id": "1vlzhoQJKTmEVDmSXcFT4a"
+  },
+  {
+    "id": 1860,
+    "titles": ["Bruttosozialprodukt"],
+    "artists": ["Geier Sturzflug"],
+    "year": 1982,
+    "spotify_id": "5VQ8B15e6JHXk5Qi9h9inv"
+  },
+  {
+    "id": 1861,
+    "titles": ["Abraham (Das Lied vom Trödler)", "Abraham", "Trödler Abraham",
+               "Troedler Abraham", "Das Lied vom Trödler", "Das Lied vom Troedler"],
+    "artists": ["Wolfgang Hofer", "Wolfgang"],
+    "year": 1970,
+    "spotify_id": "1ZyY0Xq0YHkGFMz5deAvkp"
+  },
+  {
+    "id": 1862,
+    "titles": ["Knutschen... Ich Kann Nichts Dafür", "Knutschen... Ich Kann Nichts Dafuer",
+               "Knutschen", "Ich Kann Nichts Dafür", "Ich Kann Nichts Dafuer"],
+    "artists": ["Linda Hesse"],
+    "year": 2014,
+    "spotify_id": "0k6WvGNgeySmv1E0zU0Fni"
+  },
+  {
+    "id": 1863,
+    "titles": ["Ja, Wenn Wir Alle Englein Wären", "Ja, Wenn Wir Alle Englein Waeren",
+              "Wenn Wir Alle Englein Wären", "Wenn Wir Alle Englein Waeren"],
+    "artists": ["Frank Zander", "Fred Sonnenschein und Seine Freunde",
+                "Fred Sonnenschein & Seine Freunde", "Fred Sonnenschein"],
+    "year": 1981,
+    "spotify_id": "6SqtV560bmCrZploVrOU6R"
+  },
+  {
+    "id": 1864,
+    "titles": ["Polonäse Blankenese", "Polonaese Blankenese"],
+    "artists": ["Gottlieb Wendehals"],
+    "year": 1981,
+    "spotify_id": "68XLpAcKb8FFrQZluAqZrj"
+  },
+  {
+    "id": 1865,
+    "titles": ["Schenk' Mir Diese Eine Nacht", "Schenke Mir Diese Eine Nacht"],
+    "artists": ["Brunner & Brunner", "Brunner und Brunner", "Brunner"],
+    "year": 1993,
+    "spotify_id": "1I1GRupqk0GHH3wVtEh8J5"
+  },
+  {
+    "id": 1866,
+    "titles": ["Sieben Fässer Wein", "Sieben Faesser Wein", "7 Fässer Wein", "7 Faesser Wein"],
+    "artists": ["Roland Kaiser"],
+    "year": 1977,
+    "spotify_id": "3Yl3rmMaXb4RoLTeEMI4jb"
+  },
+  {
+    "id": 1867,
+    "titles": ["Ich Bin Frei"],
+    "artists": ["Franziska Wiese"],
+    "year": 2016,
+    "spotify_id": "6yBGQwgXk2sm8lPqdfCJjT"
+  },
+  {
+    "id": 1868,
+    "titles": ["Sa-Lo-Me"],
+    "artists": ["Achim Reichel"],
+    "year": 1999,
+    "spotify_id": "7xJhlT341yRS1w3nSGA4zq"
+  },
+  {
+    "id": 1869,
+    "titles": ["Hey 'nen Kleinen Schuss, Den Hattest Du Doch Schon Immer",
+               "Hey Einen Kleinen Schuss, Den Hattest Du Doch Schon Immer",
+               "'nen Kleinen Schuss, Den Hattest Du Doch Schon Immer",
+               "Einen Kleinen Schuss, Den Hattest Du Doch Schon Immer"],
+    "artists": ["Claudia Jung"],
+    "year": 2006,
+    "spotify_id": "07a5bjyUjdzILkBaumo4G2"
+  },
+  {
+    "id": 1870,
+    "titles": ["Radio Zuckerhut", "Zuckerhut"],
+    "artists": ["Wind"],
+    "year": 2009,
+    "spotify_id": "1RDC1U56ctXnfx2TtJlAkg"
+  },
+  {
+    "id": 1871,
+    "titles": ["Wenn Du Denkst Du Denkst Dann Denkst Du Nur Du Denkst",
+               "Wenn Du Denkst", "Wenn Du Denkst Du Denkst", "Du Denkst Nur Du Denkst"],
+    "artists": ["Juliane Werding"],
+    "year": 1975,
+    "spotify_id": "3Xa3EjP8pOXH4J292BsFF8"
+  },
+  {
+    "id": 1872,
+    "titles": ["Goethe War Gut"],
+    "artists": ["Rudi Carrell"],
+    "year": 1978,
+    "spotify_id": "6iHumZN4HdYtg551LYLcvy"
+  },
+  {
+    "id": 1873,
+    "titles": ["An Der Nordseeküste", "An Der Nordseekueste"],
+    "artists": ["Klaus & Klaus", "Klaus und Klaus"],
+    "year": 1984,
+    "spotify_id": "7lg9reolractKDt8McON0K"
+  },
+  {
+    "id": 1874,
+    "titles": ["Die Schwarze Barbara"],
+    "artists": ["Heino"],
+    "year": 1975,
+    "spotify_id": "0Wrak3l8C5HzpGnrK98a1G"
+  },
+  {
+    "id": 1875,
+    "titles": ["Blau Blüht Der Enzian", "Blau Blueht Der Enzian"],
+    "artists": ["Heino"],
+    "year": 1972,
+    "spotify_id": "2ziPKwmyZeSpg2o4fc17cd"
+  },
+  {
+    "id": 1876,
+    "titles": ["300 PS (Auto ...)", "Dreihundert PS (Auto...)", "300 PS", "Dreihundert PS", "Auto"],
+    "artists": ["Erste Allgemeine Verunsicherung", "EAV"],
+    "year": 1994,
+    "spotify_id": "4Lchc2OMQIlnaRLVN17N7C"
+  },
+  {
+    "id": 1877,
+    "titles": ["Hey Boss, Ich Brauch Mehr Geld", "Hey Boss, Ich Brauche Mehr Geld",
+               "Ich Brauch Mehr Geld", "Ich Brauche Mehr Geld"],
+    "artists": ["Gunter Gabriel"],
+    "year": 1974,
+    "spotify_id": "0FHRffHaw2QJgmwW45U2hm"
+  },
+  {
+    "id": 1878,
+    "titles": ["Ciao d'amore", "Ciao Amore"],
+    "artists": ["Klostertaler"],
+    "year": 1998,
+    "spotify_id": "0uV7yccuJBzpz2A9bYvVKD"
+  },
+  {
+    "id": 1879,
+    "titles": ["Solang Wir Lieben", "Solange Wir Lieben"],
+    "artists": ["Simone"],
+    "year": 2001,
+    "spotify_id": "6nHQrTrXd0dyVb74VfsjxA"
+  },
+  {
+    "id": 1880,
+    "titles": ["Tür An Tür Mit Alice", "Tuer An Tuer Mit Alice"],
+    "artists": ["Howard Carpendale"],
+    "year": 1976,
+    "spotify_id": "5xhHDc9Il8aUrAu4ijixDg"
+  },
+  {
+    "id": 1881,
+    "titles": ["Verlier Sie Nie", "Verliere Sie Nie"],
+    "artists": ["Michael Wendler"],
+    "year": 2002,
+    "spotify_id": "2MUj5Lx28sD7lHZGJwczJ6"
+  },
+  {
+    "id": 1882,
+    "titles": ["Albany"],
+    "artists": ["DJ Herzbeat (feat. Roger Whittaker)", "DJ Herzbeat", "Herzbeat", "Roger Whittaker"],
+    "year": 2021,
+    "spotify_id": "0LTsD9w7mj1d0L9TyJ4KXe"
+  },
+  {
+    "id": 1883,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 1884,
+    "titles": ["Einmal Hin, Einmal Her"],
+    "artists": ["Sarah-Jane"],
+    "year": 2005,
+    "spotify_id": "5UsoJzNF88QO4PdexDQLnR"
+  },
+  {
+    "id": 1885,
+    "titles": ["Alles Hat Ein Ende Nur Die Wurst Hat Zwei (Krause & Ruth)",
+               "Alles Hat Ein Ende Nur Die Wurst Hat Zwei (Krause und Ruth)",
+               "Alles Hat Ein Ende Nur Die Wurst Hat Zwei", "Alles Hat Ein Ende",
+               "Krause & Ruth", "Krause und Ruth"],
+    "artists": ["Stephan Remmler"],
+    "year": 1986,
+    "spotify_id": "5nl9DKN2UFt3cjefB0hNC8"
+  },
+  {
+    "id": 1886,
+    "titles": ["Viel Zu Oft"],
+    "artists": ["Simone"],
+    "year": 2003,
+    "spotify_id": "6Olh0YrqtSRtPRqiJSqRhS"
+  },
+  {
+    "id": 1887,
+    "titles": ["Joana"],
+    "artists": ["Roland Kaiser"],
+    "year": 1984,
+    "spotify_id": "4HRtevJUIf3h4vcc0LXL4Q"
+  },
+  {
+    "id": 1888,
+    "titles": ["Was Geht Hier Ab"],
+    "artists": ["VoXXclub", "VoXclub", "FoxxClub", "FoxClub"],
+    "year": 2022,
+    "spotify_id": "4MfSqOz1Ua9hgZv3zNrkb0"
+  },
+  {
+    "id": 1889,
+    "titles": ["Amsterdam"],
+    "artists": ["Axel Fischer"],
+    "year": 2008,
+    "spotify_id": "2ikhi7JOn5Kug3tcUOUSBx"
+  },
+  {
+    "id": 1890,
+    "titles": ["Saufen, Morgens, Mittags, Abends"],
+    "artists": ["Ingo ohne Flamingo", "Ingo Flamingo", "Ingo"],
+    "year": 2017,
+    "spotify_id": "1ORfyWYhDPxCAIZ9Ce78A3"
+  },
+  {
+    "id": 1891,
+    "titles": ["Emmylou, Emmylou", "Emmylou"],
+    "artists": ["Truck Stop", "TS"],
+    "year": 1995,
+    "spotify_id": "06ZCaJlCf0uzyw1HDM7ngp"
+  },
+  {
+    "id": 1892,
+    "titles": ["Maschen-Draht-Zaun"],
+    "artists": ["Stefan Raab"],
+    "year": 1999,
+    "spotify_id": "3io3Tvsz2kg029lusbLmiR"
+  },
+  {
+    "id": 1893,
+    "titles": ["Das Erste Mal Tat's Noch Weh", "Das Erste Mal Tat Es Noch Weh"],
+    "artists": ["Stefan Waggershausen & Viktor Lazlo", "Stefan Waggershausen", "Viktor Lazlo"],
+    "year": 1990,
+    "spotify_id": "6ZknmWa9VVSFDjGudcrktZ"
+  },
+  {
+    "id": 1894,
+    "titles": ["An der Copacabana"],
+    "artists": ["Erste Allgemeine Verunsicherung", "EAV"],
+    "year": 1987,
+    "spotify_id": "72MyxNUZ3SFivW1QsS5aIe"
+  },
+  {
+    "id": 1895,
+    "titles": ["Etwas Für Die Ewigkeit", "Etwas Fuer Die Ewigkeit"],
+    "artists": ["Claudia Jung"],
+    "year": 1989,
+    "spotify_id": "2l9GnrHGPK0IpEe6wZzXme"
+  },
+  {
+    "id": 1896,
+    "titles": ["I Lass Di Nimmer Aus", "Ich Lass Dich Nie Mehr Raus", "Ich Lasse Dich Nie Mehr Raus",
+               "Ich Lass Dich Nicht Mehr Raus", "Ich Lasse Dich Nicht Mehr Raus"],
+    "artists": ["Relax"],
+    "year": 1990,
+    "spotify_id": "7EQWjHjlRvKfKcpfrvMTGK"
+  },
+  {
+    "id": 1897,
+    "titles": ["La Luna Blu", "La Luna Blue", "Luna Blu", "Luna Blue"],
+    "artists": ["Monika Martin"],
+    "year": 1996,
+    "spotify_id": "7DhEYaCKAEUhDu1UXN9pC6"
+  },
+  {
+    "id": 1898,
+    "titles": ["Prinzessin"],
+    "artists": ["Michael Wendler"],
+    "year": 2006,
+    "spotify_id": "5yYD53kfXBuWHTKBxps78B"
+  },
+  {
+    "id": 1899,
+    "titles": ["Griechischer Wein"],
+    "artists": ["Udo Jürgens", "Udo Juergens"],
+    "year": 1974,
+    "spotify_id": "452WSSzuklpg0w4RKTlkvn"
+  },
+  {
+    "id": 1900,
+    "titles": ["Die Gefühle Haben Schweigepflicht", "Gefühle Haben Schweigepflicht",
+               "Die Gefuehle Haben Schweigepflicht", "Gefuehle Haben Schweigepflicht"],
+    "artists": ["Andrea Berg"],
+    "year": 1995,
+    "spotify_id": "6XAhhD4ZbcHoPm7FdcFzbS"
+  },
+  {
+    "id": 1901,
+    "titles": ["Die Rote Sonne von Barbados"],
+    "artists": ["Die Flippers", "Flippers"],
+    "year": 1986,
+    "spotify_id": "17746nT5RodRzc10dYUBds"
+  },
+  {
+    "id": 1902,
+    "titles": ["Es Fährt Ein Zug Nach Nirgendwo", "Es Faehrt Ein Zug Nach Nirgendwo"],
+    "artists": ["Christian Anders"],
+    "year": 1972,
+    "spotify_id": "3uGkTWh0MXo9jVyyWSVCed"
+  },
+  {
+    "id": 1903,
+    "titles": ["Der Sonne Entgegen"],
+    "artists": ["Ben Zucker"],
+    "year": 2018,
+    "spotify_id": "1BxvKtuUF3OlrEF3x87e2F"
+  },
+  {
+    "id": 1904,
+    "titles": ["Rausch"],
+    "artists": ["Helene Fischer"],
+    "year": 2021,
+    "spotify_id": "0eXTfsdOsGvxf7semdstyh"
+  },
+  {
+    "id": 1905,
+    "titles": ["Mit Dir Werden Wunder Noch Wahr"],
+    "artists": ["Bernhard Brink"],
+    "year": 1995,
+    "spotify_id": "5DtU9fVQMb7Lz0WXHCYhzp"
+  },
+  {
+    "id": 1906,
+    "titles": ["Blaue Lagune"],
+    "artists": ["Anna-Carina Woitschack & Stefan Mross", "Anna-Carina Woitschack", "Stefan Mross"],
+    "year": 2020,
+    "spotify_id": "3kfx1zpnXZPRCim2v8wtzj"
+  },
+  {
+    "id": 1907,
+    "titles": ["Ohne Dich (Schlaf Ich Heut Nacht Nicht Ein)",
+               "Ohne Dich (Schlafe Ich Heut Nacht Nicht Ein)", "Ohne Dich"],
+    "artists": ["Münchener Freiheit", "Muenchener Freiheit"],
+    "year": 1985,
+    "spotify_id": "7JM1dFLOa1kI5MqGnDufiY"
+  },
+  {
+    "id": 1908,
+    "titles": ["Carbonara"],
+    "artists": ["Spliff"],
+    "year": 1982,
+    "spotify_id": "7MU1uNaZzTkwHQV8sRNB3l"
+  },
+  {
+    "id": 1909,
+    "titles": ["Der Wilde Wilde Westen", "Der Wilde Westen"],
+    "artists": ["Truck Stop", "TS"],
+    "year": 1979,
+    "spotify_id": "7LeYfDE3RuEAkSL5fsmEvH"
+  },
+  {
+    "id": 1910,
+    "titles": ["Hello Again"],
+    "artists": ["Howard Carpendale"],
+    "year": 1984,
+    "spotify_id": "4TwHWwirwPR5lQFeSSDhqr"
+  },
+  {
+    "id": 1911,
+    "titles": ["Starke Gefühle", "Starke Gefuehle"],
+    "artists": ["Juliane Werding"],
+    "year": 1988,
+    "spotify_id": "4Qmw3WjhGemnO7x2acBBci"
+  },
+  {
+    "id": 1912,
+    "titles": ["Lieben Heißt Leben", "Lieben Heisst Leben"],
+    "artists": ["Bernd Clüver", "Bernd Cluever"],
+    "year": 1993,
+    "spotify_id": "19kGOyugxzRlRlYhurzn9S"
+  },
+  {
+    "id": 1913,
+    "titles": ["Büetzer Buebe", "Bueetzer Buebe"],
+    "artists": ["Gölä & Trauffer", "Gölä", "Goelae", "Trauffer"],
+    "year": 2019,
+    "spotify_id": "6WpKBQFb4fs6nvyrLh9yiv"
+  },
+  {
+    "id": 1914,
+    "titles": ["Mein Herz"],
+    "artists": ["Beatrice Egli"],
+    "year": 2013,
+    "spotify_id": "1CINbWotyT3WDt9EDh3cww"
+  },
+  {
+    "id": 1915,
+    "titles": ["Wenn Den Kindern Flügeln Wachsen", "Wenn Den Kindern Fluegeln Wachsen"],
+    "artists": ["Ingrid Peters"],
+    "year": 2004,
+    "spotify_id": "4AKYFbcTn5DNTougQyjKRM"
+  },
+  {
+    "id": 1916,
+    "titles": ["Hier Kommt Kurt"],
+    "artists": ["Frank Zander", "Fred Sonnenschein und Seine Freunde",
+                "Fred Sonnenschein & Seine Freunde", "Fred Sonnenschein"],
+    "year": 1989,
+    "spotify_id": "6RE97TNubJ4EMkoULibMLw"
+  },
+  {
+    "id": 1917,
+    "titles": ["Verlieben, Verloren, Vergessen, Verzeih'n", "Verlieben, Verloren, Vergessen, Verzeihen"],
+    "artists": ["Wolfgang Petry"],
+    "year": 1992,
+    "spotify_id": "4sNUL4pMNayXyTDfmVe3bH"
+  },
+  {
+    "id": 1918,
+    "titles": ["Du Depp", "Du Dep"],
+    "artists": ["Haindling"],
+    "year": 1984,
+    "spotify_id": "2GWJsABLaEgkROz0nj3XOE"
+  },
+  {
+    "id": 1919,
+    "titles": ["Mary Jane"],
+    "artists": ["Jürgen Peter", "Juergen Peter"],
+    "year": 2009,
+    "spotify_id": "4SnC7mwI24zoMB1QINaHdq"
+  },
+  {
+    "id": 1920,
+    "titles": ["Resi, I Hol Di Mit Mei'm Traktor Ab", "I Hol Di Mit Mei'm Traktor Ab",
+               "Resi, Ich Hole Dich Mit Meinem Traktor Ab", "Ich Hole Dich Mit Meinem Traktor Ab"],
+    "artists": ["Wolfgang Fierek"],
+    "year": 1985,
+    "spotify_id": "0W7BNEprDuWmh5xyVSEZ1q"
+  },
+  {
+    "id": 1921,
+    "titles": ["Barfuß im Regen", "Barfuss im Regen"],
+    "artists": ["Dieter Thomas Kuhn & Band", "Dieter Thomas Kuhn", "Band"],
+    "year": 2007,
+    "spotify_id": "1lIeDS4aoI7deLuVUz9iRY"
+  },
+  {
+    "id": 1922,
+    "titles": ["Johnny Däpp", "Johnny Daepp", "Johnny Däp", "Johnny Daep"],
+    "artists": ["Lorenz Büffel", "Lorenz Bueffel"],
+    "year": 2016,
+    "spotify_id": "2TBimpeTwsFPzpSRuUHw18"
+  },
+  {
+    "id": 1923,
+    "titles": ["Du Hast Mich Tausendmal Belogen", "Du Hast Mich 1000 Mal Belogen"],
+    "artists": ["Andrea Berg"],
+    "year": 2001,
+    "spotify_id": "65wKbNqjUTmdyk47Z31Czm"
+  },
+  {
+    "id": 1924,
+    "titles": ["So A Schöner Tag (Fliegerlied)", "So A Schoener Tag (Fliegerlied)",
+               "So A Schöner Tag", "So A Schoener Tag", "Fliegerlied", "Das Fliegerlied"],
+    "artists": ["Donikkl"],
+    "year": 2008,
+    "spotify_id": "4Q5F5CTGnvpKnQWyMwWGtX"
+  },
+  {
+    "id": 1925,
+    "titles": ["Kribbeln im Bauch"],
+    "artists": ["Pe Werner"],
+    "year": 1991,
+    "spotify_id": "4LuIBcsu61ef2AxnNZxC4Z"
+  },
+  {
+    "id": 1926,
+    "titles": ["Hulapalu"],
+    "artists": ["Andreas Gabalier"],
+    "year": 2015,
+    "spotify_id": "627QU4vNG3alCWCK1FMeLK"
+  },
+  {
+    "id": 1927,
+    "titles": ["Michaela"],
+    "artists": ["Bata Illic"],
+    "year": 1972,
+    "spotify_id": "1KPdPbyq1Kj3epj5gUtmPb"
+  },
+  {
+    "id": 1928,
+    "titles": ["Ich Sterb Für Dich", "Ich Sterbe Für Dich", "Ich Sterb Fuer Dich", "Ich Sterbe Fuer Dich"],
+    "artists": ["Vanessa Mai"],
+    "year": 2016,
+    "spotify_id": "7r0rZ3CeaedQ1JP6PvbvFq"
+  },
+  {
+    "id": 1929,
+    "titles": ["Nicht Mal Eine Stunde"],
+    "artists": ["Mike Leon Grosch", "Mike Grosch"],
+    "year": 2020,
+    "spotify_id": "0hI2hV0GlXaI4jxMfvg6ga"
+  },
+  {
+    "id": 1930,
+    "titles": ["Kölsche Jung", "Koelsche Jung", "Kölscher Jung", "Koelscher Jung",
+               "Kölsche Junge", "Koelsche Junge", "Kölscher Junge", "Koelscher Junge"],
+    "artists": ["Brings"],
+    "year": 2013,
+    "spotify_id": "6v3Rzc8reAqhJKURPWzpfR"
+  },
+  {
+    "id": 1931,
+    "titles": ["Je t'aime mon amour", "Wie Viele Stunden Hat Die Nacht"],
+    "artists": ["Claudia Jung & Richard Clayderman", "Claudia Jung", "Richard Clayderman"],
+    "year": 1994,
+    "spotify_id": "5Ttn6c0XKGWrvmICP5x9S8"
+  },
+  {
+    "id": 1932,
+    "titles": ["Freu' Dich Bloß Nicht Zu Früh", "Freue Dich Bloß Nicht Zu Früh",
+               "Freu' Dich Bloss Nicht Zu Früh", "Freue Dich Bloss Nicht Zu Früh",
+               "Freu' Dich Bloß Nicht Zu Frueh", "Freue Dich Bloß Nicht Zu Frueh",
+               "Freu' Dich Bloss Nicht Zu Frueh", "Freue Dich Bloss Nicht Zu Frueh"],
+    "artists": ["Gitte Hænning", "Gitte Hanning", "Gitte Haenning", "Gitte"],
+    "year": 1980,
+    "spotify_id": "50HAvJ4qLyUEoVsAqy60xO"
+  },
+  {
+    "id": 1933,
+    "titles": ["Die Kleine Kneipe", "Kleine Kneipe"],
+    "artists": ["Peter Alexander"],
+    "year": 1976,
+    "spotify_id": "2KUe0QjJnwaQRB95yPmIbJ"
+  },
+  {
+    "id": 1934,
+    "titles": ["Die Biene Maja", "Biene Maja"],
+    "artists": ["Karel Gott"],
+    "year": 1976,
+    "spotify_id": "7jbWJ8dBSFElWnoGn9XYHI"
+  },
+  {
+    "id": 1935,
+    "titles": ["Und Heut' Nacht Will Ich Tanzen", "Und Heute Nacht Will Ich Tanzen",
+               "Heut' Nacht Will Ich Tanzen", "Heute Nacht Will Ich Tanzen"],
+    "artists": ["Michelle"],
+    "year": 1992,
+    "spotify_id": "0G6CQo81dB8YUESy73fs4K"
+  },
+  {
+    "id": 1936,
+    "titles": ["Nightfever"],
+    "artists": ["Dieter Thomas Kuhn & Band", "Dieter Thomas Kuhn", "Band"],
+    "year": 2012,
+    "spotify_id": "6sCG0j2tZTdNeZvQPcKWZy"
+  },
+  {
+    "id": 1937,
+    "titles": ["Es Gibt Kein Bier Auf Hawaii", "Es Gibt Kein Bier Auf Hawai"],
+    "artists": ["Paul Kuhn"],
+    "year": 1963,
+    "spotify_id": "4Gs4xdlHoOTNszWdJsIU0Z"
+  },
+  {
+    "id": 1938,
+    "titles": ["Das Spiel Ist Aus (Game Over)", "Das Spiel Ist Aus", "Game Over"],
+    "artists": ["Olaf Henning"],
+    "year": 2000,
+    "spotify_id": "0hniHUJCCzDCZZ35W1ro7Z"
+  },
+  {
+    "id": 1939,
+    "titles": ["Das Lied von Manuel", "Lied von Manuel"],
+    "artists": ["Manuel & Pony", "Manuel und Pony", "Manuel", "Pony"],
+    "year": 1979,
+    "spotify_id": "63smv7iIzlW3sUHSiGtqWs"
+  },
+  {
+    "id": 1940,
+    "titles": ["Du Warst Der Geilste Fehler Meines Lebens"],
+    "artists": ["Nockalm Quintett", "Nockis"],
+    "year": 2014,
+    "spotify_id": "0pLNUaFp98Ll2eTwMeXv4x"
+  },
+  {
+    "id": 1941,
+    "titles": ["Es Gibt Nur Wasser"],
+    "artists": ["Santiano"],
+    "year": 2012,
+    "spotify_id": "2gxV47AHMGT7NI25NpO6Pj"
+  },
+  {
+    "id": 1942,
+    "titles": ["So a Nacht", "So Eine Nacht", "Solch Eine Nacht"],
+    "artists": ["Spider Murphy Gang", "SMG"],
+    "year": 1987,
+    "spotify_id": "2NErf4ow27T3rZZZrjoh5i"
+  },
+  {
+    "id": 1943,
+    "titles": ["Herzilein", "Herzlein", "Herz"],
+    "artists": ["Rudolf Rock & Die Schocker", "Rudolf Rock und Die Schocker",
+                "Rudolf Rock", "Die Schocker", "Schocker"],
+    "year": 1990,
+    "spotify_id": "5RdeEPFIN94JuJfUeEOop2"
+  },
+  {
+    "id": 1944,
+    "titles": ["Der Rote Mond Von Agadir"],
+    "artists": ["Fernando Express"],
+    "year": 2008,
+    "spotify_id": "4CUOMhDYc8NqDZTHhpKHxO"
+  },
+  {
+    "id": 1945,
+    "titles": ["Nimm Einmal Noch Meine Hand", "Nimm Noch Einmal Meine Hand"],
+    "artists": ["Ines Adler"],
+    "year": 1996,
+    "spotify_id": "7bxfRoLTj35uJqQSeV7xWB"
+  },
+  {
+    "id": 1946,
+    "titles": ["Willkommen im Club"],
+    "artists": ["Ross Antony"],
+    "year": 2021,
+    "spotify_id": "4z60dbymqBotiLzXQCdII0"
+  },
+  {
+    "id": 1947,
+    "titles": ["Anton aus Tirol"],
+    "artists": ["DJ Ötzi", "Ötzi", "DJ Oetzi", "Oetzi"],
+    "year": 1999,
+    "spotify_id": "3T5j2HrD8sG7iFzX8aXCLk"
+  },
+  {
+    "id": 1948,
+    "titles": ["Lebt Denn Dr Alte Holzmichl Noch...?", "Lebt Denn Der Alte Holzmichl Noch...?",
+               "Lebt Denn Dr Alte Holzmichel Noch...?", "Lebt Denn Der Alte Holzmichel Noch...?",
+               "Lebt Dr Alte Holzmichl Noch...?", "Lebt Der Alte Holzmichl Noch...?",
+               "Lebt Dr Alte Holzmichel Noch...?", "Lebt Der Alte Holzmichel Noch...?"],
+    "artists": ["De Randfichten", "Die Randfichten", "Randfichten"],
+    "year": 2004,
+    "spotify_id": "3jUdAELIWYWCIWU6rGlCXL"
+  },
+  {
+    "id": 1949,
+    "titles": ["Einen Traum Für Diese Welt", "Einen Traum Fuer Diese Welt"],
+    "artists": ["Xanadu"],
+    "year": 1989,
+    "spotify_id": "2iJ6TNWbmG39pxwSwZbY0A"
+  },
+  {
+    "id": 1950,
+    "titles": ["Oberammergau"],
+    "artists": ["Peter Wackel"],
+    "year": 2005,
+    "spotify_id": "17eP4UcSwuLZdGtV4gIGLr"
+  },
+  {
+    "id": 1951,
+    "titles": ["Katzeklo", "Katzenklo"],
+    "artists": ["Helge Schneider"],
+    "year": 1993,
+    "spotify_id": "45P5X44bMEMZUsSU4Ij7GE"
+  },
+  {
+    "id": 1952,
+    "titles": ["Ich Bin Kein Dichter - Kein Poet", "Ich Bin Kein Dichter und Kein Poet",
+               "Bin Kein Dichter - Kein Poet", "Bin Kein Dichter und Kein Poet"],
+    "artists": ["Tom Astor"],
+    "year": 1991,
+    "spotify_id": "6wlMwfmNDtyi09cZmKZO47"
+  },
+  {
+    "id": 1953,
+    "titles": ["Alles Wird Gut"],
+    "artists": ["Thomas Anders & Florian Silbereisen", "Thomas Anders", "Florian Silbereisen"],
+    "year": 2022,
+    "spotify_id": "5yrc8eSlQXZ7ZUEznaQTFX"
+  },
+  {
+    "id": 1954,
+    "titles": ["Moos Hamma", "Moshammer", "Mooshammer", "Moos Haben Wir", "Moos Ham Wa"],
+    "artists": ["Münchner Zwietracht (feat. Rudolph Moshammer)", "Münchner Zwietracht",
+                "Münchener Zwietracht", "Rudolph Moshammer"],
+    "year": 2000,
+    "spotify_id": "6TWdSrzqbsmbcr8SlfXsbT"
+  },
+  {
+    "id": 1955,
+    "titles": ["Ich Will Alles"],
+    "artists": ["Gitte Hænning", "Gitte Hanning", "Gitte Haenning", "Gitte"],
+    "year": 1982,
+    "spotify_id": "6s3bDxWkPizTw8hsWv1iIi"
+  },
+  {
+    "id": 1956,
+    "titles": ["Sex & Seine Konsequenzen", "Sex und Seine Konsequenzen"],
+    "artists": ["Anja Regitz"],
+    "year": 2006,
+    "spotify_id": "4GtMdXZGS7NNW7j8FXlTkz"
+  },
+  {
+    "id": 1957,
+    "titles": ["Nur Geträumt", "Nur Getraeumt"],
+    "artists": ["Nena"],
+    "year": 1982,
+    "spotify_id": "27DEhFC0G2olRFgCTksnfw"
+  },
+  {
+    "id": 1958,
+    "titles": ["Wir Haben Grund Zum Feiern", "Grund Zum Feiern"],
+    "artists": ["Otto Waalkes", "Otto"],
+    "year": 1995,
+    "spotify_id": "2HHhqspYQQ1F08QWQ81AR0"
+  },
+  {
+    "id": 1959,
+    "titles": ["Ich Kann Nicht Ohne Dich"],
+    "artists": ["Frank Lars"],
+    "year": 2010,
+    "spotify_id": "4Msadmmr07wR75QMkm5EHl"
+  },
+  {
+    "id": 1960,
+    "titles": ["Willst Du Mit Mir Geh'n", "Willst Du Mit Mir Gehen"],
+    "artists": ["Daliah Lavi"],
+    "year": 1971,
+    "spotify_id": "0MZXfdHy25Co8CSOAwB24q"
+  },
+  {
+    "id": 1961,
+    "titles": ["Millionen Frauen Lieben Mich",
+               "Millionen Frauen Lieben Mich, Doch Meine Frau Erkennt Das Nicht!"],
+    "artists": ["Karl Dall"],
+    "year": 1987,
+    "spotify_id": "3NVWukdx01CKSsoC1lowGJ"
+  },
+  {
+    "id": 1962,
+    "titles": ["Grüezi Wohl, Frau Stirnimaa!", "Grueezi Wohl, Frau Stirnimaa!",
+               "Grüezi Wohl, Frau Stirnima!", "Grueezi Wohl, Frau Stirnima!",
+               "Grüezi Wohl", "Frau Stirnimaa!", "Grueezi Wohl", "Frau Stirnima!"],
+    "artists": ["Die Minstrels", "Minstrels"],
+    "year": 1969,
+    "spotify_id": "0W52vwENhl06m7KJM9t8QL"
+  },
+  {
+    "id": 1963,
+    "titles": ["Guten Morgen Liebe Sorgen"],
+    "artists": ["Jürgen von der Lippe", "Juergen Von Der Lippe"],
+    "year": 1987,
+    "spotify_id": "4xkSmQEgAfA5bR4jQ0dbO2"
+  },
+  {
+    "id": 1964,
+    "titles": ["Lederhosenrock"],
+    "artists": ["Melissa Naschenweng"],
+    "year": 2020,
+    "spotify_id": "2EHqCAYuSMZrTrNECNLOog"
+  },
+  {
+    "id": 1965,
+    "titles": ["Der Nippel", "Nippel"],
+    "artists": ["Mike Krüger", "Mike Krueger"],
+    "year": 1980,
+    "spotify_id": "3XqgqDim4XESbdDOBUPqSo"
+  },
+  {
+    "id": 1966,
+    "titles": ["Du Kannst Nicht Immer Siebzehn Sein", "Du Kannst Nicht Immer 17 Sein"],
+    "artists": ["Chris Roberts"],
+    "year": 1974,
+    "spotify_id": "4FD6YvxLRRVStHP7VS9mvK"
+  },
+  {
+    "id": 1967,
+    "titles": ["Es Schießt ein Blitz in Meinen Kopf", "Es Schiesst ein Blitz in Meinen Kopf"],
+    "artists": ["Michael Morgan"],
+    "year": 1996,
+    "spotify_id": "137OpkvgQaDcpuz1Lae5Jv"
+  },
+  {
+    "id": 1968,
+    "titles": ["Das Geht Ab! (Wir Feiern die Ganze Nacht)", "Das Geht Ab!",
+               "Wir Feiern die Ganze Nacht", "Feiern die Ganze Nacht", "Geht Ab!"],
+    "artists": ["Die Atzen", "Atzen"],
+    "year": 2009,
+    "spotify_id": "0TvcLuXOCVXQZwspgXPOZb"
+  },
+  {
+    "id": 1969,
+    "titles": ["Hör Meinen Herzschlag", "Hoer Meinen Herzschlag"],
+    "artists": ["Norman Langen"],
+    "year": 2011,
+    "spotify_id": "3KiZGBcD1mUpU3b4HrrL6r"
+  },
+  {
+    "id": 1970,
+    "titles": ["Bist Du Dafür Bereit?", "Bist Du Dafuer Bereit?"],
+    "artists": ["Marie Reim"],
+    "year": 2022,
+    "spotify_id": "1U9F9mUWAVkVvN8kFu3j1a"
+  },
+  {
+    "id": 1971,
+    "titles": ["Ein Leben Lang", "Leben Lang"],
+    "artists": ["Kastelruther Spatzen", "Kastelruther", "Spatzen"],
+    "year": 2000,
+    "spotify_id": "5o6CnxKo7JQSTJguOSexsm"
+  },
+  {
+    "id": 1972,
+    "titles": ["Herzilein", "Herzlein", "Herz"],
+    "artists": ["Wildecker Herzbuben", "Die Wildecker Herzbuben", "WH"],
+    "year": 1990,
+    "spotify_id": "7GrhTbGEjXbXKoiEwYeEWW"
+  },
+  {
+    "id": 1973,
+    "titles": ["Junge, Komm Bald Wieder", "Komm Bald Wieder"],
+    "artists": ["Freddy Quinn"],
+    "year": 1962,
+    "spotify_id": "4agMrs0Xv2x24I6jme8x8d"
+  },
+  {
+    "id": 1974,
+    "titles": ["Wini-Wini", "Wini"],
+    "artists": ["Die Tahiti-Tamourés", "Tahiti-Tamourés"],
+    "year": 1962,
+    "spotify_id": "2NLOe1cJU8sJvc6ys67WHO"
+  },
+  {
+    "id": 1975,
+    "titles": ["Ich Versprech Dir Nichts und Geb Dir Alles", "Ich Verspreche Dir Nichts und Gebe Dir Alles",
+               "Versprech Dir Nichts und Geb Dir Alles", "Verspreche Dir Nichts und Gebe Dir Alles"],
+    "artists": ["Wolkenfrei", "Vanessa Mai"],
+    "year": 2014,
+    "spotify_id": "1YurdoxtWECzyQ03osV73w"
+  },
+  {
+    "id": 1976,
+    "titles": ["10 Nackte Friseusen", "Zehn Nackte Friseusen"],
+    "artists": ["Mickie Krause"],
+    "year": 1999,
+    "spotify_id": "013CergxczW8KTIrWfOdWo"
+  },
+  {
+    "id": 1977,
+    "titles": ["Ein Augenblick in Rot", "Augenblick in Rot"],
+    "artists": ["Münchener Freiheit", "Muenchener Freiheit"],
+    "year": 2009,
+    "spotify_id": "75YlMCq6AkEX55qQAvBwYQ"
+  },
+  {
+    "id": 1978,
+    "titles": ["Mama Laudaaa", "Mama Lauda"],
+    "artists": ["Almklausi & Specktakel", "Almklausi", "Almklaus", "Specktakel", "Spektakel"],
+    "year": 2018,
+    "spotify_id": "1RcWWgnw5fVm3wcNq11zBu"
+  },
+  {
+    "id": 1979,
+    "titles": ["Schön Ist Es Auf Der Welt Zu Sein", "Schoen Ist Es Auf Der Welt Zu Sein"],
+    "artists": ["Roy Black"],
+    "year": 1971,
+    "spotify_id": "0xyd446fcUjbUScrubDFWg"
+  },
+  {
+    "id": 1980,
+    "titles": ["Wer Hat Dir das Küssen Beigebracht", "Wer Hat Dir das Kuessen Beigebracht"],
+    "artists": ["Gaby Baginsky", "Gabi Baginsky"],
+    "year": 1993,
+    "spotify_id": "4uqr9DDzQxGNxs2RzhE21I"
+  },
+  {
+    "id": 1981,
+    "titles": ["Schwarz und Weiß", "Schwarz und Weiss",
+               "Schwarz & Weiß", "Schwarz & Weiss"],
+    "artists": ["Oliver Pocher"],
+    "year": 2006,
+    "spotify_id": "4pqwROGdu8LCtspHXzlF0D"
+  },
+  {
+    "id": 1982,
+    "titles": ["Wenn Nicht Jetzt, Wann Dann?", "Wenn Nicht Jetzt"],
+    "artists": ["Höhner", "Hoehner"],
+    "year": 2005,
+    "spotify_id": "7gaWPR6yofnDxfgRMNyKCH"
+  },
+  {
+    "id": 1983,
+    "titles": ["En Vogel Ohni Flügel", "E Vogel Ohni Flügel", "Ein Vogel Ohne Flügel",
+               "En Vogel Ohni Fluegel", "E Vogel Ohni Fluegel", "Ein Vogel Ohne Fluegel"],
+    "artists": ["Peter Reber"],
+    "year": 1985,
+    "spotify_id": "5xUncmIYqgFadMb52tGRa0"
+  },
+  {
+    "id": 1984,
+    "titles": ["Ein Himmelbett im Internet", "Himmelbett im Internet"],
+    "artists": ["Ibo"],
+    "year": 1998,
+    "spotify_id": "5nY9iOFNTNr5vtFKrgxgOo"
+  },
+  {
+    "id": 1985,
+    "titles": ["Ha-le-lu-ja"],
+    "artists": ["Klostertaler"],
+    "year": 1996,
+    "spotify_id": "1Pp2iDxKFoNxVdlmeK18Pu"
+  },
+  {
+    "id": 1986,
+    "titles": ["Eine Frau die Mich Nach Hause Trägt", "Eine Frau die Mich Nach Hause Traegt",
+               "Frau die Mich Nach Hause Trägt", "Frau die Mich Nach Hause Traegt"],
+    "artists": ["PS Alex", "Alex"],
+    "year": 2007,
+    "spotify_id": "076TvwvwODg9xYZyIhwcWq"
+  },
+  {
+    "id": 1987,
+    "titles": ["Ich Hab Alain Delon Geseh'n", "Ich Hab Alain Delon Gesehen",
+               "Ich Habe Alain Delon Geseh'n", "Ich Habe Alain Delon Gesehen"],
+    "artists": ["Christoff", "Christof", "Christoph"],
+    "year": 2012,
+    "spotify_id": "6szt9Xu72ArW2Tm06YYBa9"
+  },
+  {
+    "id": 1988,
+    "titles": ["Deine Braunen Augen"],
+    "artists": ["Alisha"],
+    "year": 2024,
+    "spotify_id": "6bBaeJTENy0a1oqYy8fLxw"
+  },
+  {
+    "id": 1989,
+    "titles": ["Bianca"],
+    "artists": ["Freddy Breck"],
+    "year": 1972,
+    "spotify_id": "7IO1odRUNwFrYGbWXic984"
+  },
+  {
+    "id": 1990,
+    "titles": ["Sieben Tage, Sieben Nächte", "Sieben Tage, Sieben Naechte",
+               "7 Tage, 7 Nächte", "7 Tage, 7 Naechte"],
+    "artists": ["Monique"],
+    "year": 2020,
+    "spotify_id": "3fKTXIm1WM6WPC3xh5Dq1y"
+  },
+  {
+    "id": 1991,
+    "titles": ["Dich Hat der Himmel Geschickt", "Der Himmel Hat Dich Geschickt"],
+    "artists": ["Bernd Clüver", "Bernd Cluever"],
+    "year": 1992,
+    "spotify_id": "3xlh9SdTDdMH7Nu24mjyBE"
+  },
+  {
+    "id": 1992,
+    "titles": ["Sieben Tage Hat die Woche", "7 Tage Hat die Woche"],
+    "artists": ["Manuela Fellner"],
+    "year": 2012,
+    "spotify_id": "2qBFgxIxCJXNmyibBSsQGP"
+  },
+  {
+    "id": 1993,
+    "titles": ["Na Und?!"],
+    "artists": ["Ben Zucker"],
+    "year": 2017,
+    "spotify_id": "2g8pMDC1lck27f85wSnO13"
+  },
+  {
+    "id": 1994,
+    "titles": ["Irgendwann Ist Jetzt"],
+    "artists": ["Max Giesinger"],
+    "year": 2021,
+    "spotify_id": "08uFXeEZX4eN28TT37jdfI"
+  },
+  {
+    "id": 1995,
+    "titles": ["Immer Wieder Sonntags"],
+    "artists": ["Cindy & Bert", "Cindy und Bert", "Cindy", "Bert"],
+    "year": 1973,
+    "spotify_id": "7vLC1dwhUssdCnigdtisYG"
+  },
+  {
+    "id": 1996,
+    "titles": ["Theater"],
+    "artists": ["Katja Ebstein"],
+    "year":	1980,
+    "spotify_id": "0AwEdicbbKKAoB7ft7pJWI"
+  },
+  {
+    "id": 1997,
+    "titles": ["Ich Wär' So Gern So Blöd Wie Du", "Ich Wäre So Gern So Blöd Wie Du",
+               "Ich Wär' Gern So Blöd Wie Du", "Ich Wäre Gern So Blöd Wie Du",
+               "Ich Waer' Gern So Blöd Wie Du", "Ich Waere Gern So Blöd Wie Du"],
+    "artists": ["Tic Tac Toe"],
+    "year": 1997,
+    "spotify_id": "6KzWkQmHEJKn7OjjY3DWOF"
+  },
+  {
+    "id": 1998,
+    "titles": ["Für Dich", "Fuer Dich"],
+    "artists": ["Brunner & Brunner", "Brunner und Brunner", "Brunner"],
+    "year": 1994,
+    "spotify_id": "6eMtXTaaO3PhIm4HDxwqi8"
+  },
+  {
+    "id": 1999,
+    "titles": ["Du-nur-du-nur-du", "Nur Du", "Du Nur", "Du Nur, Du Nur", "Du Nur, Nur Du"],
+    "artists": ["Isabel Varell"],
+    "year": 2002,
+    "spotify_id": "2o4d3FuAqSEPmrLv58kgUB"
+  },
+  {
+    "id": 2000,
+    "titles": ["7 Leben", "Sieben Leben"],
+    "artists": ["Mitch Keller"],
+    "year": 2015,
+    "spotify_id": "6mrZ7QI1oXRljeIj65bzGB"
+  },
+  {
+    "id": 2001,
+    "titles": ["Du, Die Wanne Ist Voll", "Die Wanne Ist Voll"],
+    "artists": ["Dieter Hallervorden & Helga Feddersen", "Dieter Hallervorden", "Helga Feddersen"],
+    "year": 1978,
+    "spotify_id": "7pmnNvK57vUPyE6G40w9cv"
+  },
+  {
+    "id": 2002,
+    "titles": ["Weil Ich So Sexy Bin"],
+    "artists": ["Trude Herr"],
+    "year": 1961,
+    "spotify_id": "7dBGhQKRVw80qBH0l0O1fS"
+  },
+  {
+    "id": 2003,
+    "titles": ["Das Rote Pferd"],
+    "artists": ["Markus Becker"],
+    "year": 2007,
+    "spotify_id": "5bAYcyOEQP8vuQFK7fPWcc"
+  },
+  {
+    "id": 2004,
+    "titles": ["Ich War Noch Niemals In New York", "Ich War Noch Nie In New York",
+               "War Noch Niemals In New York", "War Noch Nie In New York"],
+    "artists": ["Udo Jürgens", "Udo Juergens"],
+    "year": 1982,
+    "spotify_id": "18q9XvWQgY1iO3PLGMit8l"
+  },
+  {
+    "id": 2005,
+    "titles": ["Kein Schwein Ruft Mich An"],
+    "artists": ["Max Raabe", "Max Raabe & Das Palast-Orchester", "Max Raabe & Palast-Orchester",
+                "Max Raabe und Das Palast-Orchester", "Max Raabe und Palast-Orchester",
+                "Das Palast-Orchester", "Palast-Orchester"],
+    "year": 1992,
+    "spotify_id": "6snrhpcIeThzC82aYBvOVG"
+  },
+  {
+    "id": 2006,
+    "titles": ["Küssen Kann Man Nicht Alleine", "Kuessen Kann Man Nicht Alleine"],
+    "artists": ["Max Raabe", "Max Raabe & Das Palast-Orchester", "Max Raabe & Palast-Orchester",
+                "Max Raabe und Das Palast-Orchester", "Max Raabe und Palast-Orchester",
+                "Das Palast-Orchester", "Palast-Orchester"],
+    "year": 2011,
+    "spotify_id": "3dHzw1D0j2r8NtBAUm5JWK"
+  },
+  {
+    "id": 2007,
+    "titles": ["Du Bist Wie Feuer im Vulkan", "Bist Wie Feuer im Vulkan"],
+    "artists": ["Die Amigos", "Amigos"],
+    "year": 2010,
+    "spotify_id": "5aMFZEH70hweRP65CQjPrp"
+  },
+  {
+    "id": 2008,
+    "titles": ["Herzensschöner", "Herzensschoener"],
+    "artists": ["Rosenstolz"],
+    "year": 1998,
+    "spotify_id": "2f8wJ142yv641OGfRbDN2h"
+  },
+  {
+    "id": 2009,
+    "titles": ["Guildo Hat Euch Lieb!", "Alf Igel"],
+    "artists": ["Guildo Horn & Die Orthopädischen Strümpfe", "Guildo Horn und Die Orthopädischen Strümpfe",
+                "Guildo Horn", "Die Orthopädischen Strümpfe", "Orthopädischen Strümpfe",
+                "Orthopädische Strümpfe", "Guildo Horn & Die Orthopaedischen Struempfe",
+                "Guildo Horn und Die Orthopaedischen Struempfe", "Die Orthopaedischen Struempfe",
+                "Orthopaedischen Struempfe", "Orthopaedische Struempfe"],
+    "year": 1998,
+    "spotify_id": "4xi3H3mVF5otEQuh5ChflP"
+  },
+  {
+    "id": 2010,
+    "titles": ["Sieben Tafeln Schokolade", "7 Tafeln Schokolade"],
+    "artists": ["Bernhard Brink"],
+    "year": 2010,
+    "spotify_id": "2LivGZu4LX8XGcDruLQcv0"
+  },
+  {
+    "id": 2011,
+    "titles": ["Dschinghis Khan"],
+    "artists": ["Dschinghis Khan"],
+    "year": 1979,
+    "spotify_id": "0ksebE6LrZocf2L5f4N1q7"
+  },
+  {
+    "id": 2012,
+    "titles": ["Atemlos"],
+    "artists": ["Christian Lais"],
+    "year": 2009,
+    "spotify_id": "3EIwjmVzjV7RACEuR0t7eS"
+  },
+  {
+    "id": 2013,
+    "titles": ["Stadt Met K", "Stadt Mit K"],
+    "artists": ["Kasalla"],
+    "year": 2015,
+    "spotify_id": "48dosoGX5Bey5mk6BhCgKM"
+  },
+  {
+    "id": 2014,
+    "titles": ["Schnappi, das Kleine Krokodil", "Das kleine Krokodil", "Schnappi"],
+    "artists": ["Schnappi"],
+    "year": 2004,
+    "spotify_id": "2QnAg9u1MmoNpm4O7zrYA4"
+  },
+  {
+    "id": 2015,
+    "titles": ["Wir Tanzen Lambada"],
+    "artists": ["Andrea Jürgens", "Andrea Juergens"],
+    "year": 1990,
+    "spotify_id": "2yF34rSpTLrsYERpJGhnZD"
+  },
+  {
+    "id": 2016,
+    "titles": ["Er Gehört Zu Mir", "Er Gehoert Zu Mir"],
+    "artists": ["Marianne Rosenberg", "Mariane Rosenberg"],
+    "year": 1975,
+    "spotify_id": "6COzABVCHQzyvc3rTMtrXn"
+  },
+  {
+    "id": 2017,
+    "titles": ["Ich Bin Kein Model und Kein Superstar", "Bin Kein Model und Kein Superstar"],
+    "artists": ["Ole ohne Kohle", "Ole"],
+    "year": 2012,
+    "spotify_id": "1x7NkMszGxP2FM7UrleXgX"
+  },
+  {
+    "id": 2018,
+    "titles": ["Ein Lied Auf Das Leben", "Lied Auf Das Leben"],
+    "artists": ["Feuerherz"],
+    "year": 2016,
+    "spotify_id": "7r8IVN20TFSGq5pE4gR76C"
+  },
+  {
+    "id": 2019,
+    "titles": ["Halleluja (Auf Das Leben)", "Halleluja", "Auf Das Leben"],
+    "artists": ["Patrick Lindner"],
+    "year": 2003,
+    "spotify_id": "4wbjZT1BXYbPyMFjJyPjLf"
+  },
+  {
+    "id": 2020,
+    "titles": ["Du Liebst Mich Nicht", "Liebst Mich Nicht"],
+    "artists": ["Sabrina Setlur"],
+    "year": 1997,
+    "spotify_id": "4OH0l5mfOTe7bPpfLvMsqk"
+  },
+  {
+    "id": 2021,
+    "titles": ["Ich Mal Für Dich Den Himmel Blau", "Ich Male Für Dich Den Himmel Blau",
+               "Ich Mal Fuer Dich Den Himmel Blau", "Ich Male Fuer Dich Den Himmel Blau"],
+    "artists": ["Olaf Henning"],
+    "year": 2011,
+    "spotify_id": "333aeVEMhnYg58ZzQl6u82"
+  },
+  {
+    "id": 2022,
+    "titles": ["Haben Sie Wien Schon Bei Nacht Geseh'n", "Haben Sie Wien Schon Bei Nacht Gesehen"],
+    "artists": ["Rainhard Fendrich"],
+    "year": 1985,
+    "spotify_id": "3r1h1kMQzGlRXskhZeZPPJ"
+  },
+  {
+    "id": 2023,
+    "titles": ["Helikopter 117 (Mach' den Hub Hub Hub)", "Helikopter Eins-Eins-Sieben (Mach' den Hub Hub Hub)",
+               "Helikopter 117 (Mache den Hub Hub Hub)", "Helikopter 117", "Helikopter Eins-Eins-Sieben",
+               "Helikopter", "Mach' den Hub Hub Hub", "Mache den Hub Hub Hub"],
+    "artists": ["Tobee", "Tobe", "Tobie", "Tobi"],
+    "year": 2017,
+    "spotify_id": "1pMsWnQCaLQvL3O0vaMp5H"
+  },
+  {
+    "id": 2024,
+    "titles": ["Schöne Maid", "Schoene Maid"],
+    "artists": ["Tony Marshall"],
+    "year": 1971,
+    "spotify_id": "6lQZLaTrHZBIzTFOUkBpg2"
+  },
+  {
+    "id": 2025,
+    "titles": ["Theo, Wir Fahr'n Nach Lodz", "Theo, Wir Fahren Nach Lodz",
+               "Wir Fahr'n Nach Lodz", "Wir Fahren Nach Lodz"],
+    "artists": ["Vicky Leandros"],
+    "year": 1974,
+    "spotify_id": "2NPZ09aKySR09OoDbB8oVg"
+  },
+  {
+    "id": 2026,
+    "titles": ["...es kribbelt und es prickelt"],
+    "artists": ["Kristina Bach"],
+    "year": 1997,
+    "spotify_id": "4cVG5xxA7hndcFGOgLtDw6"
+  },
+  {
+    "id": 2027,
+    "titles": ["Egal Was Andere Sagen", "Was Andere Sagen"],
+    "artists": ["Eloy de Jong"],
+    "year": 2018,
+    "spotify_id": "7MNyM2DCnKx3KdXYldisdo"
+  },
+  {
+    "id": 2028,
+    "titles": ["Willkommen im Leben"],
+    "artists": ["Ute Freudenberg"],
+    "year": 2012,
+    "spotify_id": "6BIwQcpjCTmziCwgTwDZsA"
+  },
+  {
+    "id": 2029,
+    "titles": ["Rock mi", "Rock Mich", "Rock Me"],
+    "artists": ["VoXXclub", "VoXclub", "FoxxClub", "FoxClub"],
+    "year": 2012,
+    "spotify_id": "2ipwltYElIXuzmhAtxtv8N"
+  },
+  {
+    "id": 2030,
+    "titles": ["Ein Bisschen Frieden", "Ein Bißchen Frieden", "Bisschen Frieden", "Bißchen Frieden"],
+    "artists": ["Nicole"],
+    "year": 1982,
+    "spotify_id": "5ZSfGGi8OF1vSSVNAWdQT1"
+  },
+  {
+    "id": 2031,
+    "titles": ["Was Soll Das"],
+    "artists": ["Herbert Grönemeyer", "Herbert Groenemeyer"],
+    "year": 1988,
+    "spotify_id": "7EzRdo7g2oeVrTviOgaYbU"
+  },
+  {
+    "id": 2032,
+    "titles": ["Küss' Die Hand, Schöne Frau", "Küsse Die Hand, Schöne Frau",
+               "Kuess' Die Hand, Schoene Frau", "Kuesse Die Hand, Schoene Frau",
+               "Küss' Die Hand", "Küsse Die Hand", "Kuess' Die Hand", "Kuesse Die Hand",
+               "Schöne Frau", "Schoene Frau"],
+    "artists": ["Erste Allgemeine Verunsicherung", "EAV"],
+    "year": 1987,
+    "spotify_id": "5MvoIM3l6dO7sysVDTfBLG"
+  },
+  {
+    "id": 2033,
+    "titles": ["Freundschaftsring"],
+    "artists": ["Anna-Maria Zimmermann & Olaf Henning", "Anna-Maria Zimmermann",
+                "Olaf Henning"],
+    "year": 2012,
+    "spotify_id": "02lOuEnqVotV0nDmYUXK6B"
+  },
+  {
+    "id": 2034,
+    "titles": ["Sieben Tage", "7 Tage"],
+    "artists": ["Die Flippers", "Flippers"],
+    "year": 1990,
+    "spotify_id": "4FMXjWh8KS8hNG0rkhCyLV"
+  },
+  {
+    "id": 2035,
+    "titles": ["Wieder Alles im Griff", "Alles im Griff"],
+    "artists": ["Jürgen Drews", "Juergen Drews"],
+    "year": 1999,
+    "spotify_id": "0xJCFn6sMc3jgPmraCK0l6"
+  },
+  {
+    "id": 2036,
+    "titles": ["Heimweh"],
+    "artists": ["Plüsch", "Pluesch"],
+    "year": 2002,
+    "spotify_id": "5T0YtQ9KPWK6lIsaSjEXU9"
+  },
+  {
+    "id": 2037,
+    "titles": ["Hinter den Kulissen von Paris"],
+    "artists": ["Mireille Mathieu"],
+    "year": 1969,
+    "spotify_id": "74ppWSwsyJYxQ9xQRuuPnB"
+  },
+  {
+    "id": 2038,
+    "titles": ["Gloria"],
+    "artists": ["Nik P", "Nik"],
+    "year": 1997,
+    "spotify_id": "1s4gzBftZzmxLYEv3aISf3"
+  },
+  {
+    "id": 2039,
+    "titles": ["Schatzi Schenk Mir Ein Foto", "Schenk Mir Ein Foto",
+               "Schatzi Schenke Mir Ein Foto", "Schenke Mir Ein Foto"],
+    "artists": ["Mickie Krause"],
+    "year": 2010,
+    "spotify_id": "4j8zZZWeP6Ijn5oKLlfelE"
+  },
+  {
+    "id": 2040,
+    "titles": ["Ich Wünsch Mir 'ne Kleine Miezekatze", "Ich Wünsch Mir Eine Kleine Miezekatze",
+               "Ich Wünsche Mir 'ne Kleine Miezekatze", "Ich Wünsche Mir Eine Kleine Miezekatze",
+               "Ich Wuensch Mir 'ne Kleine Miezekatze", "Ich Wuensch Mir Eine Kleine Miezekatze",
+               "Ich Wuensche Mir 'ne Kleine Miezekatze", "Ich Wuensche Mir Eine Kleine Miezekatze"],
+    "artists": ["Wum's Gesang", "Wum"],
+    "year": 1972,
+    "spotify_id": "3LE0oKAZ8PCHIHjrsZ5IRg"
+  },
+  {
+    "id": 2041,
+    "titles": ["Noch in 100.000 Jahren"],
+    "artists": ["DJ Ötzi", "Ötzi", "DJ Oetzi", "Oetzi"],
+    "year": 2008,
+    "spotify_id": "6LGpIWaJstYdRzGl1RE49z"
+  },
+  {
+    "id": 2042,
+    "titles": ["Is Was", "Iss Was", "Ist Was"],
+    "artists": ["Jürgen von der Lippe", "Juergen Von Der Lippe"],
+    "year": 1989,
+    "spotify_id": "6N8bnX5uNPMAEblonTn5Fq"
+  },
+  {
+    "id": 2043,
+    "titles": ["Ich Bau Dir Ein Schloss", "Ich Baue Dir Ein Schloss",
+               "Bau Dir Ein Schloss", "Baue Dir Ein Schloss"],
+    "artists": ["Jürgen Drews", "Juergen Drews"],
+    "year": 2009,
+    "spotify_id": "72QYg34KFQdcHd9Tuy7mOf"
+  },
+  {
+    "id": 2044,
+    "titles": ["Verliebt, Verlobt, Verflixt Nochmal", "Verliebt, Verlobt, Verflixt"],
+    "artists": ["Beatrice Egli"],
+    "year": 2018,
+    "spotify_id": "2EdQfODNo4itCgnh6rlxfi"
+  },
+  {
+    "id": 2045,
+    "titles": ["Du Du Du", "Du Du", "Du"],
+    "artists": ["Vincent Gross", "Vincent Groß"],
+    "year": 2017,
+    "spotify_id": "3JMOwZynYYvRGrNLPlQOD9"
+  },
+  {
+    "id": 2046,
+    "titles": ["Mein Herz Schlägt Schlager", "Mein Herz Schlaegt Schlager"],
+    "artists": ["Vanessa Mai"],
+    "year": 2015,
+    "spotify_id": "680Ilgt8TtFEb9baEEr0bu"
+  },
+  {
+    "id": 2047,
+    "titles": ["Stark"],
+    "artists": ["Ich + Ich", "Ich Plus Ich", "Adel Tawil"],
+    "year": 2007,
+    "spotify_id": "4BH3bwOLMm7VLqMNuU5VT6"
+  },
+  {
+    "id": 2048,
+    "titles": ["Lieb' Mich Ein Letztes Mal", "Liebe Mich Ein Letztes Mal"],
+    "artists": ["Roland Kaiser"],
+    "year": 1981,
+    "spotify_id": "3RJmEVKnhQfuupLyZkydtV"
+  },
+  {
+    "id": 2049,
+    "titles": ["Burger Dance"],
+    "artists": ["DJ Ötzi (feat. Eric Dikeb)", "DJ Ötzi", "Ötzi", "DJ Oetzi", "Oetzi", "Eric Dikeb"],
+    "year": 2002,
+    "spotify_id": "0UnXRgNP0XhEtiHpVyXXKZ"
+  },
+  {
+    "id": 2050,
+    "titles": ["Die Bouzouki Klang Durch die Sommernacht", "Bouzouki Klang Durch die Sommernacht"],
+    "artists": ["Vicky Leandros"],
+    "year": 1973,
+    "spotify_id": "7vUv7Q9Zpl1hgiraq06Ruz"
+  },
+  {
+    "id": 2051,
+    "titles": ["Monika"],
+    "artists": ["Ulli Martin"],
+    "year": 1971,
+    "spotify_id": "4qKZ0E63qWQNJbqbSrPGd9"
+  },
+  {
+    "id": 2052,
+    "titles": ["Der Papa Wird's Schon Richten", "Der Papa Wird Es Schon Richten",
+               "Papa Wird's Schon Richten", "Papa Wird Es Schon Richten"],
+    "artists": ["Peter Alexander"],
+    "year": 1981,
+    "spotify_id": "3iKTDosKzbciQwZ6p9Ow4E"
+  },
+  {
+    "id": 2053,
+    "titles": ["Schmidtchen Schleicher", "Schmidtchen", "Schleicher"],
+    "artists": ["Nico Haak"],
+    "year": 1975,
+    "spotify_id": "1EaV2NKrunY5JHksK9Vt1d"
+  },
+  {
+    "id": 2054,
+    "titles": ["Wenn Ich Nüchtern Wär", "Wenn Ich Nüchtern Wäre",
+               "Wenn Ich Nuechtern Waer", "Wenn Ich Nuechtern Waere"],
+    "artists": ["Julian Sommer & Luca-Dante Spadafora", "Julian Sommer", "Luca-Dante Spadafora"],
+    "year": 2026,
+    "spotify_id": "7loscGnLhciYbQYJSuRyVW"
+  },
+  {
+    "id": 2055,
+    "titles": ["Delfin"],
+    "artists": ["Honk! & Isi Glück", "Honk!", "Isi Glück", "Isi Glueck"],
+    "year": 2023,
+    "spotify_id": "1DPkK5r5Qa0edPkWDic3K6"
+  },
+  {
+    "id": 2056,
+    "titles": ["Oberteil"],
+    "artists": ["Isi Glück & Marc Eggers", "Isi Glück", "Isi Glueck", "Marc Eggers"],
+    "year": 2024,
+    "spotify_id": "68EE4z8z9vgpa90gPFEUp8"
+  },
+  {
+    "id": 2057,
+    "titles": ["Viel Zu Schön Um Wahr Zu Sein", "Zu Schön Um Wahr Zu Sein",
+               "Viel Zu Schoen Um Wahr Zu Sein", "Zu Schoen Um Wahr Zu Sein"],
+    "artists": ["Andrea Berg"],
+    "year": 2022,
+    "spotify_id": "3RHRIhgGLY5KFieaI1AExr"
+  },
+  {
+    "id": 2058,
+    "titles": ["Nackert", "Nackt"],
+    "artists": ["LaBrassBanda"],
+    "year": 2013,
+    "spotify_id": "1zMejoRtwflkkJOcSJehrn"
+  },
+  {
+    "id": 2059,
+    "titles": ["Sie Beißt und Kratzt (Ich Brauche Diese Frau)", "Sie Beisst und Kratzt (Ich Brauche Diese Frau)",
+               "Sie Beißt und Kratzt", "Sie Beisst und Kratzt", "Ich Brauche Diese Frau"],
+    "artists": ["Dirk Busch"],
+    "year": 1986,
+    "spotify_id": "1o6qlnKZEANFrj8YsWGR6D"
+  },
+  {
+    "id": 2060,
+    "titles": ["Über Jedes Bacherl Geht A Brückerl", "Über Jeden Bach Geht Eine Brücke",
+               "Ueber Jedes Bacherl Geht A Brueckerl", "Ueber Jeden Bach Geht Eine Bruecke"],
+    "artists": ["Stefanie Hertel"],
+    "year": 1992,
+    "spotify_id": "3Hjbxo6TLr0wptTDTxI6qH"
+  },
+  {
+    "id": 2061,
+    "titles": ["Forever Number One", "FC Bayern - Forever Number One", "FC Bayern", "FC Bayern Vereinshymne"],
+    "artists": ["Andrew White", "FC Bayern & Andrew White", "FC Bayern and Andrew White", "FC Bayern"],
+    "year": 1993,
+    "spotify_id": "0EOAlrxqsoOzBqSHzfbX91"
+  },
+  {
+    "id": 2062,
+    "titles": ["Was Ich An Dir Mag"],
+    "artists": ["Lukas Hilbert"],
+    "year": 2004,
+    "spotify_id": "3YTlEtWSVvnJ0WAgvzPx79"
+  },
+  {
+    "id": 2063,
+    "titles": ["Stimmen im Wind"],
+    "artists": ["Juliane Werding"],
+    "year": 1986,
+    "spotify_id": "0swD6DCpBdolN97nsBOR56"
+  },
+  {
+    "id": 2064,
+    "titles": ["Schwarze Rose"],
+    "artists": ["Ibo"],
+    "year": 2000,
+    "spotify_id": "26ZANfcV6Qx5VeyXibbez5"
+  },
+  {
+    "id": 2065,
+    "titles": ["Titel"],
+    "artists": ["Artist"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 2066,
+    "titles": ["Weil I Di Mog", "Weil Ich Dich Mag"],
+    "artists": ["Relax"],
+    "year": 1982,
+    "spotify_id": "4uOTs0o1n26fdlKzAwL4jG"
+  },
+  {
+    "id": 2067,
+    "titles": ["Du Hast Mich Einmal Zu Oft Angesehen"],
+    "artists": ["Bernhard Brink & Sonia Liebing", "Bernhard Brink", "Sonia Liebing"],
+    "year": 2019,
+    "spotify_id": "3qoMWo1JY6FZMh1aulUIrW"
+  },
+  {
+    "id": 2068,
+    "titles": ["Der Kleine Prinz (Ein Engel, der Sehnsucht Heißt)", "Der Kleine Prinz (Ein Engel, der Sehnsucht Heisst)",
+               "Der Kleine Prinz", "Ein Engel, der Sehnsucht Heißt", "Ein Engel, der Sehnsucht Heisst"],
+    "artists": ["Bernd Clüver", "Bernd Cluever"],
+    "year": 1973,
+    "spotify_id": "2osGEsatZbdQXHmVYponKV"
+  },
+  {
+    "id": 2069,
+    "titles": ["Geissepeter", "Ziegenpeter"],
+    "artists": ["Trauffer"],
+    "year": 2017,
+    "spotify_id": "40q0ZuBKhmYdYAakgHEZFK"
+  },
+  {
+    "id": 2070,
+    "titles": ["Himmelblaue Augen", "Blaue Augen"],
+    "artists": ["Anna-Maria Zimmermann"],
+    "year": 2017,
+    "spotify_id": "4Dmy5YeYRbps72elJ3h3K6"
+  },
+  {
+    "id": 2071,
+    "titles": ["Aperol Spritz"],
+    "artists": ["Vincent Gross", "Vincent Groß"],
+    "year": 2024,
+    "spotify_id": "5GFRAs8K0bDtGpQJHKgF7o"
+  },
+  {
+    "id": 2072,
+    "titles": ["Heute Nacht"],
+    "artists": ["Helene Fischer"],
+    "year": 2026,
+    "spotify_id": "7BMTrcMg18YKFup0ekBWxw"
+  },
+  {
+    "id": 2073,
+    "titles": ["Du Bist Das Letzte"],
+    "artists": ["Howard Carpendale"],
+    "year": 2003,
+    "spotify_id": "1zf7XoSiVghNU4fGHpa7TY"
+  },
+  {
+    "id": 2074,
+    "titles": ["Nur Du Schaffst Das"],
+    "artists": ["Sonia Liebing"],
+    "year": 2022,
+    "spotify_id": "0SgeCVMO6mITFks8dQpXy4"
+  },
+  {
+    "id": 2075,
+    "titles": ["Handwerker"],
+    "artists": ["Mickie Krause & Julian Sommer", "Mickie Krause", "Julian Sommer"],
+    "year": 2024,
+    "spotify_id": "3ut6td3I2l0z63rSt1HOwz"
+  },
+  {
+    "id": 2076,
+    "titles": ["Schon Längst Verliebt", "Schon Laengst Verliebt"],
+    "artists": ["Sonia Liebing"],
+    "year": 2026,
+    "spotify_id": "1v2D7403SK9tpzEEVRKDmp"
+  },
+  {
+    "id": 2077,
+    "titles": ["Baby Bell"],
+    "artists": ["Breitner"],
+    "year": 2025,
+    "spotify_id": "6790Rqyau5Ol6mxj2UbTP3"
+  },
+  {
+    "id": 2078,
+    "titles": ["Verdammt (Und Dann Stehst Du Im Regen)", "Verdammt", "Und Dann Stehst Du Im Regen"],
+    "artists": ["Wolfgang Ziegler"],
+    "year": 1988,
+    "spotify_id": "3KQJPx0vCVHvzlgDUdka5r"
+  },
+  {
+    "id": 2079,
+    "titles": ["Jugendliebe"],
+    "artists": ["Ute Freudenberg"],
+    "year": 1980,
+    "spotify_id": "4RiJvobUGlKXqOvt9AFnsx"
+  },
+  {
+    "id": 2080,
+    "titles": ["So Wie Ich Dich Liebe"],
+    "artists": ["Tim Peters"],
+    "year": 2023,
+    "spotify_id": "2jOaN1rmIXyTpSIsE3dXMT"
+  },
+  {
+    "id": 2081,
+    "titles": ["Para Siempre (Für Immer)", "Para Siempre (Fuer Immer)", "Para Siempre",
+               "Für Immer", "Fuer Immer"],
+    "artists": ["Sarah Engels"],
+    "year": 2023,
+    "spotify_id": "0RadtEfMRUN7sWqRV1zHaS"
+  },
+  {
+    "id": 2082,
+    "titles": ["Schau Mal Herein"],
+    "artists": ["Helene Fischer & Florian Silbereisen", "Helene Fischer", "Florian Silbereisen"],
+    "year": 2024,
+    "spotify_id": "0f6pPvxwkvBFaIpfhAQHgt"
+  },
+  {
+    "id": 2083,
+    "titles": ["Drinking Wine Feeling Fine"],
+    "artists": ["Vincent Gross & Olaf der Flipper", "Vincent Gross", "Vincent Groß", "Olaf der Flipper",
+                "Die Flippers", "Flippers"],
+    "year": 2025,
+    "spotify_id": "4gUFxJ0FH76iMgsePtYdYr"
   }
 ]
