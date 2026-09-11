@@ -6,6 +6,10 @@
     /* Placeholders: Override in theme */
     -fx-primary-brush: #000000;
     -fx-secondary-brush: #505050;
+    -fx-tertiary-brush: #fff;
+    -fx-primary-accent-brush: #3060ff;
+    -fx-secondary-accent-brush: #3e92ff;
+    -fx-tertiary-accent-brush: #ff3838;
 
     -fx-transparent: rgba(0, 0, 0, 0.2);
     -fx-transparent-focus: rgba(0, 0, 0, 0.3);
@@ -42,7 +46,8 @@
 .modern-button {
     -fx-background-color: -fx-transparent;
     -fx-text-fill: -fx-primary-brush;
-    -fx-font-size: 11px;
+    -fx-background-radius: 6;
+    -fx-font-size: 14px;
     -fx-radius: 14;
     -fx-padding: 4 7;
     -fx-cursor: hand;
@@ -50,6 +55,98 @@
 
 .modern-button:hover {
     -fx-background-color: -fx-transparent-focus;
+}
+
+.modern-button:selected {
+    -fx-background-color: -fx-primary-accent-brush;
+}
+
+.modern-button:selected:hover {
+    -fx-background-color: derive(-fx-primary-accent-brush, -15%);
+}
+
+.primary-button {
+    -fx-background-color: -fx-primary-accent-brush;
+    -fx-text-fill: -fx-tertiary-brush;
+    -fx-background-radius: 6;
+    -fx-font-size: 14px;
+    -fx-radius: 14;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: derive(-fx-primary-accent-brush, -15%);
+}
+
+.primary-button:selected {
+    -fx-background-color: derive(-fx-primary-accent-brush, -15%);
+}
+
+.primary-button:selected {
+    -fx-background-color: derive(-fx-primary-accent-brush, -30);
+}
+
+.secondary-button {
+    -fx-background-color: -fx-secondary-accent-brush;
+    -fx-text-fill: -fx-tertiary-brush;
+    -fx-background-radius: 6;
+    -fx-font-size: 14px;
+    -fx-radius: 14;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: derive(-fx-secondary-accent-brush, -15%);
+}
+
+.secondary-button:selected {
+    -fx-background-color: derive(-fx-secondary-accent-brush, -15%);
+}
+
+.secondary-button:selected {
+    -fx-background-color: derive(-fx-secondary-accent-brush, -30);
+}
+
+.tertiary-button {
+    -fx-background-color: -fx-tertiary-accent-brush;
+    -fx-text-fill: -fx-tertiary-brush;
+    -fx-background-radius: 6;
+    -fx-font-size: 14px;
+    -fx-radius: 14;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.tertiary-button:hover {
+    -fx-background-color: derive(-fx-tertiary-accent-brush, -15%);
+}
+
+.tertiary-button:selected {
+    -fx-background-color: derive(-fx-tertiary-accent-brush, -15%);
+}
+
+.tertiary-button:selected {
+    -fx-background-color: derive(-fx-tertiary-accent-brush, -30);
+}
+
+.icon-button {
+    -fx-text-fill: -fx-primary-brush;
+    -fx-font-size: 12px;
+    -fx-background-color: -fx-transparent;
+    -fx-background-radius: 20px;
+    -fx-radius: 14;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.icon-button:hover {
+    -fx-background-color: -fx-transparent-focus;
+}
+
+.icon-button:selected {
+    -fx-background-color: -fx-primary-accent-brush;
 }
 
 .segmented-control {
@@ -61,7 +158,7 @@
     -fx-background-color: -fx-transparent;
     -fx-text-fill: -fx-secondary-brush;
     -fx-padding: 8 15 8 15;
-    -fx-font-size: -fx-text-size;
+    -fx-font-size: 12px;
     -fx-border-color: rgba(255,255,255,0.1);
 }
 
@@ -112,9 +209,12 @@
 .scroll-pane .scroll-bar:vertical .thumb {
     -fx-background-color: -fx-secondary-brush;
     -fx-background-radius: 5px;
+
+    -fx-min-height: 30px;
+    -fx-pref-height: 30px;
 }
 
-.scrollpane .scroll-bar:vertical .track {
+.scroll-pane .scroll-bar:vertical .track {
     -fx-background-color: transparent;
 }
 

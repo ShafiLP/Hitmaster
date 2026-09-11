@@ -11,6 +11,7 @@ import hitmaster.services.ThemeManager;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -70,7 +71,7 @@ public class SetManagerView {
         activateAllBtn.setOnAction(e -> setAllSetsActive(true));
 
         Button deactivateAllBtn = new Button("Deactivate All");
-        deactivateAllBtn.getStyleClass().add("error-button");
+        deactivateAllBtn.getStyleClass().add("tertiary-button");
         deactivateAllBtn.setOnAction(e -> setAllSetsActive(false));
 
         Button createSetBtn = new Button("➕ Create New Set");
@@ -166,20 +167,27 @@ public class SetManagerView {
      */
     private ToggleButton createFilterButton(String tooltip, String iconPath, String filterCode, ToggleGroup group, boolean isSelected) {
         ToggleButton btn = new ToggleButton();
+
         btn.setTooltip(new Tooltip(tooltip));
-        btn.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(iconPath))) {{ setFitHeight(25); setFitWidth(25); setSmooth(true);}});
+
+        btn.setGraphic(new ImageView( new Image(getClass().getResourceAsStream(iconPath))) {{
+            setFitHeight(25);
+            setFitWidth(25);
+            setSmooth(true);
+        }});
+
         btn.setToggleGroup(group);
         btn.setSelected(isSelected);
+
         btn.getStyleClass().add("modern-button");
+
         btn.setOnAction(e -> {
             if (btn.isSelected()) {
                 selectedFilter = filterCode;
                 refreshSetList();
             }
-            else {
-                btn.setSelected(true);
-            }
         });
+
         return btn;
     }
 
@@ -236,7 +244,7 @@ public class SetManagerView {
 
                     double calculatedWidth = Math.floor((availableWidth - (hGap * (columns - 1))) / columns);
 
-                    for (javafx.scene.Node node : grid.getChildren()) {
+                    for (Node node : grid.getChildren()) {
                         if (node instanceof VBox card) {
                             card.setMinWidth(calculatedWidth);
                             card.setPrefWidth(calculatedWidth);
@@ -257,20 +265,27 @@ public class SetManagerView {
             SCROLL_PANE.setContent(grid);
 
             Platform.runLater(updateCardWidths);
-
         }
         else {
             VBox list = new VBox(10);
             list.setFillWidth(true);
             list.setPadding(new Insets(0));
 
-            for (GameSet set : filteredSets) {
-                list.getChildren().add(createSetRow(set));
+            for (int i = 0; i < filteredSets.size(); i++) {
+                GameSet set = filteredSets.get(i);
+                list.getChildren().add(createSetRow(set, i));
             }
+
             SCROLL_PANE.setContent(list);
         }
     }
 
+    /**
+     * Creates a grid element for a GameSet.
+     * Element contains name, image, part of description, on/off toggle, button to view set and song count.
+     * @param set GameSet to create grid element for.
+     * @return Grid element with GameSet as VBox.
+     */
     private VBox createSetCard(GameSet set) {
         VBox card = new VBox(10);
         card.setPadding(new Insets(15));
@@ -308,7 +323,7 @@ public class SetManagerView {
         });
 
         Button viewSetBtn = new Button();
-        viewSetBtn.getStyleClass().add("modern-button");
+        viewSetBtn.getStyleClass().add("icon-button");
         viewSetBtn.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/icons/magnifying-glass.png"))) {{ setFitWidth(15); setFitHeight(15); setSmooth(true);}});
         viewSetBtn.setTooltip(new Tooltip("View"));
         viewSetBtn.setOnAction(e -> {
@@ -326,38 +341,67 @@ public class SetManagerView {
     }
 
     // List Layout Row Item
-    private HBox createSetRow(GameSet set) {
+    private HBox createSetRow(GameSet set, int index) {
         ImageView setImageView = setupImageView(set.getImage(), 50, 50);
 
         Label setName = new Label(set.name);
         setName.getStyleClass().add("subheader");
 
-        Label descriptionErrorLabel = new Label("Error: Description could not be loaded.");
-        descriptionErrorLabel.setStyle("-fx-text-fill: #ff6b6b; -fx-font-size: 11px; -fx-font-style: italic;");
+        Label descriptionLabel = new Label(
+            set.desc != null
+                ? set.desc
+                : "Error: Couldn't load description for set."
+        );
+        descriptionLabel.getStyleClass().add("description");
 
-        VBox textContainer = new VBox(2, setName, descriptionErrorLabel);
+        descriptionLabel.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(descriptionLabel, Priority.ALWAYS);
+
+        VBox textContainer = new VBox(2, setName, descriptionLabel);
         textContainer.setAlignment(Pos.CENTER_LEFT);
+        HBox.setHgrow(textContainer, Priority.ALWAYS);
 
         HBox infoLeft = new HBox(15, setImageView, textContainer);
         infoLeft.setAlignment(Pos.CENTER_LEFT);
+        HBox.setHgrow(infoLeft, Priority.ALWAYS);
 
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
+        Button viewSetBtn = new Button();
+        viewSetBtn.getStyleClass().add("icon-button");
+        viewSetBtn.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/icons/magnifying-glass.png"))) {{
+            setFitWidth(15);
+            setFitHeight(15);
+            setSmooth(true);
+        }});
+        viewSetBtn.setTooltip(new Tooltip("View"));
+        viewSetBtn.setOnAction(e -> openSetInfo(set));
 
-        // NEU: Auch hier der "Switch" Look
+        // Button darf NICHT schrumpfen
+        viewSetBtn.setMinWidth(Region.USE_PREF_SIZE);
+
         CheckBox switchToggle = new CheckBox();
         switchToggle.getStyleClass().add("switch-toggle");
         switchToggle.setSelected(set.isActive);
+
         switchToggle.setOnAction(e -> {
             boolean newState = switchToggle.isSelected();
             set.isActive = newState;
             Database.getInstance().updateSetStatus(set.id, newState);
         });
 
-        HBox row = new HBox(10, infoLeft, spacer, switchToggle);
+        switchToggle.setMinWidth(Region.USE_PREF_SIZE);
+
+        HBox row = new HBox(
+            10,
+            infoLeft,
+            viewSetBtn,
+            switchToggle
+        );
+
         row.setAlignment(Pos.CENTER_LEFT);
         row.setPadding(new Insets(10, 15, 10, 15));
-        row.setStyle("-fx-border-color: rgba(255,255,255,0.05); -fx-border-width: 0 0 1 0;");
+
+        if (index % 2 == 0)
+            row.setStyle("-fx-background-color: -fx-subtile-transparent");
 
         return row;
     }
@@ -586,16 +630,16 @@ public class SetManagerView {
 
         HBox.setHgrow(songInfo, Priority.ALWAYS);
 
-        Label yearLabel = new Label(String.valueOf(song.year));
+        /*Label yearLabel = new Label(String.valueOf(song.year));
         yearLabel.getStyleClass().add("description");
         yearLabel.setMinWidth(50);
-        yearLabel.setAlignment(Pos.CENTER_RIGHT);
+        yearLabel.setAlignment(Pos.CENTER_RIGHT);*/
 
         HBox row = new HBox(
             12,
             numberLabel,
-            songInfo,
-            yearLabel
+            songInfo/*,
+            yearLabel*/
         );
 
         row.setAlignment(Pos.CENTER_LEFT);
