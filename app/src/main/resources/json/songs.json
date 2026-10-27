@@ -30,7 +30,7 @@
   {
     "id": 5,
     "titles": ["Blurred Lines"],
-    "artists": ["Robin Thicke (feat. T.I. & Pharrell Williams)", "Robin Thicke", "T. I.", "Pharrell Williams", "Pharrell"],
+    "artists": ["Robin Thicke (feat. T.I. & Pharrell Williams)", "Robin Thicke", "T.I.", "Tip", "Pharrell Williams", "Pharrell"],
     "year": 2013,
     "spotify_id": "2pgbGOb00WrlXY3ZRFKn7v"
   },
@@ -450,7 +450,7 @@
   {
     "id": 65,
     "titles": ["Can't Hold Us", "Can't Hold Us", "Cannot Hold Us"],
-    "artists": ["Macklemore (feat. Ray Dalton)", "Macklemore", "Ray Dalton"],
+    "artists": ["Macklemore & Ryan Lewis (feat. Ray Dalton)", "Macklemore", "Ryan Lewis", "Ray Dalton"],
     "year": 2011,
     "spotify_id": "3bidbhpOYeV4knp8AIu8Xn"
   },
@@ -842,7 +842,7 @@
   {
     "id": 121,
     "titles": ["I Love It"],
-    "artists": ["Icona Pop (feat. Charli xcx)", "Icona Pop", "Charli xcx"],
+    "artists": ["Icona Pop (feat. Charli XCX)", "Icona Pop", "Charli XCX", "Charli"],
     "year": 2012,
     "spotify_id": "2U8NXPTXZWG2O0ye2sYRiH"
   },
@@ -1241,7 +1241,7 @@
   {
     "id": 178,
     "titles": ["Killing Me Softly with His Song"],
-    "artists": ["Fugees", "Lauryn Hil"],
+    "artists": ["Fugees"],
     "year": 1996,
     "spotify_id": "0Q0IVlqMV64kNLlwjPj0Hl"
   },
@@ -1857,7 +1857,7 @@
   {
     "id": 266,
     "titles": ["Where Is The Love?", "Where's The Love?"],
-    "artists": ["The Black Eyed Peas (feat. Justin Timberlake)", "The Black Eyed Peas", "Black Eyed Peas", "Justin Timberlake"],
+    "artists": ["The Black Eyed Peas (feat. Justin Timberlake)", "The Black Eyed Peas", "Black Eyed Peas", "BEP", "Justin Timberlake"],
     "year": 2003,
     "spotify_id": "0xmjwnQ3FNE6HuWCt2nHdZ"
   },
@@ -4499,7 +4499,7 @@
   {
     "id": 643,
     "titles": ["I Gotta Feeling", "I Got A Feeling", "I Got To Feeling"],
-    "artists": ["The Black Eyed Peas", "Black Eyed Peas"],
+    "artists": ["The Black Eyed Peas", "Black Eyed Peas", "BEP"],
     "year": 2009,
     "spotify_id": "2H1047e0oMSj10dgp7p2VG"
   },
@@ -4632,9 +4632,9 @@
   {
     "id": 662,
     "titles": ["Industry Baby"],
-    "artists": ["Lil Nas X", "Little Nas X", "Lil Nas", "Little Nas"],
+    "artists": ["Lil Nas X (feat. Jack Harlow)", "Lil Nas X", "Little Nas X", "Lil Nas", "Little Nas", "Jack Harlow"],
     "year": 2021,
-    "spotify_id": "27NovPIUIRrOZoCHxABJwK"
+    "spotify_id": "2Pner0zYKaSPQ3YeYYXdup"
   },
   {
     "id": 663,
@@ -4695,7 +4695,7 @@
   {
     "id": 671,
     "titles": ["Yeah!"],
-    "artists": ["Usher (feat. Lil Jon & Ludacris)", "Usher", "Lil Jon", "Ludacris"],
+    "artists": ["Usher (feat. Lil Jon & Ludacris)", "Usher", "Lil Jon", "Little Jon", "Ludacris"],
     "year": 2004,
     "spotify_id": "5rb9QrpfcKFHM1EUbSIurX"
   },
@@ -5247,7 +5247,7 @@
   },
   {
     "id": 750,
-    "titles": ["I Like You (A Happier Song)", "I Like You"],
+    "titles": ["I Like You (A Happier Song)", "I Like You", "A Happier Song"],
     "artists": ["Post Malone (feat. Doja Cat)", "Post Malone", "Doja Cat"],
     "year": 2022,
     "spotify_id": "0O6u0VJ46W86TxN9wgyqDj"
@@ -10609,10 +10609,10 @@
   },
   {
     "id": 1513,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Liebe"],
+    "artists": ["Sido"],
+    "year": 2013,
+    "spotify_id": "5cBx2v7XJSErfesDmgNtr2"
   },
   {
     "id": 1514,
@@ -10778,7 +10778,7 @@
   {
     "id": 1537,
     "titles": ["Whatever"],
-    "artists": ["Cro"],
+    "artists": ["CRO"],
     "year": 2013,
     "spotify_id": "2jEM4UBJxs98Uf4NEe48iD"
   },
@@ -11915,7 +11915,7 @@
   {
     "id": 1698,
     "titles": ["Komet"],
-    "artists": ["Udo Lindenberg & Apache 207", "Udo Lindenberg", "Apache 207", "Apache Zwei-Null-Sieben"],
+    "artists": ["Udo Lindenberg & Apache 207", "Udo Lindenberg", "Apache 207", "Apache Zwei-Null-Sieben", "Apache"],
     "year": 2023,
     "spotify_id": "7oQepKHmXDaPC3rgeLRvQu"
   },
@@ -13245,10 +13245,11 @@
   },
   {
     "id": 1883,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Push It"],
+    "artists": ["Salt-N-Pepa", "Salt and Pepa", "Salt & Pepa",
+                "Salt and Pepper", "Salt & Pepper", "Salt-N-Pepper"],
+    "year": 1987,
+    "spotify_id": "6sT9MWlJManry3EQwf4V80"
   },
   {
     "id": 1884,
@@ -14578,10 +14579,10 @@
   },
   {
     "id": 2065,
-    "titles": ["Titel"],
-    "artists": ["Artist"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "titles": ["Hate It or Love It"],
+    "artists": ["The Game (feat. 50 Cent)", "The Game", "Game", "50 Cent", "Fifty Cent"],
+    "year": 2005,
+    "spotify_id": "2wGSgTmgSF3xjRrHkTc25R"
   },
   {
     "id": 2066,
@@ -14711,5 +14712,1067 @@
                 "Die Flippers", "Flippers"],
     "year": 2025,
     "spotify_id": "4gUFxJ0FH76iMgsePtYdYr"
+  },
+  {
+    "id": 2084,
+    "titles": ["Suga Suga", "Suga", "Sugar Sugar", "Sugar"],
+    "artists": ["Baby Bash (feat. Frankie J)", "Baby Bash", "Frankie J", "Frankie"],
+    "year": 2003,
+    "spotify_id": "6Nq5lE0CeOAAAqN4qhkbZU"
+  },
+  {
+    "id": 2085,
+    "titles": ["2002", "Zweitausendzwei", "Zweitausendundzwei"],
+    "artists": ["Sido (feat. Apache 207)", "Sido", "Apache 207", "Apache Zwei-Null-Sieben", "Apache"],
+    "year": 2019,
+    "spotify_id": "2u8AXJyk8pICzj2wyPBL0b"
+  },
+  {
+    "id": 2086,
+    "titles": ["Strictly Business"],
+    "artists": ["EPMD", "Erick and Parrish Making Dollars"],
+    "year": 1988,
+    "spotify_id": "1xZdjsAGrY4BUIbIlYy3EX"
+  },
+  {
+    "id": 2087,
+    "titles": ["Dior 2001", "Dior Zweitausendeins", "Dior Zweitausendundeins", "Dior"],
+    "artists": ["RIN"],
+    "year": 2018,
+    "spotify_id": "6WusSsncC0Oo9sFHKwQii6"
+  },
+  {
+    "id": 2088,
+    "titles": ["Ja klar"],
+    "artists": ["Schwester S.", "Sabrina Setlur"],
+    "year": 1995,
+    "spotify_id": "0CbiLoqWTQG4TiyCizsxXd"
+  },
+  {
+    "id": 2089,
+    "titles": ["You Got Me"],
+    "artists": ["The Roots (feat. Erykah Badu & Eve)", "The Roots", "Roots", "Erykah Badu", "Eve"],
+    "year": 1999,
+    "spotify_id": "4pdLZsxq0y5oJDb6Cxlokw"
+  },
+  {
+    "id": 2090,
+    "titles": ["Ayo Technology", "Eyo Technology"],
+    "artists": ["50 Cent (feat. Justin Timberlake & Timbaland)", "50 Cent", "Fifty Cent", "Justin Timberlake", "Timbaland"],
+    "year": 2007,
+    "spotify_id": "6kfQDanT6Buh4Wu73ghbav"
+  },
+  {
+    "id": 2091,
+    "titles": ["Sie Ist Weg"],
+    "artists": ["Die Fantastischen Vier", "Fantastische Vier", "Fantastischen Vier", "Fanta Vier",
+                "Die Fantastischen 4", "Fantastische 4", "Fantastischen 4", "Fanta 4"],
+    "year": 1995,
+    "spotify_id": "3rTSoSOTvOebYMy2kzKvkJ"
+  },
+  {
+    "id": 2092,
+    "titles": ["Live Your Life"],
+    "artists": ["T.I. (feat. Rihanna)", "T.I.", "Tip", "Rihanna"],
+    "year": 2008,
+    "spotify_id": "3jlbL2OTD5YmIunYzgQTAN"
+  },
+  {
+    "id": 2093,
+    "titles": ["Flava in Ya Ear", "Flava in Your Ear", "Lava in Ya Ear", "Lava in Your Ear"],
+    "artists": ["Craig Mack", "Craig Mac"],
+    "year": 1994,
+    "spotify_id": "3X414ZlCf5U7pcpIaIcUkT"
+  },
+  {
+    "id": 2094,
+    "titles": ["Paint the Town Red"],
+    "artists": ["Doja Cat"],
+    "year": 2023,
+    "spotify_id": "56y1jOTK0XSvJzVv9vHQBK"
+  },
+  {
+    "id": 2095,
+    "titles": ["rockstar"],
+    "artists": ["Post Malone (feat. 21 Savage)", "Post Malone", "21 Savage", "Twenty-One Savage"],
+    "year": 2017,
+    "spotify_id": "0e7ipj03S05BNilyu5bRzt"
+  },
+  {
+    "id": 2096,
+    "titles": ["ROCKSTAR"],
+    "artists": ["DaBaby (feat. Roddy Ricch)", "DaBaby", "The Baby", "Roddy Ricch"],
+    "year": 2020,
+    "spotify_id": "7ytR5pFWmSjzHJIeQkgog4"
+  },
+  {
+    "id": 2097,
+    "titles": ["Big Poppa", "Big Popa", "Big Pappa", "Big Papa"],
+    "artists": ["The Notorious B.I.G.", "Biggie Smalls", "Notorious B.I.G."],
+    "year": 1994,
+    "spotify_id": "2g8HN35AnVGIk7B8yMucww"
+  },
+  {
+    "id": 2098,
+    "titles": ["X Gon' Give It to Ya", "X Gonna Give It to Ya", "X Gon' Give It to You", "X Gonna Give It to You",
+               "X Going To Give It to Ya", "X Going To Give It to Ya", "X Going To Give It to You", "X Going To Give It to You",
+               "DMX Gon' Give It to Ya", "DMX Gonna Give It to Ya", "DMX Gon' Give It to You", "DMX Gonna Give It to You",
+               "DMX Going To Give It to Ya", "DMX Going To Give It to Ya", "DMX Going To Give It to You", "DMX Going To Give It to You"],
+    "artists": ["DMX"],
+    "year": 2002,
+    "spotify_id": "1zzxoZVylsna2BQB65Ppcb"
+  },
+  {
+    "id": 2099,
+    "titles": ["She Will"],
+    "artists": ["Lil Wayne (feat. Drake)", "Lil Wayne", "Little Wayne", "Drake"],
+    "year": 2011,
+    "spotify_id": "78O33U6jbQtNiNfbkZudpd"
+  },
+  {
+    "id": 2100,
+    "titles": ["Always on Time"],
+    "artists": ["Ja Rule (feat. Ashanti)", "Ja Rule", "Ashanti"],
+    "year": 2001,
+    "spotify_id": "2hNf1rawV2XAZ6Jld2Fxwf"
+  },
+  {
+    "id": 2101,
+    "titles": ["Heute Mit Mir"],
+    "artists": ["Nimo"],
+    "year": 2017,
+    "spotify_id": "7fUWZUNj5qbEuoL6K9947g"
+  },
+  {
+    "id": 2102,
+    "titles": ["Set Adrift on Memory Bliss"],
+    "artists": ["P.M. Dawn"],
+    "year": 1991,
+    "spotify_id": "093UVG0vgKjxj4UDjLIulw"
+  },
+  {
+    "id": 2103,
+    "titles": ["Full Clip"],
+    "artists": ["Gang Starr", "Gang Star", "Gangster"],
+    "year": 1999,
+    "spotify_id": "30oTS7bm0aH3p7lqjEIu8q"
+  },
+  {
+    "id": 2104,
+    "titles": ["m y . l i f e", "My Life"],
+    "artists": ["J. Cole (with 21 Savage & Morray)" ,"J. Cole", "Jermaine Lamarr Cole", "Jermaine Cole",
+                "21 Savage", "Twenty-One Savage", "Morray"],
+    "year": 2021,
+    "spotify_id": "1D3z6HTiQsNmZxjl7F7eoG"
+  },
+  {
+    "id": 2105,
+    "titles": ["The Humpty Dance", "Humpty Dance"],
+    "artists": ["Digital Underground", "DU"],
+    "year": 1990,
+    "spotify_id": "0YEC3pNS0uIKvZb5u4lgsu"
+  },
+  {
+    "id": 2106,
+    "titles": ["The Next Episode", "Next Episode"],
+    "artists": ["Dr. Dre (feat. Snoop Dogg)", "Dr. Dre", "Doctor Dre", "Snoop Dogg", "Snoop Dog"],
+    "year": 1999,
+    "spotify_id": "4LwU4Vp6od3Sb08CsP99GC"
+  },
+  {
+    "id": 2107,
+    "titles": ["Sprinter"],
+    "artists": ["Dave & Central Cee", "Dave", "Santan Dave", "Central Cee", "Central C"],
+    "year": 2023,
+    "spotify_id": "2FDTHlrBguDzQkp7PVj16Q"
+  },
+  {
+    "id": 2108,
+    "titles": ["Cantaloop (Flip Fantasia)", "Cantaloop", "Flip Fantasia"],
+    "artists": ["Us3", "Us Three"],
+    "year": 1992,
+    "spotify_id": "06DSI8L6IT8SizCw3JLckz"
+  },
+  {
+    "id": 2109,
+    "titles": ["Can I Kick It?"],
+    "artists": ["A Tribe Called Quest", "Tribe Called Quest", "ATCQ", "TCQ"],
+    "year": 1990,
+    "spotify_id": "1gSDTZHemEViEBiXysrlo0"
+  },
+  {
+    "id": 2110,
+    "titles": ["Weck Mich Auf"],
+    "artists": ["Samy Deluxe"],
+    "year": 2001,
+    "spotify_id": "47VRtROAdociHgtuVZNoBL"
+  },
+  {
+    "id": 2111,
+    "titles": ["Airwaves"],
+    "artists": ["Pashanim"],
+    "year": 2020,
+    "spotify_id": "5CqkgDH8QZjSqqI3HmYxDD"
+  },
+  {
+    "id": 2112,
+    "titles": ["Promiscuous"],
+    "artists": ["Nelly Furtado (feat. Timbaland)", "Nelly Furtado", "Timbaland"],
+    "year": 2006,
+    "spotify_id": "2gam98EZKrF9XuOkU13ApN"
+  },
+  {
+    "id": 2113,
+    "titles": ["Rockit", "Rocket"],
+    "artists": ["Herbie Hancock"],
+    "year": 1983,
+    "spotify_id": "2nWHzbBWBOePUvAImQv2So"
+  },
+  {
+    "id": 2114,
+    "titles": ["Cherry Lady", "Cherry, Cherry Lady"],
+    "artists": ["Capital Bra", "Joker Bra"],
+    "year": 2019,
+    "spotify_id": "4j5WelE5mkf9A2jmts729h"
+  },
+  {
+    "id": 2115,
+    "titles": ["Break Ya Neck", "Break Your Neck"],
+    "artists": ["Busta Rhymes"],
+    "year": 2001,
+    "spotify_id": "7gKgd0P3dAAePiSQQBqrlf"
+  },
+  {
+    "id": 2116,
+    "titles": ["Regulate"],
+    "artists": ["Warren G & Nate Dogg", "Warren G", "Warren Griffin", "Nate Dogg", "Nate Dog"],
+    "year": 1994,
+    "spotify_id": "7nYvUtkQMx1v80S2FH2s9J"
+  },
+  {
+    "id": 2117,
+    "titles": ["X"],
+    "artists": ["Xzibit"],
+    "year": 2000,
+    "spotify_id": "5stZnlPMYz3Ba8Hbo3ajlP"
+  },
+  {
+    "id": 2118,
+    "titles": ["Not Like Us"],
+    "artists": ["Kendrick Lamar"],
+    "year": 2024,
+    "spotify_id": "6AI3ezQ4o3HUoP6Dhudph3"
+  },
+  {
+    "id": 2119,
+    "titles": ["Für Immer Jung", "Fuer Immer Jung"],
+    "artists": ["Karel Gott & Bushido", "Karel Gott", "Bushido"],
+    "year": 2000,
+    "spotify_id": "3tv1DRqL9KRuIUawu6eYG0"
+  },
+  {
+    "id": 2120,
+    "titles": ["California Love"],
+    "artists": ["2Pac (feat. Dr. Dre and Roger Troutman)", "2pac", "Tupac", "Dr. Dre", "Doctor Dre", "Roger Troutman"],
+    "year": 1995,
+    "spotify_id": "3ia3dJETSOllPsv3LJkE35"
+  },
+  {
+    "id": 2121,
+    "titles": ["I Need Love"],
+    "artists": ["LL Cool J", " Ladies Love Cool James"],
+    "year": 1987,
+    "spotify_id": "519xI1wfOAJvHeV9kFdXaV"
+  },
+  {
+    "id": 2122,
+    "titles": ["Feel So Good"],
+    "artists": ["Mase (feat. Kelly Price)", "Mase", "Kelly Price"],
+    "year": 1997,
+    "spotify_id": "7hfRrdFJgFKK3cJ4rmkecE"
+  },
+  {
+    "id": 2123,
+    "titles": ["Let Me Blow Ya Mind", "Let Me Blow Your Mind"],
+    "artists": ["Eve (feat. Gwen Stefani)", "Eve", "Gwen Stefani"],
+    "year": 2001,
+    "spotify_id": "3RmKpob8xzv1pzHEQrMJah"
+  },
+  {
+    "id": 2124,
+    "titles": ["Changes"],
+    "artists": ["2Pac (feat. Talent)", "2pac", "Tupac", "Talent"],
+    "year": 1998,
+    "spotify_id": "1ofhfV90EnYhEr7Un2fWiv"
+  },
+  {
+    "id": 2125,
+    "titles": ["Prison Break Anthem (Ich Glaub' an Dich)", "Prison Break Anthem (Ich Glaube an Dich)",
+               "Prison Break Anthem", "Ich Glaub' an Dich", "Ich Glaube an Dich"],
+    "artists": ["Azad (feat. Adel Tawil)", "Azad", "Adel Tawil"],
+    "year": 2007,
+    "spotify_id": "1mC06CRaWGhsWhdX99GJqL"
+  },
+  {
+    "id": 2126,
+    "titles": ["Day 'n' Nite", "Day and Nite", "Day 'n' Night", "Day and Night",
+               "Nightmare"],
+    "artists": ["Kid Cudi"],
+    "year": 2008,
+    "spotify_id": "60PAzFNW3vAiAiVK6DRJfB"
+  },
+  {
+    "id": 2127,
+    "titles": ["Buffalo Gals", "Buffalo Girls"],
+    "artists": ["Malcolm McLaren & The World's Famous Supreme Team", "Malcom McLaren",
+                "The World's Famous Supreme Team", "World's Famous Supreme Team", "TWFST"],
+    "year": 1982,
+    "spotify_id": "0bcYkckGP19S4K4dE7Y9TH"
+  },
+  {
+    "id": 2128,
+    "titles": ["Gravel Pit"],
+    "artists": ["Wu-Tang Clan (feat. Paulissa Moorman & Dave Pendlebury)", "Wu-Tang Clan", "WTC",
+                "Paulissa Moorman", "Dave Pendlebury"],
+    "year": 2000,
+    "spotify_id": "5ATV1iQtlQThdBBbb7srw8"
+  },
+  {
+    "id": 2129,
+    "titles": ["White Lines (Don't Don't Do It)", "White Lines", "Don't Don't Do It", "Don't Do It",
+               "Do Not Do Not Do It", "Do Not Do It"],
+    "artists": ["Grandmaster Flash & Grandmaster Melle Mel", "Melle Mel",
+                "Grandmaster Melle Mel", "Grandmaster Flash", "Grandmaster Flash & The Furious Five",
+                "Grandmaster Flash and The Furious Five", "Grandmaster Flash", "The Furious Five",
+                "Furious Five", "Grandmaster Flash & The Furious 5",
+                "Grandmaster Flash and The Furious 5", "The Furious 5", "Furious 5"],
+    "year": 1983,
+    "spotify_id": "2W1ClVyalH5ys0HIN3FGvU"
+  },
+  {
+    "id": 2130,
+    "titles": ["What's Luv?", "What's Love?", "What is Luv?", "What is Love?"],
+    "artists": ["Fat Joe (feat. Ashanti)", "Fat Joe", "Ashanti"],
+    "year": 2001,
+    "spotify_id": "2mKouqwAIdQnMP43zxR89r"
+  },
+  {
+    "id": 2131,
+    "titles": ["Country Grammar (Hot Shit)", "Country Grammar", "Hot Shit"],
+    "artists": ["Nelly"],
+    "year": 2000,
+    "spotify_id": "3wMUvT6eIw2L5cZFG1yH9j"
+  },
+  {
+    "id": 2132,
+    "titles": ["Monsta", "Monster"],
+    "artists": ["Culcha Candela"],
+    "year": 2009,
+    "spotify_id": "3RM5RpRDDdST1njqOMG141"
+  },
+  {
+    "id": 2133,
+    "titles": ["Walk This Way"],
+    "artists": ["Run-DMC & Aerosmith", "Run-DMC", "DMC", "Aerosmith"],
+    "year": 1986,
+    "spotify_id": "2SelIoNf0P0QrHMQnSEX8q"
+  },
+  {
+    "id": 2134,
+    "titles": ["Hip Hop Hooray", "Hip Hop Horay", "Hip Hip Hooray", "Hip Hip Horay"],
+    "artists": ["Naughty by Nature", "NbN"],
+    "year": 1993,
+    "spotify_id": "1SyQ6t9RdRBK0QUCS6a797"
+  },
+  {
+    "id": 2135,
+    "titles": ["Old Town Road"],
+    "artists": ["Lil Nas X", "Little Nas X", "Lil Nas", "Little Nas"],
+    "year": 2018,
+    "spotify_id": "0F7FA14euOIX8KcbEturGH"
+  },
+  {
+    "id": 2136,
+    "titles": ["First Class", "1st Class"],
+    "artists": ["Jack Harlow"],
+    "year": 2022,
+    "spotify_id": "0wHFktze2PHC5jDt3B17DC"
+  },
+  {
+    "id": 2137,
+    "titles": ["My Humps", "Humps"],
+    "artists": ["The Black Eyed Peas", "Black Eyed Peas", "BEP"],
+    "year": 2005,
+    "spotify_id": "20jYtEun4dUdYZ9foaOC48"
+  },
+  {
+    "id": 2138,
+    "titles": ["See You Again", "See U Again"],
+    "artists": ["Tyler, the Creator (feat. Kali Uchis)", "Tyler, the Creator", "Tyler", "Kali Uchis"],
+    "year": 2017,
+    "spotify_id": "7KA4W4McWYRpgf0fWsJZWB"
+  },
+  {
+    "id": 2139,
+    "titles": ["Wolke 7", "Wolke Sieben"],
+    "artists": ["Max Herre"],
+    "year": 2012,
+    "spotify_id": "2Jcx6qkJTt7mFRiIAXX3uc"
+  },
+  {
+    "id": 2140,
+    "titles": ["Now That We Found Love"],
+    "artists": ["Heavy D & The Boyz", "Heavy D and The Boyz", "Heavy D", "The Boyz", "Boyz",
+                "Heavy D & The Boys", "Heavy D and The Boys", "The Boys", "Boys"],
+    "year": 1991,
+    "spotify_id": "1KONmY3enP3r3nIPQidWAy"
+  },
+  {
+    "id": 2141,
+    "titles": ["No Diggity", "Diggity", "No Digity", "Digity"],
+    "artists": ["Blackstreet (feat. Dr. Dre and Queen Pen)", "Blackstreet", "Dr. Dre",
+                "Doctor Dre", "Queen Pen"],
+    "year": 1996,
+    "spotify_id": "6MdqqkQ8sSC0WB4i8PyRuQ"
+  },
+  {
+    "id": 2142,
+    "titles": ["IMMER"],
+    "artists": ["Ski Aggu & makko", "Ski Aggu", "Ski Agu", "makko"],
+    "year": 2024,
+    "spotify_id": "4P2Sdu2zPhm2XN2W9Z8e1X"
+  },
+  {
+    "id": 2143,
+    "titles": ["Paid in Full"],
+    "artists": ["Eric B. & Rakim (feat. Marley Marl)", "Eric B. & Rakim", "Eric B. and Rakim",
+                "Eric B.", "Rakim"],
+    "year": 1987,
+    "spotify_id": "3fatX7w8Wt9nmwGlXZsRFh"
+  },
+  {
+    "id": 2144,
+    "titles": ["Talkin' All That Jazz", "Talking All That Jazz"],
+    "artists": ["Stetsasonic"],
+    "year": 1988,
+    "spotify_id": "6ZF3dNXVuA6E8rOL4FX2EY"
+  },
+  {
+    "id": 2145,
+    "titles": ["P.I.M.P."],
+    "artists": ["50 Cent", "Fifty Cent"],
+    "year": 2003,
+    "spotify_id": "3G0yz3DZn3lfraledmBCT0"
+  },
+  {
+    "id": 2146,
+    "titles": ["'03 Bonnie & Clyde", "2003 Bonnie & Clyde", "Bonnie & Clyde",
+               "'03 Bonnie and Clyde", "2003 Bonnie and Clyde", "Bonnie and Clyde"],
+    "artists": ["Jay-Z (feat. Beyoncé)", "Beyoncé", "Jay-Z", "Jay Z"],
+    "year": 2002,
+    "spotify_id": "5ljCWsDlSyJ41kwqym2ORw"
+  },
+  {
+    "id": 2147,
+    "titles": ["A-N-N-A"],
+    "artists": ["Freundeskreis", "Max Herre", "Don Philippe", "DJ Friction"],
+    "year": 1999,
+    "spotify_id": "6EWtkdeKmVtRjmydTfIR0S"
+  },
+  {
+    "id": 2148,
+    "titles": ["Chabos Wissen Wer der Babo Ist"],
+    "artists": ["Haftbefehl"],
+    "year": 2012,
+    "spotify_id": "6kjBafSuYC8gClzfYu7T1t"
+  },
+  {
+    "id": 2149,
+    "titles": ["Trap Queen"],
+    "artists": ["Fetty Wap"],
+    "year": 2014,
+    "spotify_id": "5iNRPN7oYQvdB9AmeSW6d3"
+  },
+  {
+    "id": 2150,
+    "titles": ["Jam on It"],
+    "artists": ["Newcleus"],
+    "year": 1984,
+    "spotify_id": "1lB2kyB5h9ceZ388GBfC9L"
+  },
+  {
+    "id": 2151,
+    "titles": ["Beautiful Girl"],
+    "artists": ["Luciano"],
+    "year": 2022,
+    "spotify_id": "5xX2LYdXyx0Boa61rZOjq5"
+  },
+  {
+    "id": 2152,
+    "titles": ["Kein Wort"],
+    "artists": ["Juju & Loredana", "Juju", "Loredana"],
+    "year": 2020,
+    "spotify_id": "1hoLUVBx0ixX3kn0EX0P5n"
+  },
+  {
+    "id": 2153,
+    "titles": ["Easy"],
+    "artists": ["CRO"],
+    "year": 2011,
+    "spotify_id": "3FwxpJdlexIR6MeTT56HAm"
+  },
+  {
+    "id": 2154,
+    "titles": ["King Kunta"],
+    "artists": ["Kendrick Lamar"],
+    "year": 2015,
+    "spotify_id": "0N3W5peJUQtI4eyR6GJT5O"
+  },
+  {
+    "id": 2155,
+    "titles": ["I Got 5 on It", "I Got Five on It"],
+    "artists": ["Luniz"],
+    "year": 1995,
+    "spotify_id": "7vfvZp6KZJpxiaW6rI9ieM"
+  },
+  {
+    "id": 2156,
+    "titles": ["My Band", "Band"],
+    "artists": ["D12", "D Twelve"],
+    "year": 2004,
+    "spotify_id": "4XHQyvbrBsQaaBUW1VvmsL"
+  },
+  {
+    "id": 2157,
+    "titles": ["I'm On One", "I am On One"],
+    "artists": ["DJ Khaled (feat. Drake, Rick Ross & Lil Wayne)", "DJ Khaled", "Khaled",
+                "Drake", "Rick Ross", "Lil Wayne", "Little Wayne"],
+    "year": 2011,
+    "spotify_id": "608a1wIsSd5KzMEqm1O7w3"
+  },
+  {
+    "id": 2158,
+    "titles": ["Smack That"],
+    "artists": ["Akon (feat. Eminem)", "Akon", "Eminem"],
+    "year": 2006,
+    "spotify_id": "2kQuhkFX7uSVepCD3h29g5"
+  },
+  {
+    "id": 2159,
+    "titles": ["God's Plan", "God his Plan"],
+    "artists": ["Drake"],
+    "year": 2018,
+    "spotify_id": "6DCZcSspjsKoFjzjrWoCdn"
+  },
+  {
+    "id": 2160,
+    "titles": ["Ring Ring Ring (Ha Ha Hey)", "Ring Ring Ring", "Ring Ring", "Ring",
+               "Ha Ha Hey", "Ha Hey"],
+    "artists": ["De La Soul", "DLS"],
+    "year": 1991,
+    "spotify_id": "1zRW3vr3uw0tdG7iLWUZpn"
+  },
+  {
+    "id": 2161,
+    "titles": ["Leider Geil"],
+    "artists": ["Deichkind"],
+    "year": 2012,
+    "spotify_id": "3gmxpKRiDdCe6ub96LvKx5"
+  },
+  {
+    "id": 2162,
+    "titles": ["Give It to Me"],
+    "artists": ["Timbaland (feat. Nelly Furtado and Justin Timberlake)", "Timbaland", "Nelly Furtado",
+                "Justin Timberlake"],
+    "year": 2007,
+    "spotify_id": "0wbDgMuAoy7O7pL3a69uZx"
+  },
+  {
+    "id": 2163,
+    "titles": ["Express Yourself"],
+    "artists": ["N.W.A."],
+    "year": 1989,
+    "spotify_id": "52IuMfbQa9aqRPz2oYPAI8"
+  },
+  {
+    "id": 2164,
+    "titles": ["Put Your Hands Where My Eyes Could See"],
+    "artists": ["Busta Rhymes (feat. Jamal)", "Busta Rhymes", "Jamal"],
+    "year": 1997,
+    "spotify_id": "1NHwvBmrUje4L1dxfWnXCH"
+  },
+  {
+    "id": 2165,
+    "titles": ["Liebes Lied"],
+    "artists": ["Beginner", "Absolute Beginner"],
+    "year": 1998,
+    "spotify_id": "6YzYyeMV5MY7wHOGskZdzf"
+  },
+  {
+    "id": 2166,
+    "titles": ["Trick Me"],
+    "artists": ["Kelis"],
+    "year": 2003,
+    "spotify_id": "6ERaJuSVPZmYvesOOQyRJO"
+  },
+  {
+    "id": 2167,
+    "titles": ["Turn Down for What"],
+    "artists": ["DJ Snake & Lil Jon", "DJ Snake", "Lil Jon", "Little Jon"],
+    "year": 2013,
+    "spotify_id": "67awxiNHNyjMXhVgsHuIrs"
+  },
+  {
+    "id": 2168,
+    "titles": ["No Sleep till Brooklyn", "No Sleep til Brooklyn", "No Sleep until Brooklyn"],
+    "artists": ["Beastie Boys"],
+    "year": 1986,
+    "spotify_id": "5qxChyzKLEyoPJ5qGrdurN"
+  },
+  {
+    "id": 2169,
+    "titles": ["Endboss"],
+    "artists": ["Marteria"],
+    "year": 2010,
+    "spotify_id": "02ywbmwM0tICk8EOhYIwpw"
+  },
+  {
+    "id": 2170,
+    "titles": ["Ohne Dich"],
+    "artists": ["Kasimir1441 & Badmómzjay", "Kasimir1441", "Kasimir", "Badmómzjay"],
+    "year": 2021,
+    "spotify_id": "1BHgWnOYgtAHhMZU73co1D"
+  },
+  {
+    "id": 2171,
+    "titles": ["Ms. Jackson", "Miss Jackson"],
+    "artists": ["Outkast", "The Outkast"],
+    "year": 2000,
+    "spotify_id": "0I3q5fE6wg7LIfHGngUTnV"
+  },
+  {
+    "id": 2172,
+    "titles": ["Ohne mein Team"],
+    "artists": ["Bonez MC & RAF Camora (feat. Maxwell)", "Bonez MC", "Bones MC",
+                "RAF Camora", "Camora", "Maxwell"],
+    "year": 2016,
+    "spotify_id": "05Mp2UJulSttxQ4E6hQPH3"
+  },
+  {
+    "id": 2173,
+    "titles": ["Tamam Tamam", "Tamam"],
+    "artists": ["Summer Cem"],
+    "year": 2018,
+    "spotify_id": "2eRq2jwsZtb0uGH4qUsvT1"
+  },
+  {
+    "id": 2174,
+    "titles": ["Sommergewitter"],
+    "artists": ["Pashanim"],
+    "year": 2021,
+    "spotify_id": "2H7jZg2HliuQhZjfBblLrZ"
+  },
+  {
+    "id": 2175,
+    "titles": ["See You Again"],
+    "artists": ["Wiz Khalifa (feat. Charlie Puth)", "Wiz Khalifa", "Charlie Puth"],
+    "year": 2015,
+    "spotify_id": "2JzZzZUQj3Qff7wapcbKjc"
+  },
+  {
+    "id": 2176,
+    "titles": ["Black and Yellow"],
+    "artists": ["Wiz Khalifa"],
+    "year": 2010,
+    "spotify_id": "5A6OHHy73AR5tLxgTc98zz"
+  },
+  {
+    "id": 2177,
+    "titles": ["Nuthin' but a 'G' Thang", "Nuthing but a 'G' Thang", "Nothin' but a 'G' Thang",
+               "Nothing but a 'G' Thang"],
+    "artists": ["Dr. Dre (feat. Snoop Dogg)", "Dr. Dre", "Doctor Dre", "Snoop Dogg", "Snoop Dog"],
+    "year": 1992,
+    "spotify_id": "5Tbpp3OLLClPJF8t1DmrFD"
+  },
+  {
+    "id": 2178,
+    "titles": ["Powerade"],
+    "artists": ["Ion Miles & SiraOne & BHZ", "Ion Miles", "SiraOne", "Sira One", "BHZ"],
+    "year": 2022,
+    "spotify_id": "0s8AvyGCRVZ0waM9aJdAHI"
+  },
+  {
+    "id": 2179,
+    "titles": ["Who Am I? (What's My Name?)", "Who Am I? (What Is My Name?)", "Who Am I?",
+               "What's My Name?", "What Is My Name?"],
+    "artists": ["Snoop Dogg", "Snoop Dog"],
+    "year": 1993,
+    "spotify_id": "0eO8MW9YSTK3CjdaTYKlhF"
+  },
+  {
+    "id": 2180,
+    "titles": ["Nachts Wach"],
+    "artists": ["makko & Miksu/Macloud", "makko", "Miksu/Macloud", "Miksu", "Macloud"],
+    "year": 2022,
+    "spotify_id": "3kgt8Ys78I6GBZlQrWqZiA"
+  },
+  {
+    "id": 2181,
+    "titles": ["Erfolg ist Kein Glück", "Erfolg ist Kein Glueck"],
+    "artists": ["Kontra K", "Kontra"],
+    "year": 2015,
+    "spotify_id": "4xuVfUXkHe1YZZZWNICGcV"
+  },
+  {
+    "id": 2182,
+    "titles": ["Reimemonster"],
+    "artists": ["Afrob (feat. Ferris MC)", "Afrob", "Ferris MC", "Ferris"],
+    "year": 1999,
+    "spotify_id": "0pgx8fWphTTM9Kv5KjWpXy"
+  },
+  {
+    "id": 2183,
+    "titles": ["Ready or Not"],
+    "artists": ["Fugees"],
+    "year": 1996,
+    "spotify_id": "3vZO25GdYuqFrR1kzZADnp"
+  },
+  {
+    "id": 2184,
+    "titles": ["Bamba"],
+    "artists": ["Luciano (feat. Aitch & Bia)", "Luciano", "Aitch", "Bia"],
+    "year": 2022,
+    "spotify_id": "7sJNeWTXkZCEC7OnFMpGWL"
+  },
+  {
+    "id": 2185,
+    "titles": ["So Wie Du Bist"],
+    "artists": ["MoTrip (feat. Lary)", "MoTrip", "Lary"],
+    "year": 2015,
+    "spotify_id": "12SH8NE1e17yItgsb2gitp"
+  },
+  {
+    "id": 2186,
+    "titles": ["So 'ne Musik", "So eine Musik"],
+    "artists": ["Deichkind"],
+    "year": 2015,
+    "spotify_id": "4GqLvfkDkoFjuEoUXFUnZg"
+  },
+  {
+    "id": 2187,
+    "titles": ["Perfect Gentleman"],
+    "artists": ["Wyclef Jean"],
+    "year": 2000,
+    "spotify_id": "3kJrESsM3ISObFTfBQfJ8H"
+  },
+  {
+    "id": 2188,
+    "titles": ["Bring the Noise"],
+    "artists": ["Public Enemy", "PE"],
+    "year": 1987,
+    "spotify_id": "1i3xxWMwdPKDqrTEA9VgRc"
+  },
+  {
+    "id": 2189,
+    "titles": ["King of Rock"],
+    "artists": ["Run-DMC", "DMC"],
+    "year": 1985,
+    "spotify_id": "7112WRQXlBGe4Os43yw8gV"
+  },
+  {
+    "id": 2190,
+    "titles": ["Emotions 2.0", "Emotions 2", "Emotions Zwei", "Emotions Two", "Emotions"],
+    "artists": ["Ufo361 & Céline", "Ufo361", "Ufo Drei-Sechs-Eins", "Ufo", "Céline"],
+    "year": 2020,
+    "spotify_id": "4O4YjcteBewBS603SK1enn"
+  },
+  {
+    "id": 2191,
+    "titles": ["Boom! Shake the Room", "Boom!", "Shake the Room"],
+    "artists": ["DJ Jazzy Jeff & The Fresh Prince", "DJ Jazzy Jeff and The Fresh Prince", "DJ Jazzy Jeff", "Jazzy Jeff", "The Fresh Prince", "Fresh Prince"],
+    "year": 1993,
+    "spotify_id": "5ZDL1Ap2Mwhk5xhmQ41Ei2"
+  },
+  {
+    "id": 2192,
+    "titles": ["Hobby Hobby", "Hobby"],
+    "artists": ["Mero"],
+    "year": 2019,
+    "spotify_id": "1Mp78QzFO1GrE5h1HvM0Rp"
+  },
+  {
+    "id": 2193,
+    "titles": ["(Hey You) The Rock Steady Crew", "The Rock Steady Crew", "Rock Steady Crew", "Hey You"],
+    "artists": ["Rock Steady Crew", "The Rock Steady Crew", "RSC"],
+    "year": 1983,
+    "spotify_id": "7I9cYR8tnejdB1Z8G76S00"
+  },
+  {
+    "id": 2194,
+    "titles": ["Anaconda"],
+    "artists": ["Nicki Minaj"],
+    "year": 2014,
+    "spotify_id": "5eqiMMbaeUZ32Q7sS00H35"
+  },
+  {
+    "id": 2195,
+    "titles": ["Kimnotyze"],
+    "artists": ["DJ Tomekk (feat. Lil' Kim & Trooper Da Don)", "DJ Tomekk", "DJ Tomek", "Tomekk", "Tomek",
+                "Lil Kim", "Little Kim", "Trooper Da Don"],
+    "year": 2002,
+    "spotify_id": "6Hn28vF3xTsg7ukG1pGIDF"
+  },
+  {
+    "id": 2196,
+    "titles": ["The Real Slim Shady", "Real Slim Shady"],
+    "artists": ["Eminem"],
+    "year": 2000,
+    "spotify_id": "3yfqSUWxFvZELEM4PmlwIR"
+  },
+  {
+    "id": 2197,
+    "titles": ["Mit Dir"],
+    "artists": ["Freundeskreis", "Max Herre", "Don Philippe", "DJ Friction"],
+    "year": 1999,
+    "spotify_id": "5EX0HiIyvhavnpjgbwDCeL"
+  },
+  {
+    "id": 2198,
+    "titles": ["Schwarz zu Blau"],
+    "artists": ["Peter Fox"],
+    "year": 2008,
+    "spotify_id": "7cKkSLK990f0s7RD3x3y6d"
+  },
+  {
+    "id": 2199,
+    "titles": ["If I Ruled the World (Imagine That)", "If I Ruled the World", "Imagine That"],
+    "artists": ["Nas (feat. Lauryn Hill)", "Nas", "Lauryn Hill", "Ms. Lauryn Hill"],
+    "year": 1996,
+    "spotify_id": "5PQmSHzWnlgG4EBuIqjac2"
+  },
+  {
+    "id": 2200,
+    "titles": ["Whoomp! (There It Is)", "Whoomp!", "There It Is"],
+    "artists": ["Tag Team"],
+    "year": 1993,
+    "spotify_id": "3oWXoSkjdbTlQlteizN7Hb"
+  },
+  {
+    "id": 2201,
+    "titles": ["Fancy"],
+    "artists": ["Iggy Azalea (feat. Charli XCX)", "Iggy Azalea", "Charli XCX", "Charli"],
+    "year":  2014,
+    "spotify_id": "3W3KtDwAIg3mAruSpnfG3Q"
+  },
+  {
+    "id": 2202,
+    "titles": ["So Perfekt"],
+    "artists": ["Casper & Marteria", "Casper", "Marteria"],
+    "year": 2011,
+    "spotify_id": "2xWEfTSpapoxnmkeSb0hHf"
+  },
+  {
+    "id": 2203,
+    "titles": ["Troy"],
+    "artists": ["Die Fantastischen Vier", "Fantastische Vier", "Fantastischen Vier", "Fanta Vier",
+                "Die Fantastischen 4", "Fantastische 4", "Fantastischen 4", "Fanta 4"],
+    "year": 2004,
+    "spotify_id": "6QRng4ZFJxeRnjcnquKlx2"
+  },
+  {
+    "id": 2204,
+    "titles": ["Intergalactic"],
+    "artists": ["Beastie Boys"],
+    "year": 1998,
+    "spotify_id": "5fpizYGbi5IQoEraj6FP0R"
+  },
+  {
+    "id": 2205,
+    "titles": ["Apache (Jump On It)", "Apache", "Jump On It"],
+    "artists": ["The Sugarhill Gang", "Sugarhill Gang", "SG"],
+    "year": 1981,
+    "spotify_id": "2Xgs2rDctV0KnEz5jauqa1"
+  },
+  {
+    "id": 2206,
+    "titles": ["Lucid Dreams"],
+    "artists": ["Juice Wrld", "Juice World"],
+    "year": 2017,
+    "spotify_id": "285pBltuF7vW8TeWk8hdRR"
+  },
+  {
+    "id": 2207,
+    "titles": ["Whatta Man", "What A Man"],
+    "artists": ["Salt-N-Pepa", "Salt and Pepa", "Salt & Pepa",
+                "Salt and Pepper", "Salt & Pepper", "Salt-N-Pepper"],
+    "year": 1993,
+    "spotify_id": "7sJN693sYKEIEMu7fc5VnJ"
+  },
+  {
+    "id": 2208,
+    "titles": ["Empire State of Mind"],
+    "artists": ["Jay-Z (feat. Alicia Keys)", "Alicia Keys", "Jay-Z", "Jay Z"],
+    "year": 2009,
+    "spotify_id": "2igwFfvr1OAGX9SKDCPBwO"
+  },
+  {
+    "id": 2209,
+    "titles": ["Rapper's Delight", "Rapper His Delight", "Rapper Hers Delight", "Rapper Theirs Delight", 
+               "Rapper Delight"],
+    "artists": ["The Sugarhill Gang", "Sugarhill Gang", "SG"],
+    "year": 1979,
+    "spotify_id": "2XbwFs07dfm2MGQuYmRMZT"
+  },
+  {
+    "id": 2210,
+    "titles": ["Truth Hurts"],
+    "artists": ["Lizzo"],
+    "year": 2017,
+    "spotify_id": "3HWzoMvoF3TQfYg4UPszDq"
+  },
+  {
+    "id": 2211,
+    "titles": ["The Breaks", "Breaks"],
+    "artists": ["Kurtis Blow"],
+    "year": 1980,
+    "spotify_id": "19tYXOfQFZ7gdGA3LAH76I"
+  },
+  {
+    "id": 2212,
+    "titles": ["Planet Rock"],
+    "artists": ["Afrika Bambaataa & The Soulsonic Force", "Afrika Bambaataa", "Afrika Bambaata",
+                "The Soulsonic Force", "Soulsonic Force", "SF"],
+    "year": 1982,
+    "spotify_id": "4FupIlegZgvXUuK79qcoKW"
+  },
+  {
+    "id": 2213,
+    "titles": ["Akon"],
+    "artists": ["Jazeek"],
+    "year": 2025,
+    "spotify_id": "6YFNhYf7A33biVmMG1JSQf"
+  },
+  {
+    "id": 2214,
+    "titles": ["All 4 One", "All Four One", "All For One"],
+    "artists": ["Kool Savas & Azad", "Kool Savas", "Azad"],
+    "year": 2005,
+    "spotify_id": "5stqdnEmsr98AV26GweHJ8"
+  },
+  {
+    "id": 2215,
+    "titles": ["Thrift Shop"],
+    "artists": ["Macklemore & Ryan Lewis (feat. Wanz)", "Macklemore", "Ryan Lewis", "Wanz"],
+    "year": 2012,
+    "spotify_id": "6CjtS2JZH9RkDz5UVInsa9"
+  },
+  {
+    "id": 2216,
+    "titles": ["Affalterbach"],
+    "artists": ["Shindy & Shirin David", "Shindy", "Shirin David"],
+    "year": 2026,
+    "spotify_id": "XXXXX"
+  },
+  {
+    "id": 2217,
+    "titles": ["Bauch Beine Po"],
+    "artists": ["Shirin David"],
+    "year": 2024,
+    "spotify_id": "13QjwdjKiFrKzYznJu6iiP"
+  },
+  {
+    "id": 2218,
+    "titles": ["Me Myself and I"],
+    "artists": ["De La Soul", "DLS"],
+    "year": 1989,
+    "spotify_id": "792UwI6utk5DMQUT1KXa5E"
+  },
+  {
+    "id": 2219,
+    "titles": ["Anxiety"],
+    "artists": ["Doechii", "Doechi"],
+    "year": 2025,
+    "spotify_id": "1musbempyJAw5gfSKZHXP9"
+  },
+  {
+    "id": 2220,
+    "titles": ["Funky Cold Medina"],
+    "artists": ["Tone Lōc"],
+    "year": 1989,
+    "spotify_id": "5YIF6HSOtHN9HdcE5IPzMe"
+  },
+  {
+    "id": 2221,
+    "titles": ["Jump"],
+    "artists": ["Kris Kross"],
+    "year": 1992,
+    "spotify_id": "27AHAtAirQapVldIm4c9ZX"
+  },
+  {
+    "id": 2222,
+    "titles": ["Kids (2 Finger an den Kopf)", "Kids", "2 Finger an den Kopf", "Zwei Finger an den Kopf"],
+    "artists": ["Marteria"],
+    "year": 2013,
+    "spotify_id": "3pJlJBxitGP7Btt5veLnDd"
+  },
+  {
+    "id": 2223,
+    "titles": ["Nordisch by Nature"],
+    "artists": ["Fettes Brot"],
+    "year": 1995,
+    "spotify_id": "5PVV8L3SZlzXqwYyljpFXQ"
+  },
+  {
+    "id": 2224,
+    "titles": ["Tha Crossroads", "The Crossroads", "Crossroads"],
+    "artists": ["Bone Thugs-n-Harmony", "Bone Thugs and Harmony", "Thugs and Harmony", "BTnH"],
+    "year": 1995,
+    "spotify_id": "5KSJ9k1FYjFLnIRlJT2wF8"
+  },
+  {
+    "id": 2225,
+    "titles": ["It Takes Two"],
+    "artists": ["Rob Base & DJ E-Z Rock", "Rob Base and DJ E-Z Rock", "Rob Base", "DJ E-Z Rock", "E-Z Rock"],
+    "year": 1988,
+    "spotify_id": "0gFB5H3pHN13ERt2FyMuWi"
+  },
+  {
+    "id": 2226,
+    "titles": ["The Message", "Message"],
+    "artists": ["Grandmaster Flash & The Furious Five", "Grandmaster Flash and The Furious Five",
+                "Grandmaster Flash", "The Furious Five", "Furious Five", "Grandmaster Flash & The Furious 5",
+                "Grandmaster Flash and The Furious 5", "The Furious 5", "Furious 5"],
+    "year": 1982,
+    "spotify_id": "1vePC77pxGSUXLErDHuGtH"
+  },
+  {
+    "id": 2227,
+    "titles": ["Doo Wop (That Thing)", "Doo Wop", "Do Wop", "That Thing"],
+    "artists": ["Lauryn Hill", "Ms. Lauryn Hill"],
+    "year": 1998,
+    "spotify_id": "0uEp9E98JB5awlA084uaIg"
+  },
+  {
+    "id": 2228,
+    "titles": ["Höha, Schnella, Weita", "Hoeha, Schnella, Weita", "Höher, Schneller, Weiter",
+               "Hoeher, Schneller, Weiter"],
+    "artists": ["Rödelheim Hartreim Projekt", "Roedelheim Hartreim Projekt", "Rödelheim Hartreim",
+                "Roedelheim Hartreim", "RHP"],
+    "year": 1996,
+    "spotify_id": "0s48f8orPzBYiAUNJlvaof"
+  },
+  {
+    "id": 2229,
+    "titles": ["Traum"],
+    "artists": ["CRO"],
+    "year": 2014,
+    "spotify_id": "6D579iDSk3u8fCokhBl8dQ"
+  },
+  {
+    "id": 2230,
+    "titles": ["Ahnma"],
+    "artists": ["Beginner (feat. Gzuz und Gentleman)", "Beginner", "Absolute Beginner", "Gzuz", "Gentleman"],
+    "year": 2016,
+    "spotify_id": "1sr9lbDDGIxmFK7wUdA1Z8"
   }
 ]

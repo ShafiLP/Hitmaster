@@ -134,19 +134,24 @@ public class Database {
                 "hitster-de_schlager.png", "schlager-de.png", "schlager-de.csv", false));
             this.addSongsToSetFromCsv("schlager-de.csv", 6);
 
-            this.addSetToDatabase(new GameSet(7, "Bayern1 Expansion", "DE",
+            this.addSetToDatabase(new GameSet(7, "Urban & Hip-Hop - DE", "DE",
+                "Tauche ein in die Welt der Beats, Reime, Rap und ikonischen Hymnen mit HITSTER Urban & Hip-Hop! Diese spezielle Ausgabe nimmt dich mit auf eine musikalische Reise durch Urban Music aus mehreren Jahrzehnten, von legendären Songs bis zu modernen Hip-Hop-Hits.",
+                "hitster-de_urban.png", "urban-de.png", "urban-de.csv", false));
+            this.addSongsToSetFromCsv("urban-de.csv", 7);
+
+            this.addSetToDatabase(new GameSet(8, "Bayern1 Expansion", "DE",
                 "Bayern 1 Hitliste: Tauche ein in eine Sammlung von über 150 Karten mit den größten Radiohits der vergangenen Jahrzehnte.",
                 "hitster-de_bavaria.png", "bavaria-ex.png", "bavaria-ex.csv", false));
-            this.addSongsToSetFromCsv("bavaria-ex.csv", 7);
+            this.addSongsToSetFromCsv("bavaria-ex.csv", 8);
 
-            this.addSetToDatabase(new GameSet(8, "Rock & Metal - Nordics", "INT", null, "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
-            this.addSongsToSetFromCsv("rock-nordics.csv", 8);
+            this.addSetToDatabase(new GameSet(9, "Rock & Metal - Nordics", "INT", null, "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
+            this.addSongsToSetFromCsv("rock-nordics.csv", 9);
 
-            this.addSetToDatabase(new GameSet(9, "Punk Expansion", "INT", null, "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
-            this.addSongsToSetFromCsv("punk-expansion.csv", 9);
+            this.addSetToDatabase(new GameSet(10, "Punk Expansion", "INT", null, "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
+            this.addSongsToSetFromCsv("punk-expansion.csv", 10);
 
-            this.addSetToDatabase(new GameSet(10, "Deutschrock Expansion", "DE", null, "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
-            this.addSongsToSetFromCsv("deutschrock-ex.csv", 10);
+            this.addSetToDatabase(new GameSet(11, "Deutschrock Expansion", "DE", null, "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
+            this.addSongsToSetFromCsv("deutschrock-ex.csv", 11);
 
             Log.Success("Succesfully initialized Database.");
             return true;
