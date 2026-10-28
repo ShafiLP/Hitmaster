@@ -9,6 +9,7 @@ import hitmaster.design.ChatPane;
 import hitmaster.design.ChipPane;
 import hitmaster.design.DiscardPile;
 import hitmaster.design.OpponentPane;
+import hitmaster.design.PingDisplay;
 import hitmaster.design.PlayerCard;
 import hitmaster.design.SongCard;
 import hitmaster.design.StealOverlayPane;
@@ -46,6 +47,7 @@ public class GameView extends Pane {
     private boolean isStealing = false;
 
     // UI elements
+    private final PingDisplay PING;
     private final ChatPane CHAT;
     private final CardStripPane STRIP;
     private final DiscardPile DISCARD_PILE;
@@ -70,35 +72,38 @@ public class GameView extends Pane {
     private OpponentPane OPPONENT_PANE;
 
     // ==============================
-    // CONSTRUCTOR
+    // #region CONSTRUCTOR
     // ==============================
 
-    public GameView(GameLogic GAME) {
-        this.GAME = GAME;
+    public GameView(GameLogic game) {
+        this.GAME = game;
 
         final double CONTROLS_WIDTH = 320;
         final double GAP = 20;
 
-        this.widthProperty().addListener((obs, oldVal, newVal) -> {
-            if (currentCard != null)
-                this.keepCardInBounds(currentCard);
+        widthProperty().addListener((obs, oldVal, newVal) -> {
+            if (currentCard != null) keepCardInBounds(currentCard);
         });
 
-        // 1) Chat Pane
+        // ===== PING =====
+        PING = new PingDisplay(50, 100);
+        getChildren().add(PING);
+
+        // ===== CHAT =====
         CHAT = new ChatPane(GAME);
         CHAT.addInfoMessage("Welcome to Hitmaster!");
         VBox.setVgrow(CHAT, Priority.ALWAYS);
 
-        // 2) Card Strip Pane
+        // ===== CARD STRIP =====
         STRIP = new CardStripPane(GAME);
         STRIP.setPrefHeight(200);
 
-        STRIP.prefWidthProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + (GAP * 3)));
-        STRIP.layoutYProperty().bind(this.heightProperty().subtract(STRIP.prefHeightProperty()).subtract(GAP));
+        STRIP.prefWidthProperty().bind(widthProperty().subtract(CONTROLS_WIDTH + (GAP * 3)));
+        STRIP.layoutYProperty().bind(heightProperty().subtract(STRIP.prefHeightProperty()).subtract(GAP));
         STRIP.setLayoutX(GAP);
-        this.getChildren().add(STRIP);
+        getChildren().add(STRIP);
 
-        // 3) Card Pile
+        // ===== CARD PILE =====
         BorderPane cardPile = new BorderPane();
         cardPile.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 
@@ -130,14 +135,14 @@ public class GameView extends Pane {
         cardPile.setPrefSize(targetHeight, totalPileHeight);
 
         cardPile.setLayoutX(GAP);
-        cardPile.layoutYProperty().bind(this.heightProperty().subtract(cardPile.prefHeightProperty()).divide(2));
+        cardPile.layoutYProperty().bind(heightProperty().subtract(cardPile.prefHeightProperty()).divide(2));
 
-        this.getChildren().add(cardPile);
+        getChildren().add(cardPile);
 
-        // 4) Discard Pile
+        // ===== DISCARD PILE =====
         DISCARD_PILE = new DiscardPile();
 
-        // 5) Text fields and button
+        // ===== INPUTS =====
         ARTIST = new TextField();
         ARTIST.getStyleClass().add("modern-textbox");
         ARTIST.setPromptText("Artist...");
@@ -151,16 +156,16 @@ public class GameView extends Pane {
         SUBMIT.setMaxWidth(Double.MAX_VALUE);
         SUBMIT.setOnAction(e -> {
             if (!isStealing) {
-                this.startStealTime();
+                startStealTime();
             }
             else {
-                this.checkStealGuess();
+                checkStealGuess();
             }
         });
 
         VBox inputs = new VBox(8, ARTIST, TITLE, SUBMIT);
 
-        // 6) Spotify media control
+        // ===== MEDIA CONTROL =====
         BACKWARD = new Button("⏮");
         PLAYPAUSE = new Button("►");
         FORWARD = new Button("⏭");
@@ -176,13 +181,13 @@ public class GameView extends Pane {
         INSERT.getStyleClass().add("modern-button");
 
         BACKWARD.setOnAction(e -> { GAME.seek5secBackward(); GAME.sendObject("SONG:BACKWARD"); } );
-        PLAYPAUSE.setOnAction(e -> { this.playPause(); });
+        PLAYPAUSE.setOnAction(e -> { playPause(); });
         FORWARD.setOnAction(e -> { GAME.seek5secForward(); GAME.sendObject("SONG:FORWARD"); });
         RESTART.setOnAction(e -> { GAME.restartCurrentSong(); GAME.sendObject("SONG:RESTART"); });
         SKIP.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 1) GAME.skipCurrentSong(); });
         INSERT.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 3) GAME.insertCardIntoStrip(); });
 
-        this.setInputsEnabled(false);
+        setInputsEnabled(false);
 
         HBox mediaRow = new HBox(15, BACKWARD, PLAYPAUSE, FORWARD, RESTART, SKIP, INSERT);
         mediaRow.setAlignment(Pos.CENTER);
@@ -206,8 +211,7 @@ public class GameView extends Pane {
         int vol = GAME.getVolume();
         Slider volumeSlider = new Slider(0, 100, vol >= 0 ? vol : 0);
 
-        if (vol == -1)
-            volumeSlider.setDisable(true);
+        if (vol == -1) volumeSlider.setDisable(true);
         
         volumeSlider.getStyleClass().add("modern-slider");
         volumeSlider.setOnMouseReleased(e -> { GAME.setVolume((int) volumeSlider.getValue()); });
@@ -216,10 +220,10 @@ public class GameView extends Pane {
         HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
         audioRow.setAlignment(Pos.CENTER_LEFT);
 
-        // 7) Chip panel
+        // 7) ===== CHIPS =====
         CHIP_PANE = new ChipPane();
 
-        // 8) Build full panel
+        // 8) ===== BUILD UI =====
         VBox controlPanel = new VBox(15, inputs, mediaRow, audioRow);
 
         VBox rightSidebar = new VBox(15);
@@ -227,15 +231,17 @@ public class GameView extends Pane {
 
         rightSidebar.setAlignment(Pos.CENTER_RIGHT);
 
-        rightSidebar.layoutXProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + GAP));
+        rightSidebar.layoutXProperty().bind(widthProperty().subtract(CONTROLS_WIDTH + GAP));
         rightSidebar.setLayoutY(GAP);
-        rightSidebar.prefHeightProperty().bind(this.heightProperty().subtract(GAP * 2));
+        rightSidebar.prefHeightProperty().bind(heightProperty().subtract(GAP * 2));
 
         rightSidebar.getChildren().addAll(CHAT, DISCARD_PILE, CHIP_PANE, controlPanel);
         
-        this.getChildren().add(rightSidebar);
+        getChildren().add(rightSidebar);
         Platform.runLater(this::requestFocus);
     }
+
+    // #endregion
 
     //#region UI OPERATIONS
 

@@ -11,6 +11,10 @@
     -fx-secondary-accent-brush: #3e92ff;
     -fx-tertiary-accent-brush: #ff3838;
 
+    -fx-green-brush: rgb(0, 255, 0);
+    -fx-yellow-brush: rgb(255, 255, 0);
+    -fx-red-brush: rgb(255, 0, 0);
+
     -fx-transparent: rgba(0, 0, 0, 0.2);
     -fx-transparent-focus: rgba(0, 0, 0, 0.3);
 
@@ -266,4 +270,15 @@
     -fx-background-radius: 12;
     -fx-background-color: -fx-subtile-transparent;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 2);
+}
+
+/* ============================== */
+/* Ping Status                    */
+/* ============================== */
+
+.ping-display {
+    -fx-ping-grey: -fx-secondary-brush;
+    -fx-ping-green: -fx-green-brush;
+    -fx-ping-yellow: -fx-yellow-brush;
+    -fx-ping-red: -fx-red-brush;
 }
