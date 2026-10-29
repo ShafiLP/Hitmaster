@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -90,18 +91,44 @@ public class LobbyHostView {
         subtitle.getStyleClass().add("header-description");
         titleContainer.getChildren().addAll(title, subtitle);
 
-        String localIp = "Unknown";
+        String tempIp = "Unknown";
         try {
-            localIp = InetAddress.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
+            tempIp = InetAddress.getLocalHost().getHostAddress();
+        }
+        catch (UnknownHostException e) {
             Log.Error("Could not determine local IP");
         }
-        Label ipLabel = new Label("Your IP: " + localIp);
+        final String localIp = tempIp;
+
+        String tempCensoredIp = "";
+        for (int i = 0; i < localIp.length(); i++) {
+            if (localIp.charAt(i) == '.') {
+                tempCensoredIp += ".";
+            }
+            else {
+                tempCensoredIp += "*";
+            }
+        }
+        final String censoredIp = tempCensoredIp;
+
+        Label ipLabel = new Label("Your IP: " + censoredIp);
         ipLabel.getStyleClass().add("modern-label"); 
         ipLabel.setStyle("-fx-text-fill: gray; -fx-background-color: transparent; -fx-font-size: 13px;");
 
+        Button revealIpButton = new Button("👁️");
+        revealIpButton.getStyleClass().add("modern-button");
+        revealIpButton.setTooltip(new Tooltip("Show IP"));
+        revealIpButton.setOnAction(e -> {
+            if (ipLabel.getText().contains("*")) {
+                ipLabel.setText("Your IP: " + localIp);
+            }
+            else {
+                ipLabel.setText("Your IP: " + censoredIp);
+            }
+        });
+
         HBox.setHgrow(titleContainer, Priority.ALWAYS);
-        header.getChildren().addAll(titleContainer, ipLabel);
+        header.getChildren().addAll(titleContainer, ipLabel, revealIpButton);
 
         // =========================
         // CONTENT
