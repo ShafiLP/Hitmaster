@@ -8,9 +8,9 @@ import hitmaster.design.CardStripPane;
 import hitmaster.design.ChatPane;
 import hitmaster.design.ChipPane;
 import hitmaster.design.DiscardPile;
-import hitmaster.design.OpponentPane;
 import hitmaster.design.PingDisplay;
 import hitmaster.design.PlayerCard;
+import hitmaster.design.PlayerPane;
 import hitmaster.design.SongCard;
 import hitmaster.design.StealOverlayPane;
 import hitmaster.design.WinnerPane;
@@ -71,7 +71,7 @@ public class GameView extends BorderPane {
     private SongCard currentCard;
     private PlayerCard stealCard = new PlayerCard(null);
 
-    private OpponentPane OPPONENT_PANE;
+    private final PlayerPane PLAYER_PANE;
 
     // ==============================
     // #region CONSTRUCTOR
@@ -247,18 +247,18 @@ public class GameView extends BorderPane {
         leftSidebar.setPadding(new Insets(PADDING, 0, 0, PADDING));
         leftSidebar.setAlignment(Pos.TOP_LEFT);
 
-        OPPONENT_PANE = new OpponentPane(null);
-        OPPONENT_PANE.setPrefWidth(400);
-        OPPONENT_PANE.setMinWidth(400);
-        OPPONENT_PANE.setMaxWidth(400);
-        OPPONENT_PANE.setVisible(false);
-        OPPONENT_PANE.setManaged(false);
+        PLAYER_PANE = new PlayerPane();
+        PLAYER_PANE.setPrefWidth(400);
+        PLAYER_PANE.setMinWidth(400);
+        PLAYER_PANE.setMaxWidth(400);
+        PLAYER_PANE.setVisible(false);
+        PLAYER_PANE.setManaged(false);
 
         VBox leftElements = new VBox(15);
         leftElements.setAlignment(Pos.BOTTOM_LEFT);
         leftElements.getChildren().addAll(cardPile, DISCARD_PILE);
 
-        leftSidebar.getChildren().addAll(OPPONENT_PANE, getVerticalSpacer(), leftElements);
+        leftSidebar.getChildren().addAll(PLAYER_PANE, getVerticalSpacer(), leftElements);
         setLeft(leftSidebar);
 
         VBox controlPanel = new VBox(15, inputs, mediaRow, audioRow);
@@ -763,9 +763,9 @@ public class GameView extends BorderPane {
      * @param opponent Player object of opponent.
      */
     public void initializeOpponentPane(Player opponent) {
-        OPPONENT_PANE.initialize(opponent);
-        OPPONENT_PANE.setVisible(true);
-        OPPONENT_PANE.setManaged(true);
+        PLAYER_PANE.initialize(opponent);
+        PLAYER_PANE.setVisible(true);
+        PLAYER_PANE.setManaged(true);
     }
 
     /**
@@ -792,10 +792,10 @@ public class GameView extends BorderPane {
             }
 
             // 3) Set new opponent progress
-            OPPONENT_PANE.updateAvatar(GAME.getPreviousPlayer());
-            OPPONENT_PANE.setName(GAME.getPreviousPlayer().username);
-            OPPONENT_PANE.setSongs(GAME.getPreviousPlayer().songs);
-            OPPONENT_PANE.setChipsCount(GAME.getPreviousPlayer().hitmasterPoints);
+            PLAYER_PANE.updateAvatar(GAME.getPreviousPlayer());
+            PLAYER_PANE.setName(GAME.getPreviousPlayer().username);
+            PLAYER_PANE.setSongs(GAME.getPreviousPlayer().songs);
+            PLAYER_PANE.setChipsCount(GAME.getPreviousPlayer().hitmasterPoints);
         });
     }
 
@@ -804,7 +804,7 @@ public class GameView extends BorderPane {
      * @param songs New set of songs for Opponent Pane.
      */
     public void updateOpponentCards(List<Song> songs) {
-        Platform.runLater(() -> OPPONENT_PANE.setSongs(songs));
+        Platform.runLater(() -> PLAYER_PANE.setSongs(songs));
     }
 
     /**
@@ -813,7 +813,7 @@ public class GameView extends BorderPane {
      * @param song
      */
     public void addOpponentCard(Song song) {
-        Platform.runLater(() -> OPPONENT_PANE.addSong(song));
+        Platform.runLater(() -> PLAYER_PANE.addSong(song));
     }
 
     /**
@@ -821,7 +821,7 @@ public class GameView extends BorderPane {
      * Only works when opponent has less than three chips.
      */
     public void addOpponentChip() {
-        Platform.runLater(() -> OPPONENT_PANE.addChip());
+        Platform.runLater(() -> PLAYER_PANE.addChip());
     }
 
     /**
@@ -829,7 +829,7 @@ public class GameView extends BorderPane {
      * Only works when opponent has one or more chips.
      */
     public void removeOpponentChip() {
-        Platform.runLater(() -> OPPONENT_PANE.removeChip());
+        Platform.runLater(() -> PLAYER_PANE.removeChip());
     }
 
     /**
@@ -837,8 +837,8 @@ public class GameView extends BorderPane {
      * If opponent has no chips, method will do nothing.
      */
     public void removeAllOpponentChips() {
-        while (OPPONENT_PANE.getChipsCount() > 0) {
-            Platform.runLater(() -> OPPONENT_PANE.removeChip());
+        while (PLAYER_PANE.getChipsCount() > 0) {
+            Platform.runLater(() -> PLAYER_PANE.removeChip());
         }
     }
 
@@ -849,7 +849,7 @@ public class GameView extends BorderPane {
      */
     public void paintOpponentCard(Song song, String cssColor) {
         Platform.runLater(() -> {
-            OPPONENT_PANE.paintOpponentCard(song, cssColor);
+            PLAYER_PANE.paintPlayerCard(song, cssColor);
         });
     }
 
@@ -859,7 +859,7 @@ public class GameView extends BorderPane {
      */
     public void resetOpponentCard() {
         Platform.runLater(() -> {
-            OPPONENT_PANE.resetOpponentCard();
+            PLAYER_PANE.resetPlayerCard();
         });
     }
 
@@ -953,7 +953,7 @@ public class GameView extends BorderPane {
             return;
 
         GAME.getPreviousPlayer().hitmasterPoints--;
-        OPPONENT_PANE.removeChip();
+        PLAYER_PANE.removeChip();
 
         // 2) Set steal state
         isStealing = true;
@@ -1060,8 +1060,8 @@ public class GameView extends BorderPane {
      * Gets Opponent Pane and returns it.
      * @return Opponent Pane.
      */
-    public OpponentPane getOpponentPane() {
-        return this.OPPONENT_PANE;
+    public PlayerPane getOpponentPane() {
+        return this.PLAYER_PANE;
     }
 
     //#endregion
