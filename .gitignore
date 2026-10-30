@@ -3,12 +3,11 @@
 
 # Ignore Gradle build output directory
 build
-.env
+app/.env
 app/spotify.properties
 *.db
 app/src/main/resources/userImage.png
 TODO
 app/build.gradle.kts
-app/src/main/java/hitmaster/models/EnvValues.java
 app/src/main/resources/userImage.jpg
 app/bin
