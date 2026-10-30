@@ -39,8 +39,8 @@ public final class SongCard extends Card {
 
         color = PastelColor.random();
 
-        this.getStyleClass().add("song-card");
-        this.showBack();
+        getStyleClass().add("song-card");
+        showBack();
     }
 
     /**

@@ -18,10 +18,10 @@ import javafx.scene.paint.Color;
 
 public final class OpponentPane extends HBox {
 
-    private final StackPane avatarContainer;
-    private final Label nameLabel;
-    private final ChipPane chipPane;
-    private final Pane cardRowPane;
+    private StackPane avatarContainer;
+    private Label nameLabel;
+    private ChipPane chipPane;
+    private Pane cardRowPane;
 
     private Player player;
 
@@ -33,13 +33,18 @@ public final class OpponentPane extends HBox {
 
     public OpponentPane(Player player) {
         super(20);
+    }
+
+    public void initialize(Player player) {
         this.player = player;
-        this.setAlignment(Pos.CENTER_LEFT);
-        this.setPadding(new Insets(10, 20, 10, 20));
+        if (player == null) player = new Player("notSet", "notSet");
+
+        setAlignment(Pos.CENTER_LEFT);
+        setPadding(new Insets(10, 20, 10, 20));
         
-        this.setStyle("-fx-background-color: rgba(255, 255, 255, 0.03);" +
-                      "-fx-border-color: rgba(255, 255, 255, 0.05);" +
-                      "-fx-border-width: 0 0 1 0;");
+        setStyle("-fx-background-color: rgba(255, 255, 255, 0.03);" +
+                 "-fx-border-color: rgba(255, 255, 255, 0.05);" +
+                 "-fx-border-width: 0 0 1 0;");
 
         // ==========================================
         // PLAYER INFORMATION
@@ -49,7 +54,7 @@ public final class OpponentPane extends HBox {
         avatarContainer.setPrefSize(60, 60);
         avatarContainer.setMaxSize(60, 60);
 
-        this.updateAvatar(player);
+        updateAvatar(player);
 
         nameLabel = new Label(player.username);
         nameLabel.getStyleClass().add("subheader");
@@ -73,15 +78,15 @@ public final class OpponentPane extends HBox {
 
         cardRowPane.widthProperty().addListener((obs, oldVal, newVal) -> refreshCardLayout());
 
-        this.getChildren().addAll(profileSection, cardRowPane);
+        getChildren().addAll(profileSection, cardRowPane);
     }
 
     /**
      * Replaces the whole list of SongCards and draws them.
      */
     public void setSongs(List<Song> songs) {
-        this.opponentSongs.clear();
-        this.opponentSongs.addAll(songs);
+        opponentSongs.clear();
+        opponentSongs.addAll(songs);
 
         miniSongCards.clear();
         cardRowPane.getChildren().clear();
@@ -92,25 +97,25 @@ public final class OpponentPane extends HBox {
             cardRowPane.getChildren().add(card);
         }
 
-        this.refreshCardLayout();
+        refreshCardLayout();
     }
 
     public List<Song> getSongs() {
-        return this.opponentSongs;
+        return opponentSongs;
     }
 
     /**
      * Adds a single card to list of SongCards.
      */
     public void addSong(Song song) {
-        this.opponentSongs.add(song);
+        opponentSongs.add(song);
 
-        MiniSongCard card = this.createMiniCard(song, CARD_SIZE);
-        this.miniSongCards.add(card);
+        MiniSongCard card = createMiniCard(song, CARD_SIZE);
+        miniSongCards.add(card);
         
         cardRowPane.getChildren().add(card);
 
-        this.refreshCardLayout();
+        refreshCardLayout();
     }
 
     public void addChip() { chipPane.addChip(); }

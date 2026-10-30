@@ -21,6 +21,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -39,9 +40,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class GameView extends Pane {
+public class GameView extends BorderPane {
 
     private final GameLogic GAME;
+    private final Pane OVERLAY;
 
     private Timer timerUnit;
     private boolean isStealing = false;
@@ -79,65 +81,15 @@ public class GameView extends Pane {
         this.GAME = game;
 
         final double CONTROLS_WIDTH = 320;
-        final double GAP = 20;
-
-        widthProperty().addListener((obs, oldVal, newVal) -> {
-            if (currentCard != null) keepCardInBounds(currentCard);
-        });
+        final double PADDING = 15;
 
         // ===== PING =====
         PING = new PingDisplay(50, 100);
-        getChildren().add(PING);
 
         // ===== CHAT =====
         CHAT = new ChatPane(GAME);
         CHAT.addInfoMessage("Welcome to Hitmaster!");
         VBox.setVgrow(CHAT, Priority.ALWAYS);
-
-        // ===== CARD STRIP =====
-        STRIP = new CardStripPane(GAME);
-        STRIP.setPrefHeight(200);
-
-        STRIP.prefWidthProperty().bind(widthProperty().subtract(CONTROLS_WIDTH + (GAP * 3)));
-        STRIP.layoutYProperty().bind(heightProperty().subtract(STRIP.prefHeightProperty()).subtract(GAP));
-        STRIP.setLayoutX(GAP);
-        getChildren().add(STRIP);
-
-        // ===== CARD PILE =====
-        BorderPane cardPile = new BorderPane();
-        cardPile.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-
-        Image imageFile = new Image(getClass().getResourceAsStream("/cardDesign.png"));
-        PILE_IMAGE = new ImageView(imageFile);
-
-        double targetWidth = 150;
-        double targetHeight = targetWidth * (imageFile.getHeight() / imageFile.getWidth());
-
-        PILE_IMAGE.setFitWidth(targetWidth);
-        PILE_IMAGE.setFitHeight(targetHeight);
-        PILE_IMAGE.setPreserveRatio(true);
-        PILE_IMAGE.setPickOnBounds(true);
-
-        Rectangle clip = new Rectangle(targetWidth, targetHeight);
-        clip.setArcWidth(20); 
-        clip.setArcHeight(20);
-        PILE_IMAGE.setClip(clip);
-
-        REMAINING_CARDS = new Label("0 cards left");
-        REMAINING_CARDS.setStyle("-fx-text-fill: black; -fx-font-weight: bold;");
-
-        VBox cardPileLayout = new VBox(5, PILE_IMAGE, REMAINING_CARDS);
-        cardPileLayout.setStyle("-fx-alignment: center;");
-
-        cardPile.setCenter(cardPileLayout);
-
-        double totalPileHeight = targetHeight + 25;
-        cardPile.setPrefSize(targetHeight, totalPileHeight);
-
-        cardPile.setLayoutX(GAP);
-        cardPile.layoutYProperty().bind(heightProperty().subtract(cardPile.prefHeightProperty()).divide(2));
-
-        getChildren().add(cardPile);
 
         // ===== DISCARD PILE =====
         DISCARD_PILE = new DiscardPile();
@@ -149,7 +101,7 @@ public class GameView extends Pane {
 
         TITLE = new TextField();
         TITLE.getStyleClass().add("modern-textbox");
-        TITLE.setPromptText("Song title...");
+        TITLE.setPromptText("Title...");
 
         SUBMIT = new Button("Submit");
         SUBMIT.getStyleClass().add("primary-button");
@@ -220,24 +172,106 @@ public class GameView extends Pane {
         HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
         audioRow.setAlignment(Pos.CENTER_LEFT);
 
-        // 7) ===== CHIPS =====
+        // ===== CHIPS =====
         CHIP_PANE = new ChipPane();
 
-        // 8) ===== BUILD UI =====
+        // ===== CARD OVERLAY =====
+        OVERLAY = new Pane();
+        OVERLAY.setManaged(false);
+        OVERLAY.setPickOnBounds(false);
+
+        OVERLAY.prefWidthProperty().bind(widthProperty());
+        OVERLAY.prefHeightProperty().bind(heightProperty());
+
+        OVERLAY.widthProperty().addListener((obs, oldVal, newVal) -> {
+            if (currentCard!= null) keepCardInBounds(currentCard);
+        });
+
+        OVERLAY.heightProperty().addListener((obs, oldVal, newVal) -> {
+            keepCardInBounds(currentCard);
+        });
+
+        getChildren().add(OVERLAY);
+
+        // ===== CARD STRIP =====
+        STRIP = new CardStripPane(GAME, OVERLAY);
+        STRIP.setPrefHeight(200);
+
+        BorderPane stripPadding = new BorderPane();
+        stripPadding.setPadding(new Insets(PADDING));
+        stripPadding.setCenter(STRIP);
+
+        setBottom(stripPadding);
+
+        // ===== CARD PILE =====
+        BorderPane cardPile = new BorderPane();
+        cardPile.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+
+        Image imageFile = new Image(getClass().getResourceAsStream("/cardDesign.png"));
+        PILE_IMAGE = new ImageView(imageFile);
+
+        double targetWidth = 150;
+        double targetHeight = targetWidth * (imageFile.getHeight() / imageFile.getWidth());
+
+        PILE_IMAGE.setFitWidth(targetWidth);
+        PILE_IMAGE.setFitHeight(targetHeight);
+        PILE_IMAGE.setPreserveRatio(true);
+        PILE_IMAGE.setPickOnBounds(true);
+
+        Rectangle clip = new Rectangle(targetWidth, targetHeight);
+        clip.setArcWidth(20); 
+        clip.setArcHeight(20);
+        PILE_IMAGE.setClip(clip);
+
+        REMAINING_CARDS = new Label("0 cards left");
+        REMAINING_CARDS.setStyle("-fx-text-fill: black; -fx-font-weight: bold;");
+
+        VBox cardPileLayout = new VBox(5, PILE_IMAGE, REMAINING_CARDS);
+        cardPileLayout.setStyle("-fx-alignment: center;");
+
+        cardPile.setCenter(cardPileLayout);
+
+        double totalPileHeight = targetHeight + 25;
+        cardPile.setPrefSize(targetHeight, totalPileHeight);
+
+        // ===== BUILD UI =====
+        HBox topBar = new HBox(5);
+        topBar.setStyle("-fx-background-color: -fx-primary-accent-brush; -fx-text-fill: -fx-tertiary-brush;");
+        topBar.setAlignment(Pos.CENTER_LEFT);
+        topBar.setPrefHeight(30);
+        topBar.setPadding(new Insets(3));
+        topBar.getChildren().add(PING);
+        setTop(topBar);
+
+        VBox leftSidebar = new VBox(15);
+        leftSidebar.setPadding(new Insets(PADDING, 0, 0, PADDING));
+        leftSidebar.setAlignment(Pos.TOP_LEFT);
+
+        OPPONENT_PANE = new OpponentPane(null);
+        OPPONENT_PANE.setPrefWidth(400);
+        OPPONENT_PANE.setMinWidth(400);
+        OPPONENT_PANE.setMaxWidth(400);
+        OPPONENT_PANE.setVisible(false);
+        OPPONENT_PANE.setManaged(false);
+
+        VBox leftElements = new VBox(15);
+        leftElements.setAlignment(Pos.BOTTOM_LEFT);
+        leftElements.getChildren().addAll(cardPile, DISCARD_PILE);
+
+        leftSidebar.getChildren().addAll(OPPONENT_PANE, getVerticalSpacer(), leftElements);
+        setLeft(leftSidebar);
+
         VBox controlPanel = new VBox(15, inputs, mediaRow, audioRow);
 
         VBox rightSidebar = new VBox(15);
         rightSidebar.setPrefWidth(CONTROLS_WIDTH);
+        rightSidebar.setPadding(new Insets(PADDING, PADDING, 0, 0));
+        rightSidebar.setAlignment(Pos.TOP_CENTER);
+        rightSidebar.getChildren().addAll(CHAT, CHIP_PANE, controlPanel);
+        setRight(rightSidebar);
 
-        rightSidebar.setAlignment(Pos.CENTER_RIGHT);
-
-        rightSidebar.layoutXProperty().bind(widthProperty().subtract(CONTROLS_WIDTH + GAP));
-        rightSidebar.setLayoutY(GAP);
-        rightSidebar.prefHeightProperty().bind(heightProperty().subtract(GAP * 2));
-
-        rightSidebar.getChildren().addAll(CHAT, DISCARD_PILE, CHIP_PANE, controlPanel);
+        OVERLAY.toFront();
         
-        getChildren().add(rightSidebar);
         Platform.runLater(this::requestFocus);
     }
 
@@ -274,8 +308,7 @@ public class GameView extends Pane {
      */
     public void addToCardStack(Song song) {
         // 1) Reset borders of opponent cards from previous move
-        if (GAME.isLAN())
-            this.resetOpponentCard();
+        if (GAME.isLAN()) resetOpponentCard();
 
         // 2) Create a new SongCard
         SongCard card = new SongCard(this, song);
@@ -283,7 +316,7 @@ public class GameView extends Pane {
         Platform.runLater(() -> {
             // 3) Add & Animate SongCard from Pile to Center
             Point2D sceneCoords = PILE_IMAGE.localToScene(0, 0);
-            Point2D localCoords = this.sceneToLocal(sceneCoords);
+            Point2D localCoords = OVERLAY.sceneToLocal(sceneCoords);
 
             if (localCoords != null) {
                 card.setLayoutX(localCoords.getX());
@@ -292,11 +325,11 @@ public class GameView extends Pane {
 
             currentCard = card;
 
-            this.getChildren().add(currentCard);
+            OVERLAY.getChildren().add(currentCard);
             currentCard.toFront();
 
-            double targetX = (STRIP.getWidth() - currentCard.getBoundsInLocal().getWidth()) / 2.0;
-            double targetY = (this.getHeight() - card.getBoundsInLocal().getHeight()) / 2.0;
+            double targetX = (OVERLAY.getWidth() - currentCard.getBoundsInLocal().getWidth()) / 2.0;
+            double targetY = (OVERLAY.getHeight() - currentCard.getBoundsInLocal().getHeight()) / 2.0;
 
             Timeline timeline = new Timeline();
 
@@ -307,13 +340,13 @@ public class GameView extends Pane {
             timeline.getKeyFrames().add(kf);
             
             timeline.setOnFinished(e -> {
-                this.keepCardInBounds(currentCard);
+                keepCardInBounds(currentCard);
             });
         
             timeline.play();
 
-            this.setInputsEnabled(true);
-            this.initializeNewTimer();
+            setInputsEnabled(true);
+            initializeNewTimer();
 
             STRIP.registerExternalCard(currentCard);
         });
@@ -339,8 +372,7 @@ public class GameView extends Pane {
             STRIP.addCardSorted(currentCard, currentCard.song.year);
             currentCard.setDraggable(false);
 
-            if (showFront)
-                currentCard.showFront();
+            if (showFront) currentCard.showFront();
 
             GAME.handleCardMove(STRIP.getCards());
         });
@@ -418,17 +450,20 @@ public class GameView extends Pane {
      * @param card Card object to keep in bounds.
      */
     public void keepCardInBounds(Card card) {
-        if (card != null) {
-            double minX = 0;
-            double maxX = this.getWidth() - card.getBoundsInLocal().getWidth();
-            double minY = 0;
-            double maxY = this.getHeight() - card.getBoundsInLocal().getHeight();
+        if (card == null) return;
 
-            if (card.getLayoutX() < minX) card.setLayoutX(minX);
-            if (card.getLayoutX() > maxX) card.setLayoutX(maxX);
-            if (card.getLayoutY() < minY) card.setLayoutY(minY);
-            if (card.getLayoutY() > maxY) card.setLayoutY(maxY);
-        }
+        double cardWidth = card.getBoundsInParent().getWidth();
+        double cardHeight = card.getBoundsInParent().getHeight();
+
+        double maxX = Math.max(0, OVERLAY.getWidth() - cardWidth);
+        double maxY = Math.max(0, OVERLAY.getHeight() - cardHeight);
+
+        card.setLayoutX(Math.clamp(card.getLayoutX(), 0, maxX));
+        card.setLayoutY(Math.clamp(card.getLayoutY(), 0, maxY));
+    }
+
+    public Pane getCardOverlay() {
+        return OVERLAY;
     }
 
     /**
@@ -728,12 +763,9 @@ public class GameView extends Pane {
      * @param opponent Player object of opponent.
      */
     public void initializeOpponentPane(Player opponent) {
-        OPPONENT_PANE = new OpponentPane(opponent);
-        OPPONENT_PANE.setLayoutX(0);
-        OPPONENT_PANE.setLayoutY(20);
-        OPPONENT_PANE.prefWidthProperty().bind(this.widthProperty());
-        
-        this.getChildren().add(OPPONENT_PANE);
+        OPPONENT_PANE.initialize(opponent);
+        OPPONENT_PANE.setVisible(true);
+        OPPONENT_PANE.setManaged(true);
     }
 
     /**
@@ -1033,4 +1065,24 @@ public class GameView extends Pane {
     }
 
     //#endregion
+
+    private Region getVerticalSpacer() {
+        Region spacer = new Region();
+        VBox.setVgrow(spacer, Priority.ALWAYS);
+        return spacer;
+    }
+
+    @Override
+    protected void layoutChildren() {
+        super.layoutChildren();
+
+        OVERLAY.resizeRelocate(
+            0,
+            0,
+            getWidth(),
+            getHeight()
+        );
+
+        OVERLAY.toFront();
+    }
 }

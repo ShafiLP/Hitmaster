@@ -7,6 +7,8 @@ import javafx.scene.shape.Rectangle;
 
 public abstract class Card extends StackPane {
 
+    protected static int SIZE = 150;
+
     protected boolean isDraggable = true;
     
     protected double mouseX;
@@ -26,7 +28,7 @@ public abstract class Card extends StackPane {
      */
     public Card() {
         // ----- Set Layout and Style -----
-        this.setPrefSize(150, 150);
+        setPrefSize(SIZE, SIZE);
 
         Rectangle clip = new Rectangle();
 
@@ -38,48 +40,48 @@ public abstract class Card extends StackPane {
 
         setClip(clip);
 
-        this.setClip(clip);
+        setClip(clip);
 
-        this.getStyleClass().add("card");
+        getStyleClass().add("card");
 
 
         // ----- Drag & Drop -----
-        this.setOnMousePressed((MouseEvent e) -> {
+        setOnMousePressed((MouseEvent e) -> {
             if (!isDraggable)
                 return;
 
             mouseX = e.getX();
             mouseY = e.getY();
 
-            this.toFront();
+            toFront();
 
             if (dragStarted != null)
                 dragStarted.run();
         });
 
-        this.setOnMouseDragged((MouseEvent e) -> {
+        setOnMouseDragged((MouseEvent e) -> {
             if (!isDraggable)
                 return;
 
-            if (this.getParent() != null) {
-                Point2D localParam = this.getParent().sceneToLocal(e.getSceneX(), e.getSceneY());
+            if (getParent() != null) {
+                Point2D localParam = getParent().sceneToLocal(e.getSceneX(), e.getSceneY());
 
                 double newX = localParam.getX() - mouseX;
                 double newY = localParam.getY() - mouseY;
                 
-                double parentWidth = this.getParent().getBoundsInLocal().getWidth();
-                double parentHeight = this.getParent().getBoundsInLocal().getHeight();
+                double parentWidth = getParent().getBoundsInLocal().getWidth();
+                double parentHeight = getParent().getBoundsInLocal().getHeight();
                 
-                double maxX = parentWidth - this.getWidth();
-                double maxY = parentHeight - this.getHeight();
+                double maxX = parentWidth - getWidth();
+                double maxY = parentHeight - getHeight();
                 
                 if (newX < 0) newX = 0;
                 if (newX > maxX) newX = maxX;
                 if (newY < 0) newY = 0;
                 if (newY > maxY) newY = maxY;
                 
-                this.setLayoutX(newX);
-                this.setLayoutY(newY);
+                setLayoutX(newX);
+                setLayoutY(newY);
             }
 
             if (dragListener != null) {
@@ -87,7 +89,7 @@ public abstract class Card extends StackPane {
             }
         });
 
-        this.setOnMouseReleased(e -> {
+        setOnMouseReleased(e -> {
             if (!isDraggable)
                 return;
 
@@ -141,13 +143,17 @@ public abstract class Card extends StackPane {
      * @param color CSS attribute for Border Color as String.
      */
     public void setBorderColor(String color) {
-        this.setStyle("-fx-border-radius: 12; -fx-border-color:" + color + ";");
+        setStyle("-fx-border-radius: 12; -fx-border-color:" + color + ";");
     }
 
     /**
      * Resets border colour of Card back to black.
      */
     public void resetBorderColor() {
-        this.setStyle("-fx-border-radius: 12; -fx-border-color:black;");
+        setStyle("-fx-border-radius: 12; -fx-border-color:black;");
+    }
+
+    public static int getSize() {
+        return SIZE;
     }
 }

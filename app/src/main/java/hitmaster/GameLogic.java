@@ -917,7 +917,7 @@ public final class GameLogic {
 
         // 4) Open steal view
         Platform.runLater(() -> {
-            StealView stealView = new StealView(this, this.getPreviousPlayer());
+            StealView stealView = new StealView(this, VIEW.getCardOverlay() ,getPreviousPlayer());
             stealView.setStripCards(VIEW.getOpponentPane().getSongs());
             stealView.showAndWait((Stage) VIEW.getScene().getWindow());
         });
