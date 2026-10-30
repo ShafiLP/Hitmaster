@@ -17,6 +17,7 @@ import hitmaster.services.UpdateService;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -283,6 +284,14 @@ public class MainMenu {
      * @param maximized Boolean if Stage should get maximized to full screen or not.
      */
     public void setStage(Pane pane, boolean maximized) {
+        if (STAGE.getScene() != null) {
+            Parent oldRoot = STAGE.getScene().getRoot();
+
+            if (oldRoot instanceof GameView gameView) {
+                gameView.getGameLogic().stopAllTasks();
+            }
+        }
+
         Scene scene = new Scene(pane, 800, 600);
         ThemeManager.getInstance().registerScene(scene);
         ThemeManager.getInstance().setTheme(user.theme);
@@ -290,6 +299,13 @@ public class MainMenu {
         STAGE.setScene(scene);
         STAGE.setMaximized(maximized);
         STAGE.getIcons().add(new Image(getClass().getResourceAsStream("/cardDesign.png")));
+
+        if (STAGE != null && STAGE.getScene().getRoot() instanceof GameView gameView) {
+            STAGE.setOnCloseRequest(event -> {
+                gameView.getGameLogic().stopAllTasks();
+            });
+        }
+
         STAGE.show();
     }
 

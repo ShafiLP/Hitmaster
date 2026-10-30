@@ -1083,9 +1083,16 @@ public final class GameLogic {
         }
     }
 
-    public void stopPingSystem() {
+    private void stopPingSystem() {
         pingScheduler.shutdownNow();
     }
 
     // #endregion
+
+    public void stopAllTasks() {
+        stopPingSystem();
+        VIEW.stopTimer();
+
+        if (networkManager != null) networkManager.closeConnection();
+    }
 }

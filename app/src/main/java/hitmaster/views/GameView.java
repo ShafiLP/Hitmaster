@@ -1080,6 +1080,10 @@ public class GameView extends BorderPane {
         PING.setDisconnected();
     }
 
+    public GameLogic getGameLogic() {
+        return GAME;
+    }
+
     @Override
     protected void layoutChildren() {
         super.layoutChildren();
