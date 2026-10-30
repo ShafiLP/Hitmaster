@@ -4,6 +4,9 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
@@ -44,6 +47,18 @@ public final class GameLogic {
 
     private final AtomicBoolean clientReady = new AtomicBoolean(false);
     private final AtomicBoolean hostReady = new AtomicBoolean(false);
+
+    // Ping objects
+    private final ScheduledExecutorService pingScheduler = Executors.newSingleThreadScheduledExecutor();
+
+    private static final long PING_INTERVAL_MS = 2000;
+    private static final long PING_TIMEOUT_MS = 5000;
+
+    private long pingId = 0;
+    private long pendingPingId = -1;
+    private long pingSentAt;
+
+    private int currentPing = -1;
 
     // Regex Patterns
     private static final Pattern DIACRITICS = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
@@ -157,6 +172,14 @@ public final class GameLogic {
             this.addFirstToCardStack();
 
         VIEW.addInfoMessage(this.getCurrentPlayer().username + " is making their guess!");
+
+        // 6) Start ping task
+        if (isHost) {
+            VIEW.setPing(0);
+        }
+        else {
+            startPingSystem();
+        }
     }
 
     /**
@@ -566,6 +589,16 @@ public final class GameLogic {
         String action = parts[0];
 
         switch (action) {
+
+            // Received ping from client: Send back pong
+            case "PING":
+                pong(command);
+            break;
+
+            // Received pong from host: Save requiered time
+            case "PONG":
+                receivedPong(command);
+            break;
 
             // Signal that Host is ready: Sets flag
             case "HOST_READY":
@@ -999,4 +1032,60 @@ public final class GameLogic {
     public boolean isLAN() {
         return networkManager != null;
     }
+
+    // ==============================
+    // #region Ping Operations
+    // ==============================
+
+    private void startPingSystem() {
+        pingScheduler.scheduleAtFixedRate(() -> {
+            checkPingTimeout();
+            if (pendingPingId == -1) ping();
+        }, 0, PING_INTERVAL_MS, TimeUnit.MILLISECONDS);
+    }
+
+    private void ping() {
+        if (pendingPingId != -1) return;
+
+        pendingPingId = ++pingId;
+        pingSentAt = System.nanoTime();
+
+        sendObject("PING:" + pendingPingId);
+    }
+
+    private void pong(String message) {
+        String id = message.substring("PING:".length());
+        sendObject("PONG:" + id);
+    }
+
+    private void receivedPong(String message) {
+        long receivedId = Long.parseLong(message.substring("PONG:".length()));
+
+        if (receivedId != pendingPingId) return;
+
+        long elapsed = System.nanoTime() - pingSentAt;
+        currentPing = (int) (elapsed / 1_000_000);
+
+        pendingPingId = -1;
+
+        VIEW.setPing(currentPing);
+    }
+
+    private void checkPingTimeout() {
+        if (pendingPingId == -1) return;
+
+        long elapsed = System.nanoTime() - pingSentAt;
+        long timeout = TimeUnit.MILLISECONDS.toNanos(PING_TIMEOUT_MS);
+
+        if (elapsed >= timeout) {
+            pendingPingId = -1;
+            VIEW.setPingDisconnected();
+        }
+    }
+
+    public void stopPingSystem() {
+        pingScheduler.shutdownNow();
+    }
+
+    // #endregion
 }

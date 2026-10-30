@@ -1072,6 +1072,14 @@ public class GameView extends BorderPane {
         return spacer;
     }
 
+    public void setPing(int ping) {
+        PING.setPing(ping);
+    }
+
+    public void setPingDisconnected() {
+        PING.setDisconnected();
+    }
+
     @Override
     protected void layoutChildren() {
         super.layoutChildren();

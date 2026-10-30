@@ -53,6 +53,7 @@ public class PingDisplay extends HBox {
         // Initialize ping text
         pingLabel = new Label();
         pingLabel.getStyleClass().add("description");
+        pingLabel.setStyle("-fx-text-fill: -fx-tertiary-brush;");
         setPingText("??");
         getChildren().add(pingLabel);
 
@@ -86,6 +87,15 @@ public class PingDisplay extends HBox {
             setPingText(String.valueOf(ping));
 
             // 3) Update icon
+            updateConnectionIcon();
+        });
+    }
+
+    public void setDisconnected() {
+        Platform.runLater(() -> {
+            pingLabel.setText("Disconnected");
+
+            connStatus = ConnectionStatus.UNKNOWN;
             updateConnectionIcon();
         });
     }
