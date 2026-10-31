@@ -1,7 +1,7 @@
 package hitmaster.views;
 
-import hitmaster.models.User;
-import hitmaster.services.Database;
+import java.util.Properties;
+
 import hitmaster.services.Spotify;
 import hitmaster.services.ThemeManager;
 import javafx.application.Platform;
@@ -10,13 +10,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -62,54 +62,118 @@ public class ProviderSettingsView {
         header.setMaxWidth(Double.MAX_VALUE);
 
         // =========================
-        // GRID (2x2)
+        // SPOTIFY
         // =========================
-        GridPane grid = new GridPane();
-        grid.setHgap(20);
-        grid.setVgap(15);
+        Properties spotifyProperties = Spotify.readProperties();
 
-        ColumnConstraints col1 = new ColumnConstraints();
-        col1.setHgrow(Priority.ALWAYS);
+        VBox spotifyBox = new VBox(20);
+        spotifyBox.setAlignment(Pos.TOP_CENTER);
+        spotifyBox.setPadding(new Insets(10));
+        spotifyBox.setStyle(
+            "-fx-background-color: -spotify-background;" +
+            "-fx-background-radius: 10;" +
+            "-fx-border-radius: 10;" +
+            "-fx-border-color: -primary-brush;" +
+            "-fx-border-width: 1px;"
+        );
 
-        ColumnConstraints col2 = new ColumnConstraints();
-        col2.setHgrow(Priority.ALWAYS);
+        ImageView spotifyImage = new ImageView(
+            new Image(getClass().getResourceAsStream("/icons/spotify.png"))
+        );
+        spotifyImage.setFitWidth(40);
+        spotifyImage.setFitHeight(40);
+        spotifyImage.setPreserveRatio(true);
 
-        grid.getColumnConstraints().addAll(col1, col2);
+        Label spotifyLabel = new Label("Spotify");
+        spotifyLabel.getStyleClass().add("subheader");
 
-        // TODO: Replace placeholders
-        Button[] connections = new Button[4];
-        for (int i = 0; i < connections.length; i++) {
-            connections[i] = new Button("Add connection");
-            connections[i].getStyleClass().add("modern-button");
-        }
-        
-        connections[0].setOnAction(e -> {
-            showOverlay();
-            
+        HBox spotifyRow = new HBox(10, spotifyImage, spotifyLabel);
+        spotifyRow.setAlignment(Pos.CENTER);
+
+        Label spotifyClientIdLabel = new Label("Client ID:");
+        TextField spotifyClientIdTextField = new TextField() {{
+            setText(spotifyProperties.getProperty("clientId"));
+            setPromptText("Client ID...");
+            setMaxWidth(Double.MAX_VALUE);
+        }};
+
+        Label spotifyClientSecretLabel = new Label("Client Secret:");
+        TextField spotifyClientSecretTextField = new TextField() {{
+            setText(spotifyProperties.getProperty("clientSecret"));
+            setPromptText("Client Secret...");
+            setMaxWidth(Double.MAX_VALUE);
+        }};
+
+        Button spotifyConnectButton = new Button("Connect");
+        spotifyConnectButton.setOnAction(e -> {
+            // Check for empty fields
+            boolean validInputs = true;
+
+            if (spotifyClientIdTextField.getText().isEmpty() || spotifyClientIdTextField.getText().isBlank()) {
+                if (!spotifyClientIdTextField.getStyleClass().contains("invalid-text-input")) {
+                    spotifyClientIdTextField.getStyleClass().add("invalid-text-input");
+                }
+                validInputs = false;
+            } else {
+                spotifyClientIdTextField.getStyleClass().remove("invalid-text-input");
+            }
+
+            if (spotifyClientSecretTextField.getText().isEmpty() || spotifyClientSecretTextField.getText().isBlank()) {
+                if (!spotifyClientSecretTextField.getStyleClass().contains("invalid-text-input")) {
+                    spotifyClientSecretTextField.getStyleClass().add("invalid-text-input");
+                }
+                validInputs = false;
+            } else {
+                spotifyClientSecretTextField.getStyleClass().remove("invalid-text-input");
+            }
+
+            if (!validInputs) return;
+
+            // Set client ID and secret in properties
+            Spotify.setClientIdAndClientSecret(spotifyClientIdTextField.getText(), spotifyClientSecretTextField.getText());
+
+            // Open authentification
+            showPendingAuthorization();
             authThread = new Thread(() -> {
                 boolean success = Spotify.createSpotifyConnection();
                 Platform.runLater(() -> {
-                    hideOverlay();
+                    hidePendingAuthorization();
                     if (success) {
                         PARENT.initialiseProviderButton();
-                        connections[0].setText("Connected");
-                        connections[0].setStyle("-fx-background-color: rgba(0, 255, 0, 0.2);");
+                        spotifyConnectButton.setText("Connected");
                     }
                 });
             });
             authThread.start();
         });
-        
-        User user = Database.getInstance().getCurrentUser();
-        if (user.provider != null && user.provider.equals("spotify") && Spotify.requestSpotifyConnection() != null) {
-            connections[0].setText("Connected");
-            connections[0].setStyle("-fx-background-color: rgba(0, 255, 0, 0.2);");
-        }
 
-        grid.add(createCell("spotify.png", "Spotify", connections[0]), 0, 0);
-        grid.add(createCell("apple_music.png", "Apple Music", connections[1]), 1, 0);
-        grid.add(createCell("amazon_music.png", "Amazon Music", connections[2]), 0, 1);
-        grid.add(createCell("deezer.png", "Deezer", connections[3]), 1, 1);
+        GridPane spotifyGrid = new GridPane() {{
+            setHgap(15);
+            setVgap(10);
+            setAlignment(Pos.CENTER);
+        }};
+
+        ColumnConstraints labelColumn = new ColumnConstraints() {{
+            setMinWidth(100);
+            setPrefWidth(100);
+        }};
+
+        ColumnConstraints inputColumn = new ColumnConstraints() {{
+            setHgrow(Priority.ALWAYS);
+            setFillWidth(true);
+        }};
+
+        spotifyGrid.getColumnConstraints().addAll(labelColumn, inputColumn);
+
+        spotifyGrid.add(spotifyClientIdLabel, 0, 0);
+        spotifyGrid.add(spotifyClientIdTextField, 1, 0);
+
+        spotifyGrid.add(spotifyClientSecretLabel, 0, 1);
+        spotifyGrid.add(spotifyClientSecretTextField, 1, 1);
+
+        spotifyGrid.add(spotifyConnectButton, 0, 2);
+
+        spotifyBox.getChildren().addAll(spotifyRow, spotifyGrid);
 
         // =========================
         // FOOTER (Close button)
@@ -126,43 +190,22 @@ public class ProviderSettingsView {
         // =========================
         // ROOT ASSEMBLY
         // =========================
-        root.getChildren().addAll(header, grid, footer);
+        root.getChildren().addAll(header, spotifyBox, footer);
         
         // Inhalt in den Container packen
         ROOT.getChildren().add(root);
 
-        Scene scene = new Scene(ROOT, 650, 270);
+        Scene scene = new Scene(ROOT, 650, 320);
         ThemeManager.getInstance().registerScene(scene);
         STAGE.setScene(scene);
 
-        Platform.runLater(STAGE::requestFocus);
-    }
-
-    private HBox createCell(String imagePath, String text, Button button) {
-        ImageView image = new ImageView(
-            new Image(getClass().getResourceAsStream("/icons/" + imagePath))
-        );
-        image.setFitWidth(40);
-        image.setFitHeight(40);
-        image.setPreserveRatio(true);
-
-        Label label = new Label(text);
-        label.getStyleClass().add("subheader");
-
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-
-        HBox cell = new HBox(10, image, label, spacer, button);
-        cell.setAlignment(Pos.CENTER_LEFT);
-        cell.setPadding(new Insets(10));
-
-        return cell;
+        Platform.runLater(ROOT::requestFocus);
     }
 
     // =========================
     // OVERLAY MANAGEMENT
     // =========================
-    private void showOverlay() {
+    private void showPendingAuthorization() {
         if (overlay != null) return;
 
         overlay = new StackPane();
@@ -197,7 +240,7 @@ public class ProviderSettingsView {
             // Stop authentication
             Spotify.cancelAuthentication();
             
-            this.hideOverlay();
+            hidePendingAuthorization();
         });
 
         dialogBox.getChildren().addAll(messageLabel, cancelButton);
@@ -206,7 +249,7 @@ public class ProviderSettingsView {
         ROOT.getChildren().add(overlay);
     }
 
-    private void hideOverlay() {
+    private void hidePendingAuthorization() {
         if (overlay != null) {
             ROOT.getChildren().remove(overlay);
             overlay = null;

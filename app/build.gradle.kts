@@ -24,7 +24,6 @@ dependencies {
     implementation ("se.michaelthelin.spotify:spotify-web-api-java:9.3.0")
     implementation ("com.google.code.gson:gson:2.11.0")
     implementation ("io.github.cdimascio:dotenv-java:3.0.0")
-    implementation ("io.github.cdimascio:dotenv-java:3.2.0")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

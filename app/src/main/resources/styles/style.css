@@ -4,6 +4,7 @@
     -fx-text-size: 11px;
 
     /* Placeholders: Override in theme */
+    -primary-brush: #000000;
     -fx-primary-brush: #000000;
     -fx-secondary-brush: #505050;
     -fx-tertiary-brush: #fff;
@@ -14,6 +15,10 @@
     -fx-green-brush: rgb(0, 255, 0);
     -fx-yellow-brush: rgb(255, 255, 0);
     -fx-red-brush: rgb(255, 0, 0);
+    -red: rgb(255, 0, 0);
+    -light-gray: #cccccc;
+
+    -spotify-background: #ccffcc;
 
     -fx-transparent: rgba(0, 0, 0, 0.2);
     -fx-transparent-focus: rgba(0, 0, 0, 0.3);
@@ -25,6 +30,11 @@
 /* ============================== */
 /* Labels                         */
 /* ============================== */
+
+.label {
+    -fx-text-fill: -fx-primary-brush;
+    -fx-font-size: 12px;
+}
 
 .header {
     -fx-text-fill: -fx-primary-brush;
@@ -44,8 +54,37 @@
 }
 
 /* ============================== */
+/* Text Fields                    */
+/* ============================== */
+
+/* Default text fields */
+.text-field {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(0, 0, 0, 0.2);
+    -fx-border-width: 1;
+    -fx-padding: 5;
+}
+
+.invalid-text-input {
+    -fx-border-color: -red;
+}
+
+/* ============================== */
 /* Buttons                        */
 /* ============================== */
+
+/* Default buttons fields */
+.button {
+    -fx-font-size: 14px;
+    -fx-text-fill: -fx-primary-brush;
+    -fx-background-radius: 6;
+    -fx-background-color: -light-gray;
+    -fx-radius: 14;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
 
 .modern-button {
     -fx-background-color: -fx-transparent;
