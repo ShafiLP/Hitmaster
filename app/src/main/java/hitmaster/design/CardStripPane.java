@@ -54,11 +54,27 @@ public class CardStripPane extends Pane {
 
     public void registerExternalCard(Card card) {
         card.setOnDragStarted(() -> {
+            if (card.getParent() == cardOverlay) return;
+
             originalIndex = cards.indexOf(card);
+
             if (originalIndex >= 0) {
-                cards.remove(card);
+                cards.remove(originalIndex);
             }
-            marker.setVisible(false);
+
+            Point2D scenePoint = card.localToScene(0, 0);
+
+            getChildren().remove(card);
+
+            Point2D overlayPoint = cardOverlay.sceneToLocal(scenePoint);
+
+            if (card.getParent() == null) {
+                cardOverlay.getChildren().add(card);
+            }
+
+            card.setLayoutX(overlayPoint.getX());
+            card.setLayoutY(overlayPoint.getY());
+
             layoutCards();
         });
 
@@ -78,32 +94,19 @@ public class CardStripPane extends Pane {
             marker.setVisible(false);
             
             if (insertIndex >= 0) {
-                if (card.getParent() != this) {
-                    if (card.getParent() != null) {
-                        ((Pane) card.getParent()).getChildren().remove(card);
-                    }
-                    getChildren().add(card);
+                if (card.getParent() instanceof Pane parent) {
+                    parent.getChildren().remove(card);
                 }
-                cards.add(insertIndex, card);
-            }
-            else {
-                if (originalIndex >= 0) {
-                    Point2D scenePoint = card.localToScene(0, 0);
-                    
-                    if (card.getParent() instanceof Pane parent) {
-                        parent.getChildren().remove(card);
-                    }
-                    
-                    Point2D overlayPoint = cardOverlay.sceneToLocal(scenePoint);
 
-                    cardOverlay.getChildren().add(card);
-                    card.setLayoutX(overlayPoint.getX());
-                    card.setLayoutY(overlayPoint.getY());
-                }
+                getChildren().add(card);
+
+                int safeIndex = Math.max(0, Math.min(insertIndex, cards.size()));
+                cards.add(safeIndex, card);
             }
 
             insertIndex = -1;
             originalIndex = -1;
+
             layoutCards();
 
             GAME.handleCardMove(cards);
