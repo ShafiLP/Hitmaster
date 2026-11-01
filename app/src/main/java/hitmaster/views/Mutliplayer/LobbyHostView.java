@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import hitmaster.GameLogic;
+import hitmaster.design.ShowHideLabel;
 import hitmaster.models.GameOptions;
 import hitmaster.models.GameOptionsDTO;
 import hitmaster.models.JoinRequest;
@@ -22,7 +23,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -100,35 +100,16 @@ public class LobbyHostView {
         }
         final String localIp = tempIp;
 
-        String tempCensoredIp = "";
-        for (int i = 0; i < localIp.length(); i++) {
-            if (localIp.charAt(i) == '.') {
-                tempCensoredIp += ".";
-            }
-            else {
-                tempCensoredIp += "*";
-            }
-        }
-        final String censoredIp = tempCensoredIp;
-
-        Label ipLabel = new Label("Your IP: " + censoredIp);
-        ipLabel.getStyleClass().add("modern-label"); 
-        ipLabel.setStyle("-fx-text-fill: gray; -fx-background-color: transparent; -fx-font-size: 13px;");
-
-        Button revealIpButton = new Button("👁️");
-        revealIpButton.getStyleClass().add("modern-button");
-        revealIpButton.setTooltip(new Tooltip("Show IP"));
-        revealIpButton.setOnAction(e -> {
-            if (ipLabel.getText().contains("*")) {
-                ipLabel.setText("Your IP: " + localIp);
-            }
-            else {
-                ipLabel.setText("Your IP: " + censoredIp);
-            }
-        });
+        HBox ipBox = new HBox(
+            8,
+            new Label("Your IP:"),
+            new ShowHideLabel(localIp) {{
+                addToExceptionChars('.');
+            }}
+        );
 
         HBox.setHgrow(titleContainer, Priority.ALWAYS);
-        header.getChildren().addAll(titleContainer, ipLabel, revealIpButton);
+        header.getChildren().addAll(titleContainer, ipBox);
 
         // =========================
         // CONTENT
