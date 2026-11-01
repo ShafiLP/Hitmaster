@@ -7,10 +7,13 @@
     -primary-brush: #000000;
     -fx-primary-brush: #000000;
     -fx-secondary-brush: #505050;
+    -secondary-brush: #505050;
     -fx-tertiary-brush: #fff;
     -fx-primary-accent-brush: #3060ff;
     -fx-secondary-accent-brush: #3e92ff;
     -fx-tertiary-accent-brush: #ff3838;
+
+    -icon-color: -secondary-brush;
 
     -fx-green-brush: rgb(0, 255, 0);
     -fx-yellow-brush: rgb(255, 255, 0);
@@ -53,6 +56,10 @@
     -fx-font-size: 11px;
 }
 
+.icon {
+    -fx-fill: -secondary-brush;
+}
+
 /* ============================== */
 /* Text Fields                    */
 /* ============================== */
@@ -83,6 +90,13 @@
     -fx-background-color: -light-gray;
     -fx-radius: 14;
     -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.clickable-icon {
+    -fx-font-size: 14px;
+    -fx-text-fill: -secondary-brush;
+    -fx-background-color: transparent;
     -fx-cursor: hand;
 }
 

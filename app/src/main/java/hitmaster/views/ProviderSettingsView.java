@@ -2,6 +2,7 @@ package hitmaster.views;
 
 import java.util.Properties;
 
+import hitmaster.design.ShowHideTextField;
 import hitmaster.services.Spotify;
 import hitmaster.services.ThemeManager;
 import javafx.application.Platform;
@@ -10,7 +11,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -91,15 +91,13 @@ public class ProviderSettingsView {
         spotifyRow.setAlignment(Pos.CENTER);
 
         Label spotifyClientIdLabel = new Label("Client ID:");
-        TextField spotifyClientIdTextField = new TextField() {{
-            setText(spotifyProperties.getProperty("clientId"));
+        ShowHideTextField spotifyClientIdTextField = new ShowHideTextField(spotifyProperties.getProperty("clientId"), true) {{
             setPromptText("Client ID...");
             setMaxWidth(Double.MAX_VALUE);
         }};
 
         Label spotifyClientSecretLabel = new Label("Client Secret:");
-        TextField spotifyClientSecretTextField = new TextField() {{
-            setText(spotifyProperties.getProperty("clientSecret"));
+        ShowHideTextField spotifyClientSecretTextField = new ShowHideTextField(spotifyProperties.getProperty("clientSecret"), true) {{
             setPromptText("Client Secret...");
             setMaxWidth(Double.MAX_VALUE);
         }};
@@ -130,7 +128,7 @@ public class ProviderSettingsView {
             if (!validInputs) return;
 
             // Set client ID and secret in properties
-            Spotify.setClientIdAndClientSecret(spotifyClientIdTextField.getText(), spotifyClientSecretTextField.getText());
+            Spotify.setClientIdAndClientSecret(spotifyClientIdTextField.getOriginalText(), spotifyClientSecretTextField.getOriginalText());
 
             // Open authentification
             showPendingAuthorization();
