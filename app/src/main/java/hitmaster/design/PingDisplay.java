@@ -1,6 +1,7 @@
 package hitmaster.design;
 
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,7 +9,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 public class PingDisplay extends HBox {
@@ -34,6 +35,7 @@ public class PingDisplay extends HBox {
      */
     public PingDisplay(int warn, int crit) {
         super(5);
+        setAlignment(Pos.CENTER_LEFT);
         
         // Set critical ping values
         if (crit < warn) crit = warn++;
@@ -46,16 +48,16 @@ public class PingDisplay extends HBox {
         prevStatus = ConnectionStatus.NO_VALUE;
         connectionIcon = buildConnectionIcon();
 
-        Pane iconPane = new Pane();
+        StackPane iconPane = new StackPane();
         iconPane.getChildren().addAll(connectionIcon);
-        getChildren().add(iconPane);
 
         // Initialize ping text
         pingLabel = new Label();
-        pingLabel.getStyleClass().add("description");
-        pingLabel.setStyle("-fx-text-fill: -fx-tertiary-brush;");
+        pingLabel.setStyle("-fx-text-fill: -tertiary-brush;");
+        pingLabel.setTranslateY(2);
         setPingText("??");
-        getChildren().add(pingLabel);
+
+        getChildren().addAll(iconPane, pingLabel);
 
         // Wait for scene and update Icon
         sceneProperty().addListener((obs, oldScene, newScene) -> {

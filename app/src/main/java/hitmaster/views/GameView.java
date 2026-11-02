@@ -54,9 +54,15 @@ public class GameView extends BorderPane {
     private Timer timerUnit;
     private boolean isStealing = false;
 
-    // UI elements
+    // ===== UI Elements =====
+
+    // --- Top Bar ---
     private final Button EXIT;
     private final PingDisplay PING;
+    private final Label CURRENT_PLAYER;
+    private final Label TIMER;
+    private final Button SETTINGS;
+
     private final ChatPane CHAT;
     private final CardStripPane STRIP;
     private final DiscardPile DISCARD_PILE;
@@ -90,10 +96,7 @@ public class GameView extends BorderPane {
         final double CONTROLS_WIDTH = 320;
         final double PADDING = 15;
 
-        // ===== PING =====
-        PING = new PingDisplay(50, 100);
-
-        // ===== LEAVE BUTTON =====
+        // ===== EXIT BUTTON =====
         EXIT = new Button();
         EXIT.getStyleClass().add("clickable-icon");
         EXIT.setTooltip(new Tooltip("Exit"));
@@ -106,6 +109,36 @@ public class GameView extends BorderPane {
         EXIT.setOnAction(e -> {
             openExitDialog();
         });
+
+        // ===== PING =====
+        PING = new PingDisplay(50, 100);
+
+        // ===== CURRENT PLAYER =====
+        CURRENT_PLAYER = new Label("Current Player");
+        CURRENT_PLAYER.setStyle("-fx-text-fill: -tertiary-brush");
+
+        // ===== TIMER LABEL =====
+        HBox timerBox = new HBox(5);
+        timerBox.setAlignment(Pos.CENTER);
+
+        timerBox.getChildren().add(SvgParser.streamToColoredSvgIcon(
+            getClass().getResourceAsStream("/icons/timer.svg"),
+            "-tertiary-brush"
+        ));
+
+        TIMER = new Label("00:00");
+        TIMER.setStyle("-fx-text-fill: -tertiary-brush");
+
+        timerBox.getChildren().add(TIMER);
+
+        // ===== SETTINGS BUTTON =====
+        SETTINGS = new Button();
+        SETTINGS.getStyleClass().add("clickable-icon");
+        SETTINGS.setTooltip(new Tooltip("Settings"));
+        SETTINGS.setGraphic(SvgParser.streamToColoredSvgIcon(
+            getClass().getResourceAsStream("/icons/settings.svg"),
+            "-tertiary-brush"
+        ));
 
         // ===== CHAT =====
         CHAT = new ChatPane(GAME);
@@ -256,12 +289,26 @@ public class GameView extends BorderPane {
         cardPile.setPrefSize(targetHeight, totalPileHeight);
 
         // ===== BUILD UI =====
-        HBox topBar = new HBox(5);
-        topBar.setStyle("-fx-background-color: -fx-primary-accent-brush; -fx-text-fill: -fx-tertiary-brush;");
+        HBox topBar = new HBox();
+        topBar.setStyle(
+            "-fx-background-color: -fx-primary-accent-brush;" + 
+            "-fx-text-fill: -fx-tertiary-brush;"
+        );
+
         topBar.setAlignment(Pos.CENTER_LEFT);
-        topBar.setPadding(new Insets(3));
-        topBar.getChildren().addAll(EXIT, PING);
+        topBar.setPadding(new Insets(3, 8, 3, 8));
+
+        // EXIT -> PING -> CURRENT_PLAYER -> timerBox -> SETTINGS
+        topBar.getChildren().addAll(
+            EXIT, getHorizontalSpacer(),
+            PING, getHorizontalSpacer(),
+            CURRENT_PLAYER, getHorizontalSpacer(),
+            timerBox, getHorizontalSpacer(),
+            SETTINGS
+        );
+
         setTop(topBar);
+
 
         VBox leftSidebar = new VBox(15);
         leftSidebar.setPadding(new Insets(PADDING, 0, 0, PADDING));
@@ -494,6 +541,17 @@ public class GameView extends BorderPane {
         Platform.runLater(() -> REMAINING_CARDS.setText(remainingCards + " cards left"));
     }
 
+    public void setCurrentPlayer(Player player) {
+        CURRENT_PLAYER.setText(player.username + " is taking their guess!");
+    }
+
+    public void setRemainingTime(int seconds) {
+        int minutes = seconds / 60;
+        int secs = seconds % 60;
+
+        TIMER.setText(String.format("%02d:%02d", minutes, secs));
+    }
+
     // ==============================
     // Timer Operations
     // ==============================
@@ -508,7 +566,7 @@ public class GameView extends BorderPane {
         timerUnit = new Timer(GAME.getGameOptions().moveTime);
         timerUnit.start(
             () -> Platform.runLater(() -> 
-                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                setRemainingTime(timerUnit.getRemainingSeconds())
             ),
             () -> Platform.runLater(() -> {
                 this.confirmInput();
@@ -527,7 +585,7 @@ public class GameView extends BorderPane {
         timerUnit = new Timer(time);
         timerUnit.start(
             () -> Platform.runLater(() ->
-                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                setRemainingTime(timerUnit.getRemainingSeconds())
             ),
             () -> Platform.runLater(() -> {
                 //
@@ -685,7 +743,7 @@ public class GameView extends BorderPane {
             timerUnit = new Timer(3);
             timerUnit.start(
                 () -> Platform.runLater(() -> 
-                    CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                    setRemainingTime(timerUnit.getRemainingSeconds())
                 ),
                 () -> this.checkForWin(guess)
             );
@@ -949,7 +1007,7 @@ public class GameView extends BorderPane {
             timerUnit = new Timer(3);
             timerUnit.start(
                 () -> Platform.runLater(() -> 
-                    CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                    setRemainingTime(timerUnit.getRemainingSeconds())
                 ),
                 () -> Platform.runLater(() -> {
                     currentCard.setStealState(false);
@@ -986,7 +1044,7 @@ public class GameView extends BorderPane {
         timerUnit = new Timer(GAME.getGameOptions().stealTime);
         timerUnit.start(
             () -> Platform.runLater(() ->
-                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                setRemainingTime(timerUnit.getRemainingSeconds())
             ),
             () -> Platform.runLater(() -> {
                 if (stealCard != null) {
@@ -1102,6 +1160,12 @@ public class GameView extends BorderPane {
 
     public GameLogic getGameLogic() {
         return GAME;
+    }
+
+    private Region getHorizontalSpacer() {
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        return spacer;
     }
 
     private void openExitDialog() {

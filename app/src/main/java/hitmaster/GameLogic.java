@@ -168,10 +168,9 @@ public final class GameLogic {
         }
 
         // 5) Add first song to Card Stack (Host begins)
-        if (isHost)
-            this.addFirstToCardStack();
+        if (isHost) addFirstToCardStack();
 
-        VIEW.addInfoMessage(this.getCurrentPlayer().username + " is making their guess!");
+        VIEW.setCurrentPlayer(getCurrentPlayer());
 
         // 6) Start ping task
         if (isHost) {
@@ -358,7 +357,7 @@ public final class GameLogic {
         if (MULTIPLAYER && networkManager == null)
             VIEW.switchSideWithOpponent();
 
-        VIEW.addInfoMessage(this.getCurrentPlayer().username + " is making their guess!");
+        VIEW.setCurrentPlayer(getCurrentPlayer());
     }
 
     public Player getCurrentPlayer() {
