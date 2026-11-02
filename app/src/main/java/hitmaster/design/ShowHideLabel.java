@@ -21,10 +21,10 @@ public class ShowHideLabel extends HBox {
     private final LinkedList<Character> exceptionChars = new LinkedList<>();
 
     // ----- Icons -----
-    private final SVGPath textVisibleIcon = SvgParser.streamToSvgPath(
+    private final SVGPath textVisibleIcon = SvgParser.streamToSvgIcon(
         getClass().getResourceAsStream("/icons/eyeOpened.svg")
     );
-    private final SVGPath textHiddenIcon = SvgParser.streamToSvgPath(
+    private final SVGPath textHiddenIcon = SvgParser.streamToSvgIcon(
         getClass().getResourceAsStream("/icons/eyeClosed.svg")
     );
 

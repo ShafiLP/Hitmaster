@@ -15,6 +15,7 @@ import hitmaster.models.Player;
 import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
+import hitmaster.services.Navigation;
 import hitmaster.services.NetworkManager;
 import hitmaster.services.ThemeManager;
 import hitmaster.services.UpdateService;
@@ -261,7 +262,8 @@ public class ConnectToLobbyView {
                                     }
                                     
                                     GameLogic gameLogic = new GameLogic(hostOptions.getGameOptions(), false, netManager);
-                                    PARENT.setStage(gameLogic.getView(), true);
+                                    Navigation.getInstance().show(gameLogic.getView());
+                                    Navigation.getInstance().maximize();
                                     
                                     Log.Success("GameOptions received! Starting Game...");
                                 });

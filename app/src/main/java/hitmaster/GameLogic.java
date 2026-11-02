@@ -192,7 +192,11 @@ public final class GameLogic {
             return;
 
         currentSong = SONGS.removeFirst();
-        this.sendObject(new SongDTO(currentSong, "CURRENT_SONG"));
+
+        // DEBUG
+        System.out.println("Jahr: " + currentSong.year);
+
+        sendObject(new SongDTO(currentSong, "CURRENT_SONG"));
 
         remaining_cards--;
         VIEW.setRemainingCards(remaining_cards);

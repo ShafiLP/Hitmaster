@@ -12,6 +12,7 @@ import hitmaster.models.Player;
 import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
+import hitmaster.services.Navigation;
 import hitmaster.services.NetworkManager;
 import hitmaster.services.ThemeManager;
 import hitmaster.views.MainMenu;
@@ -182,7 +183,8 @@ public class LobbyHostView {
             netManager.sendObject(new GameOptionsDTO(this.options, "START_GAME")); 
             
             GameLogic gameLogic = new GameLogic(this.options, true, netManager);
-            PARENT.setStage(gameLogic.getView(), true);
+            Navigation.getInstance().show(gameLogic.getView());
+            Navigation.getInstance().maximize();
             STAGE.close();
         });
 

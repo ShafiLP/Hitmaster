@@ -14,9 +14,23 @@ import org.xml.sax.SAXException;
 import javafx.scene.shape.SVGPath;
 
 public class SvgParser {
-    public static SVGPath streamToSvgPath(InputStream stream) {
-        SVGPath parsedIcon = new SVGPath();
+    
+    public static SVGPath streamToSvgIcon(InputStream stream) {
+        SVGPath parsedIcon = streamToSvgPath(stream);
         parsedIcon.getStyleClass().add("icon");
+
+        return parsedIcon;
+    }
+
+    public static SVGPath streamToColoredSvgIcon(InputStream stream, String cssColor) {
+        SVGPath parsedIcon = streamToSvgPath(stream);
+        parsedIcon.setStyle("-fx-fill: " + cssColor + ";");
+
+        return parsedIcon;
+    }
+
+    private static SVGPath streamToSvgPath(InputStream stream) {
+        SVGPath parsedIcon = new SVGPath();
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

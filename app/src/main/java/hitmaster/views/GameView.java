@@ -13,9 +13,12 @@ import hitmaster.design.PlayerCard;
 import hitmaster.design.PlayerPane;
 import hitmaster.design.SongCard;
 import hitmaster.design.StealOverlayPane;
+import hitmaster.design.StyleDialog;
 import hitmaster.design.WinnerPane;
 import hitmaster.models.Player;
 import hitmaster.models.Song;
+import hitmaster.services.Navigation;
+import hitmaster.services.SvgParser;
 import hitmaster.services.Timer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -29,6 +32,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -42,6 +46,8 @@ import javafx.util.Duration;
 
 public class GameView extends BorderPane {
 
+    private final int CONTROLS_HEIGHT = 15;
+
     private final GameLogic GAME;
     private final Pane OVERLAY;
 
@@ -49,6 +55,7 @@ public class GameView extends BorderPane {
     private boolean isStealing = false;
 
     // UI elements
+    private final Button EXIT;
     private final PingDisplay PING;
     private final ChatPane CHAT;
     private final CardStripPane STRIP;
@@ -85,6 +92,20 @@ public class GameView extends BorderPane {
 
         // ===== PING =====
         PING = new PingDisplay(50, 100);
+
+        // ===== LEAVE BUTTON =====
+        EXIT = new Button();
+        EXIT.getStyleClass().add("clickable-icon");
+        EXIT.setTooltip(new Tooltip("Exit"));
+        EXIT.setGraphic(SvgParser.streamToColoredSvgIcon(
+            getClass().getResourceAsStream("/icons/exit.svg"),
+            "-tertiary-brush"
+        ));
+        EXIT.resize(CONTROLS_HEIGHT, CONTROLS_HEIGHT);
+
+        EXIT.setOnAction(e -> {
+            openExitDialog();
+        });
 
         // ===== CHAT =====
         CHAT = new ChatPane(GAME);
@@ -238,9 +259,8 @@ public class GameView extends BorderPane {
         HBox topBar = new HBox(5);
         topBar.setStyle("-fx-background-color: -fx-primary-accent-brush; -fx-text-fill: -fx-tertiary-brush;");
         topBar.setAlignment(Pos.CENTER_LEFT);
-        topBar.setPrefHeight(30);
         topBar.setPadding(new Insets(3));
-        topBar.getChildren().add(PING);
+        topBar.getChildren().addAll(EXIT, PING);
         setTop(topBar);
 
         VBox leftSidebar = new VBox(15);
@@ -1082,6 +1102,19 @@ public class GameView extends BorderPane {
 
     public GameLogic getGameLogic() {
         return GAME;
+    }
+
+    private void openExitDialog() {
+        boolean exit = StyleDialog.questionDialog("Confirm Exit",
+            "Are you sure you want to exit the game?",
+            "Exit"
+        );
+
+        if (exit) {
+            GAME.stopAllTasks();
+            GAME.sendObject("EXIT");
+            Navigation.getInstance().toMainMenu();
+        }
     }
 
     @Override

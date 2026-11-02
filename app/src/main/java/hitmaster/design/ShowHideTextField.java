@@ -22,10 +22,10 @@ public class ShowHideTextField extends TextField {
     private final Button toggleShowHideButton = new Button();
 
     // ----- Icons -----
-    private final SVGPath textVisibleIcon = SvgParser.streamToSvgPath(
+    private final SVGPath textVisibleIcon = SvgParser.streamToSvgIcon(
         getClass().getResourceAsStream("/icons/eyeOpened.svg")
     );
-    private final SVGPath textHiddenIcon = SvgParser.streamToSvgPath(
+    private final SVGPath textHiddenIcon = SvgParser.streamToSvgIcon(
         getClass().getResourceAsStream("/icons/eyeClosed.svg")
     );
 

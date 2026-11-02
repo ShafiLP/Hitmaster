@@ -7,6 +7,7 @@ import hitmaster.GameLogic;
 import hitmaster.models.GameOptions;
 import hitmaster.models.Player;
 import hitmaster.services.Database;
+import hitmaster.services.Navigation;
 import hitmaster.services.ThemeManager;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -137,7 +138,8 @@ public class LocalMultiplayerSettingsView {
             STAGE.close();
 
             GameLogic game = new GameLogic(options, true, null);
-            PARENT.setStage(game.getView(), true);
+            Navigation.getInstance().show(game.getView());
+            Navigation.getInstance().maximize();
         });
 
         HBox footer = new HBox(10, cancel, startGame);

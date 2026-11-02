@@ -3,6 +3,7 @@ package hitmaster.views.Mutliplayer;
 import hitmaster.GameLogic;
 import hitmaster.models.GameOptions;
 import hitmaster.models.Player;
+import hitmaster.services.Navigation;
 import hitmaster.services.NetworkManager;
 import hitmaster.services.ThemeManager;
 import hitmaster.views.MainMenu;
@@ -199,6 +200,7 @@ public class LobbyClientView {
 
     public void startGame() {
         GameLogic gameLogic = new GameLogic(options, false, NETMANAGER);
-        PARENT.setStage(gameLogic.getView(), true);
+        Navigation.getInstance().show(gameLogic.getView());
+        Navigation.getInstance().maximize();
     }
 }
