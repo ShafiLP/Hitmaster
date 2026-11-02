@@ -1175,8 +1175,8 @@ public class GameView extends BorderPane {
         );
 
         if (exit) {
-            GAME.stopAllTasks();
             GAME.sendObject("EXIT");
+            GAME.stopAllTasks();
             Navigation.getInstance().toMainMenu();
         }
     }

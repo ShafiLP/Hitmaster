@@ -767,6 +767,10 @@ public final class GameLogic {
                     break;
                 }
             break;
+
+            case "EXIT":
+                VIEW.addErrorMessage(PLAYERS[1].username + " left the game.");
+            break;
         }
     }
 
