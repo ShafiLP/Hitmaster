@@ -6,7 +6,7 @@ import java.util.List;
 public class GameOptionsDTO implements Serializable {
 
     public Player[] players;
-    public int moveTime;
+    public int turnTime;
     public int stealTime;
 
     public List<GameSet> activeSets;
@@ -15,7 +15,7 @@ public class GameOptionsDTO implements Serializable {
 
     public GameOptionsDTO(GameOptions options, String purpose) {
         this.players = options.players;
-        this.moveTime = options.moveTime;
+        this.turnTime = options.turnTime;
         this.stealTime = options.stealTime;
 
         this.purpose = purpose;
@@ -23,7 +23,7 @@ public class GameOptionsDTO implements Serializable {
 
     public GameOptionsDTO(GameOptions options, List<GameSet> activeSets, String purpose) {
         this.players = options.players;
-        this.moveTime = options.moveTime;
+        this.turnTime = options.turnTime;
         this.stealTime = options.stealTime;
         this.activeSets = activeSets;
 
@@ -34,7 +34,7 @@ public class GameOptionsDTO implements Serializable {
         GameOptions options = new GameOptions();
 
         options.players = this.players;
-        options.moveTime = this.moveTime;
+        options.turnTime = this.turnTime;
         options.stealTime = this.stealTime;
 
         return options;

@@ -70,7 +70,7 @@ public class OnlineMultiplayerSettings {
         TextField turnTimeInput = new TextField();
         turnTimeInput.setTextFormatter(createNumberFormatter());
         turnTimeInput.setPromptText("Turn Time...");
-        turnTimeInput.setText(String.valueOf(options.moveTime));
+        turnTimeInput.setText(String.valueOf(options.turnTime));
         turnTimeInput.getStyleClass().add("modern-textbox");
         turnTimeInput.setPrefWidth(180);
         HBox turnTimeControl = createSecondsInput(turnTimeInput, 300);
@@ -105,7 +105,7 @@ public class OnlineMultiplayerSettings {
         confirmButton.getStyleClass().add("primary-button");
         confirmButton.setPrefWidth(140);
         confirmButton.setOnAction(e -> {
-            options.moveTime = Integer.parseInt(turnTimeInput.getText());
+            options.turnTime = Integer.parseInt(turnTimeInput.getText());
             options.stealTime = Integer.parseInt(stealTimeInput.getText());
 
             STAGE.close();

@@ -219,7 +219,7 @@ public final class GameLogic {
 
         if (PLAYERS[currentPlayerIdx].role.equals(Player.Role.CLIENT)) {
             sendObject(new SongDTO(currentSong, "ADD_CARD_TO_STACK"));
-            VIEW.setTimerForOpponent(OPTIONS.moveTime);
+            VIEW.setTimerForOpponent(OPTIONS.turnTime);
             return;
         }
 
@@ -650,7 +650,7 @@ public final class GameLogic {
             break;
 
             case "OPPONENT_MOVE_TIMER":
-                VIEW.setTimerForOpponent(OPTIONS.moveTime);
+                VIEW.setTimerForOpponent(OPTIONS.turnTime);
             break;
 
             // Displays current song in Opponent fan with a green border

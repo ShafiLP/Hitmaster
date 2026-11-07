@@ -90,8 +90,8 @@ public class MainMenu {
 
             if (providerStatus) {
                 try {
-                    SingleplayerSettingsView singleplayerMenuView = new SingleplayerSettingsView(this);
-                    singleplayerMenuView.show(STAGE);
+                    SingleplayerSettingsView singleplayerMenuView = new SingleplayerSettingsView();
+                    singleplayerMenuView.show();
                 }
                 catch (Exception ex) {
                     StyleDialog.errorDialog("Error", "Error while starting game:\n" + ex.getMessage());

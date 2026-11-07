@@ -39,7 +39,7 @@ public class LobbyHostView {
     private NetworkManager netManager;
     private GameOptions options;
 
-    private final Label MOVETIME_LABEL;
+    private final Label TURNTIME_LABEL;
     private final Label STEALTIME_LABEL;
     private final Label MAXPLAYERS_LABEL;
     private final Label ACTIVESETS_LABEL;
@@ -68,7 +68,7 @@ public class LobbyHostView {
         this.options.players = new Player[2];
         this.options.players[0] = HOST_PLAYER;
 
-        this.options.moveTime = 300;
+        this.options.turnTime = 300;
         this.options.stealTime = 30;
 
         // =========================
@@ -143,8 +143,8 @@ public class LobbyHostView {
         MAXPLAYERS_LABEL = new Label("• Max. Players: 2");
         MAXPLAYERS_LABEL.getStyleClass().add("description");
 
-        MOVETIME_LABEL = new Label("• Move Time: " + this.options.moveTime + "s");
-        MOVETIME_LABEL.getStyleClass().add("description");
+        TURNTIME_LABEL = new Label("• Move Time: " + this.options.turnTime + "s");
+        TURNTIME_LABEL.getStyleClass().add("description");
 
         STEALTIME_LABEL = new Label("• Steal Time: " + this.options.stealTime + "s");
         STEALTIME_LABEL.getStyleClass().add("description");
@@ -153,7 +153,7 @@ public class LobbyHostView {
         ACTIVESETS_LABEL = new Label("• Active Sets: " + "/");
         ACTIVESETS_LABEL.getStyleClass().add("description");
 
-        rightColumn.getChildren().addAll(settingsTitle, MAXPLAYERS_LABEL, MOVETIME_LABEL, STEALTIME_LABEL);
+        rightColumn.getChildren().addAll(settingsTitle, MAXPLAYERS_LABEL, TURNTIME_LABEL, STEALTIME_LABEL);
 
         content.getChildren().addAll(leftColumn, rightColumn);
 
@@ -266,7 +266,7 @@ public class LobbyHostView {
      */
     private void updateSettingsLabels() {
         Platform.runLater(() -> {
-            MOVETIME_LABEL.setText("• Move Time: " + this.options.moveTime + "s");
+            TURNTIME_LABEL.setText("• Move Time: " + this.options.turnTime + "s");
             STEALTIME_LABEL.setText("• Steal Time: " + this.options.stealTime + "s");
         });
     }

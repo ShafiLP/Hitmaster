@@ -660,6 +660,28 @@ public class Database {
         }
     }
 
+    public List<GameSet> getActiveSets() {
+        try (Connection conn = Database.connect()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("""
+                SELECT *
+                FROM sets
+                WHERE is_active = 1
+            """);
+
+            List <GameSet> activeSets = new ArrayList<>();
+            while (rs.next()) {
+                activeSets.add(mapSet(rs));
+            }
+
+            return activeSets;
+        }
+        catch (SQLException e) {
+            Log.Error("Error while fetching sets from database: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
     public List<GameSet> getActiveSetsBySongId(int songId) {
         try (Connection conn = Database.connect()) {
             String sql = """

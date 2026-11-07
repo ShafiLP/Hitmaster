@@ -86,7 +86,7 @@
 /* Default buttons fields */
 .button {
     -fx-font-size: 14px;
-    -fx-text-fill: -fx-primary-brush;
+    -fx-text-fill: -primary-brush;
     -fx-background-radius: 6;
     -fx-background-color: -light-gray;
     -fx-radius: 14;
@@ -94,11 +94,38 @@
     -fx-cursor: hand;
 }
 
+.button:hover {
+    -fx-background-color: derive(-light-gray, -15%);
+}
+
 .clickable-icon {
     -fx-font-size: 14px;
     -fx-text-fill: -secondary-brush;
     -fx-background-color: transparent;
     -fx-cursor: hand;
+}
+
+.toggle-button {
+    -fx-background-color: -fx-transparent;
+    -fx-text-fill: -fx-primary-brush;
+    -fx-background-radius: 6;
+    -fx-font-size: 14px;
+    -fx-radius: 14;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.toggle-button:hover {
+    -fx-background-color: -fx-transparent-focus;
+}
+
+.toggle-button:selected {
+    -fx-background-color: -fx-primary-accent-brush;
+    -fx-text-fill: -tertiary-brush;
+}
+
+.toggle-button:selected:hover {
+    -fx-background-color: derive(-fx-primary-accent-brush, -15%);
 }
 
 .modern-button {
@@ -274,6 +301,43 @@
 
 .scroll-pane .scroll-bar:vertical .track {
     -fx-background-color: transparent;
+}
+
+/* ============================== */
+/* Scroll Bars                    */
+/* ============================== */
+
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-pref-height: 12px;
+    -fx-padding: 2px;
+}
+
+.scroll-pane .scroll-bar:horizontal .track {
+    -fx-background-color: -light-gray;
+    -fx-background-radius: 6px;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .scroll-bar:horizontal .thumb {
+    -fx-background-color: derive(-light-gray, -20%);
+    -fx-background-radius: 6px;
+    -fx-background-insets: 0;
+    -fx-opacity: 1;
+}
+
+.scroll-pane .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: derive(-light-gray, -30%);
+}
+
+.scroll-pane .scroll-bar:horizontal .increment-button,
+.scroll-pane .scroll-bar:horizontal .decrement-button {
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-padding: 0;
+    -fx-opacity: 0;
 }
 
 /* ============================== */

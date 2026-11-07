@@ -1,144 +1,207 @@
 package hitmaster.views;
 
+import java.util.List;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 import hitmaster.GameLogic;
+import hitmaster.design.UiBuilder;
 import hitmaster.models.GameOptions;
+import hitmaster.models.GameSet;
 import hitmaster.models.Player;
 import hitmaster.services.Database;
 import hitmaster.services.Navigation;
-import hitmaster.services.ThemeManager;
-import javafx.application.Platform;
+import hitmaster.services.SvgParser;
+import hitmaster.views.templates.HitmasterDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-public class SingleplayerSettingsView {
+public class SingleplayerSettingsView extends HitmasterDialog {
 
-    private final MainMenu PARENT;
-    private final Stage STAGE;
+    public SingleplayerSettingsView() {
+        super("Game Setup");
 
-    public SingleplayerSettingsView(MainMenu parent) {
-        this.PARENT = parent;
+        // ===== HEADER =====
+        VBox headerBox = new VBox(3);
+        headerBox.setAlignment(Pos.CENTER_LEFT);
 
-        STAGE = new Stage();
-        STAGE.setTitle("Game Setup");
+        Label headerLabel = new Label("Game Setup");
+        headerLabel.getStyleClass().add("header");
 
-        // =========================
-        // ROOT LAYOUT
-        // =========================
-        VBox root = new VBox(25);
-        root.setPadding(new Insets(20));
-        root.setFillWidth(true);
+        Label descriptionLabel = new Label("Personalize your game for the best experience!");
+        descriptionLabel.getStyleClass().add("description");
 
-        // =========================
-        // HEADER
-        // =========================
-        Label title = new Label("Game Settings");
-        title.getStyleClass().add("header");
+        headerBox.getChildren().addAll(headerLabel, descriptionLabel, UiBuilder.getHorizontalSeparator());
+        setTop(headerBox);
 
-        Label description = new Label("Configure the rules before launching the singleplayer game.");
-        description.getStyleClass().add("header-description");
 
-        VBox header = new VBox(5, title, description);
-        header.setAlignment(Pos.TOP_LEFT);
+        // ===== GAME OPTIONS =====
+        VBox gameOptionsBox = new VBox(10);
 
-        // =========================
-        // SETTINGS CONTENT
-        // =========================
-        VBox content = new VBox(15);
-        content.setFillWidth(true);
+        
+        // Game Mode --------------------
+        VBox gameModeBox = new VBox(5);
 
-        // 1) Configure Sets
-        Button manageSetsBtn = new Button("Manage Sets");
-        manageSetsBtn.getStyleClass().add("modern-button");
-        manageSetsBtn.setPrefWidth(180);
-        manageSetsBtn.setOnAction(e -> {
+        ToggleGroup gameModeButtonsToggleGroup = new ToggleGroup();
+
+        Label gameModeLabel = new Label("Game Mode");
+        gameModeLabel.getStyleClass().add("subheader");
+
+        HBox gameModeButtonsBox = new HBox(5);
+        gameModeButtonsBox.setAlignment(Pos.CENTER_LEFT);
+
+        // TODO: Replace placeholder
+        gameModeButtonsBox.getChildren().addAll(
+            new ToggleButton("Classic") {{ setToggleGroup(gameModeButtonsToggleGroup); setSelected(true); }},
+            new ToggleButton("Advanced") {{ setToggleGroup(gameModeButtonsToggleGroup); }},
+            new ToggleButton("Expert") {{ setToggleGroup(gameModeButtonsToggleGroup); }}
+        );
+
+        gameModeBox.getChildren().addAll(gameModeLabel, gameModeButtonsBox);
+        gameOptionsBox.getChildren().add(gameModeBox);
+
+
+        // Turn Time --------------------
+        TextField turnTimeTextField = new TextField();
+        turnTimeTextField.setTextFormatter(createNumberFormatter());
+
+        HBox turnTimeBox = createSettingRow(
+            "Turn Time",
+            "Duration each players gets to submit their move.",
+            createTimeInputRow(turnTimeTextField, "s", 300)
+        );
+        gameOptionsBox.getChildren().add(turnTimeBox);
+
+
+        // Amount of Cards --------------------
+        TextField cardsTextField = new TextField();
+        cardsTextField.setTextFormatter(createNumberFormatter());
+
+        HBox cardsBox = createSettingRow(
+            "Cards",
+            "Amount of cards that are needed for a player to win the game.",
+            cardsTextField
+        );
+        gameOptionsBox.getChildren().add(cardsBox);
+
+
+        // Amount of Chips --------------------
+        TextField chipsTextField = new TextField();
+        chipsTextField.setTextFormatter(createNumberFormatter());
+
+        HBox chipsBox = createSettingRow(
+            "Chips",
+            "Amount of chips players can keep to perform different actions.",
+            chipsTextField
+        );
+        gameOptionsBox.getChildren().add(chipsBox);
+
+
+        // Set Manager --------------------
+        VBox setManagerBox = new VBox(10);
+
+        Label activeSetsLabel = new Label("Active Sets");
+        activeSetsLabel.getStyleClass().add("subheader");
+
+        List<GameSet> activeSets = Database.getInstance().getActiveSets();
+
+        HBox activeSetsBox = new HBox(5);
+        activeSetsBox.setAlignment(Pos.CENTER_LEFT);
+
+        for (GameSet gameSet : activeSets) {
+            activeSetsBox.getChildren().add(createSetCard(gameSet));
+        }
+
+        ScrollPane activeSetsCrollPane = new ScrollPane(activeSetsBox);
+        activeSetsCrollPane.setFitToHeight(true);
+        activeSetsCrollPane.setFitToWidth(false);
+        activeSetsCrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        activeSetsCrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        activeSetsCrollPane.setPannable(true);
+
+        Button manageSetsButton = new Button("Manage Sets");
+        manageSetsButton.setGraphic(SvgParser.streamToColoredSvgIcon(
+            getClass().getResourceAsStream("/icons/settings.svg"),
+            "-primary-brush"
+        ));
+
+        manageSetsButton.setOnAction(e -> {
             SetManagerView setManagerView = new SetManagerView();
-            setManagerView.show(STAGE);
-        });
-        
-        HBox setsRow = createSettingRow("Song Sets", "Import, export or edit your custom song packages.", manageSetsBtn);
+            setManagerView.setOnCloseRequest(f -> {
+                List<GameSet> activeSetsReload = Database.getInstance().getActiveSets();
 
-        // 2) Turn time
-        TextField turnTimeInput = new TextField();
-        turnTimeInput.setTextFormatter(createNumberFormatter());
-        turnTimeInput.setPromptText("Turn Time...");
-        turnTimeInput.getStyleClass().add("modern-textbox");
-        turnTimeInput.setPrefWidth(180);
-        HBox turnTimeControl = createSecondsInput(turnTimeInput, 300);
-        
-        HBox turnTimeRow = createSettingRow("Turn Time", "Set time each player gets to log in their guess.", turnTimeControl);
-
-        content.getChildren().addAll(setsRow, turnTimeRow);
-
-        // =========================
-        // FOOTER (Cancel & Start)
-        // =========================
-        Button cancel = new Button("Cancel");
-        cancel.getStyleClass().add("modern-button");
-        cancel.setCancelButton(true);
-        cancel.setPrefWidth(120);
-        cancel.setOnAction(e -> {
-            STAGE.close();
+                activeSetsBox.getChildren().clear();
+                for (GameSet gameSet : activeSetsReload) {
+                    activeSetsBox.getChildren().add(createSetCard(gameSet));
+                }
+            });
+            setManagerView.show(Navigation.getInstance().getStage());
         });
 
-        Button startGame = new Button("Start Game");
-        startGame.getStyleClass().add("primary-button");
-        startGame.setPrefWidth(140);
-        startGame.setOnAction(e -> {
+        setManagerBox.getChildren().addAll(activeSetsLabel, activeSetsCrollPane, manageSetsButton);
+        gameOptionsBox.getChildren().addAll(UiBuilder.getHorizontalSeparator(), setManagerBox);
+        setCenter(gameOptionsBox);
+
+
+        // ===== BOTTOM CONTROLS =====
+        VBox bottomBox = new VBox(5);
+        HBox controllsBox = new HBox(10);
+
+        Button startButton = new Button("Start Game");
+        startButton.getStyleClass().add("primary-button");
+        startButton.setPrefWidth(140);
+
+        startButton.setOnAction(e -> {
             GameOptions options = new GameOptions();
+            
             options.players = new Player[1];
-            options.players[0] = new Player(Database.getInstance().getCurrentUser().username, Database.getInstance().getCurrentUser().picture);
+            options.players[0] = new Player(
+                Database.getInstance().getCurrentUser().username,
+                Database.getInstance().getCurrentUser().picture
+            );
             options.players[0].role = Player.Role.HOST;
-            options.moveTime = Integer.parseInt(turnTimeInput.getText());
-            options.stealTime = 60;
 
-            STAGE.close();
+            options.cardCount = Integer.parseInt(cardsTextField.getText());
+            options.chipCount = Integer.parseInt(chipsTextField.getText());
+
+            options.turnTime = Integer.parseInt(turnTimeTextField.getText());
+            options.stealTime = 60;
 
             GameLogic game = new GameLogic(options, true, null);
             Navigation.getInstance().show(game.getView());
             Navigation.getInstance().maximize();
         });
 
-        HBox footer = new HBox(10, cancel, startGame);
-        footer.setAlignment(Pos.BOTTOM_RIGHT);
-        footer.setPadding(new Insets(10, 0, 0, 0));
+        controllsBox.getChildren().addAll(UiBuilder.getHorizontalSpacer(), startButton);
+        bottomBox.getChildren().addAll(UiBuilder.getHorizontalSeparator(), controllsBox);
+        setBottom(bottomBox);
 
-        // =========================
-        // ROOT ASSEMBLY & SCENE
-        // =========================
-        root.getChildren().addAll(header, content, footer);
 
-        Scene scene = new Scene(root, 520, 300);
-        ThemeManager.getInstance().registerScene(scene);
-
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+        // ===== SHORTCUTS =====
+        addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                startGame.fire();
+                startButton.fire();
                 event.consume(); 
             }
         });
-
-        STAGE.setScene(scene);
-
-        Platform.runLater(STAGE::requestFocus);
     }
 
-    private HBox createSettingRow(String titleText, String descText, javafx.scene.Node control) {
+    private HBox createSettingRow(String titleText, String descText, Node control) {
         Label rowTitle = new Label(titleText);
         rowTitle.getStyleClass().add("subheader");
 
@@ -159,22 +222,20 @@ public class SingleplayerSettingsView {
         return row;
     }
 
-    private HBox createSecondsInput(TextField field, int defaultValue) {
-        field.getStyleClass().add("modern-textbox");
+    private HBox createTimeInputRow(TextField field, String unit, int defaultValue) {
         field.setPrefWidth(80);
         field.setText(String.valueOf(defaultValue));
 
-        Label unit = new Label("s");
-        unit.getStyleClass().add("description");
+        Label unitLabel = new Label(unit);
+        unitLabel.getStyleClass().add("description");
 
-        HBox box = new HBox(5, field, unit);
+        HBox box = new HBox(5, field, unitLabel);
         box.setAlignment(Pos.CENTER_LEFT);
 
         return box;
     }
 
     private TextFormatter<String> createNumberFormatter() {
-
         Pattern pattern = Pattern.compile("\\d{0,3}"); // max 3 digits
 
         UnaryOperator<TextFormatter.Change> filter = change -> {
@@ -189,26 +250,45 @@ public class SingleplayerSettingsView {
         return new TextFormatter<>(filter);
     }
 
-    public void show(Stage parent) {
-        STAGE.setOnShowing(e -> {
-            Platform.runLater(() -> {
-                double ownerX = parent.getX();
-                double ownerY = parent.getY();
-                double ownerWidth = parent.getWidth();
-                double ownerHeight = parent.getHeight();
-
-                double newWidth = STAGE.getWidth();
-                double newHeight = STAGE.getHeight();
-
-                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
-                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
-
-                STAGE.setX(centerX);
-                STAGE.setY(centerY);
-            });
-        });
+    private VBox createSetCard(GameSet set) {
+        VBox card = new VBox(10);
+        card.setPrefWidth(180);
+        card.setMaxWidth(180);
+        card.setMinWidth(180);
         
-        STAGE.initModality(Modality.APPLICATION_MODAL);
-        STAGE.showAndWait();
+        card.getStyleClass().add("set-card-grid");
+        card.setPadding(new Insets(15));
+        card.setAlignment(Pos.TOP_CENTER);
+
+        ImageView setImageView = setupImageView(set.getImage(), 180, 90);
+
+        Label setName = new Label(set.name);
+        setName.getStyleClass().add("header");
+        setName.setWrapText(true);
+        setName.setAlignment(Pos.CENTER_RIGHT);
+        setName.setPrefHeight(40);
+        setName.setMaxHeight(40);
+
+        Label songCountLabel = new Label("Songs: " + Database.getInstance().getSongCountForSet(set.id));
+        songCountLabel.getStyleClass().add("description");
+        songCountLabel.setMinHeight(25);
+        songCountLabel.setPrefHeight(25);
+        songCountLabel.setMaxHeight(25);
+        songCountLabel.setAlignment(Pos.CENTER);
+
+        card.getChildren().addAll(setImageView, setName, songCountLabel);
+        return card;
+    }
+
+    private ImageView setupImageView(ImageView setImageView, double width, double height) {
+        if (setImageView == null) 
+            setImageView = new ImageView();
+
+        setImageView.setFitWidth(width);
+        setImageView.setFitHeight(height);
+        setImageView.setPreserveRatio(true);
+        setImageView.setSmooth(true);
+
+        return setImageView;
     }
 }

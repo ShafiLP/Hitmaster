@@ -100,4 +100,8 @@ public class Navigation {
     public void close() {
         stage.close();
     }
+
+    public Stage getStage() {
+        return stage;
+    }
 }

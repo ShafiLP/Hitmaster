@@ -107,7 +107,7 @@ public class LobbyClientView {
         MAXPLAYERS_LABEL = new Label("• Max. Players: 2");
         MAXPLAYERS_LABEL.getStyleClass().add("description");
 
-        MOVETIME_LABEL = new Label("• Move Time: " + (this.options != null ? this.options.moveTime : 0) + "s");
+        MOVETIME_LABEL = new Label("• Move Time: " + (this.options != null ? this.options.turnTime : 0) + "s");
         MOVETIME_LABEL.getStyleClass().add("description");
 
         STEALTIME_LABEL = new Label("• Steal Time: " + (this.options != null ? this.options.stealTime : 0) + "s");
@@ -161,7 +161,7 @@ public class LobbyClientView {
             for (int i = 1; i < options.players.length; i++) {
                 PLAYERLIST_VIEW.getItems().add(options.players[i].username + (options.players[i].username.equals(ownPlayer.username) ? " (You)" : ""));
             }
-            MOVETIME_LABEL.setText("• Move Time: " + this.options.moveTime + "s");
+            MOVETIME_LABEL.setText("• Move Time: " + this.options.turnTime + "s");
             STEALTIME_LABEL.setText("• Steal Time: " + this.options.stealTime + "s");
         });
     }

@@ -563,7 +563,7 @@ public class GameView extends BorderPane {
     private void initializeNewTimer() {
         this.stopTimer();
 
-        timerUnit = new Timer(GAME.getGameOptions().moveTime);
+        timerUnit = new Timer(GAME.getGameOptions().turnTime);
         timerUnit.start(
             () -> Platform.runLater(() -> 
                 setRemainingTime(timerUnit.getRemainingSeconds())

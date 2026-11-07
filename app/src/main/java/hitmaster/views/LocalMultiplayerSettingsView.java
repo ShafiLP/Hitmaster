@@ -132,7 +132,7 @@ public class LocalMultiplayerSettingsView {
             options.players[0].role = Player.Role.HOST;
             options.players[1] = new Player(p2Name.getText(), null);
             options.players[1].role = Player.Role.HOST;
-            options.moveTime = Integer.parseInt(turnTimeInput.getText());
+            options.turnTime = Integer.parseInt(turnTimeInput.getText());
             options.stealTime = Integer.parseInt(stealTimeInput.getText());
 
             STAGE.close();

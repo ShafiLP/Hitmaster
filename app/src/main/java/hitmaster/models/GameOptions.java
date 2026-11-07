@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 public class GameOptions implements Serializable {
     public Player[] players;
-    public int moveTime;
+
+    public GameMode gameMode;
+    public int cardCount;
+    public int chipCount;
+
+    public int turnTime;
     public int stealTime;
 }

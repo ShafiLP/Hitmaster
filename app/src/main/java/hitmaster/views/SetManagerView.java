@@ -9,6 +9,7 @@ import hitmaster.models.Song;
 import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -33,6 +34,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class SetManagerView {
 
@@ -136,7 +138,7 @@ public class SetManagerView {
         close.getStyleClass().add("primary-button");
         close.setCancelButton(true);
         close.setPrefWidth(120);
-        close.setOnAction(e -> STAGE.close());
+        close.setOnAction(e -> { STAGE.fireEvent(new WindowEvent(STAGE, WindowEvent.WINDOW_CLOSE_REQUEST)); });
 
         Label songCount = new Label("Total: " + Database.getInstance().getSongCount() + " songs");
         songCount.getStyleClass().add("description");
@@ -783,6 +785,10 @@ public class SetManagerView {
         dialog.showAndWait();
 
         Platform.runLater(STAGE::requestFocus);
+    }
+
+    public void setOnCloseRequest(EventHandler<WindowEvent> event) {
+        STAGE.setOnCloseRequest(event);
     }
 
     public void show(Stage parent) {
