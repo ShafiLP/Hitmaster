@@ -1,5 +1,6 @@
 package hitmaster.services;
 
+import hitmaster.views.GameView;
 import hitmaster.views.MainMenu;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -48,14 +49,41 @@ public class Navigation {
     }
 
     public void show(Parent view) {
+        if (stage.getScene() != null) {
+            Parent oldRoot = stage.getScene().getRoot();
+
+            if (oldRoot instanceof GameView gameView) {
+                gameView.getGameLogic().stopAllTasks();
+            }
+        }
+
         scene.setRoot(view);
+        if (stage != null && stage.getScene().getRoot() instanceof GameView gameView) {
+            stage.setOnCloseRequest(event -> {
+                gameView.getGameLogic().stopAllTasks();
+            });
+        }
 
         Platform.runLater(stage::requestFocus);
     }
 
     public void show(Scene scene) {
         this.scene = scene;
+
+        if (stage.getScene() != null) {
+            Parent oldRoot = stage.getScene().getRoot();
+
+            if (oldRoot instanceof GameView gameView) {
+                gameView.getGameLogic().stopAllTasks();
+            }
+        }
+
         stage.setScene(scene);
+        if (stage != null && stage.getScene().getRoot() instanceof GameView gameView) {
+            stage.setOnCloseRequest(event -> {
+                gameView.getGameLogic().stopAllTasks();
+            });
+        }
 
         stage.show();
         Platform.runLater(stage::requestFocus);
