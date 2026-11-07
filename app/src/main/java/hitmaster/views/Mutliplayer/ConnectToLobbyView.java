@@ -176,10 +176,10 @@ public class ConnectToLobbyView {
                 if (password == null) 
                     return;
 
-                this.connectToHost(ip, password, connectToGame, lobbyListView, ipInput, statusLabel);
+                this.connectToHost(ip, selectedLobby.name, password, connectToGame, lobbyListView, ipInput, statusLabel);
             }
             else {
-                this.connectToHost(ip, "", connectToGame, lobbyListView, ipInput, statusLabel);
+                this.connectToHost(ip, selectedLobby.name, "", connectToGame, lobbyListView, ipInput, statusLabel);
             }
         });
 
@@ -226,7 +226,7 @@ public class ConnectToLobbyView {
         this.startDiscovery(lobbyListView, statusLabel);
     }
 
-    private void connectToHost(String ip, String password, Button connectBtn, ListView<MultiplayerLobby> lobbyListView, TextField ipInput, Label statusLabel) {
+    private void connectToHost(String ip, String lobbyName, String password, Button connectBtn, ListView<MultiplayerLobby> lobbyListView, TextField ipInput, Label statusLabel) {
         this.stopDiscovery();
 
         connectBtn.setDisable(true);
@@ -234,7 +234,7 @@ public class ConnectToLobbyView {
         lobbyListView.setDisable(true);
         ipInput.setEditable(false);
         ipInput.setStyle("");
-        statusLabel.setText("Connecting to " + ip + "...");
+        statusLabel.setText("Connecting to " + lobbyName + "...");
 
         new Thread(() -> {
             try {
@@ -288,7 +288,7 @@ public class ConnectToLobbyView {
 
                         // Show lobby to client
                         Platform.runLater(() -> {
-                            clientView = new LobbyClientView(PARENT, ip, password, PLAYER, netManager);
+                            clientView = new LobbyClientView(PARENT, lobbyName, password, PLAYER, netManager);
                             clientView.show(STAGE);
                         });
                     }
