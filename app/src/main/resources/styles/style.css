@@ -20,6 +20,7 @@
     -fx-yellow-brush: rgb(255, 255, 0);
     -fx-red-brush: rgb(255, 0, 0);
     -red: rgb(255, 0, 0);
+    -green: #00bb00;
     -light-gray: #cccccc;
 
     -spotify-background: #ccffcc;
@@ -273,39 +274,45 @@
 }
 
 /* ============================== */
-/* Scroll Bar                     */
+/* Scroll Bars                    */
 /* ============================== */
 
 .scroll-pane {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-}
-
-.scroll-pane .viewport {
-    -fx-background-color: transparent;
+    -fx-padding: 10 10 10 10;
 }
 
 .scroll-pane .scroll-bar:vertical {
     -fx-background-color: transparent;
-    -fx-pref-width: 10px;
-}
-
-.scroll-pane .scroll-bar:vertical .thumb {
-    -fx-background-color: -fx-secondary-brush;
-    -fx-background-radius: 5px;
-
-    -fx-min-height: 30px;
-    -fx-pref-height: 30px;
+    -fx-background: transparent;
+    -fx-pref-height: 12px;
+    -fx-padding: 2px;
 }
 
 .scroll-pane .scroll-bar:vertical .track {
-    -fx-background-color: transparent;
+    -fx-background-color: -light-gray;
+    -fx-background-radius: 6px;
+    -fx-border-color: transparent;
 }
 
-/* ============================== */
-/* Scroll Bars                    */
-/* ============================== */
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: derive(-light-gray, -20%);
+    -fx-background-radius: 6px;
+    -fx-background-insets: 0;
+    -fx-opacity: 1;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: derive(-light-gray, -30%);
+}
+
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button {
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-padding: 0;
+    -fx-opacity: 0;
+}
 
 .scroll-pane .scroll-bar:horizontal {
     -fx-background-color: transparent;

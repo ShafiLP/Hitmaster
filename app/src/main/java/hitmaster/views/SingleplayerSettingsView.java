@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -155,7 +156,18 @@ public class SingleplayerSettingsView extends HitmasterDialog {
 
         setManagerBox.getChildren().addAll(activeSetsLabel, activeSetsCrollPane, manageSetsButton);
         gameOptionsBox.getChildren().addAll(UiBuilder.getHorizontalSeparator(), setManagerBox);
-        setCenter(gameOptionsBox);
+        
+
+        // Scroll Pane --------------------
+        ScrollPane centerScrollPane = new ScrollPane(gameOptionsBox);
+
+        centerScrollPane.setFitToWidth(true);
+        centerScrollPane.setFitToHeight(false);
+
+        centerScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        centerScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
+        setCenter(centerScrollPane);
 
 
         // ===== BOTTOM CONTROLS =====
@@ -187,7 +199,18 @@ public class SingleplayerSettingsView extends HitmasterDialog {
             Navigation.getInstance().maximize();
         });
 
-        controllsBox.getChildren().addAll(UiBuilder.getHorizontalSpacer(), startButton);
+        Button backButton = new Button();
+        backButton.setTooltip(new Tooltip("Go Back"));
+        backButton.setGraphic(SvgParser.streamToColoredSvgIcon(
+            getClass().getResourceAsStream("/icons/arrow-left.svg"),
+            "-primary-brush"
+        ));
+
+        backButton.setOnAction(e -> {
+            Navigation.getInstance().toMainMenu();
+        });
+
+        controllsBox.getChildren().addAll(backButton, UiBuilder.getHorizontalSpacer(), startButton);
         bottomBox.getChildren().addAll(UiBuilder.getHorizontalSeparator(), controllsBox);
         setBottom(bottomBox);
 
