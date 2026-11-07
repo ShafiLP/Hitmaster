@@ -1,10 +1,9 @@
 package hitmaster.design;
 
 import hitmaster.models.Player;
-import hitmaster.services.Database;
+import hitmaster.services.Navigation;
 import hitmaster.services.ThemeManager;
 import hitmaster.views.GameView;
-import hitmaster.views.MainMenu;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -78,22 +77,42 @@ public class WinnerPane {
         Button closeButton = new Button("Back to Main Menu");
         closeButton.getStyleClass().add("primary-button");
         closeButton.setOnAction(e -> {
-            Stage currentStage = (Stage) parent.getScene().getWindow();
-            currentStage.close();
-
-            MainMenu menu = new MainMenu(stage, Database.getInstance().getCurrentUser());
-
-            Scene scene = new Scene(menu.getView(), 600, 450);
-            menu.getView().prefWidthProperty().bind(scene.widthProperty());
-
-            ThemeManager.getInstance().registerScene(scene);
-
-            stage.setTitle("Hitmaster");
-            stage.setScene(scene);
-            stage.show();
+            stage.close();
+            Navigation.getInstance().toMainMenu();
         });
 
         root.getChildren().addAll(avatarContainer, message, closeButton);
+
+        Scene scene = new Scene(root, 400, 200);
+        ThemeManager.getInstance().registerScene(scene);
+        
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    public static void drawDialog(GameView parent) {
+        Stage stage = new Stage();
+        stage.setTitle("Game End");
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        VBox root = new VBox(25);
+        root.setPadding(new Insets(20));
+        root.setFillWidth(true);
+        root.setAlignment(Pos.CENTER);
+
+        // Draw message
+        Label message = new Label("It's a draw!");
+        message.getStyleClass().add("subheader");
+
+        // Close button
+        Button closeButton = new Button("Back to Main Menu");
+        closeButton.getStyleClass().add("primary-button");
+        closeButton.setOnAction(e -> {
+            stage.close();
+            Navigation.getInstance().toMainMenu();
+        });
+
+        root.getChildren().addAll(message, closeButton);
 
         Scene scene = new Scene(root, 400, 200);
         ThemeManager.getInstance().registerScene(scene);

@@ -298,7 +298,7 @@ public class NetworkManager {
             out.flush();
             out.reset();
         } 
-        catch (IOException e) {
+        catch (IOException | NullPointerException e) {
             Log.Error("An error occurred while sending an object: " + e.getMessage());
         }
     }

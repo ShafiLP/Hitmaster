@@ -16,40 +16,52 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public final class OpponentPane extends HBox {
+public final class PlayerPane extends HBox {
 
-    private final StackPane avatarContainer;
-    private final Label nameLabel;
-    private final ChipPane chipPane;
-    private final Pane cardRowPane;
+    private StackPane avatarContainer;
+    private Label nameLabel;
+    private ChipPane chipPane;
+    private Pane cardRowPane;
 
     private Player player;
 
-    private final List<Song> opponentSongs = new ArrayList<>();
+    private final List<Song> playerSongs = new ArrayList<>();
     private final List<MiniSongCard> miniSongCards = new ArrayList<>();
     
     private final double CARD_SIZE = 100.0; 
     private final double CARD_GAP = 10.0;
 
-    public OpponentPane(Player player) {
+    /**
+     * Constructor for PlayerPane.
+     * Calls super method of HBox with 20px spacing.
+     */
+    public PlayerPane() {
         super(20);
-        this.player = player;
-        this.setAlignment(Pos.CENTER_LEFT);
-        this.setPadding(new Insets(10, 20, 10, 20));
-        
-        this.setStyle("-fx-background-color: rgba(255, 255, 255, 0.03);" +
-                      "-fx-border-color: rgba(255, 255, 255, 0.05);" +
-                      "-fx-border-width: 0 0 1 0;");
+    }
 
-        // ==========================================
-        // PLAYER INFORMATION
-        // ==========================================
+    /**
+     * Initializes PlayerPane.
+     * Creates layout and sets player name and avatar.
+     * @param player Player object with name and avatar.
+     */
+    public void initialize(Player player) {
+        this.player = player;
+        if (player == null) player = new Player("notSet", "notSet");
+
+        setAlignment(Pos.CENTER_LEFT);
+        setPadding(new Insets(10, 20, 10, 20));
+        
+        setStyle("-fx-background-color: rgba(255, 255, 255, 0.03);" +
+                 "-fx-border-color: rgba(255, 255, 255, 0.05);" +
+                 "-fx-border-width: 0 0 1 0;");
+
+        // ===== PLAYER INFORMATION =====
         avatarContainer = new StackPane();
         avatarContainer.setMinSize(60, 60);
         avatarContainer.setPrefSize(60, 60);
         avatarContainer.setMaxSize(60, 60);
 
-        this.updateAvatar(player);
+        updateAvatar(player);
 
         nameLabel = new Label(player.username);
         nameLabel.getStyleClass().add("subheader");
@@ -64,24 +76,22 @@ public final class OpponentPane extends HBox {
         HBox profileSection = new HBox(12, avatarContainer, infoContainer);
         profileSection.setAlignment(Pos.CENTER_LEFT);
 
-        // ==========================================
-        // SONGCARDS
-        // ==========================================
+        // ===== SONGCARDS =====
         cardRowPane = new Pane();
         cardRowPane.setPrefHeight(CARD_SIZE);
         HBox.setHgrow(cardRowPane, Priority.ALWAYS);
 
         cardRowPane.widthProperty().addListener((obs, oldVal, newVal) -> refreshCardLayout());
 
-        this.getChildren().addAll(profileSection, cardRowPane);
+        getChildren().addAll(profileSection, cardRowPane);
     }
 
     /**
      * Replaces the whole list of SongCards and draws them.
      */
     public void setSongs(List<Song> songs) {
-        this.opponentSongs.clear();
-        this.opponentSongs.addAll(songs);
+        playerSongs.clear();
+        playerSongs.addAll(songs);
 
         miniSongCards.clear();
         cardRowPane.getChildren().clear();
@@ -92,25 +102,30 @@ public final class OpponentPane extends HBox {
             cardRowPane.getChildren().add(card);
         }
 
-        this.refreshCardLayout();
+        refreshCardLayout();
     }
 
+    /**
+     * Gets all songs inside list of songs and returns them.
+     * @return List<Song> All songs assigned to player of this pane.
+     */
     public List<Song> getSongs() {
-        return this.opponentSongs;
+        return playerSongs;
     }
 
     /**
      * Adds a single card to list of SongCards.
+     * Added at end of list if list is not empty.
      */
     public void addSong(Song song) {
-        this.opponentSongs.add(song);
+        playerSongs.add(song);
 
-        MiniSongCard card = this.createMiniCard(song, CARD_SIZE);
-        this.miniSongCards.add(card);
+        MiniSongCard card = createMiniCard(song, CARD_SIZE);
+        miniSongCards.add(card);
         
         cardRowPane.getChildren().add(card);
 
-        this.refreshCardLayout();
+        refreshCardLayout();
     }
 
     public void addChip() { chipPane.addChip(); }
@@ -121,7 +136,7 @@ public final class OpponentPane extends HBox {
      * Calculates positions of smaller preview SongCards.
      */
     private void refreshCardLayout() {
-        int totalCards = opponentSongs.size();
+        int totalCards = playerSongs.size();
         if (totalCards == 0) return;
         
         double currentSize = CARD_SIZE;
@@ -170,7 +185,7 @@ public final class OpponentPane extends HBox {
     }
 
     /**
-     * Sets a new username for this OpponentPane.
+     * Sets a new username for this PlayerPane.
      * @param newName New username.
      */
     public void setName(String newName) {
@@ -191,7 +206,7 @@ public final class OpponentPane extends HBox {
         }
     }
 
-    public void paintOpponentCard(Song song, String cssColor) {
+    public void paintPlayerCard(Song song, String cssColor) {
         // 1) Search for song
         for (int i = 0; i < miniSongCards.size(); i++) {
             if (miniSongCards.get(i).getSong().id == song.id) {
@@ -201,10 +216,10 @@ public final class OpponentPane extends HBox {
             }
         }
 
-        Log.Error("Couldn't find song with ID " + song.id + " in Opponent Pane. Couldn't paint border.");
+        Log.Error("Couldn't find song with ID " + song.id + " in Player Pane. Couldn't paint border.");
     }
 
-    public void resetOpponentCard() {
+    public void resetPlayerCard() {
         for (int i = 0; i < miniSongCards.size(); i++) {
             miniSongCards.get(i).paintBorder("black");
         }

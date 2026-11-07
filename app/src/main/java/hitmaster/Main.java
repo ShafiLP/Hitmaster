@@ -2,6 +2,7 @@ package hitmaster;
 
 import hitmaster.models.User;
 import hitmaster.services.Database;
+import hitmaster.services.Navigation;
 import hitmaster.services.ThemeManager;
 import hitmaster.services.UpdateService;
 import hitmaster.views.MainMenu;
@@ -22,6 +23,7 @@ public class Main extends Application {
         // 3) Initialize UI
         User user = Database.getInstance().getCurrentUser();
         MainMenu menu = new MainMenu(stage, user);
+        Navigation.getInstance().setMainMenuInstance(menu);
 
         Scene scene = new Scene(menu.getView(), 600, 450);
         menu.getView().prefWidthProperty().bind(scene.widthProperty());
@@ -29,9 +31,8 @@ public class Main extends Application {
         ThemeManager.getInstance().registerScene(scene);
         ThemeManager.getInstance().setTheme(user.theme);
 
-        stage.setTitle("Hitmaster");
-        stage.setScene(scene);
-        stage.show();
+        Navigation.getInstance().setTitle("Hitmaster");
+        Navigation.getInstance().show(scene);
     }
 
     public static void main(String[] args) {

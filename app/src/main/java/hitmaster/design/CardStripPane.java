@@ -14,6 +14,7 @@ import javafx.util.Duration;
 public class CardStripPane extends Pane {
     
     private final GameLogic GAME;
+    private final Pane cardOverlay;
     private final List<Card> cards = new ArrayList<>();
     private int originalIndex = -1;
     private int insertIndex = -1;
@@ -27,36 +28,54 @@ public class CardStripPane extends Pane {
 
     private final Line marker = new Line();
 
-    public CardStripPane(GameLogic game) {
+    public CardStripPane(GameLogic game, Pane cardOverlay) {
         this.GAME = game;
+        this.cardOverlay = cardOverlay;
 
-        this.widthProperty().addListener((obs, oldVal, newVal) -> layoutCards());
-        this.heightProperty().addListener((obs, oldVal, newVal) -> layoutCards());
+        widthProperty().addListener((obs, oldVal, newVal) -> layoutCards());
+        heightProperty().addListener((obs, oldVal, newVal) -> layoutCards());
 
         marker.setStroke(Color.WHITE);
         marker.setStrokeWidth(5);
         marker.getStrokeDashArray().addAll(6.0, 4.0);
         marker.setVisible(false);
-        this.getChildren().add(marker);
+        getChildren().add(marker);
 
-        this.getStyleClass().add("card-strip");
+        getStyleClass().add("card-strip");
     }
 
     public void addCard(Card card) {
-        if (!cards.contains(card)) {
-            cards.add(card);
-        }
+        if (card == null) return;
+
+        if (!cards.contains(card)) cards.add(card);
+        
         layoutCards();
     }
 
     public void registerExternalCard(Card card) {
         card.setOnDragStarted(() -> {
+            if (card.getParent() == cardOverlay) return;
+
             originalIndex = cards.indexOf(card);
+
             if (originalIndex >= 0) {
-                cards.remove(card);
+                cards.remove(originalIndex);
             }
-            marker.setVisible(false);
-            this.layoutCards();
+
+            Point2D scenePoint = card.localToScene(0, 0);
+
+            getChildren().remove(card);
+
+            Point2D overlayPoint = cardOverlay.sceneToLocal(scenePoint);
+
+            if (card.getParent() == null) {
+                cardOverlay.getChildren().add(card);
+            }
+
+            card.setLayoutX(overlayPoint.getX());
+            card.setLayoutY(overlayPoint.getY());
+
+            layoutCards();
         });
 
         card.setOnDragged((sceneX, sceneY) -> {
@@ -75,32 +94,20 @@ public class CardStripPane extends Pane {
             marker.setVisible(false);
             
             if (insertIndex >= 0) {
-                if (card.getParent() != this) {
-                    if (card.getParent() != null) {
-                        ((Pane) card.getParent()).getChildren().remove(card);
-                    }
-                    getChildren().add(card);
+                if (card.getParent() instanceof Pane parent) {
+                    parent.getChildren().remove(card);
                 }
-                cards.add(insertIndex, card);
-            } else {
-                if (originalIndex >= 0) {
-                    Point2D scenePoint = card.localToScene(0, 0);
-                    Pane gameView = (Pane) getParent();
-                    
-                    this.getChildren().remove(card);
-                    
-                    if (gameView != null && !gameView.getChildren().contains(card)) {
-                        gameView.getChildren().add(card);
-                        Point2D localRoot = gameView.sceneToLocal(scenePoint);
-                        card.setLayoutX(localRoot.getX());
-                        card.setLayoutY(localRoot.getY());
-                    }
-                }
+
+                getChildren().add(card);
+
+                int safeIndex = Math.max(0, Math.min(insertIndex, cards.size()));
+                cards.add(safeIndex, card);
             }
 
             insertIndex = -1;
             originalIndex = -1;
-            this.layoutCards();
+
+            layoutCards();
 
             GAME.handleCardMove(cards);
         });
@@ -111,7 +118,7 @@ public class CardStripPane extends Pane {
 
         cards.remove(card);
 
-        this.getChildren().remove(card);
+        getChildren().remove(card);
         
         if (removeFromParent && getParent() != null && getParent() instanceof Pane) {
             ((Pane) getParent()).getChildren().remove(card);
@@ -180,7 +187,7 @@ public class CardStripPane extends Pane {
         layoutCards();
 
         // 3) Animate movement to CardStripPane
-        this.animateCardToPosition(card, initialSceneX, initialSceneY);
+        animateCardToPosition(card, initialSceneX, initialSceneY);
     }
 
     /**
@@ -247,21 +254,20 @@ public class CardStripPane extends Pane {
         for (int i = 0; i < totalCards; i++) {
             Card card = cards.get(i);
 
+            if (card.getParent() == null) getChildren().add(card);
+            if (card.getParent() != this) continue;
+
             card.setPrefSize(currentCardWidth, CARDHEIGHT);
             
             double x = startX + i * (currentCardWidth + currentHGap);
             card.relocate(x, stripY);
-
-            if (!this.getChildren().contains(card)) {
-                this.getChildren().add(card);
-            }
         }
 
         marker.toFront();
     }
 
     public void clear() {
-        this.getChildren().removeAll(cards);
+        getChildren().removeAll(cards);
         
         cards.clear();
         
@@ -273,7 +279,7 @@ public class CardStripPane extends Pane {
         currentCardWidth = BASE_CARDWIDTH;
         currentHGap = BASE_HGAP;
 
-        this.requestLayout();
+        requestLayout();
     }
 
     public List<Card> getCards() {

@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import hitmaster.GameLogic;
+import hitmaster.design.ShowHideLabel;
 import hitmaster.models.GameOptions;
 import hitmaster.models.GameOptionsDTO;
 import hitmaster.models.JoinRequest;
@@ -11,6 +12,7 @@ import hitmaster.models.Player;
 import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
+import hitmaster.services.Navigation;
 import hitmaster.services.NetworkManager;
 import hitmaster.services.ThemeManager;
 import hitmaster.views.MainMenu;
@@ -90,18 +92,25 @@ public class LobbyHostView {
         subtitle.getStyleClass().add("header-description");
         titleContainer.getChildren().addAll(title, subtitle);
 
-        String localIp = "Unknown";
+        String tempIp = "Unknown";
         try {
-            localIp = InetAddress.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
+            tempIp = InetAddress.getLocalHost().getHostAddress();
+        }
+        catch (UnknownHostException e) {
             Log.Error("Could not determine local IP");
         }
-        Label ipLabel = new Label("Your IP: " + localIp);
-        ipLabel.getStyleClass().add("modern-label"); 
-        ipLabel.setStyle("-fx-text-fill: gray; -fx-background-color: transparent; -fx-font-size: 13px;");
+        final String localIp = tempIp;
+
+        HBox ipBox = new HBox(
+            8,
+            new Label("Your IP:"),
+            new ShowHideLabel(localIp) {{
+                addToExceptionChars('.');
+            }}
+        );
 
         HBox.setHgrow(titleContainer, Priority.ALWAYS);
-        header.getChildren().addAll(titleContainer, ipLabel);
+        header.getChildren().addAll(titleContainer, ipBox);
 
         // =========================
         // CONTENT
@@ -174,7 +183,8 @@ public class LobbyHostView {
             netManager.sendObject(new GameOptionsDTO(this.options, "START_GAME")); 
             
             GameLogic gameLogic = new GameLogic(this.options, true, netManager);
-            PARENT.setStage(gameLogic.getView(), true);
+            Navigation.getInstance().show(gameLogic.getView());
+            Navigation.getInstance().maximize();
             STAGE.close();
         });
 

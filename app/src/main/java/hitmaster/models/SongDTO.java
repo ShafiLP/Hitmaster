@@ -52,6 +52,7 @@ public class SongDTO implements Serializable {
         s.year = this.year;
         s.artists = this.artists;
         s.titles = this.titles;
+        s.spotify = this.spotifyUri;
         return s;
     }
 }

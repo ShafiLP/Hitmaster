@@ -19,7 +19,6 @@ import org.apache.hc.core5.http.ParseException;
 import com.google.gson.JsonArray;
 import com.sun.net.httpserver.HttpServer;
 
-import hitmaster.models.EnvValues;
 import hitmaster.models.User;
 import javafx.scene.media.Track;
 import se.michaelthelin.spotify.SpotifyApi;
@@ -44,8 +43,10 @@ public class Spotify {
      * @return Success result.
      */
     public static boolean createSpotifyConnection() {
-        CLIENT_ID = EnvValues.CLIENT_ID;
-        CLIENT_SECRET = EnvValues.CLIENT_SECRET;
+        Properties props = Spotify.readProperties();
+
+        CLIENT_ID = props.getProperty("clientId");
+        CLIENT_SECRET = props.getProperty("clientSecret");
 
         wasCancelled = false;
 
@@ -130,26 +131,9 @@ public class Spotify {
             spotify.setRefreshToken(refreshToken);
 
             // 3) Save properties
-            Properties props = new Properties();
             props.setProperty("accessToken", accessToken);
             props.setProperty("refreshToken", refreshToken);
-
-            try {
-                String userHome = System.getProperty("user.home");
-                File appStorageDir = new File(userHome, ".hitmaster");
-
-                if (!appStorageDir.exists())
-                    appStorageDir.mkdir();
-
-                File propertyFile = new File(appStorageDir, "spotify.properties");
-
-                try (FileOutputStream out = new FileOutputStream(propertyFile)) {
-                    props.store(out, "Spotify Tokens");
-                }
-            }
-            catch (IOException e) {
-                Log.Error("Error while saving Spotify properties: " + e.getMessage());
-            }
+            Spotify.writeProperties(props);
 
             User user = Database.getInstance().getCurrentUser();
             user.provider = "spotify";
@@ -180,30 +164,12 @@ public class Spotify {
      * @return SpotifyApi object with linked user account.
      */
     public static SpotifyApi requestSpotifyConnection() {
-        CLIENT_ID = EnvValues.CLIENT_ID;
-        CLIENT_SECRET = EnvValues.CLIENT_SECRET;
+        // 1) Load properties from file
+        Properties props = Spotify.readProperties();
+        CLIENT_ID = props.getProperty("clientId");
+        CLIENT_SECRET = props.getProperty("clientSecret");
         
         try {
-            // 1) Load properties from file
-            Properties props = new Properties();
-
-            try {
-                String userHome = System.getProperty("user.home");
-                File propertiesFile = new File(userHome, ".hitmaster/spotify.properties");
-
-                if (propertiesFile.exists()) {
-                    try (FileInputStream in = new FileInputStream(propertiesFile)) {
-                        props.load(in);
-                    }
-                }
-                else {
-                    Log.Warning("No properties file found in directory.");
-                }
-            }
-            catch (IOException e) {
-                Log.Error("Error while loading Spotify properties: " + e.getMessage());
-            }
-
             // 2) Build connection to Spotify
             SpotifyApi spotify = new SpotifyApi.Builder()
                 .setClientId(CLIENT_ID)
@@ -241,6 +207,80 @@ public class Spotify {
             Log.Error("Connection to Spotify API failed: " + e.getMessage());
             return false;
         }
+    }
+
+    /**
+     * Reads properties from user's 'spotify.properties' file
+     * (clientId, clientSecret, accessToken, refreshToken)
+     * and returns them as Properties object.
+     * Returns empty Properties object, if no such file exists or an error occurs.
+     * @return Properties properties from 'spotify.properties' file.
+     */
+    public static Properties readProperties() {
+        Properties props = new Properties();
+
+        try {
+            String userHome = System.getProperty("user.home");
+            File propertiesFile = new File(userHome, ".hitmaster/spotify.properties");
+
+            if (propertiesFile.exists()) {
+                try (FileInputStream in = new FileInputStream(propertiesFile)) {
+                    props.load(in);
+                }
+            }
+            else {
+                Log.Warning("No properties file found in directory.");
+            }
+        }
+        catch (IOException e) {
+            Log.Error("Error while loading Spotify properties: " + e.getMessage());
+        }
+        
+        return props;
+    }
+
+    /**
+     * Overrides properties insides user's 'spotify.properties' file.
+     * Should contain values for 'clientId', 'clientSecret', 'accessToken' and 'refreshToken'.
+     * If no 'spotify.properties' file exists, creates a new file
+     * in user's home directory under '.hitmaster'.
+     * @param props Properties new properties to override old ones with.
+     */
+    private static void writeProperties(Properties props) {
+        try {
+            String userHome = System.getProperty("user.home");
+            File appStorageDir = new File(userHome, ".hitmaster");
+
+            if (!appStorageDir.exists())
+                appStorageDir.mkdir();
+
+            File propertyFile = new File(appStorageDir, "spotify.properties");
+
+            try (FileOutputStream out = new FileOutputStream(propertyFile)) {
+                props.store(out, "Spotify API Keys & Tokens");
+            }
+        }
+        catch (IOException e) {
+            Log.Error("Error while saving Spotify properties: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Only overrides clientId and clientSecret in 'spotify.properties' file.
+     * Keeps already existing values for 'accessToken' and 'refreshToken', if existant.
+     * If no 'spotify.properties' file exists, creates a new file
+     * in user's home directory under '.hitmaster'.
+     * @param clientId String new client ID for Spotify connection.
+     * @param clientSecret String new client secret for Spotify connection.
+     */
+    public static void setClientIdAndClientSecret(String clientId, String clientSecret) {
+        if (clientId == null) return;
+        if (clientSecret == null) return;
+
+        Properties props = Spotify.readProperties();
+        props.setProperty("clientId", clientId);
+        props.setProperty("clientSecret", clientSecret);
+        Spotify.writeProperties(props);
     }
 
     /**

@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 public class ThemeManager {
 
     public enum Theme {
+        GLOBAL("/styles/style.css"),
         LIGHT("/styles/light.css"),
         DARK("/styles/dark.css");
 
@@ -17,6 +18,7 @@ public class ThemeManager {
     }
 
     private static ThemeManager instance;
+    private final Theme globalTheme = Theme.GLOBAL;
     private Theme currentTheme = Theme.LIGHT;
     private final List<Scene> registeredScenes = new ArrayList<>();
 
@@ -32,6 +34,7 @@ public class ThemeManager {
     public void registerScene(Scene scene) {
         if (!registeredScenes.contains(scene)) {
             registeredScenes.add(scene);
+            applyThemeToScene(scene, globalTheme);
             applyThemeToScene(scene, currentTheme);
         }
     }

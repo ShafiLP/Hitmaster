@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -36,7 +37,7 @@ public class StealView extends Stage {
     
     private boolean confirmed = false;
 
-    public StealView(GameLogic game, Player stealingPlayer) {
+    public StealView(GameLogic game, Pane cardOverlay, Player stealingPlayer) {
         this.GAME = game;
         this.targetCard = new PlayerCard(stealingPlayer);
         this.targetCard.setDraggable(true);
@@ -57,7 +58,7 @@ public class StealView extends Stage {
         AnchorPane centerLayout = new AnchorPane();
         centerLayout.setPadding(new Insets(20));
 
-        cardStripPane = new CardStripPane(game);
+        cardStripPane = new CardStripPane(game, cardOverlay);
         cardStripPane.setPrefHeight(180);
 
         AnchorPane.setTopAnchor(cardStripPane, 20.0);

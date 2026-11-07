@@ -8,18 +8,23 @@ import hitmaster.design.CardStripPane;
 import hitmaster.design.ChatPane;
 import hitmaster.design.ChipPane;
 import hitmaster.design.DiscardPile;
-import hitmaster.design.OpponentPane;
+import hitmaster.design.PingDisplay;
 import hitmaster.design.PlayerCard;
+import hitmaster.design.PlayerPane;
 import hitmaster.design.SongCard;
 import hitmaster.design.StealOverlayPane;
+import hitmaster.design.StyleDialog;
 import hitmaster.design.WinnerPane;
 import hitmaster.models.Player;
 import hitmaster.models.Song;
+import hitmaster.services.Navigation;
+import hitmaster.services.SvgParser;
 import hitmaster.services.Timer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -27,6 +32,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -38,14 +44,25 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class GameView extends Pane {
+public class GameView extends BorderPane {
+
+    private final int CONTROLS_HEIGHT = 15;
 
     private final GameLogic GAME;
+    private final Pane OVERLAY;
 
     private Timer timerUnit;
     private boolean isStealing = false;
 
-    // UI elements
+    // ===== UI Elements =====
+
+    // --- Top Bar ---
+    private final Button EXIT;
+    private final PingDisplay PING;
+    private final Label CURRENT_PLAYER;
+    private final Label TIMER;
+    private final Button SETTINGS;
+
     private final ChatPane CHAT;
     private final CardStripPane STRIP;
     private final DiscardPile DISCARD_PILE;
@@ -67,38 +84,180 @@ public class GameView extends Pane {
     private SongCard currentCard;
     private PlayerCard stealCard = new PlayerCard(null);
 
-    private OpponentPane OPPONENT_PANE;
+    private final PlayerPane PLAYER_PANE;
 
     // ==============================
-    // CONSTRUCTOR
+    // #region CONSTRUCTOR
     // ==============================
 
-    public GameView(GameLogic GAME) {
-        this.GAME = GAME;
+    public GameView(GameLogic game) {
+        this.GAME = game;
 
         final double CONTROLS_WIDTH = 320;
-        final double GAP = 20;
+        final double PADDING = 15;
 
-        this.widthProperty().addListener((obs, oldVal, newVal) -> {
-            if (currentCard != null)
-                this.keepCardInBounds(currentCard);
+        // ===== EXIT BUTTON =====
+        EXIT = new Button();
+        EXIT.getStyleClass().add("clickable-icon");
+        EXIT.setTooltip(new Tooltip("Exit"));
+        EXIT.setGraphic(SvgParser.streamToColoredSvgIcon(
+            getClass().getResourceAsStream("/icons/exit.svg"),
+            "-tertiary-brush"
+        ));
+        EXIT.resize(CONTROLS_HEIGHT, CONTROLS_HEIGHT);
+
+        EXIT.setOnAction(e -> {
+            openExitDialog();
         });
 
-        // 1) Chat Pane
+        // ===== PING =====
+        PING = new PingDisplay(50, 100);
+
+        // ===== CURRENT PLAYER =====
+        CURRENT_PLAYER = new Label("Current Player");
+        CURRENT_PLAYER.setStyle("-fx-text-fill: -tertiary-brush");
+
+        // ===== TIMER LABEL =====
+        HBox timerBox = new HBox(5);
+        timerBox.setAlignment(Pos.CENTER);
+
+        timerBox.getChildren().add(SvgParser.streamToColoredSvgIcon(
+            getClass().getResourceAsStream("/icons/timer.svg"),
+            "-tertiary-brush"
+        ));
+
+        TIMER = new Label("00:00");
+        TIMER.setStyle("-fx-text-fill: -tertiary-brush");
+
+        timerBox.getChildren().add(TIMER);
+
+        // ===== SETTINGS BUTTON =====
+        SETTINGS = new Button();
+        SETTINGS.getStyleClass().add("clickable-icon");
+        SETTINGS.setTooltip(new Tooltip("Settings"));
+        SETTINGS.setGraphic(SvgParser.streamToColoredSvgIcon(
+            getClass().getResourceAsStream("/icons/settings.svg"),
+            "-tertiary-brush"
+        ));
+
+        // ===== CHAT =====
         CHAT = new ChatPane(GAME);
         CHAT.addInfoMessage("Welcome to Hitmaster!");
         VBox.setVgrow(CHAT, Priority.ALWAYS);
 
-        // 2) Card Strip Pane
-        STRIP = new CardStripPane(GAME);
+        // ===== DISCARD PILE =====
+        DISCARD_PILE = new DiscardPile();
+
+        // ===== INPUTS =====
+        ARTIST = new TextField();
+        ARTIST.getStyleClass().add("modern-textbox");
+        ARTIST.setPromptText("Artist...");
+
+        TITLE = new TextField();
+        TITLE.getStyleClass().add("modern-textbox");
+        TITLE.setPromptText("Title...");
+
+        SUBMIT = new Button("Submit");
+        SUBMIT.getStyleClass().add("primary-button");
+        SUBMIT.setMaxWidth(Double.MAX_VALUE);
+        SUBMIT.setOnAction(e -> {
+            if (!isStealing) {
+                startStealTime();
+            }
+            else {
+                checkStealGuess();
+            }
+        });
+
+        VBox inputs = new VBox(8, ARTIST, TITLE, SUBMIT);
+
+        // ===== MEDIA CONTROL =====
+        BACKWARD = new Button("⏮");
+        PLAYPAUSE = new Button("►");
+        FORWARD = new Button("⏭");
+        RESTART = new Button("↺");
+        SKIP = new Button("Skip");
+        INSERT = new Button("Insert");
+
+        BACKWARD.getStyleClass().add("modern-button");
+        PLAYPAUSE.getStyleClass().add("modern-button");
+        FORWARD.getStyleClass().add("modern-button");
+        RESTART.getStyleClass().add("modern-button");
+        SKIP.getStyleClass().add("modern-button");
+        INSERT.getStyleClass().add("modern-button");
+
+        BACKWARD.setOnAction(e -> { GAME.seek5secBackward(); GAME.sendObject("SONG:BACKWARD"); } );
+        PLAYPAUSE.setOnAction(e -> { playPause(); });
+        FORWARD.setOnAction(e -> { GAME.seek5secForward(); GAME.sendObject("SONG:FORWARD"); });
+        RESTART.setOnAction(e -> { GAME.restartCurrentSong(); GAME.sendObject("SONG:RESTART"); });
+        SKIP.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 1) GAME.skipCurrentSong(); });
+        INSERT.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 3) GAME.insertCardIntoStrip(); });
+
+        setInputsEnabled(false);
+
+        HBox mediaRow = new HBox(15, BACKWARD, PLAYPAUSE, FORWARD, RESTART, SKIP, INSERT);
+        mediaRow.setAlignment(Pos.CENTER);
+
+        ComboBox<String> deviceDropdown = new ComboBox<>();
+        deviceDropdown.getStyleClass().add("modern-dropdown");
+        deviceDropdown.setPromptText("Device...");
+        deviceDropdown.setPrefWidth(130);
+
+        String[] devices = GAME.getAvailablePlayingDevices();
+        if (devices != null) {
+            deviceDropdown.getItems().addAll(devices);
+            deviceDropdown.getSelectionModel().select(GAME.getCurrentPlayingDevice());
+        }
+        else {
+            deviceDropdown.setDisable(true);
+        }
+
+        deviceDropdown.setOnAction(e -> { GAME.setPlayerDevice(deviceDropdown.getValue()); });
+
+        int vol = GAME.getVolume();
+        Slider volumeSlider = new Slider(0, 100, vol >= 0 ? vol : 0);
+
+        if (vol == -1) volumeSlider.setDisable(true);
+        
+        volumeSlider.getStyleClass().add("modern-slider");
+        volumeSlider.setOnMouseReleased(e -> { GAME.setVolume((int) volumeSlider.getValue()); });
+        HBox.setHgrow(volumeSlider, Priority.ALWAYS);
+
+        HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
+        audioRow.setAlignment(Pos.CENTER_LEFT);
+
+        // ===== CHIPS =====
+        CHIP_PANE = new ChipPane();
+
+        // ===== CARD OVERLAY =====
+        OVERLAY = new Pane();
+        OVERLAY.setManaged(false);
+        OVERLAY.setPickOnBounds(false);
+
+        OVERLAY.prefWidthProperty().bind(widthProperty());
+        OVERLAY.prefHeightProperty().bind(heightProperty());
+
+        OVERLAY.widthProperty().addListener((obs, oldVal, newVal) -> {
+            if (currentCard!= null) keepCardInBounds(currentCard);
+        });
+
+        OVERLAY.heightProperty().addListener((obs, oldVal, newVal) -> {
+            keepCardInBounds(currentCard);
+        });
+
+        getChildren().add(OVERLAY);
+
+        // ===== CARD STRIP =====
+        STRIP = new CardStripPane(GAME, OVERLAY);
         STRIP.setPrefHeight(200);
 
-        STRIP.prefWidthProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + (GAP * 3)));
-        STRIP.layoutYProperty().bind(this.heightProperty().subtract(STRIP.prefHeightProperty()).subtract(GAP));
-        STRIP.setLayoutX(GAP);
-        this.getChildren().add(STRIP);
+        BorderPane stripPadding = new BorderPane();
+        stripPadding.setPadding(new Insets(PADDING));
+        stripPadding.setCenter(STRIP);
 
-        // 3) Card Pile
+        setBottom(stripPadding);
+
+        // ===== CARD PILE =====
         BorderPane cardPile = new BorderPane();
         cardPile.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 
@@ -129,113 +288,61 @@ public class GameView extends Pane {
         double totalPileHeight = targetHeight + 25;
         cardPile.setPrefSize(targetHeight, totalPileHeight);
 
-        cardPile.setLayoutX(GAP);
-        cardPile.layoutYProperty().bind(this.heightProperty().subtract(cardPile.prefHeightProperty()).divide(2));
+        // ===== BUILD UI =====
+        HBox topBar = new HBox();
+        topBar.setStyle(
+            "-fx-background-color: -fx-primary-accent-brush;" + 
+            "-fx-text-fill: -fx-tertiary-brush;"
+        );
 
-        this.getChildren().add(cardPile);
+        topBar.setAlignment(Pos.CENTER_LEFT);
+        topBar.setPadding(new Insets(3, 8, 3, 8));
 
-        // 4) Discard Pile
-        DISCARD_PILE = new DiscardPile();
+        // EXIT -> PING -> CURRENT_PLAYER -> timerBox -> SETTINGS
+        topBar.getChildren().addAll(
+            EXIT, getHorizontalSpacer(),
+            PING, getHorizontalSpacer(),
+            CURRENT_PLAYER, getHorizontalSpacer(),
+            timerBox, getHorizontalSpacer(),
+            SETTINGS
+        );
 
-        // 5) Text fields and button
-        ARTIST = new TextField();
-        ARTIST.getStyleClass().add("modern-textbox");
-        ARTIST.setPromptText("Artist...");
+        setTop(topBar);
 
-        TITLE = new TextField();
-        TITLE.getStyleClass().add("modern-textbox");
-        TITLE.setPromptText("Song title...");
 
-        SUBMIT = new Button("Submit");
-        SUBMIT.getStyleClass().add("primary-button");
-        SUBMIT.setMaxWidth(Double.MAX_VALUE);
-        SUBMIT.setOnAction(e -> {
-            if (!isStealing) {
-                this.startStealTime();
-            }
-            else {
-                this.checkStealGuess();
-            }
-        });
+        VBox leftSidebar = new VBox(15);
+        leftSidebar.setPadding(new Insets(PADDING, 0, 0, PADDING));
+        leftSidebar.setAlignment(Pos.TOP_LEFT);
 
-        VBox inputs = new VBox(8, ARTIST, TITLE, SUBMIT);
+        PLAYER_PANE = new PlayerPane();
+        PLAYER_PANE.setPrefWidth(400);
+        PLAYER_PANE.setMinWidth(400);
+        PLAYER_PANE.setMaxWidth(400);
+        PLAYER_PANE.setVisible(false);
+        PLAYER_PANE.setManaged(false);
 
-        // 6) Spotify media control
-        BACKWARD = new Button("⏮");
-        PLAYPAUSE = new Button("►");
-        FORWARD = new Button("⏭");
-        RESTART = new Button("↺");
-        SKIP = new Button("Skip");
-        INSERT = new Button("Insert");
+        VBox leftElements = new VBox(15);
+        leftElements.setAlignment(Pos.BOTTOM_LEFT);
+        leftElements.getChildren().addAll(cardPile, DISCARD_PILE);
 
-        BACKWARD.getStyleClass().add("modern-button");
-        PLAYPAUSE.getStyleClass().add("modern-button");
-        FORWARD.getStyleClass().add("modern-button");
-        RESTART.getStyleClass().add("modern-button");
-        SKIP.getStyleClass().add("modern-button");
-        INSERT.getStyleClass().add("modern-button");
+        leftSidebar.getChildren().addAll(PLAYER_PANE, getVerticalSpacer(), leftElements);
+        setLeft(leftSidebar);
 
-        BACKWARD.setOnAction(e -> { GAME.seek5secBackward(); GAME.sendObject("SONG:BACKWARD"); } );
-        PLAYPAUSE.setOnAction(e -> { this.playPause(); });
-        FORWARD.setOnAction(e -> { GAME.seek5secForward(); GAME.sendObject("SONG:FORWARD"); });
-        RESTART.setOnAction(e -> { GAME.restartCurrentSong(); GAME.sendObject("SONG:RESTART"); });
-        SKIP.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 1) GAME.skipCurrentSong(); });
-        INSERT.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 3) GAME.insertCardIntoStrip(); });
-
-        this.setInputsEnabled(false);
-
-        HBox mediaRow = new HBox(15, BACKWARD, PLAYPAUSE, FORWARD, RESTART, SKIP, INSERT);
-        mediaRow.setAlignment(Pos.CENTER);
-
-        ComboBox<String> deviceDropdown = new ComboBox<>();
-        deviceDropdown.getStyleClass().add("modern-dropdown");
-        deviceDropdown.setPromptText("Device...");
-        deviceDropdown.setPrefWidth(130);
-
-        String[] devices = GAME.getAvailablePlayingDevices();
-        if (devices != null) {
-            deviceDropdown.getItems().addAll(devices);
-            deviceDropdown.getSelectionModel().select(GAME.getCurrentPlayingDevice());
-        }
-        else {
-            deviceDropdown.setDisable(true);
-        }
-
-        deviceDropdown.setOnAction(e -> { GAME.setPlayerDevice(deviceDropdown.getValue()); });
-
-        int vol = GAME.getVolume();
-        Slider volumeSlider = new Slider(0, 100, vol >= 0 ? vol : 0);
-
-        if (vol == -1)
-            volumeSlider.setDisable(true);
-        
-        volumeSlider.getStyleClass().add("modern-slider");
-        volumeSlider.setOnMouseReleased(e -> { GAME.setVolume((int) volumeSlider.getValue()); });
-        HBox.setHgrow(volumeSlider, Priority.ALWAYS);
-
-        HBox audioRow = new HBox(12, deviceDropdown, volumeSlider);
-        audioRow.setAlignment(Pos.CENTER_LEFT);
-
-        // 7) Chip panel
-        CHIP_PANE = new ChipPane();
-
-        // 8) Build full panel
         VBox controlPanel = new VBox(15, inputs, mediaRow, audioRow);
 
         VBox rightSidebar = new VBox(15);
         rightSidebar.setPrefWidth(CONTROLS_WIDTH);
+        rightSidebar.setPadding(new Insets(PADDING, PADDING, 0, 0));
+        rightSidebar.setAlignment(Pos.TOP_CENTER);
+        rightSidebar.getChildren().addAll(CHAT, CHIP_PANE, controlPanel);
+        setRight(rightSidebar);
 
-        rightSidebar.setAlignment(Pos.CENTER_RIGHT);
-
-        rightSidebar.layoutXProperty().bind(this.widthProperty().subtract(CONTROLS_WIDTH + GAP));
-        rightSidebar.setLayoutY(GAP);
-        rightSidebar.prefHeightProperty().bind(this.heightProperty().subtract(GAP * 2));
-
-        rightSidebar.getChildren().addAll(CHAT, DISCARD_PILE, CHIP_PANE, controlPanel);
+        OVERLAY.toFront();
         
-        this.getChildren().add(rightSidebar);
         Platform.runLater(this::requestFocus);
     }
+
+    // #endregion
 
     //#region UI OPERATIONS
 
@@ -268,8 +375,7 @@ public class GameView extends Pane {
      */
     public void addToCardStack(Song song) {
         // 1) Reset borders of opponent cards from previous move
-        if (GAME.isLAN())
-            this.resetOpponentCard();
+        if (GAME.isLAN()) resetOpponentCard();
 
         // 2) Create a new SongCard
         SongCard card = new SongCard(this, song);
@@ -277,7 +383,7 @@ public class GameView extends Pane {
         Platform.runLater(() -> {
             // 3) Add & Animate SongCard from Pile to Center
             Point2D sceneCoords = PILE_IMAGE.localToScene(0, 0);
-            Point2D localCoords = this.sceneToLocal(sceneCoords);
+            Point2D localCoords = OVERLAY.sceneToLocal(sceneCoords);
 
             if (localCoords != null) {
                 card.setLayoutX(localCoords.getX());
@@ -286,11 +392,11 @@ public class GameView extends Pane {
 
             currentCard = card;
 
-            this.getChildren().add(currentCard);
+            OVERLAY.getChildren().add(currentCard);
             currentCard.toFront();
 
-            double targetX = (STRIP.getWidth() - currentCard.getBoundsInLocal().getWidth()) / 2.0;
-            double targetY = (this.getHeight() - card.getBoundsInLocal().getHeight()) / 2.0;
+            double targetX = (OVERLAY.getWidth() - currentCard.getBoundsInLocal().getWidth()) / 2.0;
+            double targetY = (OVERLAY.getHeight() - currentCard.getBoundsInLocal().getHeight()) / 2.0;
 
             Timeline timeline = new Timeline();
 
@@ -301,13 +407,13 @@ public class GameView extends Pane {
             timeline.getKeyFrames().add(kf);
             
             timeline.setOnFinished(e -> {
-                this.keepCardInBounds(currentCard);
+                keepCardInBounds(currentCard);
             });
         
             timeline.play();
 
-            this.setInputsEnabled(true);
-            this.initializeNewTimer();
+            setInputsEnabled(true);
+            initializeNewTimer();
 
             STRIP.registerExternalCard(currentCard);
         });
@@ -333,8 +439,7 @@ public class GameView extends Pane {
             STRIP.addCardSorted(currentCard, currentCard.song.year);
             currentCard.setDraggable(false);
 
-            if (showFront)
-                currentCard.showFront();
+            if (showFront) currentCard.showFront();
 
             GAME.handleCardMove(STRIP.getCards());
         });
@@ -412,17 +517,20 @@ public class GameView extends Pane {
      * @param card Card object to keep in bounds.
      */
     public void keepCardInBounds(Card card) {
-        if (card != null) {
-            double minX = 0;
-            double maxX = this.getWidth() - card.getBoundsInLocal().getWidth();
-            double minY = 0;
-            double maxY = this.getHeight() - card.getBoundsInLocal().getHeight();
+        if (card == null) return;
 
-            if (card.getLayoutX() < minX) card.setLayoutX(minX);
-            if (card.getLayoutX() > maxX) card.setLayoutX(maxX);
-            if (card.getLayoutY() < minY) card.setLayoutY(minY);
-            if (card.getLayoutY() > maxY) card.setLayoutY(maxY);
-        }
+        double cardWidth = card.getBoundsInParent().getWidth();
+        double cardHeight = card.getBoundsInParent().getHeight();
+
+        double maxX = Math.max(0, OVERLAY.getWidth() - cardWidth);
+        double maxY = Math.max(0, OVERLAY.getHeight() - cardHeight);
+
+        card.setLayoutX(Math.clamp(card.getLayoutX(), 0, maxX));
+        card.setLayoutY(Math.clamp(card.getLayoutY(), 0, maxY));
+    }
+
+    public Pane getCardOverlay() {
+        return OVERLAY;
     }
 
     /**
@@ -431,6 +539,17 @@ public class GameView extends Pane {
      */
     public void setRemainingCards(int remainingCards) {
         Platform.runLater(() -> REMAINING_CARDS.setText(remainingCards + " cards left"));
+    }
+
+    public void setCurrentPlayer(Player player) {
+        CURRENT_PLAYER.setText(player.username + " is taking their guess!");
+    }
+
+    public void setRemainingTime(int seconds) {
+        int minutes = seconds / 60;
+        int secs = seconds % 60;
+
+        TIMER.setText(String.format("%02d:%02d", minutes, secs));
     }
 
     // ==============================
@@ -447,7 +566,7 @@ public class GameView extends Pane {
         timerUnit = new Timer(GAME.getGameOptions().moveTime);
         timerUnit.start(
             () -> Platform.runLater(() -> 
-                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                setRemainingTime(timerUnit.getRemainingSeconds())
             ),
             () -> Platform.runLater(() -> {
                 this.confirmInput();
@@ -466,7 +585,7 @@ public class GameView extends Pane {
         timerUnit = new Timer(time);
         timerUnit.start(
             () -> Platform.runLater(() ->
-                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                setRemainingTime(timerUnit.getRemainingSeconds())
             ),
             () -> Platform.runLater(() -> {
                 //
@@ -624,7 +743,7 @@ public class GameView extends Pane {
             timerUnit = new Timer(3);
             timerUnit.start(
                 () -> Platform.runLater(() -> 
-                    CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                    setRemainingTime(timerUnit.getRemainingSeconds())
                 ),
                 () -> this.checkForWin(guess)
             );
@@ -657,7 +776,6 @@ public class GameView extends Pane {
 
         // 2) Check for win if guess was correct
         if (guess) {
-            GAME.addCardToPlayerSorted(GAME.getCurrentPlayer());
             if (GAME.checkForWin(STRIP.getSongCards())) {
                 Player winner = GAME.getCurrentPlayer();
                 Platform.runLater(() -> {
@@ -666,7 +784,7 @@ public class GameView extends Pane {
                     this.stopTimer();
 
                     GAME.sendObject("OPPONENT_WIN");
-                    WinnerPane.winnerDialog(this, winner);
+                    showWinnerPane(winner);
                 });
             }
         }
@@ -709,7 +827,19 @@ public class GameView extends Pane {
         this.initializeNewTimer();
     }
 
-    //#endregion
+    public void showWinnerPane(Player winner) {
+        Platform.runLater(() -> {
+            // If winner == null -> draw
+            if (winner == null || winner.username == null) {
+                WinnerPane.drawDialog(this);
+                return;
+            }
+
+            WinnerPane.winnerDialog(this, winner);
+        });
+    }
+
+    // #endregion
 
     //#region MULTIPLAYER OPERATIONS
 
@@ -722,12 +852,9 @@ public class GameView extends Pane {
      * @param opponent Player object of opponent.
      */
     public void initializeOpponentPane(Player opponent) {
-        OPPONENT_PANE = new OpponentPane(opponent);
-        OPPONENT_PANE.setLayoutX(0);
-        OPPONENT_PANE.setLayoutY(20);
-        OPPONENT_PANE.prefWidthProperty().bind(this.widthProperty());
-        
-        this.getChildren().add(OPPONENT_PANE);
+        PLAYER_PANE.initialize(opponent);
+        PLAYER_PANE.setVisible(true);
+        PLAYER_PANE.setManaged(true);
     }
 
     /**
@@ -754,10 +881,10 @@ public class GameView extends Pane {
             }
 
             // 3) Set new opponent progress
-            OPPONENT_PANE.updateAvatar(GAME.getPreviousPlayer());
-            OPPONENT_PANE.setName(GAME.getPreviousPlayer().username);
-            OPPONENT_PANE.setSongs(GAME.getPreviousPlayer().songs);
-            OPPONENT_PANE.setChipsCount(GAME.getPreviousPlayer().hitmasterPoints);
+            PLAYER_PANE.updateAvatar(GAME.getPreviousPlayer());
+            PLAYER_PANE.setName(GAME.getPreviousPlayer().username);
+            PLAYER_PANE.setSongs(GAME.getPreviousPlayer().songs);
+            PLAYER_PANE.setChipsCount(GAME.getPreviousPlayer().hitmasterPoints);
         });
     }
 
@@ -766,7 +893,7 @@ public class GameView extends Pane {
      * @param songs New set of songs for Opponent Pane.
      */
     public void updateOpponentCards(List<Song> songs) {
-        Platform.runLater(() -> OPPONENT_PANE.setSongs(songs));
+        Platform.runLater(() -> PLAYER_PANE.setSongs(songs));
     }
 
     /**
@@ -775,7 +902,7 @@ public class GameView extends Pane {
      * @param song
      */
     public void addOpponentCard(Song song) {
-        Platform.runLater(() -> OPPONENT_PANE.addSong(song));
+        Platform.runLater(() -> PLAYER_PANE.addSong(song));
     }
 
     /**
@@ -783,7 +910,7 @@ public class GameView extends Pane {
      * Only works when opponent has less than three chips.
      */
     public void addOpponentChip() {
-        Platform.runLater(() -> OPPONENT_PANE.addChip());
+        Platform.runLater(() -> PLAYER_PANE.addChip());
     }
 
     /**
@@ -791,7 +918,7 @@ public class GameView extends Pane {
      * Only works when opponent has one or more chips.
      */
     public void removeOpponentChip() {
-        Platform.runLater(() -> OPPONENT_PANE.removeChip());
+        Platform.runLater(() -> PLAYER_PANE.removeChip());
     }
 
     /**
@@ -799,8 +926,8 @@ public class GameView extends Pane {
      * If opponent has no chips, method will do nothing.
      */
     public void removeAllOpponentChips() {
-        while (OPPONENT_PANE.getChipsCount() > 0) {
-            Platform.runLater(() -> OPPONENT_PANE.removeChip());
+        while (PLAYER_PANE.getChipsCount() > 0) {
+            Platform.runLater(() -> PLAYER_PANE.removeChip());
         }
     }
 
@@ -811,7 +938,7 @@ public class GameView extends Pane {
      */
     public void paintOpponentCard(Song song, String cssColor) {
         Platform.runLater(() -> {
-            OPPONENT_PANE.paintOpponentCard(song, cssColor);
+            PLAYER_PANE.paintPlayerCard(song, cssColor);
         });
     }
 
@@ -821,7 +948,7 @@ public class GameView extends Pane {
      */
     public void resetOpponentCard() {
         Platform.runLater(() -> {
-            OPPONENT_PANE.resetOpponentCard();
+            PLAYER_PANE.resetPlayerCard();
         });
     }
 
@@ -891,7 +1018,7 @@ public class GameView extends Pane {
             timerUnit = new Timer(3);
             timerUnit.start(
                 () -> Platform.runLater(() -> 
-                    CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                    setRemainingTime(timerUnit.getRemainingSeconds())
                 ),
                 () -> Platform.runLater(() -> {
                     currentCard.setStealState(false);
@@ -915,7 +1042,7 @@ public class GameView extends Pane {
             return;
 
         GAME.getPreviousPlayer().hitmasterPoints--;
-        OPPONENT_PANE.removeChip();
+        PLAYER_PANE.removeChip();
 
         // 2) Set steal state
         isStealing = true;
@@ -928,7 +1055,7 @@ public class GameView extends Pane {
         timerUnit = new Timer(GAME.getGameOptions().stealTime);
         timerUnit.start(
             () -> Platform.runLater(() ->
-                CHAT.setRemainingTime(timerUnit.getRemainingSeconds())
+                setRemainingTime(timerUnit.getRemainingSeconds())
             ),
             () -> Platform.runLater(() -> {
                 if (stealCard != null) {
@@ -1022,9 +1149,60 @@ public class GameView extends Pane {
      * Gets Opponent Pane and returns it.
      * @return Opponent Pane.
      */
-    public OpponentPane getOpponentPane() {
-        return this.OPPONENT_PANE;
+    public PlayerPane getOpponentPane() {
+        return this.PLAYER_PANE;
     }
 
     //#endregion
+
+    private Region getVerticalSpacer() {
+        Region spacer = new Region();
+        VBox.setVgrow(spacer, Priority.ALWAYS);
+        return spacer;
+    }
+
+    public void setPing(int ping) {
+        PING.setPing(ping);
+    }
+
+    public void setPingDisconnected() {
+        PING.setDisconnected();
+    }
+
+    public GameLogic getGameLogic() {
+        return GAME;
+    }
+
+    private Region getHorizontalSpacer() {
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        return spacer;
+    }
+
+    private void openExitDialog() {
+        boolean exit = StyleDialog.questionDialog("Confirm Exit",
+            "Are you sure you want to exit the game?",
+            "Exit"
+        );
+
+        if (exit) {
+            GAME.sendObject("EXIT");
+            GAME.stopAllTasks();
+            Navigation.getInstance().toMainMenu();
+        }
+    }
+
+    @Override
+    protected void layoutChildren() {
+        super.layoutChildren();
+
+        OVERLAY.resizeRelocate(
+            0,
+            0,
+            getWidth(),
+            getHeight()
+        );
+
+        OVERLAY.toFront();
+    }
 }

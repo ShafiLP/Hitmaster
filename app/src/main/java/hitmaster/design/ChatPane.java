@@ -18,7 +18,6 @@ public class ChatPane extends VBox {
     private final GameLogic GAME;
     private final Player PLAYER;
     
-    private final Label timerLabel;
     private final VBox chatMessageContainer;
     private final ScrollPane scrollPane;
     private final TextField inputField;
@@ -27,18 +26,10 @@ public class ChatPane extends VBox {
         this.GAME = game;
         this.PLAYER = GAME.getLocalPlayer();
 
-        this.getStyleClass().add("chat-pane");
-        this.setPadding(new Insets(10));
-        this.setSpacing(10);
-        this.setPrefSize(350, 400);
-
-        // TIMER
-        timerLabel = new Label("00");
-        timerLabel.getStyleClass().add("timer");
-
-        HBox timerWrapper = new HBox(timerLabel);
-        timerWrapper.setAlignment(Pos.CENTER);
-        timerWrapper.setStyle("-fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 0 0 1 0; -fx-padding: 0 0 5 0;");
+        getStyleClass().add("chat-pane");
+        setPadding(new Insets(10));
+        setSpacing(10);
+        setPrefSize(350, 400);
 
         // CHAT MESSAGE CONTAINER
         chatMessageContainer = new VBox(8);
@@ -68,19 +59,7 @@ public class ChatPane extends VBox {
             }
         });
 
-        this.getChildren().addAll(timerWrapper, scrollPane, inputField);
-    }
-
-    /**
-     * Set remaining time for timer label.
-     * Automatically converts time into minutes and seconds.
-     * @param seconds Seconds remaining for the timer.
-     */
-    public void setRemainingTime(int seconds) {
-        int minutes = seconds / 60;
-        int secs = seconds % 60;
-
-        Platform.runLater(() -> timerLabel.setText(String.format("%02d:%02d", minutes, secs) + " ⏱"));
+        this.getChildren().addAll(scrollPane, inputField);
     }
 
     private void addSystemMessage(String text, String hexColor) {

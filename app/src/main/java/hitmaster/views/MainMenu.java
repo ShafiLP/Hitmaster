@@ -12,12 +12,9 @@ import hitmaster.models.User;
 import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.Spotify;
-import hitmaster.services.ThemeManager;
 import hitmaster.services.UpdateService;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -27,7 +24,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -272,25 +268,6 @@ public class MainMenu {
         bottom.setStyle("-fx-background-color: rgba(0, 0, 0, 0.05);");
 
         ROOT.setBottom(bottom);
-
-        Platform.runLater(STAGE::requestFocus);
-    }
-
-    /**
-     * Replaces current Stage with a new Scene.
-     * All Menus get closed when this method gets called.
-     * @param pane New Scene of the Stage.
-     * @param maximized Boolean if Stage should get maximized to full screen or not.
-     */
-    public void setStage(Pane pane, boolean maximized) {
-        Scene scene = new Scene(pane, 800, 600);
-        ThemeManager.getInstance().registerScene(scene);
-        ThemeManager.getInstance().setTheme(user.theme);
-
-        STAGE.setScene(scene);
-        STAGE.setMaximized(maximized);
-        STAGE.getIcons().add(new Image(getClass().getResourceAsStream("/cardDesign.png")));
-        STAGE.show();
     }
 
     public Stage getStage() {

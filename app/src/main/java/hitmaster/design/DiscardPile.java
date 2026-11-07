@@ -14,18 +14,20 @@ public class DiscardPile extends StackPane {
     private final StackPane cardContainer;
 
     public DiscardPile() {
-        this.setStyle("-fx-border-color: rgba(255, 0, 0, 0.4); " +
-                      "-fx-border-dash-array: 6 6; " +
-                      "-fx-border-width: 2; " +
-                      "-fx-background-color: rgba(255, 0, 0, 0.03); " +
-                      "-fx-border-radius: 12; " +
-                      "-fx-background-radius: 12;");
+        setStyle("-fx-border-color: rgba(255, 0, 0, 0.4); " +
+                 "-fx-border-dash-array: 6 6; " +
+                 "-fx-border-width: 2; " +
+                 "-fx-background-color: rgba(255, 0, 0, 0.03); " +
+                 "-fx-border-radius: 12; " +
+                 "-fx-background-radius: 12;");
         
-        this.setPrefHeight(200);
-        this.setMinHeight(Region.USE_PREF_SIZE);
-        this.setMaxHeight(Region.USE_PREF_SIZE);
+        setPrefHeight(200);
+        setMinHeight(Region.USE_PREF_SIZE);
+        setMaxHeight(Region.USE_PREF_SIZE);
 
-        this.setMaxWidth(Double.MAX_VALUE);
+        setPrefWidth(Card.getSize() + 25);
+        setMinWidth(Card.getSize() + 25);
+        setMaxWidth(Card.getSize() + 25);
 
         Label label = new Label("DISCARD PILE");
         label.setStyle("-fx-text-fill: rgba(255, 0, 0, 0.6); " +
@@ -40,7 +42,7 @@ public class DiscardPile extends StackPane {
         cardContainer = new StackPane();
         cardContainer.setAlignment(Pos.CENTER);
 
-        this.getChildren().addAll(label, cardContainer);
+        getChildren().addAll(label, cardContainer);
     }
 
     /**
@@ -87,8 +89,7 @@ public class DiscardPile extends StackPane {
      * Old card gets deleted after animation.
      */
     public void setDiscardedCard(Card card) {
-        if (card == null)
-            return;
+        if (card == null) return;
 
         double cardWidth = card.getBoundsInLocal().getWidth() > 0 ? card.getBoundsInLocal().getWidth() : 140;
         double cardHeight = card.getBoundsInLocal().getHeight() > 0 ? card.getBoundsInLocal().getHeight() : 150;
