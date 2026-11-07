@@ -776,7 +776,6 @@ public class GameView extends BorderPane {
 
         // 2) Check for win if guess was correct
         if (guess) {
-            GAME.addCardToPlayerSorted(GAME.getCurrentPlayer());
             if (GAME.checkForWin(STRIP.getSongCards())) {
                 Player winner = GAME.getCurrentPlayer();
                 Platform.runLater(() -> {
@@ -785,7 +784,7 @@ public class GameView extends BorderPane {
                     this.stopTimer();
 
                     GAME.sendObject("OPPONENT_WIN");
-                    WinnerPane.winnerDialog(this, winner);
+                    showWinnerPane(winner);
                 });
             }
         }
@@ -828,7 +827,19 @@ public class GameView extends BorderPane {
         this.initializeNewTimer();
     }
 
-    //#endregion
+    public void showWinnerPane(Player winner) {
+        Platform.runLater(() -> {
+            // If winner == null -> draw
+            if (winner == null || winner.username == null) {
+                WinnerPane.drawDialog(this);
+                return;
+            }
+
+            WinnerPane.winnerDialog(this, winner);
+        });
+    }
+
+    // #endregion
 
     //#region MULTIPLAYER OPERATIONS
 

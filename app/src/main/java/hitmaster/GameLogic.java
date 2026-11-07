@@ -3,6 +3,7 @@ package hitmaster;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -148,10 +149,12 @@ public final class GameLogic {
                 Song clientStartSong = SONGS.removeFirst();
                 PLAYERS[1].songs.add(clientStartSong);
                 VIEW.addOpponentCard(clientStartSong);
+                remaining_cards--;
 
                 Song hostStartSong = SONGS.removeFirst();
                 PLAYERS[0].songs.add(hostStartSong);
                 VIEW.addToCardStrip(hostStartSong);
+                remaining_cards--;
 
                 // Send Starting Cards to Client
                 if (networkManager != null) {
@@ -187,13 +190,27 @@ public final class GameLogic {
      * Returns if method is called by client.
      */
     public void addFirstToCardStack() {
-        if (!isHost)
+        if (!isHost) return;
+
+        // If no cards left -> end game
+        if (SONGS.size() < 1) {
+            Player winner = new Player();
+
+            if (PLAYERS[0].songs.size() > PLAYERS[1].songs.size()) {
+                winner = PLAYERS[0];
+            }
+            else if (PLAYERS[1].songs.size() > PLAYERS[0].songs.size()) {
+                winner = PLAYERS[1];
+            }
+
+            sendObject("WINNER:" + winner.username); // TODO: Durch IDs ersetzen
+            VIEW.showWinnerPane(winner);
+
+            stopAllTasks();
             return;
+        }
 
         currentSong = SONGS.removeFirst();
-
-        // DEBUG
-        System.out.println("Jahr: " + currentSong.year);
 
         sendObject(new SongDTO(currentSong, "CURRENT_SONG"));
 
@@ -201,13 +218,13 @@ public final class GameLogic {
         VIEW.setRemainingCards(remaining_cards);
 
         if (PLAYERS[currentPlayerIdx].role.equals(Player.Role.CLIENT)) {
-            this.sendObject(new SongDTO(currentSong, "ADD_CARD_TO_STACK"));
+            sendObject(new SongDTO(currentSong, "ADD_CARD_TO_STACK"));
             VIEW.setTimerForOpponent(OPTIONS.moveTime);
             return;
         }
 
         VIEW.addToCardStack(currentSong);
-        this.sendObject("OPPONENT_MOVE_TIMER");
+        sendObject("OPPONENT_MOVE_TIMER");
     }
 
     /**
@@ -614,9 +631,10 @@ public final class GameLogic {
             break;
 
             case "PLAYER_NEXT":
-                this.switchToNextPlayer();
-                if (isHost)
-                    this.addFirstToCardStack();
+                switchToNextPlayer();
+
+                if (isHost) 
+                    addFirstToCardStack();
             break;
 
             // Update count of remaining cards in GameView
@@ -768,6 +786,16 @@ public final class GameLogic {
                 }
             break;
 
+            case "WINNER":
+                for (Player player : PLAYERS) {
+                    if (player.username.equals(parts[1])) {
+                        VIEW.showWinnerPane(player);
+                        return;
+                    }
+                }
+                VIEW.showWinnerPane(null);
+            break;
+
             case "EXIT":
                 VIEW.addErrorMessage(PLAYERS[1].username + " left the game.");
             break;
@@ -795,31 +823,30 @@ public final class GameLogic {
                             switch (parts[1]) {
                                 case "REVEAL":
                                     if (parts[2].equals("CORRECT")) {
-                                        Platform.runLater(() -> {
-                                            PLAYERS[currentPlayerIdx].songs.clear();
+                                        PLAYERS[currentPlayerIdx].songs.clear();
 
-                                            for (SongDTO dto : receivedDTO.songList) {
-                                                PLAYERS[currentPlayerIdx].songs.add(dto.toSong());
-                                            }
+                                        // TODO: Check if can be done without list and just insert
+                                        for (SongDTO dto : receivedDTO.songList) {
+                                            PLAYERS[currentPlayerIdx].songs.add(dto.toSong());
+                                        }
 
-                                            VIEW.updateOpponentCards(PLAYERS[currentPlayerIdx].songs);
+                                        VIEW.updateOpponentCards(PLAYERS[currentPlayerIdx].songs);
 
-                                            VIEW.addSuccessMessage(this.getCurrentPlayer().username + " guessed right!");
-                                            VIEW.paintOpponentCard(currentSong, "rgb(0, 255, 0)");
-                                        });
+                                        VIEW.addSuccessMessage(this.getCurrentPlayer().username + " guessed right!");
+                                        VIEW.paintOpponentCard(currentSong, "rgb(0, 255, 0)");
                                         return;
                                     }
                                     else if (parts[2].equals("WRONG")) {
                                         Platform.runLater(() -> {
-                                            PLAYERS[currentPlayerIdx].songs.clear();
+                                            LinkedList<Song> transferedSongs = new LinkedList<>();
 
                                             for (SongDTO dto : receivedDTO.songList) {
-                                                PLAYERS[currentPlayerIdx].songs.add(dto.toSong());
+                                                transferedSongs.add(dto.toSong());
                                             }
 
-                                            VIEW.updateOpponentCards(PLAYERS[currentPlayerIdx].songs);
+                                            VIEW.updateOpponentCards(transferedSongs);
 
-                                            VIEW.addErrorMessage(this.getCurrentPlayer().username + " guessed wrong!");
+                                            VIEW.addErrorMessage(getCurrentPlayer().username + " guessed wrong!");
                                             VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
                                         });
                                         return;
@@ -828,13 +855,13 @@ public final class GameLogic {
                                     
                                 case "MOVE":
                                     Platform.runLater(() -> {
-                                        PLAYERS[currentPlayerIdx].songs.clear();
+                                        LinkedList<Song> transferedSongs = new LinkedList<>();
 
                                         for (SongDTO dto : receivedDTO.songList) {
-                                            PLAYERS[currentPlayerIdx].songs.add(dto.toSong());
+                                            transferedSongs.add(dto.toSong());
                                         }
 
-                                        VIEW.updateOpponentCards(PLAYERS[currentPlayerIdx].songs);
+                                        VIEW.updateOpponentCards(transferedSongs);
                                     });
                                 return;
                             }
@@ -847,29 +874,35 @@ public final class GameLogic {
                     Platform.runLater(() -> {
                         switch (receivedDTO.purpose) {
                             case "CLIENT_STRIP":
-                                PLAYERS[0].songs.add(receivedSong); //TODO: Check if idx is correct
+                                PLAYERS[1].songs.add(receivedSong); //TODO: Check if idx is correct
                                 VIEW.addToCardStrip(receivedSong);
-                                break;
+
+                                remaining_cards--;
+                                VIEW.setRemainingCards(remaining_cards);
+                            break;
                                 
                             case "OPPONENT_PANE":
-                                PLAYERS[1].songs.add(receivedSong);
+                                PLAYERS[0].songs.add(receivedSong);
                                 VIEW.addOpponentCard(receivedSong);
-                                break;
+
+                                remaining_cards--;
+                                VIEW.setRemainingCards(remaining_cards);
+                            break;
 
                             case "CURRENT_SONG":
                                 currentSong = receivedSong;
                                 remaining_cards--;
                                 VIEW.setRemainingCards(remaining_cards);
-                                break;
+                            break;
 
                             case "ADD_CARD_TO_STACK":
                                 currentSong = receivedSong;
                                 VIEW.addToCardStack(currentSong);
-                                break;
+                            break;
                                 
                             default:
                                 Log.Error("Received SongDTO with invalid purpose.");
-                                break;
+                            break;
                         }
                     });
                 }
@@ -916,7 +949,10 @@ public final class GameLogic {
             }
         }
 
-        this.sendObject(new SongDTO(songsFromCards, "OPPONENT:REVEAL:" + (correct ? "CORRECT" : "WRONG")));
+        if (correct) {
+            addCardToPlayerSorted(getCurrentPlayer());
+        } 
+        sendObject(new SongDTO(songsFromCards, "OPPONENT:REVEAL:" + (correct ? "CORRECT" : "WRONG")));
     }
 
     // ========== STEAL ACTIONS ==========

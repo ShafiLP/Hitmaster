@@ -89,4 +89,35 @@ public class WinnerPane {
         stage.setScene(scene);
         stage.showAndWait();
     }
+
+    public static void drawDialog(GameView parent) {
+        Stage stage = new Stage();
+        stage.setTitle("Game End");
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        VBox root = new VBox(25);
+        root.setPadding(new Insets(20));
+        root.setFillWidth(true);
+        root.setAlignment(Pos.CENTER);
+
+        // Draw message
+        Label message = new Label("It's a draw!");
+        message.getStyleClass().add("subheader");
+
+        // Close button
+        Button closeButton = new Button("Back to Main Menu");
+        closeButton.getStyleClass().add("primary-button");
+        closeButton.setOnAction(e -> {
+            stage.close();
+            Navigation.getInstance().toMainMenu();
+        });
+
+        root.getChildren().addAll(message, closeButton);
+
+        Scene scene = new Scene(root, 400, 200);
+        ThemeManager.getInstance().registerScene(scene);
+        
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
 }
