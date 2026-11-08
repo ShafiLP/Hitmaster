@@ -17,4 +17,5 @@ public class GameOptions implements Serializable {
 
     public int turnTime;
     public int stealTime;
+    public int bufferTime;
 }

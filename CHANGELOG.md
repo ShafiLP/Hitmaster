@@ -4,6 +4,9 @@
 
 ### Added
 - Game setting for amount of cards required to win a game
+- Game setting for maximum duration for each turn
+- Game setting for maximum steal time for each steal action
+- Game setting for maximum buffer time after confirming input
 - Game setting for amount of chips each player can keep
 - Game setting for amount of chips each player starts with
 - Game settings for actions players can perform with chips

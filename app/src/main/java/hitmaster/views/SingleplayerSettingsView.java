@@ -36,8 +36,15 @@ import javafx.scene.layout.VBox;
 
 public class SingleplayerSettingsView extends HitmasterDialog {
 
+    private boolean multiplayerSettings = false;
+
     public SingleplayerSettingsView() {
+        this(false);
+    }
+
+    public SingleplayerSettingsView(boolean multiplayer) {
         super("Game Setup");
+        this.multiplayerSettings = multiplayer;
 
         // ===== HEADER =====
         VBox headerBox = new VBox(3);
@@ -69,6 +76,8 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         ToggleGroup gameModeButtonsToggleGroup = new ToggleGroup();
 
         for (GameMode gameMode : GameMode.values()) {
+            if (gameMode == GameMode.TEAM) continue;
+
             ToggleButton button = new ToggleButton(gameMode.getName());
 
             button.setToggleGroup(gameModeButtonsToggleGroup);
@@ -93,6 +102,30 @@ public class SingleplayerSettingsView extends HitmasterDialog {
             createTimeInputRow(turnTimeTextField, "s", 300)
         );
         gameOptionsBox.getChildren().add(turnTimeBox);
+
+
+        // Steal Time --------------------
+        TextField stealTimeTextField = new TextField();
+        stealTimeTextField.setTextFormatter(createNumberFormatter());
+
+        HBox stealTimeBox = createSettingRow(
+            "Steal Time",
+            "Duration a player gets to steal their opponents card, when performing 'steal' action.",
+            createTimeInputRow(stealTimeTextField, "s", 30)
+        );
+        if (multiplayerSettings) gameOptionsBox.getChildren().add(stealTimeBox);
+
+
+        // Buffer Time --------------------
+        TextField bufferTimeTextField = new TextField();
+        bufferTimeTextField.setTextFormatter(createNumberFormatter());
+
+        HBox bufferTimeBox = createSettingRow(
+            "Buffer Time",
+            "Time waited after confirming guess until card gets revealed.",
+            createTimeInputRow(bufferTimeTextField, "s", 5)
+        );
+        if (multiplayerSettings) gameOptionsBox.getChildren().add(bufferTimeBox);
 
 
         // Amount of Cards --------------------
@@ -122,13 +155,23 @@ public class SingleplayerSettingsView extends HitmasterDialog {
 
         // Actions
         ToggleSwitch chipsSkipActionToggleSwitch = new ToggleSwitch();
+        chipsSkipActionToggleSwitch.setSelected(true);
+        ToggleSwitch chipsStealActionToggleSwitch = new ToggleSwitch();
+        chipsStealActionToggleSwitch.setSelected(true);
         ToggleSwitch chipsClaimActionToggleSwitch = new ToggleSwitch();
+        chipsClaimActionToggleSwitch.setSelected(true);
+
+        chipsStealActionToggleSwitch.setOnAction(e -> {
+            boolean enabled = chipsStealActionToggleSwitch.isSelected();
+            stealTimeTextField.setDisable(!enabled);
+            bufferTimeTextField.setDisable(!enabled);
+        });
 
         VBox chipsActionsToggleSwitchesBox = new VBox(5);
-        chipsActionsToggleSwitchesBox.getChildren().addAll(
-            createActionToggleRow("Skip", chipsSkipActionToggleSwitch),
-            createActionToggleRow("Claim", chipsClaimActionToggleSwitch)
-        );
+        chipsActionsToggleSwitchesBox.getChildren().add(createActionToggleRow("Skip", chipsSkipActionToggleSwitch));
+        if (multiplayerSettings) chipsActionsToggleSwitchesBox.getChildren().add(createActionToggleRow("Steal", chipsStealActionToggleSwitch));
+        chipsActionsToggleSwitchesBox.getChildren().add(createActionToggleRow("Claim", chipsClaimActionToggleSwitch));
+
 
         Label actionsTitle = new Label("Actions");
         actionsTitle.getStyleClass().add("subheader");
@@ -166,13 +209,19 @@ public class SingleplayerSettingsView extends HitmasterDialog {
 
         // Deactivate settings when disabled
         enableChipsToggleSwitch.setOnAction(e -> {
-            boolean isEnabled = enableChipsToggleSwitch.isSelected();
+            boolean enabled = enableChipsToggleSwitch.isSelected();
 
-            chipsAmountTextField.setDisable(!isEnabled);
-            chipsStartTextField.setDisable(!isEnabled);
+            chipsAmountTextField.setDisable(!enabled);
+            chipsStartTextField.setDisable(!enabled);
 
-            chipsSkipActionToggleSwitch.setDisable(!isEnabled);
-            chipsClaimActionToggleSwitch.setDisable(!isEnabled);
+            chipsSkipActionToggleSwitch.setDisable(!enabled);
+            chipsClaimActionToggleSwitch.setDisable(!enabled);
+            chipsStealActionToggleSwitch.setDisable(!enabled);
+
+            if (multiplayerSettings && chipsStealActionToggleSwitch.isSelected()) {
+                stealTimeTextField.setDisable(!enabled);
+                bufferTimeTextField.setDisable(!enabled);
+            }
         });
 
         chipsBox.getChildren().addAll(UiBuilder.getHorizontalSeparator(), chipsEnableBox, chipsAmountBox, chipsStartBox, chipsActionsBox);
@@ -271,11 +320,12 @@ public class SingleplayerSettingsView extends HitmasterDialog {
             options.chipAmount = Integer.parseInt(chipsAmountTextField.getText());
             options.startChips = Integer.parseInt(chipsStartTextField.getText());
             options.skipEnabled = chipsSkipActionToggleSwitch.isSelected();
-            options.stealEnabled = false;
+            options.stealEnabled = multiplayerSettings ? chipsStealActionToggleSwitch.isSelected() : false;
             options.claimEnabled = chipsClaimActionToggleSwitch.isSelected();
 
             options.turnTime = Integer.parseInt(turnTimeTextField.getText());
-            options.stealTime = 60;
+            options.stealTime = Integer.parseInt(stealTimeTextField.getText());
+            options.bufferTime = Integer.parseInt(bufferTimeTextField.getText());
 
             GameLogic game = new GameLogic(options, true, null);
             Navigation.getInstance().show(game.getView());
