@@ -6,6 +6,7 @@
 - Game setting for amount of cards required to win a game
 - Game setting for amount of chips each player can keep
 - Different game modes, feauturing different difficulties
+- Song Set 'Hits Made in Germany', feauturing songs from Germany
 
 ### Changed
 - Some dialogs moved to stage display for accessibility
