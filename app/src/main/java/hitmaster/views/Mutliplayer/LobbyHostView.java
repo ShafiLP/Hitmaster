@@ -14,7 +14,6 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.Navigation;
 import hitmaster.services.NetworkManager;
-import hitmaster.views.OnlineMultiplayerSettings;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -214,11 +213,10 @@ public class LobbyHostView extends VBox {
      * Labels of settings get updated when closing settings view.
      */
     private void openLobbySettingsDialog() {
-        OnlineMultiplayerSettings settingsView = new OnlineMultiplayerSettings(options);
-        //settingsView.showAndWait(STAGE);
+        // TODO: Replace
 
         netManager.sendObject(new GameOptionsDTO(options, "OPTIONS_UPDATE"));
-        this.updateSettingsLabels();
+        updateSettingsLabels();
     }
 
     /**

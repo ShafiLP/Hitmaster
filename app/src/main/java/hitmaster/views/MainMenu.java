@@ -90,7 +90,7 @@ public class MainMenu {
 
             if (providerStatus) {
                 try {
-                    SingleplayerSettingsView singleplayerMenuView = new SingleplayerSettingsView();
+                    GameSettingsView singleplayerMenuView = new GameSettingsView();
                     singleplayerMenuView.show();
                 }
                 catch (Exception ex) {

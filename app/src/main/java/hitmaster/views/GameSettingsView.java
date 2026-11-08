@@ -42,7 +42,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class SingleplayerSettingsView extends HitmasterDialog {
+public class GameSettingsView extends HitmasterDialog {
 
     private boolean multiplayerSettings = false;
 
@@ -60,11 +60,11 @@ public class SingleplayerSettingsView extends HitmasterDialog {
     private final ToggleSwitch chipsStealActionToggleSwitch;
     private final ToggleSwitch chipsClaimActionToggleSwitch;
     
-    public SingleplayerSettingsView() {
+    public GameSettingsView() {
         this(false);
     }
 
-    public SingleplayerSettingsView(boolean multiplayer) {
+    public GameSettingsView(boolean multiplayer) {
         super("Game Setup");
         this.multiplayerSettings = multiplayer;
 
