@@ -110,8 +110,8 @@ public class MainMenu {
 
             if (providerStatus) {
                 try {
-                    MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView(this);
-                    multiplayerMenuView.show(STAGE);
+                    MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView();
+                    multiplayerMenuView.show();
                 }
                 catch (Exception ex) {
                     StyleDialog.errorDialog("Error", "Error while starting game:\n" + ex.getMessage());
@@ -120,8 +120,8 @@ public class MainMenu {
             else {
                 boolean continueWithoutProv = StyleDialog.questionDialog("No Provider", "No music provider is set. To listen to the songs the host must play them to you.\nWould you like to continue?", "OK");
                 if (continueWithoutProv) {
-                    MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView(this);
-                    multiplayerMenuView.show(STAGE);
+                    MultiplayerMenuView multiplayerMenuView = new MultiplayerMenuView();
+                    multiplayerMenuView.show();
                 }
             }
         });

@@ -1,158 +1,61 @@
 package hitmaster.views;
 
-import hitmaster.services.ThemeManager;
+import hitmaster.design.UiBuilder;
+import hitmaster.services.Navigation;
+import hitmaster.services.SvgParser;
 import hitmaster.views.Mutliplayer.ConnectToLobbyView;
-import javafx.application.Platform;
+import hitmaster.views.templates.HitmasterDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-public class MultiplayerMenuView {
+public class MultiplayerMenuView extends HitmasterDialog {
 
-    private final MainMenu PARENT;
-    private final Stage STAGE;
+    public MultiplayerMenuView() {
+        super("Multiplayer");
 
-    public MultiplayerMenuView(MainMenu parent) {
-        this.PARENT = parent;
+        // ===== HEADER & DESCRIPTION =====
+        VBox headerBox = new VBox(3);
+        headerBox.setAlignment(Pos.CENTER_LEFT);
 
-        STAGE = new Stage();
-        STAGE.setTitle("Multiplayer");
+        Label headerLabel = new Label("Multiplayer");
+        headerLabel.getStyleClass().add("header");
 
-        // =========================
-        // ROOT LAYOUT
-        // =========================
-        VBox root = new VBox(25);
-        root.setPadding(new Insets(20));
-        root.setFillWidth(true);
+        Label descriptionLabel = new Label("Connect to a friend's lobby or create your own one!");
+        descriptionLabel.getStyleClass().add("description");
 
-        // =========================
-        // HEADER
-        // =========================
-        Label title = new Label("Multiplayer Lobby");
-        title.getStyleClass().add("header");
+        headerBox.getChildren().addAll(headerLabel, descriptionLabel, UiBuilder.getHorizontalSeparator());
+        setTop(headerBox);
 
-        Label description = new Label("Host a network session or join a friend via LAN connection.");
-        description.getStyleClass().add("header-description");
 
-        VBox header = new VBox(5, title, description);
-        header.setAlignment(Pos.TOP_LEFT);
+        // ===== JOIN & CREATE LOBBY =====
+        ConnectToLobbyView lobbyView = new ConnectToLobbyView();
+        lobbyView.setPadding(new Insets(10, 0, 0, 0));
+        setCenter(lobbyView);
 
-        // =========================
-        // CONTENT
-        // =========================
-        VBox content = new VBox(15);
-        content.setFillWidth(true);
 
-        // 1) Create lobby row
-        Button createLobbyButton = new Button("Create Game");
-        createLobbyButton.setPrefWidth(180);
-        createLobbyButton.setOnAction(e -> {
-            GameSettingsView settings = new GameSettingsView(true);
-            settings.show();
+        // ===== BOTTOM CONTROLS =====
+        VBox bottomBox = new VBox(5);
+        HBox controllsBox = new HBox(10);
 
-            STAGE.close();
+        Button backButton = new Button();
+        backButton.setTooltip(new Tooltip("Go Back"));
+        backButton.setGraphic(SvgParser.streamToColoredSvgIcon(
+            getClass().getResourceAsStream("/icons/arrow-left.svg"),
+            "-primary-brush"
+        ));
+
+        backButton.setOnAction(e -> {
+            lobbyView.stopDiscovery();
+            Navigation.getInstance().toMainMenu();
         });
 
-        HBox createLobbyRow = createSettingRow("Create Game", "Play with a friend via LAN connection on the same device.", createLobbyButton);
-
-        // 2) Join Game Row
-        Button joinBtn = new Button("Connect");
-        joinBtn.getStyleClass().add("modern-button");
-        joinBtn.setPrefWidth(180);
-        joinBtn.setOnAction(e -> {
-            ConnectToLobbyView connect = new ConnectToLobbyView(PARENT, STAGE);
-            connect.show();
-
-            STAGE.close();
-        });
-
-        HBox joinRow = createSettingRow("Join Game", "Connect to an existing host session.", joinBtn);
-
-        content.getChildren().addAll(createLobbyRow, joinRow);
-
-        // =========================
-        // FOOTER (Back Button)
-        // =========================
-        Button back = new Button("Back");
-        back.getStyleClass().add("primary-button");
-        back.setCancelButton(true);
-        back.setPrefWidth(120);
-        back.setOnAction(e -> STAGE.close());
-
-        HBox footer = new HBox(back);
-        footer.setAlignment(Pos.BOTTOM_RIGHT);
-        footer.setPadding(new Insets(10, 0, 0, 0));
-
-        // =========================
-        // ROOT ASSEMBLY & SCENE
-        // =========================
-        root.getChildren().addAll(header, content, footer);
-
-        Scene scene = new Scene(root, 520, 380);
-        ThemeManager.getInstance().registerScene(scene);
-        STAGE.setScene(scene);
-
-        Platform.runLater(STAGE::requestFocus);
-    }
-
-    private HBox createSettingRow(String titleText, String descText, javafx.scene.Node control) {
-        Label rowTitle = new Label(titleText);
-        rowTitle.getStyleClass().add("subheader");
-
-        Label rowDesc = new Label(descText);
-        rowDesc.getStyleClass().add("description");
-
-        VBox textContainer = new VBox(2, rowTitle, rowDesc);
-        textContainer.setAlignment(Pos.CENTER_LEFT);
-
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-
-        HBox row = new HBox(10, textContainer, spacer, control);
-        row.setAlignment(Pos.CENTER_LEFT);
-        row.setPadding(new Insets(5, 0, 5, 0));
-        row.setStyle("-fx-border-color: rgba(255,255,255,0.05); -fx-border-width: 0 0 1 0;");
-
-        return row;
-    }
-
-    public void show(Stage parent) {
-        STAGE.setOnShowing(e -> {
-            Platform.runLater(() -> {
-                double ownerX = parent.getX();
-                double ownerY = parent.getY();
-                double ownerWidth = parent.getWidth();
-                double ownerHeight = parent.getHeight();
-
-                double newWidth = STAGE.getWidth();
-                double newHeight = STAGE.getHeight();
-
-                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
-                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
-
-                STAGE.setX(centerX);
-                STAGE.setY(centerY);
-            });
-        });
-
-        STAGE.initModality(Modality.APPLICATION_MODAL);
-        STAGE.showAndWait();
-    }
-
-    public void focus() {
-        if (STAGE.isShowing()) {
-            STAGE.toFront();
-        }
-        else {
-            STAGE.show();
-        }
+        controllsBox.getChildren().addAll(backButton, UiBuilder.getHorizontalSpacer());
+        bottomBox.getChildren().add(controllsBox);
+        setBottom(bottomBox);
     }
 }

@@ -18,6 +18,8 @@
 - Some dialogs moved to stage display for accessibility
 - Reworked layout for game setup
 - 'Move Time' is now 'Turn Time'
+- Set Images now with less padding
+- Nordics Rock Set updated Image and Description
 
 ### Fixed
 

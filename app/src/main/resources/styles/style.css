@@ -16,7 +16,7 @@
     -fx-secondary-accent-brush: #3e92ff;
     -fx-tertiary-accent-brush: #ff3838;
 
-    -icon-color: -secondary-brush;
+    -icon-fill: -primary-brush;
 
     -fx-green-brush: rgb(0, 255, 0);
     -fx-yellow-brush: rgb(255, 255, 0);
@@ -61,7 +61,7 @@
 }
 
 .icon {
-    -fx-fill: -secondary-brush;
+    -fx-fill: -icon-fill;
 }
 
 /* ============================== */

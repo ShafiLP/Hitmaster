@@ -355,7 +355,13 @@ public class GameSettingsView extends HitmasterDialog {
         ));
 
         backButton.setOnAction(e -> {
-            Navigation.getInstance().toMainMenu();
+            if (multiplayerSettings) {
+                MultiplayerMenuView menuView = new MultiplayerMenuView();
+                menuView.show();
+            }
+            else {
+                Navigation.getInstance().toMainMenu();
+            }
         });
 
         controllsBox.getChildren().addAll(backButton, UiBuilder.getHorizontalSpacer(), startButton);

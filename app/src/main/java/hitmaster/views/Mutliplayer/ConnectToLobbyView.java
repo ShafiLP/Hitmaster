@@ -8,6 +8,7 @@ import java.util.Set;
 
 import hitmaster.GameLogic;
 import hitmaster.design.StyleDialog;
+import hitmaster.design.UiBuilder;
 import hitmaster.models.GameOptionsDTO;
 import hitmaster.models.JoinRequest;
 import hitmaster.models.MultiplayerLobby;
@@ -17,9 +18,10 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.Navigation;
 import hitmaster.services.NetworkManager;
+import hitmaster.services.SvgParser;
 import hitmaster.services.ThemeManager;
 import hitmaster.services.UpdateService;
-import hitmaster.views.MainMenu;
+import hitmaster.views.GameSettingsView;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -38,17 +40,15 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
-public class ConnectToLobbyView {
-    
-    private final MainMenu PARENT;
-    private final Stage STAGE;
-    private final Stage PREV_STAGE;
+public class ConnectToLobbyView extends VBox {
 
     private final Player PLAYER;
     private final String APP_VERSION;
 
     private NetworkManager discoveryNetManager;
+    private NetworkManager activeNetManager;
     private final Set<String> foundLobbiesTracker = new HashSet<>(); // Prevents duplicates
 
     private LobbyClientView clientView;
@@ -56,47 +56,35 @@ public class ConnectToLobbyView {
     /**
      * Constructor for ConnectToLobbyView.
      * Initializes UI and starts looking for available lobbies.
-     * @param parent MainMenu that started this view (Used to set stage later).
-     * @param prevStage Previous stage (Used to show view on top of it).
      */
-    public ConnectToLobbyView(MainMenu parent, Stage prevStage) {
-        this.PARENT = parent;
-        this.PREV_STAGE = prevStage;
+    public ConnectToLobbyView() {
+        super(25);
+        setFillWidth(true);
 
         APP_VERSION = ConnectToLobbyView.loadAppVersion();
-
-        STAGE = new Stage();
-        STAGE.setTitle("Connect To Host");
 
         User user = Database.getInstance().getCurrentUser();
         PLAYER = new Player(user.username, user.picture);
 
-        // =========================
-        // ROOT LAYOUT
-        // =========================
-        VBox root = new VBox(25);
-        root.setPadding(new Insets(20));
-        root.setFillWidth(true);
 
-        // =========================
-        // HEADER
-        // =========================
-        Label title = new Label("Connect To Host");
-        title.getStyleClass().add("header");
-
-        Label description = new Label("Select a lobby from list or enter host's IP-adress to connect to game.");
-        description.getStyleClass().add("header-description");
-
-        VBox header = new VBox(5, title, description);
-        header.setAlignment(Pos.TOP_LEFT);
-
-        // =========================
-        // CONTENT
-        // =========================
+        // ===== Lobbies =====
         VBox content = new VBox(15);
         content.setFillWidth(true);
 
         Label statusLabel = new Label("Searching for lobbies...");
+
+        Button createLobbyButton = new Button("New Lobby");
+
+        createLobbyButton.setGraphic(SvgParser.streamToSvgIcon(
+            getClass().getResourceAsStream("/icons/plus.svg")
+        ));
+
+        createLobbyButton.setOnAction(e -> {
+            GameSettingsView settingsView = new GameSettingsView(true);
+            settingsView.show();
+
+            stopDiscovery();
+        });
 
         ListView<MultiplayerLobby> lobbyListView = new ListView<>();
         lobbyListView.setPrefHeight(120);
@@ -138,24 +126,18 @@ public class ConnectToLobbyView {
                 }
             }
         });
-        
+
+        HBox statusCreateRow = new HBox(5);
+        statusCreateRow.setAlignment(Pos.BOTTOM_CENTER);
+        statusCreateRow.getChildren().addAll(statusLabel, UiBuilder.getHorizontalSpacer(), createLobbyButton);
+
+        content.getChildren().addAll(statusCreateRow, lobbyListView);
+
+
+        // ===== Manual Input =====
         TextField ipInput = new TextField();
-        ipInput.getStyleClass().add("modern-textbox");
         ipInput.setPrefWidth(180);
         ipInput.setPromptText("Enter IP manually (e.g. 192.168.1.1)");
-
-        content.getChildren().addAll(statusLabel, lobbyListView, ipInput);
-
-        // =========================
-        // FOOTER (Cancel & Start)
-        // =========================
-        Button cancel = new Button("Cancel");
-        cancel.getStyleClass().add("modern-button");
-        cancel.setCancelButton(true);
-        cancel.setPrefWidth(120);
-        cancel.setOnAction(e -> {
-            STAGE.close();
-        });
 
         Button connectToGame = new Button("Connect");
         connectToGame.getStyleClass().add("primary-button");
@@ -171,17 +153,23 @@ public class ConnectToLobbyView {
             MultiplayerLobby selectedLobby = lobbyListView.getSelectionModel().getSelectedItem();
 
             if (selectedLobby != null && selectedLobby.hasPassword) {
-                String password = this.showPasswordInputDialog(selectedLobby.name);
+                String password = showPasswordInputDialog(selectedLobby.name);
 
                 if (password == null) 
                     return;
 
-                this.connectToHost(ip, selectedLobby.name, password, connectToGame, lobbyListView, ipInput, statusLabel);
+                connectToHost(ip, selectedLobby.name, password, connectToGame, lobbyListView, ipInput, statusLabel);
             }
             else {
-                this.connectToHost(ip, selectedLobby.name, "", connectToGame, lobbyListView, ipInput, statusLabel);
+                connectToHost(ip, selectedLobby.name, "", connectToGame, lobbyListView, ipInput, statusLabel);
             }
         });
+
+        HBox connectRow = new HBox(7);
+        HBox.setHgrow(ipInput, Priority.ALWAYS);
+        connectRow.getChildren().addAll(ipInput, connectToGame);
+
+        content.getChildren().addAll(connectRow);
 
         lobbyListView.setOnMouseClicked(click -> {
             if (click.getClickCount() == 2) {
@@ -200,34 +188,25 @@ public class ConnectToLobbyView {
             }
         });
 
-        HBox footer = new HBox(10, cancel, connectToGame);
-        footer.setAlignment(Pos.BOTTOM_RIGHT);
-        footer.setPadding(new Insets(10, 0, 0, 0));
 
-        // =========================
-        // ROOT ASSEMBLY & SCENE
-        // =========================
-        root.getChildren().addAll(header, content, footer);
-
-        Scene scene = new Scene(root, 520, 360);
-        ThemeManager.getInstance().registerScene(scene);
-
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+        // ===== SHORTCUTS =====
+        addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 connectToGame.fire();
                 event.consume(); 
             }
         });
 
-        STAGE.setScene(scene);
-        STAGE.setOnCloseRequest(e -> this.stopDiscovery());
+        Navigation.getInstance().getStage().addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, event -> {
+            stopDiscovery();
+        });
 
-        Platform.runLater(STAGE::requestFocus);
-        this.startDiscovery(lobbyListView, statusLabel);
+        getChildren().add(content);
+        startDiscovery(lobbyListView, statusLabel);
     }
 
     private void connectToHost(String ip, String lobbyName, String password, Button connectBtn, ListView<MultiplayerLobby> lobbyListView, TextField ipInput, Label statusLabel) {
-        this.stopDiscovery();
+        stopDiscovery();
 
         connectBtn.setDisable(true);
         connectBtn.setText("Connecting...");
@@ -238,22 +217,14 @@ public class ConnectToLobbyView {
 
         new Thread(() -> {
             try {
-                NetworkManager netManager = new NetworkManager();
+                activeNetManager = new NetworkManager();
 
-                PARENT.getStage().setOnCloseRequest(event -> {
-                    netManager.closeConnection();
-
-                    Platform.exit();
-                    System.exit(0);
-                });
-                
-                netManager.startAsClient(ip, 5050, receivedObj -> {
+                activeNetManager.startAsClient(ip, 5050, receivedObj -> {
                     if (receivedObj instanceof GameOptionsDTO hostOptions) {
                         switch (hostOptions.purpose) {
                             case "START_GAME":
                                 Platform.runLater(() -> {
                                     clientView.close();
-                                    STAGE.close();
 
                                     for (Player player : hostOptions.players) {
                                         if (player != null) {
@@ -261,7 +232,7 @@ public class ConnectToLobbyView {
                                         }
                                     }
                                     
-                                    GameLogic gameLogic = new GameLogic(hostOptions.getGameOptions(), false, netManager);
+                                    GameLogic gameLogic = new GameLogic(hostOptions.getGameOptions(), false, activeNetManager);
                                     Navigation.getInstance().show(gameLogic.getView());
                                     Navigation.getInstance().maximize();
                                     
@@ -288,8 +259,8 @@ public class ConnectToLobbyView {
 
                         // Show lobby to client
                         Platform.runLater(() -> {
-                            clientView = new LobbyClientView(PARENT, lobbyName, password, PLAYER, netManager);
-                            clientView.show(STAGE);
+                            // TODO: clientView = new LobbyClientView(lobbyName, password, PLAYER, activeNetManager);
+                            //clientView.show(STAGE);
                         });
                     }
                     else if ("REJECTED_PASSWORD".equals(receivedObj)) {
@@ -301,7 +272,7 @@ public class ConnectToLobbyView {
                     }
                 });
 
-                netManager.sendObject(new JoinRequest(PLAYER, password));
+                activeNetManager.sendObject(new JoinRequest(PLAYER, password));
             }
             catch (IOException ex) {
                 Log.Error("Couldn't connect to host: " + ex.getMessage());
@@ -322,14 +293,14 @@ public class ConnectToLobbyView {
         ipInput.setStyle("-fx-border-color: red;");
         ipInput.setEditable(true);
 
-        this.startDiscovery(lobbyListView, statusLabel);
+        startDiscovery(lobbyListView, statusLabel);
     }
 
     private String showPasswordInputDialog(String lobbyName) {
         Stage stage = new Stage();
         stage.setTitle("Protected Lobby");
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(STAGE);
+        stage.initOwner(Navigation.getInstance().getStage());
 
         Label headerLabel = new Label("Password Required");
         headerLabel.getStyleClass().add("header");
@@ -347,14 +318,13 @@ public class ConnectToLobbyView {
         passwordPrompt.getStyleClass().add("subheader");
 
         PasswordField passwordInput = new PasswordField();
-        passwordInput.getStyleClass().add("modern-textbox");
         passwordInput.setPromptText("Enter Password");
         passwordInput.setPrefWidth(200);
 
         inputGrid.add(passwordPrompt, 0, 0);
         inputGrid.add(passwordInput, 1, 0);
 
-        final String[] result = new String[1]; // Aufnahme des Rückgabewerts
+        final String[] result = new String[1];
 
         Button joinButton = new Button("Join");
         joinButton.getStyleClass().add("primary-button");
@@ -422,44 +392,20 @@ public class ConnectToLobbyView {
      * Stops searching for open lobbies.
      * Called when connecting to a lobby or when closing view.
      */
-    private void stopDiscovery() {
+    public void stopDiscovery() {
         if (discoveryNetManager != null) {
             discoveryNetManager.stopLobbyDiscovery();
             discoveryNetManager = null;
             Log.Info("Stopped LAN Discovery thread.");
         }
-    }
 
-    /**
-     * Shows already initialized UI and waits.
-     * Shows UI right above previous stage.
-     */
-    public void show() {
-        // 1) Place view on top of previous stage
-        STAGE.setOnShowing(e -> {
-            Platform.runLater(() -> {
-                double ownerX = PREV_STAGE.getX();
-                double ownerY = PREV_STAGE.getY();
-                double ownerWidth = PREV_STAGE.getWidth();
-                double ownerHeight = PREV_STAGE.getHeight();
+        if (clientView != null) {
+            clientView.close();
+        }
 
-                double newWidth = STAGE.getWidth();
-                double newHeight = STAGE.getHeight();
-
-                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
-                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
-
-                STAGE.setX(centerX);
-                STAGE.setY(centerY);
-
-                if (PREV_STAGE != null)
-                    PREV_STAGE.close();
-            });
-        });
-        
-        // 2) Show view and wait
-        STAGE.initModality(Modality.APPLICATION_MODAL);
-        STAGE.showAndWait();
+        if (activeNetManager != null) {
+            activeNetManager.closeConnection();
+        }
     }
 
     /**
