@@ -42,7 +42,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class ConnectToLobbyView extends VBox {
+public class LobbyView extends VBox {
 
     private final Player PLAYER;
     private final String APP_VERSION;
@@ -57,11 +57,11 @@ public class ConnectToLobbyView extends VBox {
      * Constructor for ConnectToLobbyView.
      * Initializes UI and starts looking for available lobbies.
      */
-    public ConnectToLobbyView() {
+    public LobbyView() {
         super(25);
         setFillWidth(true);
 
-        APP_VERSION = ConnectToLobbyView.loadAppVersion();
+        APP_VERSION = LobbyView.loadAppVersion();
 
         User user = Database.getInstance().getCurrentUser();
         PLAYER = new Player(user.username, user.picture);

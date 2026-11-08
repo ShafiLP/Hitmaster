@@ -3,7 +3,7 @@ package hitmaster.views;
 import hitmaster.design.UiBuilder;
 import hitmaster.services.Navigation;
 import hitmaster.services.SvgParser;
-import hitmaster.views.Mutliplayer.ConnectToLobbyView;
+import hitmaster.views.Mutliplayer.LobbyView;
 import hitmaster.views.templates.HitmasterDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -33,7 +33,7 @@ public class MultiplayerMenuView extends HitmasterDialog {
 
 
         // ===== JOIN & CREATE LOBBY =====
-        ConnectToLobbyView lobbyView = new ConnectToLobbyView();
+        LobbyView lobbyView = new LobbyView();
         lobbyView.setPadding(new Insets(10, 0, 0, 0));
         setCenter(lobbyView);
 
