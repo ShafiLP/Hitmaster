@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import hitmaster.GameLogic;
 import hitmaster.design.ToggleSwitch;
 import hitmaster.design.UiBuilder;
+import hitmaster.models.GameMode;
 import hitmaster.models.GameOptions;
 import hitmaster.models.GameSet;
 import hitmaster.models.Player;
@@ -59,20 +60,24 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         // Game Mode --------------------
         VBox gameModeBox = new VBox(5);
 
-        ToggleGroup gameModeButtonsToggleGroup = new ToggleGroup();
-
         Label gameModeLabel = new Label("Game Mode");
         gameModeLabel.getStyleClass().add("subheader");
 
         HBox gameModeButtonsBox = new HBox(5);
         gameModeButtonsBox.setAlignment(Pos.CENTER_LEFT);
 
-        // TODO: Replace placeholder
-        gameModeButtonsBox.getChildren().addAll(
-            new ToggleButton("Classic") {{ setToggleGroup(gameModeButtonsToggleGroup); setSelected(true); }},
-            new ToggleButton("Advanced") {{ setToggleGroup(gameModeButtonsToggleGroup); }},
-            new ToggleButton("Expert") {{ setToggleGroup(gameModeButtonsToggleGroup); }}
-        );
+        ToggleGroup gameModeButtonsToggleGroup = new ToggleGroup();
+
+        for (GameMode gameMode : GameMode.values()) {
+            ToggleButton button = new ToggleButton(gameMode.getName());
+
+            button.setToggleGroup(gameModeButtonsToggleGroup);
+            button.setUserData(gameMode);
+
+            gameModeButtonsBox.getChildren().add(button);
+
+            if (gameMode == GameMode.CLASSIC) button.setSelected(true);
+        }
 
         gameModeBox.getChildren().addAll(gameModeLabel, gameModeButtonsBox);
         gameOptionsBox.getChildren().add(gameModeBox);
@@ -259,6 +264,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
             );
             options.players[0].role = Player.Role.HOST;
 
+            options.gameMode = (GameMode) gameModeButtonsToggleGroup.getSelectedToggle().getUserData();
             options.cardAmount = Integer.parseInt(cardsTextField.getText());
 
             options.chipsEnabled = enableChipsToggleSwitch.isSelected() && (chipsSkipActionToggleSwitch.isSelected() || chipsClaimActionToggleSwitch.isSelected());
