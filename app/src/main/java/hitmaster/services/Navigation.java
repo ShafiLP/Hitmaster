@@ -46,6 +46,7 @@ public class Navigation {
 
     public void toMainMenu() {
         scene.setRoot(mainMenuInstance.getView());
+        setTitle("Hitmaster");
     }
 
     public void show(Parent view) {
