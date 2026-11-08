@@ -11,7 +11,7 @@ public class UiBuilder {
 
     public static Separator getHorizontalSeparator() {
         Separator seperator = new Separator();
-        seperator.setStyle("-fx-padding: 4;");
+        seperator.setStyle("-fx-padding: 4; -fx-background-color: transparent;");
         seperator.setOrientation(Orientation.HORIZONTAL);
         return seperator;
     }

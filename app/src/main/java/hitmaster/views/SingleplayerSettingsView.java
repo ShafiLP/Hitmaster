@@ -5,6 +5,7 @@ import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 import hitmaster.GameLogic;
+import hitmaster.design.ToggleSwitch;
 import hitmaster.design.UiBuilder;
 import hitmaster.models.GameOptions;
 import hitmaster.models.GameSet;
@@ -90,7 +91,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
 
 
         // Amount of Cards --------------------
-        TextField cardsTextField = new TextField();
+        TextField cardsTextField = new TextField("10");
         cardsTextField.setTextFormatter(createNumberFormatter());
 
         HBox cardsBox = createSettingRow(
@@ -101,15 +102,75 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         gameOptionsBox.getChildren().add(cardsBox);
 
 
-        // Amount of Chips --------------------
-        TextField chipsTextField = new TextField();
-        chipsTextField.setTextFormatter(createNumberFormatter());
+        // Chips --------------------
+        VBox chipsBox = new VBox(5);
 
-        HBox chipsBox = createSettingRow(
+        // Enable
+        ToggleSwitch enableChipsToggleSwitch = new ToggleSwitch();
+        enableChipsToggleSwitch.setSelected(true);
+
+        HBox chipsEnableBox = createSettingRow(
             "Chips",
-            "Amount of chips players can keep to perform different actions.",
-            chipsTextField
+            "Chips can be used to perform different actions.",
+            enableChipsToggleSwitch
         );
+
+        // Actions
+        ToggleSwitch chipsSkipActionToggleSwitch = new ToggleSwitch();
+        ToggleSwitch chipsClaimActionToggleSwitch = new ToggleSwitch();
+
+        VBox chipsActionsToggleSwitchesBox = new VBox(5);
+        chipsActionsToggleSwitchesBox.getChildren().addAll(
+            createActionToggleRow("Skip", chipsSkipActionToggleSwitch),
+            createActionToggleRow("Claim", chipsClaimActionToggleSwitch)
+        );
+
+        Label actionsTitle = new Label("Actions");
+        actionsTitle.getStyleClass().add("subheader");
+
+        Label actionsDescription = new Label("Actions player can perform with their chips.");
+        actionsDescription.getStyleClass().add("description");
+
+        VBox chipsActionsBox = new VBox(
+            5,
+            actionsTitle,
+            actionsDescription,
+            chipsActionsToggleSwitchesBox
+        );
+        chipsActionsBox.setAlignment(Pos.CENTER_LEFT);
+
+        // Amount
+        TextField chipsAmountTextField = new TextField("5");
+        chipsAmountTextField.setTextFormatter(createNumberFormatter());
+
+        HBox chipsAmountBox = createSettingRow(
+            "Amount",
+            "Amount of chips players can keep to perform different actions.",
+            chipsAmountTextField
+        );
+
+        // Start Chips
+        TextField chipsStartTextField = new TextField("2");
+        chipsStartTextField.setTextFormatter(createNumberFormatter());
+
+        HBox chipsStartBox = createSettingRow(
+            "Start Chips",
+            "Amound of chips players starts with.",
+            chipsStartTextField
+        );
+
+        // Deactivate settings when disabled
+        enableChipsToggleSwitch.setOnAction(e -> {
+            boolean isEnabled = enableChipsToggleSwitch.isSelected();
+
+            chipsAmountTextField.setDisable(!isEnabled);
+            chipsStartTextField.setDisable(!isEnabled);
+
+            chipsSkipActionToggleSwitch.setDisable(!isEnabled);
+            chipsClaimActionToggleSwitch.setDisable(!isEnabled);
+        });
+
+        chipsBox.getChildren().addAll(UiBuilder.getHorizontalSeparator(), chipsEnableBox, chipsAmountBox, chipsStartBox, chipsActionsBox);
         gameOptionsBox.getChildren().add(chipsBox);
 
 
@@ -128,12 +189,22 @@ public class SingleplayerSettingsView extends HitmasterDialog {
             activeSetsBox.getChildren().add(createSetCard(gameSet));
         }
 
-        ScrollPane activeSetsCrollPane = new ScrollPane(activeSetsBox);
-        activeSetsCrollPane.setFitToHeight(true);
-        activeSetsCrollPane.setFitToWidth(false);
-        activeSetsCrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        activeSetsCrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        activeSetsCrollPane.setPannable(true);
+        ScrollPane activeSetsScrollPane = new ScrollPane(activeSetsBox);
+
+        activeSetsScrollPane.setFitToHeight(false);
+        activeSetsScrollPane.setFitToWidth(false);
+
+        activeSetsScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        activeSetsScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        activeSetsScrollPane.setPannable(false);
+
+        activeSetsScrollPane.setMinViewportHeight(210);
+        activeSetsScrollPane.setPrefViewportHeight(210);
+        activeSetsScrollPane.setPrefHeight(220);
+
+        activeSetsBox.setAlignment(Pos.CENTER_LEFT);
+        activeSetsBox.setPrefHeight(210);
 
         Button manageSetsButton = new Button("Manage Sets");
         manageSetsButton.setGraphic(SvgParser.streamToColoredSvgIcon(
@@ -154,7 +225,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
             setManagerView.show(Navigation.getInstance().getStage());
         });
 
-        setManagerBox.getChildren().addAll(activeSetsLabel, activeSetsCrollPane, manageSetsButton);
+        setManagerBox.getChildren().addAll(activeSetsLabel, activeSetsScrollPane, manageSetsButton);
         gameOptionsBox.getChildren().addAll(UiBuilder.getHorizontalSeparator(), setManagerBox);
         
 
@@ -188,8 +259,14 @@ public class SingleplayerSettingsView extends HitmasterDialog {
             );
             options.players[0].role = Player.Role.HOST;
 
-            options.cardCount = Integer.parseInt(cardsTextField.getText());
-            options.chipCount = Integer.parseInt(chipsTextField.getText());
+            options.cardAmount = Integer.parseInt(cardsTextField.getText());
+
+            options.chipsEnabled = enableChipsToggleSwitch.isSelected() && (chipsSkipActionToggleSwitch.isSelected() || chipsClaimActionToggleSwitch.isSelected());
+            options.chipAmount = Integer.parseInt(chipsAmountTextField.getText());
+            options.startChips = Integer.parseInt(chipsStartTextField.getText());
+            options.skipEnabled = chipsSkipActionToggleSwitch.isSelected();
+            options.stealEnabled = false;
+            options.claimEnabled = chipsClaimActionToggleSwitch.isSelected();
 
             options.turnTime = Integer.parseInt(turnTimeTextField.getText());
             options.stealTime = 60;
@@ -245,6 +322,18 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         return row;
     }
 
+    private HBox createActionToggleRow(String title, ToggleSwitch toggle) {
+        Label label = new Label(title);
+
+        label.setPrefWidth(55);
+        label.setMinWidth(55);
+
+        HBox row = new HBox(8, label, toggle);
+        row.setAlignment(Pos.CENTER_LEFT);
+
+        return row;
+    }
+
     private HBox createTimeInputRow(TextField field, String unit, int defaultValue) {
         field.setPrefWidth(80);
         field.setText(String.valueOf(defaultValue));
@@ -275,9 +364,14 @@ public class SingleplayerSettingsView extends HitmasterDialog {
 
     private VBox createSetCard(GameSet set) {
         VBox card = new VBox(10);
+
         card.setPrefWidth(180);
         card.setMaxWidth(180);
         card.setMinWidth(180);
+
+        card.setMinHeight(210);
+        card.setPrefHeight(210);
+        card.setMaxHeight(210);
         
         card.getStyleClass().add("set-card-grid");
         card.setPadding(new Insets(15));
