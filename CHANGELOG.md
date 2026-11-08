@@ -14,6 +14,7 @@
 - Song Set 'Hits Made in Germany', feauturing songs from Germany
 
 ### Changed
+- Game Settings are now centralized in one class
 - Some dialogs moved to stage display for accessibility
 - Reworked layout for game setup
 - 'Move Time' is now 'Turn Time'

@@ -14,26 +14,18 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.Navigation;
 import hitmaster.services.NetworkManager;
-import hitmaster.services.ThemeManager;
-import hitmaster.views.MainMenu;
 import hitmaster.views.OnlineMultiplayerSettings;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-public class LobbyHostView {
-
-    private final MainMenu PARENT;
-    private final Stage STAGE;
+public class LobbyHostView extends VBox {
 
     private final Player HOST_PLAYER;
     private NetworkManager netManager;
@@ -49,34 +41,20 @@ public class LobbyHostView {
     /**
      * Constructor for "LobbyHostView".
      * Initializes UI and starts lobby broadcasting.
-     * @param parent MainMenu that started this view. Used to set stage later.
      * @param lobbyName Name of this lobby.
      * @param tcpPort Port to start the lobby broadcasting at.
      */
-    public LobbyHostView(MainMenu parent, String lobbyName, String password, int tcpPort) {
-        this.PARENT = parent;
-
-        STAGE = new Stage();
-        STAGE.setTitle("Lobby: " + lobbyName);
+    public LobbyHostView(GameOptions options, String lobbyName, String password, int tcpPort) {
+        super(25);
+        setPadding(new Insets(20));
+        setFillWidth(true);
 
         User user = Database.getInstance().getCurrentUser();
         HOST_PLAYER = new Player(user.username, user.picture);
         HOST_PLAYER.role = Player.Role.HOST;
 
-        // Default Settings
-        this.options = new GameOptions();
-        this.options.players = new Player[2];
-        this.options.players[0] = HOST_PLAYER;
-
-        this.options.turnTime = 300;
-        this.options.stealTime = 30;
-
-        // =========================
-        // ROOT LAYOUT
-        // =========================
-        VBox root = new VBox(25);
-        root.setPadding(new Insets(20));
-        root.setFillWidth(true);
+        // Settings
+        this.options = options;
 
         // =========================
         // HEADER
@@ -169,8 +147,7 @@ public class LobbyHostView {
         cancelBtn.getStyleClass().add("modern-button");
         cancelBtn.setPrefWidth(120);
         cancelBtn.setOnAction(e -> {
-            this.stopServer();
-            STAGE.close();
+            stopServer();
         });
 
         Button startGameBtn = new Button("Start Game");
@@ -178,14 +155,13 @@ public class LobbyHostView {
         startGameBtn.setPrefWidth(140);
         startGameBtn.setDisable(true);
         startGameBtn.setOnAction(e -> {
-            this.stopServerBroadcastOnly(); 
+            stopServerBroadcastOnly(); 
             
             netManager.sendObject(new GameOptionsDTO(this.options, "START_GAME")); 
             
             GameLogic gameLogic = new GameLogic(this.options, true, netManager);
             Navigation.getInstance().show(gameLogic.getView());
             Navigation.getInstance().maximize();
-            STAGE.close();
         });
 
         HBox rightButtons = new HBox(10, cancelBtn, startGameBtn);
@@ -195,17 +171,9 @@ public class LobbyHostView {
         HBox footer = new HBox(10, openSettingsBtn, rightButtons);
         footer.setAlignment(Pos.CENTER_LEFT);
 
-        root.getChildren().addAll(header, content, footer);
-
-        Scene scene = new Scene(root, 580, 390);
-        ThemeManager.getInstance().registerScene(scene);
-
-        STAGE.setScene(scene);
-        STAGE.setOnCloseRequest(e -> this.stopServer());
+        getChildren().addAll(header, content, footer);
 
         this.startNetworking(tcpPort, lobbyName, password, startGameBtn);
-        
-        STAGE.initModality(Modality.APPLICATION_MODAL);
     }
 
     /**
@@ -218,13 +186,6 @@ public class LobbyHostView {
      */
     private void startNetworking(int port, String lobbyName, String password, Button startGameBtn) {
         netManager = new NetworkManager();
-
-        PARENT.getStage().setOnCloseRequest(event -> {
-            netManager.closeConnection();
-
-            Platform.exit();
-            System.exit(0);
-        });
         
         new Thread(() -> {
             netManager.startAsHost(port, password, receivedObj -> {
@@ -254,7 +215,7 @@ public class LobbyHostView {
      */
     private void openLobbySettingsDialog() {
         OnlineMultiplayerSettings settingsView = new OnlineMultiplayerSettings(options);
-        settingsView.showAndWait(STAGE);
+        //settingsView.showAndWait(STAGE);
 
         netManager.sendObject(new GameOptionsDTO(options, "OPTIONS_UPDATE"));
         this.updateSettingsLabels();
@@ -291,31 +252,8 @@ public class LobbyHostView {
         netManager.closeConnection();
     }
 
-    /**
-     * Shows the already initialized stage.
-     * Centeres stage based on position of stage of previous frame.
-     * @param parent Stage of previous frame.
-     */
-    public void show(Stage parent) {
-        // Place centered to parent
-        STAGE.setOnShowing(e -> {
-            Platform.runLater(() -> {
-                double ownerX = parent.getX();
-                double ownerY = parent.getY();
-                double ownerWidth = parent.getWidth();
-                double ownerHeight = parent.getHeight();
-
-                double newWidth = parent.getWidth();
-                double newHeight = parent.getHeight();
-
-                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
-                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
-
-                STAGE.setX(centerX);
-                STAGE.setY(centerY);
-            });
-        });
-
-        STAGE.show();
+    public void show() {
+        Navigation.getInstance().show(this);
+        Navigation.getInstance().setTitle("Host Lobby");
     }
 }

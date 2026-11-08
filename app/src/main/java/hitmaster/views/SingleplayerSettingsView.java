@@ -5,6 +5,7 @@ import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 import hitmaster.GameLogic;
+import hitmaster.design.StyleDialog;
 import hitmaster.design.ToggleSwitch;
 import hitmaster.design.UiBuilder;
 import hitmaster.models.GameMode;
@@ -14,10 +15,14 @@ import hitmaster.models.Player;
 import hitmaster.services.Database;
 import hitmaster.services.Navigation;
 import hitmaster.services.SvgParser;
+import hitmaster.services.ThemeManager;
+import hitmaster.views.Mutliplayer.LobbyHostView;
 import hitmaster.views.templates.HitmasterDialog;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -29,15 +34,32 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class SingleplayerSettingsView extends HitmasterDialog {
 
     private boolean multiplayerSettings = false;
 
+    // ----- Inputs -----
+    private final TextField cardsAmountTextField;
+    private final TextField chipsAmountTextField;
+    private final TextField chipsStartTextField;
+    private final TextField turnTimeTextField;
+    private final TextField stealTimeTextField;
+    private final TextField bufferTimeTextField;
+
+    private final ToggleGroup gameModeButtonsToggleGroup;
+    private final ToggleSwitch enableChipsToggleSwitch;
+    private final ToggleSwitch chipsSkipActionToggleSwitch;
+    private final ToggleSwitch chipsStealActionToggleSwitch;
+    private final ToggleSwitch chipsClaimActionToggleSwitch;
+    
     public SingleplayerSettingsView() {
         this(false);
     }
@@ -73,7 +95,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         HBox gameModeButtonsBox = new HBox(5);
         gameModeButtonsBox.setAlignment(Pos.CENTER_LEFT);
 
-        ToggleGroup gameModeButtonsToggleGroup = new ToggleGroup();
+        gameModeButtonsToggleGroup = new ToggleGroup();
 
         for (GameMode gameMode : GameMode.values()) {
             if (gameMode == GameMode.TEAM) continue;
@@ -93,7 +115,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
 
 
         // Turn Time --------------------
-        TextField turnTimeTextField = new TextField();
+        turnTimeTextField = new TextField();
         turnTimeTextField.setTextFormatter(createNumberFormatter());
 
         HBox turnTimeBox = createSettingRow(
@@ -105,7 +127,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
 
 
         // Steal Time --------------------
-        TextField stealTimeTextField = new TextField();
+        stealTimeTextField = new TextField();
         stealTimeTextField.setTextFormatter(createNumberFormatter());
 
         HBox stealTimeBox = createSettingRow(
@@ -117,7 +139,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
 
 
         // Buffer Time --------------------
-        TextField bufferTimeTextField = new TextField();
+        bufferTimeTextField = new TextField();
         bufferTimeTextField.setTextFormatter(createNumberFormatter());
 
         HBox bufferTimeBox = createSettingRow(
@@ -129,13 +151,13 @@ public class SingleplayerSettingsView extends HitmasterDialog {
 
 
         // Amount of Cards --------------------
-        TextField cardsTextField = new TextField("10");
-        cardsTextField.setTextFormatter(createNumberFormatter());
+        cardsAmountTextField = new TextField("10");
+        cardsAmountTextField.setTextFormatter(createNumberFormatter());
 
         HBox cardsBox = createSettingRow(
             "Cards",
             "Amount of cards that are required for a player to win the game.",
-            cardsTextField
+            cardsAmountTextField
         );
         gameOptionsBox.getChildren().add(cardsBox);
 
@@ -144,7 +166,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         VBox chipsBox = new VBox(5);
 
         // Enable
-        ToggleSwitch enableChipsToggleSwitch = new ToggleSwitch();
+        enableChipsToggleSwitch = new ToggleSwitch();
         enableChipsToggleSwitch.setSelected(true);
 
         HBox chipsEnableBox = createSettingRow(
@@ -154,11 +176,11 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         );
 
         // Actions
-        ToggleSwitch chipsSkipActionToggleSwitch = new ToggleSwitch();
+        chipsSkipActionToggleSwitch = new ToggleSwitch();
         chipsSkipActionToggleSwitch.setSelected(true);
-        ToggleSwitch chipsStealActionToggleSwitch = new ToggleSwitch();
+        chipsStealActionToggleSwitch = new ToggleSwitch();
         chipsStealActionToggleSwitch.setSelected(true);
-        ToggleSwitch chipsClaimActionToggleSwitch = new ToggleSwitch();
+        chipsClaimActionToggleSwitch = new ToggleSwitch();
         chipsClaimActionToggleSwitch.setSelected(true);
 
         chipsStealActionToggleSwitch.setOnAction(e -> {
@@ -188,7 +210,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         chipsActionsBox.setAlignment(Pos.CENTER_LEFT);
 
         // Amount
-        TextField chipsAmountTextField = new TextField("5");
+        chipsAmountTextField = new TextField("5");
         chipsAmountTextField.setTextFormatter(createNumberFormatter());
 
         HBox chipsAmountBox = createSettingRow(
@@ -198,7 +220,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         );
 
         // Start Chips
-        TextField chipsStartTextField = new TextField("2");
+        chipsStartTextField = new TextField("2");
         chipsStartTextField.setTextFormatter(createNumberFormatter());
 
         HBox chipsStartBox = createSettingRow(
@@ -299,37 +321,30 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         VBox bottomBox = new VBox(5);
         HBox controllsBox = new HBox(10);
 
-        Button startButton = new Button("Start Game");
+        Button startButton = new Button(multiplayerSettings ? "Local Game" : "Start Game");
         startButton.getStyleClass().add("primary-button");
         startButton.setPrefWidth(140);
 
         startButton.setOnAction(e -> {
-            GameOptions options = new GameOptions();
-            
-            options.players = new Player[1];
-            options.players[0] = new Player(
-                Database.getInstance().getCurrentUser().username,
-                Database.getInstance().getCurrentUser().picture
-            );
-            options.players[0].role = Player.Role.HOST;
+            // ----- Local Multiplayer -----
+            if (multiplayerSettings) {
+                showCreateLocalLobbyDialog();
+            }
+            // ----- Singleplayer -----
+            else {
+                GameOptions options = buildGameOptions();
+                GameLogic game = new GameLogic(options, true, null);
+                Navigation.getInstance().show(game.getView());
+                Navigation.getInstance().maximize();
+            }
+        });
 
-            options.gameMode = (GameMode) gameModeButtonsToggleGroup.getSelectedToggle().getUserData();
-            options.cardAmount = Integer.parseInt(cardsTextField.getText());
+        Button createLobbyButton = new Button("Host Lobby");
+        createLobbyButton.getStyleClass().add("primary-button");
 
-            options.chipsEnabled = enableChipsToggleSwitch.isSelected() && (chipsSkipActionToggleSwitch.isSelected() || chipsClaimActionToggleSwitch.isSelected());
-            options.chipAmount = Integer.parseInt(chipsAmountTextField.getText());
-            options.startChips = Integer.parseInt(chipsStartTextField.getText());
-            options.skipEnabled = chipsSkipActionToggleSwitch.isSelected();
-            options.stealEnabled = multiplayerSettings ? chipsStealActionToggleSwitch.isSelected() : false;
-            options.claimEnabled = chipsClaimActionToggleSwitch.isSelected();
-
-            options.turnTime = Integer.parseInt(turnTimeTextField.getText());
-            options.stealTime = Integer.parseInt(stealTimeTextField.getText());
-            options.bufferTime = Integer.parseInt(bufferTimeTextField.getText());
-
-            GameLogic game = new GameLogic(options, true, null);
-            Navigation.getInstance().show(game.getView());
-            Navigation.getInstance().maximize();
+        createLobbyButton.setOnAction(e -> {
+            // ----- LAN Multiplayer -----
+            showCreateLanLobbyDialog();
         });
 
         Button backButton = new Button();
@@ -344,6 +359,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         });
 
         controllsBox.getChildren().addAll(backButton, UiBuilder.getHorizontalSpacer(), startButton);
+        if (multiplayerSettings) controllsBox.getChildren().add(createLobbyButton);
         bottomBox.getChildren().addAll(UiBuilder.getHorizontalSeparator(), controllsBox);
         setBottom(bottomBox);
 
@@ -351,10 +367,255 @@ public class SingleplayerSettingsView extends HitmasterDialog {
         // ===== SHORTCUTS =====
         addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                startButton.fire();
+                if (!multiplayerSettings) {
+                    startButton.fire();
+                } else {
+                    createLobbyButton.fire();
+                }
+
                 event.consume(); 
             }
         });
+    }
+
+    private GameOptions buildGameOptions() {
+        GameOptions options = new GameOptions();
+            
+        options.players = new Player[multiplayerSettings ? 2 : 1];
+        options.players[0] = new Player(
+            Database.getInstance().getCurrentUser().username,
+            Database.getInstance().getCurrentUser().picture
+        );
+        options.players[0].role = Player.Role.HOST;
+
+        options.gameMode = (GameMode) gameModeButtonsToggleGroup.getSelectedToggle().getUserData();
+        options.cardAmount = Integer.parseInt(cardsAmountTextField.getText());
+
+        options.chipsEnabled = enableChipsToggleSwitch.isSelected() && (chipsSkipActionToggleSwitch.isSelected() || chipsClaimActionToggleSwitch.isSelected());
+        options.chipAmount = Integer.parseInt(chipsAmountTextField.getText());
+        options.startChips = Integer.parseInt(chipsStartTextField.getText());
+        options.skipEnabled = chipsSkipActionToggleSwitch.isSelected();
+        options.stealEnabled = multiplayerSettings ? chipsStealActionToggleSwitch.isSelected() : false;
+        options.claimEnabled = chipsClaimActionToggleSwitch.isSelected();
+
+        options.turnTime = Integer.parseInt(turnTimeTextField.getText());
+        options.stealTime = Integer.parseInt(stealTimeTextField.getText());
+        options.bufferTime = Integer.parseInt(bufferTimeTextField.getText());
+
+        return options;
+
+    }
+
+    private void showCreateLocalLobbyDialog() {
+        Stage stage = new Stage();
+        stage.setTitle("Create Lobby");
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        // ===== Header & Description =====
+        Label headerLabel = new Label("Start local game");
+        headerLabel.getStyleClass().add("header");
+
+        Label descriptionLabel = new Label("Enter usernames before starting the game.");
+        descriptionLabel.getStyleClass().add("description");
+        descriptionLabel.setWrapText(true);
+
+        // ===== Inputs =====
+        GridPane inputGrid = new GridPane();
+        inputGrid.setHgap(15);
+        inputGrid.setVgap(12);
+        inputGrid.setPadding(new Insets(10, 0, 10, 0));
+
+        // Player 1
+        Label player1Prompt = new Label("Player 1: ");
+        player1Prompt.getStyleClass().add("subheader");
+
+        TextField player1NameInput = new TextField(Database.getInstance().getCurrentUser().username);
+        player1NameInput.setPromptText("Name");
+        player1NameInput.setPrefWidth(200);
+
+        // Player 2
+        Label player2Prompt = new Label("Player 2: ");
+        player2Prompt.getStyleClass().add("subheader");
+
+        TextField player2NameInput = new TextField();
+        player2NameInput.setPromptText("Name");
+        player2NameInput.setPrefWidth(200);
+
+        // Add Elements to Grid
+        inputGrid.add(player1Prompt, 0, 0);
+        inputGrid.add(player1NameInput, 1, 0);
+        inputGrid.add(player2Prompt, 0, 1);
+        inputGrid.add(player2NameInput, 1, 1);
+
+        // ===== Buttons =====
+        Button startLocalGameButton = new Button("Start Game");
+        startLocalGameButton.getStyleClass().add("primary-button");
+        startLocalGameButton.setOnAction(e -> {
+            if (!player1NameInput.getText().isEmpty() && !player1NameInput.getText().isBlank() && !player2NameInput.getText().isEmpty() && !player2NameInput.getText().isBlank()) {
+                GameOptions options = buildGameOptions();
+
+                options.players[0] = new Player(player1NameInput.getText(), Database.getInstance().getCurrentUser().picture);
+                options.players[0].role = Player.Role.HOST;
+                options.players[1] = new Player(player2NameInput.getText(), null);
+                options.players[1].role = Player.Role.HOST;
+
+                GameLogic game = new GameLogic(options, true, null);
+                Navigation.getInstance().show(game.getView());
+                Navigation.getInstance().maximize();
+
+                stage.close();
+            }
+            else {
+                StyleDialog.errorDialog("Enter player names", "Please enter valid names for all players before starting the game!");
+            }
+        });
+
+        Button cancelButton = new Button("Cancel");
+        cancelButton.getStyleClass().add("error-button");
+        cancelButton.setOnAction(e -> stage.close());
+
+        HBox buttonBox = new HBox(15);
+        buttonBox.getChildren().addAll(cancelButton, startLocalGameButton);
+        buttonBox.setAlignment(Pos.CENTER_RIGHT);
+
+        // ===== Build Layout =====
+        VBox root = new VBox(15);
+        root.setPadding(new Insets(20));
+        root.getChildren().addAll(headerLabel, descriptionLabel, inputGrid, buttonBox);
+
+        Scene scene = new Scene(root);
+        ThemeManager.getInstance().registerScene(scene);
+
+        // Place centered to parent 
+        stage.setOnShowing(e -> {
+            Stage parent = Navigation.getInstance().getStage();
+        
+            Platform.runLater(() -> {
+                double ownerX = parent.getX();
+                double ownerY = parent.getY();
+                double ownerWidth = parent.getWidth();
+                double ownerHeight = parent.getHeight();
+
+                double newWidth = parent.getWidth();
+                double newHeight = parent.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                stage.setX(centerX);
+                stage.setY(centerY);
+            });
+        });
+
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.sizeToScene();
+        stage.showAndWait();
+    }
+
+    /**
+     * Opens dialog for creating a new LAN multiplayer lobby.
+     * User can make input for lobby name and password.
+     */
+    private void showCreateLanLobbyDialog() {
+        Stage stage = new Stage();
+        stage.setTitle("Create Lobby");
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        // ===== Header & Description =====
+        Label headerLabel = new Label("Host new lobby");
+        headerLabel.getStyleClass().add("header");
+
+        Label descriptionLabel = new Label("Set up your lobby details below.\nYou can optionally set a password.");
+        descriptionLabel.getStyleClass().add("description");
+        descriptionLabel.setWrapText(true);
+
+        // ===== Inputs =====
+        GridPane inputGrid = new GridPane();
+        inputGrid.setHgap(15);
+        inputGrid.setVgap(12);
+        inputGrid.setPadding(new Insets(10, 0, 10, 0));
+
+        // Lobby Name
+        Label lobbyNamePrompt = new Label("Lobby Name: ");
+        lobbyNamePrompt.getStyleClass().add("subheader");
+
+        TextField lobbyNameInput = new TextField(Database.getInstance().getCurrentUser().username + "'s Lobby");
+        lobbyNameInput.setPromptText("Lobby Name");
+        lobbyNameInput.setPrefWidth(200);
+
+        // Password
+        Label passwordPrompt = new Label("Password: ");
+        passwordPrompt.getStyleClass().add("subheader");
+
+        TextField passwordInput = new TextField();
+        passwordInput.setPromptText("Password");
+        passwordInput.setPrefWidth(200);
+
+        // Add Elements to Grid
+        inputGrid.add(lobbyNamePrompt, 0, 0);
+        inputGrid.add(lobbyNameInput, 1, 0);
+        inputGrid.add(passwordPrompt, 0, 1);
+        inputGrid.add(passwordInput, 1, 1);
+
+        // ===== Buttons =====
+        Button hostLobbyButton = new Button("Host");
+        hostLobbyButton.getStyleClass().add("primary-button");
+        hostLobbyButton.setOnAction(e -> {
+            if (!lobbyNameInput.getText().isEmpty() || !lobbyNameInput.getText().isBlank()) {
+                GameOptions options = buildGameOptions();
+
+                LobbyHostView hostLobbyView = new LobbyHostView(options, lobbyNameInput.getText(), passwordInput.getText(), 5050);
+                hostLobbyView.show();
+
+                stage.close();
+            }
+            else {
+                StyleDialog.errorDialog("Enter Lobby Name", "Please enter a valid name for your lobby before hosting!");
+            }
+        });
+
+        Button cancelButton = new Button("Cancel");
+        cancelButton.getStyleClass().add("error-button");
+        cancelButton.setOnAction(e -> stage.close());
+
+        HBox buttonBox = new HBox(15);
+        buttonBox.getChildren().addAll(cancelButton, hostLobbyButton);
+        buttonBox.setAlignment(Pos.CENTER_RIGHT);
+
+        // ===== Build Layout =====
+        VBox root = new VBox(15);
+        root.setPadding(new Insets(20));
+        root.getChildren().addAll(headerLabel, descriptionLabel, inputGrid, buttonBox);
+
+        Scene scene = new Scene(root);
+        ThemeManager.getInstance().registerScene(scene);
+
+        // Place centered to parent 
+        stage.setOnShowing(e -> {
+            Stage parent = Navigation.getInstance().getStage();
+        
+            Platform.runLater(() -> {
+                double ownerX = parent.getX();
+                double ownerY = parent.getY();
+                double ownerWidth = parent.getWidth();
+                double ownerHeight = parent.getHeight();
+
+                double newWidth = parent.getWidth();
+                double newHeight = parent.getHeight();
+
+                double centerX = ownerX + (ownerWidth / 2.0) - (newWidth / 2.0);
+                double centerY = ownerY + (ownerHeight / 2.0) - (newHeight / 2.0);
+
+                stage.setX(centerX);
+                stage.setY(centerY);
+            });
+        });
+
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.sizeToScene();
+        stage.showAndWait();
     }
 
     private HBox createSettingRow(String titleText, String descText, Node control) {
