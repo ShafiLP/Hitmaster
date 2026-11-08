@@ -1689,7 +1689,7 @@
   {
     "id": 242,
     "titles": ["Emanuela"],
-    "artists": ["Fettes Brot"],
+    "artists": ["Fettes Brot", "FB"],
     "year": 2005,
     "spotify_id": "15hHGF66ZlM6UAzMSpf5Q1"
   },
@@ -2046,7 +2046,7 @@
   {
     "id": 293,
     "titles": ["Vom Selben Stern"],
-    "artists": ["Ich + Ich", "Ich Plus Ich", "Adel Tawil"],
+    "artists": ["Ich + Ich", "Ich und Ich", "Ich Plus Ich", "Adel Tawil"],
     "year": 2007,
     "spotify_id": "4kCYJigsNQJqs6kpMSlsmL"
   },
@@ -4058,7 +4058,7 @@
   {
     "id": 580,
     "titles": ["Risin' High (Def Core Grind Version)", "Rising High (Def Core Grind Version)", "Risin' High", "Rising High"],
-    "artists": ["H-Blockx", "H-Blocks", "H Blockx", "H Blocks"],
+    "artists": ["H-Blockx", "H-Blocks", "H Blockx", "H Blocks", "Blockx", "Blocks"],
     "year": 1993,
     "spotify_id": "0H16myxA7GIjekgP0YC8Sa"
   },
@@ -14450,7 +14450,7 @@
   {
     "id": 2047,
     "titles": ["Stark"],
-    "artists": ["Ich + Ich", "Ich Plus Ich", "Adel Tawil"],
+    "artists": ["Ich + Ich", "Ich und Ich", "Ich Plus Ich", "Adel Tawil"],
     "year": 2007,
     "spotify_id": "4BH3bwOLMm7VLqMNuU5VT6"
   },
@@ -15671,8 +15671,8 @@
     "id": 2216,
     "titles": ["Affalterbach"],
     "artists": ["Shindy & Shirin David", "Shindy", "Shirin David"],
-    "year": 2026,
-    "spotify_id": "XXXXX"
+    "year": 2019,
+    "spotify_id": "661D1QZGfMhnNbn888st2o"
   },
   {
     "id": 2217,
@@ -15719,7 +15719,7 @@
   {
     "id": 2223,
     "titles": ["Nordisch by Nature"],
-    "artists": ["Fettes Brot"],
+    "artists": ["Fettes Brot", "FB"],
     "year": 1995,
     "spotify_id": "5PVV8L3SZlzXqwYyljpFXQ"
   },
@@ -15781,105 +15781,105 @@
     "titles": ["Bon Voyage", "Gute Reise"],
     "artists": ["Deichkind (feat. Nina)", "Deichkind", "DK", "Nina Tenge", "Nina"],
     "year": 2000,
-    "spotify_id": "https://open.spotify.com/track/0ys1g8PTTs6ADeDp2h1xpd"
+    "spotify_id": "0ys1g8PTTs6ADeDp2h1xpd"
   },
   {
     "id": 2232,
     "titles": ["Alles aus Liebe"],
     "artists": ["Die Toten Hosen", "Toten Hosen", "Tote Hosen", "DTH"],
     "year": 1993,
-    "spotify_id": "https://open.spotify.com/track/2WFZXkRsALv5kC6HFIAsuG"
+    "spotify_id": "2WFZXkRsALv5kC6HFIAsuG"
   },
   {
     "id": 2233,
     "titles": ["Fremder Mann"],
     "artists": ["Marianne Rosenberg", "Mariane Rosenberg"],
     "year": 1971,
-    "spotify_id": "https://open.spotify.com/track/7fPnGa3ZMKkmKytg8AD5iZ"
+    "spotify_id": "7fPnGa3ZMKkmKytg8AD5iZ"
   },
   {
     "id": 2234,
     "titles": ["9 bis 9", "Neun bis Neun"],
     "artists": ["SIRA & Badchieff & Bausa", "Sira", "SiraOne", "Badchieff", "Badchief", "Bausa"],
     "year": 2023,
-    "spotify_id": "https://open.spotify.com/track/5YWu6dt50Nieq8qi572RF8"
+    "spotify_id": "5YWu6dt50Nieq8qi572RF8"
   },
   {
     "id": 2235,
     "titles": ["Schwarz"],
     "artists": ["LEA & Casper", "LEA", "Casper"],
     "year": 2021,
-    "spotify_id": "https://open.spotify.com/track/5OAHmKOEswMiVA8kyWFAEe"
+    "spotify_id": "5OAHmKOEswMiVA8kyWFAEe"
   },
   {
     "id": 2236,
     "titles": ["Willst du"],
     "artists": ["Alligatoah"],
     "year": 2013,
-    "spotify_id": "https://open.spotify.com/track/3FcqFCeCD6QRtRo6WGLCnC"
+    "spotify_id": "3FcqFCeCD6QRtRo6WGLCnC"
   },
   {
     "id": 2237,
     "titles": ["Kein Zurück", "Kein Zurueck"],
     "artists": ["Wolfsheim"],
     "year": 2003,
-    "spotify_id": "https://open.spotify.com/track/5NGsvd9Wf6fzu3Dux4DQAu"
+    "spotify_id": "5NGsvd9Wf6fzu3Dux4DQAu"
   },
   {
     "id": 2238,
     "titles": ["Es Ist Geil Ein Wilder Kerl Zu Sein"],
     "artists": ["Bananafishbones", "Die wilden Kerle"],
     "year": 2003,
-    "spotify_id": "https://open.spotify.com/track/77myVUbHcuswtNwpEWzcDH"
+    "spotify_id": "77myVUbHcuswtNwpEWzcDH"
   },
   {
     "id": 2239,
     "titles": ["Eisbär", "Eisbaer"],
     "artists": ["Grauzone"],
     "year": 1981,
-    "spotify_id": "https://open.spotify.com/track/6dO3t1e3pb7sxyDQbDyVNX"
+    "spotify_id": "6dO3t1e3pb7sxyDQbDyVNX"
   },
   {
     "id": 2240,
     "titles": ["Idiot"],
     "artists": ["Michelle & Matthias Reim", "Michelle", "Matthias Reim"],
     "year": 2002,
-    "spotify_id": "https://open.spotify.com/track/4GK2HN2CyBq3cGDSbkqVqr"
+    "spotify_id": "4GK2HN2CyBq3cGDSbkqVqr"
   },
   {
     "id": 2241,
     "titles": ["Die Flut", "Flut"],
     "artists": ["Joachim Witt & Peter Heppner", "Joachim Witt", "Peter Heppner"],
     "year": 1998,
-    "spotify_id": "https://open.spotify.com/track/0p5R08bRY9V8dYqFq6S0At"
+    "spotify_id": "0p5R08bRY9V8dYqFq6S0At"
   },
   {
     "id": 2242,
     "titles": ["How Much Is The Fish?"],
     "artists": ["Scooter"],
     "year": 1998,
-    "spotify_id": "https://open.spotify.com/track/73aOM4jyU3begiIYxYUd89"
+    "spotify_id": "73aOM4jyU3begiIYxYUd89"
   },
   {
     "id": 2243,
     "titles": ["Superior"],
     "artists": ["Gentleman"],
     "year": 2004,
-    "spotify_id": "https://open.spotify.com/track/2xc8WSkjAp4xRGV6I1Aktb"
+    "spotify_id": "2xc8WSkjAp4xRGV6I1Aktb"
   },
   {
     "id": 2244,
     "titles": ["Boomerang"],
     "artists": ["Blümchen", "Bluemchen"],
     "year": 1996,
-    "spotify_id": "https://open.spotify.com/track/2YsSQIQjeMbqk7RLTQg7u9"
+    "spotify_id": "2YsSQIQjeMbqk7RLTQg7u9"
   },
   {
     "id": 2245,
     "titles": ["Girl 4 A Day", "Girl Four A Day", "Girl For A Day"],
     "artists": ["Band ohne Namen & Milka", "Band ohne Namen", "BoN", "Milka"],
     "year": 2002,
-    "spotify_id": "https://open.spotify.com/track/4EfIj3ryeMpmZNJq4xbTQf"
+    "spotify_id": "4EfIj3ryeMpmZNJq4xbTQf"
   },
   {
     "id": 2246,
@@ -15887,21 +15887,21 @@
     "artists": ["$oho Bani (feat. Herbert Grönemeyer & Ericson)", "$oho Bani", "Soho Bani",
                 "Oho Bani", "Herbert Grönemeyer", "Herbert Groenemeyer", "Ericson"],
     "year": 2024,
-    "spotify_id": "https://open.spotify.com/track/7fc7Z9hY2hzimmFvo2JO8p"
+    "spotify_id": "7fc7Z9hY2hzimmFvo2JO8p"
   },
   {
     "id": 2247,
     "titles": ["Niemand Bringt Marten Um"],
     "artists": ["Marteria"],
     "year": 2021,
-    "spotify_id": "https://open.spotify.com/track/53rDRyef2lT4oU7DUzMChn"
+    "spotify_id": "53rDRyef2lT4oU7DUzMChn"
   },
   {
     "id": 2248,
     "titles": ["Ausgehen"],
     "artists": ["AnnenMayKantereit", "Annen May Kantereit"],
     "year": 2020,
-    "spotify_id": "https://open.spotify.com/track/1uEQkaqiykbvR91UAHYGpk"
+    "spotify_id": "1uEQkaqiykbvR91UAHYGpk"
   },
   {
     "id": 2249,
@@ -15909,182 +15909,182 @@
                "Wenn Jetzt Sommer Waer", "Wenn Jetzt Sommer Waere"],
     "artists": ["Pohlmann."],
     "year": 2006,
-    "spotify_id": "https://open.spotify.com/track/5la3Ns6Kijy768nRHOvpCL"
+    "spotify_id": "5la3Ns6Kijy768nRHOvpCL"
   },
   {
     "id": 2250,
     "titles": ["Lasse Redn", "Lasse Reden", "Lass sie Redn", "Lass sie Reden"],
     "artists": ["Die Ärzte", "Ärzte", "DÄ"],
     "year": 2007,
-    "spotify_id": "https://open.spotify.com/track/6vJ4egoPoiPKUyohVOfVHC"
+    "spotify_id": "6vJ4egoPoiPKUyohVOfVHC"
   },
   {
     "id": 2251,
     "titles": ["Auf Die Party"],
     "artists": ["Badmómzjay & Domiziana", "Badmómzjay", "Domiziana"],
     "year": 2023,
-    "spotify_id": "https://open.spotify.com/track/7j3FOmwYbCQWxBDbC0h1vN"
+    "spotify_id": "7j3FOmwYbCQWxBDbC0h1vN"
   },
   {
     "id": 2252,
     "titles": ["New York, Rio, Rosenheim"],
     "artists": ["Sportfreunde Stiller"],
     "year": 2013,
-    "spotify_id": "https://open.spotify.com/track/18zBDi8chSKx2bTeMmVwHb"
+    "spotify_id": "18zBDi8chSKx2bTeMmVwHb"
   },
   {
     "id": 2253,
     "titles": ["Bataillon d'amour", "Bataillon de Amour"],
     "artists": ["Silly"],
     "year": 1986,
-    "spotify_id": "https://open.spotify.com/track/6oJMY5A7zxjuuRDpSpv9ez"
+    "spotify_id": "6oJMY5A7zxjuuRDpSpv9ez"
   },
   {
     "id": 2254,
     "titles": ["Ja Ich Will"],
     "artists": ["Andrea Berg"],
     "year": 2017,
-    "spotify_id": "https://open.spotify.com/track/3CXCSDeLa8tmiG84onlQpx"
+    "spotify_id": "3CXCSDeLa8tmiG84onlQpx"
   },
   {
     "id": 2255,
     "titles": ["Himbeereis zum Frühstück", "Himbeereis zum Fruehstueck"],
     "artists": ["Hoffmann & Hoffmann", "Hoffmann und Hoffmann", "Hoffmann and Hoffmann", "Hoffmann"],
     "year": 1977,
-    "spotify_id": "https://open.spotify.com/track/5KNVzjEhGMYToCv4TBHhip"
+    "spotify_id": "5KNVzjEhGMYToCv4TBHhip"
   },
   {
     "id": 2256,
     "titles": ["Millionär", "Millionaer"],
     "artists": ["Die Prinzen", "Prinzen"],
     "year": 1991,
-    "spotify_id": "https://open.spotify.com/track/6bEffssIb32Yk7HCfFn3qA"
+    "spotify_id": "6bEffssIb32Yk7HCfFn3qA"
   },
   {
     "id": 2257,
     "titles": ["Dance With Me"],
     "artists": ["Alphaville"],
     "year": 1986,
-    "spotify_id": "https://open.spotify.com/track/1wM7EO7FKR0i26UqLN9p2l"
+    "spotify_id": "1wM7EO7FKR0i26UqLN9p2l"
   },
   {
     "id": 2258,
     "titles": ["Lena"],
     "artists": ["Pur"],
     "year": 1991,
-    "spotify_id": "https://open.spotify.com/track/3MENXwdwyzSvRBYeYf5pgd"
+    "spotify_id": "3MENXwdwyzSvRBYeYf5pgd"
   },
   {
     "id": 2259,
     "titles": ["So Bist Du (Und Wenn Du Gehst...)"],
     "artists": ["Oli. P", "Oli"],
     "year": 1999,
-    "spotify_id": "https://open.spotify.com/track/7jAGd6rfbCxL5gYOSP9iRe"
+    "spotify_id": "7jAGd6rfbCxL5gYOSP9iRe"
   },
   {
     "id": 2260,
     "titles": ["Mona Lisa Motion"],
     "artists": ["Zah1de", "Zahide"],
     "year": 2025,
-    "spotify_id": "https://open.spotify.com/track/0K1FAHrNKlZrFtqLCWOkOu"
+    "spotify_id": "0K1FAHrNKlZrFtqLCWOkOu"
   },
   {
     "id": 2261,
     "titles": ["Dickes B"],
     "artists": ["Seeed (feat. Black Kappa)", "Seeed", "Seed", "Black Kappa"],
     "year": 2000,
-    "spotify_id": "https://open.spotify.com/track/4eRmCZWJoEtLl0wy7EJPwd"
+    "spotify_id": "4eRmCZWJoEtLl0wy7EJPwd"
   },
   {
     "id": 2262,
     "titles": ["In Meinem Leben"],
     "artists": ["Nena"],
     "year": 2009,
-    "spotify_id": "https://open.spotify.com/track/5CeMWIWPsconyOxdcI7DTA"
+    "spotify_id": "5CeMWIWPsconyOxdcI7DTA"
   },
   {
     "id": 2263,
     "titles": ["Auf Anderen Wegen"],
     "artists": ["Andreas Bourani"],
     "year": 2014,
-    "spotify_id": "https://open.spotify.com/track/6GyBgO7IGH7nBdhbogEYnT"
+    "spotify_id": "6GyBgO7IGH7nBdhbogEYnT"
   },
   {
     "id": 2264,
     "titles": ["Big In Japan"],
     "artists": ["Alphaville"],
     "year": 1984,
-    "spotify_id": "https://open.spotify.com/track/3BZGi1yUqQyCNC868AqUGG"
+    "spotify_id": "3BZGi1yUqQyCNC868AqUGG"
   },
   {
     "id": 2265,
     "titles": ["Mamacita"],
     "artists": ["Mark Medlock"],
     "year": 2009,
-    "spotify_id": "https://open.spotify.com/track/5xcwxS6n2umi4mpGaTPZqV"
+    "spotify_id": "5xcwxS6n2umi4mpGaTPZqV"
   },
   {
     "id": 2266,
     "titles": ["I Believe"],
     "artists": ["Bro'Sis", "Brother Sister"],
     "year": 2001,
-    "spotify_id": "https://open.spotify.com/track/1ISB9rFXbOdvvTBgu66da0"
+    "spotify_id": "1ISB9rFXbOdvvTBgu66da0"
   },
   {
     "id": 2267,
     "titles": ["Geiles Leben"],
     "artists": ["Glasperlenspiel"],
     "year": 2015,
-    "spotify_id": "https://open.spotify.com/track/4GyG53nBdaEvSEn9o8roA2"
+    "spotify_id": "4GyG53nBdaEvSEn9o8roA2"
   },
   {
     "id": 2268,
     "titles": ["Mein Kleiner Grüner Kaktus", "Mein Kleiner Gruener Kaktus"],
     "artists": ["Comedian Harmonists", "CH"],
     "year": 1934,
-    "spotify_id": "https://open.spotify.com/track/4tzGDmOcO3oZcVh3BjkIWn"
+    "spotify_id": "4tzGDmOcO3oZcVh3BjkIWn"
   },
   {
     "id": 2269,
     "titles": ["Meinen Die Uns"],
     "artists": ["Zartmann & Kasi & Aaron & Antonius", "Zartmann", "Kasi", "Aaron", "Antonius"],
     "year": 2024,
-    "spotify_id": "https://open.spotify.com/track/2Zrv4bCzz8Ix9mGWse1Exc"
+    "spotify_id": "2Zrv4bCzz8Ix9mGWse1Exc"
   },
   {
     "id": 2270,
     "titles": ["Better"],
-    "artists": ["Lena & Nico Santos", "Lena", "Nico Santos"],
+    "artists": ["Lena & Nico Santos", "Lena", "Lena Meyer-Landrut", "Nico Santos"],
     "year": 2019,
-    "spotify_id": "https://open.spotify.com/track/3jCMdvc8bFOKChETbFV9Zc"
+    "spotify_id": "3jCMdvc8bFOKChETbFV9Zc"
   },
   {
     "id": 2271,
     "titles": ["My Bed Is Too Big"],
     "artists": ["Blue System", "BS"],
     "year": 1988,
-    "spotify_id": "https://open.spotify.com/track/32BXE5xIso8LOs0dj2scNz"
+    "spotify_id": "32BXE5xIso8LOs0dj2scNz"
   },
   {
     "id": 2272,
     "titles": ["Bad Chick"],
     "artists": ["CRO"],
     "year": 2014,
-    "spotify_id": "https://open.spotify.com/track/3NqXYg2MGboDZY72cZCARQ"
+    "spotify_id": "3NqXYg2MGboDZY72cZCARQ"
   },
   {
     "id": 2273,
     "titles": ["Frauen Regier'n die Welt", "Frauen Regieren die Welt"],
     "artists": ["Roger Cicero"],
     "year": 2007,
-    "spotify_id": "https://open.spotify.com/track/3eETBVmtzUn8RyrqspRgXO"
+    "spotify_id": "3eETBVmtzUn8RyrqspRgXO"
   },
   {
     "id": 2274,
     "titles": ["Durstlöscher", "Durstloescher"],
     "artists": ["01099 & Gustav & Zachi", "01099", "Null-Eins-Null-Neun-Neun", "Gustav", "Zachi"],
     "year": 2021,
-    "spotify_id": "https://open.spotify.com/track/2QAsTQ1tydZ6mhYH2FyzfG"
+    "spotify_id": "2QAsTQ1tydZ6mhYH2FyzfG"
   },
   {
     "id": 2275,
@@ -16092,28 +16092,28 @@
                "So ein Schoener Tag (Fliegerlied)", "So ein Schoener Tag"],
     "artists": ["Tim Toupet"],
     "year": 2008,
-    "spotify_id": "https://open.spotify.com/track/2i1rj1tPT3oIsGp1KAGjZu"
+    "spotify_id": "2i1rj1tPT3oIsGp1KAGjZu"
   },
   {
     "id": 2276,
     "titles": ["Mit Dir"],
     "artists": ["Sido"],
     "year": 2021,
-    "spotify_id": "https://open.spotify.com/track/3gengEn3je6KGekvgNnHxA"
+    "spotify_id": "3gengEn3je6KGekvgNnHxA"
   },
   {
     "id": 2277,
     "titles": ["Love Is A Shield"],
     "artists": ["Camouflage"],
     "year": 1989,
-    "spotify_id": "https://open.spotify.com/track/7IBff7ScohvP2pdfHR6YLE"
+    "spotify_id": "7IBff7ScohvP2pdfHR6YLE"
   },
   {
     "id": 2278,
     "titles": ["Lieben Wir"],
     "artists": ["Shirin David"],
     "year": 2021,
-    "spotify_id": "https://open.spotify.com/track/6Bupao0tigbVrHoTiZdQG2"
+    "spotify_id": "6Bupao0tigbVrHoTiZdQG2"
   },
   {
     "id": 2279,
@@ -16121,35 +16121,35 @@
     "artists": ["Die Fantastischen Vier (feat. Clueso)", "Die Fantastischen Vier", "Fantastische Vier", "Fantastischen Vier", "Fanta Vier",
                 "Die Fantastischen 4", "Fantastische 4", "Fantastischen 4", "Fanta 4", "Clueso"],
     "year": 2018,
-    "spotify_id": "https://open.spotify.com/track/0eV2yonbivxFUtGm8RrGd8"
+    "spotify_id": "0eV2yonbivxFUtGm8RrGd8"
   },
   {
     "id": 2280,
     "titles": ["Ich Liebe das Leben"],
     "artists": ["Andrea Berg"],
     "year": 2010,
-    "spotify_id": "https://open.spotify.com/track/18qmAxAXGnJdqpqCRY1Thl"
+    "spotify_id": "18qmAxAXGnJdqpqCRY1Thl"
   },
   {
     "id": 2281,
     "titles": ["Wir Sagen Dankeschön", "Wir Sagen Dankeschoen"],
     "artists": ["Die Flippers", "Flippers"],
     "year": 2009,
-    "spotify_id": "https://open.spotify.com/track/7fiHLIr4RDpbVHeT2IHCRJ"
+    "spotify_id": "7fiHLIr4RDpbVHeT2IHCRJ"
   },
   {
     "id": 2282,
     "titles": ["You Let Me Walk Alone"],
     "artists": ["Michael Schulte"],
     "year": 2018,
-    "spotify_id": "https://open.spotify.com/track/07qlsG6DYRLBbovwca9Vbr"
+    "spotify_id": "07qlsG6DYRLBbovwca9Vbr"
   },
   {
     "id": 2283,
     "titles": ["Abfahrt"],
     "artists": ["FiNCH", "Finch Asozial"],
     "year": 2019,
-    "spotify_id": "https://open.spotify.com/track/7sIQ5eF9ZmZY6lGGwZKaP9"
+    "spotify_id": "7sIQ5eF9ZmZY6lGGwZKaP9"
   },
   {
     "id": 2284,
@@ -16158,7 +16158,7 @@
                "Irgendwann, Irgendwo, Irgendwie", "Seh'n Wir Uns Wieder", "Sehen Wir Uns Wieder"],
     "artists": ["Jürgen Drews", "Juergen Drews"],
     "year": 1989,
-    "spotify_id": "https://open.spotify.com/track/60lzmWqXqfT5HkvxYXPOPI"
+    "spotify_id": "60lzmWqXqfT5HkvxYXPOPI"
   },
   {
     "id": 2285,
@@ -16166,14 +16166,14 @@
                "Fuer mich Soll's Rote Rosen Regnen", "Fuer mich Soll Es Rote Rosen Regnen"],
     "artists": ["Hildegard Knef"],
     "year": 1968,
-    "spotify_id": "https://open.spotify.com/track/2jiP4FsXJCrCmYLnDsrkHa"
+    "spotify_id": "2jiP4FsXJCrCmYLnDsrkHa"
   },
   {
     "id": 2286,
     "titles": ["Jein", "Jaein", "JaNein"],
-    "artists": ["Fettes Brot"],
+    "artists": ["Fettes Brot", "FB"],
     "year": 1996,
-    "spotify_id": "https://open.spotify.com/track/0llxnKwB2eKrVEUxBWuHgR"
+    "spotify_id": "0llxnKwB2eKrVEUxBWuHgR"
   },
   {
     "id": 2287,
@@ -16181,70 +16181,70 @@
                "Ich Bin Von Kopf Bis Fuss Auf Liebe Eingestellt"],
     "artists": ["Marlene Dietrich"],
     "year": 1930,
-    "spotify_id": "https://open.spotify.com/track/1pSyrps83nvNmfylLqVl4N"
+    "spotify_id": "1pSyrps83nvNmfylLqVl4N"
   },
   {
     "id": 2288,
     "titles": ["Walzer"],
     "artists": ["Provinz"],
     "year": 2025,
-    "spotify_id": "https://open.spotify.com/track/605G7F1FEjm60IdXmLhlNN"
+    "spotify_id": "605G7F1FEjm60IdXmLhlNN"
   },
   {
     "id": 2289,
     "titles": ["Hand In Hand"],
     "artists": ["Beatsteaks"],
     "year": 2004,
-    "spotify_id": "https://open.spotify.com/track/6gX9WJMPGIdszeHjBp2w4w"
+    "spotify_id": "6gX9WJMPGIdszeHjBp2w4w"
   },
   {
     "id": 2290,
     "titles": ["Sexy"],
     "artists": ["Westernhagen", "Marius-Müller Westernhagen", "Marius Müller Westernhagen", "Marius Westernhagen"],
     "year": 1989,
-    "spotify_id": "https://open.spotify.com/track/2C8ymluZHrPz34w5tfk5QD"
+    "spotify_id": "2C8ymluZHrPz34w5tfk5QD"
   },
   {
     "id": 2291,
     "titles": ["Herz? Verloren"],
     "artists": ["Farin Urlaub Racing Team", "Farin Urlaub", "FURT", "FU"],
     "year": 2014,
-    "spotify_id": "https://open.spotify.com/track/6AdiaNF7YtPx1Un7CczAsU"
+    "spotify_id": "6AdiaNF7YtPx1Un7CczAsU"
   },
   {
     "id": 2292,
     "titles": ["Capri-Fischer"],
     "artists": ["Rudi Schuricke"],
     "year": 1943,
-    "spotify_id": "https://open.spotify.com/track/2hBFb1lYRA6pCXoWvjXlCL"
+    "spotify_id": "2hBFb1lYRA6pCXoWvjXlCL"
   },
   {
     "id": 2293,
     "titles": ["Mangos mit Chili"],
     "artists": ["Nina Chuba"],
     "year": 2023,
-    "spotify_id": "https://open.spotify.com/track/7AyE8MRf4dIK75mqqpks9S"
+    "spotify_id": "7AyE8MRf4dIK75mqqpks9S"
   },
   {
     "id": 2294,
     "titles": ["Ich Will Nur Dass Du Weißt", "Ich Will Nur Dass Du Weisst"],
     "artists": ["SDP (feat. Adel Tawil)", "SDP", "Adel Tawil"],
     "year": 2015,
-    "spotify_id": "https://open.spotify.com/track/5cNrYbEQ6QHj8LwibGk57Z"
+    "spotify_id": "5cNrYbEQ6QHj8LwibGk57Z"
   },
   {
     "id": 2295,
     "titles": ["Ich Bin Ich (Wir Sind Wir)", "Ich Bin Ich", "Wir Sind Wir"],
     "artists": ["Rosenstolz"],
     "year": 2006,
-    "spotify_id": "https://open.spotify.com/track/0b0yqfrtoZCaO6X9uYOUTh"
+    "spotify_id": "0b0yqfrtoZCaO6X9uYOUTh"
   },
   {
     "id": 2296,
     "titles": ["Party Sahne"],
     "artists": ["Ski Aggu & Endzone & Ericson", "Ski Aggu", "Endzone", "Ericson"],
     "year": 2022,
-    "spotify_id": "https://open.spotify.com/track/2hFOXN8Eq2gXIGGMIdHdWJ"
+    "spotify_id": "2hFOXN8Eq2gXIGGMIdHdWJ"
   },
   {
     "id": 2297,
@@ -16252,27 +16252,753 @@
                "Haben Sie Nicht 'ne Braut Fuer Mich?", "Haben Sie Nicht Eine Braut Fuer Mich?"],
     "artists": ["Bully Buhlan"],
     "year": 1951,
-    "spotify_id": "https://open.spotify.com/track/6AKqQqBxpUctSshQZ8GG0G"
+    "spotify_id": "6AKqQqBxpUctSshQZ8GG0G"
   },
   {
     "id": 2298,
     "titles": ["Ruhrgebiet"],
     "artists": ["Wolfgang Petry"],
     "year": 1993,
-    "spotify_id": "https://open.spotify.com/track/332a06bB3JJwBInHPw9v3C"
+    "spotify_id": "332a06bB3JJwBInHPw9v3C"
   },
   {
     "id": 2299,
     "titles": ["Mein Block"],
     "artists": ["Sido"],
     "year": 2004,
-    "spotify_id": "https://open.spotify.com/track/4T1tVhQahmAOvTF65lKq4o"
+    "spotify_id": "4T1tVhQahmAOvTF65lKq4o"
   },
   {
     "id": 2300,
     "titles": ["Superhelden"],
     "artists": ["Apollo 3", "Apollo Drei", "Apollo"],
     "year": 2009,
-    "spotify_id": "https://open.spotify.com/track/4xgUnVwtOMjt0Kcdj4ED6G"
+    "spotify_id": "4xgUnVwtOMjt0Kcdj4ED6G"
+  },
+  {
+    "id": 2301,
+    "titles": ["Bella Napoli"],
+    "artists": ["Roy Bianco & Die Abbrunzati Boys", "Roy Bianco und Die Abbrunzati Boys",
+                "Roy Bianco", "Die Abbrunzati Boys", "Abbrunzati Boys"],
+    "year": 2022,
+    "spotify_id": "1W14FFFgsM0m6DUt3Tf6NP"
+  },
+  {
+    "id": 2302,
+    "titles": ["Flieger, Grüß' Mir die Sonne", "Flieger, Grüße Mir die Sonne",
+               "Grüß' Mir die Sonne", "Grüße' Mir die Sonne",
+               "Flieger, Grueß' Mir die Sonne", "Flieger, Grueße Mir die Sonne",
+               "Grueß' Mir die Sonne", "Grueße' Mir die Sonne"],
+    "artists": ["Extrabreit"],
+    "year": 1980,
+    "spotify_id": "5nshHPZBuAn0kndDRsjeX5"
+  },
+  {
+    "id": 2303,
+    "titles": ["Wenn Sie Tanzt"],
+    "artists": ["Max Giesinger"],
+    "year": 2016,
+    "spotify_id": "2yEPMTjt6Jp7yS9zh12ZHb"
+  },
+  {
+    "id": 2304,
+    "titles": ["Im Ascheregen", "Ascheregen"],
+    "artists": ["Casper"],
+    "year": 2013,
+    "spotify_id": "22Mmr6bWntkodqm5CELKsm"
+  },
+  {
+    "id": 2305,
+    "titles": ["You Drive Me Crazy"],
+    "artists": ["Daniel K.", "Daniel Küblböck", "Daniel Kueblboeck"],
+    "year": 2003,
+    "spotify_id": "2d5uvFzueLUapMDRSvikXZ"
+  },
+  {
+    "id": 2306,
+    "titles": ["Sag Mir Wo die Blumen Sind"],
+    "artists": ["Marlene Dietrich"],
+    "year": 1962,
+    "spotify_id": "6Fhnh8rmzLcfpOmq7xa0Qr"
+  },
+  {
+    "id": 2307,
+    "titles": ["Ritmo de la Noche"],
+    "artists": ["Chocolate"],
+    "year": 1990,
+    "spotify_id": "2fj5uXgR6phSqQO2pavQCP"
+  },
+  {
+    "id": 2308,
+    "titles": ["The Boys Are Back", "Boys Are Back"],
+    "artists": ["US5", "US Five"],
+    "year": 2008,
+    "spotify_id": "6lmas1KK6GSOAtzFF5WkkP"
+  },
+  {
+    "id": 2309,
+    "titles": ["Mein Stern"],
+    "artists": ["Ayman"],
+    "year": 1999,
+    "spotify_id": "22b3ZMRV7dtcuH1S6nc0VR"
+  },
+  {
+    "id": 2310,
+    "titles": ["Der Letzte Sirtaki (Komm Melina, Tanz Mit Mir)", "Der Letzte Sirtaki",
+               "Letzter Sirtaki", "Komm Melina, Tanz Mit Mir", "Komm Melina", "Tanz Mit Mir"],
+    "artists": ["Rex Gildo"],
+    "year": 1975,
+    "spotify_id": "45Ze2AT1JBVKUMq3dFxfNc"
+  },
+  {
+    "id": 2311,
+    "titles": ["Catharsis"],
+    "artists": ["Kuko (feat. Tokio Hotel)", "Kuko", "Tokio Hotel", "Tokyo Hotel", "TH"],
+    "year": 2026,
+    "spotify_id": "0fW4McH0CZO94g0L8sJCE2"
+  },
+  {
+    "id": 2312,
+    "titles": ["Biertornado"],
+    "artists": ["PA69", "PA Neunundsechszig", "PA Sechs Neun", "PA Six Nine"],
+    "year": 2022,
+    "spotify_id": "5u7QargOKXO82nXcAU9s8L"
+  },
+  {
+    "id": 2313,
+    "titles": ["Humbta-Tätärä", "Das Humbta-Tätärä", "Tätärä", "Humbta", "Das Humbta",
+               "Humbta-Taetaerae", "Das Humbta-Taetaerae", "Taetaerae"],
+    "artists": ["Ernst Neger"],
+    "year": 1963,
+    "spotify_id": "13vROYhjunIHUlNLCvFqtL"
+  },
+  {
+    "id": 2314,
+    "titles": ["Be Mine"],
+    "artists": ["KAMRAD"],
+    "year": 2025,
+    "spotify_id": "5ejTcCJOozPqRPMs9gW3pN"
+  },
+  {
+    "id": 2315,
+    "titles": ["Paris"],
+    "artists": ["Michelle"],
+    "year": 2014,
+    "spotify_id": "0rZtsXzD2byljMFshSStcM"
+  },
+  {
+    "id": 2316,
+    "titles": ["Rooftop"],
+    "artists": ["Nico Santos"],
+    "year": 2017,
+    "spotify_id": "67HXZV6V4bD1PhHfafolBv"
+  },
+  {
+    "id": 2317,
+    "titles": ["Santa Maria"],
+    "artists": ["Roland Kaiser"],
+    "year": 1980,
+    "spotify_id": "34kf9tCAXUtBBYpwvu4x44"
+  },
+  {
+    "id": 2318,
+    "titles": ["Ein Song Reicht", "1 Song Reicht"],
+    "artists": ["Kraftklub", "Kraftclub", "KK"],
+    "year": 2022,
+    "spotify_id": "4IBK0s9QPphO37DPcYhsAO"
+  },
+  {
+    "id": 2319,
+    "titles": ["Achterbahn"],
+    "artists": ["Helene Fischer"],
+    "year": 2017,
+    "spotify_id": "3PeZRzO7dHCWFCOCv6HoGe"
+  },
+  {
+    "id": 2320,
+    "titles": ["Halt Dich An Mir Fest"],
+    "artists": ["Revolverheld (feat. Marta Jandová)", "Revolverheld"],
+    "year": 2010,
+    "spotify_id": "2jzMr4GqNXRNVgdHTyC9Gr"
+  },
+  {
+    "id": 2321,
+    "titles": ["Karl der Käfer", "Karl der Kaefer"],
+    "artists": ["Gänsehaut", "Gaensehaut"],
+    "year": 1983,
+    "spotify_id": "0ce4eG8VJtbTw0jz9TsZN4"
+  },
+  {
+    "id": 2322,
+    "titles": ["Wie Soll Ein Mensch das Ertragen"],
+    "artists": ["Philipp Poisel"],
+    "year": 2010,
+    "spotify_id": "5BLPBtjnKTwIEAHzbignsX"
+  },
+  {
+    "id": 2323,
+    "titles": ["When The Angels Sing"],
+    "artists": ["No Angels"],
+    "year": 2001,
+    "spotify_id": "0xbpbdwQna7seaHfTZJN8s"
+  },
+  {
+    "id": 2324,
+    "titles": ["Ich Find' Dich Scheiße", "Ich Finde Dich Scheiße",
+               "Ich Find' Dich Scheissee", "Ich Finde Dich Scheissee"],
+    "artists": ["Tic Tac Toe"],
+    "year": 1995,
+    "spotify_id": "0sP5kWa0azj9ucsZCSQxUS"
+  },
+  {
+    "id": 2325,
+    "titles": ["Ich Lass Für Dich das Licht An", "Ich Lasse Für Dich das Licht An",
+               "Ich Lass Fuer Dich das Licht An", "Ich Lasse Fuer Dich das Licht An"],
+    "artists": ["Revolverheld"],
+    "year": 2013,
+    "spotify_id": "55VQvOY6dT63vHmYlWJDpG"
+  },
+  {
+    "id": 2326,
+    "titles": ["This Is My Time"],
+    "artists": ["Sasha"],
+    "year": 2002,
+    "spotify_id": "24ysPugwehPRZq4wHMpH3U"
+  },
+  {
+    "id": 2327,
+    "titles": ["Schrei"],
+    "artists": ["Tokio Hotel", "Tokyo Hotel", "TH"],
+    "year": 2005,
+    "spotify_id": "2pDWSaSCabqy9Laj3UMlpn"
+  },
+  {
+    "id": 2328,
+    "titles": ["So Soll Es Bleiben"],
+    "artists": ["Ich + Ich", "Ich und Ich", "Ich Plus Ich", "Adel Tawil"],
+    "year": 2007,
+    "spotify_id": "6bm0ZnBMzYY92gKjz3ypRS"
+  },
+  {
+    "id": 2329,
+    "titles": ["Killy Manjaro", "Kilimandscharo", "Kilimanjaro"],
+    "artists": ["Summer Cem & Billa Joe", "Summer Cem", "Billa Joe"],
+    "year": 2026,
+    "spotify_id": "4xGLiAaIl19aov9yk720QN"
+  },
+  {
+    "id": 2330,
+    "titles": ["Guten Tag", "Guten Tag (Die Reklamation)", "Die Reklamation", "Reklamation"],
+    "artists": ["Wir Sind Helden", "WSH"],
+    "year": 2002,
+    "spotify_id": "5YVAa5A1w987AIeCn6I0UI"
+  },
+  {
+    "id": 2331,
+    "titles": ["Wovon Sollen Wir Träumen", "Wovon Sollen Wir Traeumen"],
+    "artists": ["Frida Gold"],
+    "year": 2011,
+    "spotify_id": "1uKubXaFxoYl5KYiLAa0aw"
+  },
+  {
+    "id": 2332,
+    "titles": ["Krieger des Lichts"],
+    "artists": ["Silbermond"],
+    "year": 2009,
+    "spotify_id": "0EfHT3cIPfAmJ4SQiPs2FS"
+  },
+  {
+    "id": 2333,
+    "titles": ["Wer Soll Das Bezahlen"],
+    "artists": ["Jupp Schmitz", "Jupp Schmitz & Das Comedian-Quartett",
+                "Jupp Schmitz und Das Comedian-Quartett", "Das Comedian-Quartett",
+                "Comedian-Quartett"],
+    "year": 1949,
+    "spotify_id": "0JRGIQyRP5klAAqWyizIi8"
+  },
+  {
+    "id": 2334,
+    "titles": ["Rhythmus Meines Lebens"],
+    "artists": ["Kool Savas"],
+    "year": 2010,
+    "spotify_id": "4FyVe8mdjaRLvtqnXae6BM"
+  },
+  {
+    "id": 2335,
+    "titles": ["Cello"],
+    "artists": ["Udo Lindenberg & Das Panik-Orchester", "Udo Lindenberg und Das Panik-Orchester",
+                "Udo Lindenberg", "Das Panik-Orchester", "Panik-Orchester"],
+    "year": 1973,
+    "spotify_id": "2l4GxJ7QNK5RMqXDJNp7Z7"
+  },
+  {
+    "id": 2336,
+    "titles": ["Ganz in Weiß", "Ganz in Weiss"],
+    "artists": ["Roy Black"],
+    "year": 1965,
+    "spotify_id": "6EbtwJ2vOScM1SJgIx8xjy"
+  },
+  {
+    "id": 2337,
+    "titles": ["Gut Genug"],
+    "artists": ["KitschKrieg & Blumengarten & Shirin David", "KitschKrieg",
+                "Blumengarten", "Shirin David"],
+    "year": 2026,
+    "spotify_id": "7iNLydOMjLLb7BiwkdoPDU"
+  },
+  {
+    "id": 2338,
+    "titles": ["Hast Du Kurz Zeit"],
+    "artists": ["Wincent Weiss"],
+    "year": 2026,
+    "spotify_id": "27IWyrrE1PGIimvFvs8Kg7"
+  },
+  {
+    "id": 2339,
+    "titles": ["Poesie Album"],
+    "artists": ["Samy Deluxe"],
+    "year": 2011,
+    "spotify_id": "0T8wIusBn0OpzFm2H6AVNY"
+  },
+  {
+    "id": 2340,
+    "titles": ["Girls Like Us"],
+    "artists": ["Zoe Wees"],
+    "year": 2021,
+    "spotify_id": "5SFXOMJJ334Wn2PwBHeRZN"
+  },
+  {
+    "id": 2341,
+    "titles": ["Sommer"],
+    "artists": ["Casper (feat. CRO)", "Casper", "CRO"],
+    "year": 2023,
+    "spotify_id": "02MNYgTY5baPTwikluPbuH"
+  },
+  {
+    "id": 2342,
+    "titles": ["Wildes Ding"],
+    "artists": ["Culcha Candela"],
+    "year": 2011,
+    "spotify_id": "7pKXJ2V3F2gQzkLcC6oCe7"
+  },
+  {
+    "id": 2343,
+    "titles": ["Okay!"],
+    "artists": ["O. K.", "Okay"],
+    "year": 1987,
+    "spotify_id": "0pUzaZqWQSaLtGMUlCQaPW"
+  },
+  {
+    "id": 2344,
+    "titles": ["Baby Goodbye"],
+    "artists": ["Alle Farben"],
+    "year": 2025,
+    "spotify_id": "2XyLvow6caHBnDjqUDfn62"
+  },
+  {
+    "id": 2345,
+    "titles": ["Stop The Clocks"],
+    "artists": ["Donots"],
+    "year": 2008,
+    "spotify_id": "2ySclvHzUFOlgw5MHcvVe6"
+  },
+  {
+    "id": 2346,
+    "titles": ["Zu spät", "Zu spaet"],
+    "artists": ["Die Ärzte", "Ärzte", "DÄ"],
+    "year": 1984,
+    "spotify_id": "5FFGr69nqIPiNn9MTaHXKb"
+  },
+  {
+    "id": 2347,
+    "titles": ["Wunder Gescheh'n", "Wunder Geschehen"],
+    "artists": ["Nena"],
+    "year": 1989,
+    "spotify_id": "5PfiBaZ2e21dKtWclGRYOy"
+  },
+  {
+    "id": 2348,
+    "titles": ["Lemon Tree"],
+    "artists": ["Fool's Garden", "Fool His Garden", "Fool Hers Garden", "Fool Theirs Garden"],
+    "year": 1995,
+    "spotify_id": "2epbL7s3RFV81K5UhTgZje"
+  },
+  {
+    "id": 2349,
+    "titles": ["Großer Bruder", "Grosser Bruder"],
+    "artists": ["Zlatko & Jürgen", "Zlatko", "Jürgen", "Juergen", "Zlatko & Juergen"],
+    "year": 2000,
+    "spotify_id": "4Rx40k8wqRzxTiJTWKrbge"
+  },
+  {
+    "id": 2350,
+    "titles": ["Das Model", "Model"],
+    "artists": ["Kraftwerk"],
+    "year": 1978,
+    "spotify_id": "3VwLD5o1r0YBLkjUfgSEYg"
+  },
+  {
+    "id": 2351,
+    "titles": ["500 PS", "Fünfhundert PS", "Fuenfhundert PS"],
+    "artists": ["Bonez MC & RAF Camora", "Bonez MC", "Bones MC",
+                "RAF Camora", "Camora"],
+    "year": 2018,
+    "spotify_id": "4UOXo3xWnxYdTf3sFyRaUG"
+  },
+  {
+    "id": 2352,
+    "titles": ["Schlechtes Vorbild"],
+    "artists": ["Sido"],
+    "year": 2006,
+    "spotify_id": "5bNDEwqT51nXFojsaK3Ilh"
+  },
+  {
+    "id": 2353,
+    "titles": ["Fame"],
+    "artists": ["Apache 207", "Apache Zwei-Null-Sieben", "Apache"],
+    "year": 2020,
+    "spotify_id": "0QjjaCaXE45mvhCnV3C0TA"
+  },
+  {
+    "id": 2354,
+    "titles": ["Melodien"],
+    "artists": ["Capital Bra (feat. Juju)", "Capital Bra", "Joker Bra", "Juju"],
+    "year": 2018,
+    "spotify_id": "5d35jcJj7WjDQBOHCHPY6t"
+  },
+  {
+    "id": 2355,
+    "titles": ["Mensch"],
+    "artists": ["Herbert Grönemeyer", "Herbert Groenemeyer"],
+    "year": 2002,
+    "spotify_id": "2urspvjqMlyq8JVAudN3DK"
+  },
+  {
+    "id": 2356,
+    "titles": ["Electrica Salsa (Baba Baba)", "Electrica Salsa", "Baba Baba", "Baba"],
+    "artists": ["Off"],
+    "year": 1986,
+    "spotify_id": "3LwavMiRm3NFnhirNTArAS"
+  },
+  {
+    "id": 2357,
+    "titles": ["200 km/h", "Zweihundert km/h"],
+    "artists": ["Apache 207", "Apache Zwei-Null-Sieben", "Apache"],
+    "year": 2019,
+    "spotify_id": "2PGA1AsJal6cyMNmKyE56q"
+  },
+  {
+    "id": 2358,
+    "titles": ["Sonne in der Nacht"],
+    "artists": ["Peter Maffay"],
+    "year": 1985,
+    "spotify_id": "0J2O3IO7Fmcc2mfHNiwLYv"
+  },
+  {
+    "id": 2359,
+    "titles": ["You're A Woman", "You Are A Woman"],
+    "artists": ["Bad Boys Blue", "BBB"],
+    "year": 1985,
+    "spotify_id": "1oP3OXN5VK57w5UveOjZmW"
+  },
+  {
+    "id": 2360,
+    "titles": ["Zwischenphase"],
+    "artists": ["Jonny Mahoro"],
+    "year": 2025,
+    "spotify_id": "0hZVrZjOUqIDqz7GbBWXAE"
+  },
+  {
+    "id": 2361,
+    "titles": ["Pflaster"],
+    "artists": ["Ich + Ich", "Ich und Ich", "Ich Plus Ich", "Adel Tawil"],
+    "year": 2009,
+    "spotify_id": "2y9woPM180Da3Tgf1bBE2K"
+  },
+  {
+    "id": 2362,
+    "titles": ["Stolen Dance"],
+    "artists": ["Milky Chance"],
+    "year": 2013,
+    "spotify_id": "34xGLuxM0rkxhCVyMSqwJO"
+  },
+  {
+    "id": 2363,
+    "titles": ["Der Letzte Tanz", "Letzter Tanz"],
+    "artists": ["Bosse"],
+    "year": 2020,
+    "spotify_id": "3MW7u8jB0dR0ePInVfUXxQ"
+  },
+  {
+    "id": 2364,
+    "titles": ["Deine Mutter"],
+    "artists": ["Kool Savas & Nessi", "Kool Savas", "Nessi"],
+    "year": 2019,
+    "spotify_id": "4y8xXLG9O3Rbl6e1KaNRTG"
+  },
+  {
+    "id": 2365,
+    "titles": ["Bettina, Zieh Dir Bitte Etwas An", "Zieh Dir Bitte Etwas An", "Bettina"],
+    "artists": ["Fettes Brot & Modeselektor", "Fettes Brot", "FB", "Modeselektor"],
+    "year": 2008,
+    "spotify_id": "5G6iHwadfvriTZ3jliN6Qd"
+  },
+  {
+    "id": 2366,
+    "titles": ["Ich Hab Den Jürgen Drews Geseh'n", "Ich Habe Den Jürgen Drews Geseh'n",
+               "Ich Habe Den Jürgen Drews Geseh'n", "Ich Habee Den Jürgen Drews Geseh'n",
+               "Ich Hab Den Juergen Drews Geseh'n", "Ich Habe Den Juergen Drews Geseh'n",
+               "Ich Habe Den Juergen Drews Geseh'n", "Ich Habee Den Juergen Drews Geseh'n"],
+    "artists": ["Mickie Krause (feat. Jürgen Drews)", "Mickie Krause", "Jürgen Drews", "Juergen Drews"],
+    "year": 2016,
+    "spotify_id": "1YiIsxq369Oa9CLkMbbkXT"
+  },
+  {
+    "id": 2367,
+    "titles": ["Eule"],
+    "artists": ["Jan Delay (feat. Marteria)", "Jan Delay", "Marteria"],
+    "year": 2021,
+    "spotify_id": "356A70AEhSrAgfRPEKeyw6"
+  },
+  {
+    "id": 2368,
+    "titles": ["Für Dich", "Fuer Dich"],
+    "artists": ["Yvonne Catterfeld"],
+    "year": 2003,
+    "spotify_id": "3QYi6nQ5sDi4eNh0DHZujh"
+  },
+  {
+    "id": 2369,
+    "titles": ["Ich Denk An Dich", "Ich Denke An Dich"],
+    "artists": ["Pur"],
+    "year": 2003,
+    "spotify_id": "3eWYg11hGzG4DJ4Wk8rLRh"
+  },
+  {
+    "id": 2370,
+    "titles": ["Urlaub Für's Gehirn", "Urlaub Für Das Gehirn",
+               "Urlaub Fuer's Gehirn", "Urlaub Fuer Das Gehirn"],
+    "artists": ["K.I.Z."],
+    "year": 2011,
+    "spotify_id": "3Uu1Gpflq95f8NqKVPB5sz"
+  },
+  {
+    "id": 2371,
+    "titles": ["Fred vom Jupiter"],
+    "artists": ["Andreas Dorau", "Die Doraus & Die Marinas", "Die Doraus und Die Marinas",
+                "Die Doraus", "Doraus", "Die Marinas", "Marinas"],
+    "year": 1981,
+    "spotify_id": "7HyAIKz7frBvOVtjIUZlzA"
+  },
+  {
+    "id": 2372,
+    "titles": ["36 Grad", "36°C", "36°", "Sechsunddreißig Grad"],
+    "artists": ["2raumwohnung", "Zweiraumwohnung"],
+    "year": 2007,
+    "spotify_id": "0FHOsVoIME9NILYoxtZMxN"
+  },
+  {
+    "id": 2373,
+    "titles": ["7 Stunden", "Sieben Stunden"],
+    "artists": ["LEA & Capital Bra", "LEA", "Capital Bra", "Joker Bra"],
+    "year": 2020,
+    "spotify_id": "1EbdQ54jFLGEH94cUif3TI"
+  },
+  {
+    "id": 2374,
+    "titles": ["Remedy"],
+    "artists": ["Leony"],
+    "year": 2022,
+    "spotify_id": "5JVA0t7r2Y7m9NaHmgaeiC"
+  },
+  {
+    "id": 2375,
+    "titles": ["OMG!", "Oh Mein Gott!"],
+    "artists": ["Marteria"],
+    "year": 2013,
+    "spotify_id": "55Bld5Surw2eIw74xSvn2S"
+  },
+  {
+    "id": 2376,
+    "titles": ["Wild Stare"],
+    "artists": ["Giant Rooks"],
+    "year": 2019,
+    "spotify_id": "11cjKlgVaUvbBjEAAGv9MZ"
+  },
+  {
+    "id": 2377,
+    "titles": ["Meer"],
+    "artists": ["RIN"],
+    "year": 2021,
+    "spotify_id": "0REDzm2SVAxm1El3Xgn0IL"
+  },
+  {
+    "id": 2378,
+    "titles": ["Dein Schönstes Geschenk", "Dein Schoenstes Geschenk",
+               "Schönstes Geschenk", "Schoenstes Geschenk"],
+    "artists": ["Roy Black"],
+    "year": 1969,
+    "spotify_id": "1fx8Zs277kU1bxTUFlHBWi"
+  },
+  {
+    "id": 2379,
+    "titles": ["From Sarah With Love"],
+    "artists": ["Sarah Connor"],
+    "year": 2001,
+    "spotify_id": "2gPjBHVoxafp3H9bpNviOF"
+  },
+  {
+    "id": 2380,
+    "titles": ["Esperanto"],
+    "artists": ["Freundeskreis (feat. Deborah)", "Freundeskreis", "Max Herre", "Don Philippe", "DJ Friction", "Deborah"],
+    "year": 1999,
+    "spotify_id": "696VIHNs5IIil4WDvyYVG5"
+  },
+  {
+    "id": 2381,
+    "titles": ["Leben Ist Zu Kurz Um Angst Zu Haben", "Das Leben Ist Zu Kurz Um Angst Zu Haben"],
+    "artists": ["makko"],
+    "year": 2022,
+    "spotify_id": "6PI0ckgQc7yuVfALKtZkBq"
+  },
+  {
+    "id": 2382,
+    "titles": ["Gewinner"],
+    "artists": ["Clueso"],
+    "year": 2008,
+    "spotify_id": "6q2c8lBLDzP372QgHl9JsS"
+  },
+  {
+    "id": 2383,
+    "titles": ["Augen Auf"],
+    "artists": ["Sido"],
+    "year": 2008,
+    "spotify_id": "1ZQdvTmo5eSs7N2LRQQSwa"
+  },
+  {
+    "id": 2384,
+    "titles": ["Eins Und Eins, Das Macht Zwei", "1 Und 1, Das Macht 2",
+               "Eins & Eins, Das Macht Zwei", "1 & 1, Das Macht 2"],
+    "artists": ["Hildegard Knef"],
+    "year": 1963,
+    "spotify_id": "1jSM54cHM0C6H6SRTXgwJQ"
+  },
+  {
+    "id": 2385,
+    "titles": ["Bye Bye Arschgeweih", "Bye Arschgeweih", "Arschgeweih"],
+    "artists": ["Ina Müller", "Ina Mueller"],
+    "year": 2006,
+    "spotify_id": "7xuXj7rCv7GlKzCr0tqpho"
+  },
+  {
+    "id": 2386,
+    "titles": ["One (Always Hardcore)", "One", "1", "Always Hardcore"],
+    "artists": ["Scooter"],
+    "year": 2004,
+    "spotify_id": "04frI4TPBnmvaYXHeqELQL"
+  },
+  {
+    "id": 2387,
+    "titles": ["Elektrisches Gefühl", "Elektrisches Gefuehl"],
+    "artists": ["Juli"],
+    "year": 2010,
+    "spotify_id": "3mtTc2I7SACbviaR8yvlvv"
+  },
+  {
+    "id": 2388,
+    "titles": ["Unter Meiner Haut"],
+    "artists": ["Gestört aber GeiL & Koby Funk (feat. Wincent Weiss)",
+                "Gestört aber GeiL", "Gestoert aber GeiL", "Koby Funk", "Wincent Weiss"],
+    "year": 2015,
+    "spotify_id": "5NZlsLgfdg8HlP8RaXPIeP"
+  },
+  {
+    "id": 2389,
+    "titles": ["Take My Heart"],
+    "artists": ["Band ohne Namen", "BoN"],
+    "year": 2000,
+    "spotify_id": "0GTyIuDLcspfpP2BIlI6Vd"
+  },
+  {
+    "id": 2390,
+    "titles": ["Countdown To Insanity"],
+    "artists": ["H-Blockx", "H-Blocks", "H Blockx", "H Blocks", "Blockx", "Blocks"],
+    "year": 2007,
+    "spotify_id": "2XNaKS5wO5rPdgpPYVKria"
+  },
+  {
+    "id": 2391,
+    "titles": ["Füchse", "Fuechse"],
+    "artists": ["Beginner (feat. Samy Deluxe)", "Beginner", "Absolute Beginner", "Samy Deluxe"],
+    "year": 1998,
+    "spotify_id": "4vxjNphyAqPGR8KpuXPGoi"
+  },
+  {
+    "id": 2392,
+    "titles": ["Leiser"],
+    "artists": ["LEA"],
+    "year": 2018,
+    "spotify_id": "1fTzkQQ4oH5TIN8HnSbjCa"
+  },
+  {
+    "id": 2393,
+    "titles": ["Wenn Worte Meine Sprache Wären", "Wenn Worte Meine Sprache Waeren"],
+    "artists": ["Tim Bendzko"],
+    "year": 2011,
+    "spotify_id": "3tIN1SDHpOb0vmnLHjL0IH"
+  },
+  {
+    "id": 2394,
+    "titles": ["Bilder Von Dir"],
+    "artists": ["Laith Al-Deen", "Laith"],
+    "year": 2000,
+    "spotify_id": "23t7gG7rKSddYrU3zaMv0S"
+  },
+  {
+    "id": 2395,
+    "titles": ["Ruf' Teddybär Eins-Vier", "Rufe Teddybär Eins-Vier",
+               "Ruf' Teddybär 1-4", "Rufe Teddybär 1-4",
+               "Ruf' Teddybaer Eins-Vier", "Rufe Teddybaer Eins-Vier",
+               "Ruf' Teddybaer 1-4", "Rufe Teddybaer 1-4"],
+    "artists": ["Jonny Hill"],
+    "year": 1978,
+    "spotify_id": "0GXNVO3kg3COmCth4wYGbL"
+  },
+  {
+    "id": 2396,
+    "titles": ["Hypnotized"],
+    "artists": ["Purple Disco Machine & Sophie And The Giants", "Purple Disco Machine", "PDM",
+                "Sophie And The Giants", "The Giants", "Giants", "Sophie", "Sophie Scott"],
+    "year": 2020,
+    "spotify_id": "0vWUhCPxpJOJR5urYbZypB"
+  },
+  {
+    "id": 2397,
+    "titles": ["Heute Hier, Morgen Dort"],
+    "artists": ["Hannes Wader"],
+    "year": 1972,
+    "spotify_id": "2TTXOjntCIepJNboJtpbbD"
+  },
+  {
+    "id": 2398,
+    "titles": ["Remmidemmi (Yippie Yippie Yeah)", "Remmidemmi", "Remidemi",
+               "Yippie Yippie Yeah", "Yippie Yeah", "Jippie Jippie Yeah", "Jippie Yeah"],
+    "artists": ["Deichkind", "DK"],
+    "year": 2006,
+    "spotify_id": "31sD77U64ym70wYEMpnSrQ"
+  },
+  {
+    "id": 2399,
+    "titles": ["Strobo Pop"],
+    "artists": ["Die Atzen & Nena", "Die Atzen", "Atzen", "Nena"],
+    "year": 2011,
+    "spotify_id": "1KKXkhIG146gxHkJh4tXYe"
+  },
+  {
+    "id": 2400,
+    "titles": ["Hauseingang"],
+    "artists": ["Pashanim"],
+    "year": 2019,
+    "spotify_id": "3aLZ0s5ulFLcFCtIZQblpo"
   }
 ]
