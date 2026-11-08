@@ -149,7 +149,9 @@ public class Database {
                 "hitster-de_bavaria.png", "bavaria-ex.png", "bavaria-ex.csv", false));
             this.addSongsToSetFromCsv("bavaria-ex.csv", 9);
 
-            this.addSetToDatabase(new GameSet(10, "Rock & Metal - Nordics", "INT", null, "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
+            this.addSetToDatabase(new GameSet(10, "Rock (Nordics)", "INT",
+            "Dive into the electrifying world of rock music with the HITSTER Rock! Challenge your friends to place these legendary tracks in the correct chronological order. The first player to correctly sequence 10 songs will be crowned the HITSTER.",
+            "rock-nordics.png", "rock-nd.png", "rock-nordics.csv", false));
             this.addSongsToSetFromCsv("rock-nordics.csv", 10);
 
             this.addSetToDatabase(new GameSet(11, "Punk Expansion", "INT", null, "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
