@@ -111,16 +111,12 @@ public class Spotify {
 
             AuthorizationCodeCredentials credentials = null;
             try {
-                System.out.println("Exchanging code: " + code[0]);
-
                 credentials =
                     spotify.authorizationCode(code[0])
                         .build()
                         .execute();
-
-                Log.Success("Token OK.");
-
-            } catch (IOException | ParseException | SpotifyWebApiException e) {
+            }
+            catch (IOException | ParseException | SpotifyWebApiException e) {
                 throw new Error("Coudldn't fetch valid token: " + e.getMessage());
             }
 
@@ -139,7 +135,7 @@ public class Spotify {
             user.provider = "spotify";
             Database.getInstance().updateUser(user);
             
-            Log.Success("Connection to Spotify was successful.\nTokens saved in \"spotify.properties\".");
+            Log.Success("Connection to Spotify was successful.");
             return true;
         }
         catch (IOException | InterruptedException e) {

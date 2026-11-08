@@ -95,7 +95,7 @@ public class SingleplayerSettingsView extends HitmasterDialog {
 
         HBox cardsBox = createSettingRow(
             "Cards",
-            "Amount of cards that are needed for a player to win the game.",
+            "Amount of cards that are required for a player to win the game.",
             cardsTextField
         );
         gameOptionsBox.getChildren().add(cardsBox);
