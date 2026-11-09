@@ -224,8 +224,6 @@ public class CreateJoinLobbyView extends VBox {
                         switch (hostOptions.purpose) {
                             case "START_GAME":
                                 Platform.runLater(() -> {
-                                    clientView.close();
-
                                     for (Player player : hostOptions.players) {
                                         if (player != null) {
                                             player.decodeImage();
@@ -248,7 +246,7 @@ public class CreateJoinLobbyView extends VBox {
                                 }
 
                                 // 2) Update game options on UI
-                                clientView.updateGameOptions(hostOptions.getGameOptions());
+                                clientView.setGameOptions(hostOptions.getGameOptions());
                             break;
                         }
                         
@@ -259,8 +257,8 @@ public class CreateJoinLobbyView extends VBox {
 
                         // Show lobby to client
                         Platform.runLater(() -> {
-                            // TODO: clientView = new LobbyClientView(lobbyName, password, PLAYER, activeNetManager);
-                            //clientView.show(STAGE);
+                            clientView = new LobbyClientView(lobbyName, password, PLAYER, activeNetManager);
+                            clientView.show();
                         });
                     }
                     else if ("REJECTED_PASSWORD".equals(receivedObj)) {
@@ -397,10 +395,6 @@ public class CreateJoinLobbyView extends VBox {
             discoveryNetManager.stopLobbyDiscovery();
             discoveryNetManager = null;
             Log.Info("Stopped LAN Discovery thread.");
-        }
-
-        if (clientView != null) {
-            clientView.close();
         }
 
         if (activeNetManager != null) {
