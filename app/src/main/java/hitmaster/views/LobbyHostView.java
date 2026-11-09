@@ -27,7 +27,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.WindowEvent;
 
-public class LobbyView extends HitmasterDialog {
+public class LobbyHostView extends HitmasterDialog {
 
     private NetworkManager netManager;
     private GameOptions options;
@@ -40,7 +40,7 @@ public class LobbyView extends HitmasterDialog {
      * @param lobbyName Name of this lobby.
      * @param tcpPort Port to start the lobby broadcasting at.
      */
-    public LobbyView(GameOptions options, String lobbyName, String password, int tcpPort) {
+    public LobbyHostView(GameOptions options, String lobbyName, String password, int tcpPort) {
         super("Lobby: " + lobbyName);
         setPadding(new Insets(20));
 

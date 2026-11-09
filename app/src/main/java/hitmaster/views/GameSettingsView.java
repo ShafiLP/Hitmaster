@@ -570,7 +570,7 @@ public class GameSettingsView extends HitmasterDialog {
             if (!lobbyNameInput.getText().isEmpty() || !lobbyNameInput.getText().isBlank()) {
                 GameOptions options = buildGameOptions();
 
-                LobbyView hostLobbyView = new LobbyView(options, lobbyNameInput.getText(), passwordInput.getText(), 5050);
+                LobbyHostView hostLobbyView = new LobbyHostView(options, lobbyNameInput.getText(), passwordInput.getText(), 5050);
                 hostLobbyView.show();
 
                 stage.close();
