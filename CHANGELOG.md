@@ -12,6 +12,7 @@
 - Game settings for actions players can perform with chips
 - Different game modes, feauturing different difficulties
 - Song Set 'Hits Made in Germany', feauturing songs from Germany
+- Song Set 'Wacken', feauturing rock and metal hits from one of Germany's biggest festivals.
 
 ### Changed
 - Game Settings are now centralized in one class

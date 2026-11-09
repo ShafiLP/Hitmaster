@@ -134,31 +134,36 @@ public class Database {
                 "hitster-de_schlager.png", "schlager-de.png", "schlager-de.csv", false));
             this.addSongsToSetFromCsv("schlager-de.csv", 6);
 
-            this.addSetToDatabase(new GameSet(7, "Hits Made in Germany", "DE",
+            this.addSetToDatabase(new GameSet(7, "Wacken Open Air (DE)", "DE",
+                "Hitster Wacken - Die ultimativen Rock- und Metal-Hymnen, kuratiert von Wacken Radio by RADIO BOB! Mach dich bereit für pure Metal-Power: Diese Playlist vereint die härtesten Rock-, Metal- und Hard-&-Heavy-Klassiker, inspiriert vom legendären Wacken Open Air",
+                "hitster-de_wacken.png", "wacken-de.png", "wacken-de.csv", false));
+            this.addSongsToSetFromCsv("wacken-de.csv", 7);
+
+            this.addSetToDatabase(new GameSet(8, "Hits Made in Germany", "DE",
                 null,
                 "madeInGermany-de.jpg", "madeInGermany-de.png", "madeInGermany-de.csv", false));
-            this.addSongsToSetFromCsv("madeInGermany-de.csv", 7);
+            this.addSongsToSetFromCsv("madeInGermany-de.csv", 8);
 
-            this.addSetToDatabase(new GameSet(8, "Urban & Hip-Hop - DE", "DE",
+            this.addSetToDatabase(new GameSet(9, "Urban & Hip-Hop - DE", "DE",
                 "Tauche ein in die Welt der Beats, Reime, Rap und ikonischen Hymnen mit HITSTER Urban & Hip-Hop! Diese spezielle Ausgabe nimmt dich mit auf eine musikalische Reise durch Urban Music aus mehreren Jahrzehnten, von legendären Songs bis zu modernen Hip-Hop-Hits.",
                 "hitster-de_urban.png", "urban-de.png", "urban-de.csv", false));
-            this.addSongsToSetFromCsv("urban-de.csv", 8);
+            this.addSongsToSetFromCsv("urban-de.csv", 9);
 
-            this.addSetToDatabase(new GameSet(9, "Bayern1 Expansion", "DE",
+            this.addSetToDatabase(new GameSet(10, "Bayern1 Expansion", "DE",
                 "Bayern 1 Hitliste: Tauche ein in eine Sammlung von über 150 Karten mit den größten Radiohits der vergangenen Jahrzehnte.",
                 "hitster-de_bavaria.png", "bavaria-ex.png", "bavaria-ex.csv", false));
-            this.addSongsToSetFromCsv("bavaria-ex.csv", 9);
+            this.addSongsToSetFromCsv("bavaria-ex.csv", 10);
 
-            this.addSetToDatabase(new GameSet(10, "Rock (Nordics)", "INT",
+            this.addSetToDatabase(new GameSet(11, "Rock (Nordics)", "INT",
             "Dive into the electrifying world of rock music with the HITSTER Rock! Challenge your friends to place these legendary tracks in the correct chronological order. The first player to correctly sequence 10 songs will be crowned the HITSTER.",
             "rock-nordics.png", "rock-nd.png", "rock-nordics.csv", false));
-            this.addSongsToSetFromCsv("rock-nordics.csv", 10);
+            this.addSongsToSetFromCsv("rock-nordics.csv", 11);
 
-            this.addSetToDatabase(new GameSet(11, "Punk Expansion", "INT", null, "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
-            this.addSongsToSetFromCsv("punk-expansion.csv", 11);
+            this.addSetToDatabase(new GameSet(12, "Punk Expansion", "INT", null, "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
+            this.addSongsToSetFromCsv("punk-expansion.csv", 12);
 
-            this.addSetToDatabase(new GameSet(12, "Deutschrock Expansion", "DE", null, "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
-            this.addSongsToSetFromCsv("deutschrock-ex.csv", 12);
+            this.addSetToDatabase(new GameSet(13, "Deutschrock Expansion", "DE", null, "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
+            this.addSongsToSetFromCsv("deutschrock-ex.csv", 13);
 
             Log.Success("Succesfully initialized Database.");
             return true;
