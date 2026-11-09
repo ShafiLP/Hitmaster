@@ -1,4 +1,4 @@
-package hitmaster.views.Mutliplayer;
+package hitmaster.views;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -14,7 +14,6 @@ import hitmaster.services.Log;
 import hitmaster.services.Navigation;
 import hitmaster.services.NetworkManager;
 import hitmaster.services.SvgParser;
-import hitmaster.views.MultiplayerMenuView;
 import hitmaster.views.templates.HitmasterDialog;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -28,7 +27,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.WindowEvent;
 
-public class LobbyHostView extends HitmasterDialog {
+public class LobbyView extends HitmasterDialog {
 
     private NetworkManager netManager;
     private GameOptions options;
@@ -41,7 +40,7 @@ public class LobbyHostView extends HitmasterDialog {
      * @param lobbyName Name of this lobby.
      * @param tcpPort Port to start the lobby broadcasting at.
      */
-    public LobbyHostView(GameOptions options, String lobbyName, String password, int tcpPort) {
+    public LobbyView(GameOptions options, String lobbyName, String password, int tcpPort) {
         super("Lobby: " + lobbyName);
         setPadding(new Insets(20));
 

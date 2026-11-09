@@ -16,7 +16,6 @@ import hitmaster.services.Database;
 import hitmaster.services.Navigation;
 import hitmaster.services.SvgParser;
 import hitmaster.services.ThemeManager;
-import hitmaster.views.Mutliplayer.LobbyHostView;
 import hitmaster.views.templates.HitmasterDialog;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -571,7 +570,7 @@ public class GameSettingsView extends HitmasterDialog {
             if (!lobbyNameInput.getText().isEmpty() || !lobbyNameInput.getText().isBlank()) {
                 GameOptions options = buildGameOptions();
 
-                LobbyHostView hostLobbyView = new LobbyHostView(options, lobbyNameInput.getText(), passwordInput.getText(), 5050);
+                LobbyView hostLobbyView = new LobbyView(options, lobbyNameInput.getText(), passwordInput.getText(), 5050);
                 hostLobbyView.show();
 
                 stage.close();
