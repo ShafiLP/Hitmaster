@@ -1,4 +1,4 @@
-package hitmaster.views.Mutliplayer;
+package hitmaster.views;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +21,7 @@ import hitmaster.services.NetworkManager;
 import hitmaster.services.SvgParser;
 import hitmaster.services.ThemeManager;
 import hitmaster.services.UpdateService;
-import hitmaster.views.GameSettingsView;
+import hitmaster.views.Mutliplayer.LobbyClientView;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -42,7 +42,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class LobbyView extends VBox {
+public class CreateJoinLobbyView extends VBox {
 
     private final Player PLAYER;
     private final String APP_VERSION;
@@ -57,11 +57,11 @@ public class LobbyView extends VBox {
      * Constructor for ConnectToLobbyView.
      * Initializes UI and starts looking for available lobbies.
      */
-    public LobbyView() {
+    public CreateJoinLobbyView() {
         super(25);
         setFillWidth(true);
 
-        APP_VERSION = LobbyView.loadAppVersion();
+        APP_VERSION = CreateJoinLobbyView.loadAppVersion();
 
         User user = Database.getInstance().getCurrentUser();
         PLAYER = new Player(user.username, user.picture);
