@@ -2712,7 +2712,7 @@
   {
     "id": 388,
     "titles": ["Hail To The King"],
-    "artists": ["Avenged Sevenfold", "A7X"],
+    "artists": ["Avenged Sevenfold", "A7X", "AS"],
     "year": 2013,
     "spotify_id": "5anCkDvJ17aznvK5TED5uo"
   },
@@ -3363,7 +3363,7 @@
   {
     "id": 481,
     "titles": ["Highway Star"],
-    "artists": ["Deep Purple"],
+    "artists": ["Deep Purple", "DP"],
     "year": 1972,
     "spotify_id": "79q7xFOodcfIVbpNHjE2gB"
   },
@@ -3538,7 +3538,7 @@
   {
     "id": 506,
     "titles": ["Army Of The Night"],
-    "artists": ["Powerwolf", "Power Wolf"],
+    "artists": ["Powerwolf", "PW"],
     "year": 2015,
     "spotify_id": "6vQT1Y3MTGCpc31VIF5Ela"
   },
@@ -3875,7 +3875,7 @@
   {
     "id": 554,
     "titles": ["Symphony Of Destruction"],
-    "artists": ["Megadeth", "Megadeath", "Mega Deth", "Mega Death"],
+    "artists": ["Megadeth", "Megadeath"],
     "year": 1992,
     "spotify_id": "51TG9W3y9qyO8BY5RXKgnZ"
   },
@@ -3903,7 +3903,7 @@
   {
     "id": 558,
     "titles": ["Dark Side", "Darkside"],
-    "artists": ["Blind Channel"],
+    "artists": ["Blind Channel", "BC"],
     "year": 2021,
     "spotify_id": "2vICdcAEc10WfqMeRxOF1I"
   },
@@ -3924,7 +3924,7 @@
   {
     "id": 561,
     "titles": ["Nightmare"],
-    "artists": ["Avenged Sevenfold", "A7X"],
+    "artists": ["Avenged Sevenfold", "A7X", "AS"],
     "year": 2010,
     "spotify_id": "4UEo1b0wWrtHMC8bVqPiH8"
   },
@@ -7262,7 +7262,7 @@
   {
     "id": 1036,
     "titles": ["Smoke On The Water"],
-    "artists": ["Deep Purple"],
+    "artists": ["Deep Purple", "DP"],
     "year": 1973,
     "spotify_id": "5MMnwYs0hIxkENRsbkWJ2G"
   },
@@ -10274,7 +10274,7 @@
   {
     "id": 1465,
     "titles": ["Frei Zu Sein"],
-    "artists": ["In Extremo", "Extremo"],
+    "artists": ["In Extremo", "Extremo", "IE"],
     "year": 2008,
     "spotify_id": "5jPTja4yKNnkx1NaELvtVh"
   },
@@ -17345,5 +17345,486 @@
     "artists": ["Sarah Connor"],
     "year": 2019,
     "spotify_id": "7vs1Yi6SUphHp0eW6ys8HG"
+  },
+  {
+    "id": 2449,
+    "titles": ["Snap Your Fingers, Snap Your Neck", "Snap Your Fingers", "Snap Your Neck"],
+    "artists": ["Prong"],
+    "year": 1994,
+    "spotify_id": "https://open.spotify.com/track/7hgtn706RqLE5q1mWe8aQx"
+  },
+  {
+    "id": 2450,
+    "titles": ["Valhalla"],
+    "artists": ["Blind Guardian", "BG"],
+    "year": 1989,
+    "spotify_id": "https://open.spotify.com/track/5JHQnFsdxFCwqJze3z7hQJ"
+  },
+  {
+    "id": 2451,
+    "titles": ["Start A Fight"],
+    "artists": ["GHØSTKID", "Ghostkid", "Ghoestkid"],
+    "year": 2020,
+    "spotify_id": "https://open.spotify.com/track/4QAsjq0LTSxxXJ3wA4McuH"
+  },
+  {
+    "id": 2452,
+    "titles": ["Ich Finde Nur Metal Geil", "Ich Find' Nur Metal Geil"],
+    "artists": ["Onkel Tom", "OT"],
+    "year": 2018,
+    "spotify_id": "https://open.spotify.com/track/1rXWOW6USgQTs1GYmhfeVu"
+  },
+  {
+    "id": 2453,
+    "titles": ["The Downfall Of Us All", "Downfall Of Us All"],
+    "artists": ["A Day To Remember", "ADTR"],
+    "year": 2009,
+    "spotify_id": "https://open.spotify.com/track/1KHKeIouP04dDtl0EetgED"
+  },
+  {
+    "id": 2454,
+    "titles": ["Mirror Mirror", "Mirror"],
+    "artists": ["Blind Guardian", "BG"],
+    "year": 1998,
+    "spotify_id": "https://open.spotify.com/track/1FCajWQZRP66Lld1fHgXFt"
+  },
+  {
+    "id": 2455,
+    "titles": ["Emerald Sword"],
+    "artists": ["Rhapsody of Fire", "Rhapsody", "RoF"],
+    "year": 1998,
+    "spotify_id": "https://open.spotify.com/track/5efydZMkYiKSdRnvjCtTqo"
+  },
+  {
+    "id": 2456,
+    "titles": ["Rock 'N' Roll Children", "Rock and Roll Children", "Rock & Roll Children"],
+    "artists": ["Dio"],
+    "year": 1985,
+    "spotify_id": "https://open.spotify.com/track/1DaoV4AvANgpHjuTSJmNi8"
+  },
+  {
+    "id": 2457,
+    "titles": ["Race With The Devil"],
+    "artists": ["Girlschool", "GS"],
+    "year": 1980,
+    "spotify_id": "https://open.spotify.com/track/6tZkp4thZnajOSzcK1I5Jy"
+  },
+  {
+    "id": 2458,
+    "titles": ["Sea Of Lies"],
+    "artists": ["Symphony X", "Symphony"],
+    "year": 1996,
+    "spotify_id": "https://open.spotify.com/track/4wGBhMe3RFJt1wIxtQYIBo"
+  },
+  {
+    "id": 2459,
+    "titles": ["Body Count's In The House", "Body Count Is In The House"],
+    "artists": ["Body Count", "BC"],
+    "year": 1992,
+    "spotify_id": "https://open.spotify.com/track/0ei5rAVjRCUQATivnVwkLN"
+  },
+  {
+    "id": 2460,
+    "titles": ["Herr Mannelig", "Mannelig"],
+    "artists": ["In Extremo", "Extremo", "IE"],
+    "year": 1999,
+    "spotify_id": "https://open.spotify.com/track/4zRAvChrgH2AXdV93mYZr7"
+  },
+  {
+    "id": 2461,
+    "titles": ["In Waves", "Waves"],
+    "artists": ["Trivium"],
+    "year": 2011,
+    "spotify_id": "https://open.spotify.com/track/1yYr4D1KjhhyDD5bZIiFQy"
+  },
+  {
+    "id": 2462,
+    "titles": ["More"],
+    "artists": ["The Sisters Of Mercy", "Sisters Of Mercy", "SoM"],
+    "year": 1990,
+    "spotify_id": "https://open.spotify.com/track/2UV9ahm7JUWHN1zQAoocEq"
+  },
+  {
+    "id": 2463,
+    "titles": ["Rebellion (The Clans Are Marching)", "Rebellion (TClans Are Marching)",
+               "Rebellion", "The Clans Are Marching", "Clans Are Marching"],
+    "artists": ["Grave Digger", "GD"],
+    "year": 1996,
+    "spotify_id": "https://open.spotify.com/track/1P5B3ARqjPkB9yCNPZq9jV"
+  },
+  {
+    "id": 2464,
+    "titles": ["Asylum"],
+    "artists": ["Vended"],
+    "year": 2021,
+    "spotify_id": "https://open.spotify.com/track/2lEnc7uc39Lwrredr63OPc"
+  },
+  {
+    "id": 2465,
+    "titles": ["It's A Long Way To The Top (If You Wanna Rock 'N' Roll)",
+               "It Is A Long Way To The Top (If You Wanna Rock 'N' Roll)",
+               "It's A Long Way To The Top (If You Want To Rock 'N' Roll)",
+               "It Is A Long Way To The Top (If You Want To Rock 'N' Roll)",
+               "It's A Long Way To The Top (If You Wanna Rock And Roll)",
+               "It Is A Long Way To The Top (If You Wanna Rock And Roll)",
+               "It's A Long Way To The Top (If You Want To Rock And Roll)",
+               "It Is A Long Way To The Top (If You Want To Rock And Roll)",
+               "It's A Long Way To The Top", "It Is A Long Way To The Top",
+               "If You Wanna Rock 'N' Roll", "If You Want To Rock 'N' Roll",
+               "If You Wanna Rock And Roll", "If You Want To Rock And Roll"],
+    "artists": ["AC/DC", "ACDC", "AC DC"],
+    "year": 1975,
+    "spotify_id": "https://open.spotify.com/track/7nemcVsXVFZF01iqpIIo2Y"
+  },
+  {
+    "id": 2466,
+    "titles": ["Children Of The Dark"],
+    "artists": ["Mono Inc.", "Mono", "Mono Incorporated"],
+    "year": 2021,
+    "spotify_id": "https://open.spotify.com/track/352OVPBoBKDEfdFSeJWT6A"
+  },
+  {
+    "id": 2467,
+    "titles": ["Gasoline"],
+    "artists": ["I Prevail"],
+    "year": 2019,
+    "spotify_id": "https://open.spotify.com/track/6Q1m1GyNxyOwZ2ud3p7XoS"
+  },
+  {
+    "id": 2468,
+    "titles": ["Tush"],
+    "artists": ["ZZ Top"],
+    "year": 1975,
+    "spotify_id": "https://open.spotify.com/track/55WrYzR1SHfXeeU6DJbk3Y"
+  },
+  {
+    "id": 2469,
+    "titles": ["Auf Und Nieder", "Auf & Nieder"],
+    "artists": ["Die Apokalyptischen Reiter", "Apokalyptischen Reiter", "Apokalyptische Reiter", "AR"],
+    "year": 2017,
+    "spotify_id": "https://open.spotify.com/track/06XYOtRFxv4IykjSzI37jf"
+  },
+  {
+    "id": 2470,
+    "titles": ["Toxicity"],
+    "artists": ["System Of A Down", "SOAD"],
+    "year": 2001,
+    "spotify_id": "https://open.spotify.com/track/0snQkGI5qnAmohLE7jTsTn"
+  },
+  {
+    "id": 2471,
+    "titles": ["Faster Than Light"],
+    "artists": ["Unleash The Archers", "The Archers", "Archers", "UTA"],
+    "year": 2020,
+    "spotify_id": "https://open.spotify.com/track/0lRlWXG3HpYwRB12J6nfJP"
+  },
+  {
+    "id": 2472,
+    "titles": ["Dying For An Angel"],
+    "artists": ["Avantasia (feat. Klaus Meine)", "Avantasia", "Klaus Meine"],
+    "year": 2010,
+    "spotify_id": "https://open.spotify.com/track/1atwawSosK73AghEtLZskS"
+  },
+  {
+    "id": 2473,
+    "titles": ["In Between"],
+    "artists": ["Beartooth"],
+    "year": 2014,
+    "spotify_id": "https://open.spotify.com/track/03jdl5GTBhKsgB1Yw8mVPh"
+  },
+  {
+    "id": 2474,
+    "titles": ["Who Are You"],
+    "artists": ["The Who", "Who"],
+    "year": 1978,
+    "spotify_id": "https://open.spotify.com/track/23IJ5wLRhEZ9DOuia5mPiZ"
+  },
+  {
+    "id": 2475,
+    "titles": ["Alone Again"],
+    "artists": ["Dokken"],
+    "year": 1984,
+    "spotify_id": "https://open.spotify.com/track/5Q916vqrwfON21qlJiXpSz"
+  },
+  {
+    "id": 2476,
+    "titles": ["The Number Of The Beast", "Number Of The Beast"],
+    "artists": ["Iron Maiden", "IM"],
+    "year": 1982,
+    "spotify_id": "https://open.spotify.com/track/3nlGByvetDcS1uomAoiBmy"
+  },
+  {
+    "id": 2477,
+    "titles": ["Am I Demon"],
+    "artists": ["Danzig", "Glenn Danzig"],
+    "year": 1988,
+    "spotify_id": "https://open.spotify.com/track/0kZpg64mTDk3V6jhGGEd7M"
+  },
+  {
+    "id": 2478,
+    "titles": ["Do What I Say"],
+    "artists": ["Clawfinger"],
+    "year": 1995,
+    "spotify_id": "https://open.spotify.com/track/6ztqgdiONqOCCNoWJLTOHb"
+  },
+  {
+    "id": 2479,
+    "titles": ["The Toxic Waltz", "Toxic Waltz"],
+    "artists": ["Exodus"],
+    "year": 1988,
+    "spotify_id": "https://open.spotify.com/track/5ZOOjqoCaUydmo8bxSdosj"
+  },
+  {
+    "id": 2480,
+    "titles": ["Heartwork"],
+    "artists": ["Carcass"],
+    "year": 1993,
+    "spotify_id": "https://open.spotify.com/track/2BcWjgafmbdaq39KPsaBKc"
+  },
+  {
+    "id": 2481,
+    "titles": ["Pommesgabel"],
+    "artists": ["HeavySaurus", "HS"],
+    "year": 2023,
+    "spotify_id": "https://open.spotify.com/track/7GqSADuSLxMkdwcWc1bR0c"
+  },
+  {
+    "id": 2482,
+    "titles": ["Wait And Bleed", "Wait & Bleed"],
+    "artists": ["Slipknot"],
+    "year": 1999,
+    "spotify_id": "https://open.spotify.com/track/15DLl1r2zi07Ssq5RT1yT0"
+  },
+  {
+    "id": 2483,
+    "titles": ["Replica"],
+    "artists": ["Fear Factory", "FF"],
+    "year": 1995,
+    "spotify_id": "https://open.spotify.com/track/5YeQoMo5py82YmqXMTjM5S"
+  },
+  {
+    "id": 2484,
+    "titles": ["Kings Of Metal"],
+    "artists": ["Manowar"],
+    "year": 1988,
+    "spotify_id": "https://open.spotify.com/track/28TcG73tbc4iGrGBFjiBnR"
+  },
+  {
+    "id": 2485,
+    "titles": ["Are You Dead Yet?"],
+    "artists": ["Children of Bodom", "CoB"],
+    "year": 2005,
+    "spotify_id": "https://open.spotify.com/track/52s05aBQd2LVc6EWIQCQI1"
+  },
+  {
+    "id": 2486,
+    "titles": ["Presslufthammer B-B-Bernhard", "Presslufthammer B-Bernhard",
+               "Presslufthammer Bernhard", "Presslufthammer"],
+    "artists": ["Torfrock"],
+    "year": 1978,
+    "spotify_id": "https://open.spotify.com/track/5hXY2XKm9agtumuO1KrMKP"
+  },
+  {
+    "id": 2487,
+    "titles": ["We Drink Your Blood"],
+    "artists": ["Powerwolf", "PW"],
+    "year": 2011,
+    "spotify_id": "https://open.spotify.com/track/3pWvRhml43vlUrGYlIzLM6"
+  },
+  {
+    "id": 2488,
+    "titles": ["Nemo"],
+    "artists": ["Nightwish"],
+    "year": 2004,
+    "spotify_id": "https://open.spotify.com/track/6zfgRJKADV9DsroQBNwmBI"
+  },
+  {
+    "id": 2489,
+    "titles": ["Slaughter Of The Soul"],
+    "artists": ["At The Gates", "The Gates", "Gates", "ATG"],
+    "year": 1995,
+    "spotify_id": "https://open.spotify.com/track/2Vy4z1ZUN7RvN7syWI2yef"
+  },
+  {
+    "id": 2490,
+    "titles": ["You Only Live Once"],
+    "artists": ["Suicide Silence", "SS"],
+    "year": 2011,
+    "spotify_id": "https://open.spotify.com/track/4Ku3OOZWR4tpKNCVFXILY8"
+  },
+  {
+    "id": 2491,
+    "titles": ["Shadowminds"],
+    "artists": ["The Halo Effect", "Hallo Effect", "HE"],
+    "year": 2022,
+    "spotify_id": "https://open.spotify.com/track/3Zoi4yRZUi3HUB1mFRubXu"
+  },
+  {
+    "id": 2492,
+    "titles": ["Wacken Ist Nur Einmal Im Jahr", "Wacken ist Nur 1 Mal Im Jahr"],
+    "artists": ["J.B.O.", "James Blast Orchester"],
+    "year": 2016,
+    "spotify_id": "https://open.spotify.com/track/7rHsEG59c6z0PXq0CrmRza"
+  },
+  {
+    "id": 2493,
+    "titles": ["Shot In The Dark"],
+    "artists": ["Ozzy Osbourne"],
+    "year": 1986,
+    "spotify_id": "https://open.spotify.com/track/31dqpLUModJWNbxrXu6TWd"
+  },
+  {
+    "id": 2494,
+    "titles": ["Bad Penny"],
+    "artists": ["Rory Gallagher"],
+    "year": 1979,
+    "spotify_id": "https://open.spotify.com/track/3DmHaJ9zYKj5Snos05lkVF"
+  },
+  {
+    "id": 2495,
+    "titles": ["Welcome To The Family"],
+    "artists": ["Avenged Sevenfold", "A7X", "AS"],
+    "year": 2010,
+    "spotify_id": "https://open.spotify.com/track/0jqblvsI9LBY4irmLVqqEO"
+  },
+  {
+    "id": 2496,
+    "titles": ["Tear Away"],
+    "artists": ["Drowning Pool", "DP"],
+    "year": 2001,
+    "spotify_id": "https://open.spotify.com/track/3ENHpbTuY72FukZbwGP6bc"
+  },
+  {
+    "id": 2497,
+    "titles": ["Schubsetanz"],
+    "artists": ["Feuerschwanz"],
+    "year": 2018,
+    "spotify_id": "https://open.spotify.com/track/0lA1c6MmTzpNsRMxq6SvTV"
+  },
+  {
+    "id": 2498,
+    "titles": ["Eat You Alive"],
+    "artists": ["Limp Bizkit", "Limb Biscuit", "LB"],
+    "year": 2003,
+    "spotify_id": "https://open.spotify.com/track/0EtzpDX05udzfLcGntGbGU"
+  },
+  {
+    "id": 2499,
+    "titles": ["Scheiß Auf Ironie", "Scheiss Auf Ironie"],
+    "artists": ["Deine Cousine", "DC"],
+    "year": 2019,
+    "spotify_id": "https://open.spotify.com/track/73SxyCPNV5HLnVMBzsQHTo"
+  },
+  {
+    "id": 2500,
+    "titles": ["Fast As A Shark", "As Fast As A Shark"],
+    "artists": ["Accept"],
+    "year": 1982,
+    "spotify_id": "https://open.spotify.com/track/1zFarlqzxsE9I3QiwrdwJN"
+  },
+  {
+    "id": 2501,
+    "titles": ["Rock 'N' Roll Outlaw", "Rock And Roll Outlaw", "Rock & Roll Outlaw"],
+    "artists": ["Rose Tattoo", "RT"],
+    "year": 1978,
+    "spotify_id": "https://open.spotify.com/track/5CMJmLy0lQplmKSnS5xNRJ"
+  },
+  {
+    "id": 2502,
+    "titles": ["In The Army Now", "Inside The Army Now"],
+    "artists": ["Status Quo", "SQ"],
+    "year": 1986,
+    "spotify_id": "https://open.spotify.com/track/6QLspHLCLftSGPa6vNzKuo"
+  },
+  {
+    "id": 2503,
+    "titles": ["Peace Sells"],
+    "artists": ["Megadeth", "Megadeath"],
+    "year": 1986,
+    "spotify_id": "https://open.spotify.com/track/3090goAxG6IlpCifA8m9xB"
+  },
+  {
+    "id": 2504,
+    "titles": ["My Own Grave"],
+    "artists": ["As I Lay Dying", "I Lay Dying", "AILD"],
+    "year": 2019,
+    "spotify_id": "https://open.spotify.com/track/26ANXDR5NMNiSZG657PPd7"
+  },
+  {
+    "id": 2505,
+    "titles": ["Wash It All Away"],
+    "artists": ["Five Finger Death Punch", "FFDP"],
+    "year": 2015,
+    "spotify_id": "https://open.spotify.com/track/5nRBTzF9dLIlNqnl0xWo9g"
+  },
+  {
+    "id": 2506,
+    "titles": ["Ten Thousand Fists", "10,000 Fists"],
+    "artists": ["Disturbed"],
+    "year": 2005,
+    "spotify_id": "https://open.spotify.com/track/5hkgrWxkobGtg30I7DsfVu"
+  },
+  {
+    "id": 2507,
+    "titles": ["Valley Of The Kings"],
+    "artists": ["Gamma Ray", "GR"],
+    "year": 1997,
+    "spotify_id": "https://open.spotify.com/track/3OdsSVAdClWuGRF9ZKslLA"
+  },
+  {
+    "id": 2508,
+    "titles": ["Beyond The Dark Sun"],
+    "artists": ["Wintersun"],
+    "year": 2004,
+    "spotify_id": "https://open.spotify.com/track/1L3S5vFgsVzweUJnAIfSGM"
+  },
+  {
+    "id": 2509,
+    "titles": ["All We Are"],
+    "artists": ["Warlock"],
+    "year": 1987,
+    "spotify_id": "https://open.spotify.com/track/2dU4FegjbgW5qkdrUdzogT"
+  },
+  {
+    "id": 2510,
+    "titles": ["Holy War"],
+    "artists": ["Thy Art Is Murder", "The Art Is Murder", "TAIM", "AIM"],
+    "year": 2015,
+    "spotify_id": "https://open.spotify.com/track/74SPa1RfRjNh0jj9BYuPxI"
+  },
+  {
+    "id": 2511,
+    "titles": ["Hoch Die Krüge", "Hoch Die Kruege"],
+    "artists": ["Versengold"],
+    "year": 2015,
+    "spotify_id": "https://open.spotify.com/track/19LEiBL9aNNepQLqxC8HvE"
+  },
+  {
+    "id": 2512,
+    "titles": ["Wild Side"],
+    "artists": ["Mötley Crüe", "Motley Crue"],
+    "year": 1987,
+    "spotify_id": "https://open.spotify.com/track/7zVpUAOuXY7pHHSm21jFEq"
+  },
+  {
+    "id": 2513,
+    "titles": ["Burn"],
+    "artists": ["Deep Purple", "DP"],
+    "year": 1974,
+    "spotify_id": "https://open.spotify.com/track/1iW2ktyrQHNKZwFTvgP0Ta"
+  },
+  {
+    "id": 2514,
+    "titles": ["N.I.B."],
+    "artists": ["Black Sabbath", "BS"],
+    "year": 1970,
+    "spotify_id": "https://open.spotify.com/track/3XclwoQxz4p6Dl7VUf90KW"
+  },
+  {
+    "id": 2515,
+    "titles": ["Sleeps Society", "Sleep Society"],
+    "artists": ["While She Sleeps", "WSS"],
+    "year": 2021,
+    "spotify_id": "https://open.spotify.com/track/3ZFP6XrE0FHu4duyi7vRoL"
   }
 ]

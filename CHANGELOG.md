@@ -16,7 +16,7 @@
 
 ### Changed
 - Game Settings are now centralized in one class
-- Some dialogs moved to stage display for accessibility
+- Some dialogs now take the existing stage instead of creating a new window for accessibility
 - Reworked layout for game setup
 - 'Move Time' is now 'Turn Time'
 - Set Images now with less padding
