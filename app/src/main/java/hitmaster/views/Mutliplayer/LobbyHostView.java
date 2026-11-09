@@ -5,37 +5,35 @@ import java.net.UnknownHostException;
 
 import hitmaster.GameLogic;
 import hitmaster.design.ShowHideLabel;
+import hitmaster.design.UiBuilder;
 import hitmaster.models.GameOptions;
 import hitmaster.models.GameOptionsDTO;
 import hitmaster.models.JoinRequest;
 import hitmaster.models.Player;
-import hitmaster.models.User;
-import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.Navigation;
 import hitmaster.services.NetworkManager;
+import hitmaster.services.SvgParser;
+import hitmaster.views.MultiplayerMenuView;
+import hitmaster.views.templates.HitmasterDialog;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.WindowEvent;
 
-public class LobbyHostView extends VBox {
+public class LobbyHostView extends HitmasterDialog {
 
-    private final Player HOST_PLAYER;
     private NetworkManager netManager;
     private GameOptions options;
 
-    private final Label TURNTIME_LABEL;
-    private final Label STEALTIME_LABEL;
-    private final Label MAXPLAYERS_LABEL;
-    private final Label ACTIVESETS_LABEL;
-
-    private final ListView<String> PLAYERLIST_VIEW;
+    private final ListView<String> playerListView;
 
     /**
      * Constructor for "LobbyHostView".
@@ -44,116 +42,76 @@ public class LobbyHostView extends VBox {
      * @param tcpPort Port to start the lobby broadcasting at.
      */
     public LobbyHostView(GameOptions options, String lobbyName, String password, int tcpPort) {
-        super(25);
+        super("Lobby: " + lobbyName);
         setPadding(new Insets(20));
-        setFillWidth(true);
 
-        User user = Database.getInstance().getCurrentUser();
-        HOST_PLAYER = new Player(user.username, user.picture);
-        HOST_PLAYER.role = Player.Role.HOST;
-
-        // Settings
         this.options = options;
 
-        // =========================
-        // HEADER
-        // =========================
-        HBox header = new HBox();
-        header.setAlignment(Pos.CENTER_LEFT);
 
-        VBox titleContainer = new VBox(5);
-        Label title = new Label("Lobby: " + lobbyName);
-        title.getStyleClass().add("header");
+        // ===== HEADER =====
+        VBox headerBox = new VBox(3);
+        headerBox.setAlignment(Pos.CENTER_LEFT);
 
-        Label subtitle = new Label("Waiting for players to join...");
-        subtitle.getStyleClass().add("header-description");
-        titleContainer.getChildren().addAll(title, subtitle);
+        Label headerLabel = new Label("Lobby: " + lobbyName);
+        headerLabel.getStyleClass().add("header");
 
-        String tempIp = "Unknown";
-        try {
-            tempIp = InetAddress.getLocalHost().getHostAddress();
-        }
-        catch (UnknownHostException e) {
-            Log.Error("Could not determine local IP");
-        }
-        final String localIp = tempIp;
+        Label descriptionLabel = new Label("Waiting for players to join...");
+        descriptionLabel.getStyleClass().add("description");
 
         HBox ipBox = new HBox(
             8,
             new Label("Your IP:"),
-            new ShowHideLabel(localIp) {{
+            new ShowHideLabel(getIpAddress()) {{
                 addToExceptionChars('.');
             }}
         );
 
-        HBox.setHgrow(titleContainer, Priority.ALWAYS);
-        header.getChildren().addAll(titleContainer, ipBox);
+        headerBox.getChildren().addAll(new HBox(headerLabel, UiBuilder.getHorizontalSpacer(), ipBox), descriptionLabel, UiBuilder.getHorizontalSeparator());
+        setTop(headerBox);
 
-        // =========================
-        // CONTENT
-        // =========================
+
+        // ===== LOBBY VIEW =====
         HBox content = new HBox(20);
         content.setFillHeight(true);
         VBox.setVgrow(content, Priority.ALWAYS);
 
-        // Player List
-        VBox leftColumn = new VBox(8);
-        HBox.setHgrow(leftColumn, Priority.ALWAYS);
+        VBox lobbyViewBox = new VBox(8);
+        HBox.setHgrow(lobbyViewBox, Priority.ALWAYS);
+
         Label playersTitle = new Label("Players in Lobby:");
         playersTitle.getStyleClass().add("subheader");
         
-        PLAYERLIST_VIEW = new ListView<>();
-        PLAYERLIST_VIEW.getStyleClass().add("modern-listview");
-        PLAYERLIST_VIEW.setPrefHeight(180);
-        PLAYERLIST_VIEW.getItems().add(HOST_PLAYER.username + " (Host) (You)");
-        leftColumn.getChildren().addAll(playersTitle, PLAYERLIST_VIEW);
+        playerListView = new ListView<>();
+        playerListView.getStyleClass().add("modern-listview");
+        playerListView.setPrefHeight(180);
+        playerListView.getItems().add(options.players[0].username + " (Host) (You)");
+        lobbyViewBox.getChildren().addAll(playersTitle, playerListView);
 
-        // Settings
-        VBox rightColumn = new VBox(12);
-        rightColumn.setAlignment(Pos.TOP_LEFT);
-        rightColumn.setPrefWidth(180);
-        rightColumn.setStyle("-fx-background-color: rgba(255,255,255,0.05); -fx-padding: 10; -fx-background-radius: 5;");
+        setCenter(lobbyViewBox);
 
-        Label settingsTitle = new Label("Lobby Settings:");
-        settingsTitle.getStyleClass().add("description");
 
-        MAXPLAYERS_LABEL = new Label("• Max. Players: 2");
-        MAXPLAYERS_LABEL.getStyleClass().add("description");
+        // ===== BOTTOM CONTROLS =====
+        VBox bottomBox = new VBox(5);
+        HBox controllsBox = new HBox(10);
 
-        TURNTIME_LABEL = new Label("• Move Time: " + this.options.turnTime + "s");
-        TURNTIME_LABEL.getStyleClass().add("description");
+        Button backButton = new Button();
+        backButton.setTooltip(new Tooltip("Go Back"));
+        backButton.setGraphic(SvgParser.streamToColoredSvgIcon(
+            getClass().getResourceAsStream("/icons/arrow-left.svg"),
+            "-primary-brush"
+        ));
 
-        STEALTIME_LABEL = new Label("• Steal Time: " + this.options.stealTime + "s");
-        STEALTIME_LABEL.getStyleClass().add("description");
-
-        // TODO: Implement ACTIVESETS_LABEL
-        ACTIVESETS_LABEL = new Label("• Active Sets: " + "/");
-        ACTIVESETS_LABEL.getStyleClass().add("description");
-
-        rightColumn.getChildren().addAll(settingsTitle, MAXPLAYERS_LABEL, TURNTIME_LABEL, STEALTIME_LABEL);
-
-        content.getChildren().addAll(leftColumn, rightColumn);
-
-        // =========================
-        // FOOTER (Settings, Cancel & Start)
-        // =========================
-        Button openSettingsBtn = new Button("⚙ Options");
-        openSettingsBtn.getStyleClass().add("modern-button");
-        openSettingsBtn.setPrefWidth(120);
-        openSettingsBtn.setOnAction(e -> this.openLobbySettingsDialog());
-
-        Button cancelBtn = new Button("Close Lobby");
-        cancelBtn.getStyleClass().add("modern-button");
-        cancelBtn.setPrefWidth(120);
-        cancelBtn.setOnAction(e -> {
+        backButton.setOnAction(e -> {
+            MultiplayerMenuView menuView = new MultiplayerMenuView();
+            Navigation.getInstance().show(menuView);
             stopServer();
         });
 
-        Button startGameBtn = new Button("Start Game");
-        startGameBtn.getStyleClass().add("primary-button");
-        startGameBtn.setPrefWidth(140);
-        startGameBtn.setDisable(true);
-        startGameBtn.setOnAction(e -> {
+        Button startGameButton = new Button("Start Game");
+        startGameButton.getStyleClass().add("primary-button");
+        startGameButton.setPrefWidth(140);
+        startGameButton.setDisable(true);
+        startGameButton.setOnAction(e -> {
             stopServerBroadcastOnly(); 
             
             netManager.sendObject(new GameOptionsDTO(this.options, "START_GAME")); 
@@ -163,16 +121,16 @@ public class LobbyHostView extends VBox {
             Navigation.getInstance().maximize();
         });
 
-        HBox rightButtons = new HBox(10, cancelBtn, startGameBtn);
-        rightButtons.setAlignment(Pos.CENTER_RIGHT);
-        HBox.setHgrow(rightButtons, Priority.ALWAYS);
+        controllsBox.getChildren().addAll(backButton, UiBuilder.getHorizontalSpacer(), startGameButton);
+        bottomBox.getChildren().addAll(UiBuilder.getHorizontalSeparator(), controllsBox);
+        setBottom(bottomBox);
 
-        HBox footer = new HBox(10, openSettingsBtn, rightButtons);
-        footer.setAlignment(Pos.CENTER_LEFT);
 
-        getChildren().addAll(header, content, footer);
+        Navigation.getInstance().getStage().addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, event -> {
+            stopServer();
+        });
 
-        this.startNetworking(tcpPort, lobbyName, password, startGameBtn);
+        startNetworking(tcpPort, lobbyName, password, startGameButton);
     }
 
     /**
@@ -196,7 +154,7 @@ public class LobbyHostView extends VBox {
                     Log.Info("Player joined host lobby: " + clientPlayer.username);
 
                     Platform.runLater(() -> {
-                        PLAYERLIST_VIEW.getItems().add(clientPlayer.username);
+                        playerListView.getItems().add(clientPlayer.username);
                         startGameBtn.setDisable(false);
                     });
 
@@ -209,25 +167,20 @@ public class LobbyHostView extends VBox {
     }
 
     /**
-     * Opens settings view for this lobby's game.
-     * Labels of settings get updated when closing settings view.
+     * Gets the IP address from local device and returns it as a String.
+     * @return IP address of local device; "Unknown" if an error occurs.
      */
-    private void openLobbySettingsDialog() {
-        // TODO: Replace
+    private String getIpAddress() {
+        String tempIp = "Unknown";
 
-        netManager.sendObject(new GameOptionsDTO(options, "OPTIONS_UPDATE"));
-        updateSettingsLabels();
-    }
+        try {
+            tempIp = InetAddress.getLocalHost().getHostAddress();
+        }
+        catch (UnknownHostException e) {
+            Log.Error("Could not determine local IP");
+        }
 
-    /**
-     * Updates all texts for settings labels.
-     * Called after GameOptions object was updated.
-     */
-    private void updateSettingsLabels() {
-        Platform.runLater(() -> {
-            TURNTIME_LABEL.setText("• Move Time: " + this.options.turnTime + "s");
-            STEALTIME_LABEL.setText("• Steal Time: " + this.options.stealTime + "s");
-        });
+        return tempIp;
     }
 
     /**
@@ -246,12 +199,7 @@ public class LobbyHostView extends VBox {
      * Used when game gets cancelled instead of started.
      */
     private void stopServer() {
-        this.stopServerBroadcastOnly();
+        stopServerBroadcastOnly();
         netManager.closeConnection();
-    }
-
-    public void show() {
-        Navigation.getInstance().show(this);
-        Navigation.getInstance().setTitle("Host Lobby");
     }
 }
