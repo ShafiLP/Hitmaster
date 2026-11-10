@@ -562,7 +562,7 @@
   {
     "id": 81,
     "titles": ["Whola Lotta Love", "Whole Lot Of Love"],
-    "artists": ["Led Zeppelin", "LZ"],
+    "artists": ["Led Zeppelin", "LZ", "Led Zep"],
     "year": 1969,
     "spotify_id": "0hCB0YR03f6AmQaHbwWDe8"
   },
@@ -1101,7 +1101,7 @@
   {
     "id": 158,
     "titles": ["Sweet Child o' Mine", "Sweet Child of Mine"],
-    "artists": ["Guns N' Roses", "Guns And Roses"],
+    "artists": ["Guns N' Roses", "Guns And Roses", "Guns & Roses", "GaR"],
     "year": 1988,
     "spotify_id": "7o2CTH4ctstm8TNelqjb51"
   },
@@ -2221,7 +2221,7 @@
   {
     "id": 318,
     "titles": ["The Boys Are Back In Town"],
-    "artists": ["Thin Lizzy"],
+    "artists": ["Thin Lizzy", "TL"],
     "year": 1976,
     "spotify_id": "43DeSV93pJPT4lCZaWZ6b1"
   },
@@ -2621,7 +2621,7 @@
   {
     "id": 375,
     "titles": ["Stairway To Heaven"],
-    "artists": ["Led Zeppelin", "LZ"],
+    "artists": ["Led Zeppelin", "LZ", "Led Zep"],
     "year": 1971,
     "spotify_id": "5CQ30WqJwcep0pYcV4AMNc"
   },
@@ -3139,7 +3139,7 @@
   {
     "id": 449,
     "titles": ["November Rain"],
-    "artists": ["Guns N' Roses", "Guns And Roses"],
+    "artists": ["Guns N' Roses", "Guns And Roses", "Guns & Roses", "GaR"],
     "year": 1991,
     "spotify_id": "3YRCqOhFifThpSRFJ1VWFM"
   },
@@ -3286,7 +3286,7 @@
   {
     "id": 470,
     "titles": ["Paradise City"],
-    "artists": ["Guns N' Roses", "Guns And Roses"],
+    "artists": ["Guns N' Roses", "Guns And Roses", "Guns & Roses", "GaR"],
     "year": 1987,
     "spotify_id": "6eN1f9KNmiWEhpE2RhQqB5"
   },
@@ -3328,7 +3328,7 @@
   {
     "id": 476,
     "titles": ["Immigrant Song"],
-    "artists": ["Led Zeppelin", "LZ"],
+    "artists": ["Led Zeppelin", "LZ", "Led Zep"],
     "year": 1970,
     "spotify_id": "78lgmZwycJ3nzsdgmPPGNx"
   },
@@ -4008,7 +4008,7 @@
   {
     "id": 573,
     "titles": ["Last Resort"],
-    "artists": ["Papa Roach"],
+    "artists": ["Papa Roach", "PR"],
     "year": 2000,
     "spotify_id": "5W8YXBz9MTIDyrpYaCg2Ky"
   },
@@ -4100,7 +4100,7 @@
   {
     "id": 586,
     "titles": ["Dragula", "Dracula"],
-    "artists": ["Rob Zombie"],
+    "artists": ["Rob Zombie", "RZ"],
     "year": 1998,
     "spotify_id": "6Nm8h73ycDG2saCnZV8poF"
   },
@@ -4156,7 +4156,7 @@
   {
     "id": 594,
     "titles": ["Help"],
-    "artists": ["Papa Roach"],
+    "artists": ["Papa Roach", "PR"],
     "year": 2017,
     "spotify_id": "0IbiFpXPFpvCAIs9WMX5wC"
   },
@@ -6604,7 +6604,7 @@
   {
     "id": 942,
     "titles": ["Lady In Black"],
-    "artists": ["Uriah Heep"],
+    "artists": ["Uriah Heep", "UH"],
     "year": 1971,
     "spotify_id": "2U2ByqoO82fnayaPzO4x2d"
   },
@@ -7268,7 +7268,7 @@
   },
   {
     "id": 1037,
-    "titles": ["Madhouse", "Mad House"],
+    "titles": ["Madhouse"],
     "artists": ["Anthrax"],
     "year": 1985,
     "spotify_id": "76BYv24CcZt2u94JRjmATX"
@@ -8064,7 +8064,7 @@
   {
     "id": 1150,
     "titles": ["Laid To Rest"],
-    "artists": ["Lamb of God"],
+    "artists": ["Lamb Of God", "LoG"],
     "year": 2004,
     "spotify_id": "4VdQBhm4dnvBPgZfFNjSzH"
   },
@@ -8232,7 +8232,7 @@
   {
     "id": 1174,
     "titles": ["Easy Livin'", "Easy Living"],
-    "artists": ["Uriah Heep"],
+    "artists": ["Uriah Heep", "UH"],
     "year": 1972,
     "spotify_id": "6oRHRkQigTzJ3KwpO3XOV6"
   },
@@ -17826,5 +17826,510 @@
     "artists": ["While She Sleeps", "WSS"],
     "year": 2021,
     "spotify_id": "https://open.spotify.com/track/3ZFP6XrE0FHu4duyi7vRoL"
+  },
+  {
+    "id": 2516,
+    "titles": ["Bleed"],
+    "artists": ["Soulfly"],
+    "year": 1998,
+    "spotify_id": "https://open.spotify.com/track/5dOA0yswTUbMiiPCTQfnsx"
+  },
+  {
+    "id": 2517,
+    "titles": ["Still Of The Night"],
+    "artists": ["Whitesnake"],
+    "year": 1987,
+    "spotify_id": "https://open.spotify.com/track/6FdLptSCCN8LJdKWwY7VcC"
+  },
+  {
+    "id": 2518,
+    "titles": ["Photograph"],
+    "artists": ["Def Leppard", "DL"],
+    "year": 1982,
+    "spotify_id": "https://open.spotify.com/track/18URo35acNKRTHfEdjTcGn"
+  },
+  {
+    "id": 2519,
+    "titles": ["Second & Sebring", "Second and Sebring", "2nd & Sebring", "2nd and Sebring"],
+    "artists": ["Of Mice & Men", "Of Mice and Men", "Mice & Men", "Mice and Men", "OMAM"],
+    "year": 2010,
+    "spotify_id": "https://open.spotify.com/track/6RObeP8IVb4X4nCLUCJ9Dx"
+  },
+  {
+    "id": 2520,
+    "titles": ["Sweet Leaf"],
+    "artists": ["Black Sabbath", "BS"],
+    "year": 1971,
+    "spotify_id": "https://open.spotify.com/track/1bJ5FuncHc6wyDHBvJ0xF6"
+  },
+  {
+    "id": 2521,
+    "titles": ["Sweating Bullets"],
+    "artists": ["Megadeth", "Megadeath"],
+    "year": 1992,
+    "spotify_id": "https://open.spotify.com/track/6i7IXg8j7ZngiEOgBYjkhw"
+  },
+  {
+    "id": 2522,
+    "titles": ["Funeral Derangements"],
+    "artists": ["Ice Nine Kills", "Ice Nine", "INK"],
+    "year": 2021,
+    "spotify_id": "https://open.spotify.com/track/1m2kn7VbKCD7jKaDq975SQ"
+  },
+  {
+    "id": 2523,
+    "titles": ["L'Enfant Sauvage", "Le Enfant Sauvage", "La Enfant Sauvage"],
+    "artists": ["Gojira"],
+    "year": 2012,
+    "spotify_id": "https://open.spotify.com/track/4PWxt9Fy949kUtkEi2GI5V"
+  },
+  {
+    "id": 2524,
+    "titles": ["I Am Loco", "I'm Loco"],
+    "artists": ["Ill Niño", "Ill Nino", "Ill Ninjo", "Ill Ninyo", "Niño", "Nino", "Ninyo", "Ninjo"],
+    "year": 2001,
+    "spotify_id": "https://open.spotify.com/track/3jmelhU4kuytaLPLeiAerH"
+  },
+  {
+    "id": 2525,
+    "titles": ["The End Of All We Know", "End Of All We Know"],
+    "artists": ["Bleed From Within", "Bleed Within", "BfW"],
+    "year": 2020,
+    "spotify_id": "https://open.spotify.com/track/68ae1LwQdpHhYwPrz7rTdl"
+  },
+  {
+    "id": 2526,
+    "titles": ["Won't Get Fooled Again", "Will Not Get Fooled Again"],
+    "artists": ["The Who", "Who"],
+    "year": 1971,
+    "spotify_id": "https://open.spotify.com/track/0cJPLFrlV7TTCyPLupHzcH"
+  },
+  {
+    "id": 2527,
+    "titles": ["Youth Gone Wild"],
+    "artists": ["Skid Row", "SR"],
+    "year": 1989,
+    "spotify_id": "https://open.spotify.com/track/37Vzad7uGm0I9zJIFXlT4b"
+  },
+  {
+    "id": 2528,
+    "titles": ["Living Dead Girl"],
+    "artists": ["Rob Zombie", "RZ"],
+    "year": 1998,
+    "spotify_id": "https://open.spotify.com/track/10V8XpuyMoEcSMfM79WDET"
+  },
+  {
+    "id": 2529,
+    "titles": ["Unsung"],
+    "artists": ["Helmet"],
+    "year": 1992,
+    "spotify_id": "https://open.spotify.com/track/0z25tUQgEI4cIyNZ1TgWig"
+  },
+  {
+    "id": 2530,
+    "titles": ["Breaking The Chains"],
+    "artists": ["Dokken"],
+    "year": 1981,
+    "spotify_id": "https://open.spotify.com/track/3PZJwntD9O7WLXm2g2jTmD"
+  },
+  {
+    "id": 2531,
+    "titles": ["Mourning Palace"],
+    "artists": ["Dimmu Borgir", "DB"],
+    "year": 1997,
+    "spotify_id": "https://open.spotify.com/track/2t0DnOIEpkbJqDc6h1IKnw"
+  },
+  {
+    "id": 2532,
+    "titles": ["Nemesis"],
+    "artists": ["Arch Enemy", "AE"],
+    "year": 2005,
+    "spotify_id": "https://open.spotify.com/track/27sTzAelgljD6Uxp88BqA3"
+  },
+  {
+    "id": 2533,
+    "titles": ["My Generation"],
+    "artists": ["Limp Bizkit", "Limb Biscuit", "LB"],
+    "year": 2000,
+    "spotify_id": "https://open.spotify.com/track/6holGuk1jKHTdWyWBOZi8l"
+  },
+  {
+    "id": 2534,
+    "titles": ["Again"],
+    "artists": ["Black Stone Cherry", "BSC"],
+    "year": 2020,
+    "spotify_id": "https://open.spotify.com/track/79wVMF2iOCML96gdWYqO9L"
+  },
+  {
+    "id": 2535,
+    "titles": ["Always Somewhere"],
+    "artists": ["Scorpions"],
+    "year": 1979,
+    "spotify_id": "https://open.spotify.com/track/6RG9WyeGTkM1xwI2gzUhbH"
+  },
+  {
+    "id": 2536,
+    "titles": ["In The Minds Of Evil", "The Minds Of Evil", "Minds Of Evil"],
+    "artists": ["Deicide"],
+    "year": 2013,
+    "spotify_id": "https://open.spotify.com/track/3D6ZPZrFk2CHZCJ2STxHW7"
+  },
+  {
+    "id": 2537,
+    "titles": ["Live And Let Die", "To Live And Let Die"],
+    "artists": ["Guns N' Roses", "Guns And Roses", "Guns & Roses", "GaR"],
+    "year": 1991,
+    "spotify_id": "https://open.spotify.com/track/0rFWuqFgHAfuzE8uSB9TWR"
+  },
+  {
+    "id": 2538,
+    "titles": ["Losing You"],
+    "artists": ["Dead By April", "DbA"],
+    "year": 2009,
+    "spotify_id": "https://open.spotify.com/track/4hkZMpR9ptEQLqlIorFPeN"
+  },
+  {
+    "id": 2539,
+    "titles": ["Say Just Words", "Just Say Words"],
+    "artists": ["Paradise Lost", "PL"],
+    "year": 1997,
+    "spotify_id": "https://open.spotify.com/track/1yrquRdZk965GKv2kDHGpL"
+  },
+  {
+    "id": 2540,
+    "titles": ["No More Mr. Nice Guy", "No More Mister Nice Guy"],
+    "artists": ["Alice Cooper"],
+    "year": 1973,
+    "spotify_id": "https://open.spotify.com/track/5D2eCwqbHcqOnfHOCM6TnV"
+  },
+  {
+    "id": 2541,
+    "titles": ["Hall Of The Mountain King", "In The Hall Of The Mountain King", "The Hall Of The Mountain King"],
+    "artists": ["Savatage"],
+    "year": 1987,
+    "spotify_id": "https://open.spotify.com/track/0rv2jIngnCbHoGEaFOIcwW"
+  },
+  {
+    "id": 2542,
+    "titles": ["Ich Will Brennen"],
+    "artists": ["ASP"],
+    "year": 2003,
+    "spotify_id": "https://open.spotify.com/track/4NFoPHSeUlEUOr7xbmZn14"
+  },
+  {
+    "id": 2543,
+    "titles": ["Bonded By Blood"],
+    "artists": ["Exodus"],
+    "year": 1985,
+    "spotify_id": "https://open.spotify.com/track/2riiohLaKgMFlu4RQT1MPV"
+  },
+  {
+    "id": 2544,
+    "titles": ["River Runs Red"],
+    "artists": ["Life Of Agony", "LoA"],
+    "year": 1993,
+    "spotify_id": "https://open.spotify.com/track/3KrjJgriB8BcBWOwNNB69F"
+  },
+  {
+    "id": 2545,
+    "titles": ["Stealin'", "Stealing"],
+    "artists": ["Uriah Heep", "UH"],
+    "year": 1973,
+    "spotify_id": "https://open.spotify.com/track/3PFDY83WFOx6a1gxgCl8oR"
+  },
+  {
+    "id": 2546,
+    "titles": ["Lights Out"],
+    "artists": ["UFO"],
+    "year": 1977,
+    "spotify_id": "https://open.spotify.com/track/6rHF1P6L6XWdNmM8LeSR4Q"
+  },
+  {
+    "id": 2547,
+    "titles": ["Sinners Of The Seven Seas", "Sinners Of The 7 Seas"],
+    "artists": ["Powerwolf", "PW"],
+    "year": 2024,
+    "spotify_id": "https://open.spotify.com/track/5LDrzjiXepAwUibop6NWqy"
+  },
+  {
+    "id": 2548,
+    "titles": ["Choke"],
+    "artists": ["Bury Tomorrow", "BT"],
+    "year": 2020,
+    "spotify_id": "https://open.spotify.com/track/2KGCOtaTbNIbwrxS0a2UMv"
+  },
+  {
+    "id": 2549,
+    "titles": ["Seeing Red"],
+    "artists": ["Architects"],
+    "year": 2023,
+    "spotify_id": "https://open.spotify.com/track/65qBr6ToDUjTD1RiE1H4Gl"
+  },
+  {
+    "id": 2550,
+    "titles": ["Rock Bottom"],
+    "artists": ["UFO"],
+    "year": 1974,
+    "spotify_id": "https://open.spotify.com/track/719muV16yNGh6AxmCeMby1"
+  },
+  {
+    "id": 2551,
+    "titles": ["A Warrior's Call", "A Warrior His Call", "A Warrior Hers Call", "A Warrior Theirs Call",
+               "Warrior's Call", "Warrior His Call", "Warrior Hers Call", "Warrior Theirs Call"],
+    "artists": ["Volbeat"],
+    "year": 2010,
+    "spotify_id": "https://open.spotify.com/track/4o6k1XHlrIZay8v1m5VU83"
+  },
+  {
+    "id": 2552,
+    "titles": ["Pittsburgh (No Intro)", "Pittsburgh", "No Intro"],
+    "artists": ["The Amity Affliction", "Amity Affliction", "AA"],
+    "year": 2014,
+    "spotify_id": "https://open.spotify.com/track/6RcsAN8XF5KX6mMh6dum8e"
+  },
+  {
+    "id": 2553,
+    "titles": ["Fool For Your Loving"],
+    "artists": ["Whitesnake"],
+    "year": 1980,
+    "spotify_id": "https://open.spotify.com/track/1OwcckpLpQLDrAkBKYLEAX"
+  },
+  {
+    "id": 2554,
+    "titles": ["Hot Blooded"],
+    "artists": ["Foreigner"],
+    "year": 1978,
+    "spotify_id": "https://open.spotify.com/track/6xMHglHoafdDFGXS6qfwSH"
+  },
+  {
+    "id": 2555,
+    "titles": ["Down Of The Dragonstar"],
+    "artists": ["Twilight Force", "TF"],
+    "year": 2019,
+    "spotify_id": "https://open.spotify.com/track/5E5NiRzaBqpDCxsDiX8cji"
+  },
+  {
+    "id": 2556,
+    "titles": ["The Call Of The Mountains", "Call Of The Mountains"],
+    "artists": ["Eluveitie"],
+    "year": 2014,
+    "spotify_id": "https://open.spotify.com/track/0vTEksNDRuJxDMLOOgn0fA"
+  },
+  {
+    "id": 2557,
+    "titles": ["Burnin' For You", "Burning For You"],
+    "artists": ["Blue Öyster Cult", "Blue Oyster Cult", "Blue Oeyster Cult", "BÖC", "BOC"],
+    "year": 1981,
+    "spotify_id": "https://open.spotify.com/track/3fkPMWQ6cBNBLuFcPyMS8s"
+  },
+  {
+    "id": 2558,
+    "titles": ["Satan Is Real"],
+    "artists": ["Kreator", "Creator"],
+    "year": 2016,
+    "spotify_id": "https://open.spotify.com/track/14M68PdZSSMRzTBuJNuxO6"
+  },
+  {
+    "id": 2559,
+    "titles": ["Sweet Emotion", "Sweet Emotions"],
+    "artists": ["Aerosmith"],
+    "year": 1975,
+    "spotify_id": "https://open.spotify.com/track/73TxYZd0lBCVRrHawrAglA"
+  },
+  {
+    "id": 2560,
+    "titles": ["Wolverine Blues"],
+    "artists": ["Entombed"],
+    "year": 1993,
+    "spotify_id": "https://open.spotify.com/track/6WBdwdLLif4kuG3s6ot8uB"
+  },
+  {
+    "id": 2561,
+    "titles": ["Our Truth"],
+    "artists": ["Lacuna Coil"],
+    "year": 2006,
+    "spotify_id": "https://open.spotify.com/track/6vS5siwSidItcWFXskcpAA"
+  },
+  {
+    "id": 2562,
+    "titles": ["Welcome To Hell"],
+    "artists": ["Venom"],
+    "year": 1981,
+    "spotify_id": "https://open.spotify.com/track/0px83Dlh4SzQLCvYRNZzVF"
+  },
+  {
+    "id": 2563,
+    "titles": ["My Twin"],
+    "artists": ["Katatonia"],
+    "year": 2006,
+    "spotify_id": "https://open.spotify.com/track/0ZEigpVOtVunIcimL7dJuh"
+  },
+  {
+    "id": 2564,
+    "titles": ["Screamager"],
+    "artists": ["Therapy?"],
+    "year": 1994,
+    "spotify_id": "https://open.spotify.com/track/6AXZm9PDOhrG99M1dDBAbp"
+  },
+  {
+    "id": 2565,
+    "titles": ["Chopped In Half"],
+    "artists": ["Obituary"],
+    "year": 1990,
+    "spotify_id": "https://open.spotify.com/track/01cGujYWGF7JchJLSgf6Ta"
+  },
+  {
+    "id": 2566,
+    "titles": ["Until My Last Breath"],
+    "artists": ["Tarja"],
+    "year": 2010,
+    "spotify_id": "https://open.spotify.com/track/5mKFQcILevW3IRQuVRxXIs"
+  },
+  {
+    "id": 2567,
+    "titles": ["Death To All But Metal"],
+    "artists": ["Steel Panther", "SP"],
+    "year": 2009,
+    "spotify_id": "https://open.spotify.com/track/280Y9MmTJacpEVjCeqdyxz"
+  },
+  {
+    "id": 2568,
+    "titles": ["Der Tanz Der Schatten", "Der Tanz Der Schatten"],
+    "artists": ["Theatre Of Tragedy", "Tragedy Theatre", "ToT"],
+    "year": 1996,
+    "spotify_id": "https://open.spotify.com/track/0dDF4EWfWjhhCH5w5WXFnY"
+  },
+  {
+    "id": 2569,
+    "titles": ["Forever My Queen"],
+    "artists": ["Pentagram"],
+    "year": 1999,
+    "spotify_id": "https://open.spotify.com/track/2Zoi3cGA6SW4NXHzGQzhAe"
+  },
+  {
+    "id": 2570,
+    "titles": ["Shut Your Mouth"],
+    "artists": ["Pain"],
+    "year": 2002,
+    "spotify_id": "https://open.spotify.com/track/1gUq6SezLS3lc7KxBZaA3A"
+  },
+  {
+    "id": 2571,
+    "titles": ["Got The Time"],
+    "artists": ["Anthrax"],
+    "year": 1990,
+    "spotify_id": "https://open.spotify.com/track/3cFnb3Rg9a7Gzqxc5QQ9YZ"
+  },
+  {
+    "id": 2572,
+    "titles": ["Automatic Sun"],
+    "artists": ["The Warning", "Warning"],
+    "year": 2024,
+    "spotify_id": "https://open.spotify.com/track/4GxdRrDz8nV2B51wdaQh5k"
+  },
+  {
+    "id": 2573,
+    "titles": ["Jesus Built My Hotrod"],
+    "artists": ["Ministry"],
+    "year": 1991,
+    "spotify_id": "https://open.spotify.com/track/0BX3ysoHJvxmLEhPMAfb2z"
+  },
+  {
+    "id": 2574,
+    "titles": ["Sieben", "7", "Seven"],
+    "artists": ["Subway To Sally", "StS"],
+    "year": 2005,
+    "spotify_id": "https://open.spotify.com/track/4zckdzVvE7CO4VwiwNPgjB"
+  },
+  {
+    "id": 2575,
+    "titles": ["Redneck"],
+    "artists": ["Lamb Of God", "LoG"],
+    "year": 2006,
+    "spotify_id": "https://open.spotify.com/track/1WZVnw0YWc7OLkVijEargx"
+  },
+  {
+    "id": 2576,
+    "titles": ["Hand Of Blood"],
+    "artists": ["Bullet For My Valentine", "BFMV"],
+    "year": 2005,
+    "spotify_id": "https://open.spotify.com/track/1EJzHoU6rg1afMozs9t6aM"
+  },
+  {
+    "id": 2577,
+    "titles": ["Black Dog"],
+    "artists": ["Led Zeppelin", "LZ", "Led Zep"],
+    "year": 1971,
+    "spotify_id": "https://open.spotify.com/track/3qT4bUD1MaWpGrTwcvguhb"
+  },
+  {
+    "id": 2578,
+    "titles": ["Nobody"],
+    "artists": ["Skindred"],
+    "year": 2005,
+    "spotify_id": "https://open.spotify.com/track/581mukhDjta60CCwpvnjL9"
+  },
+  {
+    "id": 2579,
+    "titles": ["Jailbreak"],
+    "artists": ["Thin Lizzy", "TL"],
+    "year": 1976,
+    "spotify_id": "https://open.spotify.com/track/4qbiCq2xkNPyojuZFeNeqx"
+  },
+  {
+    "id": 2580,
+    "titles": ["Bad Company"],
+    "artists": ["Bad Company", "BC"],
+    "year": 1974,
+    "spotify_id": "https://open.spotify.com/track/36vTL8WP4ZoD1bbUaW0V3E"
+  },
+  {
+    "id": 2581,
+    "titles": ["Heavy Is The Crown", "The Crown is Heavy", "Crown Is Heavy"],
+    "artists": ["Linkin Park", "LP"],
+    "year": 2024,
+    "spotify_id": "https://open.spotify.com/track/3fgehc497TFqKH1zBL2YNK"
+  },
+  {
+    "id": 2582,
+    "titles": ["Even If It Kills Me"],
+    "artists": ["Papa Roach", "PR"],
+    "year": 2025,
+    "spotify_id": "https://open.spotify.com/track/06dBzUBULISVMFBeNKbbRA"
+  },
+  {
+    "id": 2583,
+    "titles": ["Prophecy Of Ragnarök", "Prophecy Of Ragnaroek"],
+    "artists": ["Brothers Of Metal", "Metal Brothers", "BoM"],
+    "year": 2018,
+    "spotify_id": "https://open.spotify.com/track/4kpWVGdFjBSoCkIcHVlTqn"
+  },
+  {
+    "id": 2584,
+    "titles": ["Driving In Style"],
+    "artists": ["Thundermother"],
+    "year": 2020,
+    "spotify_id": "https://open.spotify.com/track/4iTlGw3WqMzBpQslxNZo4D"
+  },
+  {
+    "id": 2585,
+    "titles": ["The Pot", "Pot"],
+    "artists": ["TOOL"],
+    "year": 2006,
+    "spotify_id": "https://open.spotify.com/track/1lATXTBJDHwawvT1UfxWu3"
+  },
+  {
+    "id": 2586,
+    "titles": ["Denied"],
+    "artists": ["Sonic Syndicate", "SS"],
+    "year": 2007,
+    "spotify_id": "https://open.spotify.com/track/06Lx4y1HUL9xi3OyISe7Ao"
+  },
+  {
+    "id": 2587,
+    "titles": ["Wild Child"],
+    "artists": ["W.A.S.P.", "WASP"],
+    "year": 1985,
+    "spotify_id": "https://open.spotify.com/track/3iC3Numiy9P3AkF7iioKmx"
   }
 ]
