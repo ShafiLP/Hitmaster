@@ -28,9 +28,9 @@ public class MusicPlayer {
         }
     }
 
-    public void play(Song song) {
-        Spotify.playSpotifyLink(spotifyConnection, song.spotify);
-        isPlaying = true;
+    public boolean play(Song song) {
+        isPlaying = Spotify.playSpotifyLink(spotifyConnection, song.spotify);
+        return isPlaying;
     }
 
     public void pause() {

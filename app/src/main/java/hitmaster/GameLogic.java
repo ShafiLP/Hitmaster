@@ -168,6 +168,7 @@ public final class GameLogic {
             Song startSong = SONGS.removeFirst();
             PLAYERS[0].songs.add(startSong);
             VIEW.addToCardStrip(startSong);
+            remaining_cards--;
         }
 
         // 5) Add first song to Card Stack (Host begins)
@@ -240,6 +241,16 @@ public final class GameLogic {
         VIEW.removeHitmasterChip();
         VIEW.skipCard();
         this.addFirstToCardStack();
+    }
+
+    public void skipCurrentSongWithoutLosingChip() {
+        sendObject("OPPONENT_SOFT_SKIP");
+        VIEW.addInfoMessage(getCurrentPlayer().username + " skipped their song!");
+
+        PLAYERS[currentPlayerIdx].hitmasterPoints--;
+
+        VIEW.skipCard();
+        addFirstToCardStack();
     }
 
     /**
@@ -532,7 +543,9 @@ public final class GameLogic {
         if (!hasPlayer) return;
 
         if (play) {
-            MUSICPLAYER.play(song);
+            if (!MUSICPLAYER.play(song) && ((currentPlayerIdx == 0 && isHost) || (currentPlayerIdx == 1 && !isHost))) {
+                VIEW.showSongNotAvailableDialog();
+            } 
         } else {
             MUSICPLAYER.pause();
         }
@@ -675,7 +688,19 @@ public final class GameLogic {
 
                 VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
                 VIEW.addNewCardToDiscard(currentSong);
-                this.addFirstToCardStack(); 
+                if (isHost) {
+                    addFirstToCardStack(); 
+                }
+            break;
+
+            case "OPPONENT_SOFT_SKIP":
+                VIEW.addInfoMessage(getCurrentPlayer().username + " skipped their song!");
+
+                VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
+                VIEW.addNewCardToDiscard(currentSong);
+                if (isHost) {
+                    addFirstToCardStack(); 
+                }
             break;
 
             // Move card of opponent to discard pile
@@ -869,7 +894,6 @@ public final class GameLogic {
                     }
 
                     Song receivedSong = receivedDTO.toSong();
-                    Log.Info("Received " + receivedSong + " with purpose " + receivedDTO.purpose);
                     
                     Platform.runLater(() -> {
                         switch (receivedDTO.purpose) {

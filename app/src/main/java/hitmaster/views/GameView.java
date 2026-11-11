@@ -839,6 +839,22 @@ public class GameView extends BorderPane {
         });
     }
 
+    public void showSongNotAvailableDialog() {
+        setInputsEnabled(false);
+
+        Platform.runLater(() -> {
+            boolean skip = StyleDialog.questionDialog(
+                "Song Not Available",
+                "Seems like this song isn't available in your region!\nWould you like to skip and receive another song?",
+                "Skip"
+            );
+
+            if (skip) GAME.skipCurrentSongWithoutLosingChip();
+        });
+
+        setInputsEnabled(true);
+    }
+
     // #endregion
 
     //#region MULTIPLAYER OPERATIONS
