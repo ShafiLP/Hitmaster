@@ -369,44 +369,6 @@
 /* Set Manager                    */
 /* ============================== */
 
-.switch-toggle:hover{
-    -fx-cursor: hand;
-}
-
-.switch-toggle .mark {
-    -fx-background-color: transparent;
-    -fx-shape: null;
-}
-
-.switch-toggle .box {
-    -fx-background-color: #555555;
-    -fx-background-radius: 15;
-    -fx-padding: 0;
-    -fx-pref-width: 40;
-    -fx-pref-height: 22;
-    -fx-alignment: CENTER_LEFT;
-    -fx-transition: -fx-background-color 0.2s ease-out;
-}
-
-.switch-toggle:selected .box {
-    -fx-background-color: #00cc00;
-}
-
-.switch-toggle .box::after {
-    -fx-content: "";
-    -fx-background-color: white;
-    -fx-background-radius: 12;
-    -fx-pref-width: 18;
-    -fx-pref-height: 18;
-    -fx-translate-x: 2;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 3, 0, 0, 1);
-    -fx-transition: -fx-translate-x 0.2s ease-out;
-}
-
-.switch-toggle:selected .box::after {
-    -fx-translate-x: 20; /* 40 - 18 - 2 */
-}
-
 .set-card-grid {
     -fx-border-color: gray;
     -fx-border-radius: 12;

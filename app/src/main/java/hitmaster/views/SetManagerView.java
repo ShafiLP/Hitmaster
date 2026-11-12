@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import hitmaster.design.ToggleSwitch;
 import hitmaster.models.GameSet;
 import hitmaster.models.Song;
 import hitmaster.services.Database;
@@ -315,11 +316,10 @@ public class SetManagerView {
         songCountLabel.setPrefHeight(35);
         songCountLabel.setAlignment(Pos.CENTER);
 
-        CheckBox switchToggle = new CheckBox();
-        switchToggle.getStyleClass().add("switch-toggle"); 
-        switchToggle.setSelected(set.isActive);
-        switchToggle.setOnAction(e -> {
-            boolean newState = switchToggle.isSelected();
+        ToggleSwitch toggleSwitch = new ToggleSwitch();
+        toggleSwitch.setSelected(set.isActive);
+        toggleSwitch.setOnAction(e -> {
+            boolean newState = toggleSwitch.isSelected();
             set.isActive = newState;
             Database.getInstance().updateSetStatus(set.id, newState);
         });
@@ -335,7 +335,7 @@ public class SetManagerView {
         Region hSpacing = new Region();
         HBox.setHgrow(hSpacing, Priority.ALWAYS);
         
-        HBox actionRow = new HBox(8, songCountLabel, hSpacing, switchToggle, viewSetBtn);
+        HBox actionRow = new HBox(8, songCountLabel, hSpacing, toggleSwitch, viewSetBtn);
         actionRow.setAlignment(Pos.CENTER);
 
         card.getChildren().addAll(setImageView, setName, descriptionLabel, spacer, actionRow);
