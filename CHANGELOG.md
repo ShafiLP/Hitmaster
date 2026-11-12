@@ -24,6 +24,7 @@
 
 ### Fixed
 - If song isn't available in user's country, the game now asks the user if they want to skip the song without losing a chip.
+- No update dialog with current version anymore because of suffix
 
 ### Deprecated
 

@@ -100,19 +100,6 @@ public class UpdateService {
             if (cNum > lNum) return false;
         }
 
-        boolean cHasSuffix = cParts.length > 1;
-        boolean lHasSuffix = lParts.length > 1;
-
-        if (cHasSuffix && !lHasSuffix) {
-            return true; 
-        }
-        if (!cHasSuffix && lHasSuffix) {
-            return true;
-        }
-        if (cHasSuffix && lHasSuffix) {
-            return lParts[1].compareTo(cParts[1]) > 0;
-        }
-
         return false;
     }
 
