@@ -33,7 +33,6 @@ public final class GameLogic {
 
     private final GameView VIEW;
     private final MusicPlayer MUSICPLAYER;
-    private final GameOptions OPTIONS;
     private final boolean MULTIPLAYER;
     private int currentPlayerIdx = 0;
     private boolean hasPlayer = false;
@@ -41,6 +40,9 @@ public final class GameLogic {
     // Players
     private final Player[] PLAYERS;
     private Player OWN_PLAYER;
+
+    // Game Options
+    private final GameOptions OPTIONS;
 
     private final List<Song> SONGS;
     private Song currentSong;
@@ -134,8 +136,7 @@ public final class GameLogic {
         // 3) Initialize Database
         // ----- HOST & SINGLEPLAYER LOGIC -----
         if (isHost) {
-            SONGS = Database.getInstance().getSongFromActiveSets();
-            Collections.shuffle(SONGS);
+            SONGS = loadSongs(1000);
 
             remaining_cards = SONGS.size();
             this.sendObject("UPDATE_STACK:" + remaining_cards);
@@ -176,7 +177,7 @@ public final class GameLogic {
         }
 
         // 5) Add first song to Card Stack (Host begins)
-        if (isHost) addFirstToCardStack();
+        if (isHost) addSongToView();
 
         VIEW.setCurrentPlayer(getCurrentPlayer());
 
@@ -257,26 +258,51 @@ public final class GameLogic {
 
     // #endregion
 
+    // ==============================
+    // #region Song Operations
+    // ==============================
+
+    /**
+     * Loads songs from active sets in database
+     * and reduces the amount to {@code limit}.
+     * @param limit Maximum limit of songs.
+     * @return List of songs, shuffled and reduced to {@code limit}.
+     */
+    private List<Song> loadSongs(int limit) {
+        // Load songs from database
+        List<Song> songs = Database.getInstance().getSongFromActiveSets();
+
+        // Shuffle songs and reduce length to 'limit'
+        Collections.shuffle(songs);
+        songs.subList(limit, songs.size()).clear();
+
+        return songs;
+    }
+
     /**
      * Adds first song from global list SONGS to GameView of the current player.
      * Updates count of remaining cards on GameView.
-     * Returns if method is called by client.
+     * If SONGS list is empty, calculates winner and shows winner pane.
+     * Skipped if method is called by client.
      */
-    public void addFirstToCardStack() {
+    public void addSongToView() {
         if (!isHost) return;
 
         // If no cards left -> end game
         if (SONGS.size() < 1) {
-            Player winner = new Player();
+            Player winner = PLAYERS[0];
 
-            if (PLAYERS[0].songs.size() > PLAYERS[1].songs.size()) {
-                winner = PLAYERS[0];
-            }
-            else if (PLAYERS[1].songs.size() > PLAYERS[0].songs.size()) {
-                winner = PLAYERS[1];
+            for (Player player : PLAYERS) {
+                if (player.songs.size() > winner.songs.size()) {
+                    winner = player;
+                }
+                else if (player.songs.size() == winner.songs.size()) {
+                    winner = new Player();
+                    winner.uuid = "";
+                }
             }
 
-            sendObject("WINNER:" + winner.username); // TODO: Durch IDs ersetzen
+            sendObject("WINNER:" + winner.uuid);
             VIEW.showWinnerPane(winner);
 
             stopAllTasks();
@@ -285,84 +311,66 @@ public final class GameLogic {
 
         currentSong = SONGS.removeFirst();
 
-        sendObject(new SongDTO(currentSong, "CURRENT_SONG"));
+        sendObject(new SongDTO(currentSong, "CURRENT"));
 
         remaining_cards--;
         VIEW.setRemainingCards(remaining_cards);
 
         if (PLAYERS[currentPlayerIdx].role.equals(Player.Role.CLIENT)) {
-            sendObject(new SongDTO(currentSong, "ADD_CARD_TO_STACK"));
+            sendObject(new SongDTO(currentSong, "CARD"));
             VIEW.setTimerForOpponent(OPTIONS.turnTime);
             return;
         }
 
         VIEW.addToCardStack(currentSong);
-        sendObject("OPPONENT_MOVE_TIMER");
+        sendObject("TIMER");
     }
 
     /**
-     * Skip song fur current player and place new card on theyr GameView.
-     * Removes a Hitmaster Chip from current player.
+     * Skip song fur current player and place new card on their GameView.
+     * Removes a Hitmaster chip from current player, if {@code removeChip == true}.
      */
-    public void skipCurrentSong() {
-        this.sendObject("OPPONENT_SKIP");
-        VIEW.addInfoMessage(this.getCurrentPlayer().username + " skipped their song!");
+    public void skipSong(boolean removeChip) {
+        if (removeChip && PLAYERS[currentPlayerIdx].hitmasterPoints < 1) return;
 
-        PLAYERS[currentPlayerIdx].hitmasterPoints--;
+        sendObject("OPPONENT:" + (removeChip ? "SKIP" : "BYPASS"));
+        VIEW.addInfoMessage(this.getCurrentPlayer().username + " skipped the song!");
 
-        VIEW.removeHitmasterChip();
-        VIEW.skipCard();
-        this.addFirstToCardStack();
-    }
-
-    public void skipCurrentSongWithoutLosingChip() {
-        sendObject("OPPONENT_SOFT_SKIP");
-        VIEW.addInfoMessage(getCurrentPlayer().username + " skipped their song!");
-
-        PLAYERS[currentPlayerIdx].hitmasterPoints--;
+        if (removeChip) {
+            PLAYERS[currentPlayerIdx].hitmasterPoints--;
+            VIEW.removeHitmasterChip();
+        }
 
         VIEW.skipCard();
-        addFirstToCardStack();
+        addSongToView();
     }
 
     /**
-     * Inserts a SongCard on GameView into the CardStripPane of current player correctly sorted.
-     * Removes all Hitmaster Chips from current player.
-     */
-    public void insertCardIntoStrip() {
-        PLAYERS[currentPlayerIdx].hitmasterPoints = 0;
-
-        this.sendObject("OPPONENT_REMOVE_CHIPS");
-
-        VIEW.removeAllHitmasterChips();
-        VIEW.insertCardIntoStrip(false);
-    }
-
-    /**
-     * Inserts the current song into list of songs of a given player.
+     * Inserts the current song into list of songs of {@code player}.
      * Insertion index gets automatically calculated.
      * Prints warning in console if insertion index couldn't get calculated.
-     * @param player Player to insert current song in list.
+     * @param player Player to add current song to.
      */
-    public void addCardToPlayerSorted(Player player) {
+    public void addSongToPlayer(Player player) {
+        // No songs in list
         if (player.songs.isEmpty()) {
-            Log.Error("List of player \"" + player.username + "\" is empty!");
+            player.songs.addFirst(currentSong);
             return;
         }
 
-        // 1) Check if first index fits
+        // At start of list
         if (currentSong.year <= player.songs.getFirst().year) {
             player.songs.addFirst(currentSong);
             return;
         }
 
-        // 2) Check if last index fits
+        // At end of list
         if (currentSong.year >= player.songs.getLast().year) {
             player.songs.addLast(currentSong);
             return;
         }
 
-        // 3) Search for index
+        // Somewehre in between
         int insertionIdx = -1;
         for (int i = 1; i < player.songs.size(); i++) {
             if (player.songs.get(i - 1).year <= currentSong.year && player.songs.get(i).year >= currentSong.year) {
@@ -378,6 +386,31 @@ public final class GameLogic {
             Log.Warning("Song \"" + currentSong.titles.getFirst() + "\" couldn't get inserted into songs of \"" + player.username + "\": No insertion index found.");
         }
     }
+
+    // #endregion
+
+    // ==============================
+    // #region Chip Actions
+    // ==============================
+
+    /**
+     * Inserts a SongCard on GameView into the CardStripPane of current player correctly sorted.
+     * Removes all Hitmaster Chips from current player.
+     */
+    public void claimSong() {
+        if (PLAYERS[currentPlayerIdx].hitmasterPoints < 3) return;
+
+        PLAYERS[currentPlayerIdx].hitmasterPoints = PLAYERS[currentPlayerIdx].hitmasterPoints - 3;
+
+        sendObject("OPPONENT:CHIPS:REMOVE:" + 3);
+
+        VIEW.removeAllHitmasterChips();
+        VIEW.insertCardIntoStrip(false);
+    }
+
+    // #endregion
+
+    
 
     public boolean checkSongOrder(List<SongCard> songCards) {
         // 1) Search for currentSong
@@ -677,7 +710,7 @@ public final class GameLogic {
                 switchToNextPlayer();
 
                 if (isHost) 
-                    addFirstToCardStack();
+                    addSongToView();
             break;
 
             // Update count of remaining cards in GameView
@@ -692,7 +725,7 @@ public final class GameLogic {
                 }
             break;
 
-            case "OPPONENT_MOVE_TIMER":
+            case "TIMER":
                 VIEW.setTimerForOpponent(OPTIONS.turnTime);
             break;
 
@@ -708,34 +741,13 @@ public final class GameLogic {
                 VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
             break;
 
-            // Skips the current card and places a new card to stack
-            // If host, update card of client
-            case "OPPONENT_SKIP":
-                VIEW.addInfoMessage(this.getCurrentPlayer().username + " skipped their song!");
-
-                PLAYERS[currentPlayerIdx].hitmasterPoints--;
-                VIEW.removeOpponentChip();
-
-                VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
-                VIEW.addNewCardToDiscard(currentSong);
-                if (isHost) {
-                    addFirstToCardStack(); 
-                }
-            break;
-
             case "OPPONENT_SOFT_SKIP":
-                VIEW.addInfoMessage(getCurrentPlayer().username + " skipped their song!");
-
-                VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
-                VIEW.addNewCardToDiscard(currentSong);
-                if (isHost) {
-                    addFirstToCardStack(); 
-                }
+                
             break;
 
             // Move card of opponent to discard pile
             case "OPPONENT_DISCARD":
-                VIEW.addNewCardToDiscard(currentSong);
+                VIEW.addNewSongToDiscard(currentSong);
             break;
 
             // Add Hitmaster Chip to opponent pane
@@ -779,7 +791,7 @@ public final class GameLogic {
                 // TODO: Visual feedback and continue game
                 Platform.runLater(() -> {
                     VIEW.confirmInput();
-                    this.addCardToPlayerSorted(this.getPreviousPlayer());
+                    this.addSongToPlayer(this.getPreviousPlayer());
                 });
             break;
 
@@ -790,6 +802,42 @@ public final class GameLogic {
 
             case "OPPONENT_WIN":
                 Platform.runLater(() -> WinnerPane.winnerDialog(VIEW, getCurrentPlayer()));
+            break;
+
+            case "OPPONENT":
+                switch (parts[1]) {
+                    // Skips the current song and places a new card on UI
+                    case "SKIP":
+                        VIEW.addInfoMessage(getCurrentPlayer().username + " skipped the song!");
+
+                        PLAYERS[currentPlayerIdx].hitmasterPoints--;
+                        VIEW.removeOpponentChip();
+
+                        VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
+                        VIEW.addNewSongToDiscard(currentSong);
+
+                        if (isHost) addSongToView(); 
+                    break;
+
+                    case "BYPASS":
+                        VIEW.addInfoMessage(getCurrentPlayer().username + " skipped the song!");
+
+                        VIEW.paintOpponentCard(currentSong, "rgb(255, 0, 0)");
+                        VIEW.addNewSongToDiscard(currentSong);
+
+                        if (isHost) addSongToView(); 
+                    break;
+
+                    case "CHIPS":
+                        switch(parts[2]) {
+                            case "REMOVE":
+                                int toRemove = Integer.parseInt(parts[3]);
+                                PLAYERS[currentPlayerIdx].hitmasterPoints = PLAYERS[currentPlayerIdx].hitmasterPoints - toRemove;
+                                VIEW.removeOpponentChips(toRemove);
+                            break;
+                        }
+                    break;
+                }
             break;
 
             case "CLIENT_FINISH_TURN":
@@ -843,7 +891,7 @@ public final class GameLogic {
 
             case "WINNER":
                 for (Player player : PLAYERS) {
-                    if (player.username.equals(parts[1])) {
+                    if (player.uuid.equals(parts[1])) {
                         VIEW.showWinnerPane(player);
                         return;
                     }
@@ -943,13 +991,13 @@ public final class GameLogic {
                                 VIEW.setRemainingCards(remaining_cards);
                             break;
 
-                            case "CURRENT_SONG":
+                            case "CURRENT":
                                 currentSong = receivedSong;
                                 remaining_cards--;
                                 VIEW.setRemainingCards(remaining_cards);
                             break;
 
-                            case "ADD_CARD_TO_STACK":
+                            case "CARD":
                                 currentSong = receivedSong;
                                 VIEW.addToCardStack(currentSong);
                             break;
@@ -1004,7 +1052,7 @@ public final class GameLogic {
         }
 
         if (correct) {
-            addCardToPlayerSorted(getCurrentPlayer());
+            addSongToPlayer(getCurrentPlayer());
         } 
         sendObject(new SongDTO(songsFromCards, "OPPONENT:REVEAL:" + (correct ? "CORRECT" : "WRONG")));
     }
@@ -1081,7 +1129,7 @@ public final class GameLogic {
         // 4) Add song to player's song list if guess was correct
         //! BUG: Both could be correct (if song was 2005 and both place it next to 2005)
         if (correctSteal) {
-            this.addCardToPlayerSorted(this.getPreviousPlayer());
+            this.addSongToPlayer(this.getPreviousPlayer());
             Platform.runLater(() -> {
                 VIEW.addToCardStack(currentSong);
                 VIEW.insertCardIntoStrip(true);
@@ -1114,7 +1162,7 @@ public final class GameLogic {
             this.sendObject("PLAYER_NEXT");
 
             // 3) Place new SongCard on GameView
-            this.addFirstToCardStack(); // Method sends an Object
+            this.addSongToView(); // Method sends an Object
         }
 
         // ----- CLIENT LOGIC -----

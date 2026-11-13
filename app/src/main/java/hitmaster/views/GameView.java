@@ -190,8 +190,8 @@ public class GameView extends BorderPane {
         PLAYPAUSE.setOnAction(e -> { playPause(); });
         FORWARD.setOnAction(e -> { GAME.seek5secForward(); GAME.sendObject("SONG:FORWARD"); });
         RESTART.setOnAction(e -> { GAME.restartCurrentSong(); GAME.sendObject("SONG:RESTART"); });
-        SKIP.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 1) GAME.skipCurrentSong(); });
-        INSERT.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 3) GAME.insertCardIntoStrip(); });
+        SKIP.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 1) GAME.skipSong(true); });
+        INSERT.setOnAction(e -> { if (GAME.getChipCountOfCurrentPlayer() >= 3) GAME.claimSong(); });
 
         setInputsEnabled(false);
 
@@ -450,7 +450,7 @@ public class GameView extends BorderPane {
      * Directly shows Card front.
      * @param song Song to put in discard Pile.
      */
-    public void addNewCardToDiscard(Song song) {
+    public void addNewSongToDiscard(Song song) {
         Platform.runLater(() -> {
             final SongCard wrongCard = new SongCard(this, song);
 
@@ -849,7 +849,7 @@ public class GameView extends BorderPane {
                 "Skip"
             );
 
-            if (skip) GAME.skipCurrentSongWithoutLosingChip();
+            if (skip) GAME.skipSong(false);
         });
 
         setInputsEnabled(true);
@@ -927,6 +927,12 @@ public class GameView extends BorderPane {
      */
     public void addOpponentChip() {
         Platform.runLater(() -> PLAYER_PANE.addChip());
+    }
+
+    public void removeOpponentChips(int toRemove) {
+        for (int i = toRemove; i > 0; i--) {
+            Platform.runLater(() -> PLAYER_PANE.removeChip());
+        }
     }
 
     /**
@@ -1113,7 +1119,7 @@ public class GameView extends BorderPane {
         boolean guess = GAME.checkStealOrder(STRIP.getCards());
         if (guess && !GAME.checkSongOrder(STRIP.getSongCards())) {
             stealCard.setBorderColor("rgb(0, 255, 0)");
-            GAME.addCardToPlayerSorted(GAME.getPreviousPlayer());
+            GAME.addSongToPlayer(GAME.getPreviousPlayer());
         }
         else {
             stealCard.setBorderColor("rgb(255, 0, 0)");
