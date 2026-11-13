@@ -11,6 +11,7 @@
 - Game setting for amount of chips each player starts with
 - Game settings for actions players can perform with chips
 - Different game modes, feauturing different difficulties
+- Session Manager for session IDs
 - Song Set 'Hits Made in Germany', feauturing songs from Germany
 - Song Set 'Wacken', feauturing rock and metal hits from one of Germany's biggest festivals.
 

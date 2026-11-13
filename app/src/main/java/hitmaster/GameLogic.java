@@ -23,6 +23,7 @@ import hitmaster.services.Database;
 import hitmaster.services.Log;
 import hitmaster.services.MusicPlayer;
 import hitmaster.services.NetworkManager;
+import hitmaster.services.SessionManager;
 import hitmaster.views.GameView;
 import hitmaster.views.StealView;
 import javafx.application.Platform;
@@ -33,10 +34,13 @@ public final class GameLogic {
     private final GameView VIEW;
     private final MusicPlayer MUSICPLAYER;
     private final GameOptions OPTIONS;
-    private final Player[] PLAYERS;
     private final boolean MULTIPLAYER;
     private int currentPlayerIdx = 0;
     private boolean hasPlayer = false;
+
+    // Players
+    private final Player[] PLAYERS;
+    private Player OWN_PLAYER;
 
     private final List<Song> SONGS;
     private Song currentSong;
@@ -184,6 +188,74 @@ public final class GameLogic {
             startPingSystem();
         }
     }
+
+    // ==============================
+    // #region Player Operations
+    // ==============================
+
+    /**
+     * Gets player object of this instance's user and returns it.
+     * UUID of SessionManager is used for the case two players share the same username.
+     * 
+     * @return Player object of instance's user.
+     */
+    public Player getLocalPlayer() {
+        if (OWN_PLAYER != null) return OWN_PLAYER;
+
+        String sessionId = SessionManager.getInstance().getSessionId();
+
+        for (Player player : PLAYERS) {
+            if (player.uuid.equals(sessionId)) {
+                OWN_PLAYER = player;
+                return OWN_PLAYER;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Gets player of current turn and returns it.
+     * Uses currentPlayerIdx to get current player.
+     * 
+     * @return Current player.
+     */
+    public Player getCurrentPlayer() {
+        return PLAYERS[currentPlayerIdx];
+    }
+
+    /**
+     * Gets the player that had their turn before the current player and returns it.
+     * 
+     * @return Previous player.
+     */
+    public Player getPreviousPlayer() {
+        if (currentPlayerIdx > 0)
+            return PLAYERS[currentPlayerIdx - 1];
+
+        return PLAYERS[PLAYERS.length - 1];
+    }
+
+    /**
+     * Changes currentPlayerIdx to next player in array.
+     * If index reached end of array, it restarts from index 0.
+     */
+    public void switchToNextPlayer() {
+        // 1) Change currentPlayerIdx
+        if (currentPlayerIdx == PLAYERS.length - 1) {
+            currentPlayerIdx = 0;
+        } else {
+            currentPlayerIdx++;
+        }
+
+        // 2) Update UI
+        if (MULTIPLAYER && networkManager == null)
+            VIEW.switchSideWithOpponent();
+
+        VIEW.setCurrentPlayer(getCurrentPlayer());
+    }
+
+    // #endregion
 
     /**
      * Adds first song from global list SONGS to GameView of the current player.
@@ -368,37 +440,6 @@ public final class GameLogic {
         return (songCards.size() >= 10);
     }
 
-    /**
-     * Changes currentPlayerIdx to next player in array.
-     * If index reached end of array, it gets set to first.
-     */
-    public void switchToNextPlayer() {
-        // 1) Change currentPlayerIdx
-        if (currentPlayerIdx == PLAYERS.length - 1) {
-            currentPlayerIdx = 0;
-        }
-        else {
-            currentPlayerIdx++;
-        }
-
-        // 2) Update UI
-        if (MULTIPLAYER && networkManager == null)
-            VIEW.switchSideWithOpponent();
-
-        VIEW.setCurrentPlayer(getCurrentPlayer());
-    }
-
-    public Player getCurrentPlayer() {
-        return PLAYERS[currentPlayerIdx];
-    }
-
-    public Player getPreviousPlayer() {
-        if (currentPlayerIdx > 0)
-            return PLAYERS[currentPlayerIdx - 1];
-
-        return PLAYERS[PLAYERS.length - 1];
-    }
-
     public int getChipCountOfCurrentPlayer() {
         return PLAYERS[currentPlayerIdx].hitmasterPoints;
     }
@@ -413,17 +454,6 @@ public final class GameLogic {
 
     public boolean isMultiplayer() {
         return MULTIPLAYER;
-    }
-
-    public Player getLocalPlayer() {
-        if (this.isLAN()) {
-            if (isHost)
-                return PLAYERS[0];
-
-            return PLAYERS[1];
-        }
-
-        return PLAYERS[currentPlayerIdx];
     }
 
     public Player getOpponentPlayer() {

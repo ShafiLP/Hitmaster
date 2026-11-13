@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 
 import hitmaster.design.PastelColor;
 import hitmaster.services.Log;
+import hitmaster.services.SessionManager;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -24,6 +25,7 @@ import javafx.scene.shape.Circle;
 public class Player implements Serializable {
 
     public String username;
+    public String uuid;
     public transient Image img;
     public byte[] imgData;
     public List<Song> songs = new ArrayList<>();
@@ -43,6 +45,7 @@ public class Player implements Serializable {
 
     public Player(String username, String imgPath) {
         this.username = username;
+        this.uuid = SessionManager.getInstance().getSessionId();
 
         if (imgPath != null) {
             try {
