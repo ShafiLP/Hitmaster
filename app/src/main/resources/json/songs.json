@@ -2656,7 +2656,7 @@
   {
     "id": 380,
     "titles": ["Prey"],
-    "artists": ["Parkway Drive"],
+    "artists": ["Parkway Drive", "PD"],
     "year": 2018,
     "spotify_id": "7lMFAK8dv0QkWpIlZcWQlJ"
   },
@@ -2838,7 +2838,7 @@
   {
     "id": 406,
     "titles": ["Ace Of Spades"],
-    "artists": ["Motörhead", "Motorhead"],
+    "artists": ["Motörhead", "Motoerhead"],
     "year": 1980,
     "spotify_id": "3CIOopLwvyMvXk97ZEksKO"
   },
@@ -5859,7 +5859,7 @@
     "id": 836,
     "titles": ["Wo Sind Die Clowns?"],
     "artists": ["Saltatio Mortis", "SM"],
-    "year": 2016,
+    "year": 2015,
     "spotify_id": "24wv4TYqBSBzogJy75j2dF"
   },
   {
@@ -7270,7 +7270,7 @@
     "id": 1037,
     "titles": ["Madhouse"],
     "artists": ["Anthrax"],
-    "year": 1985,
+    "year": 1984,
     "spotify_id": "76BYv24CcZt2u94JRjmATX"
   },
   {
@@ -7459,7 +7459,7 @@
   {
     "id": 1064,
     "titles": ["All My Friends Are Dead"],
-    "artists": ["Turbonegro", "Turbo Negro"],
+    "artists": ["Turbonegro"],
     "year": 2005,
     "spotify_id": "6fEztciYVlIyWTBe66clVj"
   },
@@ -8035,7 +8035,7 @@
   },
   {
     "id": 1146,
-    "titles": ["I Want Out"],
+    "titles": ["I Want Out", "Want Out"],
     "artists": ["Helloween"],
     "year": 1988,
     "spotify_id": "5ObemyuL5dhT67hyz1iWlA"
@@ -18829,5 +18829,484 @@
     "artists": ["Papa Roach", "PR"],
     "year": 2000,
     "spotify_id": "24z528iI9kZu5LbkLainjI"
+  },
+  {
+    "id": 2657,
+    "titles": ["Ratatata", "Ratata", "Ratatatata"],
+    "artists": ["Electric Callboy & Babymetal", "Electric Callbo", "Babymetal", "Eskimo Callboy", "EC"],
+    "year": 2024,
+    "spotify_id": "2S3u18aJF8eExll5dYwSJb"
+  },
+  {
+    "id": 2658,
+    "titles": ["Kashmir"],
+    "artists": ["Led Zeppelin", "LZ", "Led Zep"],
+    "year": 1975,
+    "spotify_id": "6Vjk8MNXpQpi0F4BefdTyq"
+  },
+  {
+    "id": 2659,
+    "titles": ["The End Of Heartache", "End Of Heartache"],
+    "artists": ["Killswitch Engage", "Killswitch"],
+    "year": 2004,
+    "spotify_id": "2nUy0ifVE7UwtOK4rugFsP"
+  },
+  {
+    "id": 2660,
+    "titles": ["Godzilla"],
+    "artists": ["Blue Öyster Cult", "Blue Oyster Cult", "Blue Oeyster Cult", "BÖC", "BOC"],
+    "year": 1977,
+    "spotify_id": "6N0AnkdDFZUetw8KAGHV7e"
+  },
+  {
+    "id": 2661,
+    "titles": ["Get It On", "Getting It On"],
+    "artists": ["Turbonegro"],
+    "year": 1998,
+    "spotify_id": "72k7h4RRSBg6xvJE9z3zS5"
+  },
+  {
+    "id": 2662,
+    "titles": ["The Nexus", "Nexus"],
+    "artists": ["Amaranthe"],
+    "year": 2013,
+    "spotify_id": "3cSJXlpx1lAP8vGAh8mEXB"
+  },
+  {
+    "id": 2663,
+    "titles": ["Evil"],
+    "artists": ["Mercyful Fate", "MF"],
+    "year": 1983,
+    "spotify_id": "5pH1BecbNktYDbYw0XCEWn"
+  },
+  {
+    "id": 2664,
+    "titles": ["Time For Justice", "Justice Time"],
+    "artists": ["Doro", "Doro Pesch"],
+    "year": 2023,
+    "spotify_id": "0ggysY8zSbMzk6SxhgxlGW"
+  },
+  {
+    "id": 2665,
+    "titles": ["Metal On Metal"],
+    "artists": ["Anvil"],
+    "year": 1982,
+    "spotify_id": "56uiDIiXz2sRoQ0AXq84aI"
+  },
+  {
+    "id": 2666,
+    "titles": ["Davidian"],
+    "artists": ["Machine Head", "MH"],
+    "year": 1994,
+    "spotify_id": "3qHlBxD3acw5nrl7Padt0v"
+  },
+  {
+    "id": 2667,
+    "titles": ["20 km/h", "Zwanzig km/h", "Twenty km/h", "20 Kilometer pro Stunde",
+               "Zwanzig Kilometer pro Stunde", "Twenty Kilometers per Hour", "Twenty Kilometres per Hour"],
+    "artists": ["We Butter The Bread With Butter", "WBTBWB"],
+    "year": 2021,
+    "spotify_id": "40WBlZAQYLA4e4DqgM16Pr"
+  },
+  {
+    "id": 2668,
+    "titles": ["Agent Orange"],
+    "artists": ["Sodom"],
+    "year": 1989,
+    "spotify_id": "3Ks3K2RmCxSUcXS6cOvd43"
+  },
+  {
+    "id": 2669,
+    "titles": ["Santiano"],
+    "artists": ["Santiano"],
+    "year": 2012,
+    "spotify_id": "48iwF6sUOHYg2foDUPZWUd"
+  },
+  {
+    "id": 2670,
+    "titles": ["By A Monster's Hand", "By A Monster His Hand", "By A Monster Hers Hand", "By A Monster Theirs Hand"],
+    "artists": ["Volbeat"],
+    "year": 2025,
+    "spotify_id": "6okhNU97I9bKQ1wCbtleOQ"
+  },
+  {
+    "id": 2671,
+    "titles": ["Dig"],
+    "artists": ["Mudvayne"],
+    "year": 2000,
+    "spotify_id": "3H0ZY55seypgo0zXI6zwRk"
+  },
+  {
+    "id": 2672,
+    "titles": ["Electric Crown"],
+    "artists": ["Testament"],
+    "year": 1992,
+    "spotify_id": "5gnjaZqOaqE5GZKjby8KoT"
+  },
+  {
+    "id": 2673,
+    "titles": ["Black Tears"],
+    "artists": ["Heaven Shall Burn", "Heaven Should Burn", "HSB"],
+    "year": 2008,
+    "spotify_id": "3OZdcvibLrA7Jr9xw5W88D"
+  },
+  {
+    "id": 2674,
+    "titles": ["Whiskey In The Jar", "Whisky In The Jar"],
+    "artists":["Thin Lizzy", "TL"],
+    "year": 1972,
+    "spotify_id": "2uLx3Gka9TGCz9Zgu7Uwav"
+  },
+  {
+    "id": 2675,
+    "titles": ["Swords And Tequila", "Swords & Tequila"],
+    "artists": ["Riot"],
+    "year": 1981,
+    "spotify_id": "3lJqE5AKrrFDFdhDyB0kqx"
+  },
+  {
+    "id": 2676,
+    "titles": ["Lay It Down", "Laying It Down"],
+    "artists": ["Ratt"],
+    "year": 1985,
+    "spotify_id": "0d3qwh4HY9w6Ywywj6ksTv"
+  },
+  {
+    "id": 2677,
+    "titles": ["Twilight Of The Thunder God"],
+    "artists": ["Amon Amarth", "AA"],
+    "year": 2008,
+    "spotify_id": "5u3l2TONYacJgmRPQVaF9y"
+  },
+  {
+    "id": 2678,
+    "titles": ["(We Are) The Road Crew", "(We Are) Road Crew", "The Road Crew", "Road Crew", "We Are"],
+    "artists": ["Motörhead", "Motoerhead"],
+    "year": 1980,
+    "spotify_id": "3OsUOvhzvw62GDcZNZtfGR"
+  },
+  {
+    "id": 2679,
+    "titles": ["Electric Eye"],
+    "artists": ["Judas Priest", "JP"],
+    "year": 1982,
+    "spotify_id": "3w9zHVKI28aUPZTxq8oDC6"
+  },
+  {
+    "id": 2680,
+    "titles": ["I Have A Right", "Have A Right"],
+    "artists": ["Sonata Arctica", "SA"],
+    "year": 2012,
+    "spotify_id": "4CmtxfLMOwBvrrE7OFBzCq"
+  },
+  {
+    "id": 2681,
+    "titles": ["Wheels Of Steel"],
+    "artists": ["Saxon"],
+    "year": 1980,
+    "spotify_id": "181bQUGjSDPa0mZoPVGJes"
+  },
+  {
+    "id": 2682,
+    "titles": ["Overkill"],
+    "artists": ["Motörhead", "Motoerhead"],
+    "year": 1979,
+    "spotify_id": "4XvvR8F6qOcnzgChO1uTIO"
+  },
+  {
+    "id": 2683,
+    "titles": ["Prophets Of Rage"],
+    "artists": ["Prophets Of Rage"],
+    "year": 2016,
+    "spotify_id": "1bTVbi6uwmGwlsXy2soxpg"
+  },
+  {
+    "id": 2684,
+    "titles": ["Adrenalize", "Adrenalise"],
+    "artists": ["In This Moment", "This Moment", "ITM"],
+    "year": 2013,
+    "spotify_id": "06WohfoFEUa5faNy8f9S5N"
+  },
+  {
+    "id": 2685,
+    "titles": ["The Jaws Of Oblivion", "Jaws Of Oblivion"],
+    "artists": ["Emil Bulls", "EB"],
+    "year": 2011,
+    "spotify_id": "6j56XRmVMCuKKsQp1mGSKA"
+  },
+  {
+    "id": 2686,
+    "titles": ["I'd Love To Change The World", "I Would Love To Change The World"],
+    "artists": ["Ten Years After", "10 Years After", "TYA", "10YA"],
+    "year": 1971,
+    "spotify_id": "7n3WO6ESKS1uCI9fgkGs66"
+  },
+  {
+    "id": 2687,
+    "titles": ["Stand Up And Fight", "Stand Up & Fight"],
+    "artists": ["Turisas"],
+    "year": 2011,
+    "spotify_id": "2ZZo65CEkA83Q662zNebIP"
+  },
+  {
+    "id": 2688,
+    "titles": ["White Washed"],
+    "artists": ["August Burns Red", "ABR"],
+    "year": 2009,
+    "spotify_id": "0jCUZSnjn6hxp7zgX3h2rF"
+  },
+  {
+    "id": 2689,
+    "titles": ["Bleed"],
+    "artists": ["Meshuggah"],
+    "year": 2008,
+    "spotify_id": "4SRYpmb1PH3vjU3dEoLIST"
+  },
+  {
+    "id": 2690,
+    "titles": ["Sad But True"],
+    "artists": ["Metallica"],
+    "year": 1991,
+    "spotify_id": "5ltXoDLlI0rFZAmOXbAp5T"
+  },
+  {
+    "id": 2691,
+    "titles": ["One Step Closer", "1 Step Closer"],
+    "artists": ["Linkin Park", "LP"],
+    "year": 2000,
+    "spotify_id": "3K4HG9evC7dg3N0R9cYqk4"
+  },
+  {
+    "id": 2692,
+    "titles": ["Carrion"],
+    "artists": ["Parkway Drive", "PD"],
+    "year": 2006,
+    "spotify_id": "0xfWKcNu13xxXQ2GT0P09M"
+  },
+  {
+    "id": 2693,
+    "titles": ["Flirtin' With Disaster", "Flirting With Disaster"],
+    "artists": ["Molly Hatchet", "MH"],
+    "year": 1979,
+    "spotify_id": "61BywQA7q8KjpGjp3rHuRv"
+  },
+  {
+    "id": 2694,
+    "titles": ["Granite"],
+    "artists": ["Sleep Token", "ST"],
+    "year": 2023,
+    "spotify_id": "4mxiv6HQfhqgIuN5iOONQd"
+  },
+  {
+    "id": 2695,
+    "titles": ["Devil's Plaything", "Devil His Plaything", "Devil Hers Plaything", "Devil Theirs Plaything"],
+    "artists": ["Danzig", "Glenn Danzig"],
+    "year": 1990,
+    "spotify_id": "2AFN49ptbSNP7JJr6XkLXV"
+  },
+  {
+    "id": 2696,
+    "titles": ["Blood & Glitter", "Blood and Glitter"],
+    "artists": ["Lord Of The Lost", "Lord Of Lost", "LoTL"],
+    "year": 2022,
+    "spotify_id": "4ZAqNhkOEi32zzrY5ybilV"
+  },
+  {
+    "id": 2697,
+    "titles": ["Long Live Rock 'N' Roll", "Long Live Rock and Roll", "Long Live Rock & Roll"],
+    "artists": ["Rainbow"],
+    "year": 1978,
+    "spotify_id": "4cv7oG84huTbvRoNolz8Kc"
+  },
+  {
+    "id": 2698,
+    "titles": ["Shadow Moses"],
+    "artists": ["Bring Me The Horizon", "BMTH"],
+    "year": 2013,
+    "spotify_id": "68osIGtVjM7QWVe6pazLHj"
+  },
+  {
+    "id": 2699,
+    "titles": ["Elimination"],
+    "artists": ["Overkill"],
+    "year": 1989,
+    "spotify_id": "6lWFQo5NuR3y8Q6CHIRatA"
+  },
+  {
+    "id": 2700,
+    "titles": ["We Can't Be Beaten", "We Cannot Be Beaten"],
+    "artists": ["Rose Tattoo", "RT"],
+    "year": 1982,
+    "spotify_id": "6l8e3RyuCzNcZJ2Q92qI7h"
+  },
+  {
+    "id": 2701,
+    "titles": ["Dance The Night Away"],
+    "artists": ["Van Halen", "VH"],
+    "year": 1979,
+    "spotify_id": "4RS9PmtHQe7I0o5fEeweOY"
+  },
+  {
+    "id": 2702,
+    "titles": ["Welcome To The Jungle"],
+    "artists": ["Guns N' Roses", "Guns And Roses", "Guns & Roses", "GaR"],
+    "year": 1987,
+    "spotify_id": "0G21yYKMZoHa30cYVi1iA8"
+  },
+  {
+    "id": 2703,
+    "titles": ["Back In The Saddle"],
+    "artists": ["Aerosmith"],
+    "year": 1976,
+    "spotify_id": "3WPYapjyqcVpShYXQuChcs"
+  },
+  {
+    "id": 2704,
+    "titles": ["Rock And Stone", "Rock & Stone"],
+    "artists": ["Wind Rose", "WR"],
+    "year": 2024,
+    "spotify_id": "23rQSLXdUAHv6gb1kta7lf"
+  },
+  {
+    "id": 2705,
+    "titles": ["To The Hellfire", "The Hellfire", "To Hellfire", "Hellfire"],
+    "artists": ["Lorna Shore", "LS"],
+    "year": 2021,
+    "spotify_id": "0O26gtfjuscAOnQobjNPPL"
+  },
+  {
+    "id": 2706,
+    "titles": ["Alison Hell"],
+    "artists": ["Annihilator"],
+    "year": 1989,
+    "spotify_id": "153SwL1d9SfCLWhqIs08we"
+  },
+  {
+    "id": 2707,
+    "titles": ["The Kids Are Back", "Kids Are Back"],
+    "artists": ["Twisted Sister", "TS"],
+    "year": 1983,
+    "spotify_id": "7vjFBqqEubJSWPm0v9gMX5"
+  },
+  {
+    "id": 2708,
+    "titles": ["Blau Wie Das Meer"],
+    "artists": ["Mr. Hurley & Die Pulveraffen", "Mister Hurley & Die Pulveraffen",
+                "Mr. Hurley und Die Pulveraffen", "Mister Hurley und Die Pulveraffen",
+                "Mr. Hurley", "Mister Hurley", "Die Pulveraffen", "Pulveraffen"],
+    "year": 2012,
+    "spotify_id": "6qjrPaZz0eGn9rKdXUpxYY"
+  },
+  {
+    "id": 2709,
+    "titles": ["Talk Dirty To Me"],
+    "artists": ["Poison"],
+    "year": 1986,
+    "spotify_id": "08QP0rwnQSbbpGRIuXfrAY"
+  },
+  {
+    "id": 2710,
+    "titles": ["Drink"],
+    "artists": ["Alestorm"],
+    "year": 2014,
+    "spotify_id": "0SPHbfBIe0mdRnae2MWuzr"
+  },
+  {
+    "id": 2711,
+    "titles": ["From The Cradle To Enslave"],
+    "artists": ["Cradle Of Filth", "The Cradle Of Filth", "CoF"],
+    "year": 1999,
+    "spotify_id": "14JG4VbsqeLsFuDJlkybOT"
+  },
+  {
+    "id": 2712,
+    "titles": ["Angel Of Death"],
+    "artists": ["Slayer"],
+    "year": 1986,
+    "spotify_id": "5ohfpKB5tt275f4Y4lQ9F7"
+  },
+  {
+    "id": 2713,
+    "titles": ["Deadzone"],
+    "artists": ["Blind Channel", "BC"],
+    "year": 2024,
+    "spotify_id": "6viyz20O1r6Vuy75efkRcl"
+  },
+  {
+    "id": 2714,
+    "titles": ["Master Of Illusion"],
+    "artists": ["Battle Beast", "BB"],
+    "year": 2022,
+    "spotify_id": "5uezGrwjyarcPOH8uYGdXk"
+  },
+  {
+    "id": 2715,
+    "titles": ["Shadow Play"],
+    "artists": ["Rory Gallagher"],
+    "year": 1978,
+    "spotify_id": "15PTVLJS4Kczhnwl0FWFsh"
+  },
+  {
+    "id": 2716,
+    "titles": ["Strutter"],
+    "artists": ["KISS"],
+    "year": 1974,
+    "spotify_id": "0UCg6lnG2MXpuEpf8Pk1MV"
+  },
+  {
+    "id": 2717,
+    "titles": ["Back To Back", "Back 2 Back"],
+    "artists": ["Pretty Maids", "PM"],
+    "year": 1984,
+    "spotify_id": "5t70MlkURJ4JXbkfFtEqKr"
+  },
+  {
+    "id": 2718,
+    "titles": ["Superstitious"],
+    "artists": ["Europe"],
+    "year": 1988,
+    "spotify_id": "1fUl0jZAnH3oWVqAcQfPNc"
+  },
+  {
+    "id": 2719,
+    "titles": ["Pisces"],
+    "artists": ["Jinjer", "Ginger"],
+    "year": 2016,
+    "spotify_id": "5t8NXa2fugcTPsTfhVILmS"
+  },
+  {
+    "id": 2720,
+    "titles": ["Kiss Me Deadly"],
+    "artists": ["Lita Ford", "LF"],
+    "year": 1988,
+    "spotify_id": "0kFM6t9htbB53Dg8frGDGh"
+  },
+  {
+    "id": 2721,
+    "titles": ["Black Metal"],
+    "artists": ["Venom"],
+    "year": 1982,
+    "spotify_id": "3GlVq6iVOxZJQ8gPm84avl"
+  },
+  {
+    "id": 2722,
+    "titles": ["Clouds Over California"],
+    "artists": ["DevilDriver", "DD"],
+    "year": 2007,
+    "spotify_id": "6K4qjwuMpp9AT4uuKw2LLQ"
+  },
+  {
+    "id": 2723,
+    "titles": ["Wacken"],
+    "artists": ["The Butcher Sisters (feat. Doro)", "The Butcher Sisters", "Butcher Sisters", "TBS", "Doro", "Doro Pesch"],
+    "year": 2025,
+    "spotify_id": "3wTf2YlhbRw3KNBdujM0HG"
+  },
+  {
+    "id": 2724,
+    "titles": ["Z-Vor!"],
+    "artists": ["Kanonenfieber"],
+    "year": 2025,
+    "spotify_id": "7J6NvmIvN6FJPMH2qVxYNg"
   }
 ]
