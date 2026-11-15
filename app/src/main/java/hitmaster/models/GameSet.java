@@ -30,13 +30,18 @@ public class GameSet {
     }
 
     public ImageView getImage() {
-        return new ImageView(
-            new Image(getClass().getResourceAsStream("/setImages/" + img),
-            500,
-            500,
-            true,
-            true)
-        );
+        try {
+            return new ImageView(
+                new Image(getClass().getResourceAsStream("/setImages/" + img),
+                500,
+                500,
+                true,
+                true)
+            );
+        }
+        catch (Exception e) {
+            return new ImageView();
+        }
     }
 
     public ImageView getIcon() {

@@ -134,24 +134,36 @@ public class Database {
                 "hitster-de_schlager.png", "schlager-de.png", "schlager-de.csv", false));
             this.addSongsToSetFromCsv("schlager-de.csv", 6);
 
-            this.addSetToDatabase(new GameSet(7, "Urban & Hip-Hop - DE", "DE",
+            this.addSetToDatabase(new GameSet(7, "Wacken Open Air (DE)", "DE",
+                "Hitster Wacken - Die ultimativen Rock- und Metal-Hymnen, kuratiert von Wacken Radio by RADIO BOB! Mach dich bereit für pure Metal-Power: Diese Playlist vereint die härtesten Rock-, Metal- und Hard-&-Heavy-Klassiker, inspiriert vom legendären Wacken Open Air",
+                "hitster-de_wacken.png", "wacken-de.png", "wacken-de.csv", false));
+            this.addSongsToSetFromCsv("wacken-de.csv", 7);
+
+            this.addSetToDatabase(new GameSet(8, "Hits Made in Germany", "DE",
+                null,
+                "madeInGermany-de.jpg", "madeInGermany-de.png", "madeInGermany-de.csv", false));
+            this.addSongsToSetFromCsv("madeInGermany-de.csv", 8);
+
+            this.addSetToDatabase(new GameSet(9, "Urban & Hip-Hop - DE", "DE",
                 "Tauche ein in die Welt der Beats, Reime, Rap und ikonischen Hymnen mit HITSTER Urban & Hip-Hop! Diese spezielle Ausgabe nimmt dich mit auf eine musikalische Reise durch Urban Music aus mehreren Jahrzehnten, von legendären Songs bis zu modernen Hip-Hop-Hits.",
                 "hitster-de_urban.png", "urban-de.png", "urban-de.csv", false));
-            this.addSongsToSetFromCsv("urban-de.csv", 7);
+            this.addSongsToSetFromCsv("urban-de.csv", 9);
 
-            this.addSetToDatabase(new GameSet(8, "Bayern1 Expansion", "DE",
+            this.addSetToDatabase(new GameSet(10, "Bayern1 Expansion", "DE",
                 "Bayern 1 Hitliste: Tauche ein in eine Sammlung von über 150 Karten mit den größten Radiohits der vergangenen Jahrzehnte.",
                 "hitster-de_bavaria.png", "bavaria-ex.png", "bavaria-ex.csv", false));
-            this.addSongsToSetFromCsv("bavaria-ex.csv", 8);
+            this.addSongsToSetFromCsv("bavaria-ex.csv", 10);
 
-            this.addSetToDatabase(new GameSet(9, "Rock & Metal - Nordics", "INT", null, "rock-nordics.jpg", "rock-nd.png", "rock-nordics.csv", false));
-            this.addSongsToSetFromCsv("rock-nordics.csv", 9);
+            this.addSetToDatabase(new GameSet(11, "Rock (Nordics)", "INT",
+            "Dive into the electrifying world of rock music with the HITSTER Rock! Challenge your friends to place these legendary tracks in the correct chronological order. The first player to correctly sequence 10 songs will be crowned the HITSTER.",
+            "rock-nordics.png", "rock-nd.png", "rock-nordics.csv", false));
+            this.addSongsToSetFromCsv("rock-nordics.csv", 11);
 
-            this.addSetToDatabase(new GameSet(10, "Punk Expansion", "INT", null, "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
-            this.addSongsToSetFromCsv("punk-expansion.csv", 10);
+            this.addSetToDatabase(new GameSet(12, "Punk Expansion", "INT", null, "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
+            this.addSongsToSetFromCsv("punk-expansion.csv", 12);
 
-            this.addSetToDatabase(new GameSet(11, "Deutschrock Expansion", "DE", null, "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
-            this.addSongsToSetFromCsv("deutschrock-ex.csv", 11);
+            this.addSetToDatabase(new GameSet(13, "Deutschrock Expansion", "DE", null, "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
+            this.addSongsToSetFromCsv("deutschrock-ex.csv", 13);
 
             Log.Success("Succesfully initialized Database.");
             return true;
@@ -653,6 +665,28 @@ public class Database {
             }
 
             return sets;
+        }
+        catch (SQLException e) {
+            Log.Error("Error while fetching sets from database: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+    public List<GameSet> getActiveSets() {
+        try (Connection conn = Database.connect()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("""
+                SELECT *
+                FROM sets
+                WHERE is_active = 1
+            """);
+
+            List <GameSet> activeSets = new ArrayList<>();
+            while (rs.next()) {
+                activeSets.add(mapSet(rs));
+            }
+
+            return activeSets;
         }
         catch (SQLException e) {
             Log.Error("Error while fetching sets from database: " + e.getMessage());

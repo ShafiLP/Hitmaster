@@ -7,7 +7,7 @@ app/.env
 app/spotify.properties
 *.db
 app/src/main/resources/userImage.png
-TODO
+TODO.md
 app/build.gradle.kts
 app/src/main/resources/userImage.jpg
 app/bin

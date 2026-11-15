@@ -10,16 +10,19 @@
     -secondary-brush: #505050;
     -fx-tertiary-brush: #fff;
     -tertiary-brush: #fff;
+
+    -accent-brush: #3060ff;
     -fx-primary-accent-brush: #3060ff;
     -fx-secondary-accent-brush: #3e92ff;
     -fx-tertiary-accent-brush: #ff3838;
 
-    -icon-color: -secondary-brush;
+    -icon-fill: -primary-brush;
 
     -fx-green-brush: rgb(0, 255, 0);
     -fx-yellow-brush: rgb(255, 255, 0);
     -fx-red-brush: rgb(255, 0, 0);
     -red: rgb(255, 0, 0);
+    -green: #00bb00;
     -light-gray: #cccccc;
 
     -spotify-background: #ccffcc;
@@ -58,7 +61,7 @@
 }
 
 .icon {
-    -fx-fill: -secondary-brush;
+    -fx-fill: -icon-fill;
 }
 
 /* ============================== */
@@ -86,7 +89,7 @@
 /* Default buttons fields */
 .button {
     -fx-font-size: 14px;
-    -fx-text-fill: -fx-primary-brush;
+    -fx-text-fill: -primary-brush;
     -fx-background-radius: 6;
     -fx-background-color: -light-gray;
     -fx-radius: 14;
@@ -94,11 +97,38 @@
     -fx-cursor: hand;
 }
 
+.button:hover {
+    -fx-background-color: derive(-light-gray, -15%);
+}
+
 .clickable-icon {
     -fx-font-size: 14px;
     -fx-text-fill: -secondary-brush;
     -fx-background-color: transparent;
     -fx-cursor: hand;
+}
+
+.toggle-button {
+    -fx-background-color: -fx-transparent;
+    -fx-text-fill: -fx-primary-brush;
+    -fx-background-radius: 6;
+    -fx-font-size: 14px;
+    -fx-radius: 14;
+    -fx-padding: 4 7;
+    -fx-cursor: hand;
+}
+
+.toggle-button:hover {
+    -fx-background-color: -fx-transparent-focus;
+}
+
+.toggle-button:selected {
+    -fx-background-color: -fx-primary-accent-brush;
+    -fx-text-fill: -tertiary-brush;
+}
+
+.toggle-button:selected:hover {
+    -fx-background-color: derive(-fx-primary-accent-brush, -15%);
 }
 
 .modern-button {
@@ -246,77 +276,98 @@
 }
 
 /* ============================== */
-/* Scroll Bar                     */
+/* Scroll Bars                    */
 /* ============================== */
 
 .scroll-pane {
+    -fx-padding: 10 10 10 10;
     -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-padding: 0;
+    -fx-background: transparent
 }
 
-.scroll-pane .viewport {
+.scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
 
 .scroll-pane .scroll-bar:vertical {
     -fx-background-color: transparent;
-    -fx-pref-width: 10px;
-}
-
-.scroll-pane .scroll-bar:vertical .thumb {
-    -fx-background-color: -fx-secondary-brush;
-    -fx-background-radius: 5px;
-
-    -fx-min-height: 30px;
-    -fx-pref-height: 30px;
+    -fx-background: transparent;
+    -fx-pref-height: 12px;
+    -fx-padding: 2px;
 }
 
 .scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: -light-gray;
+    -fx-background-radius: 6px;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: derive(-light-gray, -20%);
+    -fx-background-radius: 6px;
+    -fx-background-insets: 0;
+    -fx-opacity: 1;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: derive(-light-gray, -30%);
+}
+
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button {
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-padding: 0;
+    -fx-opacity: 0;
+}
+
+.scroll-pane .scroll-bar:horizontal {
     -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-pref-height: 12px;
+    -fx-padding: 2px;
+}
+
+.scroll-pane .scroll-bar:horizontal .track {
+    -fx-background-color: -light-gray;
+    -fx-background-radius: 6px;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .scroll-bar:horizontal .thumb {
+    -fx-background-color: derive(-light-gray, -20%);
+    -fx-background-radius: 6px;
+    -fx-background-insets: 0;
+    -fx-opacity: 1;
+}
+
+.scroll-pane .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: derive(-light-gray, -30%);
+}
+
+.scroll-pane .scroll-bar:horizontal .increment-button,
+.scroll-pane .scroll-bar:horizontal .decrement-button {
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-padding: 0;
+    -fx-opacity: 0;
+}
+
+.separator {
+    -fx-background-color: transparent;
+    -fx-padding: 4 0 4 0;
+}
+
+.separator .line {
+    -fx-border-color: -light-gray;
+    -fx-border-width: 1 0 0 0;
 }
 
 /* ============================== */
 /* Set Manager                    */
 /* ============================== */
-
-.switch-toggle:hover{
-    -fx-cursor: hand;
-}
-
-.switch-toggle .mark {
-    -fx-background-color: transparent;
-    -fx-shape: null;
-}
-
-.switch-toggle .box {
-    -fx-background-color: #555555;
-    -fx-background-radius: 15;
-    -fx-padding: 0;
-    -fx-pref-width: 40;
-    -fx-pref-height: 22;
-    -fx-alignment: CENTER_LEFT;
-    -fx-transition: -fx-background-color 0.2s ease-out;
-}
-
-.switch-toggle:selected .box {
-    -fx-background-color: #00cc00;
-}
-
-.switch-toggle .box::after {
-    -fx-content: "";
-    -fx-background-color: white;
-    -fx-background-radius: 12;
-    -fx-pref-width: 18;
-    -fx-pref-height: 18;
-    -fx-translate-x: 2;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 3, 0, 0, 1);
-    -fx-transition: -fx-translate-x 0.2s ease-out;
-}
-
-.switch-toggle:selected .box::after {
-    -fx-translate-x: 20; /* 40 - 18 - 2 */
-}
 
 .set-card-grid {
     -fx-border-color: gray;

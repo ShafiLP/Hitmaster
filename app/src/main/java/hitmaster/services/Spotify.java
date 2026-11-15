@@ -20,7 +20,6 @@ import com.google.gson.JsonArray;
 import com.sun.net.httpserver.HttpServer;
 
 import hitmaster.models.User;
-import javafx.scene.media.Track;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.credentials.AuthorizationCodeCredentials;
@@ -59,7 +58,7 @@ public class Spotify {
                     .build();
 
             URI uri = spotify.authorizationCodeUri()
-                .scope("user-modify-playback-state user-read-playback-state")
+                .scope("user-modify-playback-state user-read-playback-state user-read-private")
                 .state(UUID.randomUUID().toString())
                 .show_dialog(true)
                 .build()
@@ -111,16 +110,12 @@ public class Spotify {
 
             AuthorizationCodeCredentials credentials = null;
             try {
-                System.out.println("Exchanging code: " + code[0]);
-
                 credentials =
                     spotify.authorizationCode(code[0])
                         .build()
                         .execute();
-
-                Log.Success("Token OK.");
-
-            } catch (IOException | ParseException | SpotifyWebApiException e) {
+            }
+            catch (IOException | ParseException | SpotifyWebApiException e) {
                 throw new Error("Coudldn't fetch valid token: " + e.getMessage());
             }
 
@@ -139,7 +134,7 @@ public class Spotify {
             user.provider = "spotify";
             Database.getInstance().updateUser(user);
             
-            Log.Success("Connection to Spotify was successful.\nTokens saved in \"spotify.properties\".");
+            Log.Success("Connection to Spotify was successful.");
             return true;
         }
         catch (IOException | InterruptedException e) {
@@ -307,26 +302,26 @@ public class Spotify {
 
     /**
      * Connects to linked Spotify account from "spotify.properties" and plays a song on user's spotify device.
-     * @param TrackId Spotify song ID.
+     * @param connection SpotifyApi connection.
+     * @param trackId Spotify track ID.
      * @return Success result.
      */
-    public static boolean playSpotifyLink(SpotifyApi connection, String TrackId) {
+    public static boolean playSpotifyLink(SpotifyApi connection, String trackId) {
         try {
-            JsonArray uris = new JsonArray();
-            uris.add("spotify:track:" + TrackId);
+            // 1) Check if track is available in user's region
+            if (!Spotify.isTrackPlayable(connection, trackId)) {
+                return false;
+            }
 
+            // 2) Get URI
+            JsonArray uris = new JsonArray();
+            uris.add("spotify:track:" + trackId);
+
+            // 3) Play song on user's current device
             connection.startResumeUsersPlayback()
                 .uris(uris)
                 .build()
                 .execute();
-
-            CurrentlyPlayingContext playback = connection
-                .getInformationAboutUsersCurrentPlayback()
-                .build()
-                .execute();
-
-            if (playback != null && playback.getItem() instanceof Track)
-                Log.Info("Now playing song \"" + playback.getItem().getName() + "\" on Spotify.");
 
             return true;
         }
@@ -587,5 +582,31 @@ public class Spotify {
             Log.Error("Error occured while checking current playback state: " + e.getMessage());
             return false;
         }
+    }
+
+    /**
+     * Checks if a Spotify Track is available and playable inside the user's country.
+     * @param connection SpotifyApi connection.
+     * @param trackId Spotify ID of track.
+     * @return true if playable, false if not available.
+     */
+    public static boolean isTrackPlayable(SpotifyApi connection, String trackId) {
+        try {
+            se.michaelthelin.spotify.model_objects.specification.User user = connection.getCurrentUsersProfile()
+                .build()
+                .execute();
+
+            connection.getTrack(trackId)
+                .market(user.getCountry())
+                .build()
+                .execute();
+
+            return true;
+        }
+        catch (IOException | ParseException | SpotifyWebApiException e) {
+            Log.Warning("Spotify Track with ID \"" + trackId + "\" is not available.");
+            return false;
+        }
+        
     }
 }

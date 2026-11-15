@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import hitmaster.design.ToggleSwitch;
 import hitmaster.models.GameSet;
 import hitmaster.models.Song;
 import hitmaster.services.Database;
 import hitmaster.services.ThemeManager;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -33,6 +35,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class SetManagerView {
 
@@ -136,7 +139,7 @@ public class SetManagerView {
         close.getStyleClass().add("primary-button");
         close.setCancelButton(true);
         close.setPrefWidth(120);
-        close.setOnAction(e -> STAGE.close());
+        close.setOnAction(e -> { STAGE.fireEvent(new WindowEvent(STAGE, WindowEvent.WINDOW_CLOSE_REQUEST)); });
 
         Label songCount = new Label("Total: " + Database.getInstance().getSongCount() + " songs");
         songCount.getStyleClass().add("description");
@@ -313,11 +316,10 @@ public class SetManagerView {
         songCountLabel.setPrefHeight(35);
         songCountLabel.setAlignment(Pos.CENTER);
 
-        CheckBox switchToggle = new CheckBox();
-        switchToggle.getStyleClass().add("switch-toggle"); 
-        switchToggle.setSelected(set.isActive);
-        switchToggle.setOnAction(e -> {
-            boolean newState = switchToggle.isSelected();
+        ToggleSwitch toggleSwitch = new ToggleSwitch();
+        toggleSwitch.setSelected(set.isActive);
+        toggleSwitch.setOnAction(e -> {
+            boolean newState = toggleSwitch.isSelected();
             set.isActive = newState;
             Database.getInstance().updateSetStatus(set.id, newState);
         });
@@ -333,7 +335,7 @@ public class SetManagerView {
         Region hSpacing = new Region();
         HBox.setHgrow(hSpacing, Priority.ALWAYS);
         
-        HBox actionRow = new HBox(8, songCountLabel, hSpacing, switchToggle, viewSetBtn);
+        HBox actionRow = new HBox(8, songCountLabel, hSpacing, toggleSwitch, viewSetBtn);
         actionRow.setAlignment(Pos.CENTER);
 
         card.getChildren().addAll(setImageView, setName, descriptionLabel, spacer, actionRow);
@@ -783,6 +785,10 @@ public class SetManagerView {
         dialog.showAndWait();
 
         Platform.runLater(STAGE::requestFocus);
+    }
+
+    public void setOnCloseRequest(EventHandler<WindowEvent> event) {
+        STAGE.setOnCloseRequest(event);
     }
 
     public void show(Stage parent) {

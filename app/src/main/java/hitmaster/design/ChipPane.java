@@ -7,15 +7,17 @@ import javafx.scene.layout.StackPane;
 
 public class ChipPane extends HBox {
 
-    private final StackPane[] slots = new StackPane[3];
+    private final int MAX_CHIPS = 5;
+
+    private final StackPane[] slots = new StackPane[MAX_CHIPS];
     private int activeChipsCount = 0;
 
     public ChipPane() {
         super(15); // 15px = Padding between chips
         this.setAlignment(Pos.CENTER);
 
-        // 3 Placeholder slots
-        for (int i = 0; i < 3; i++) {
+        // MAX_CHIPS Placeholder slots
+        for (int i = 0; i < MAX_CHIPS; i++) {
             slots[i] = createPlaceholderSlot();
             this.getChildren().add(slots[i]);
         }
@@ -50,7 +52,7 @@ public class ChipPane extends HBox {
      * Adds a chip to the next free slot.
      */
     public void addChip() {
-        if (activeChipsCount < 3) {
+        if (activeChipsCount < MAX_CHIPS) {
             Label newChip = createHitmasterChip();
             slots[activeChipsCount].getChildren().add(newChip);
             activeChipsCount++;

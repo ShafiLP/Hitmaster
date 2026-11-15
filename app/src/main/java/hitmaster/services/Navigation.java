@@ -46,6 +46,7 @@ public class Navigation {
 
     public void toMainMenu() {
         scene.setRoot(mainMenuInstance.getView());
+        setTitle("Hitmaster");
     }
 
     public void show(Parent view) {
@@ -99,5 +100,9 @@ public class Navigation {
 
     public void close() {
         stage.close();
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 }
