@@ -1,6 +1,15 @@
 # Changelog
 
-## [0.0.8] - 2026-11-07
+## [0.0.9] - 2026-11-15
+
+### Changed
+- Song sets now load with own csv "csv/.songSets.csv" - like this, Database.java doesn't have to be changed when a set gets added, edited or removed.
+
+### Removed
+- Sets 'Deutschrock Expansion' and 'Punk Expansion' deactivated for now.
+
+
+## [0.0.8] - 2026-11-15
 
 ### Added
 - Different game modes, feauturing different difficulties

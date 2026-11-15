@@ -1,6 +1,7 @@
 package hitmaster.services;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -101,69 +103,13 @@ public class Database {
             """);
 
             // 2) Insert Songs into Database
-            this.insertJsonIntoSongs("songs.json");
+            insertJsonIntoSongs("songs.json");
 
             // 3) Insert GameSets into Database
-            this.addSetToDatabase(new GameSet(1,"Hitster - UK", "EN", 
-                "The ultimate party game: Turn any gathering into an unforgettable experience with Hitster Original - a thrilling party game for adults that combines music and fun!",
-                "hitster-uk_standard.png", "hitster-uk.png", "hitster-uk.csv", true));
-            this.addSongsToSetFromCsv("hitster-uk.csv", 1);
-
-            this.addSetToDatabase(new GameSet(2, "Hitster - DE", "DE",
-                "Feier die ultimative Party mit Hitster! Mit über 300 der größten Hits der letzten 100 Jahre ist Hitster das perfekte Partyspiel für einen Abend voller Lachen, Singen, Tanzen und gemeinsamen Erinnerungen.",
-                "hitster-de_standard.png", "hitster-de.png", "hitster-de.csv", false));
-            this.addSongsToSetFromCsv("hitster-de.csv", 2);
-
-            this.addSetToDatabase(new GameSet(3, "Rock - DE", "DE",
-                "Tauche ein in die elektrisierende Welt der Rockmusik mit HITSTER Rock Radio BOB! Diese Ausgabe bietet eine speziell zusammengestellte Sammlung legendärer Rocksongs aus verschiedenen Epochen.",
-                "hitster-de_rock.png", "rock-de.png", "rock-de.csv", false));
-            this.addSongsToSetFromCsv("rock-de.csv", 3);
-
-            this.addSetToDatabase(new GameSet(4, "Guilty Pleasures - DE", "DE",
-                "Die Party geht weiter mit Hitster Guilty Pleasures! Das lustigste Partyspiel kommt mit einer neuen Ausgabe, diesmal mit den Hits die angeblich keiner kennt und trotzdem jeder mitsingen kann.",
-                "hitster-de_guilty.png", "guilty-de.png", "guilty-de.csv", false));
-            this.addSongsToSetFromCsv("guilty-de.csv", 4);
-
-            this.addSetToDatabase(new GameSet(5, "Summer Party - DE", "DE",
-                "Alle Sommerhits der vergangenen Jahrzehnte kommen in dieser Variante von Hitster zusammen! Feiert eure ultimative Sommerparty mit internationalen und deutschen Hits, die jeder kennt und begebt euch auf die Zeitreise.",
-                "hitster-de_summer.png", "summer-de.png", "summer-de.csv", false));
-            this.addSongsToSetFromCsv("summer-de.csv", 5);
-
-            this.addSetToDatabase(new GameSet(6, "Schlager Party - DE", "DE",
-                "Hitster Schlagerparty ist das ultimative Partyspiel für alle, die bereit sind, sich durch die Nächte zuschlagen. Diese Variante des beliebten Partyspiels enthält die größten Schlagerhits der vergangenen Jahrzehnte.",
-                "hitster-de_schlager.png", "schlager-de.png", "schlager-de.csv", false));
-            this.addSongsToSetFromCsv("schlager-de.csv", 6);
-
-            this.addSetToDatabase(new GameSet(7, "Wacken Open Air (DE)", "DE",
-                "Hitster Wacken - Die ultimativen Rock- und Metal-Hymnen, kuratiert von Wacken Radio by RADIO BOB! Mach dich bereit für pure Metal-Power: Diese Playlist vereint die härtesten Rock-, Metal- und Hard-&-Heavy-Klassiker, inspiriert vom legendären Wacken Open Air",
-                "hitster-de_wacken.png", "wacken-de.png", "wacken-de.csv", false));
-            this.addSongsToSetFromCsv("wacken-de.csv", 7);
-
-            this.addSetToDatabase(new GameSet(8, "Hits Made in Germany", "DE",
-                null,
-                "madeInGermany-de.jpg", "madeInGermany-de.png", "madeInGermany-de.csv", false));
-            this.addSongsToSetFromCsv("madeInGermany-de.csv", 8);
-
-            this.addSetToDatabase(new GameSet(9, "Urban & Hip-Hop - DE", "DE",
-                "Tauche ein in die Welt der Beats, Reime, Rap und ikonischen Hymnen mit HITSTER Urban & Hip-Hop! Diese spezielle Ausgabe nimmt dich mit auf eine musikalische Reise durch Urban Music aus mehreren Jahrzehnten, von legendären Songs bis zu modernen Hip-Hop-Hits.",
-                "hitster-de_urban.png", "urban-de.png", "urban-de.csv", false));
-            this.addSongsToSetFromCsv("urban-de.csv", 9);
-
-            this.addSetToDatabase(new GameSet(10, "Bayern1 Expansion", "DE",
-                "Bayern 1 Hitliste: Tauche ein in eine Sammlung von über 150 Karten mit den größten Radiohits der vergangenen Jahrzehnte.",
-                "hitster-de_bavaria.png", "bavaria-ex.png", "bavaria-ex.csv", false));
-            this.addSongsToSetFromCsv("bavaria-ex.csv", 10);
-
-            this.addSetToDatabase(new GameSet(11, "Rock (Nordics)", "INT",
-            "Dive into the electrifying world of rock music with the HITSTER Rock! Challenge your friends to place these legendary tracks in the correct chronological order. The first player to correctly sequence 10 songs will be crowned the HITSTER.",
-            "rock-nordics.png", "rock-nd.png", "rock-nordics.csv", false));
-            this.addSongsToSetFromCsv("rock-nordics.csv", 11);
-
-            this.addSetToDatabase(new GameSet(12, "Punk Expansion", "INT", null, "punk-ex.png", "punk-ex.png", "punk-expansion.csv", false));
-            this.addSongsToSetFromCsv("punk-expansion.csv", 12);
-
-            this.addSetToDatabase(new GameSet(13, "Deutschrock Expansion", "DE", null, "deutschrock-ex.png", "deutschrock-ex.png", "deutschrock-ex.csv", false));
-            this.addSongsToSetFromCsv("deutschrock-ex.csv", 13);
+            for (GameSet gameSet : loadSetsFromCsv(".songSets.csv")) {
+                addSetToDatabase(gameSet);
+                addSongsToSetFromCsv(gameSet.csv, gameSet.id);
+            }
 
             Log.Success("Succesfully initialized Database.");
             return true;
@@ -468,6 +414,45 @@ public class Database {
     // ==============================
     // #region GAME SET OPERATIONS
     // ==============================
+
+    private List<GameSet> loadSetsFromCsv(String csvFileName) {
+        try {
+            // 1) Locate CSV file
+            InputStream is = Database.class.getResourceAsStream("/csv/" + csvFileName);
+            if (is == null) {
+                throw new FileNotFoundException("CSV file not found: /csv/" + csvFileName);
+            }
+
+            // 2) Read CSV file and check if file contains data
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            List<String> lines = reader.lines()
+                .filter(line -> line != null && !line.trim().isEmpty())
+                .toList();
+
+            if (lines.isEmpty()) {
+                throw new Exception("CSV file is empty: " + csvFileName);
+            }
+
+            // 3) Write game sets into list
+            LinkedList<GameSet> gameSetList = new LinkedList<>();
+
+            for (int i = 1; i < lines.size(); i++) {
+                String line = lines.get(i).trim();
+                String[] parts = line.split(";");
+
+                gameSetList.add(new GameSet(
+                    i, parts[0], parts[1],  parts[5],
+                    parts[2], parts[3], parts[4], (i == 1))
+                );
+            }
+
+            return gameSetList;
+        }
+        catch (Exception e) {
+            Log.Error("Error while reading CSV: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
 
     public boolean addSongsToSetFromCsv(String csvFileName, int setId) {
         try {
