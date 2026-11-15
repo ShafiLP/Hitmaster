@@ -15,6 +15,7 @@ import hitmaster.design.Card;
 import hitmaster.design.PlayerCard;
 import hitmaster.design.SongCard;
 import hitmaster.design.WinnerPane;
+import hitmaster.models.GameMode;
 import hitmaster.models.GameOptions;
 import hitmaster.models.Player;
 import hitmaster.models.Song;
@@ -75,20 +76,24 @@ public final class GameLogic {
      * Constructor for GameLogic class.
      * Creates a new GameView and waits for LAN connection if LAN game is enabled.
      * Host player / player 1 starts with the game.
-     * @param OPTIONS GameOptions containing move time, steal time and players.
+     * @param options GameOptions containing move time, steal time and players.
      * @param isHost Boolean if player with this GameLogic instance is hosting/owning the game.
      * @param netManager LAN connection (if null, game runs offline).
      */
-    public GameLogic(GameOptions OPTIONS, boolean isHost, NetworkManager netManager) {
+    public GameLogic(GameOptions options, boolean isHost, NetworkManager netManager) {
         this.MUSICPLAYER = new MusicPlayer();
         hasPlayer = MUSICPLAYER.validateConnection();
 
-        this.OPTIONS = OPTIONS;
+        this.OPTIONS = options;
         this.PLAYERS = OPTIONS.players;
         this.MULTIPLAYER = (PLAYERS.length > 1);
 
         this.isHost = isHost;
         this.networkManager = netManager;
+
+        for (Player player : PLAYERS) {
+            player.hitmasterPoints = OPTIONS.startChips;
+        }
 
         // 1) Show GameView
         // ----- HOST & SINGLEPLAYER LOGIC -----
@@ -280,6 +285,14 @@ public final class GameLogic {
     }
 
     /**
+     * Gets the current song and returns it.
+     * @return Current song as Song Object.
+     */
+    public Song getCurrentSong() {
+        return currentSong;
+    }
+
+    /**
      * Adds first song from global list SONGS to GameView of the current player.
      * Updates count of remaining cards on GameView.
      * If SONGS list is empty, calculates winner and shows winner pane.
@@ -324,25 +337,6 @@ public final class GameLogic {
 
         VIEW.addToCardStack(currentSong);
         sendObject("TIMER");
-    }
-
-    /**
-     * Skip song fur current player and place new card on their GameView.
-     * Removes a Hitmaster chip from current player, if {@code removeChip == true}.
-     */
-    public void skipSong(boolean removeChip) {
-        if (removeChip && PLAYERS[currentPlayerIdx].hitmasterPoints < 1) return;
-
-        sendObject("OPPONENT:" + (removeChip ? "SKIP" : "BYPASS"));
-        VIEW.addInfoMessage(this.getCurrentPlayer().username + " skipped the song!");
-
-        if (removeChip) {
-            PLAYERS[currentPlayerIdx].hitmasterPoints--;
-            VIEW.removeHitmasterChip();
-        }
-
-        VIEW.skipCard();
-        addSongToView();
     }
 
     /**
@@ -394,13 +388,21 @@ public final class GameLogic {
     // ==============================
 
     /**
+     * Gets the chip count of the currently active player.
+     * @return Amount of chips of currently active player.
+     */
+    public int getChipCountOfCurrentPlayer() {
+        return PLAYERS[currentPlayerIdx].hitmasterPoints;
+    }
+
+    /**
      * Inserts a SongCard on GameView into the CardStripPane of current player correctly sorted.
      * Removes all Hitmaster Chips from current player.
      */
     public void claimSong() {
-        if (PLAYERS[currentPlayerIdx].hitmasterPoints < 3) return;
+        if (getChipCountOfCurrentPlayer() < 3) return;
 
-        PLAYERS[currentPlayerIdx].hitmasterPoints = PLAYERS[currentPlayerIdx].hitmasterPoints - 3;
+        getCurrentPlayer().hitmasterPoints = getChipCountOfCurrentPlayer() - 3;
 
         sendObject("OPPONENT:CHIPS:REMOVE:" + 3);
 
@@ -408,32 +410,159 @@ public final class GameLogic {
         VIEW.insertCardIntoStrip(false);
     }
 
+    /**
+     * Skip song fur current player and place new card on their GameView.
+     * Removes a Hitmaster chip from current player, if {@code removeChip == true}.
+     */
+    public void skipSong(boolean removeChip) {
+        if (removeChip && PLAYERS[currentPlayerIdx].hitmasterPoints < 1) return;
+
+        sendObject("OPPONENT:" + (removeChip ? "SKIP" : "BYPASS"));
+        VIEW.addInfoMessage(this.getCurrentPlayer().username + " skipped the song!");
+
+        if (removeChip) {
+            PLAYERS[currentPlayerIdx].hitmasterPoints--;
+            VIEW.removeHitmasterChip();
+        }
+
+        VIEW.skipCard();
+        addSongToView();
+    }
+
     // #endregion
 
+    // ==============================
+    // #region Checks & Comparators
+    // ==============================
+
+    /**
+     * Checks user's inputs and assigns songs and chips to them, according to the game options.
+     * @param songList List of songs of user's cards.
+     * @param artistInput Artist user entered.
+     * @param titleInput Title user entered.
+     * @return true if user can keep card; false if not.
+     */
+    public boolean confirmInput(List<Song> songList, String artistInput, String titleInput) {
+        // Check artist input
+        boolean artistCorrect = checkArtistInformation(artistInput);
+        if (artistCorrect) {
+            VIEW.setArtistInputCorrect(true);
+        } else {
+            VIEW.setArtistInputCorrect(false);
+        }
+
+        // Check title input
+        boolean titleCorrect = checkTitleInformation(titleInput);
+        if (titleCorrect) {
+            VIEW.setTitleInputCorrect(true);
+        } else {
+            VIEW.setTitleInputCorrect(false);
+        }
+
+        // Check song order
+        boolean orderCorrect = checkSongOrder(songList);
+        if (orderCorrect) {
+            VIEW.setCardPlacementCorrect(true);
+        } else {
+            VIEW.setCardPlacementCorrect(false);
+        }
+
+        // Check if player gets song and chip
+        boolean playerCorrect = false;
+        switch (OPTIONS.gameMode) {
+
+            // Classic: Add song if order is correct; Add chip if artist and title are correct
+            case GameMode.CLASSIC -> {
+                if (artistCorrect && titleCorrect) {
+                    getCurrentPlayer().increaseHitmasterPoints();
+                    sendObject("OPPONENT:CHIPS:ADD:1");
+
+                    VIEW.addHitmasterChip();
+                }
+
+                playerCorrect = orderCorrect;
+                if (playerCorrect) {
+                    addSongToPlayer(getCurrentPlayer());
+                }
+
+                sendObject(new SongDTO(songList, "OPPONENT:REVEAL:" + (orderCorrect ? "CORRECT" : "WRONG")));
+            }
+
+            // Advanced: Add song if order, artist and title are correct; No chips added
+            case GameMode.ADVANCED -> {
+                playerCorrect = orderCorrect && artistCorrect && titleCorrect;
+                if (playerCorrect) {
+                    addSongToPlayer(getCurrentPlayer());
+                }
+
+                sendObject(new SongDTO(songList, "OPPONENT:REVEAL:" + (playerCorrect ? "CORRECT" : "WRONG")));
+            }
+
+            // Expert: Add song if order, artist, title and exact year input are correct; No chips added
+            case GameMode.EXPERT -> {
+                // TODO: Advanced as placeholder
+
+                playerCorrect = orderCorrect && artistCorrect && titleCorrect;
+                if (playerCorrect) {
+                    addSongToPlayer(getCurrentPlayer());
+                }
+
+                sendObject(new SongDTO(songList, "OPPONENT:REVEAL:" + (playerCorrect ? "CORRECT" : "WRONG")));
+            }
+
+            // Fallback: Game Mode is not implemented yet or not existant
+            default -> {
+                Log.Error("Game Mode \"" + OPTIONS.gameMode.getName() + "\" is not implemented yet!");
+                sendObject(new SongDTO(songList, "OPPONENT:REVEAL:" + (playerCorrect ? "CORRECT" : "WRONG")));
+            }
+        }
+
+        // Add chat message
+        if (playerCorrect) {
+            VIEW.addSuccessMessage(getCurrentPlayer().username + " guessed right!");
+        } else {
+            VIEW.addErrorMessage(getCurrentPlayer().username + " guessed wrong!");
+        }
+
+        return playerCorrect;
+    }
     
 
-    public boolean checkSongOrder(List<SongCard> songCards) {
-        // 1) Search for currentSong
+    /**
+     * Checks if current song is placed correctly inside list of Songs.
+     * List should be sorted by release year.
+     * If current song is not parts of list, returns false.
+     * 
+     * @param songList List of songs with {@code currentSong} in it.
+     * @return true if currentSong is placed correctly; false if placed falsely or not found.
+     */
+    public boolean checkSongOrder(List<Song> songList) {
+        // Search for currentSong in list
         int idx = -1;
-        for (int i = 0; i < songCards.size(); i++) {
-            if (songCards.get(i).song.id == currentSong.id) {
+        for (int i = 0; i < songList.size(); i++) {
+            if (songList.get(i).id == currentSong.id) {
                 idx = i;
                 break;
             }
         }
-        if (idx == -1)
-            return false;
 
-        // 2) Check position
-        if (songCards.get(idx).equals(songCards.getFirst()))
-            return (songCards.get(idx + 1).song.year >= songCards.get(idx).song.year);
+        if (idx == -1) return false;
 
-        if (songCards.get(idx).equals(songCards.getLast()))
-            return (songCards.get(idx - 1).song.year <= songCards.get(idx).song.year);
+        // Check position
+        if (songList.get(idx).equals(songList.getFirst()))
+            return (songList.get(idx + 1).year >= songList.get(idx).year);
 
-        return (songCards.get(idx - 1).song.year <= songCards.get(idx).song.year && songCards.get(idx + 1).song.year >= songCards.get(idx).song.year);
+        if (songList.get(idx).equals(songList.getLast()))
+            return (songList.get(idx - 1).year <= songList.get(idx).year);
+
+        return (songList.get(idx - 1).year <= songList.get(idx).year && songList.get(idx + 1).year >= songList.get(idx).year);
     }
 
+    /**
+     * Checks if steal guess is correct.
+     * @param cardList List of card elements.
+     * @return Result.
+     */
     public boolean checkStealOrder(List<Card> cardList) {
         // 1) Search for steal card (PlayerCard)
         int idx = -1;
@@ -465,53 +594,19 @@ public final class GameLogic {
     }
 
     /**
-     * Checks if player reached 10 correct cards.
-     * @param songCards List of SongCard UI elements.
-     * @return Win result.
-     */
-    public boolean checkForWin(List<SongCard> songCards) {
-        return (songCards.size() >= 10);
-    }
-
-    public int getChipCountOfCurrentPlayer() {
-        return PLAYERS[currentPlayerIdx].hitmasterPoints;
-    }
-
-    public Song getCurrentSong() {
-        return currentSong;
-    }
-
-    public GameOptions getGameOptions() {
-        return OPTIONS;
-    }
-
-    public boolean isMultiplayer() {
-        return MULTIPLAYER;
-    }
-
-    public Player getOpponentPlayer() {
-        if (this.isLAN()) {
-            if (isHost)
-                return PLAYERS[1];
-
-            return PLAYERS[0];
-        }
-
-        return this.getPreviousPlayer();
-    }
-
-    /**
      * Checks if user input of artist and song title are correct.
-     * If input is correct, user receives one HM point.
+     * If input is correct and GameMode is classic, user receives one HM point.
      * @param artist User input of artist.
      * @param title User input of song title.
      * @return Comparison result.
      */
     public boolean checkSongInformation(String artist, String title) {
         if (compareArtist(artist, currentSong.artists) && compareTitle(title, currentSong.titles)) {
-            PLAYERS[currentPlayerIdx].increaseHitmasterPoints();
-            VIEW.addHitmasterChip();
-            this.sendObject("OPPONENT_ADD_CHIP");
+            if (OPTIONS.gameMode == GameMode.CLASSIC) {
+                getCurrentPlayer().increaseHitmasterPoints();
+                VIEW.addHitmasterChip();
+                sendObject("OPPONENT:CHIPS:ADD:1");
+            }
             return true;
         }
 
@@ -569,37 +664,21 @@ public final class GameLogic {
     }
 
     /**
-     * Removes special characters (ä, é, î) and unnecessary spaces from String.
-     * @param text Input String to normalize.
-     * @return Normalized String.
+     * Checks if player reached {@code OPTIONS.cardAmount} correct cards.
+     * @param songList List of songs elements.
+     * @return Win result.
      */
-    public static String normalizeText(String text) {
-        if (text == null) {
-            return "";
+    public void checkForWin(List<Song> songList) {
+        if (songList.size() >= OPTIONS.cardAmount) {
+            VIEW.showWinnerPane(getCurrentPlayer());
+            sendObject("OPPONENT:WIN");
         }
-
-        // 1) To lowercase
-        String lowercase = text.toLowerCase();
-
-        // 2) Remove accents
-        String normalized = Normalizer.normalize(lowercase, Normalizer.Form.NFD);
-
-        // 3) Delete diacritics
-        String noAccents = DIACRITICS.matcher(normalized).replaceAll("");
-
-        // 4) Remove everything that's not a letter, a number or a space
-        String cleanChars = SPECIAL_CHARS.matcher(noAccents).replaceAll("");
-
-        // 5) Delete all spacings
-        return cleanChars.replaceAll(" ", "");
     }
 
-    public GameView getView() {
-        return VIEW;
-    }
+    // #endregion
 
     // ==============================
-    // Music Player Methods
+    // #region Music Player Operations
     // ==============================
 
     public void togglePlayPause(Song song, boolean play) {
@@ -661,6 +740,58 @@ public final class GameLogic {
 
     public void setVolume(int volume) {
         MUSICPLAYER.setVolume(volume);
+    }
+
+    // #endregion
+
+
+    public GameOptions getGameOptions() {
+        return OPTIONS;
+    }
+
+    public boolean isMultiplayer() {
+        return MULTIPLAYER;
+    }
+
+    public Player getOpponentPlayer() {
+        if (this.isLAN()) {
+            if (isHost)
+                return PLAYERS[1];
+
+            return PLAYERS[0];
+        }
+
+        return this.getPreviousPlayer();
+    }
+
+    /**
+     * Removes special characters (ä, é, î) and unnecessary spaces from String.
+     * @param text Input String to normalize.
+     * @return Normalized String.
+     */
+    public static String normalizeText(String text) {
+        if (text == null) {
+            return "";
+        }
+
+        // 1) To lowercase
+        String lowercase = text.toLowerCase();
+
+        // 2) Remove accents
+        String normalized = Normalizer.normalize(lowercase, Normalizer.Form.NFD);
+
+        // 3) Delete diacritics
+        String noAccents = DIACRITICS.matcher(normalized).replaceAll("");
+
+        // 4) Remove everything that's not a letter, a number or a space
+        String cleanChars = SPECIAL_CHARS.matcher(noAccents).replaceAll("");
+
+        // 5) Delete all spacings
+        return cleanChars.replaceAll(" ", "");
+    }
+
+    public GameView getView() {
+        return VIEW;
     }
 
     // ==============================
@@ -830,12 +961,26 @@ public final class GameLogic {
 
                     case "CHIPS":
                         switch(parts[2]) {
+                            case "ADD":
+                                int toAdd = Integer.parseInt(parts[3]);
+                                getCurrentPlayer().hitmasterPoints = getCurrentPlayer().hitmasterPoints + toAdd;
+                                VIEW.addOpponentChips(toAdd);
+                            break;
+
                             case "REMOVE":
                                 int toRemove = Integer.parseInt(parts[3]);
-                                PLAYERS[currentPlayerIdx].hitmasterPoints = PLAYERS[currentPlayerIdx].hitmasterPoints - toRemove;
+                                getCurrentPlayer().hitmasterPoints = getCurrentPlayer().hitmasterPoints - toRemove;
                                 VIEW.removeOpponentChips(toRemove);
                             break;
                         }
+                    break;
+
+                    case "WIN":
+                        Platform.runLater(() -> WinnerPane.winnerDialog(VIEW, getCurrentPlayer()));
+                    break;
+
+                    case "DISCARD":
+                        VIEW.addNewSongToDiscard(currentSong);
                     break;
                 }
             break;
@@ -925,6 +1070,7 @@ public final class GameLogic {
                         case "OPPONENT":
                             switch (parts[1]) {
                                 case "REVEAL":
+                                    VIEW.setTimerForOpponent(3);
                                     if (parts[2].equals("CORRECT")) {
                                         PLAYERS[currentPlayerIdx].songs.clear();
 
@@ -1032,29 +1178,6 @@ public final class GameLogic {
 
             this.sendObject(new SongDTO(songsFromCards, "OPPONENT:MOVE"));
         }
-    }
-
-    public void revealCards(List<Card> revealedSongCards, boolean correct) {
-        List<Song> songsFromCards = new ArrayList<>();
-
-        for (Card card : revealedSongCards) {
-            if (card instanceof SongCard songCard) {
-                if (!songCard.isShowingFront) {
-                    songsFromCards.add(new Song());
-                }
-                else {
-                    songsFromCards.add(songCard.song);
-                }
-            }
-            else {
-                songsFromCards.add(new Song());
-            }
-        }
-
-        if (correct) {
-            addSongToPlayer(getCurrentPlayer());
-        } 
-        sendObject(new SongDTO(songsFromCards, "OPPONENT:REVEAL:" + (correct ? "CORRECT" : "WRONG")));
     }
 
     // ========== STEAL ACTIONS ==========

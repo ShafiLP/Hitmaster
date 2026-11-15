@@ -1,5 +1,6 @@
 package hitmaster.views;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import hitmaster.GameLogic;
@@ -228,6 +229,7 @@ public class GameView extends BorderPane {
 
         // ===== CHIPS =====
         CHIP_PANE = new ChipPane();
+        addHitmasterChips(GAME.getGameOptions().startChips);
 
         // ===== CARD OVERLAY =====
         OVERLAY = new Pane();
@@ -613,6 +615,12 @@ public class GameView extends BorderPane {
         Platform.runLater(() -> CHIP_PANE.addChip());
     }
 
+    private void addHitmasterChips(int toAdd) {
+        for (int i = 0; i < toAdd; i++) {
+            Platform.runLater(() -> CHIP_PANE.addChip());
+        }
+    }
+
     /**
      * Removes a Hitmaster Chip from chip pane of the current player.
      */
@@ -696,6 +704,48 @@ public class GameView extends BorderPane {
         GAME.sendObject(currentCard.isPlaying ? "SONG:PLAY" : "SONG:PAUSE");
     }
 
+    public void setArtistInputCorrect(Boolean isCorrect) {
+        if (isCorrect == null) {
+            ARTIST.setStyle("");
+            ARTIST.clear();
+            ARTIST.setEditable(true);
+        }
+        else if (isCorrect == true) {
+            ARTIST.setStyle("-fx-border-color: -green;");
+            
+        }
+        else {
+            ARTIST.setStyle("-fx-border-color: -red;");
+        }
+    }
+
+    public void setTitleInputCorrect(Boolean isCorrect) {
+        if (isCorrect == null) {
+            TITLE.setStyle("");
+            TITLE.clear();
+            TITLE.setEditable(true);
+        }
+        else if (isCorrect == true) {
+            TITLE.setStyle("-fx-border-color: -green;");
+            
+        }
+        else {
+            TITLE.setStyle("-fx-border-color: -red;");
+        }
+    }
+
+    public void setCardPlacementCorrect(Boolean isCorrect) {
+        if (isCorrect == null) {
+            currentCard.resetBorderColor();
+        }
+        else if (isCorrect == true) {
+            currentCard.setBorderColor("-green");
+        }
+        else {
+            currentCard.setBorderColor("-red");
+        }
+    }
+
     /**
      * Starts confirmation of player input.
      * Artist and Title Label get colored green if correct and red if incorrect.
@@ -716,36 +766,20 @@ public class GameView extends BorderPane {
             String titleInput = TITLE.getText().trim().isEmpty() ? "X" : TITLE.getText().trim();
 
             GAME.sendObject("CHAT:PLAYER_GUESS:" + artistInput + ":" + titleInput);
-            this.addPlayerMessage(GAME.getLocalPlayer(), "ARTIST: \"" + artistInput + "\"\nTITLE: \"" + titleInput + "\"");
+            addPlayerMessage(GAME.getLocalPlayer(), "ARTIST: \"" + artistInput + "\"\nTITLE: \"" + titleInput + "\"");
 
-            ARTIST.setStyle(GAME.checkArtistInformation(artistInput) ? "-fx-border-color:rgb(0, 255, 0);" : "-fx-border-color:rgb(255, 0, 0);");
-            TITLE.setStyle(GAME.checkTitleInformation(titleInput) ? "-fx-border-color:rgb(0, 255, 0);" : "-fx-border-color:rgb(255, 0, 0);");
-            GAME.checkSongInformation(artistInput, titleInput);
-
-            // 3) Check position of card
-            boolean guess = GAME.checkSongOrder(STRIP.getSongCards());
-            currentCard.setBorderColor(guess ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)");
-
-            // 4) Send result to connected player
-            GAME.revealCards(STRIP.getCards(), guess);
-
-            // 5) Set Status and start Timer
-            if (guess) {
-                CHAT.addSuccessMessage(GAME.getCurrentPlayer().username + " guessed right!");
-            }
-            else {
-                CHAT.addErrorMessage(GAME.getCurrentPlayer().username + " guessed wrong!");
-            }
+            // 3) Send inputs to game logic
+            boolean isGuessCorrect = GAME.confirmInput(songCardsToSongs(STRIP.getSongCards()), artistInput, titleInput);
             
-            if (timerUnit != null)
-                timerUnit.stop();
+            // 4) Wait 3 seconds and continue
+            if (timerUnit != null) timerUnit.stop();
 
             timerUnit = new Timer(3);
             timerUnit.start(
                 () -> Platform.runLater(() -> 
                     setRemainingTime(timerUnit.getRemainingSeconds())
                 ),
-                () -> this.checkForWin(guess)
+                () -> checkForWin(isGuessCorrect)
             );
         });
     }
@@ -754,57 +788,38 @@ public class GameView extends BorderPane {
      * If guess was correct, check for win.
      * If guess was incorrect, move card to discard pile.
      * After checking, continues game with next player.
-     * @param guess Boolean if position of guess was correct.
+     * @param isGuessCorrect Boolean if position of guess was correct.
      */
-    private void checkForWin(boolean guess) {
+    private void checkForWin(boolean isGuessCorrect) {
         // 1) Reset styles
-        ARTIST.setStyle("");
-        ARTIST.getStyleClass().add("modern-textbox");
-        ARTIST.clear();
-        ARTIST.setEditable(true);
+        setArtistInputCorrect(null);
+        setTitleInputCorrect(null);
+        setCardPlacementCorrect(null);
 
-        TITLE.setStyle("");
-        TITLE.getStyleClass().add("modern-textbox");
-        TITLE.clear();
-        TITLE.setEditable(true);
-
-        currentCard.resetBorderColor();
         if (stealCard != null) {
             stealCard.resetBorderColor();
             stealCard.setVisible(false);
         }
 
-        // 2) Check for win if guess was correct
-        if (guess) {
-            if (GAME.checkForWin(STRIP.getSongCards())) {
-                Player winner = GAME.getCurrentPlayer();
-                Platform.runLater(() -> {
-                    CHAT.addSuccessMessage(winner.username + " won the game!");
-
-                    this.stopTimer();
-
-                    GAME.sendObject("OPPONENT_WIN");
-                    showWinnerPane(winner);
-                });
-            }
+        // 2) Check for win if guess was correct; keep or discard
+        if (isGuessCorrect) {
+            GAME.checkForWin(songCardsToSongs(STRIP.getSongCards()));
         }
-
-        // 3) Move card to discard pile if guess was incorrect
         else {
             Platform.runLater(() -> {
-                final SongCard wrongCard = this.currentCard; 
+                final SongCard wrongCard = currentCard; 
             
                 if (wrongCard == null) return;
 
                 double sceneX = wrongCard.localToScene(0, 0).getX();
                 double sceneY = wrongCard.localToScene(0, 0).getY();
                 
-                Point2D localPos = this.sceneToLocal(sceneX, sceneY);
+                Point2D localPos = sceneToLocal(sceneX, sceneY);
 
                 STRIP.removeCard(wrongCard, false); 
 
                 if (wrongCard.getParent() != this) {
-                    this.getChildren().add(wrongCard);
+                    getChildren().add(wrongCard);
                 }
 
                 wrongCard.setLayoutX(localPos.getX());
@@ -819,12 +834,12 @@ public class GameView extends BorderPane {
             });
 
             GAME.handleCardMove(STRIP.getCards());
-            GAME.sendObject("OPPONENT_DISCARD");
+            GAME.sendObject("OPPONENT:DISCARD");
         }
 
-        // 4) Swap active player
+        // 3) Swap active player
         GAME.finishTurn();
-        this.initializeNewTimer();
+        initializeNewTimer();
     }
 
     public void showWinnerPane(Player winner) {
@@ -871,6 +886,7 @@ public class GameView extends BorderPane {
         PLAYER_PANE.initialize(opponent);
         PLAYER_PANE.setVisible(true);
         PLAYER_PANE.setManaged(true);
+        PLAYER_PANE.setChipsCount(GAME.getGameOptions().startChips);
     }
 
     /**
@@ -927,6 +943,12 @@ public class GameView extends BorderPane {
      */
     public void addOpponentChip() {
         Platform.runLater(() -> PLAYER_PANE.addChip());
+    }
+
+    public void addOpponentChips(int toAdd) {
+        for (int i = 0; i < toAdd; i++) {
+            Platform.runLater(() -> PLAYER_PANE.addChip());
+        }
     }
 
     public void removeOpponentChips(int toRemove) {
@@ -1117,7 +1139,7 @@ public class GameView extends BorderPane {
 
         // 2) Check position of steal card
         boolean guess = GAME.checkStealOrder(STRIP.getCards());
-        if (guess && !GAME.checkSongOrder(STRIP.getSongCards())) {
+        if (guess && !GAME.checkSongOrder(songCardsToSongs(STRIP.getSongCards()))) {
             stealCard.setBorderColor("rgb(0, 255, 0)");
             GAME.addSongToPlayer(GAME.getPreviousPlayer());
         }
@@ -1212,6 +1234,16 @@ public class GameView extends BorderPane {
             GAME.stopAllTasks();
             Navigation.getInstance().toMainMenu();
         }
+    }
+
+    private List<Song> songCardsToSongs(List<SongCard> cards) {
+        List<Song> songs = new LinkedList<>();
+
+        for (SongCard card : cards) {
+            songs.add(card.song);
+        }
+
+        return songs;
     }
 
     @Override

@@ -134,7 +134,7 @@ public class Player implements Serializable {
     }
 
     public void increaseHitmasterPoints() {
-        if (hitmasterPoints < 3)
+        if (hitmasterPoints < 5)
             hitmasterPoints++;
     }
 }

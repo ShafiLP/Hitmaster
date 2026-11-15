@@ -22,6 +22,7 @@
 - 'Move Time' is now 'Turn Time'
 - Set Images now with less padding
 - Nordics Rock Set updated Image and Description
+- Parts of logic that were inside GameView class moved to GameLogic
 
 ### Fixed
 - If song isn't available in user's country, the game now asks the user if they want to skip the song without losing a chip.
