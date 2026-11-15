@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,6 +30,7 @@ public class StealView extends Stage {
 
     private final GameLogic GAME;
 
+    private final Pane dragLayer;
     private final CardStripPane cardStripPane;
     private final StatusBar statusBar;
     private final Button confirmButton;
@@ -47,48 +49,58 @@ public class StealView extends Stage {
         this.setMinWidth(700);
         this.setMinHeight(400);
 
+        
         BorderPane root = new BorderPane();
 
-        // 1) Add status bar to top
         statusBar = new StatusBar();
-        statusBar.setInfoText("Place your guess at the correct area of the strip!");
+        statusBar.setInfoText(
+            "Place your guess at the correct area of the strip!"
+        );
         root.setTop(statusBar);
 
-        // 2) Add CardStripPane to center
         AnchorPane centerLayout = new AnchorPane();
         centerLayout.setPadding(new Insets(20));
 
-        cardStripPane = new CardStripPane(game, cardOverlay);
+        dragLayer = new Pane();
+        dragLayer.setPickOnBounds(false);
+
+        cardStripPane = new CardStripPane(game, dragLayer);
         cardStripPane.setPrefHeight(180);
 
         AnchorPane.setTopAnchor(cardStripPane, 20.0);
         AnchorPane.setLeftAnchor(cardStripPane, 20.0);
         AnchorPane.setRightAnchor(cardStripPane, 20.0);
 
-        targetCard.setLayoutX(275); 
+        targetCard.setLayoutX(275);
         targetCard.setLayoutY(260);
 
         cardStripPane.registerExternalCard(targetCard);
 
-        centerLayout.getChildren().addAll(cardStripPane, targetCard);
+        centerLayout.getChildren().addAll(
+            cardStripPane,
+            targetCard
+        );
+
         root.setCenter(centerLayout);
 
-        // 3) Confirmation button at bottom
-        confirmButton = new Button("Confirm placement");
+        confirmButton = new Button("Confirm");
         confirmButton.getStyleClass().add("primary-button");
-        
         confirmButton.setOnAction(e -> handleConfirmation());
 
         VBox bottomLayout = new VBox(confirmButton);
         bottomLayout.setAlignment(Pos.CENTER);
         bottomLayout.setPadding(new Insets(15));
+
         root.setBottom(bottomLayout);
 
-        // 4) Set scene
-        Scene scene = new Scene(root);
+        StackPane sceneRoot = new StackPane();
+        sceneRoot.getChildren().addAll(root, dragLayer);
+
+        Scene scene = new Scene(sceneRoot);
+
         ThemeManager.getInstance().registerScene(scene);
-        
-        this.setScene(scene);
+
+        setScene(scene);
     }
 
     /**

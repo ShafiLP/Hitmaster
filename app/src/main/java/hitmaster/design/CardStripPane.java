@@ -52,6 +52,7 @@ public class CardStripPane extends Pane {
         layoutCards();
     }
 
+    
     public void registerExternalCard(Card card) {
         card.setOnDragStarted(() -> {
             if (card.getParent() == cardOverlay) return;
@@ -64,13 +65,13 @@ public class CardStripPane extends Pane {
 
             Point2D scenePoint = card.localToScene(0, 0);
 
-            getChildren().remove(card);
+            if (card.getParent() instanceof Pane parent) {
+                parent.getChildren().remove(card);
+            }
 
             Point2D overlayPoint = cardOverlay.sceneToLocal(scenePoint);
 
-            if (card.getParent() == null) {
-                cardOverlay.getChildren().add(card);
-            }
+            cardOverlay.getChildren().add(card);
 
             card.setLayoutX(overlayPoint.getX());
             card.setLayoutY(overlayPoint.getY());
@@ -80,7 +81,7 @@ public class CardStripPane extends Pane {
 
         card.setOnDragged((sceneX, sceneY) -> {
             Point2D localPoint = sceneToLocal(sceneX, sceneY);
-            
+
             if (isWithinStripBounds(localPoint.getX(), localPoint.getY())) {
                 insertIndex = calculateInsertionIndex(localPoint.getX());
                 updateMarkerPosition(insertIndex);
@@ -92,16 +93,16 @@ public class CardStripPane extends Pane {
 
         card.setOnDragFinished(() -> {
             marker.setVisible(false);
-            
+
             if (insertIndex >= 0) {
                 if (card.getParent() instanceof Pane parent) {
                     parent.getChildren().remove(card);
                 }
 
-                getChildren().add(card);
-
                 int safeIndex = Math.max(0, Math.min(insertIndex, cards.size()));
+
                 cards.add(safeIndex, card);
+                getChildren().add(card);
             }
 
             insertIndex = -1;
@@ -112,6 +113,7 @@ public class CardStripPane extends Pane {
             GAME.handleCardMove(cards);
         });
     }
+
 
     public void removeCard(SongCard card, boolean removeFromParent) {
         if (card == null) return;

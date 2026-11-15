@@ -596,8 +596,6 @@ public class Spotify {
                 .build()
                 .execute();
 
-            Log.Warning(user.getCountry().toString());
-
             connection.getTrack(trackId)
                 .market(user.getCountry())
                 .build()
