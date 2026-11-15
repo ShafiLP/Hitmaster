@@ -32,7 +32,8 @@ import hitmaster.models.User;
 
 public class Database {
 
-    public static final String URL = "jdbc:sqlite:hitmaster.db";
+    public static final String APP_PATH = System.getProperty("user.home") + "/.hitmaster/hitmaster.db";
+    public static final String URL = "jdbc:sqlite:" + APP_PATH;
 
     private static final Gson GSON = new Gson();
     private static final Type LIST_TYPE = new TypeToken<List<String>>(){}.getType();
